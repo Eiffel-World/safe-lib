@@ -1,8 +1,8 @@
 indexing
 	description: "CLI C Interface"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 08:52:04 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/02/16 19:16:15 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -133,6 +133,16 @@ feature {NONE} -- Implementation
 		end
 
 	ecli_c_get_columns ( StatementHandle : POINTER ;  CatalogName : POINTER ;  NameLength1 : INTEGER ; SchemaName : POINTER ;  NameLength2 : INTEGER ; TableName : POINTER ;  NameLength3 : INTEGER ; ColumnName : POINTER ;  NameLength4 : INTEGER) : INTEGER is
+		external "C"
+		end
+
+	ecli_c_get_primary_keys ( StatementHandle : POINTER ;  CatalogName : POINTER ;  NameLength1 : INTEGER ; SchemaName : POINTER ;  NameLength2 : INTEGER ; TableName : POINTER ;  NameLength3 : INTEGER) : INTEGER is
+		external "C"
+		end
+
+	ecli_c_get_foreign_keys ( StatementHandle : POINTER ;  
+			CatalogName : POINTER ;  NameLength1 : INTEGER ; SchemaName : POINTER ;  NameLength2 : INTEGER ; TableName : POINTER ;  NameLength3 : INTEGER;
+			FKCatalogName : POINTER ;  NameLength4 : INTEGER ; FKSchemaName : POINTER ;  NameLength5 : INTEGER ; FKTableName : POINTER ;  NameLength6 : INTEGER) : INTEGER is
 		external "C"
 		end
 

@@ -6,8 +6,8 @@ indexing
 		%A Void criteria is considered as a wildcard."
 		
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/12/14 21:07:07 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/16 19:16:15 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	ECLI_COLUMNS_CURSOR
@@ -38,8 +38,8 @@ feature {NONE} -- Initialization
 			search_criteria : ECLI_NAMED_METADATA
 		do
 			!!search_criteria.make (Void, Void, a_table)
-			queried_column := Void
 			make (search_criteria, a_session)
+			queried_column := Void
 		ensure
 			executed: is_ok implies is_executed
 		end
@@ -48,8 +48,8 @@ feature {NONE} -- Initialization
 			-- search for column whose name matches `a_search_criteria' and `a_column_name'
 			-- Void values are wildcards
 		do
-			queried_column := a_column_name
 			make (a_search_criteria, a_session)
+			queried_column := a_column_name
 		end
 
 	make (a_name: ECLI_NAMED_METADATA; a_session: ECLI_SESSION)	is

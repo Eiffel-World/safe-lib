@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2002/12/14 21:07:07 $"
-	revision: "$Revision: 1.2 $"
+	description: "Procedures metadata."
+	author: "Paul G. Crismer."
+	date: "$Date: 2003/02/16 19:16:15 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_PROCEDURE

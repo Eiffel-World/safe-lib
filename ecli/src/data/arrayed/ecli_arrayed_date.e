@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI DATE arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/01/02 19:35:02 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/16 19:16:15 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -72,7 +72,7 @@ feature -- Access
 		do
 			Result := year_at (cursor_index)
 		ensure
-			value_at_cursor_index: not is_null implies Result = month_at (cursor_index)
+			value_at_cursor_index: not is_null implies Result = year_at (cursor_index)
 			zero_when_null: is_null implies Result = 0
 		end
 

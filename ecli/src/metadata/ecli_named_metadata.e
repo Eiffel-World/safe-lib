@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are named metadata, i.e. with catalog, schema and name."
 	author: ""
-	date: "$Date: 2002/12/14 21:07:07 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/16 19:16:15 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_NAMED_METADATA
@@ -40,6 +40,7 @@ feature -- Access
 			-- schema name
 	
 	name : STRING
+			-- table or column name
 	
 feature -- Measurement
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that iterate over the SQL types supported by a datasource"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/12/14 21:07:07 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/16 19:16:15 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	ECLI_SQL_TYPES_CURSOR
@@ -109,7 +109,8 @@ feature -- Access
 				sql_type_date,
 				sql_type_time,
 				sql_type_timestamp,
-				sql_longvarchar
+				sql_longvarchar,
+				sql_all_types
 			>>
 		end
 		
