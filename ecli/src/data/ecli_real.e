@@ -4,8 +4,8 @@ indexing
 		"SQL REAL values"
 		
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:54:38 $"
-	revision: "$Revision: 1.17 $"
+	date: "$Date: 2003/11/11 19:31:07 $"
+	revision: "$Revision: 1.18 $"
 	licensing: "See notice at end of class"
 
 class
@@ -217,7 +217,7 @@ feature -- Basic operations
 			message_buffer : XS_C_STRING
 		do
 			if is_null then
-				Result := "NULL"
+				Result := Precursor {ECLI_GENERIC_VALUE}
 			else
 				create message_buffer.make (50)
 				sprintf_real (message_buffer.handle, item.item)

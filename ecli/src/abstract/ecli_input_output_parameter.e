@@ -1,8 +1,8 @@
 indexing
 	description: "Input/Output parameters in SQL statements."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/11/11 19:31:07 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_INPUT_OUTPUT_PARAMETER
@@ -44,7 +44,7 @@ feature -- Miscellaneous
 feature -- Basic operations
 
 	bind (statement : ECLI_STATEMENT; position : INTEGER) is
-			-- 
+			-- Bind Current as `position'-th parameter in `statement'
 		do
 			item.bind_as_input_output_parameter (statement, position)
 		end
@@ -56,6 +56,6 @@ feature -- Inapplicable
 feature {NONE} -- Implementation
 
 invariant
-	invariant_clause: True -- Your invariant here
+	is_input_output: is_input_output
 
 end -- class ECLI_INPUT_OUTPUT_PARAMETER

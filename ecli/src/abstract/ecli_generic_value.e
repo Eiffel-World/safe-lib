@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/08/20 15:39:08 $"
-	revision: 	"$Revision: 1.5 $"
+	date: 		"$Date: 2003/11/11 19:31:07 $"
+	revision: 	"$Revision: 1.6 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -20,7 +20,7 @@ inherit
 feature -- Access
 
 	item : G is
-			-- Actual value : to be redefined in descendant classes
+			-- Actual Eiffel value
 		require
 			not_null: not is_null
 		do
@@ -52,15 +52,17 @@ feature -- Conversion
 		end
 
 	out : STRING is
-			-- 
 		do
-			Result := item.out
+			if is_null then
+				Result := "<NULL>"
+			else
+				Result := item.out
+			end
 		end
 		
 feature -- Duplication
 
 	copy (other : like Current) is
-			-- 
 		do
 			if other.is_null then
 				set_null

@@ -4,8 +4,8 @@ indexing
 		"SQL TIME values"
 		
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:54:38 $"
-	revision: "$Revision: 1.15 $"
+	date: "$Date: 2003/11/11 19:31:07 $"
+	revision: "$Revision: 1.16 $"
 	licensing: "See notice at end of class"
 
 class
@@ -216,6 +216,8 @@ feature -- Conversion
 				Result.append_string (Integer_format.pad_integer_2 (minute))
 				Result.append_character (':')
 				Result.append_string (Integer_format.pad_integer_2 (second))
+			else
+				Result := Precursor
 			end
 		end
 			

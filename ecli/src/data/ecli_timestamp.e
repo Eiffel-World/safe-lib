@@ -4,8 +4,8 @@ indexing
 		"SQL TIMESTAMP values"
 		
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:54:38 $"
-	revision: "$Revision: 1.21 $"
+	date: "$Date: 2003/11/11 19:31:07 $"
+	revision: "$Revision: 1.22 $"
 	licensing: "See notice at end of class"
 
 class
@@ -335,7 +335,7 @@ feature -- Conversion
 					Result.append_string (nanosecond.out)
 				end
 			else
-				Result := "NULL"
+				Result := Precursor {ECLI_GENERIC_VALUE}
 			end
 		end
 

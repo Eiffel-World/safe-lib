@@ -4,8 +4,8 @@ indexing
 		"SQL DATE values"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:54:38 $"
-	revision: "$Revision: 1.20 $"
+	date: "$Date: 2003/11/11 19:31:07 $"
+	revision: "$Revision: 1.21 $"
 	licensing: "See notice at end of class"
 
 class
@@ -218,7 +218,7 @@ feature -- Conversion
 	out : STRING is
 		do
 			if is_null then
-				Result := "NULL"
+				Result := Precursor {ECLI_GENERIC_VALUE}
 			else
 				Result:= STRING_.make (10)
 				Result.append_string (integer_format.pad_integer_4 (year))

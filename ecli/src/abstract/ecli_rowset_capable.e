@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are capable of operating on a rowset."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/27 12:46:39 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/11/11 19:31:07 $"
+	revision: "$Revision: 1.10 $"
 
 deferred class
 	ECLI_ROWSET_CAPABLE
@@ -16,6 +16,8 @@ feature -- Status report
 
 	item_status (index : INTEGER) : INTEGER is
 			-- status of `index'th value in current rowset
+		require
+			index_within_bounds: index >= 1 and then index <= row_capacity
 		do
 			Result := rowset_status.item (index)
 		end
@@ -27,6 +29,7 @@ feature -- Status report
 		end
 		
 	rowset_status : ECLI_ROWSET_STATUS
+			-- status of last operation, one per row in the set
 	
 feature {NONE} -- implementation
 	
@@ -60,5 +63,6 @@ invariant
 	row_capacity_valid: row_capacity >= 1
 	row_count_valid: row_count <= row_capacity
 	impl_row_count_not_void: impl_row_count /= Void
+	rowset_status_capacity: rowset_status /= Void and then rowset_status.count = row_capacity
 	
 end -- class ECLI_ROWSET_CAPABLE
