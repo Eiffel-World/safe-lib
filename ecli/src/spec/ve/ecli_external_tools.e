@@ -1,8 +1,8 @@
 indexing
 	description: "Tools for Eiffel/External (to C) communication"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/09/09 19:03:31 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 expanded class
