@@ -6,7 +6,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/07 19:02:31 $"
+	date: "$Date: 2005/02/03 22:02:11 $"
 
 class TEST_DECIMAL
 
@@ -27,10 +27,20 @@ feature {NONE} -- Initialization
 
 	make is
 			-- Create and run test cases.
+		local
+			parser : MA_DECIMAL_TEXT_PARSER
 		do
+			create parser
+			parser.parse ("-123i")
+			if not parser.error then
+				
+			else
+			
+			end
 			output.put_string ("-- test_eda %N--  General Decimal Arithmetic tests cases%N")
 			output.put_string ("-- for exercising the Eiffel Decimal Arithmetic library (EDA).%N")
 			test_cases
+			
 		end
 
 

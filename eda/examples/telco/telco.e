@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2004/04/27 19:13:15 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2005/02/03 22:02:12 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class TELCO
@@ -18,7 +18,9 @@ inherit
 
 	KL_SHARED_ARGUMENTS
 	
-	MA_SHARED_DECIMAL_CONTEXT
+	KL_SHARED_EXCEPTIONS
+
+	MA_DECIMAL_MATH
 	
 creation
 
@@ -252,7 +254,6 @@ feature -- Basic operations
 			index : INTEGER
 			lo, hi, l_count, zero_code, c_code : INTEGER
 			c : CHARACTER
-			e : expanded EXCEPTIONS
 		do
 			a_file.read_string (8)
 			if not a_file.end_of_input then
@@ -262,43 +263,11 @@ feature -- Basic operations
 					if not bcd_parser.error then
 						last_number := bcd_parser.last_decimal
 					else
-						create e
-						e.raise ("Invalid file format : need 8 bytes packed decimal")						
+						exceptions.raise ("Invalid file format : need 8 bytes packed decimal")						
 					end
 					last_nibble := bcd_parser.last_nibble
---					create number_string.make (32)
---					number_string.append_character ('+')
---					zero_code := ('0').code
---					from
---						index := 1
---						l_count := packed_string.count
---					until
---						index > l_count 
---					loop
---						c := packed_string.item (index)
---						c_code := c.code
---						lo := c_code \\ 16
---						hi := c_code // 16
---						number_string.append_character (integer_routines.to_character (zero_code+ hi))
---						last_nibble := hi
---						if index < l_count then
---							number_string.append_character (integer_routines.to_character (zero_code + lo))
---							last_nibble := lo
---						else
---							inspect lo
---							when 11,13 then
---								number_string.put ('-', 1)
---							when 10,12,14,15 then
---							else
---								create e
---								e.raise ("Invalid file format : need 8 bytes packed decimal")
---							end
---						end					
---						index := index + 1
---					end
---					create last_number.make_from_string_ctx (number_string, default_context)
 				else
-					last_number := decimal_zero
+					last_number := zero
 				end
 				number_count := number_count + 1
 			end
