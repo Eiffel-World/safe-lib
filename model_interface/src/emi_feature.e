@@ -1,8 +1,8 @@
 indexing
 	description: "Feature of class M"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:29:50 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:30:02 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EMI_FEATURE [M]
@@ -17,21 +17,20 @@ feature {NONE} -- Initialization
 			reference := a_reference
 		end
 
-feature -- Status setting
+feature -- Status report
 
-	check_precondition is
+	check_precondition: BOOLEAN is
 			-- Check the precondition.
 		do
 			last_precondition_error := Void
 			if object = Void then
 				!EMI_PRECONDITION_ERROR!last_precondition_error.make ("Feature call on void target")
 			end
+			Result := last_precondition_error = Void
 		ensure
-			--| precondition is True implies last_precondition_error = Void
-			--| precondition is False implies last_precondition_error /= Void
+			precondition_is_met: Result implies last_precondition_error = Void
+			precondition_is_not_met: not Result implies last_precondition_error /= Void
 		end
-
-feature -- Status report
 
 	last_precondition_error: UT_ERROR
 			-- Error of last precondition check

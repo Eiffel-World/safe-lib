@@ -1,29 +1,34 @@
 indexing
-	description: "Reference to an object of type G, the reference can be modified"
+	description: "Reference to an object of type G, refers to a cell that can contain an item of type G"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:29:50 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:30:02 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EMI_CELL [G]
 
 inherit
 	EMI_REFERENCE [G]
-
+	
+creation
+	make
+	
 feature -- Access
 	
 	item: G is
-			-- item
+			-- Content of cell
 		do
 			Result := item_i
 		end
 
 feature -- Element change
 
-	define (an_item: G) is
-			-- Define with `an_item'.
+	put, make (an_item: G) is
+			-- Insert `an_item' into cell.
 		do
 			item_i := an_item
+		ensure
+			inserted: item = an_item 
 		end
 
 feature {NONE} -- Implementation

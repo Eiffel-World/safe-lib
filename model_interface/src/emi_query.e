@@ -1,15 +1,59 @@
 indexing
 	description: "Query on a model [M], the result of the query is a reference to a type V"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:29:50 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:30:02 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class EMI_QUERY[M,V]
 
 inherit
-	EMI_FEATURE[M]
 
 	EMI_REFERENCE[V]
+
+feature {NONE} -- Initialization
+
+	make (a_reference: EMI_REFERENCE [M]) is
+			-- Initialize with `a_reference'.
+		require
+			a_reference_defined: a_reference /= Void
+		do
+			reference := a_reference
+		end
+
+feature -- Status report
+
+	check_precondition: BOOLEAN is
+			-- Check the precondition.
+		do
+			last_precondition_error := Void
+			if object = Void then
+				!EMI_PRECONDITION_ERROR!last_precondition_error.make ("Feature call on void target")
+			end
+			Result := last_precondition_error = Void
+		ensure
+			precondition_is_met: Result implies last_precondition_error = Void
+			precondition_is_not_met: not Result implies last_precondition_error /= Void
+		end
+
+	last_precondition_error: UT_ERROR
+			-- Error of last precondition check
+
+	last_error: UT_ERROR
+			-- Error of last feature call.
+
+feature {NONE} -- Implementation
+
+	object: M is
+				-- Target object
+		do
+			Result := reference.item
+		end
+
+	reference: EMI_REFERENCE[M]
+
+
+invariant 
+	reference_not_void: reference /= Void
 
 end -- class EMI_QUERY
 
