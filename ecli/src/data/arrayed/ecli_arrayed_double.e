@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL DOUBLE arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:13 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/01/02 19:35:02 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -20,7 +20,7 @@ inherit
 			make as make_double
 		undefine
 			release_handle, length_indicator_pointer, to_external, 
-			is_null, out, item, transfer_octet_length, set_item, to_string
+			is_null, set_null, out, item, transfer_octet_length, set_item, to_string
 		end
 		
 creation

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are capable of operating on a rowset."
-	author: ""
-	date: "$Date: 2002/09/03 20:35:50 $"
-	revision: "$Revision: 1.3 $"
+	author: "Paul G. Crismer"
+	date: "$Date: 2003/01/02 19:35:01 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ECLI_ROWSET_CAPABLE
@@ -28,15 +28,17 @@ feature {NONE} -- implementation
 	rowset_status : ECLI_ROWSET_STATUS
 	
 	status_array : ARRAY[INTEGER]
+			-- for debugging purposes : rowset_status content cannot be viewed in the debugger
 	
 	fill_status_array is
-			-- 
+			-- fill status array
 		local
 			index: INTEGER
 		do
 			from index := 1
 				!!status_array.make (1, row_capacity)
-			until index > row_capacity
+			until 
+				index > row_capacity
 			loop
 				status_array.put (rowset_status.item (index), index)
 				index := index + 1

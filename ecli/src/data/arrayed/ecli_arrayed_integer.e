@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/22 19:28:48 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/01/02 19:35:02 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -20,7 +20,7 @@ inherit
 		export
 			{NONE} make_single
 		undefine
-			release_handle, length_indicator_pointer, to_external, is_null, set_item, to_string
+			release_handle, length_indicator_pointer, to_external, is_null, set_null, set_item, to_string
 		redefine
 			item, transfer_octet_length, out, trace
 		end

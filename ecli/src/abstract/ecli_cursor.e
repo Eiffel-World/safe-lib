@@ -1,8 +1,8 @@
 indexing
-	description: "Abstraction of a cursor.  Used by 'query_assistant'-generated classes."
+	description: "Abstraction of a cursor."
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:07 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/01/02 19:35:01 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 deferred class

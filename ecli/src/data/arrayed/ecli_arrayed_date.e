@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI DATE arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/12/10 15:25:58 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/01/02 19:35:02 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -29,7 +29,7 @@ inherit
 		export
 			{NONE} make_single, make_default_single
 		undefine
-			release_handle, length_indicator_pointer, to_external, is_null, is_equal, out, set_item, to_string
+			release_handle, length_indicator_pointer, to_external, is_null, set_null, is_equal, out, set_item, to_string
 		redefine
 			item, trace, allocate_buffer, year, month, day, set_date --, transfer_octet_length
 		end
