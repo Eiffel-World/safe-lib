@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2005/03/08 20:08:28 $"
 
 deferred class ECLI_FILE_VALUE
 
@@ -108,6 +108,13 @@ feature -- Status report
 	convertible_as_string: BOOLEAN is do  end
 	convertible_as_time: BOOLEAN is do  end
 	convertible_as_timestamp: BOOLEAN is do  end
+
+	convertible_as_decimal : BOOLEAN is
+			-- Is this value convertible to a decimal ?
+		do
+			Result := False
+		end
+
 
 feature -- Status setting
 

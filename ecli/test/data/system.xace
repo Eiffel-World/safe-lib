@@ -8,7 +8,7 @@
 		library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 		copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 		license: "Eiffel Forum License v2 (see forum.txt)"
-		date: "$Date: 2004/09/01 20:38:35 $"
+		date: "$Date: 2005/03/08 20:08:28 $"
 
 	</description>
 
@@ -39,6 +39,7 @@
 	<mount location="${GOBO}/library/utility/library.xace"/>
 	<mount location="${GOBO}/library/pattern/library.xace"/>
 	<mount location="${GOBO}/library/time/library.xace"/>
+	<mount location="${GOBO}/library/math/library.xace"/>
 	<mount location="${GOBO}/library/kernel.xace"/>
 	<mount location="${ECLI}/library.xace"/>
 </system>

@@ -1,8 +1,8 @@
 indexing
 	description: "Name routines that help follow the Eiffel style rules"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/12/07 21:26:38 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2005/03/08 20:08:28 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	EIFFEL_NAME_ROUTINES
@@ -111,7 +111,7 @@ feature -- Conversion
 				c := string.item (index)
 				inspect c
 				when '%N' then
-					Result.append_string ("%%%N%%")
+					Result.append_string ("%%N%%%N%%")
 				else
 					Result.append_character (c)
 				end

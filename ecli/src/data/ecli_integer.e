@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 21:25:18 $"
+	date: "$Date: 2005/03/08 20:08:28 $"
 
 class ECLI_INTEGER
 
@@ -92,6 +92,11 @@ feature -- Status report
 			Result := True
 		end
 
+	convertible_as_decimal : BOOLEAN is
+		do
+			Result := True
+		end
+
 	convertible_as_real : BOOLEAN is
 		do
 			Result := True
@@ -157,6 +162,15 @@ feature -- Conversion
 	as_integer : INTEGER is
 		do
 			Result := item
+		end
+
+	as_decimal : MA_DECIMAL is
+			-- Current converted to MA_DECIMAL.
+		local
+			ctx : MA_DECIMAL_CONTEXT
+		do
+			create ctx.make_double
+			create Result.make_from_string_ctx (as_real.out, ctx)
 		end
 
 	as_real : REAL is

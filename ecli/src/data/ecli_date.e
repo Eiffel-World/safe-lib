@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 21:25:18 $"
+	date: "$Date: 2005/03/08 20:08:27 $"
 
 class ECLI_DATE
 
@@ -113,6 +113,12 @@ feature -- Status report
 
 	convertible_as_boolean : BOOLEAN is
 			-- Is this value convertible to a boolean ?
+		do
+			Result := False
+		end
+
+	convertible_as_decimal : BOOLEAN is
+			-- Is this value convertible to a decimal ?
 		do
 			Result := False
 		end
@@ -271,6 +277,11 @@ feature -- Conversion
 
 	as_double : DOUBLE is
 			-- Current converted to DOUBLE
+		do
+		end
+
+	as_decimal : MA_DECIMAL is
+			-- Current converted to MA_DECIMAL.
 		do
 		end
 

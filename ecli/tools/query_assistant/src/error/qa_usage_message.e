@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/21 19:52:21 $"
+	date: "$Date: 2005/03/08 20:08:29 $"
 
 class QA_USAGE_MESSAGE
 
@@ -37,7 +37,7 @@ feature {NONE} -- Implementation
 	
 	argument_list : STRING is "-input <input-file> -output_dir <output-directory> %
 			 % -dsn <data-source-name> -user <user-name> -pwd <password> [-catalog <catalog>] [-schema <schema>] %
-			 % [-access_routines_prefix <prefix>] [-max_length <max_length_for_long_data>]"
+			 % [-access_routines_prefix <prefix>] [-max_length <max_length_for_long_data>] [-use_decimal] [-parent_cursor <class_name>] [-parent_modify <class_name>]"
 	
 	has_expat_option : STRING is "(-expat|-eiffel)"
 	without_expat_option : STRING is "-eiffel"

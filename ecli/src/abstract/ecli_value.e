@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/09 23:41:24 $"
+	date: "$Date: 2005/03/08 20:08:26 $"
 
 deferred class ECLI_VALUE
 
@@ -70,6 +70,11 @@ feature -- Status report
 		end
 
 	convertible_as_boolean : BOOLEAN is
+			-- Is this value convertible to a boolean ?
+		deferred
+		end
+
+	convertible_as_decimal : BOOLEAN is
 			-- Is this value convertible to a boolean ?
 		deferred
 		end
@@ -220,6 +225,14 @@ feature -- Conversion
 			-- Current converted to BOOLEAN.
 		require
 			convertible: convertible_as_boolean
+			not_null: not is_null
+		deferred
+		end
+
+	as_decimal : MA_DECIMAL is
+			-- Current converted to MA_DECIMAL.
+		require
+			convertible: convertible_as_decimal
 			not_null: not is_null
 		deferred
 		end
