@@ -1,0 +1,4 @@
+${SEP_ELIB}\base_types\conversion\loadpath.se
+${SEP_ELIB}\base_types\string\src\loadpath.se
+${SEP_ELIB}\base_types\money\src\loadpath.se
+${SEP_ELIB}\base_types\text\src\loadpath.se
