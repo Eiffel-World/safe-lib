@@ -2,8 +2,8 @@ indexing
 	description: 	"System's root class"
 	author: 	"Paul G. Crismer"
 	licence: 	"Released under the Eiffel Forum licence.  See file 'forum.txt'."
-	date: 		"$Date: 2003/11/10 20:21:13 $"
-	revision: 	"$Revision: 1.7 $"
+	date: 		"$Date: 2003/11/10 20:23:53 $"
+	revision: 	"$Revision: 1.8 $"
 
 class
 	SHOW_EPDF
@@ -97,7 +97,6 @@ feature -- Basic operations
 			document.set_page_layout (layout.Layout_single_page)
 			document.set_page_mode (mode.Mode_use_outlines)
 			document.find_font ("Helvetica", document.Encoding_winansi)
-			document.create_information
 			document.information.set_author ("Paul G. Crismer")
 			document.information.set_title ("PDF Show")
 			document.information.set_creator ("Eiffel PDF library")
