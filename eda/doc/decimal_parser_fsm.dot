@@ -1,0 +1,37 @@
+digraph decimal_text_parser {
+
+	node [shape = doublecircle]; infinity NaN sNaN integer_part point fractional_part exponent;
+	node [shape = circle]; start sign comma start_exponent exponent_sign starting_point;
+	start -> integer_part [ label = "[0-9]" ];
+	start -> sign [ label = "[+-]" ];
+	start -> NaN [ label = "NaN" ];
+	start -> sNaN [ label = "sNaN" ];
+	start -> infinity [ label = "Inf" ];
+	start -> starting_point [ label = "\\." ];
+
+	sign -> infinity  [ label = "Inf" ];
+	sign -> integer_part  [ label = "[0-9]" ];
+	sign -> starting_point [ label = "\\." ];
+
+	integer_part -> integer_part  [ label = "[0-9]" ];
+	integer_part -> start_exponent [ label = "[eE]" ];
+	integer_part -> point [ label = "\\." ];
+	integer_part -> comma [ label = "\," ];
+
+	starting_point -> fractional_part  [ label = "[0-9]" ];
+
+	point -> fractional_part  [ label = "[0-9]" ];
+	point -> start_exponent [ label = "[eE]" ];
+
+	comma -> fractional_part  [ label = "[0-9]" ];
+
+	fractional_part -> fractional_part [ label = "[0-9]" ];
+	fractional_part -> start_exponent [ label = "[eE]" ];
+
+	start_exponent -> exponent [ label = "[0-9]" ];
+	start_exponent -> exponent_sign [ label = "[+-]" ];
+
+	exponent_sign -> exponent  [ label = "[0-9]" ];
+
+	exponent -> exponent  [ label = "[0-9]" ];
+}

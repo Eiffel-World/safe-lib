@@ -7,8 +7,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/03/23 09:03:25 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/11/20 20:37:27 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -119,10 +119,13 @@ feature -- Status report
 		
 feature {EDA_DECIMAL} -- Status setting
 
-	set_from_string (s : STRING) is
+	set_from_substring (s : STRING; coefficient_begin, coefficient_end : INTEGER) is
 			-- set from `s', skip the decimal point if it is present
 		require
 			s_not_void: s /= Void
+			coefficient_begin: coefficient_begin > 0 and then coefficient_begin <= s.count
+			coefficient_end: coefficient_end > 0 and then coefficient_end <= s.count
+			coefficient_end_ge_begin: coefficient_end >= coefficient_begin
 		deferred
 		ensure
 			definition: True -- all digits in s are in Current at the right position

@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/11/20 20:37:27 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -21,17 +21,6 @@ feature -- Access
 			Result /= Void
 		end
 
-	decimal_zero : EDA_DECIMAL is
-			-- zero as EDA_DECIMAL
-		once
-			create Result.make_zero
-		end
-		
-	decimal_one : EDA_DECIMAL is
-			-- one as EDA_DECIMAL
-		once
-			create Result.make_from_integer (1)
-		end
 		
 feature -- Element change
 
