@@ -1,11 +1,11 @@
 indexing
 	description: "Windows implemenation of ABSTRACT_WIDGET"
-	date: "$Date: 2003/12/28 22:04:44 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/30 10:58:04 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
-class
+deferred class
 	WIDGET
 
 inherit
@@ -57,6 +57,18 @@ feature -- Inapplicable
 feature -- Constants
 
 feature {NONE} -- Implementation
+
+	swt : SWT is
+			-- Common constants and features.
+		once
+			Create Result
+		end
+
+	error (a_code : INTEGER) is
+			-- Does whatever widget specific cleanup is required, and then uses the code in swt.error to handle the error.
+		do
+			swt.error(a_code)
+		end
 
 invariant
 	invariant_clause: -- Your invariant here
