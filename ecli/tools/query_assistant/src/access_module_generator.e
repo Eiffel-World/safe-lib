@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/10/04 20:19:43 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2004/10/11 20:42:28 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -511,7 +511,10 @@ feature {NONE} -- Implementation
 			--| precondition
 			create routine_precondition.make ("cursor_not_void", "cursor /= Void")
 			eiffel_routine.add_precondition (routine_precondition)
+			create routine_precondition.make ("last_cursor_empty", "last_cursor /= Void and then last_cursor.is_empty")
+			eiffel_routine.add_precondition (routine_precondition)
 		
+			--| locals
 			if module.parameters.count > 0 then
 					
 				--	local

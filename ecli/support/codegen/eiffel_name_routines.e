@@ -1,8 +1,8 @@
 indexing
 	description: "Name routines that help follow the Eiffel style rules"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/24 19:40:44 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2004/10/11 20:42:27 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	EIFFEL_NAME_ROUTINES
@@ -82,7 +82,7 @@ feature {NONE} -- Implementation
 		require
 			string_not_void: string /= Void
 		local
-			last_upper, upper, changed : BOOLEAN
+			last_upper, upper : BOOLEAN
 			index : INTEGER
 			c, u : CHARACTER
 		do

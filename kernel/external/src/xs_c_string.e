@@ -4,8 +4,8 @@ indexing
 	
 	library: "XS_C : eXternal Support C"
 	
-	date: "$Date: 2004/05/18 11:22:11 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2004/10/11 20:42:28 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -181,8 +181,6 @@ feature -- Status report
 		end
 
 	equal_string (s : STRING) : BOOLEAN is
-		local
-			index : INTEGER
 		do
 			if s.count > 0 then
 				Result := substring (1, s.count).is_equal (s)

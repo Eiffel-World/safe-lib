@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/24 19:40:44 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2004/10/11 20:42:28 $"
+	revision: "$Revision: 1.14 $"
 
 class
 	ACCESS_MODULE
@@ -233,7 +233,8 @@ feature {NONE} -- Implementation
 				results := Void
 			end
 		ensure
-			results_count: results.count = query_statement.results_description.count
+			results_void_if_no_result_set: results = Void implies not query_statement.has_result_set
+			results_count: results /= Void implies results.count = query_statement.results_description.count
 		end
 		
 	check_parameters (query_statement : ECLI_STATEMENT; query_session : ECLI_SESSION; a_error_handler : UT_ERROR_HANDLER; reasonable_maximum_size : INTEGER) is

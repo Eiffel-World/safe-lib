@@ -11,7 +11,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/08/30 20:07:26 $"
+	date: "$Date: 2004/10/11 20:42:28 $"
 
 deferred class PO_PID
 
@@ -44,7 +44,7 @@ feature -- Conversion
 		deferred
 		ensure
 			result_not_void: Result /= Void
-			class_name_substring: Result.substring (1, class_name.count).is_equal (class_name) 
+			class_name_substring: Result.substring (1,persistent_class_name.count).is_equal (persistent_class_name) 
 		end
 		
 feature -- Comparison
@@ -68,6 +68,6 @@ feature -- Inapplicable
 
 invariant
 
-	class_name_is_defined: class_name /= Void and then not class_name.is_empty
+	class_name_is_defined: persistent_class_name /= Void and then not persistent_class_name.is_empty
 	
 end
