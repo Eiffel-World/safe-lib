@@ -1,14 +1,9 @@
 indexing
 	description: "Windows implementation of ABSTRACT_LISTENER"
-
-	usage: ""
-	quality: ""
-	refactoring: ""
-
-	status: "see notice at end of class";
-	date: "$Date: 2003/12/13 19:34:50 $";
-	revision: "$Revision: 1.1 $";
-	author: ""
+	date: "$Date: 2003/12/13 22:30:48 $";
+	revision: "$Revision: 1.2 $";
+	author: "Paul G. Crismer & Eric Fafchamps"
+	licensing: "See notice at end of class"
 
 class
 	LISTENER
@@ -59,12 +54,7 @@ invariant
 
 end -- class LISTENER
 
---
---    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widgets/listener.e,v $";
--- $Log: listener.e,v $
--- Revision 1.1  2003/12/13 19:34:50  efa
--- spécification and creation of  directories
---
--- Revision 1.1  2003/12/10 22:15:04  efa
--- library setup and specifications
+-- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
 --

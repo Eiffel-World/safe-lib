@@ -18,20 +18,18 @@ indexing
 	Styles:
 		(none)
 	Events:
-		Close, Dispose	
+		Close, Release	
 	]"
-
-	usage: ""
-	quality: ""
-	refactoring: ""
-
-	status: "see notice at end of class";
-	date: "$Date: 2003/12/13 19:34:21 $";
-	revision: "$Revision: 1.1 $";
-	author: ""
+	date: "$Date: 2003/12/13 22:30:48 $";
+	revision: "$Revision: 1.2 $";
+	author: "Paul G. Crismer & Eric Fafchamps"
+	licensing: "See notice at end of class"
 
 deferred class
 	ABSTRACT_DISPLAY
+
+inherit
+	ABSTRACT_DEVICE
 
 feature {NONE} -- Initialization
 
@@ -51,6 +49,11 @@ feature -- Measurement
 feature -- Comparison
 
 feature -- Status report
+
+	is_released : BOOLEAN is
+			-- Are the operating system ressources associated with `Current' released?
+		deferred
+		end
 
 feature -- Status setting
 
@@ -72,6 +75,26 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
+	read_and_dispatch : BOOLEAN is
+			-- Reads an event from the operating system's event queue, dispatches it appropriately.
+		require
+			not_is_released : not is_released
+		deferred			
+		ensure
+			-- true if there is potentially more work to do, or false if the caller can sleep
+			-- until another event is placed on the event queue.
+		end
+
+	sleep : BOOLEAN is
+			-- Causes the user-interface process to sleep (that is, to be put in a state where it does not consume CPU cycles)
+			-- until an event is received or it is otherwise awakened.
+		require
+			not_is_released : not is_released
+		deferred
+		ensure
+			-- true if an event requiring dispatching was placed on the queue
+		end
+		
 feature -- Obsolete
 
 feature -- Inapplicable
@@ -85,12 +108,7 @@ invariant
 
 end -- class ABSTRACT_DISPLAY
 
---
---    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widgets/abstract_display.e,v $";
--- $Log: abstract_display.e,v $
--- Revision 1.1  2003/12/13 19:34:21  efa
--- spécification and creation of  directories
---
--- Revision 1.1  2003/12/10 22:15:04  efa
--- library setup and specifications
+-- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
 --

@@ -1,6 +1,9 @@
 indexing
 	description	: "System's root class"
-	note		: "Initial version automatically generated"
+	date: "$Date: 2003/12/13 22:30:48 $";
+	revision: "$Revision: 1.3 $";
+	author: "Paul G. Crismer & Eric Fafchamps"
+	licensing: "See notice at end of class"
 
 class
 	HELLO
@@ -21,3 +24,8 @@ feature -- Initialization
 		end
 
 end -- class HELLO
+
+-- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

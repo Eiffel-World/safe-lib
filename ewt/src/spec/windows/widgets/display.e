@@ -1,14 +1,9 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DISPLAY"
-
-	usage: ""
-	quality: ""
-	refactoring: ""
-
-	status: "see notice at end of class";
-	date: "$Date: 2003/12/13 19:34:50 $";
-	revision: "$Revision: 1.1 $";
-	author: ""
+	date: "$Date: 2003/12/13 22:30:48 $";
+	revision: "$Revision: 1.2 $";
+	author: "Paul G. Crismer & Eric Fafchamps"
+	licensing: "See notice at end of class"
 
 class
 	DISPLAY
@@ -35,6 +30,12 @@ feature -- Comparison
 
 feature -- Status report
 
+	is_released : BOOLEAN is
+			-- Are the operating system ressources associated with `Current' released?
+		do
+			-- FIXME
+		end
+		
 feature -- Status setting
 
 feature -- Cursor movement
@@ -55,6 +56,19 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
+	read_and_dispatch : BOOLEAN is
+			-- Reads an event from the operating system's event queue, dispatches it appropriately.
+		do
+			-- FIXME
+		end
+
+	sleep : BOOLEAN is
+			-- Causes the user-interface process to sleep (that is, to be put in a state where it does not consume CPU cycles)
+			-- until an event is received or it is otherwise awakened.
+		do
+			-- FIXME
+		end
+
 feature -- Obsolete
 
 feature -- Inapplicable
@@ -68,12 +82,7 @@ invariant
 
 end -- class DISPLAY
 
---
---    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widgets/display.e,v $";
--- $Log: display.e,v $
--- Revision 1.1  2003/12/13 19:34:50  efa
--- spécification and creation of  directories
---
--- Revision 1.1  2003/12/10 22:15:04  efa
--- library setup and specifications
+-- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
 --

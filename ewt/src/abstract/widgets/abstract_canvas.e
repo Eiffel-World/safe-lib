@@ -1,28 +1,23 @@
 indexing
 	description: "[
 	
-Objets that provides a surface for drawing arbitrary graphics.
+	Objets that provides a surface for drawing arbitrary graphics.
 
- Styles:
- (none)
- 
- Events:
- (none)
- 
- This class may be subclassed by custom control implementors who are building controls that are not constructed
- from aggregates of other controls.
- That is, they are either painted using EWT graphics calls or are handled by native methods.
+	Styles:
+	(none)
+	 
+	Events:
+	(none)
+	 
+	This class may be subclassed by custom control implementors who are building controls that are not constructed
+	from aggregates of other controls.
+	That is, they are either painted using EWT graphics calls or are handled by native methods.
  
 	]"
-
-	usage: ""
-	quality: ""
-	refactoring: ""
-
-	status: "see notice at end of class";
-	date: "$Date: 2003/12/13 19:34:21 $";
-	revision: "$Revision: 1.1 $";
-	author: ""
+	date: "$Date: 2003/12/13 22:30:48 $";
+	revision: "$Revision: 1.2 $";
+	author: "Paul G. Crismer & Eric Fafchamps"
+	licensing: "See notice at end of class"
 
 deferred class
 	ABSTRACT_CANVAS
@@ -73,12 +68,7 @@ invariant
 
 end -- class ABSTRACT_CANVAS
 
---
---    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widgets/abstract_canvas.e,v $";
--- $Log: abstract_canvas.e,v $
--- Revision 1.1  2003/12/13 19:34:21  efa
--- spécification and creation of  directories
---
--- Revision 1.1  2003/12/10 22:15:04  efa
--- library setup and specifications
+-- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
 --

@@ -1,28 +1,14 @@
 indexing
-	description: "Windows implementation of an ABSTRACT_SHELL"
+	description: "Windows implementation of ABSTRACT_DRAWABLE"
 	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.2 $";
+	revision: "$Revision: 1.1 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
 class
-	SHELL
-
-inherit
-	ABSTRACT_SHELL
-	
-	DECORATIONS
-
-creation
-	make_by_display
+	DRAWABLE
 	
 feature {NONE} -- Initialization
-
-	make_by_display (a_display : ABSTRACT_DISPLAY) is
-			-- Initialize by using `a_display'.			
-		do
-			-- FIXME
-		end
 
 feature -- Access
 
@@ -52,14 +38,6 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
-	open is
-			-- Moves `Current' to the top of the drawing order for the display on which it was created (so that all other
-			-- shells on that display, which are not `Current' 's children will be drawn behind it), marks it visible, 
-			-- and sets focus to its default button (if it has one) and asks the window manager to make the shell active.
-		do
-			-- FIXME
-		end
-
 feature -- Obsolete
 
 feature -- Inapplicable
@@ -71,7 +49,7 @@ feature {NONE} -- Implementation
 invariant
 	invariant_clause: -- Your invariant here
 
-end -- class SHELL
+end -- class DRAWABLE
 
 -- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>

@@ -1,30 +1,25 @@
 indexing
 	description: "[
 
- Objets that are capable of containing other controls.
- 
- Styles:
- NO_BACKGROUND, NO_FOCUS, NO_MERGE_PAINTS, NO_REDRAW_RESIZE, NO_RADIO_GROUP
-
- Events:
- (none)
- 
- Note: The NO_BACKGROUND, NO_FOCUS, NO_MERGE_PAINTS, and NO_REDRAW_RESIZE styles are intended for use with Canvas.
- They can be used with Composite if you are drawing your own, but their behavior is undefined if they are used with subclasses
- of Composite other than Canvas.
- 
- This class may be subclassed by custom control implementors who are building controls that are constructed from aggregates of other controls.
+	Objets that are capable of containing other controls.
+	 
+	Styles:
+	NO_BACKGROUND, NO_FOCUS, NO_MERGE_PAINTS, NO_REDRAW_RESIZE, NO_RADIO_GROUP
+	
+	Events:
+	(none)
+	 
+	Note: The NO_BACKGROUND, NO_FOCUS, NO_MERGE_PAINTS, and NO_REDRAW_RESIZE styles are intended for use with Canvas.
+	They can be used with Composite if you are drawing your own, but their behavior is undefined if they are used with subclasses
+	of Composite other than Canvas.
+	 
+	This class may be subclassed by custom control implementors who are building controls that are constructed from aggregates of other controls.
  	
 	]"
-
-	usage: ""
-	quality: ""
-	refactoring: ""
-
-	status: "see notice at end of class";
-	date: "$Date: 2003/12/13 19:34:21 $";
-	revision: "$Revision: 1.1 $";
-	author: ""
+	date: "$Date: 2003/12/13 22:30:48 $";
+	revision: "$Revision: 1.2 $";
+	author: "Paul G. Crismer & Eric Fafchamps"
+	licensing: "See notice at end of class"
 
 deferred class
 	ABSTRACT_COMPOSITE
@@ -75,15 +70,7 @@ invariant
 
 end -- class ABSTRACT_COMPOSITE
 
---
---    copyright: "Groupe S (c) 1997-2003"
---    licence: "All rights reserved. Duplication and distribution prohibited."
---
---    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widgets/abstract_composite.e,v $";
--- $Log: abstract_composite.e,v $
--- Revision 1.1  2003/12/13 19:34:21  efa
--- spécification and creation of  directories
---
--- Revision 1.1  2003/12/10 22:15:04  efa
--- library setup and specifications
+-- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
 --
