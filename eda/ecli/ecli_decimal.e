@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2003/11/11 20:05:49 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/11/20 20:39:07 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_DECIMAL
@@ -11,7 +11,8 @@ inherit
 	ECLI_GENERIC_VALUE [STRING]
 		redefine
 			item, set_item, out,
-			impl_item
+			impl_item,
+			bind_as_parameter
 		end
 
 	XS_IMPORTED_UINT32_ROUTINES
@@ -77,13 +78,13 @@ feature -- Access
 			Result := ecli_c_value_get_length (buffer) - 1
 		end
 
-	count : INTEGER is
+	count : INTEGER --is
 			-- actual length of item
-		do
-			if not is_null then
-				Result := ecli_c_value_get_length_indicator (buffer)
-			end
-		end
+--		do
+--			if not is_null then
+--				Result := ecli_c_value_get_length_indicator (buffer)
+--			end
+--		end
 
 feature -- Measurement
 
@@ -147,7 +148,7 @@ feature -- Status report
 
 	size: INTEGER is
 		do
-			Result := display_size
+			Result := precision
 		end
 
 	sql_type_code: INTEGER is
@@ -187,14 +188,18 @@ feature -- Element change
 --			create ext_item.make_shared_from_pointer (ecli_c_value_get_value (buffer), transfer_length)
 			ext_item.from_string (value)
 			ecli_c_value_set_length_indicator (buffer, transfer_length)
+			count := value.count
 		end
 
 	set_from_decimal (value : EDA_DECIMAL) is
 			-- 
 		require
 			value_exists: value /= Void
+		local
+			l : EDA_DECIMAL
 		do
-			set_item (value.to_scientific_string)
+			l := value.rescale (-decimal_digits, value.shared_decimal_context)
+			set_item (l.to_scientific_string)
 		ensure
 			set: item.is_equal (value.to_scientific_string)
 		end
@@ -310,14 +315,27 @@ feature -- Basic operations
 				(old (string.count)) + 1, 
 				string.count).is_equal (item.substring (i_start, i_end))			
 		end
+
+	bind_as_parameter (stmt : ECLI_STATEMENT; index: INTEGER) is
+			-- bind this value as input parameter 'index' of 'stmt'
+		do
+			stmt.set_status (ecli_c_bind_parameter (stmt.handle,
+				index,
+				direction.Sql_param_input,
+				c_type_code,
+				sql_type_code,
+				size,
+				decimal_digits,
+				to_external,
+				count,
+				length_indicator_pointer))
+		end
 		
 feature -- Obsolete
 
 feature -- Inapplicable
 
 feature {NONE} -- Implementation
-
-	octet_size : INTEGER is do Result := transfer_octet_length end
 
 	impl_item : STRING
 
