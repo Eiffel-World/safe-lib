@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIMESTAMP arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/05/08 13:59:23 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/06/12 10:01:23 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -28,7 +28,7 @@ inherit
 			to_timestamp,
 			trace,
 			transfer_octet_length, convertible_to_timestamp , convertible_to_date, days_in_month,
-			Integer_format
+			Integer_format, Calendar
 		redefine
 --			is_equal, copy, 
 			out_item_at, item_at, set_item_at, impl_item --, set_item, set_item_at,
@@ -56,7 +56,7 @@ inherit
 			set_date,
 			set_item,
 			to_external,
-			to_string,
+			as_string,
 			year, hour, minute, second, nanosecond, to_date
 --		redefine
 --			trace, hour, minute, second, nanosecond

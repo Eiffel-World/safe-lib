@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/03/01 13:32:37 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/06/12 10:01:24 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -39,10 +39,10 @@ feature {NONE} -- Initialization
 			set_schema (cursor.buffer_table_schem )
 			set_name (cursor.buffer_table_name)
 			if not cursor.buffer_pk_name.is_null then
-				key_name := cursor.buffer_pk_name.to_string
+				key_name := cursor.buffer_pk_name.as_string
 			end
 			create {DS_LINKED_LIST[STRING]} columns.make
-			columns.put_last (cursor.buffer_column_name.to_string)
+			columns.put_last (cursor.buffer_column_name.as_string)
 		end
 
 	make_by_name (a_catalog_name, a_schema_name, a_table_name, a_key_name, a_column_name : STRING) is

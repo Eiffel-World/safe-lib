@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/03/01 13:32:37 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/06/12 10:01:24 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -39,7 +39,7 @@ feature {NONE} -- Initilization
 			set_schema (cursor.buffer_schema_name)
 			set_name (cursor.buffer_procedure_name)
 			if not cursor.buffer_description.is_null then
-				description := cursor.buffer_description.to_string
+				description := cursor.buffer_description.as_string
 			end
 			if not cursor.buffer_procedure_type.is_null then
 				type := cursor.buffer_procedure_type.to_integer

@@ -4,8 +4,8 @@ indexing
 	note: "Supported SQL data types currently are : sql_char, sql_decimal, sql_double, sql_float, sql_integer, sql_longvarchar, sql_numeric, sql_real, sql_smallint, sql_type_date, sql_type_time, sql_type_timestamp,	sql_varchar"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:32 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2003/06/12 10:01:20 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 class
@@ -20,6 +20,8 @@ inherit
 			sql_real, sql_double, sql_smallint, sql_float, sql_decimal, sql_numeric
 		end
 
+	KL_IMPORTED_ARRAY_ROUTINES
+	
 creation
 	make
 
@@ -149,7 +151,7 @@ feature {NONE} -- Implementation
 			>>
 		end
 
-	array_routines : expanded KL_ARRAY_ROUTINES[INTEGER]
+	array_routines : KL_ARRAY_ROUTINES[INTEGER] is do Result := Integer_array_ end
 
 end -- class ECLI_VALUE_FACTORY
 --

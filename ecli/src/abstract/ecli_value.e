@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/02/26 19:33:25 $"
-	revision: 	"$Revision: 1.18 $"
+	date: 		"$Date: 2003/06/12 10:01:18 $"
+	revision: 	"$Revision: 1.19 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -135,7 +135,7 @@ feature -- Transformation
  
 feature -- Conversion
 
-	to_string : STRING is
+	as_string : STRING is
 			-- Current converted to STRING
 		require
 			convertible: convertible_to_string

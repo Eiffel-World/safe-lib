@@ -5,8 +5,8 @@ indexing
 		% and associated information messages"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/06/11 13:11:12 $"
-	revision: 	"$Revision: 1.15 $"
+	date: 		"$Date: 2003/06/12 10:01:18 $"
+	revision: 	"$Revision: 1.16 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -117,7 +117,12 @@ feature -- Status setting
 
 feature {NONE} -- Implementation
 
-
+	reset_status is
+			-- 
+		do
+			set_status (Sql_success)
+		end
+		
 	set_status (v : INTEGER) is
 		do
 			status := v

@@ -1,8 +1,8 @@
 indexing
 	description: "Test for objects garbage collection";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/28 08:36:28 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/06/12 10:01:15 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 class
 	TEST_GC
@@ -43,9 +43,10 @@ feature -- Initialization
 	other_test is
 		local
 			stmt0, stmt11, stmt21, stmt22 : ECLI_STATEMENT
-			m : expanded MEMORY
+			m : MEMORY
 			sess1, sess2 : ECLI_SESSION
 		do
+			create m 
 			--| create 2 new sessions
 			create sess1.make (args.argument (1), "sess1", args.argument (3))
 			sess1.connect
@@ -125,12 +126,12 @@ feature -- Initialization
 		end
 
 	
-	args :  expanded ARGUMENTS
+	args : ARGUMENTS is once create Result end 
 
 	session : ECLI_SESSION
 	statement : ECLI_STATEMENT
 	
-	memory : expanded MEMORY
+	memory : MEMORY is once create Result end
 	
 end -- class TEST_GC
 --

@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIME arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/05/08 13:59:23 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/06/12 10:01:23 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -26,7 +26,7 @@ inherit
 			release_handle, length_indicator_pointer, to_external, 
 			is_null, set_null, 
 			-- is_equal, 
-			out, set_item, to_string
+			out, set_item, as_string
 		redefine
 			item, trace, allocate_buffer, hour, minute, second --out, , nanosecond --transfer_octet_length,
 		end

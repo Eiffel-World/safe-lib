@@ -1,8 +1,8 @@
 indexing
 	description: "Interactive SQL";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:15 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/06/12 10:01:14 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 class
 	QA_EXAMPLE
@@ -16,8 +16,9 @@ feature -- Initialization
 	make is
 			-- QA_EXAMPLE
 		local
-			args :  expanded ARGUMENTS
+			args : ARGUMENTS
 		do
+			create args
 			io.put_string ("Selection of registered participants, by remaining amount to pay%N")
 			-- session opening
 			if args.argument_count < 3 then

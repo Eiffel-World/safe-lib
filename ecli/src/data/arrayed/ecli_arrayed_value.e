@@ -11,8 +11,8 @@ indexing
 		% or column-wise binding of parameters for modifications.%
 		% Access modes: direct ('item_at'), linear ('start', 'forth', 'item')."
 
-	date: "$Date: 2003/02/26 19:33:38 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/06/12 10:01:23 $"
+	revision: "$Revision: 1.10 $"
 
 deferred class
 	ECLI_ARRAYED_VALUE
@@ -33,7 +33,7 @@ inherit
 			can_trace
 		redefine
 			release_handle, to_external, is_null,
-			to_string
+			as_string
 		end
 
 feature -- Initialization
@@ -190,7 +190,7 @@ feature -- Conversion
 			result_not_void: Result /= Void
 		end
 	
-	to_string : STRING is
+	as_string : STRING is
 			-- visible representation of current item
 		do
 			Result := out_item_at (cursor_index)

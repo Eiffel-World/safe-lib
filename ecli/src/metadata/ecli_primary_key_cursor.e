@@ -9,8 +9,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/03/01 13:32:37 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/06/12 10:01:24 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -77,7 +77,7 @@ feature -- Cursor Movement
 					loop
 						forth
 						if not off then
-							impl_item.add_column (buffer_column_name.to_string)
+							impl_item.add_column (buffer_column_name.as_string)
 						end
 					end
 					creating_item := False

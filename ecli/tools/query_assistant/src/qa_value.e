@@ -4,8 +4,8 @@ indexing
 		"  "
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/06/11 13:11:16 $"
-	revision: 	"$Revision: 1.2 $"
+	date: 		"$Date: 2003/06/12 10:01:24 $"
+	revision: 	"$Revision: 1.3 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -18,7 +18,7 @@ inherit
 			to_character, convertible_to_character,
 			to_double, convertible_to_double,
 			to_integer, convertible_to_integer,
-			to_string, convertible_to_string,
+			as_string, convertible_to_string,
 			to_real, convertible_to_real,
 			to_date, convertible_to_date,
 			to_timestamp, convertible_to_timestamp, copy

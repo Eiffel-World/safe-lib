@@ -1,8 +1,8 @@
 indexing
 	description: "Transaction test appliation";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:12 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/06/12 10:01:15 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 class
 	TRANSACT
@@ -16,8 +16,9 @@ feature -- Initialization
 	make is
 			-- TRANSACT
 		local
-			args :          expanded ARGUMENTS
+			args : ARGUMENTS
 		do
+			create args
 			-- session opening
 			if args.argument_count < 3 then
 				io.put_string ("Usage: transact <data_source> <user_name> <password>%N")
