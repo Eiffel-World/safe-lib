@@ -1,6 +1,9 @@
 February 2003
 	All test cases for GDA 1.08 are passing OK
-	Port to VisualEiffel = (strange behaviour when cloning - aliases coefficient while 'copy' creates its own copy...)
+	Port to VisualEiffel = 
+		(changes made due to unknown behaviour when cloning - 
+		aliases coefficient while 'copy' should create its own copy -
+		In a next version, cloning should be avoided !)
 	
 December 2002
 	December 17. Implementation of 'telco' benchmark application.

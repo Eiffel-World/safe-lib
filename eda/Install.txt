@@ -1,32 +1,44 @@
 	
         EDA - Eiffel Decimal Arithmetic Library
         
-    Copyright (c) 2002, Paul G. Crismer and others
+    Copyright (c) 2002,2003 Paul G. Crismer and others
     
                       -----------
                       
+PREREQUISITES
+
+GOBO 3.1 library (http://www.gobosoft.com)
+GOBO Tools : geant, gexace
+
 INSTALLATION INSTRUCTIONS
 
 1. Define environment variable 'EDA'.  It must point to the directory where this package
-   has been installed. For example : /usr/local/eda, or c:\user\eiffel\libraries\eda
+   has been installed. For example : /usr/local/lib/eda, or c:\user\eiffel\libraries\eda
    
-2. Create an application using XACE project definition, and mount the ${EDA}/library.xace
+2. Create an application
+  2a. Create a XACE project definition, and mount the ${EDA}/library.xace
+  2b. Create a 'build.eant' file.
 
-3. Generate the assembly file, compile and go !
-
+3. Generate the application :  Automate build with geant.
 
 
 PLATFORMS
 
 Should run on any platform.
 
-
-
 COMPILERS
 
 Any GOBO supported Eiffel compiler.
 
-However, EDA has currently been tested using 
+TESTED :
+
+* Compilers
 - ESI EiffelStudio 5.2, 
 - SmartEiffel 1.0, 
 - Visual Eiffel 4.1
+
+* Platforms
+- Win32 (NT 4.0, 2000)
+- MS .NET SDK 1.0
+- Linux
+
