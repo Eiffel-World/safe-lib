@@ -1,18 +1,15 @@
 indexing
 	description: "SQL VARCHAR (n) arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/27 12:46:39 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2004/05/18 11:18:42 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
 	ECLI_ARRAYED_VARCHAR
 
 inherit
-	ECLI_ARRAYED_LONGVARCHAR
-		redefine
-			max_content_capacity, sql_type_code
-		end
+	ECLI_ARRAYED_STRING_VALUE
 
 creation
 	make
@@ -30,11 +27,6 @@ feature -- Status report
 		once
 			Result := sql_varchar
 		end
-
-feature {NONE} -- Implementation
-
-invariant
-	invariant_clause: -- Your invariant here
 
 end -- class ECLI_ARRAYED_VARCHAR
 --

@@ -1,15 +1,15 @@
 indexing
 	description: "SQL CHAR (n) arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/27 12:46:39 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2004/05/18 11:18:42 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class
 	ECLI_ARRAYED_CHAR
 
 inherit
-	ECLI_ARRAYED_VARCHAR
+	ECLI_ARRAYED_STRING_VALUE
 		rename
 		export
 		undefine
@@ -55,6 +55,11 @@ feature -- Access
 
 feature -- Measurement
 
+	max_content_capacity : INTEGER is
+		do
+			Result := 255
+		end
+		
 feature -- Status report
 
 	sql_type_code: INTEGER is
