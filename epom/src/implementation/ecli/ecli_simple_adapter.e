@@ -3,7 +3,7 @@
 	description:
 
 		"Ecli partial implementation of PO_ADAPTERs.%
-	%	
+	%	%
 	%	Caches all read objects until `clear_cache' is called.%
 	%	When `is_enabled_cache_on_write' is True then written object%
 	%	also are inserted in the cache.%
@@ -20,8 +20,8 @@
 	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
 	%	exact-match or multiple-match queries, respectively."
 		
-	date: "$Date: 2004/09/01 19:23:57 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2004/10/11 20:30:29 $"
+	revision: "$Revision: 1.4 $"
 
 deferred class ECLI_SIMPLE_ADAPTER[G->PO_PERSISTENT]
 

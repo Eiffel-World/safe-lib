@@ -3,7 +3,7 @@ indexing
 	description:
 
 		"Ecli partial implementation of PO_ADAPTERs.%
-	%	
+	%	%
 	%	If `cache_on_read' is true, the adapter caches all read objects until `clear_cache' is called.%
 	%	When `is_enabled_cache_on_write' is True then written object%
 	%	also are inserted in the cache."
@@ -19,52 +19,22 @@ indexing
 	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
 	%	exact-match or multiple-match queries, respectively."
 
-	date: "$Date: 2004/06/06 20:26:28 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/10/11 20:30:29 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class ECLI_GENERAL_ADAPTER[G->PO_PERSISTENT]
 
 inherit
 
 	ECLI_ADAPTER_READ_COLLECTION_SKELETON[G]
-		undefine
-			can_refresh, refresh,
-			can_write, write,
-			can_update, update,
-			can_delete, delete
-		end
 		
 	ECLI_ADAPTER_REFRESH_SKELETON[G]
-		undefine
-			can_read, read,
-			can_write, write,
-			can_update, update,
-			can_delete, delete
-		end
 		
 	ECLI_ADAPTER_WRITE_SKELETON[G] 
-		undefine
-			can_read, read,
-			can_refresh, refresh,
-			can_update, update,
-			can_delete, delete
-		end
 		
 	ECLI_ADAPTER_UPDATE_SKELETON[G]
-		undefine
-			can_read, read,
-			can_refresh, refresh,
-			can_write, write,
-			can_delete, delete
-		end
 		
 	ECLI_ADAPTER_DELETE_SKELETON[G]
-		undefine
-			can_read, read,
-			can_refresh, refresh,
-			can_write, write,
-			can_update, update
-		end
 
 feature {PO_ADAPTER} -- Basic operations
 
