@@ -1,8 +1,8 @@
 indexing
 	description: "Widget that let you edit a TEXT optionally composed of multiple paragraphs"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/11/28 10:24:46 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2001/12/06 07:35:12 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ECTK_TEXT
@@ -30,7 +30,6 @@ feature {NONE} -- Initialization
 		do
 			!!window.make_subwindow_relative (parent, a_height, a_width, y, x)
 			initialize_widget
-			refresh_from_row (0)
 		ensure
 			parent_set: window.parent_window = parent;
 			origin_set: window.origin_x = x + window.parent_window.origin_x and then window.origin_y = y + window.parent_window.origin_y;
@@ -40,10 +39,19 @@ feature {NONE} -- Initialization
 
 feature -- Status report
 
+	is_text_void: BOOLEAN is
+			-- Is text Void.
+		do
+			Result := text = Void
+		ensure
+			text = Void
+		end
+		
+
 	after_text: BOOLEAN is
 			-- Is there no valid position after the cursor in the text?
 		do
-			if text.is_empty or (first_visible_row + cursor_position.y > map.count) then
+			if text = Void or else text.is_empty or else (first_visible_row + cursor_position.y > map.count) then
 				Result := True
 			else
 				Result := text_position > text.last_position
@@ -53,7 +61,7 @@ feature -- Status report
 	after_paragraph: BOOLEAN is
 			-- Is there no valid position after the cursor in the paragraph?
 		do
-			if text.is_empty  or else text_paragraph.count = 0 then
+			if text = Void or else text.is_empty  or else text_paragraph.count = 0 then
 				Result := True
 			else
 				Result := text_position.character_position > text_paragraph.count
@@ -63,7 +71,7 @@ feature -- Status report
 	before: BOOLEAN is
 			-- Is there no valid position to left of cursor?
 		do
-			if text.is_empty then
+			if text = Void or else text.is_empty then
 				Result := True
 			else
 				if (first_visible_row + cursor_position.y <= map.count) then
@@ -82,29 +90,41 @@ feature -- Basic operations
 			a_text_position: TEXT_POSITION
 			a_length: INTEGER
 		do
-			text.copy (model_querist.item)
-			initialize_map
-			
-			--| Restore cursor on first if current position is invalid now
-			if  first_visible_row + cursor_position.y > map.count then
+			if model_querist.item = Void then
+				text := Void
+				window.move (0, 0)
+				window.clear_to_bottom
 				!!cursor_position.make_origin
 				first_visible_row := 1
 			else
-				a_text_position := map.item (first_visible_row + cursor_position.y)
-				a_length := text.paragraph (a_text_position.paragraph_position).count - a_text_position.character_position + 1
-				if cursor_position.x > a_length - 1 then					
+				if text = Void then
+					!!text.make (20)	
+				end
+				text.copy (model_querist.item)
+				initialize_map
+			
+				--| Restore cursor on first if current position is invalid now
+				if  first_visible_row + cursor_position.y > map.count then
 					!!cursor_position.make_origin
 					first_visible_row := 1
+				else
+					a_text_position := map.item (first_visible_row + cursor_position.y)
+					a_length := text.paragraph (a_text_position.paragraph_position).count - a_text_position.character_position + 1
+					if cursor_position.x > a_length - 1 then					
+						!!cursor_position.make_origin
+						first_visible_row := 1
+					end
 				end
+				refresh_from_row (0)
 			end
-			
-			refresh_from_row (0)
 		end
 
 feature -- Cursor movement
 
 	start is
 			-- Move cursor to the first position.
+		require
+			not_is_text_void: not is_text_void
 		do
 			first_visible_row := 1
 			cursor_position.set_y (0)
@@ -114,6 +134,8 @@ feature -- Cursor movement
 
 	finish is
 			-- Move cursor to the last position.
+		require
+			not_is_text_void: not is_text_void
 		do
 			if text.is_empty then
 				first_visible_row := 1
@@ -179,6 +201,9 @@ feature -- Element change
 		local
 			an_empty_paragraph: STRING
 		do
+			if text = Void then
+				!!text.make(20)	
+			end			
 			if ectk_system.is_overwrite_mode and not after_paragraph then
 				text.put_character (a_character, text_position)
 				refresh_from_row (0)			
@@ -209,6 +234,10 @@ feature -- Element change
 		local
 			a_new_paragraph: STRING
 		do	
+			if text = Void then
+				!!text.make(20)	
+			end			
+
 			if text.is_empty then
 				!!a_new_paragraph.make (80) 
 				text.append_paragraph (a_new_paragraph)
@@ -266,6 +295,8 @@ feature {NONE} -- Implementation
 
 	last_valid_x: INTEGER is
 			-- Last valid x coordinate of cursor within current row.
+		require
+			not_is_text_void: not is_text_void
 		do
 			if text.is_empty or (first_visible_row + cursor_position.y > map.count) then
 				Result := 0
@@ -284,6 +315,7 @@ feature {NONE} -- Implementation
 	text_position: TEXT_POSITION is
 			-- Text position corresponding to cursor_position.
 		require
+			not_text_is_void: not is_text_void
 			not_text_is_empty: not text.is_empty 
 			mapped: first_visible_row + cursor_position.y <= map.count
 		do
@@ -294,6 +326,7 @@ feature {NONE} -- Implementation
 	text_paragraph: STRING is
 			-- paragraph within text corresponding to cursor_position.
 		require 
+			not_text_is_void: not is_text_void
 			not_text_is_empty: not text.is_empty
 		do
 			Result := text.paragraph (map.item (first_visible_row + cursor_position.y).paragraph_position)
@@ -304,6 +337,8 @@ feature {NONE} -- Implementation
 
 	lower_right_position: ECTK_POSITION is
 			-- Position of lower right corner of window.
+		require
+			not_is_text_void: not is_text_void
 		do
 			!!Result.make_lower_right_corner (window)
 		end
@@ -331,7 +366,11 @@ feature {NONE} -- Implementation
 	update_model is
 			-- Update the model.
 		do
-			model_modifier.set_argument_1 (clone (text))
+			if text = Void then
+				model_modifier.set_argument_1 (Void)
+			else
+				model_modifier.set_argument_1 (clone (text))
+			end
 			if model_modifier.check_precondition then
 				model_modifier.execute	
 				last_error := model_modifier.last_error
@@ -342,6 +381,8 @@ feature {NONE} -- Implementation
 
 	initialize_map is
 			--| Initialize map for the contents of the text attribute.
+		require
+			not_is_text_void: not is_text_void
 		local
 			row: INTEGER
 			paragraph: STRING
@@ -386,6 +427,7 @@ feature {NONE} -- Implementation
 	refresh_from_row (a_row_coordinate: INTEGER) is
 			--| Refresh the textview from `a_row_coordinate' to the last visible row.
 		require
+			not_is_text_void: not is_text_void
 			within_height: a_row_coordinate >= 0 and a_row_coordinate < window.height
 		local
 			x,y: INTEGER
@@ -430,6 +472,8 @@ feature {NONE} -- Implementation
 
 	scroll_up is
 			-- Scroll text one paragraph up in window.
+		require
+			not_is_text_void: not is_text_void
 		do
 			first_visible_row := first_visible_row + 1
 			refresh_from_row (0)
@@ -437,6 +481,8 @@ feature {NONE} -- Implementation
 	
 	scroll_down is
 			-- Scroll text 1 paragraph down
+		require
+			not_is_text_void: not is_text_void
 		do
 			first_visible_row := first_visible_row - 1
 			refresh_from_row (0)			
@@ -458,10 +504,8 @@ feature {NONE} -- Implementation of initialization and behaviour
 			window.set_current_background (ut_character_codes.Space_code + curses_attribute_constants.Attribute_reverse)
 			window.apply_current_background
 			window.enable_attribute (curses_attribute_constants.Attribute_reverse)
-			!!text.make (20)
 			!!cursor_position.make_origin
 			first_visible_row := 1
-			initialize_map
 		end
 
 	initialize_behaviour is
@@ -505,11 +549,6 @@ feature {NONE} -- Internal state
 
 	map: DS_ARRAYED_LIST [TEXT_POSITION]
 			-- Maps the first column of each row on a position within the text.
-
-invariant
-	cursor_position_exists: cursor_position /= Void
-	text_exists: text /= Void
-	map_exists: map /= Void
 
 end -- class ECTK_TEXT
 

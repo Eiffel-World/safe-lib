@@ -1,8 +1,8 @@
 indexing
 	description: "Moves cursor to first cursor position in a ECTK_TEXT"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/11/28 10:24:46 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/12/06 07:35:12 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECTK_TEXT_START_COMMAND
@@ -28,10 +28,12 @@ feature -- Status setting
 	check_precondition: BOOLEAN is
 			-- Check the precondition.
 		do
-			last_precondition_error := Void
-			Result := True
-		ensure then
-			Result = True
+			if  not ectk_text.is_text_void then
+				last_precondition_error := Void
+			else
+				!EMI_PRECONDITION_ERROR!last_precondition_error.make ("not_is_text_void: not is_text_void")
+			end
+			Result := last_precondition_error = Void			
 		end
 
 
