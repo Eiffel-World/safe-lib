@@ -1,8 +1,11 @@
 indexing
 	description: "Sets of parameters of an access modules"
+
+	library: "Access_gen : Access Modules Generators utilities"
+	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/30 21:24:57 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/07/02 19:45:00 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PARAMETER_SET
@@ -19,45 +22,9 @@ creation
 feature {NONE} -- Initialization
 
 	make (a_name: STRING) is
-			-- 
 		do
 			Precursor (a_name)
 			set_equality_tester (create {KL_EQUALITY_TESTER [MODULE_PARAMETER]})
 		end
 		
-feature -- Access
-	
-feature -- Measurement
-
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
-
-feature {NONE} -- Implementation
-
-invariant
-	invariant_clause: True -- Your invariant here
-
 end -- class PARAMETER_SET

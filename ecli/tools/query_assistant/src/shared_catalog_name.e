@@ -1,8 +1,11 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2003/06/11 13:11:16 $"
-	revision: "$Revision: 1.2 $"
+	description: "Objects that share a same catalog name"
+
+	library: "Access_gen : Access Modules Generators utilities"
+	
+	author: "Paul G. Crismer"
+	date: "$Date: 2003/07/02 19:45:00 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	SHARED_CATALOG_NAME

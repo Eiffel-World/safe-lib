@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIME value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/11 13:11:16 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/07/02 19:45:00 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,14 +14,18 @@ inherit
 	QA_VALUE
 
 creation
-	make
+	make_default
 	
 feature
-
 
 	ecli_type : STRING is "ECLI_TIME"
 		
 	value_type : STRING is "ECLI_TIME"
+
+	creation_call : STRING is
+		do
+			Result := make_default_call
+		end
 		
 end -- class QA_TIME
 --
