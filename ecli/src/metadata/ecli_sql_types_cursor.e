@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that iterate over the SQL types supported by a datasource"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 08:52:04 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/09/28 10:51:18 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ECLI_SQL_TYPES_CURSOR
@@ -45,11 +45,11 @@ inherit
 		end
 		
 create
-	open_all_types, open_by_type
+	make_all_types, make_by_type
 	
 feature -- Initialization
 
-	open_all_types (a_session : ECLI_SESSION) is
+	make_all_types, open_all_types (a_session : ECLI_SESSION) is
 			-- make cursor for all types supported by `a_session'
 		require
 			session_opened: a_session /= Void and then a_session.is_connected
@@ -62,7 +62,7 @@ feature -- Initialization
 			open: not is_closed
 		end
 
-	open_by_type (a_session : ECLI_SESSION; a_type : INTEGER) is
+	make_by_type, open_by_type (a_session : ECLI_SESSION; a_type : INTEGER) is
 		require
 			session_opened: a_session /= Void and then a_session.is_connected
 			valid_type: supported_types.has (a_type)

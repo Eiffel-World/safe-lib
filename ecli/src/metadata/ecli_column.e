@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that describe a SQL column in a table"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/22 19:34:34 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/09/28 10:51:18 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_COLUMN
@@ -12,7 +12,12 @@ inherit
 		redefine
 			out
 		end
-		
+
+	ECLI_NAMED_METADATA
+		undefine
+			out
+		end
+	
 creation
 	make
 	
@@ -24,8 +29,14 @@ feature -- Initialization
 			cursor_exists: cursor /= Void
 			cursor_not_off: not cursor.off
 		do
-			table := cursor.table
-			name := cursor.buffer_column_name.to_string
+			set_catalog (cursor.buffer_table_cat)
+			set_schema (cursor.buffer_table_schem )
+			if cursor.buffer_table_name.is_null then
+				
+			else
+				table := cursor.buffer_table_name.to_string
+			end
+			set_name (cursor.buffer_column_name)
 			type_code := cursor.buffer_data_type.to_integer
 			type_name := cursor.buffer_type_name.to_string
 			if not cursor.buffer_column_size.is_null then
@@ -48,15 +59,13 @@ feature -- Initialization
 			if not cursor.buffer_remarks.is_null then
 				description := cursor.buffer_remarks.to_string
 			end
-		ensure
-			table_set: table = cursor.table
 		end
 		
 feature -- Access
 
-	table : ECLI_TABLE
+	table : STRING
 	
-	name : STRING
+--	name : STRING
 
 	type_code : INTEGER
 

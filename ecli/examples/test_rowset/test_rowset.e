@@ -1,8 +1,8 @@
 indexing
 	description: "ECLI test of rowset classes";
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:07 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/09/28 10:51:18 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET
@@ -85,7 +85,11 @@ feature -- Basic Operations
 		local
 			test : ROWSET_MODIFIER_TEST
 		do
-				!!test.make (session)
+				if session.is_bind_arrayed_parameters_capable then
+					!!test.make (session)
+				else
+					io.put_string ("The current datasource does not support operations with arrayed parameters%N")
+				end
 		end
 		
 feature {NONE} -- Implementation

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that define a row cursor and allow sweeping through it."
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:08 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/09/28 10:51:18 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	ECLI_ROW_CURSOR
@@ -146,8 +146,8 @@ feature -- Cursor movement
 				end
 			end
 		ensure
-			executed: is_executed
-			off_if_not_query: not has_results implies off
+			executed: is_ok implies is_executed
+			off_if_not_query: is_ok implies (not has_results implies off)
 		end
 		
 feature -- Element change
