@@ -2,8 +2,8 @@ indexing
 	description: "Objects that implement helper operations for tests."
 	author: "Paul G. Crismer"
 	licencing: "See notice at end of class"
-	date: "$Date: 2003/02/27 15:07:09 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/11/10 20:21:13 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	TEST_HELPER
@@ -93,7 +93,7 @@ feature {NONE} -- Implementation
 		do
 			-- star radius
 			-- calculate star points
-			!!math
+			create math
 			d4pi_5 := 4 * p.math.Pi / 5
 			d2pi_5 := 2 * p.math.Pi / 5
 			x_4pi_5 := math.cosine (d4pi_5)

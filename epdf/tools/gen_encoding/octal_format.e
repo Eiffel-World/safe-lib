@@ -5,8 +5,8 @@ indexing
 
 	author: 	"Paul G. Crismer"
 	licencing: 	"See notice at end of class"
-	date: 		"$Date: 2002/03/20 15:19:06 $"
-	revision: 	"$Revision: 1.1 $"
+	date: 		"$Date: 2003/11/10 20:21:15 $"
+	revision: 	"$Revision: 1.2 $"
 
 class
 	OCTAL_FORMAT
@@ -67,7 +67,7 @@ feature -- Conversion
 			digit : INTEGER
 			multiplier : INTEGER
 		do
-			!!Result.make (0)
+			create Result.make (0)
 			from
 				octal := o
 			until

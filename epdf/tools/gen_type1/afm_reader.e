@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that read Adobe Font Metrics (AFM) files"
 	author: ""
-	date: "$Date: 2002/03/20 15:19:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/11/10 20:21:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	AFM_READER
@@ -55,7 +55,7 @@ feature -- Element change
 			read_until ("StartCharMetrics")
 			file.read_line
 			widths_count := file.last_string.to_integer
-			!!widths.make (widths_count)
+			create widths.make (widths_count)
 			from
 				index := 1
 			until

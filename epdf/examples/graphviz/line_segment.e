@@ -1,8 +1,8 @@
 indexing
 	description: "Line segment"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/27 15:07:05 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/11/10 20:21:13 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -119,7 +119,7 @@ feature {NONE} -- Implementation
 	math : EPDF_MATH is
 			-- 
 		once
-			!!Result
+			create Result
 		end
 
 invariant

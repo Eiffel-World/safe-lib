@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are document information.  See PDF Reference 9.2.1."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/20 15:39:58 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/11/10 20:21:15 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PDF_DOCUMENT_INFORMATION
@@ -40,7 +40,7 @@ feature -- Access
 		--CreationDate date (Optional) The date and time the document was created, in human-readable form (see Section 3.8.2, “Dates”).
 		
 	modification_date : DT_DATE_TIME
-		--ModDate date (Optional; PDF 1.1) The date and time the document was most recently modi.ed, in human-readable form (see Section 3.8.2, “Dates”).
+		--ModDate date (Optional; PDF 1.1) The date and time the document was most recently modified, in human-readable form (see Section 3.8.2, “Dates”).
 		
 feature -- Measurement
 

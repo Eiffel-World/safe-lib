@@ -5,8 +5,8 @@ indexing
 
 	author: 	"Paul G. Crismer"
 	licencing: 	"See notice at end of class"
-	date: 		"$Date: 2003/08/26 19:34:50 $"
-	revision: 	"$Revision: 1.3 $"
+	date: 		"$Date: 2003/11/10 20:21:15 $"
+	revision: 	"$Revision: 1.4 $"
 
 class
 	PDF_OUTPUT_MEDIUM
@@ -103,7 +103,7 @@ feature -- Basic operations
 			integral, fraction : INTEGER
 			s : STRING
 		do
-			!!s.make (0)
+			create s.make (0)
 			integral := d.truncated_to_integer
 			fraction := ((d - integral) * 10000).truncated_to_integer
 			s.append_string (integral.out)
