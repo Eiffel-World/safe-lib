@@ -12,7 +12,7 @@
 	author: "Eric Fafchamps"
 	
 	usage: "%N%
-	%	* Inherit from it.%N% 
+	%	* Inherit from it.%N%
 	%	* Implement deferred features. %N%
 	%	* Redefine `last_pid'.%N%
 	%	%N%
@@ -20,8 +20,8 @@
 	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
 	%	exact-match or multiple-match queries, respectively."
 		
-	date: "$Date: 2004/10/11 20:30:29 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
+	revision: "$Revision: 1.5 $"
 
 deferred class ECLI_SIMPLE_ADAPTER[G->PO_PERSISTENT]
 
@@ -391,7 +391,7 @@ feature {PO_ADAPTER} -- Implementation
 		local
 			ref : PO_REFERENCE[G]
 		do
-			create ref
+			create ref.make_void
 			ref.set_pid_from_adapter (Current)
 			last_cursor.add_reference (ref)
 		end
@@ -401,8 +401,7 @@ feature {PO_ADAPTER} -- Implementation
 		local
 			ref : PO_REFERENCE[G]
 		do
-			create ref
-			ref.set_item (last_object)
+			create ref.set_item (last_object)
 			last_cursor.add_reference (ref)
 		end
 

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
 
 deferred class ECLI_ADAPTER_DELETE_SKELETON[G->PO_PERSISTENT]
 
@@ -25,7 +25,7 @@ feature -- Status report
 
 feature -- Basic operations
 
-	delete (object: like last_object) is
+	delete (object: like object_anchor) is
 			-- Delete `object' from datastore using `delete_query'.
 		do  
 			status.reset

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/08/30 20:07:26 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
 
 class PO_REFERENCE [G -> PO_PERSISTENT]
 
@@ -16,7 +16,7 @@ inherit
 	
 creation
 
-	default_create, set_pid_from_adapter, set_item, make_void
+	set_pid_from_adapter, set_item, make_void
 	
 feature -- Access			
 	

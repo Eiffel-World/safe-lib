@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/09/01 19:23:57 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
 
 deferred class ECLI_ADAPTER_COMMON_SKELETON[G->PO_PERSISTENT]
 
@@ -127,10 +127,10 @@ feature -- Basic operations
 	
 feature {PO_ADAPTER} -- Basic operations
 
-	create_pid_from_object (an_object: G) is
-			-- Create `last_pid' based on the content of `an_object'
-		deferred
-		end
+--	create_pid_from_object (an_object: G) is
+--			-- Create `last_pid' based on the content of `an_object'
+--		deferred
+--		end
 
 	init_parameters_for_exists (a_pid : like last_pid) is
 			-- Initialize parameters of `Sql_exists' with information from `a_pid'

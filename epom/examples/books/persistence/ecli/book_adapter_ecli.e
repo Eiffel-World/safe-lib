@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:27 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
 
 class BOOK_ADAPTER_ECLI
 
@@ -49,8 +49,6 @@ inherit
 	BOOK_ADAPTER_ACCESS_ROUTINES
 		rename
 			book_read_by_title as read_by_title
-		redefine
-			read_by_title
 		end
 
 creation
@@ -63,7 +61,7 @@ feature {PO_ADAPTER}-- Access
 
 feature {NONE}-- Basic operations
 
-	create_pid_from_object (b : BOOK) is
+	create_pid_from_object (b : like object_anchor) is
 			-- 
 		do
 			create last_pid.make_from_isbn (b.isbn)

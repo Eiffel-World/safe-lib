@@ -10,26 +10,26 @@ indexing
 		
 	author: "Paul G. Crismer"
 	
-	implementation_note: "[
-			- implement needed accesses
-				- `read', `can_read'
-				- `write', `can_write'
-				- `update', `can_update'
-				- `refresh', `can_refresh'
-				- `delete', `can_delete'
-			- implement factories
-				- `create_pid_from_object', `last_pid'
-				- creation of `last_object' 
-				- inserting `last_object' into `last_cursor'
-			- redefine, if needed
-				- `on_adapter_connected'
-				- `on_adapter_disconnect'
-		]"
+	implementation_note: " %
+		%	- implement needed accesses %
+		%		- `read', `can_read' %
+		%		- `write', `can_write' %
+		%		- `update', `can_update' %
+		%		- `refresh', `can_refresh' %
+		%		- `delete', `can_delete' %
+		%	- implement factories %
+		%		- `create_pid_from_object', `last_pid' %
+		%		- creation of `last_object'  %
+		%		- inserting `last_object' into `last_cursor' %
+		%	- redefine, if needed %
+		%		- `on_adapter_connected' %
+		%		- `on_adapter_disconnect' %
+		% "
 	
 
 	Usage: "Inherit.  Define all deferred features."
-	date: "$Date: 2004/09/01 19:23:57 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
+	revision: "$Revision: 1.6 $"
 
 deferred class PO_ADAPTER [G -> PO_PERSISTENT]
 
@@ -275,7 +275,7 @@ feature -- Basic operations
 			is_ok: status.is_ok
 		deferred			
 		ensure
-			object_fresh: not not status.is_error implies not object.is_modified 
+			object_fresh: not status.is_error implies not object.is_modified 
 		end
 	
 	refresh (object : like object_anchor) is
@@ -303,7 +303,6 @@ feature -- Basic operations
 		ensure
 			object_deleted: not status.is_error implies (object.is_deleted and not exists (pid_for_object (object)))
 			no_more_cached: not status.is_error implies not is_cached (object)
-			deleted: not status.is_error implies object.is_deleted
 		end
 
 	clear_cache is

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/08/30 20:07:26 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
 
 class BORROWER_PID
 	
@@ -44,7 +44,7 @@ feature -- Conversion
 	to_string : STRING is
 			-- 
 		do
-			create Result.make_from_string (class_name)
+			create Result.make_from_string (persistent_class_name)
 			Result.append_character(',')
 			Result.append_string (id.out)
 		end

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
 
 deferred class ECLI_ADAPTER_SINK_SKELETON[G->PO_PERSISTENT]
 
@@ -29,22 +29,22 @@ feature -- Basic operations
 			do_nothing
 		end
 
-	update (object: like last_object) is
+	update (object: like object_anchor) is
 		do
 			do_nothing
 		end
 
-	refresh (object: like last_object) is
+	refresh (object: like object_anchor) is
 		do
 			do_nothing
 		end
 
-	write (object: like last_object)  is
+	write (object: like object_anchor)  is
 		do
 			do_nothing
 		end
 
-	delete (object: like last_object) is
+	delete (object: like object_anchor) is
 		do
 			do_nothing
 		end

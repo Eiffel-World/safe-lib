@@ -6,9 +6,9 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
 
-deferred class PO_STATUS_USE
+class PO_STATUS_USE
 
 feature -- Access
 

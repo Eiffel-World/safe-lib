@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
 
 deferred class ECLI_ADAPTER_UPDATE_SKELETON[G->PO_PERSISTENT]
 
@@ -25,7 +25,7 @@ feature -- Access report
 
 feature -- Basic operations
 
-	update (object: like last_object) is
+	update (object: like object_anchor) is
 			-- Update `object' on datastore using `update_query'.
 		do  
 			status.reset
@@ -41,6 +41,7 @@ feature -- Basic operations
 				update_query.execute
 				if update_query.is_ok then
 					object.set_pid (last_pid)
+					object.disable_modified
 				else
 					--| query failed
 					status.set_datastore_error (update_query.native_code, update_query.diagnostic_message					)

@@ -11,7 +11,7 @@ indexing
 	authors: "Eric Fafchamps, Paul G. Crismer"
 	
 	usage: "%N%
-	%	* Inherit from it.%N% 
+	%	* Inherit from it.%N%
 	%	* Implement deferred features. %N%
 	%	* Redefine `last_pid'.%N%
 	%	%N%
@@ -19,8 +19,8 @@ indexing
 	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
 	%	exact-match or multiple-match queries, respectively."
 
-	date: "$Date: 2004/10/11 20:30:29 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
+	revision: "$Revision: 1.4 $"
 
 deferred class ECLI_GENERAL_ADAPTER[G->PO_PERSISTENT]
 

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/09/01 19:15:37 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
 
 class COPY_ADAPTER_ECLI
 
@@ -89,7 +89,7 @@ feature -- Basic operations
 feature {NONE} -- Factory
 
 		
-	create_pid_from_object (an_object : like last_object) is
+	create_pid_from_object (an_object : like object_anchor) is
 			-- 
 		do
 			create last_pid.make (an_object.book.isbn, an_object.number)

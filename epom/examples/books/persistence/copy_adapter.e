@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/09/01 19:15:37 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
 
 deferred class COPY_ADAPTER
 
@@ -36,7 +36,7 @@ feature -- Basic operations
 		end
 		
 	read_borrowed is
-			-- read borrowed copies
+			-- Read all borrowed copies.
 		deferred
 		end
 				

@@ -1,8 +1,8 @@
 indexing
 	description: "Persitent identifiers for COPY objects"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/08/30 20:07:26 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2004/12/07 20:58:24 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	COPY_PID
@@ -45,7 +45,7 @@ feature -- Conversion
 	to_string : STRING is
 			-- 
 		do
-			create Result.make_from_string (class_name)
+			create Result.make_from_string (persistent_class_name)
 			Result.append_character(',')
 			Result.append_string (isbn)
 			Result.append_character (',')
