@@ -3,11 +3,11 @@
 <project name="example" default="help">
 
 	<description>
-		description: "Eiffel Ant file for ECLI examples"
+		description: "Eiffel Ant file for EDA examples"
 		copyright: "Copyright (c) 2002, Paul G. Crismer and others"
 		license: "Eiffel Forum License v1 (see forum.txt)"
-		date: "$Date: 2003/02/27 15:25:53 $"
-		revision: "$Revision: 1.2 $"
+		date: "$Date: 2003/02/27 15:24:34 $"
+		revision: "$Revision: 1.1 $"
 	</description>
 
 	<target name="help">
@@ -19,7 +19,7 @@
 
 	<target name="install" depend="init">
 		<description>
-			Install the ECLI examples.
+			Install the EDA examples.
 		</description>
 
 		<set name="target" value="install"/>
@@ -57,14 +57,8 @@
 			in all subdirectories.
 		</description>
 
-		<geant file="build.eant" target="${target}" dir="isql"/>
-		<geant file="build.eant" target="${target}" dir="library"/>
-		<geant file="build.eant" target="${target}" dir="qa_example"/>
-		<geant file="build.eant" target="${target}" dir="test_gc"/>
-		<geant file="build.eant" target="${target}" dir="test_rowset"/>
-		<geant file="build.eant" target="${target}" dir="test_values"/>
-		<geant file="build.eant" target="${target}" dir="test_Xaction"/>
-		<geant file="build.eant" target="${target}" dir="test1"/>
+		<geant file="build.eant" target="${target}" dir="acceptance"/>
+		<geant file="build.eant" target="${target}" dir="telco"/>
 	</target>
 
 </project>

@@ -26,4 +26,7 @@ COMPILERS
 
 Any GOBO supported Eiffel compiler.
 
-However, EDA has currently been tested using ESI EiffelStudio 5.2, SmartEiffel 1.0.
+However, EDA has currently been tested using 
+- ESI EiffelStudio 5.2, 
+- SmartEiffel 1.0, 
+- Visual Eiffel 4.1

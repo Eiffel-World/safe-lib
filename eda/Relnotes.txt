@@ -1,3 +1,7 @@
+February 2003
+	All test cases for GDA 1.08 are passing OK
+	Port to VisualEiffel = (strange behaviour when cloning - aliases coefficient while 'copy' creates its own copy...)
+	
 December 2002
 	December 17. Implementation of 'telco' benchmark application.
 	EDA_COEFFICIENT_IMP now uses KL*NATIVE_ARRAY* classes.

@@ -8,13 +8,13 @@
 		copyright:   "Copyright (c) 2002, Paul G. Crismer and others"
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
 		date:        "$Date $"
-		revision:    "$Revision: 1.2 $"
+		revision:    "$Revision: 1.3 $"
 	</description>
 
 	<root class="TEST_DECIMAL" creation="make"/>
 	<option unless="${DEBUG}">
 		<option name="assertion" value="none"/>
-		<option name="finalize" value="true"/>
+		<option name="finalize" value="true" unless="${GOBO_EIFFEL}=ve"/>
 		<option name="inlining" value="all"/>
 		<option name="inlining_size" value="10"/>
 		<option name="array_optimization" value="true"/>
