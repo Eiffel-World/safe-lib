@@ -11,8 +11,8 @@ indexing
 	Dispose
 	
 	]"
-	date: "$Date: 2003/12/28 22:04:41 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/30 10:58:04 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -22,6 +22,13 @@ deferred class
 feature {NONE} -- Initialization
 
 feature -- Access
+
+	get_display : ABSTRACT_DISPLAY is
+			-- Returns the Display that is associated with the receiver.
+			--  A widget's display is either provided when it is created (for example, top level Shells) or is the
+			-- same as its parent's display.
+		deferred
+		end
 
 feature -- Measurement
 

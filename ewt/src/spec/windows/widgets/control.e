@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_CONTROL"
-	date: "$Date: 2003/12/29 21:26:54 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/30 10:58:04 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -16,6 +16,21 @@ inherit
 feature {NONE} -- Initialization
 
 feature -- Access
+
+	get_display : DISPLAY is
+			-- Returns the Display that is associated with the receiver.
+			--  A widget's display is either provided when it is created (for example, top level Shells) or is the
+			-- same as its parent's display.
+		local
+			a_parent : COMPOSITE
+		do
+			a_parent ?= parent
+			if parent = Void then
+				error (swt.Error_widget_disposed)
+			else
+				Result := parent.get_display
+			end
+		end
 
 feature -- Measurement
 
@@ -137,6 +152,10 @@ feature -- Inapplicable
 feature -- Constants
 
 feature {NONE} -- Implementation
+
+feature {NONE} -- Attributes
+
+	parent : COMPOSITE
 
 invariant
 	invariant_clause: -- Your invariant here

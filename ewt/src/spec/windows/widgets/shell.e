@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of an ABSTRACT_SHELL"
-	date: "$Date: 2003/12/30 10:58:04 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2003/12/30 10:59:35 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -109,10 +109,10 @@ feature {NONE} -- Initialization
 --			if l_display = Void then
 --				l_display := display.get_default
 --			end
-			style := checkStyle (a_style);
-			parent := a_parent;
-			display := l_display
-			handle := handle
+--			style := checkStyle (a_style);
+--			parent := a_parent;
+--			display := l_display
+--			handle := handle
 			--	createWidget ()
 		end
 
