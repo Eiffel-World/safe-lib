@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2002/04/15 20:08:48 $"
-	revision: 	"$Revision: 1.9 $"
+	date: 		"$Date: 2002/05/09 20:15:42 $"
+	revision: 	"$Revision: 1.10 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -285,7 +285,7 @@ feature {ECLI_STATEMENT} -- Basic operations
 	bind_as_parameter (stmt : ECLI_STATEMENT; index: INTEGER) is
 			-- bind this value as parameter 'index' of 'stmt'
 		require
-			stmt: stmt /= Void and then stmt.parameter_count > 0
+			stmt: stmt /= Void and then stmt.parameters_count > 0
 			positive_index: index > 0
 		do
 			stmt.set_status (ecli_c_bind_parameter (stmt.handle,
