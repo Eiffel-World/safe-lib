@@ -1,0 +1,3 @@
+${SAFE_EBT}\conversion\format\src\loadpath.se
+${SAFE_EBT}\conversion\international\src\loadpath.se
+${SAFE_EBT}\conversion\scan\src\loadpath.se
