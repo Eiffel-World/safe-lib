@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/08/19 15:58:07 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	PARAMETER_SET
@@ -25,6 +25,25 @@ feature {NONE} -- Initialization
 		do
 			Precursor (a_name)
 			set_equality_tester (create {KL_EQUALITY_TESTER [MODULE_PARAMETER]})
+		end
+
+feature -- Status report
+
+	has_samples : BOOLEAN is
+			-- has this parameter set samples for all the parameters ?
+		local
+			sc : DS_SET_CURSOR[MODULE_PARAMETER]
+		do
+			from
+				sc := new_cursor
+				sc.start
+				Result := True
+			until
+				sc.off
+			loop
+				Result := Result and sc.item.has_sample
+				sc.forth
+			end
 		end
 		
 end -- class PARAMETER_SET
