@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2005/02/03 22:07:46 $"
 
 deferred class ECLI_ADAPTER_REFRESH_SKELETON[G->PO_PERSISTENT]
 
@@ -36,6 +36,9 @@ feature -- Basic operations
 				if refresh_cursor.is_ok then
 					if not refresh_cursor.off then
 						fill_from_refresh_cursor (object)
+						if not status.is_error then
+							object.disable_modified
+						end
 					else
 						status.set_framework_error (status.Error_could_not_refresh_object)
 					end

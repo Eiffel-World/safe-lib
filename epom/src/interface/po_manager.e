@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/09/01 19:15:38 $"
+	date: "$Date: 2005/02/03 22:07:46 $"
 
 deferred class PO_MANAGER
 
@@ -18,31 +18,31 @@ inherit
 feature -- Access
 
 	last_adapter : PO_ADAPTER [PO_PERSISTENT]
-			-- last adapter found by `search_adapter'
+			-- Last adapter found by `search_adapter'.
 
 	adapters : DS_LIST[PO_ADAPTER[PO_PERSISTENT]] is
-			-- known adapters
+			-- Known adapters.
 		deferred
 		end
 		
 feature -- Measurement
 
 	count : INTEGER is
-			-- number of known adapters
+			-- Number of known adapters.
 		deferred
 		end
 		
 feature -- Status report
 	
 	found : BOOLEAN is
-			-- has the last search_adapter operation succeeded ?
+			-- Has the last search_adapter operation succeeded ?
 		deferred
 		ensure
 			status: not Result implies status.is_error
 		end
 
 	has_adapter (persistent_class_name : STRING) : BOOLEAN is
-			-- has the POM an adapter for  `class_name'?
+			-- Has the POM an adapter for  `class_name'?
 		require
 			class_name_not_void: persistent_class_name /= Void
 		deferred
@@ -53,19 +53,20 @@ feature -- Status report
 feature {PO_LAUNCHER} -- Status setting
 
 	add_adapter (an_adapter : PO_ADAPTER[PO_PERSISTENT]) is
-			-- add `an_adapter'
+			-- Add `an_adapter'.
 		require
 			adapter_not_void: an_adapter /= Void
 			no_adapter_for_class: not has_adapter (an_adapter.persistent_class_name)
 		deferred
 		ensure
-			registered: has_adapter (an_adapter.persistent_class_name) and then last_adapter = an_adapter
+			registered: has_adapter (an_adapter.persistent_class_name)
+			inserted: adapters.has (an_adapter) and then count = old count + 1
 		end
 		
 feature -- Basic operations
 
 	search_adapter (persistent_class_name : STRING) is
-			-- search of adapter for class of `class_name'
+			-- Search of adapter for class of `class_name'.
 		require
 			class_name_not_void: persistent_class_name /= Void
 		deferred

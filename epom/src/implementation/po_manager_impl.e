@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/10/11 19:55:53 $"
+	date: "$Date: 2005/02/03 22:07:46 $"
 
 class PO_MANAGER_IMPL
 
@@ -80,7 +80,6 @@ feature {PO_LAUNCHER} -- Element change
 	add_adapter (an_adapter: PO_ADAPTER [PO_PERSISTENT]) is
 		do
 			adapters_table.force (an_adapter, an_adapter.persistent_class_name)
-			last_adapter := an_adapter	
 		end
 
 feature -- Removal

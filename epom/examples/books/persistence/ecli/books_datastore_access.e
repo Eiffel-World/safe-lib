@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2005/02/03 22:07:46 $"
 
 class BOOKS_DATASTORE_ACCESS
 
@@ -33,9 +33,12 @@ feature -- Basic operations
 		local
 			adapter : PO_ADAPTER[PO_PERSISTENT]
 			session : ECLI_SESSION
+			simple_login : ECLI_SIMPLE_LOGIN
 			manager : PO_MANAGER_IMPL
 		do
-			create session.make ("books", "","")
+			create session.make_default
+			create simple_login.make("books", "","")
+			session.set_login_strategy (simple_login)
 			create store.make (session)
 			store.connect
 			verify_table_existence
