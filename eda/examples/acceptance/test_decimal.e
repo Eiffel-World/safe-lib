@@ -6,7 +6,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/04/27 19:13:15 $"
+	date: "$Date: 2004/06/07 19:02:31 $"
 
 class TEST_DECIMAL
 
@@ -17,6 +17,8 @@ inherit
 			{NONE} all
 		end
 
+	KL_STANDARD_FILES
+	
 creation
 
 	make
@@ -26,8 +28,8 @@ feature {NONE} -- Initialization
 	make is
 			-- Create and run test cases.
 		do
-			io.put_string ("-- test_eda %N--  General Decimal Arithmetic tests cases%N")
-			io.put_string ("-- for exercising the Eiffel Decimal Arithmetic library (EDA).%N")
+			output.put_string ("-- test_eda %N--  General Decimal Arithmetic tests cases%N")
+			output.put_string ("-- for exercising the Eiffel Decimal Arithmetic library (EDA).%N")
 			test_cases
 		end
 
@@ -129,35 +131,45 @@ feature {NONE} -- Implementation
 			create {TEST_SUBTRACT} test.make_file (File_system.pathname (test_path_string, "subtract.decTest"))
 			do_case (test)
 
-			io.put_string ("All done !%N")
-			io.put_string ("Total : ")
-			io.put_integer (total)
-			io.put_string ("%NErrors: ")
-			io.put_integer (errors)
-			io.put_new_line
+			output.put_string ("All done !%N")
+			output.put_string ("Total : ")
+			output.put_integer (total)
+			output.put_string ("%NErrors: ")
+			output.put_integer (errors)
+			output.put_new_line
 		end
 
 	do_case (test : TEST_DECIMAL_GENERAL) is
 			--
 		local
 --			condition_met : BOOLEAN
+			i : INTEGER
 		do
 			print ("Test " + test.file.name + "%N")
 --			test.set_start_tag ("basx528")
-			from test.start
+			from 
+				test.start
+				i := 1
 			until
 				test.off
 			loop
 				test.execute
 				test.forth
+				output.put_string ("%R")
+				output.put_character (prompt.item ((i \\ 5)+1))
+				output.put_string (i.out)
+				output.flush
+				i := i + 1
 			end
 			total := total + test.count
 			errors := errors + test.errors
- 			print (" -> " + test.errors.out + " errors / " + test.count.out + " cases%N")
+ 			output.put_string ("%R -> " + test.errors.out + " errors / " + test.count.out + " cases%N")
  		end
 
 	bcd_parser : MA_DECIMAL_BCD_PARSER
 	ctx : MA_DECIMAL_MATH
+	
+	prompt : STRING is "|/-\-"
 	
 end
 
