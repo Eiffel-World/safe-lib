@@ -4,8 +4,8 @@ indexing
 	
 	library: "XS_C : eXternal Support C"
 	
-	date: "$Date: 2003/08/19 15:52:28 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/12/29 19:20:33 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -30,6 +30,11 @@ feature -- Access
 			-- item
 		do
 			Result := c_memory_get_pointer (handle)
+		end
+
+	as_integer : INTEGER is
+		do
+			Result := c_memory_get_int32 (handle)
 		end
 		
 feature -- Measurement
