@@ -4,8 +4,8 @@ indexing
 	
 	library: "XS_C : eXternal Support C"
 	
-	date: "$Date: 2003/10/20 20:01:20 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2005/02/03 22:05:52 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -232,14 +232,14 @@ feature -- Conversion
 					significant_digit := True
 				end
 				if significant_digit then
-					INTEGER_.append_hexadecimal_integer (Result, nibble, True)
+--					INTEGER_.append_hexadecimal_integer (nibble, Result, True)
 				end
 				nibble := the_byte \\ 16
 				if nibble > 0 then
 					significant_digit := True
 				end
 				if significant_digit then
-					INTEGER_.append_hexadecimal_integer (Result, nibble, True)
+--					INTEGER_.append_hexadecimal_integer (nibble, Result, True)
 				end
 				index := index - 1
 			end
