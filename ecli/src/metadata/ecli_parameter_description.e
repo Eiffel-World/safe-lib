@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/06/26 19:49:18 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/06/30 07:23:45 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 class
 	ECLI_PARAMETER_DESCRIPTION
@@ -61,8 +61,6 @@ feature -- Access
 	sql_type_code : INTEGER
 			-- type code of SQL data type
 		
-	column_precision : INTEGER is obsolete "Use 'size' instead" do Result := size end
-
 	size : INTEGER
 			-- The column size of numeric data types is defined as the maximum number of digits used 
 			-- by the data type of the column or parameter, or the precision of the data. 

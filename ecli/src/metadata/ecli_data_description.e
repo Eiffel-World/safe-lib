@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/06/26 19:49:18 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/06/30 07:23:45 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -25,6 +25,12 @@ feature -- Status report
 		end
 
 	column_precision : INTEGER is
+		obsolete "Use 'size' instead"
+		do
+			Result := size
+		end
+	
+	size : INTEGER is
 			-- maximum number of 'digits' used by the data type
 			-- for character and binary data : number of bytes or characters
 			-- for numeric data : number of sigificant digits
