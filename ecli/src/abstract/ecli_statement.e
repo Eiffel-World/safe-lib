@@ -6,8 +6,8 @@ indexing
 		% Provide CLI/ODBC CORE and some Level 1 functionalities."
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2000/07/30 20:34:11 $"
-	revision: 	"$Revision: 1.1 $"
+	date: 		"$Date: 2000/08/11 21:32:48 $"
+	revision: 	"$Revision: 1.2 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -373,7 +373,7 @@ feature -- Basic operations
 			if is_prepared_execution_mode then
 				set_status (ecli_c_execute (handle) )
 			else
-				if is_executed and has_results and not after then
+				if is_executed and then has_results and then not after then
 					close_cursor
 				end
 				set_status (ecli_c_execute_direct (handle, tools.string_to_pointer (impl_sql)))
