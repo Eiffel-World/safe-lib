@@ -1,11 +1,11 @@
 indexing
 	description: 
 	
-		"ISO CLI CHAR (n) values"
+		"SQL CHAR (n) values"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/30 21:24:56 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/07/25 18:24:23 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -93,7 +93,7 @@ invariant
 
 end -- class ECLI_CHAR
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

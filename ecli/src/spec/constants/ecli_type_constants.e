@@ -37,8 +37,8 @@ indexing
 --unsupported* SQL_INTERVAL_HOUR_TO_SECOND
 --unsupported* SQL_INTERVAL_MINUTE_TO_SECOND
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:44 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/07/25 18:24:24 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -188,7 +188,7 @@ feature {NONE} -- C data type indicators
 
 end -- class ECLI_TYPE_CONSTANTS
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/02 19:45:00 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/07/25 18:24:24 $"
+	revision: "$Revision: 1.5 $"
 
 
 class
@@ -460,3 +460,8 @@ invariant
 
 
 end -- class ACCESS_GEN
+--
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

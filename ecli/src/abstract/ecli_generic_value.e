@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/06/30 21:24:56 $"
-	revision: 	"$Revision: 1.3 $"
+	date: 		"$Date: 2003/07/25 18:24:23 $"
+	revision: 	"$Revision: 1.4 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -90,7 +90,7 @@ feature {NONE} -- Implementation
 		
 end -- class ECLI_GENERIC_VALUE
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

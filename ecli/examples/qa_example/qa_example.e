@@ -1,8 +1,8 @@
 indexing
 	description: "Sample Application that use query assistant generated routines";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/02 19:47:40 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/07/25 18:24:23 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 class
 	QA_EXAMPLE
@@ -59,7 +59,7 @@ feature -- Initialization
 				io.put_string (last_command)
 				io.put_string (" to pay%N")
 				from
-					parameters.remaining_amount.set_item (last_command.to_double)
+					parameters.remaining_amount.set_item (last_command.as_double)
 					cursor.set_parameters_object (parameters)
 					cursor.start
 				until
@@ -130,7 +130,7 @@ feature -- Basic Operations
 
 end -- class QA_EXAMPLE
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

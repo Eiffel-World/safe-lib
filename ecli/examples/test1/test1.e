@@ -1,8 +1,8 @@
 indexing
 	description: "TEST1 sample application";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/12 10:01:14 $"
-	revision: "$Revision: 1.16 $"
+	date: "$Date: 2003/07/25 18:24:23 $"
+	revision: "$Revision: 1.17 $"
 	licensing: "See notice at end of class"
 
 
@@ -566,7 +566,7 @@ feature -- Miscellaneous
 
 end -- class TEST1
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

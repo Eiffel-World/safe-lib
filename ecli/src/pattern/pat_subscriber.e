@@ -1,8 +1,8 @@
 indexing
 	description: "Subscriber part of the publisher/subscriber pattern"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:40 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/07/25 18:24:24 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -41,7 +41,7 @@ invariant
 
 end -- class PAT_SUBSCRIBER
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

@@ -1,8 +1,8 @@
 indexing
-	description: "ISO CLI TIME value"
+	description: "SQL TIME value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/02 19:45:00 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/07/25 18:24:24 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -29,7 +29,7 @@ feature
 		
 end -- class QA_TIME
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

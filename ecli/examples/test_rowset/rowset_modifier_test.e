@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that test bulk operations."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/02 19:50:35 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/07/25 18:24:23 $"
+	revision: "$Revision: 1.9 $"
 
 class
 	ROWSET_MODIFIER_TEST
@@ -133,7 +133,7 @@ feature -- Basic operations
 		do  
 			!!cursor.make (session, sql_count)
 			cursor.start
-			i := cursor.item_by_index (1).to_integer
+			i := cursor.item_by_index (1).as_integer
 			print ("Bulk insert : ")
 			if i = inserted_count then
 				print ("Passed")
@@ -187,7 +187,7 @@ feature -- Basic operations
 				index := index_of_array_string (names, cursor.item_by_index (1).as_string)
 				if index > 0 then
 					-- ok if retrieved value is ages.item (index) + 2
-					ok := (cursor.item_by_index (2).to_integer = (ages.item (index) + 2) )
+					ok := (cursor.item_by_index (2).as_integer = (ages.item (index) + 2) )
 				end
 				cursor.forth
 			end

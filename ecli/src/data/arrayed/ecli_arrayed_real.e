@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL REAL arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/12 10:01:23 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/07/25 18:24:24 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -22,7 +22,7 @@ inherit
 			make as make_single,
 			copy as copy_item, is_equal as is_equal_item
 		undefine
-			release_handle, length_indicator_pointer, to_external,
+			release_handle, length_indicator_pointer, as_external,
 			is_null, set_null, out, item, transfer_octet_length, set_item, as_string
 		end
 

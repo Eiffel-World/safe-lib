@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that define a rowset cursor and allow sweeping through it.  Rows are physically retrieved `row_count' at a time, minimizing network traffic if any."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/12 14:32:01 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2003/07/25 18:24:23 $"
+	revision: "$Revision: 1.12 $"
 
 class
 	ECLI_ROWSET_CURSOR
@@ -132,7 +132,7 @@ feature {NONE} -- Implementation
 			--| Declare maximum number of retrieved values at a time
 			set_status (ecli_c_set_integer_statement_attribute (handle, Sql_attr_row_array_size, row_capacity))
 			--| Declare status indicator array
-			set_status (ecli_c_set_pointer_statement_attribute (handle, Sql_attr_row_status_ptr, rowset_status.to_external, 0))
+			set_status (ecli_c_set_pointer_statement_attribute (handle, Sql_attr_row_status_ptr, rowset_status.as_external, 0))
 			from index := 1
 			until index > result_columns_count
 			loop

@@ -1,8 +1,8 @@
 indexing
-	description: "ISO CLI CHAR (n) arrayed values"
+	description: "SQL CHAR (n) arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/30 21:24:56 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/07/25 18:24:23 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class

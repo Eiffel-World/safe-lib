@@ -1,8 +1,11 @@
 indexing
-	description: "ISO CLI TIME value"
+	description: 
+	
+		"SQL TIME values"
+		
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/30 21:24:56 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2003/07/25 18:24:23 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 
 class
@@ -11,7 +14,7 @@ class
 inherit
 	ECLI_GENERIC_VALUE [DT_TIME]
 		redefine
-			to_time, is_equal, out, set_item, item, create_impl_item, impl_item
+			as_time, is_equal, out, set_item, item, create_impl_item, impl_item
 		end
 		
 creation
@@ -172,7 +175,7 @@ feature -- Conversion
 			end
 		end
 			
-	to_time : DT_TIME is
+	as_time : DT_TIME is
 		do
 			Result := item
 		end
@@ -234,7 +237,7 @@ invariant
 
 end -- class ECLI_TIME
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

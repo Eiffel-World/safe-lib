@@ -1,11 +1,11 @@
 indexing
-	description: "Properties of an ECLI data item"
+	description: "Objects that describe SQL properties of data items; Usually got from catalog queries."
 	author: "Paul G. Crismer"
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/06/30 21:24:57 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/07/25 18:24:24 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 deferred class

@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/26 19:49:18 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/07/25 18:24:24 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	REFERENCE_COLUMN
@@ -102,3 +102,8 @@ invariant
 	column_not_void: column /= Void
 
 end -- class REFERENCE_COLUMN
+--
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

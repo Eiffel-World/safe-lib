@@ -4,8 +4,8 @@ indexing
 	note: "Supported SQL data types currently are : sql_char, sql_decimal, sql_double, sql_float, sql_integer, sql_longvarchar, sql_numeric, sql_real, sql_smallint, sql_type_date, sql_type_time, sql_type_timestamp,	sql_varchar"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/12 10:01:20 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2003/07/25 18:24:23 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 
 class
@@ -155,7 +155,7 @@ feature {NONE} -- Implementation
 
 end -- class ECLI_VALUE_FACTORY
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

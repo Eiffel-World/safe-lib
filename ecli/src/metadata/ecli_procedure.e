@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/06/12 10:01:24 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/07/25 18:24:24 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -42,7 +42,7 @@ feature {NONE} -- Initilization
 				description := cursor.buffer_description.as_string
 			end
 			if not cursor.buffer_procedure_type.is_null then
-				type := cursor.buffer_procedure_type.to_integer
+				type := cursor.buffer_procedure_type.as_integer
 			end
 		end
 

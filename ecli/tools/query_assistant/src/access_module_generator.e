@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/02 19:45:00 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/07/25 18:24:24 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -35,7 +35,7 @@ feature -- Basic operations
 			file_name : STRING
 			file : KI_TEXT_OUTPUT_FILE
 		do
-			file_name := to_lower (a_class.name)
+			file_name := as_lower (a_class.name)
 			file_name.append_string (".e")
 			file_name := File_system.pathname (a_target_directory,file_name) 
 			file := File_system.new_output_file (file_name)
@@ -350,7 +350,7 @@ feature {NONE} -- Implementation
 			Result.to_upper
 		end
 
-	to_lower (s : STRING) : STRING is
+	as_lower (s : STRING) : STRING is
 		do
 			Result := clone (s)
 			Result.to_lower
@@ -361,7 +361,7 @@ invariant
 
 end -- class ACCESS_MODULE_GENERATOR
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

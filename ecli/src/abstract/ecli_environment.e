@@ -4,8 +4,8 @@ indexing
 				% This object is a handle to the CLI facilities : it is the first%
 				% CLI object to be created, and the last to be deleted."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/05/08 13:59:23 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/07/25 18:24:23 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -84,7 +84,7 @@ invariant
 
 end -- class ECLI_ENVIRONMENT
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

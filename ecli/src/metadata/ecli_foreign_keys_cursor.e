@@ -9,8 +9,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/06/12 10:01:24 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/07/25 18:24:24 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -105,17 +105,17 @@ feature {NONE} -- Implementation
 		do
 			from
 				creating_item := True
-				last_key_seq := buffer_key_seq.to_integer
+				last_key_seq := buffer_key_seq.as_integer
 			until
 				off or else done
 			loop
 				forth
-				if not off and then buffer_key_seq.to_integer > last_key_seq then
+				if not off and then buffer_key_seq.as_integer > last_key_seq then
 					impl_item.add_column (buffer_column_name.as_string, buffer_pk_column_name.as_string)
 				else
 					done := True
 				end
-				last_key_seq := buffer_key_seq.to_integer
+				last_key_seq := buffer_key_seq.as_integer
 			end
 			if not off then
 				-- prepare next key
