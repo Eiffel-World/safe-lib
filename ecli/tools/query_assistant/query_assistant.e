@@ -1,8 +1,8 @@
 indexing
 	description: "Query assistant"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 08:52:04 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2002/10/17 07:07:29 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -11,7 +11,7 @@ class
 inherit
 	ARGUMENTS
 
-	ECLI_TYPE_CODES
+	ECLI_TYPE_CONSTANTS
 
 creation
 	make
@@ -270,7 +270,7 @@ feature -- Basic operations
 				from
 					i := 1
 				until
-					i > qacursor.result_column_count
+					i > qacursor.result_columns_count
 				loop
 					d := qacursor.cursor_description.item (i)
 					e := qacursor.cursor.item (i)
@@ -289,9 +289,9 @@ feature -- Basic operations
 						io.put_string ("* ERROR -- No value object for result #")
 						io.put_integer (i)
 						io.put_string (" [")
-						io.put_integer (d.db_type_code)
+						io.put_integer (d.sql_type_code)
 						io.put_string (", ")
-						io.put_integer (d.column_precision)
+						io.put_integer (d.size)
 						io.put_string (", ")
 						io.put_integer (d.decimal_digits)
 						io.put_string ("]%N")
@@ -352,7 +352,7 @@ feature -- Basic operations
 				pcursor.off
 			loop
 				pdef := qacursor.parameters_description.item (qacursor.parameter_positions (pcursor.item).first)
-				qacursor.value_factory.create_instance (pdef.db_type_code, pdef.column_precision, pdef.decimal_digits)
+				qacursor.value_factory.create_instance (pdef.sql_type_code, pdef.size, pdef.decimal_digits)
 				qacursor.put_parameter (qacursor.value_factory.last_result, pcursor.item)
 				pcursor.forth
 			end

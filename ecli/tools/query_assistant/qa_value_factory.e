@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:16:58 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/10/17 07:07:29 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -87,12 +87,12 @@ feature -- Miscellaneous
 
 	create_date_value is
 		do
-			create {QA_DATE}last_result.make_first
+			create {QA_DATE}last_result.make_default
 		end
 
 	create_timestamp_value is
 		do
-			create {QA_TIMESTAMP}last_result.make_first
+			create {QA_TIMESTAMP}last_result.make_default
 		end
 
 feature -- Basic operations

@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIMESTAMP values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:16:58 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/10/17 07:07:29 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,7 +14,7 @@ inherit
 	QA_VALUE
 	
 creation
-	make, make_first
+	make, make_default
 
 feature
 
