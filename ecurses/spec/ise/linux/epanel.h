@@ -6,9 +6,8 @@
  * Author : Paul G. Crismer (pgcrism@ibm.net)
  * 
  * $Version: $
- * $Date: 2000/10/01 19:16:54 $
+ * $Date: 2000/10/03 19:07:43 $
  * 
 */
 #include <panel.h>
-#include <eif_eiffel.h>
 
