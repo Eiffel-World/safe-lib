@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that list the columns of a table."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:01 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/06/11 13:10:45 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ISQL_CMD_COLUMNS
@@ -95,7 +95,7 @@ feature {NONE} -- Implementation
 				end			
 			else
 				context.filter.begin_error
-				context.filter.put_error ("Cannot get columns metadata")
+				context.filter.put_error (sql_error_msg (a_cursor, "Cannot get columns metadata"))				
 				context.filter.end_error
 			end
 		end

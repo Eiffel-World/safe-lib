@@ -4,12 +4,15 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/05/08 13:54:36 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/06/11 13:11:16 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	MODULE_PARAMETER
 
+inherit
+	HASHABLE
+	
 create
 	make
 
@@ -39,6 +42,11 @@ feature -- Access
 	
 feature -- Measurement
 
+	hash_code : INTEGER is 
+		do
+			Result := name.hash_code
+		end
+		
 feature -- Status report
 
 	check_validity (a_session : ECLI_SESSION; a_catalog_name, a_schema_name : STRING) is

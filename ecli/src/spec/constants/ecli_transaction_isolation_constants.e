@@ -1,8 +1,8 @@
 indexing
 	description: "Transaction isolation constants - Used as bitmask in Sql_txn_isolation_option"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:43 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/06/11 13:11:15 $"
+	revision: "$Revision: 1.3 $"
 
 	usage: "buy or inherit.  When inheriting,  export {NONE} all."
 	
@@ -24,4 +24,17 @@ feature -- Constants
 	Sql_txn_serializable, 
 	Sql_transaction_serializable:		INTEGER is	8
 
+feature -- Status report
+
+	is_valid_transaction_isolation_option (a_value : INTEGER) : BOOLEAN is
+			-- 
+		do
+			inspect a_value
+			when 1,2,4,8 then
+				Result := True
+			else
+				Result := False
+			end
+		end
+		
 end -- class ECLI_TRANSACTION_ISOLATION_CONSTANTS

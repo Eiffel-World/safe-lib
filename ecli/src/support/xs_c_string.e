@@ -4,8 +4,8 @@ indexing
 	
 	library: "XS_C : eXternal Support C"
 	
-	date: "$Date: 2003/05/08 13:59:24 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/06/11 13:11:15 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -20,7 +20,7 @@ inherit
 		end
 	
 creation
-	make
+	make, make_from_string
 	
 feature {NONE} -- Initialization
 

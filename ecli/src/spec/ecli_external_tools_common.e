@@ -1,8 +1,8 @@
 indexing
 	description: "Objects handle cpmmunication with external objects"
 	author: ""
-	date: "$Date: 2003/02/25 09:23:41 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/06/11 13:11:15 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	ECLI_EXTERNAL_TOOLS_COMMON
@@ -12,9 +12,9 @@ inherit
 
 feature -- Status report
 
-	was_collecting : BOOLEAN
+--	was_collecting : BOOLEAN
 	
-	is_protected : BOOLEAN
+--	is_protected : BOOLEAN
 
 feature -- Basic operations
 
@@ -39,21 +39,21 @@ feature -- Basic operations
 		deferred
 		end
 		
-	protect is
-			-- protect memory against moving GC
-		do
-			was_collecting := collecting
-			collection_off
-			is_protected := True
-		end
+--	protect is
+--			-- protect memory against moving GC
+--		do
+--			was_collecting := collecting
+--			collection_off
+--			is_protected := True
+--		end
 		
-	unprotect is
-			-- unprotect memory
-		do
-			if was_collecting then
-				collection_on
-			end
-			is_protected := False
-		end
+--	unprotect is
+--			-- unprotect memory
+--		do
+--			if was_collecting then
+--				collection_on
+--			end
+--			is_protected := False
+--		end
 
 end -- class ECLI_EXTERNAL_TOOLS_COMMON

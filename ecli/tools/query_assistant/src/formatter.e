@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel XML Library"
 	copyright: "Copyright (c) 2001, Andreas Leitner and others"
 	license: "Eiffel Forum License v1 (see forum.txt)"
-	date: "$Date: 2003/05/08 13:54:36 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/06/11 13:11:16 $"
+	revision: "$Revision: 1.2 $"
 
 class FORMATTER
 

@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/05/08 13:54:36 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/06/11 13:11:16 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	REFERENCE_COLUMN

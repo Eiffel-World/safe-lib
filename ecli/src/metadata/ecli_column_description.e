@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/05/08 13:59:23 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/06/11 13:11:14 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -26,6 +26,8 @@ inherit
 		end
 
 	KL_IMPORTED_STRING_ROUTINES
+
+	HASHABLE
 
 creation
 	make
@@ -66,6 +68,13 @@ feature -- Access
 	name : STRING
 			-- column name
 
+feature -- Measurement
+
+	hash_code : INTEGER is
+		do
+			Result := name.hash_code
+		end
+		
 feature {NONE} -- Implementation
 
 	ext_actual_name_length : XS_C_INT32 is once create Result.make end

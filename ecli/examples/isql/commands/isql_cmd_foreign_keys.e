@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that list the foreign key columns of a table."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:05 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/06/11 13:10:45 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ISQL_CMD_FOREIGN_KEYS
@@ -151,7 +151,7 @@ feature {NONE} -- Implementation
 				end			
 			else
 				context.filter.begin_error
-				context.filter.put_error ("Cannot get foreign key metadata%N" + a_cursor.diagnostic_message)
+				context.filter.put_error (sql_error_msg (a_cursor, "Cannot get foreign key metadata"))
 				context.filter.end_error
 			end
 		end

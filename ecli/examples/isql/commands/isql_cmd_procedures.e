@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that list procedures available on a datasource."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:10 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/06/11 13:10:45 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ISQL_CMD_PROCEDURES
@@ -71,7 +71,7 @@ feature -- Basic operations
 				end
 			else
 				context.filter.begin_error
-				context.filter.put_error ("Cannot get procedures metadata")
+				context.filter.put_error (sql_error_msg (cursor,"Cannot get procedures metadata"))
 				context.filter.end_error
 			end			
 			cursor.close

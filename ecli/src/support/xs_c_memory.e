@@ -4,8 +4,8 @@ indexing
 	
 	library: "XS_C : eXternal Support C"
 	
-	date: "$Date: 2003/05/08 13:59:24 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/06/11 13:11:15 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -23,6 +23,8 @@ inherit
 feature -- Access
 
 	handle : POINTER
+	
+	to_external : POINTER is do Result := handle end
 	
 feature {NONE} -- Implementation
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that list tables on current session."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:14 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/06/11 13:10:45 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ISQL_CMD_TABLES
@@ -40,9 +40,6 @@ feature -- Basic operations
 			query : ECLI_NAMED_METADATA
 		do
 			from index := 1
-				--if not context.no_headings then
-				--	context.output_file.put_string ("CATALOG%T SCHEMA%T TABLE_NAME%T TYPE%T DESCRIPTION%N")					
-				--end
 				context.filter.begin_heading
 				context.filter.put_heading ("CATALOG")
 				context.filter.put_heading ("SCHEMA")
@@ -69,8 +66,7 @@ feature -- Basic operations
 			end
 			if not tables_cursor.is_ok then
 				context.filter.begin_error
-				context.filter.put_error ("Error getting tables metadata : '")
-				context.filter.put_error (tables_cursor.diagnostic_message)
+				context.filter.put_error (sql_error_msg (tables_cursor,"Unable to get tables metadata"))
 				context.filter.end_error
 			end
 			tables_cursor.close

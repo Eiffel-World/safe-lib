@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/05/08 13:59:23 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2003/06/11 13:11:12 $"
+	revision: "$Revision: 1.14 $"
 	licensing: "See notice at end of class"
 
 class
@@ -30,6 +30,9 @@ feature -- Initialization
 	make is
 		do
 			buffer := ecli_c_alloc_value (4)
+			set_null
+		ensure
+			is_null: is_null
 		end
 
 feature -- Access

@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that list the primary key columns of a table."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:08 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/06/11 13:10:45 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ISQL_CMD_PRIMARY_KEYS
@@ -111,7 +111,7 @@ feature {NONE} -- Implementation
 				end			
 			else
 				context.filter.begin_error
-				context.filter.put_error ("Cannot get primary key metadata%N" + a_cursor.diagnostic_message)
+				context.filter.put_error (sql_error_msg (a_cursor, "Cannot get primary key metadata"))
 				context.filter.end_error
 			end
 		end

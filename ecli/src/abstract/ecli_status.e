@@ -5,8 +5,8 @@ indexing
 		% and associated information messages"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/05/08 13:59:23 $"
-	revision: 	"$Revision: 1.14 $"
+	date: 		"$Date: 2003/06/11 13:11:12 $"
+	revision: 	"$Revision: 1.15 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -154,7 +154,6 @@ feature {NONE} -- Implementation
 				from
 					count := 1
 					retcode := sql_success
-					protect
 				until 
 					retcode = sql_no_data or retcode = sql_invalid_handle or retcode = sql_error
 				loop
@@ -171,7 +170,6 @@ feature {NONE} -- Implementation
 					end	
 					count := count + 1
 				end
-				unprotect
 				need_diagnostics := False
 			end
 		end

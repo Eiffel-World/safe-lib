@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI LONGVARCHAR (n) values"
 	author: "Paul-G.Crismer"
-	date: "$Date: 2003/05/08 13:59:23 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2003/06/11 13:11:13 $"
+	revision: "$Revision: 1.14 $"
 	licensing: "See notice at end of class"
 
 class
@@ -40,10 +40,8 @@ feature -- Access
 			if is_null then
 				Result := Void
 			else
-				protect
 				string_copy_from_pointer (impl_item,ecli_c_value_get_value (buffer))
 				Result := impl_item
-				unprotect
 			end
 		end
 
@@ -133,10 +131,10 @@ feature -- Element change
 				actual_length := value.count + 1
 				transfer_length := actual_length - 1
 			end
-			protect
+--			protect
 			ecli_c_value_set_value (buffer, string_to_pointer (value), actual_length)
 			ecli_c_value_set_length_indicator (buffer, transfer_length)
-			unprotect
+--			unprotect
 		ensure then
 			item_set: equal (item, truncated (value))		
 		end
