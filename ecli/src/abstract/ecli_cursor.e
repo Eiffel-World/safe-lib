@@ -1,8 +1,8 @@
 indexing
 	description: "Abstraction of a cursor.  Used by 'query_assistant'-generated classes."
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2001/08/04 09:27:38 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -32,13 +32,13 @@ feature {NONE} -- Initialization
 		do
 			Precursor (a_session)
 			set_sql (definition)
-			setup
+			create_buffers
 			prepare
 		ensure then
 			prepared: is_ok implies is_prepared
 		end
 		
-	setup is
+	create_buffers is
 			-- create all ECLI_VALUE objects
 		deferred
 		end
@@ -55,7 +55,11 @@ feature {NONE} -- Implementation
 		do
 			bind_parameters
 			execute
-			statement_start
+			if is_ok then
+				if has_results then
+					statement_start
+				end
+			end
 		end
 	
 invariant
@@ -67,3 +71,4 @@ end -- class ECLI_CURSOR
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --
+
