@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that define a row cursor and allow sweeping through it."
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/15 20:08:48 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/05/09 20:05:38 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_ROW_CURSOR
@@ -42,6 +42,7 @@ feature {NONE} -- Initialization
 		ensure
 			valid: is_valid
 			definition_set: definition = a_sql
+			definition_is_sql: equal (definition, sql)
 			ok: is_ok implies is_prepared
 			definition_is_a_query:  has_results or else not is_ok
 			limit_set: buffer_factory.precision_limit = buffer_factory.Default_precision_limit

@@ -1,8 +1,8 @@
 indexing
 	description: "Abstraction of a cursor.  Used by 'query_assistant'-generated classes."
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/05/09 20:05:38 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -43,6 +43,7 @@ feature {NONE} -- Initialization
 feature -- Access
 
 	definition : STRING is
+			-- cursor definition (i.e. SQL text)
 		deferred
 		end
 
