@@ -5,8 +5,8 @@ indexing
 		% a database. They are defined on a connected session"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2000/06/06 21:45:14 $"
-	revision: 	"$Revision: 1.1 $"
+	date: 		"$Date: 2000/06/07 20:21:05 $"
+	revision: 	"$Revision: 1.2 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -373,7 +373,7 @@ feature {NONE} -- Implementation
 					param_number := 1
 				variant param_count - param_number
 				until
-					param_number > param_count
+					param_number > param_count or i_start > s.count
 				loop
 					-- copy s[i_start..i_begin_parameter_name-1], where s@(i_begin_parameter_name-1) = '?'
 					from
@@ -398,7 +398,7 @@ feature {NONE} -- Implementation
 						i_end_parameter_name := i_begin_parameter_name+1
 						name_found := False
 					until
-						 name_found
+						 name_found or i_end_parameter_name > s.count
 					loop
 						inspect (s.item (i_end_parameter_name))
 							when 'a'..'z', 'A'..'Z', '0'..'9', '_' then
