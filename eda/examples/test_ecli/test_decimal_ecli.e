@@ -1,5 +1,10 @@
 indexing
+
 class TEST_DECIMAL_ECLI
+
+inherit
+
+	MA_DECIMAL_CONSTANTS
 
 creation
 
@@ -14,9 +19,10 @@ feature
 			insert : ECLI_STATEMENT
 			table_exists : BOOLEAN
 		do 
---			create session.make ("Northwind", "","");
-
-			create session.make ("firebird", "","");
+			create session.make ("Northwind", "","");
+--			create session.make ("Postgresql", "pgc", "pgc")
+--			create session.make ("EssaiOracle", "SYSTEM", "masterkey")
+--			create session.make ("firebird", "","");
 --			create session.make ("ecli_db", "","");
 			session.connect
 			if session.is_connected then
@@ -27,21 +33,21 @@ feature
 				table_exists := not tables_cursor.off
 				tables_cursor.close
 				if table_exists then
-					stmt.set_sql ("drop table TEST_DECIMAL")
+					stmt.set_sql ("drop table test_decimal")
 					stmt.execute
 				else
 				end
 				tables_cursor := Void
 				--| create table and populate
 -- SQL Server
---				stmt.set_sql ("[
---create table TEST_DECIMAL (d18 NUMERIC(18,0), d182 NUMERIC (18,2), dl83 NUMERIC (18,3), d184 NUMERIC(18,4))
---]")
+				stmt.set_sql ("[
+create table TEST_DECIMAL (d18 NUMERIC(18,0), d182 NUMERIC (18,2), dl83 NUMERIC (18,3), d184 NUMERIC(18,4))
+]")
 
 -- Firebird/Interbase
-				stmt.set_sql ("[
-create table TEST_DECIMAL (d18 DECIMAL(18,0), d182 DECIMAL (18,2), dl83 DECIMAL (5,3), d184 DECIMAL(18,4))
-]")
+--				stmt.set_sql ("[
+--create table TEST_DECIMAL (d18 DECIMAL(18,0), d182 DECIMAL (18,2), dl83 DECIMAL (5,3), d184 DECIMAL(18,4))
+--]")
 
 -- Access
 --					stmt.set_sql ("[
@@ -55,24 +61,24 @@ create table TEST_DECIMAL (d18 DECIMAL(18,0), d182 DECIMAL (18,2), dl83 DECIMAL 
 --					stmt.go_after
 				end
 				stmt.close
-				create decimal_18_0.make(19,0)
-				create decimal_18_2.make(18,2)
-				create decimal_5_3.make (5,3)
-				create decimal_18_4.make(18,4)
+				create decimal_18_0.make(19,0, Round_up)
+				create decimal_18_2.make(18,2, Round_up)
+				create decimal_5_3.make (5,3, Round_up)
+				create decimal_18_4.make(18,4, Round_up)
 				
 				--| 1 insert
 				create ctx.make (189,0)
 				create my_decimal.make_from_string_ctx ("12345", ctx)
 				my_decimal.set_shared_decimal_context (ctx)
 				create ten.make_from_integer (10)
-				decimal_18_0.set_from_decimal (my_decimal)
+				decimal_18_0.set_item (my_decimal)
 				my_decimal := my_decimal / ten
 				my_decimal := my_decimal / ten
-				decimal_18_2.set_from_decimal (my_decimal)
+				decimal_18_2.set_item (my_decimal)
 				my_decimal := my_decimal / ten
-				decimal_5_3.set_from_decimal (my_decimal)
+				decimal_5_3.set_item (my_decimal)
 				my_decimal := my_decimal / ten
-				decimal_18_4.set_from_decimal (my_decimal)
+				decimal_18_4.set_item (my_decimal)
 				create insert.make (session)
 				insert.set_sql ("insert into TEST_DECIMAL (d18) VALUES (?)")
 				test_insert (insert, decimal_18_0)
@@ -83,10 +89,11 @@ create table TEST_DECIMAL (d18 DECIMAL(18,0), d182 DECIMAL (18,2), dl83 DECIMAL 
 				insert.set_sql ("insert into TEST_DECIMAL (d184) VALUES (?)")
 				test_insert (insert, decimal_18_4)
 				--|
-				create decimal_18_0.make(19,0)
-				create decimal_18_2.make(18,2)
-				create decimal_5_3.make (5,3)
-				create decimal_18_4.make(18,4)
+				print ("%N")
+				create decimal_18_0.make(19,0, Round_up)
+				create decimal_18_2.make(18,2, Round_up)
+				create decimal_5_3.make (5,3, Round_up)
+				create decimal_18_4.make(18,4, Round_up)
 				create stmt.make (session)
 				stmt.set_sql ("select * from TEST_DECIMAL")
 				stmt.execute
@@ -97,10 +104,6 @@ create table TEST_DECIMAL (d18 DECIMAL(18,0), d182 DECIMAL (18,2), dl83 DECIMAL 
 						stmt.start
 					until not stmt.is_ok or else stmt.off 
 					loop
---						print ("price=")
---						print (decimal_18_0.out)
---						print ("%N")
---						print (decimal_18_0.as_decimal.to_scientific_string)
 						print (decimal_18_0.out)
 						print ("%T")
 						print (decimal_18_2.out)
@@ -108,7 +111,6 @@ create table TEST_DECIMAL (d18 DECIMAL(18,0), d182 DECIMAL (18,2), dl83 DECIMAL 
 						print (decimal_5_3.out)
 						print ("%T")
 						print (decimal_18_4.out)
-						print ("%T")
 						print ("%N")
 						decimal_18_0.set_null
 						decimal_18_2.set_null
