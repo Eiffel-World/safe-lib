@@ -3,8 +3,8 @@ indexing
 	
 	usage: "Heir for classes with constant SQL query"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/11 19:31:07 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/12/22 10:03:06 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -18,11 +18,11 @@ inherit
 			{NONE} all;
 			{ANY} 
 				make, forth, close, 
-				is_closed,is_ok, is_prepared, is_prepared_execution_mode, is_executed, is_valid, 
+				is_closed,is_ok, is_error, is_prepared, is_prepared_execution_mode, is_executed, is_valid, 
 				off, before, after, has_information_message, diagnostic_message, sql, results,
 				go_after, array_routines, has_result_set, cursor_status, Cursor_after, Cursor_before, Cursor_in,
 				has_parameters,execute, bind_parameters, put_parameter, prepare, parameters_count, bound_parameters,
-				is_parsed, parameters, has_parameter
+				is_parsed, parameters, has_parameter, native_code
 		redefine
 			make
 		end
