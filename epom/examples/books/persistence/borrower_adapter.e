@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:27 $"
+	date: "$Date: 2004/09/01 19:15:37 $"
 
 deferred class BORROWER_ADAPTER
 
@@ -14,9 +14,9 @@ inherit
 
 	PO_ADAPTER[BORROWER]
 	
+	BORROWER_PERSISTENT_CLASS_NAME
+	
 feature -- Access
-
-	class_name : STRING is once create {BORROWER_PERSISTENT_CLASS_NAME}Result.make end
 			
 feature -- Basic operations
 
