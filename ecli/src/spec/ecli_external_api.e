@@ -1,8 +1,8 @@
 indexing
 	description: "CLI C Interface"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/08/04 09:29:10 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -130,6 +130,10 @@ feature {NONE} -- Implementation
 		external "C"
 		end
 
+	ecli_c_transaction_capable (handle : POINTER;  capable : POINTER) : INTEGER is
+		external "C"
+		end
+		
 feature {NONE} -- Value handling functions
 
 	ecli_c_alloc_value (buffer_length : INTEGER) : POINTER is
@@ -422,7 +426,28 @@ feature {NONE} -- Data type indicators
 	external "C"
 	end
 
-invariant
+feature {NONE} -- transaction capabilities
+
+	ecli_c_tc_none: INTEGER is
+	external "C"
+	end
+
+	ecli_c_tc_dml: INTEGER is
+	external "C"
+	end
+
+	ecli_c_tc_ddl_commit: INTEGER is
+	external "C"
+	end
+
+	ecli_c_tc_ddl_ignore : INTEGER is
+	external "C"
+	end
+
+	ecli_c_tc_all : INTEGER is
+	external "C"
+	end
+
 end -- class ECLI_EXTERNAL_API
 --
 -- Copyright: 2000, Paul G. Crismer, <pgcrism@attglobal.net>

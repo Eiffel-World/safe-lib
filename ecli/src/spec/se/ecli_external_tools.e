@@ -1,38 +1,12 @@
 indexing
 	description: "Tools for Eiffel/External (to C) communication"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/08/04 09:29:10 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 expanded class
 	ECLI_EXTERNAL_TOOLS
-
-feature -- Initialization
-
-feature -- Access
-
-feature -- Measurement
-
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
 
 feature -- Basic operations
 
@@ -50,9 +24,6 @@ feature -- Basic operations
 		do
 			create Result.from_external_copy (p)
 		end
-
-	
-feature -- Obsolete
 
 feature -- Inapplicable
 
