@@ -5,8 +5,8 @@ indexing
 
 	author: 	"Paul G. Crismer"
 	licencing: 	"See notice at end of class"
-	date: 		"$Date: 2004/01/20 21:06:58 $"
-	revision: 	"$Revision: 1.3 $"
+	date: 		"$Date: 2004/11/16 20:39:39 $"
+	revision: 	"$Revision: 1.4 $"
 
 class
 	TEST_TITLE
@@ -35,10 +35,8 @@ feature -- Basic operations
 			p.set_text_leading (60)
 			p.set_font (d.last_font, s1)
 			p.set_rgb_color (0.1, 0., 1.0)
-			p.set_rgb_color_stroke (0.1, 0., 1.0)
 			p.put_string ("e")
 			p.set_rgb_color (1.0, 0., 0.1)
-			p.set_rgb_color_stroke (1.0, 0., 0.1)
 			p.put_string ("PDF")
 			p.end_text
 			d.find_font ("Times-Roman", d.Encoding_standard)
