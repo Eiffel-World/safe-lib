@@ -6,8 +6,8 @@ indexing
 		% Provide CLI/ODBC CORE and some Level 1 functionalities."
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/02/26 19:33:23 $"
-	revision: 	"$Revision: 1.19 $"
+	date: 		"$Date: 2003/02/28 16:19:53 $"
+	revision: 	"$Revision: 1.20 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -834,14 +834,16 @@ feature {NONE} -- Implementation
 		local
 			index, index_max : INTEGER
 			current_value : ECLI_VALUE
+			l_cursor : ARRAY[ECLI_VALUE]
 		do
 			from
 				index := 1
 				index_max := result_columns_count.min (cursor.count)
+				l_cursor := cursor
 			until
 				index > index_max
 			loop
-				current_value := cursor.item (index)
+				current_value := l_cursor.item (index)
 				current_value.read_result (Current, index)
 				index := index + 1
 			end

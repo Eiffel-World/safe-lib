@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are capable of operating on a rowset."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:21 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/28 16:19:52 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	ECLI_ROWSET_CAPABLE
@@ -23,9 +23,10 @@ feature -- Status report
 	row_count : INTEGER
 			-- number of rows processed by rowset operation
 
+	rowset_status : ECLI_ROWSET_STATUS
+	
 feature {NONE} -- implementation
 	
-	rowset_status : ECLI_ROWSET_STATUS
 	
 	status_array : ARRAY[INTEGER]
 			-- for debugging purposes : rowset_status content cannot be viewed in the debugger

@@ -4,8 +4,8 @@ indexing
 		"CLI SQL DOUBLE value"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:27 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2003/02/28 16:19:53 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 
 class
@@ -56,7 +56,6 @@ feature -- Status report
 		end
 
 feature -- Status setting
-
 
 	c_type_code: INTEGER is
 		once

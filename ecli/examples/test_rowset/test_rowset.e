@@ -1,8 +1,8 @@
 indexing
 	description: "ECLI test of rowset classes";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:21 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/02/28 16:19:50 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET
@@ -41,10 +41,6 @@ feature -- Initialization
 				else
 					!! session.make (dsn, user, password)
 					session.connect
-					if session.has_information_message then
-						io.put_string (session.cli_state) 
-						io.put_string (session.diagnostic_message)
-					end
 					if session.is_connected then
 						io.put_string ("+ Connected %N")
 						do_tests
