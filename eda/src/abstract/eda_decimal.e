@@ -3,9 +3,9 @@ indexing
 
 	library: "EDA"
 	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.4 $"
+
+	date: "$Date: 2003/02/26 18:54:03 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,17 +14,17 @@ class
 inherit
 	EDA_NUMERIC
 		redefine
-			out, is_equal, copy, infix "+", infix "-", prefix "+", prefix "-"
+			out, is_equal, copy
 		end
 
 	EDA_CONSTANTS
-		export 
+		export
 			{NONE} all;
 			{ANY} Maximum_integer_as_decimal, Minimum_integer_as_decimal
 		undefine
 			out, is_equal, copy
 		end
-		
+
 	KL_PART_COMPARABLE
 		undefine
 			out, is_equal, copy
@@ -37,7 +37,7 @@ inherit
 		undefine
 			out, is_equal, copy
 		end
-	
+
 	KL_IMPORTED_INTEGER_ROUTINES
 		export {NONE} all
 		undefine
@@ -49,15 +49,15 @@ inherit
 		undefine
 			out, is_equal, copy
 		end
-		
+
 creation
---	make, 
-	make_from_integer, 
+--	make,
+	make_from_integer,
 	make_from_string,
 	make_from_string_ctx,
 	make_zero,
 	make
-	
+
 feature {NONE} -- Initialization
 
 	make (precision : INTEGER) is
@@ -79,7 +79,7 @@ feature {NONE} -- Initialization
 		ensure
 			zero: is_zero
 		end
-		
+
 	make_from_integer (value : INTEGER) is
 			-- make a new decimal from integer `value'
 		local
@@ -111,7 +111,7 @@ feature {NONE} -- Initialization
 			if temp_value = 0 then
 				coefficient.put (0,0)
 			else
-				from 
+				from
 					index := 0 --ten_exponent
 					v := temp_value
 				until
@@ -140,12 +140,12 @@ feature {NONE} -- Initialization
 			parser.decimal_parse (value_string)
 			--! TODO : CHECK if error
 			invalid_nan := ((parser.is_nan or else parser.is_snan) and then parser.coefficient_sign /= '%U')
-			if parser.error or else invalid_nan then 
+			if parser.error or else invalid_nan then
 				if ctx.is_extended then
 					!EDA_COEFFICIENT_IMP!coefficient.make (1)
 					coefficient.put (0, 0)
 					set_quiet_nan
-				else					
+				else
 					if invalid_nan then
 						e.raise ("Sign with NaN or sNaN")
 					else
@@ -168,7 +168,7 @@ feature {NONE} -- Initialization
 				-- Trailing zeros are preserved
 			end
 		end
-		
+
 	make_from_string (value_string : STRING) is
 			-- make a new decimal from string `value_string' relative to `shared_decimal_context'
 		require
@@ -176,7 +176,7 @@ feature {NONE} -- Initialization
 		do
 			make_from_string_ctx (value_string, shared_decimal_context)
 		end
-		
+
 feature -- Access
 
 	one: like Current is
@@ -184,7 +184,7 @@ feature -- Access
 		do
 			!!Result.make_from_integer (1)
 		end
-		
+
 	zero: like Current is
 			-- Neutral element for "+" and "-"
 		do
@@ -206,7 +206,7 @@ feature -- Access
 
 	exponent : INTEGER
 			-- current exponent
-			
+
 	adjusted_exponent : INTEGER is
 			-- exponent of the most significant digit; see SDAS page 5
 		do
@@ -235,7 +235,7 @@ feature -- Status report
 					variant
 						index
 					until
-						index <= 0 or else coefficient.item (index - 1) /= 0					
+						index <= 0 or else coefficient.item (index - 1) /= 0
 					loop
 						index := index - 1
 					end
@@ -256,28 +256,28 @@ feature -- Status report
 			str := to_scientific_string
 			Result := str.is_double
 		end
-		
+
 	divisible (other: like Current): BOOLEAN is
 			-- May current object be divided by `other'?
 		do
 			--| TODO
 		end
-		
+
 	exponentiable (other: NUMERIC): BOOLEAN is
 			-- May current object be elevated to the power `other'?
 		do
-			--| TODO	
+			--| TODO
 		end
 
 	is_negative : BOOLEAN
 			-- is the number negative ?
-	
+
 	is_positive : BOOLEAN is
 			-- is the number positive ?
-		do 
-			Result := not is_negative 
+		do
+			Result := not is_negative
 		end
-		
+
 	is_nan : BOOLEAN is
 			-- is this "Not a Number" (NaN) ?
 		do
@@ -285,21 +285,21 @@ feature -- Status report
 		ensure
 			definition: Result = (is_signaling_nan or is_quiet_nan)
 		end
-		
+
 	is_special : BOOLEAN is
 			-- is this a special value ?
 		do
-			Result := (special /= Special_none) --is_nan or else is_infinity		
+			Result := (special /= Special_none) --is_nan or else is_infinity
 		ensure
 			definition: Result = (is_nan or else is_infinity)
 		end
-		
+
 	is_signaling_nan : BOOLEAN is
 			-- is this a "Signaling NaN" ?
 		do
 			Result := (special = Special_signaling_nan)
 		end
-		
+
 	is_quiet_nan : BOOLEAN is
 			-- is this a "Quiet NaN" ?
 		do
@@ -319,10 +319,9 @@ feature -- Status report
 				Result := True
 			end
 		ensure
-			definition: Result implies (coefficient.count = 1 and then 
-				coefficient.item (0) = 0)
+			definition: Result = (not is_special and then coefficient.is_zero)
 		end
-		
+
 feature -- Basic operations
 
 	infix "*" (other: like Current): like Current is
@@ -336,14 +335,14 @@ feature -- Basic operations
 		do
 			Result := plus (shared_decimal_context)
 		end
-		
+
 	infix "+" (other: like Current): like Current is
 			-- Sum with `other' (commutative).
 		do
-			Result := add (other, shared_decimal_context)	
+			Result := add (other, shared_decimal_context)
 		end
-		
-	prefix "-": like Current is		
+
+	prefix "-": like Current is
 			-- Unary minus
 		do
 			Result := minus (shared_decimal_context)
@@ -354,25 +353,25 @@ feature -- Basic operations
 		do
 			Result := subtract (other, shared_decimal_context)
 		end
-		
+
 	infix "/" (other: like Current): like Current is
 			-- Division by `other'
 		do
-			Result := divide (other, shared_decimal_context)	
+			Result := divide (other, shared_decimal_context)
 		end
-		
+
 	infix "\\" (other : like Current) : like Current is
 			-- Remainder of integer division
 		do
 			Result := remainder (other, shared_decimal_context)
 		end
-		
+
 	infix "//" (other : like Current) : like Current is
 			-- Integer division
 		do
 			Result := divide_integer (other, shared_decimal_context)
 		end
-		
+
 	infix "<" (other : like Current) : BOOLEAN is
 		local
 			res : EDA_DECIMAL
@@ -382,9 +381,9 @@ feature -- Basic operations
 				Result := True
 			end
 		end
-		
+
 feature -- Measurement
-	
+
 	count : INTEGER is
 			-- count of significant digits
 		do
@@ -396,7 +395,7 @@ feature -- Measurement
 		ensure
 			zero_when_special: is_special implies Result = 0
 		end
-		
+
 feature -- Status report
 
 feature -- Status setting
@@ -423,7 +422,7 @@ feature -- Transformation
 				Result := str.to_double
 			end
 		end
-		
+
 	to_integer : INTEGER is
 			-- Current as an INTEGER
 		require
@@ -435,7 +434,7 @@ feature -- Transformation
 			create ctx.make_double
 			Result := to_integer_ctx (ctx)
 		end
-	
+
 	to_integer_ctx (ctx : EDA_MATH_CONTEXT) : INTEGER is
 			-- Current as an INTEGER
 		require
@@ -449,8 +448,8 @@ feature -- Transformation
 			from
 				index := temp.count - 1
 				Result := 0
-			variant 
-				index 
+			variant
+				index
 			until
 				index < 0
 			loop
@@ -461,21 +460,21 @@ feature -- Transformation
 				Result := -Result
 			end
 		end
-		
+
 	to_engineering_string : STRING is
 			-- Current as a number in engineering notation
 		do
 			Result := to_string_general (True)
 		end
-		
+
 	to_scientific_string : STRING is
 			-- Current as a sting expressed in scientific notation.
 		do
 			Result := to_string_general (False)
 		end
-		
+
 	to_string_general (is_engineering : BOOLEAN) : STRING is
-			-- 
+			--
 		local
 			str_coefficient : STRING
 			str_zero_pad : STRING
@@ -494,7 +493,7 @@ feature -- Transformation
 						Result.append ("-")
 					end
 					Result.append ("Infinity")
-				end	
+				end
 			else
 				-- coefficient conversion
 				if is_negative then
@@ -506,7 +505,7 @@ feature -- Transformation
 				until
 					index < 0
 				loop
-					str_coefficient.append_character (INTEGER_.to_character(('0').code + coefficient.item (index)))	
+					str_coefficient.append_character (INTEGER_.to_character(('0').code + coefficient.item (index)))
 					index := index - 1
 				end
 				-- determine if exponential notation shall be used
@@ -516,7 +515,7 @@ feature -- Transformation
 					printed_exponent := the_exponent
 					if is_engineering then
 						from
-							
+
 						until
 							printed_exponent \\ 3 = 0
 						loop
@@ -525,7 +524,7 @@ feature -- Transformation
 						exponent_difference := the_exponent - printed_exponent
 						if not is_zero then
 							digits_before_point := 1 + exponent_difference
-							from						
+							from
 							until
 								str_coefficient.count >= digits_before_point
 							loop
@@ -570,12 +569,12 @@ feature -- Transformation
 							Result.append (str_coefficient.substring (str_coefficient.count - after_point_count + 1, str_coefficient.count))
 						end
 					else
-						Result.append (str_coefficient)			
+						Result.append (str_coefficient)
 					end
 				end
 			end
 		end
-		
+
 feature -- Comparison
 
 	is_equal (other : like Current) : BOOLEAN is
@@ -597,7 +596,7 @@ feature -- Comparison
 				end
 			end
 		end
-		
+
 
 feature -- Conversion
 
@@ -615,20 +614,20 @@ feature -- Conversion
 			-- coefficient
 			Result.append (",")
 			if is_infinity then
-				Result.append ("inf")	
+				Result.append ("inf")
 			elseif is_signaling_nan then
 				Result.append ("sNaN")
 			elseif is_quiet_nan then
 				Result.append ("qNaN")
 			else
-				Result.append (coefficient.out)				
+				Result.append (coefficient.out)
 				-- exponent
 				Result.append (",")
 				Result.append (exponent.out)
 			end
 			Result.append ("]")
 		end
-		
+
 feature -- Duplication
 
 	copy (other : like Current) is
@@ -643,7 +642,7 @@ feature -- Duplication
 			special := other.special
 --			formatting_style := other.formatting_style
 		end
-		
+
 feature -- Miscellaneous
 
 feature -- Basic operations
@@ -668,7 +667,7 @@ feature -- Basic operations
 				--operand_a.prepare_operand (ctx)
 				--operand_b.prepare_operand (ctx)
 				if is_negative and then other.is_positive then
-					--| -a + b = (b-a)						 
+					--| -a + b = (b-a)
 					operand_b.unsigned_subtract (operand_a, ctx)
 					Result := operand_b
 				elseif is_negative and then other.is_negative then
@@ -777,7 +776,7 @@ feature -- Basic operations
 				end
 			end
 		end
-		
+
 	divide (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
 			-- divide Current by `other' whith respect to `ctx'
 		require
@@ -788,7 +787,7 @@ feature -- Basic operations
 			Result := do_divide (other, ctx, division_standard)
 		end
 
-		
+
 	divide_integer (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
 			-- divide integer Current by `other' whith respect to `ctx'
 		require
@@ -797,7 +796,7 @@ feature -- Basic operations
 		do
 			Result := do_divide (other, ctx, division_integer)
 		end
-	
+
 	remainder (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
 			-- remainder of integer division of Current by `other' whith respect to `ctx'
 		require
@@ -822,7 +821,7 @@ feature -- Basic operations
 					Result := clone (Current)
 					if is_negative then
 						Result.set_negative
-					end						
+					end
 				end
 			else
 				if other.is_zero then
@@ -838,8 +837,8 @@ feature -- Basic operations
 						end
 						if is_negative then
 							Result.set_negative
-						end						
-				else	
+						end
+				else
 						Result := internal_divide (other, ctx, division_remainder)
 						if is_negative then
 							Result.set_negative
@@ -861,7 +860,7 @@ feature -- Basic operations
 			if not (new_exponent <= ctx.exponent_limit and then new_exponent >= ctx.e_tiny) then
 				ctx.signal (Signal_invalid_operation, "new exponent is not within limits [Etiny..Emax]")
 				create Result.make (1)
-				Result.set_quiet_nan			
+				Result.set_quiet_nan
 			else
 				--Result.do_rescale (new_exponent, ctx)
 				-- rescale to new_exponent
@@ -872,11 +871,11 @@ feature -- Basic operations
 					-- same as underflowing to e_tiny where e_tiny = new_exponent
 					if not is_zero then
 						shared_digits := adjusted_exponent - new_exponent + 1
-						if shared_digits < 0 then 
-							-- impossible to share any digit with new_exponent 
+						if shared_digits < 0 then
+							-- impossible to share any digit with new_exponent
 							--grow (ctx.digits + count + 1)
 							result_count := ctx.digits+count+1
-						elseif shared_digits = 0 then 
+						elseif shared_digits = 0 then
 							-- msd at new_exponent - 1.  See if rounding shall carry some new_exponent digit
 							--local_context := underflowing_context (1, ctx.rounding_mode)
 							--grow (ctx.digits + count)
@@ -933,7 +932,7 @@ feature -- Basic operations
 						--| is_zero
 						if new_exponent < 0 and then exponent < 0 and then count > 1 then
 							--| "decimal places" have some importance
-							digits_upto_new_exponent := -new_exponent + 1							
+							digits_upto_new_exponent := -new_exponent + 1
 						else
 							digits_upto_new_exponent := 1
 						end
@@ -967,9 +966,9 @@ feature -- Basic operations
 					Result := clone (Current)
 					Result.clean_up (ctx)
 				end
-			end	
+			end
 		end
-		
+
 --	do_rescale (new_exponent : INTEGER; ctx : EDA_MATH_CONTEXT) is
 --			-- rescale current to new_exponent
 --		require
@@ -986,10 +985,10 @@ feature -- Basic operations
 --				-- same as underflowing to e_tiny where e_tiny = new_exponent
 --				if not is_zero then
 --					shared_digits := adjusted_exponent - new_exponent + 1
---					if shared_digits < 0 then 
---						-- impossible to share any digit with new_exponent 
+--					if shared_digits < 0 then
+--						-- impossible to share any digit with new_exponent
 --						grow (ctx.digits + count + 1)
---					elseif shared_digits = 0 then 
+--					elseif shared_digits = 0 then
 --						-- msd at new_exponent - 1.  See if rounding shall carry some new_exponent digit
 --						--local_context := underflowing_context (1, ctx.rounding_mode)
 --						grow (ctx.digits + count)
@@ -1035,7 +1034,7 @@ feature -- Basic operations
 --					--| is_zero
 --					if new_exponent < 0 and then exponent < 0 and then count > 1 then
 --						--| "decimal places" have some importance
---						digits_upto_new_exponent := -new_exponent + 1							
+--						digits_upto_new_exponent := -new_exponent + 1
 --					else
 --						digits_upto_new_exponent := 1
 --					end
@@ -1063,7 +1062,7 @@ feature -- Basic operations
 --				clean_up (ctx)
 --			end
 --		end
-	
+
 	do_rescale_special (ctx : EDA_MATH_CONTEXT) is
 			-- rescale special numbers
 		do
@@ -1076,9 +1075,9 @@ feature -- Basic operations
 				--| do nothing
 			end
 		end
-		
+
 	rescale_decimal (new_exponent : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- 
+			--
 		require
 			new_exponent_not_void: new_exponent /= Void
 			ctx_not_void: ctx /= Void
@@ -1102,7 +1101,7 @@ feature -- Basic operations
 					Result.do_rescale_special (ctx)
 				end
 			else
-				
+
 				!! e_max.make_from_integer (ctx.exponent_limit)
 				!! e_min.make_from_integer (ctx.e_tiny)
 				if new_exponent <= e_max and then new_exponent >= e_min then
@@ -1115,8 +1114,8 @@ feature -- Basic operations
 						else
 							ctx.signal (Signal_invalid_operation, "new exponent is not within limits [Etiny..Emax]")
 							create Result.make (1)
-							Result.set_quiet_nan			
-						end	
+							Result.set_quiet_nan
+						end
 					else
 						ctx.signal (Signal_invalid_operation, "new exponent has fractional part in 'rescale_decimal'")
 						create Result.make (1)
@@ -1131,7 +1130,7 @@ feature -- Basic operations
 		end
 
 	round_to_integer (ctx : EDA_MATH_CONTEXT) : like Current is
-			-- 
+			--
 		do
 			Result := rescale (0, ctx)
 		end
@@ -1174,7 +1173,7 @@ feature -- Basic operations
 				Result.set_positive
 			end
 		end
-		
+
 	minus (ctx : EDA_MATH_CONTEXT) : like Current is
 			-- prefix `-' with respect to the `ctx' context
 		local
@@ -1225,9 +1224,9 @@ feature -- Basic operations
 					Result := Current
 				end
 				Result.clean_up (ctx) -- Result := Result.plus (ctx)
-			end			
+			end
 		end
-		
+
 	min_ctx (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
 			-- min between Current and `other' relative to `ctx'
 		require
@@ -1241,7 +1240,7 @@ feature -- Basic operations
 					ctx.signal (Signal_invalid_operation ,"sNan in max")
 				end
 				Result := clone (zero)
-				Result.set_quiet_nan				
+				Result.set_quiet_nan
 			else
 				comparison_result := Current.compare (other, ctx)
 				if comparison_result.is_negative or comparison_result.is_zero then
@@ -1250,7 +1249,7 @@ feature -- Basic operations
 					Result := other
 				end
 				Result.clean_up (ctx) -- Result := Result.plus (ctx)
-			end					
+			end
 		end
 
 	compare (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
@@ -1294,8 +1293,8 @@ feature -- Basic operations
 						--| compare (x, +inf) : x < Inf
 						Result := clone (one)
 						Result.set_negative
-					end				
-				end	
+					end
+				end
 			else
 				operand_a := clone (Current)
 				operand_b := clone (other)
@@ -1305,7 +1304,7 @@ feature -- Basic operations
 				if is_negative /= other.is_negative then
 					-- signs are different
 					if is_zero then
-						operand_a := clone (zero)					
+						operand_a := clone (zero)
 					else
 						operand_a := clone (one)
 						if is_negative then
@@ -1337,13 +1336,13 @@ feature -- Basic operations
 				end
 			end
 		end
-		
+
 feature -- Obsolete
 
 feature -- Inapplicable
-	
+
 feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Implementation
-	
+
 	set_coefficient (m : like coefficient) is
 		require
 			m_exists: m /= Void
@@ -1352,7 +1351,7 @@ feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Implementation
 		ensure
 			m_set: coefficient = m
 		end
-		
+
 	set_exponent (e : like exponent) is
 		require
 		do
@@ -1362,35 +1361,35 @@ feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Implementation
 		end
 
 	set_negative is do is_negative := True ensure negative: is_negative end
-	
+
 	set_positive is do is_negative := False ensure positive: is_positive end
-	
+
 
 feature {EDA_DECIMAL} -- Implementation
-	
+
 	special : INTEGER
-	
+
 	set_infinity is
-		do 
-			special := Special_infinity 
-		ensure 
-			infinity: is_infinity 
+		do
+			special := Special_infinity
+		ensure
+			infinity: is_infinity
 		end
-	
-	set_signaling_nan is 
-		do 
-			special := Special_signaling_nan 
-		ensure 
-			sNaN: is_signaling_nan 
+
+	set_signaling_nan is
+		do
+			special := Special_signaling_nan
+		ensure
+			sNaN: is_signaling_nan
 		end
-	
-	set_quiet_nan is 
-		do 
-			special := Special_quiet_nan 
-		ensure 
-			qNaN: is_quiet_nan 
+
+	set_quiet_nan is
+		do
+			special := Special_quiet_nan
+		ensure
+			qNaN: is_quiet_nan
 		end
-		
+
 	plain_unlimited_context : EDA_MATH_CONTEXT is
 				-- context for plain unlimited math
 			once
@@ -1423,7 +1422,7 @@ feature {EDA_DECIMAL} -- Implementation
 				set_signaling_nan
 			else
 				set_quiet_nan
-			end			
+			end
 		end
 
 	make_standard (parser : EDA_DECIMAL_TEXT_PARSER; ctx : EDA_MATH_CONTEXT) is
@@ -1503,7 +1502,7 @@ feature {EDA_DECIMAL} -- Implementation
 				end
 			end
 		end
-		
+
 	subtract_special (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
 			-- subtract special numbers
 		require
@@ -1548,7 +1547,7 @@ feature {EDA_DECIMAL} -- Implementation
 				end
 			end
 		end
-		
+
 	add_zero (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
 			-- add zero numbers
 		require
@@ -1597,7 +1596,7 @@ feature {EDA_DECIMAL} -- Implementation
 		ensure
 			definition: exponent = 0 and coefficient.count = 1 and coefficient.item (0) = 0
 		end
-		
+
 	unsigned_add (other : like Current; ctx : EDA_MATH_CONTEXT) is
 			-- Subtract other from Current
 			-- !!! Destructive on other and on Current
@@ -1634,7 +1633,7 @@ feature {EDA_DECIMAL} -- Implementation
 		end
 
 	unsigned_subtract (other : like Current; ctx : EDA_MATH_CONTEXT) is
-			-- 
+			--
 		require
 			other_not_void: other /= Void
 			ctx_not_void: ctx /= Void
@@ -1695,13 +1694,13 @@ feature {EDA_DECIMAL} -- Implementation
 				if lost_digits (ctx) then
 					ctx.signal (Signal_inexact,"Inexact when rouding")
 				end
-				inspect ctx.rounding_mode 
-				when Round_up 		then do_round_up (ctx) 
-				when Round_down 	then do_round_down (ctx)  
-				when Round_ceiling 	then do_round_ceiling (ctx) 
-				when Round_floor 	then do_round_floor (ctx) 
-				when Round_half_up 	then do_round_half_up (ctx) 
-				when Round_half_down then do_round_half_down (ctx) 
+				inspect ctx.rounding_mode
+				when Round_up 		then do_round_up (ctx)
+				when Round_down 	then do_round_down (ctx)
+				when Round_ceiling 	then do_round_ceiling (ctx)
+				when Round_floor 	then do_round_floor (ctx)
+				when Round_half_up 	then do_round_half_up (ctx)
+				when Round_half_down then do_round_half_down (ctx)
 				when Round_half_even then do_round_half_even (ctx)
 				else
 					do_nothing
@@ -1710,7 +1709,7 @@ feature {EDA_DECIMAL} -- Implementation
 		ensure
 			rounded: count <= ctx.digits
 		end
-		
+
 	align_and_hint (other : like Current; precision : INTEGER) : INTEGER is
 			-- align Current and other with respect to `precision'
 			-- and give hint for further operations
@@ -1772,7 +1771,7 @@ feature {EDA_DECIMAL} -- Implementation
 					--| Current shall not affect other
 					--| except when other is Zero.  In this case Current is returned, unchanged.
 					if other.is_zero then
-						Result := Align_hint_current_zero				
+						Result := Align_hint_current_zero
 					else
 						if limited_precision then
 							if is_zero then
@@ -1780,7 +1779,7 @@ feature {EDA_DECIMAL} -- Implementation
 							else
 								Result := Align_hint_other
 							end
-							shift_count := precision + 1 - other.count 
+							shift_count := precision + 1 - other.count
 							if shift_count > 0 then
 								other.shift_left (shift_count)
 							end
@@ -1847,12 +1846,12 @@ feature {EDA_DECIMAL} -- Implementation
 				grow (other.count)
 			else
 				do_nothing
-			end									
+			end
 		ensure
 			same_count: count = other.count
 			same_exponent: exponent = other.exponent
 		end
-		
+
 	is_aligned (other : like Current) : BOOLEAN is
 			-- is other aligned to Current ?
 		do
@@ -1893,7 +1892,7 @@ feature {EDA_DECIMAL} -- Implementation
 			count_set: count = a_count
 		end
 
-  	do_round_up (ctx : EDA_MATH_CONTEXT) is 
+  	do_round_up (ctx : EDA_MATH_CONTEXT) is
 			-- Round away from zero.
 		local
 			old_count, exponent_increment : INTEGER
@@ -1909,8 +1908,8 @@ feature {EDA_DECIMAL} -- Implementation
 				coefficient.keep_head (ctx.digits)
 			end
 		end
-		
-	do_round_down (ctx : EDA_MATH_CONTEXT) is 
+
+	do_round_down (ctx : EDA_MATH_CONTEXT) is
 			-- Round towards zero.
 		require
 			positive_precision: ctx.digits >= 1
@@ -1934,7 +1933,7 @@ feature {EDA_DECIMAL} -- Implementation
 				do_round_up (ctx)
 			end
 		end
-		
+
 	do_round_floor (ctx : EDA_MATH_CONTEXT) is
 			-- Round to a more negative number.
  		do
@@ -1960,7 +1959,7 @@ feature {EDA_DECIMAL} -- Implementation
 				do_round_down (ctx)
 			end
 		end
-		
+
 
  	do_round_half_down (ctx : EDA_MATH_CONTEXT) is
 	 		-- Round to nearest neighbor, where an equidistant value is rounded down.
@@ -2001,7 +2000,7 @@ feature {EDA_DECIMAL} -- Implementation
 					index := index - 1
 				end
 				if index >= 0 then
-					--|more than half 
+					--|more than half
 					Result := 1
 				else
 					--|exactly half
@@ -2011,11 +2010,11 @@ feature {EDA_DECIMAL} -- Implementation
  		ensure
  			definition: Result >= -1 and then Result <= 1
  		end
- 		
+
  	do_round_half_even (ctx : EDA_MATH_CONTEXT) is
  			-- Round to nearest neighbor, where an equidistant value is rounded to the nearest even neighbor.
 			-- If the discarded digits represent greater than half (0.5 times) the value of a one in the next position then the result should be
- 			-- rounded up (away from zero).  
+ 			-- rounded up (away from zero).
  			-- If they represent less than half, then the result should be rounded down.
 			-- Otherwise (they represent exactly half) the result is rounded down if its rightmost digit is even, or rounded up if its
  			-- rightmost digit is odd (to make an even digit).
@@ -2038,14 +2037,14 @@ feature {EDA_DECIMAL} -- Implementation
 		end
 
 	shall_overflow_with_exponent_increment (increment : INTEGER; ctx : EDA_MATH_CONTEXT) : BOOLEAN is
-			-- 
+			--
 		local
 			new_adjusted_exponent : INTEGER
 		do
 			new_adjusted_exponent := exponent + count + increment - 1
 			Result := new_adjusted_exponent < - ctx.exponent_limit or else new_adjusted_exponent > ctx.exponent_limit
 		end
-	
+
 	lost_digits (ctx : EDA_MATH_CONTEXT) : BOOLEAN is
 			-- are there non-zero digits after ctx.digits digits ?
 		local
@@ -2069,9 +2068,9 @@ feature {EDA_DECIMAL} -- Implementation
 		do
 			Result := adjusted_exponent > ctx.exponent_limit
 		ensure
-			definition:	Result = (adjusted_exponent > ctx.exponent_limit) 
+			definition:	Result = (adjusted_exponent > ctx.exponent_limit)
 		end
-		
+
 	is_underflow (ctx : EDA_MATH_CONTEXT) : BOOLEAN is
 			-- is there an overflow condition ?
 		require
@@ -2079,11 +2078,11 @@ feature {EDA_DECIMAL} -- Implementation
 		do
 			Result := adjusted_exponent < - ctx.exponent_limit
 		ensure
-			definition:	Result = (adjusted_exponent < - ctx.exponent_limit) 
+			definition:	Result = (adjusted_exponent < - ctx.exponent_limit)
 		end
 
 	round_for_greater_exponent (ctx : EDA_MATH_CONTEXT) is
-			-- 
+			--
 		local
 			index : INTEGER
 			fake_context : EDA_MATH_CONTEXT
@@ -2121,7 +2120,7 @@ feature {EDA_DECIMAL} -- Implementation
 		do
 			-- do nothing...
 		end
-			
+
 	clean_up (ctx : EDA_MATH_CONTEXT) is
 			-- clean up result, rounding it if necessary
 		local
@@ -2176,7 +2175,7 @@ feature {EDA_DECIMAL} -- Implementation
 				coefficient.put (coefficient.item (index), index + exponent)
 				index := index - 1
 			end
-			from 
+			from
 				index := 0
 			until
 				index >= exponent
@@ -2189,14 +2188,14 @@ feature {EDA_DECIMAL} -- Implementation
 		ensure
 			exponent_zero: exponent = 0
 		end
-		
+
 	strip_leading_zeroes is
 		require
 			not is_special
 		do
 			coefficient.strip_leading_zeroes
 		end
-		
+
 	strip_trailing_zeroes is
 		local
 			index : INTEGER
@@ -2214,7 +2213,7 @@ feature {EDA_DECIMAL} -- Implementation
 			end
 			coefficient.keep_head (count - index)
 		end
-		
+
 
 	set_largest (ctx : EDA_MATH_CONTEXT) is
 			-- set to largest finite number that can be represented with ctx.precision
@@ -2249,10 +2248,10 @@ feature {EDA_DECIMAL} -- Implementation
 			if a_sign < 0 then
 				set_negative
 			else
-				set_positive	
-			end	
+				set_positive
+			end
 		ensure
-			infinity: is_infinity 
+			infinity: is_infinity
 			sign: sign = a_sign
 		end
 
@@ -2263,8 +2262,8 @@ feature {EDA_DECIMAL} -- Implementation
 		do
 			internal_do_overflow (ctx)
 		end
-	
-	internal_do_overflow (ctx : EDA_MATH_CONTEXT) is	
+
+	internal_do_overflow (ctx : EDA_MATH_CONTEXT) is
 		do
 			if not is_zero then
 				ctx.signal (Signal_overflow,"")
@@ -2284,10 +2283,10 @@ feature {EDA_DECIMAL} -- Implementation
 						set_largest (ctx)
 					else
 						promote_to_infinity (sign)
-					end					
-				end							
+					end
+				end
 				ctx.signal (Signal_inexact,"do_overflow")
-				ctx.signal (Signal_rounded,"do_overflow")			
+				ctx.signal (Signal_rounded,"do_overflow")
 			else
 				set_exponent (ctx.exponent_limit)
 			end
@@ -2313,12 +2312,12 @@ feature {EDA_DECIMAL} -- Implementation
 			if exponent < e_tiny then
 				saved_digits := ctx.digits
 				shared_digits := adjusted_exponent - e_tiny + 1
-				if shared_digits < 0 then 
-					-- impossible to share any digit with e_tiny 
+				if shared_digits < 0 then
+					-- impossible to share any digit with e_tiny
 					saved_digits := ctx.digits
 					ctx.set_digits (coefficient.count - 1)
 					value := 0
-					inspect ctx.rounding_mode 
+					inspect ctx.rounding_mode
 					when Round_up then
 						value := 1
 					when Round_ceiling then
@@ -2345,13 +2344,13 @@ feature {EDA_DECIMAL} -- Implementation
 					end
 					ctx.set_digits (saved_digits)
 					coefficient.put (value, 0)
-					coefficient.keep_head (1)					
+					coefficient.keep_head (1)
 					exponent := e_tiny
 					ctx.signal (Signal_inexact, "Rescaling to e_tiny")
 					ctx.signal (Signal_rounded, "Rescaling to e_tiny")
 					ctx.signal (Signal_underflow, "Rescaling to e_tiny")
 				else
-					if shared_digits = 0 then 
+					if shared_digits = 0 then
 						-- msd at e_tiny - 1.  See if rounding shall carry some e_tiny digit
 						--local_context := underflowing_context (1, ctx.rounding_mode)
 						ctx.set_digits (1)
@@ -2386,7 +2385,7 @@ feature {EDA_DECIMAL} -- Implementation
 					end
 				end
 			end
-		end		
+		end
 
 		Align_hint_current : INTEGER is 1
 		Align_hint_other : INTEGER is 2
@@ -2415,7 +2414,7 @@ feature {EDA_DECIMAL} -- Implementation
 			-- do a `division_type' of Current by `other'
 		require
 			other_not_void : other /= Void
-			ctx_not_void: ctx /= Void	
+			ctx_not_void: ctx /= Void
 		local
 			integer_division : BOOLEAN
 		do
@@ -2456,7 +2455,7 @@ feature {EDA_DECIMAL} -- Implementation
 					Result := clone (zero)
 					if Current.is_zero then
 						ctx.signal (Signal_invalid_operation, "Division Undefined : O/O")
-						Result.set_quiet_nan	
+						Result.set_quiet_nan
 					else
 						ctx.signal (Signal_division_by_zero, "Division by zero")
 						Result.set_infinity
@@ -2464,7 +2463,7 @@ feature {EDA_DECIMAL} -- Implementation
 							Result.set_positive
 						else
 							Result.set_negative
-						end						
+						end
 					end
 				elseif Current.is_zero then
 						Result := clone (zero)
@@ -2479,7 +2478,7 @@ feature {EDA_DECIMAL} -- Implementation
 							Result.set_negative
 						end
 						Result.clean_up (ctx)
-				else	
+				else
 					Result := internal_divide (other, ctx, division_type)
 					if sign = other.sign then
 						Result.set_positive
@@ -2488,14 +2487,14 @@ feature {EDA_DECIMAL} -- Implementation
 					end
 					Result.clean_up (ctx)
 				end
-			end			
+			end
 		end
-		
+
 	internal_divide (other : like Current; ctx : EDA_MATH_CONTEXT; division_type : INTEGER) : like Current is
 			-- divide Current by `other' whith respect to `ctx'
 		require
 			other_not_void : other /= Void
-			ctx_not_void: ctx /= Void	
+			ctx_not_void: ctx /= Void
 		local
 			dividend, divisor, local_remainder : like Current
 			adjust, divisor_adjust, dividend_adjust, current_digit_exponent, new_exponent : INTEGER
@@ -2503,8 +2502,10 @@ feature {EDA_DECIMAL} -- Implementation
 			done, integer_division, impossible, is_negative_exponent, dividend_is_zero : BOOLEAN
 		do
 			integer_division := (division_type /= division_standard)
-			dividend := clone (Current)
-			divisor := clone (other)
+			create dividend.make (1) --dividend := clone (Current)
+			dividend.copy (Current)
+			create divisor.make (1)  --divisor := --clone (other)
+			divisor.copy (other)
 			--| round if necessary
 			--dividend.prepare_operand (ctx)
 			--divisor.prepare_operand (ctx)
@@ -2517,10 +2518,10 @@ feature {EDA_DECIMAL} -- Implementation
 			--Result := clone (zero)
 			create Result.make (ctx.digits + 1)
 			adjust := 0; divisor_adjust := 0; dividend_adjust := 0
-			--| adjust coefficients so that 
+			--| adjust coefficients so that
 			--| 1. divisor.coefficient <= dividend.coefficient
 			--| 2. dividend.coefficient < 10 * divisor.coefficient
-			from			
+			from
 				--| while coefficient of dividend is less than coefficient of divisor
 				--| multiply coefficient of divident by 10
 			until
@@ -2537,7 +2538,7 @@ feature {EDA_DECIMAL} -- Implementation
 				--| while coefficient of divisor >= 10 * coefficient of dividend
 				--| until dividend.coefficient / 10 < divisor.coefficient
 				--| multiply divisor by 10
-				
+
 				--| init: compute 10 * coefficient of dividend
 				divisor.shift_left (1)
 				--| adjust coefficient sizes
@@ -2570,13 +2571,13 @@ feature {EDA_DECIMAL} -- Implementation
 				if not done then
 					--| Prepare Result so that it can accomodate ctx.digits + 1 digits
 					Result.coefficient.grow (ctx.digits + 1)
-					Result.coefficient.keep_head (1)					
+					Result.coefficient.keep_head (1)
 				end
 			until
 				done
 			loop
 				--| compute digit of rank 'current_digit_exponent' by repeatedly subtracting divisor from dividend
-				from							
+				from
 				until
 					divisor.coefficient > dividend.coefficient
 				loop
@@ -2590,7 +2591,7 @@ feature {EDA_DECIMAL} -- Implementation
 						done := True
 					end
 				else
-					if current_digit_exponent = 0 then 
+					if current_digit_exponent = 0 then
 						done := True
 					end
 				end
@@ -2636,7 +2637,7 @@ feature {EDA_DECIMAL} -- Implementation
 						Result.set_exponent (original_dividend_exponent - (original_divisor_exponent + adjust))
 					else
 						Result.set_exponent (Current.exponent - (original_divisor_exponent + adjust))--(adjusted_exponent - other.adjusted_exponent) - Result.count) --Current.exponent - (other.exponent + adjust))
-					end					
+					end
 				when division_integer then
 					Result.set_exponent (0)
 				else
@@ -2649,7 +2650,7 @@ feature {EDA_DECIMAL} -- Implementation
 					else
 						new_exponent := original_dividend_exponent.min (original_divisor_exponent)
 						bias := new_exponent - (dividend.exponent.min (divisor.exponent))
-						if Result.is_zero then 
+						if Result.is_zero then
 							if dividend_is_zero then
 								new_exponent := original_dividend_exponent
 							elseif new_exponent >= 0 then
@@ -2661,7 +2662,7 @@ feature {EDA_DECIMAL} -- Implementation
 							-- Real division
 							if bias /= 0 then
 								Result.coefficient.shift_right (bias.abs)
-							end							
+							end
 						end
 						Result.set_exponent (new_exponent)
 					end
@@ -2677,11 +2678,11 @@ feature {EDA_DECIMAL} -- Implementation
 				set_positive
 			else
 				set_negative
-			end			
+			end
 		ensure
 			negated: sign = - old sign
 		end
-		
+
 invariant
 	special_values: special >= Special_none and then special <= Special_quiet_nan
 end -- class EDA_DECIMAL

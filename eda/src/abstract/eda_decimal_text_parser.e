@@ -14,30 +14,30 @@ indexing
 
 	library: "EDA"
 	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.1 $"
+
+	date: "$Date: 2003/02/26 18:54:03 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 	note: "This is a 'quick-and-dirty' implementation"
-	
+
 class
 	EDA_DECIMAL_TEXT_PARSER
-	
+
 inherit
 	EDA_DECIMAL_PARSER
-	
+
 feature {EDA_DECIMAL} -- Access
 
 	coefficient_sign : CHARACTER
 	coefficient : STRING
 
-	stripped_coefficient : STRING 
-	
+	stripped_coefficient : STRING
+
 	dot : INTEGER
 	exponent_sign : CHARACTER
 	exponent : STRING
-		
+
 
 	stripped_coefficient_digits_count : INTEGER is
 			require
@@ -49,33 +49,33 @@ feature {EDA_DECIMAL} -- Access
 				end
 			end
 
-	
+
 	coefficient_decimals_count : INTEGER is
 			require
 				no_error : not error
 			do
 				if dot > 0 then
-					Result := coefficient.count - dot					
+					Result := coefficient.count - dot
 				end
 			end
-		
-	
+
+
 feature -- Status report
 
 	error : BOOLEAN
 
 feature {EDA_DECIMAL} -- Status report
-	
+
 	is_infinity : BOOLEAN
 	is_nan : BOOLEAN
-	is_snan : BOOLEAN 
-	
+	is_snan : BOOLEAN
+
 	is_special : BOOLEAN is do Result := is_infinity or else is_nan or else is_snan end
-	
+
 	error_message : STRING
 
 	has_explicit_exponent : BOOLEAN is do Result := exponent /= Void end
-	
+
 feature -- Basic operations
 
 	parse (string : STRING) is
@@ -92,7 +92,7 @@ feature -- Basic operations
 			rescued := True
 			retry
 		end
-		
+
 feature {EDA_DECIMAL} -- Basic operations
 
 	decimal_parse (string : STRING) is
@@ -156,9 +156,9 @@ feature {NONE} -- Implementation
 	exponent_start, exponent_end : INTEGER
 
 	parsed_string : STRING
-	
+
 	optional_character : CHARACTER
-			
+
 	parse_coefficient (start : INTEGER) is
 		local
 			after_dot : INTEGER
@@ -185,7 +185,7 @@ feature {NONE} -- Implementation
 							-- check if special value
 							dot := -1 -- no dot
 							coefficient_end := after_integer_part - 1
-						else 
+						else
 							-- there is a dot
 							dot := after_dot - coefficient_start
 							-- parse decimal part
@@ -203,7 +203,7 @@ feature {NONE} -- Implementation
 					decimal_part_exists := (dot >= 0 and then after_decimal_part > after_dot)
 					if coefficient_end < coefficient_start then
 						put_error ("coefficient - coefficient must have at least one digit")
-					elseif not (integer_part_exists or else decimal_part_exists) then 
+					elseif not (integer_part_exists or else decimal_part_exists) then
 						put_error ("no integer, nor decimal part")
 					end
 				when 'i','I','s','S','q','Q','n','N' then
@@ -223,16 +223,16 @@ feature {NONE} -- Implementation
 					put_error ("Invalid string")
 				end
 			else
-				coefficient_end := parsed_string.count	
+				coefficient_end := parsed_string.count
 				put_error ("Coefficient is empty")
 			end
 		end
-		
+
 	parse_exponent (start : INTEGER) is
 		local
-			after_sign, after_exponent : INTEGER	
+			after_sign, after_exponent : INTEGER
 		do
-			after_sign := after_parsed_optional_character (start,"+-") 
+			after_sign := after_parsed_optional_character (start,"+-")
 			after_exponent := after_parsed_number (after_sign)
 			exponent_sign := optional_character
 			exponent_start := after_sign
@@ -241,7 +241,7 @@ feature {NONE} -- Implementation
 				put_error ("EXPONENT - Exponent must have at leas one digit")
 			end
 		end
-		
+
 	after_parsed_number (start_index : INTEGER) : INTEGER is
 		local
 			i, limit : INTEGER
@@ -250,7 +250,7 @@ feature {NONE} -- Implementation
 				i := start_index
 				limit := parsed_string.count
 			until
-				i > limit or else not parsed_string.item (i).is_digit
+				i > limit or else not is_digit (parsed_string.item (i))
 			loop
 				i := i + 1
 			end
@@ -259,7 +259,7 @@ feature {NONE} -- Implementation
 			parsed_number: True -- Result > start_index
 			no_parsed_number: True -- Result = start_index
 		end
-	
+
 	after_parsed_optional_character (start_index : INTEGER; possible_characters : STRING) : INTEGER is
 		local
 			c : CHARACTER
@@ -278,7 +278,7 @@ feature {NONE} -- Implementation
 				Result := start_index
 			end
 		end
-	
+
 	put_error (s : STRING) is
 		do
 			error := True
@@ -322,7 +322,7 @@ feature {NONE} -- Implementation
 					coefficient_begin := coefficient_begin + 1
 					dot_offset := dot_offset - 1
 					coefficient_digits := coefficient_digits - 1
-				end	
+				end
 				i := i + 1
 			end
 			stripped_coefficient := coefficient.substring (coefficient_begin, coefficient.count)
@@ -341,6 +341,12 @@ feature {NONE} -- Implementation
 				end
 			end
 
+	is_digit (c : CHARACTER) : BOOLEAN is
+				-- is `c' a digit ?
+			do
+				Result := (c >= '0' and then c <= '9')
+			end
+			
 invariant
 	exponent_integer: exponent = Void or else exponent.is_integer
 end -- class EDA_DECIMAL_TEXT_PARSER

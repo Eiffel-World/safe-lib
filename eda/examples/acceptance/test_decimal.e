@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 
-	date: "$Date: 2003/02/06 22:42:25 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/26 18:54:03 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -141,7 +141,7 @@ feature {NONE} -- Implementation
 --			condition_met : BOOLEAN
 		do
 			print ("Test " + test.file.name + "%N")
---	test.set_start_tag ("basx577")
+			--	test.set_start_tag ("remx423")
 			from test.start
 			until
 				test.off

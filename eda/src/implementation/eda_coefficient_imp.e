@@ -3,9 +3,9 @@ indexing
 
 	library: "EDA"
 	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.3 $"
+
+	date: "$Date: 2003/02/26 18:54:04 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 
@@ -16,7 +16,7 @@ inherit
 
 	EDA_COEFFICIENT
 		redefine
-			out, copy, three_way_comparison
+			out, three_way_comparison
 		end
 
 	KL_IMPORTED_NATIVE_ARRAY_ROUTINES
@@ -31,10 +31,10 @@ inherit
 		undefine
 			out, copy, is_equal
 		end
-		
-creation 
+
+creation
 	make
-	
+
 feature {NONE} -- Initialization
 
 	make (a_capacity: INTEGER) is
@@ -53,19 +53,19 @@ feature -- Access
 
 feature -- Measurement
 
-	count: INTEGER		
+	count: INTEGER
 
 	lower: INTEGER is
 		do
 			Result := 0 --digits.lower
 		end
-	
+
 	upper: INTEGER is
 		do
 			Result := capacity - 1
 		end
-		
-	capacity : INTEGER 
+
+	capacity : INTEGER
 
 	msd_index : INTEGER is
 		local
@@ -83,10 +83,10 @@ feature -- Measurement
 				Result := Result - 1
 			end
 		end
-		
-	
+
+
 feature -- Status report
-		
+
 feature -- Status setting
 
 feature -- Cursor movement
@@ -118,8 +118,8 @@ feature -- Element change
 				i := i - 1
 			end
 			set_count (k)
-		end		
-		
+		end
+
 	grow (a_capacity: INTEGER) is
 		local
 			index, new_upper : INTEGER
@@ -142,12 +142,12 @@ feature -- Element change
 			end
 			set_count (a_capacity)
 		end
-		
+
 	put (v, index: INTEGER) is
 		do
 			digits.put (to_character(v), index)
 			if index > count - 1 then
-				set_count (index + 1) 
+				set_count (index + 1)
 			end
 		end
 
@@ -184,7 +184,7 @@ feature -- Comparison
 				Result := local_difference.sign
 			end
 		end
-		
+
 feature -- Transformation
 
 feature -- Conversion
@@ -204,7 +204,7 @@ feature -- Conversion
 				index := index - 1
 			end
 		end
-		
+
 feature -- Duplication
 
 	copy (other : like Current) is
@@ -217,7 +217,7 @@ feature -- Duplication
 			if digits = Void then
 				make (l_upper + 1)
 			elseif capacity < other.capacity then
-				grow (other.capacity)
+					grow (other.capacity)
 			end
 			from
 				index := 0
@@ -235,7 +235,7 @@ feature -- Duplication
 feature -- Miscellaneous
 
 feature -- Basic operations
-		
+
 	keep_head (a_count : INTEGER) is
 			-- keep head of 'a_count' digits
 		local
@@ -280,7 +280,7 @@ feature -- Basic operations
 					index := index - 1
 				end
 				Result := (index < lower) -- found no equal item
-			end	
+			end
 		end
 
 	shift_left (a_count : INTEGER) is
@@ -300,13 +300,13 @@ feature -- Basic operations
 				index := index - 1
 			end
 			--| set zeroes as lsb
-			from				
+			from
 			until
 				index < 0
 			loop
 				l_digits.put ('%U', index) -- put (0, index)
 				index := index - 1
-			end			
+			end
 		end
 
 	shift_right (shift_count : INTEGER) is
@@ -326,14 +326,14 @@ feature -- Basic operations
 				index := index + 1
 			end
 			--| set zeroes as msb
-			from			
+			from
 				index := count - shift_count
 			until
 				index >= count
 			loop
 				l_digits.put ('%U', index) --put (0, index)
 				index := index + 1
-			end			
+			end
 		end
 
 	integer_add (other : like Current) is
@@ -374,13 +374,13 @@ feature -- Basic operations
 			l_b_digits, l_a_digits : like digits
 		do
 			-- initialization
-			--grow (a.count + b.count + 2)			
-			from 
+			--grow (a.count + b.count + 2)
+			from
 				i := 0
 				l_digits := digits
 			until i >= count
 			loop
-				l_digits.put ('%U', 0) --put (0, i); 
+				l_digits.put ('%U', 0) --put (0, i);
 				i := i + 1
 			end
 			-- multiplication
@@ -405,15 +405,15 @@ feature -- Basic operations
 				until
 					j >= l_a_count -- local_a.count
 				loop
-					carry := carry + l_a_digits.item (j).code * digit + l_digits.item (i + j).code 
+					carry := carry + l_a_digits.item (j).code * digit + l_digits.item (i + j).code
 					--carry := carry + local_a.item (j) * digit + item (i+j)
-					l_digits.put (to_character (carry \\ 10), i+j) 
+					l_digits.put (to_character (carry \\ 10), i+j)
 					--put (carry \\ 10, i + j)
 					carry := carry // 10
 					j := j + 1
 				end
 				if carry > 0 then
-					l_digits.put (to_character (carry), i+j) 
+					l_digits.put (to_character (carry), i+j)
 					--put (carry, i + j)
 				end
 				i := i + 1
@@ -430,7 +430,7 @@ feature -- Basic operations
 --			l_digits, l_digits_a, l_digits_b : like digits
 --		do
 --			-- initialization
---			--grow (a.count + b.count + 2)			
+--			--grow (a.count + b.count + 2)
 --			-- set all zero
 --			l_digits := digits
 --			from i := 0
@@ -474,9 +474,9 @@ feature -- Basic operations
 --			strip_leading_zeroes
 --			--set_count (i)
 --		end
-		
+
 	integer_quick_add_msd (other, digits_count : INTEGER) is
-			-- integer add of `other' (between 0 and 9) to Current, 
+			-- integer add of `other' (between 0 and 9) to Current,
 			-- restricted to `digits_count' most significant digits
 		local
 			carry : INTEGER
@@ -510,14 +510,14 @@ feature -- Basic operations
 				l_digits.put (to_character (carry), index - count + digits_count) --put (carry, index - count + digits_count)
 				set_count (digits_count + 1)
 			else
-				set_count (digits_count) 
+				set_count (digits_count)
 			end
 		end
 
 	integer_subtract (other : like Current) is
 			-- integer subtract of `other' to Current, provided that result will not be negative.
 		local
-			borrow : INTEGER		
+			borrow : INTEGER
 			index : INTEGER
 			l_count : INTEGER
 			l_digits, l_other_digits : like digits
@@ -562,7 +562,7 @@ feature -- Basic operations
 			-- integer subtract of `other' (between 0 and 9) to Current
 			-- restricted to `digits_count' most significant digits
 		local
-			borrow : INTEGER		
+			borrow : INTEGER
 			index, l_count, l_displacement : INTEGER
 			to_subtract : INTEGER
 			l_digits : like digits
@@ -592,7 +592,7 @@ feature -- Basic operations
 			end
 			strip_leading_zeroes
 		end
-		
+
 feature -- Obsolete
 
 feature -- Inapplicable
@@ -608,7 +608,7 @@ feature {EDA_DECIMAL} -- Implementation
 		do
 			count := a_count
 		end
-		
+
 end -- class EDA_COEFFICIENT_IMP
 
 --

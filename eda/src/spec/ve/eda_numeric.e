@@ -3,9 +3,9 @@ indexing
 
 	library: "EDA"
 	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:27 $"
-	revision: "$Revision: 1.2 $"
+
+	date: "$Date: 2003/02/26 18:54:04 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -13,6 +13,20 @@ deferred class
 
 inherit
 	NUMERIC
+		rename exponentiable as ve_exponentiable
+	end
+	
+feature -- Basic operations
+
+	infix "^" (other : DOUBLE) : DOUBLE is
+			-- Not implemented
+		do
+		end
+		
+	ve_exponentiable (other : DOUBLE) : BOOLEAN is
+			-- Not implemented
+		do
+		end
 
 end -- class EDA_NUMERIC
 

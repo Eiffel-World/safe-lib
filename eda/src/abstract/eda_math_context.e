@@ -3,9 +3,9 @@ indexing
 
 	library: "EDA"
 	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.3 $"
+
+	date: "$Date: 2003/02/26 18:54:03 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -16,22 +16,27 @@ inherit
 		redefine
 			out, copy, is_equal
 		end
-	
+
 	EDA_CONSTANTS
 		undefine
 			out, copy, is_equal
 		end
 
 	KL_EXCEPTIONS
-		export 
+		export
 			{NONE} all
 		undefine
 			out, copy, is_equal
 		end
-	
+
+	KL_IMPORTED_ARRAY_ROUTINES
+		undefine
+			out, copy, is_equal
+		end
+
 creation
 	make_default, make_double, make_extended, make_double_extended, make
-	
+
 feature {NONE} -- Initialization
 
 	make_default is
@@ -51,10 +56,10 @@ feature {NONE} -- Initialization
 		ensure
 			default_digits: 		digits = Default_digits
 			default_rounding_mode: 	rounding_mode = Default_rounding_mode
-			trap_division_by_zero:	is_trapped (Signal_division_by_zero)	  		
-			trap_invalid_operation:	is_trapped (Signal_invalid_operation)	  		
+			trap_division_by_zero:	is_trapped (Signal_division_by_zero)
+			trap_invalid_operation:	is_trapped (Signal_invalid_operation)
 			trap_overflow:  		is_trapped (Signal_overflow)
-			trap_underflow:  		is_trapped (Signal_underflow) 				
+			trap_underflow:  		is_trapped (Signal_underflow)
 		end
 
 	make_double is
@@ -65,12 +70,12 @@ feature {NONE} -- Initialization
 		ensure
 			default_digits: 		digits = 2 * Default_digits + 1
 			default_rounding_mode: 	rounding_mode = Default_rounding_mode
-			trap_division_by_zero:	is_trapped (Signal_division_by_zero)	  		
-			trap_invalid_operation:	is_trapped (Signal_invalid_operation)	  		
+			trap_division_by_zero:	is_trapped (Signal_division_by_zero)
+			trap_invalid_operation:	is_trapped (Signal_invalid_operation)
 			trap_overflow:  		is_trapped (Signal_overflow)
-			trap_underflow:  		is_trapped (Signal_underflow) 				
+			trap_underflow:  		is_trapped (Signal_underflow)
 		end
-		
+
 	make_extended is
 			-- make extended default context (IEEE 854), single precision
 		do
@@ -90,12 +95,12 @@ feature {NONE} -- Initialization
 			default_digits: 		digits = 2 * Default_digits + 1
 			default_rounding_mode: 	rounding_mode = Round_half_even
 		end
-		
+
 	make (a_digits, a_rounding_mode : INTEGER) is
 			-- creation of a math context
 		require
 			good_digits : a_digits >= Minimum_digits and a_digits <= Maximum_digits
-			good_rounding_mode: Rounds.has (a_rounding_mode)
+			good_rounding_mode: Integer_array_.has (Rounds, a_rounding_mode)
 		do
 			digits := a_digits
 			rounding_mode := a_rounding_mode
@@ -106,17 +111,17 @@ feature {NONE} -- Initialization
 			digits_set: digits = a_digits
 			rounding_mode_set:     rounding_mode     = a_rounding_mode
 			exponent_limit: exponent_limit = Maximum_exponent
-		end 
- 	
+		end
+
  feature -- Constants
- 
+
  	Rounds : ARRAY[INTEGER] is
  		once
  			Result := <<ROUND_HALF_UP,ROUND_UNNECESSARY,ROUND_CEILING,ROUND_DOWN,ROUND_FLOOR,ROUND_HALF_DOWN,ROUND_HALF_EVEN,ROUND_UP>>
  		end
 
  feature -- Access
- 
+
 	 digits : INTEGER
 	  		-- The number of digits (precision) to be used for an operation.
 	  		-- A value of 0 indicates that unlimited precision (as many digits
@@ -131,25 +136,25 @@ feature {NONE} -- Initialization
 		ensure
 			synonym_of_digits: Result = digits
 		end
-		
+
 	rounding_mode : INTEGER
 			-- Rounding algorithm to be used for an operation when non-zero digits have to
 	  		-- be discarded in order to reduce the precision of a result.
- 
+
  	reason : STRING
 	 		-- Reason of latest raised signal
- 
+
  	exponent_limit : INTEGER
  			-- exponent limit.  Exponents can range from -exponent_limit through +exponent_limit
- 			
- 	e_tiny : INTEGER is 
+
+ 	e_tiny : INTEGER is
  			-- minimum value of the exponent for subnormal numbers
  		do
  			Result := (-exponent_limit) - (digits - 1)
  		end
- 		
- feature -- Access 
- 
+
+ feature -- Access
+
  	default_context : EDA_MATH_CONTEXT is
  			-- default context for general purpose arithmetic
  		once
@@ -165,7 +170,7 @@ feature -- Status report
 		do
 			Result := flags.item (a_signal)
 		end
-		
+
 	is_trapped (a_signal : INTEGER) : BOOLEAN is
 			-- is `a_signal' trapped ?
 		require
@@ -177,13 +182,13 @@ feature -- Status report
 	valid_signal (a_signal : INTEGER) : BOOLEAN is
 			-- is `a_signal' a valid one ?
 		do
-			Result := signals.has (a_signal)
+			Result := Integer_array_.has (signals, a_signal)
 		end
 
 	is_extended : BOOLEAN
-	
+
 	exception_on_trap : BOOLEAN
-	
+
 feature -- Status setting
 
 	set_digits (some_digits : INTEGER) is
@@ -196,7 +201,7 @@ feature -- Status setting
 		ensure
 			digits_set: digits = some_digits
 		end
-		
+
 	set_exponent_limit (a_limit : INTEGER) is
 			-- set `exponent_limit' to `a_limit'
 		require
@@ -207,19 +212,19 @@ feature -- Status setting
 		ensure
 			limit_set: exponent_limit = a_limit
 		end
-	
+
 	enable_exception_on_trap is
 			-- enable exception when trap occurs
 		do
 			exception_on_trap := True
 		end
-		
+
 	disable_exception_on_trap is
 			-- disable exception when trap occurs
 		do
 			exception_on_trap := False
 		end
-		
+
 --	set_format (a_format : INTEGER) is
 --			-- set `format' to `a_format'
 --		require
@@ -239,7 +244,7 @@ feature -- Status setting
 		ensure
 			trapped_signal: is_trapped (a_signal)
 		end
-		
+
 	disable_trap (a_signal : INTEGER) is
 			-- enable trapping of `a_signal'
 		require
@@ -259,7 +264,7 @@ feature -- Status setting
 		ensure
 			flagged_signal: is_flagged (a_signal)
 		end
-		
+
 	reset_flag (a_signal : INTEGER) is
 			-- reset `a_signal'
 		require
@@ -278,13 +283,13 @@ feature -- Status setting
 			from index := flags.lower
 			until index > flags.upper
 			loop flags.put (False, index); index := index + 1
-			end	
+			end
 		end
-		
+
 	set_rounding_mode (a_mode : INTEGER) is
 			-- set `rounding_mode' to `a_mode'
 		require
-			valid_mode: Rounds.has (a_mode)
+			valid_mode: Integer_array_.has (Rounds, a_mode)
 		do
 			rounding_mode := a_mode
 		ensure
@@ -293,7 +298,7 @@ feature -- Status setting
 
 	set_extended is do is_extended := True ensure extended: is_extended end
 	set_normal is do is_extended := False ensure normal: not is_extended end
-	
+
 feature -- Conversion
 
 	out : STRING is
@@ -320,7 +325,7 @@ feature -- Comparison
 			Result := Result and then rounding_mode = other.rounding_mode
 			Result := Result and then traps.is_equal (other.traps)
 		end
-		
+
 feature -- Basic operations
 
 	signal (a_signal : INTEGER; a_message : STRING) is
@@ -337,13 +342,13 @@ feature -- Basic operations
 				exception_message := clone (signal_words.item (a_signal))
 				exception_message.append (" : ")
 				exception_message.append (a_message)
-				raise (exception_message)	
+				raise (exception_message)
 			end
 		ensure
 			flagged_signal: is_flagged (a_signal)
 			reason_set: reason = a_message
 		end
-		
+
 	copy (other : like Current) is
 			-- copy `other'
 		do
@@ -353,12 +358,12 @@ feature -- Basic operations
 			!!traps.make (other.traps.lower, other.traps.upper)
 			traps.copy (other.traps)
 		end
-		
+
 feature {NONE} -- Implementation
 
  	Round_words : ARRAY[STRING] is
  		once
- 			Result := <<"Round_up", "Round_down", "Round_ceiling", "Round_floor", "Round_half_up", 
+ 			Result := <<"Round_up", "Round_down", "Round_ceiling", "Round_floor", "Round_half_up",
   						"Round_half_down", "Round_half_even", "Round_unnecessary">>
   		end
 
@@ -367,7 +372,7 @@ feature {NONE} -- Implementation
 			Result := << Signal_division_by_zero, Signal_inexact, Signal_invalid_operation,
 						Signal_lost_digits, Signal_overflow, Signal_rounded, Signal_underflow, Signal_subnormal>>
 		end
-	
+
 feature {DECIMAL_TESTER, EDA_MATH_CONTEXT}
 
   	Signal_words : ARRAY[STRING] is
@@ -379,15 +384,15 @@ feature {DECIMAL_TESTER, EDA_MATH_CONTEXT}
 	flags : ARRAY[BOOLEAN]
 
 	traps : ARRAY[BOOLEAN]
-		
+
 invariant
 	non_negative_digits: not (digits < 0)
 --	format_valid: format = Format_plain or format = Format_scientific or format = Format_engineering
-	rounding_mode_valid: rounding_mode = Round_ceiling or rounding_mode = Round_down 
-			or rounding_mode = Round_floor or rounding_mode = Round_half_down 
+	rounding_mode_valid: rounding_mode = Round_ceiling or rounding_mode = Round_down
+			or rounding_mode = Round_floor or rounding_mode = Round_half_down
 			or rounding_mode = Round_half_even or rounding_mode = Round_half_up
 			or rounding_mode = Round_unnecessary or Rounding_mode = Round_up
-			
+
 end -- class EDA_MATH_CONTEXT
 
 --
