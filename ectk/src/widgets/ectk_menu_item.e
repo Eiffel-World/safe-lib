@@ -1,8 +1,8 @@
 indexing
 	description: "Widget that shows a string, it can be selected"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/11/21 08:26:15 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_MENU_ITEM
@@ -32,7 +32,7 @@ feature {NONE} -- Initialisation
 			!!window.make_subwindow_relative (parent, a_height, a_width, y, x)
 			label := a_label
 			initialize_widget
-			refresh
+			update
 		ensure
 			parent_set: window.parent_window = parent;
 			origin_set: window.origin_x = x + window.parent_window.origin_x and then window.origin_y = y + window.parent_window.origin_y;
@@ -55,8 +55,8 @@ feature -- Status report
 	
 feature -- Basic operations
 
-	refresh is
-			-- Refresh current widget.
+	update is
+			-- Update current widget.
 		do
 			if selected then
 				window.enable_attribute (curses_attribute_constants.Attribute_reverse)
@@ -76,7 +76,7 @@ feature -- Basic operations
 			-- Select current.
 		do
 			selected := True
-			Refresh
+			update
 		ensure
 			selected: selected
 		-- refreshed
@@ -86,7 +86,7 @@ feature -- Basic operations
 			-- Deselect current.
 		do
 			selected := False
-			refresh
+			update
 		ensure
 			not_selected: not selected
 		-- refreshed

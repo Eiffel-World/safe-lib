@@ -2,8 +2,8 @@ indexing
 	description: "Widgets that manages the traversal of their child widgets"
 	author: "Fafchamps Eric"
 	usage: "Inherit from this class, and in your make routine call in order make_curses_window (or make_subwindow_relative); initialize_widget and refresh"
-	date: "$Date: 2001/11/21 08:26:15 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	ECTK_CONTAINER [W->ECTK_WIDGET]
@@ -108,8 +108,8 @@ feature -- Element change
 
 feature -- Basic operations	
 
-	refresh is
-			--Refresh the widgets of the container.			
+	update is
+			--Update the widget.			
 		local
 			children_cursor: DS_BILINKED_LIST_CURSOR [W]
 			current_child: ECTK_WIDGET
@@ -121,7 +121,7 @@ feature -- Basic operations
 				children_cursor.off				
 			loop
 				current_child := children_cursor.item
-				current_child.refresh
+				current_child.update
 				children_cursor.forth
 			end
 		end
@@ -243,20 +243,13 @@ feature {NONE} -- Implementation of initialization and behaviour
 	initialize_behaviour is
 			-- Initialize behaviour.
 		local
-			emi_command: EMI_COMMAND [ECTK_CONTAINER[ECTK_WIDGET]]
-			ectk_conditional_command: ECTK_CONDITIONAL_COMMAND	
-			emi_cell: EMI_CELL [ECTK_CONTAINER[ECTK_WIDGET]]
+			epat_command: EPAT_COMMAND
 		do
-			!!emi_cell
-			emi_cell.define (Current)
-		
-			!ECTK_CONTAINER_FORTH_COMMAND!emi_command.make (emi_cell)
-			!!ectk_conditional_command.make (emi_command)
-			add_command (ectk_conditional_command, events_catalog.tab_event)
+			!ECTK_CONTAINER_FORTH_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.tab_event)
 
-			!ECTK_CONTAINER_BACK_COMMAND!emi_command.make (emi_cell)
-			!!ectk_conditional_command.make (emi_command)
-			add_command (ectk_conditional_command, events_catalog.btab_event)
+			!ECTK_CONTAINER_BACK_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.btab_event)
 		end
 
 feature {NONE} -- Implementation of Event handling

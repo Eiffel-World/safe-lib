@@ -1,38 +1,39 @@
 indexing
 	description: "Makes the previous child current in a ECTK_CONTAINER"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/14 23:08:03 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_CONTAINER_BACK_COMMAND
-inherit
-	EMI_COMMAND [ECTK_CONTAINER[ECTK_WIDGET]]
-		redefine
-			check_precondition
-		end
 
+inherit
+	EPAT_COMMAND
+	
 creation
 	make
 
-feature -- Status setting
+feature {NONE} -- Initialization
 
-	check_precondition is
-			-- Check the precondition.
+	make (a_container: ECTK_CONTAINER [ECTK_WIDGET]) is
+			-- Initialize with `a_container'.
+		require
+			container_exists: a_container /= Void
 		do
-			Precursor
-			if  last_precondition_error = Void and not (not object.off and then not object.is_first) then
-				!EMI_PRECONDITION_ERROR!last_precondition_error.make ("not_is_first: not off and then not is_first")
-			end	
+			container := a_container
 		end
 
+feature -- Status setting
 
-feature -- Status report
-
-	is_precondition_met: BOOLEAN is
-			-- Is the precondition for using this feature met?
+	check_precondition: BOOLEAN is
+			-- Check the precondition.
 		do
-			Result := not object.is_first
+			if  not container.off and then not container.is_first then
+				last_precondition_error := Void
+			else
+				!EMI_PRECONDITION_ERROR!last_precondition_error.make ("not_is_first: not off and then not is_first")
+			end
+			Result := last_precondition_error = Void			
 		end
 
 feature -- Basic operation
@@ -40,9 +41,14 @@ feature -- Basic operation
 	execute is
 			-- Execute command.
 		do
-			object.back
+			container.back
 		end
 
+
+feature {NONE} -- Implementation
+
+	container: ECTK_CONTAINER [ECTK_WIDGET]
+	
 end -- class ECTK_CONTAINER_BACK_COMMAND
 
 --

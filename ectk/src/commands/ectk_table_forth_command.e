@@ -1,30 +1,39 @@
 indexing
 	description: "Command to Move to the next row in a ECTK_TABLE"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/14 23:08:03 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_TABLE_FORTH_COMMAND
 
 inherit
-	EMI_COMMAND [ECTK_TABLE[ANY]]
-		redefine
-			check_precondition
-		end
-
+	EPAT_COMMAND
+	
 creation
 	make
 
+feature {NON} -- Initialization
+
+	make (a_table: ECTK_TABLE [ANY]) is
+			-- Initialize with `a_table'.
+		require
+			table_exists: a_table /= Void
+		do
+			table := a_table
+		end
+		
 feature -- Status setting
 
-	check_precondition is
+	check_precondition: BOOLEAN is
 			-- Check the precondition.
 		do
-			Precursor
-			if  last_precondition_error = Void and not (not object.off and then not object.is_last) then
+			if  not table.off and then not table.is_last then
+				last_precondition_error := Void
+			else
 				!EMI_PRECONDITION_ERROR!last_precondition_error.make ("not_is_last: not off and then not is_last")
 			end
+			Result := last_precondition_error = Void			
 		end
 
 feature -- Basic operation
@@ -32,8 +41,12 @@ feature -- Basic operation
 	execute is
 			-- Execute command.
 		do
-			object.forth
+			table.forth
 		end
+
+feature {NONE} -- Implementation
+
+	table: ECTK_TABLE [ANY]
 
 end -- class ECTK_TABLE_FORTH_COMMAND
 

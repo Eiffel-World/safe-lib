@@ -1,8 +1,8 @@
 indexing
 	description: "Widget for a binary value"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/11/21 08:26:15 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_CHECK_BOX
@@ -44,8 +44,8 @@ feature	-- Status report
 	
 feature -- Basic operations
 
-	refresh is
-			-- Refresh current widget.
+	update is
+			-- Update current widget.
 		do
 			if is_checked then
 				window.move (0, 0)
@@ -74,7 +74,7 @@ feature {NONE} -- Implementation of Event handling
 			Precursor
 			is_checked := model_querist.item	
 			refresh_cursor
-			refresh
+			update
 		end
 
 feature {NONE} -- Implementation of initialization and behaviour
@@ -82,10 +82,10 @@ feature {NONE} -- Implementation of initialization and behaviour
 	initialize_behaviour is
 			-- Initialise behaviour.
 		local
-			ectk_command: ECTK_COMMAND
+			epat_command: EPAT_COMMAND
 		do
-			!ECTK_CHECK_BOX_TOGGLE_COMMAND!ectk_command.make (Current)
-			add_command (ectk_command, events_catalog.character_event)
+			!ECTK_CHECK_BOX_TOGGLE_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.character_event)
 		end
 
 feature {NONE} -- Implementation
@@ -94,8 +94,7 @@ feature {NONE} -- Implementation
 			-- Update the model.
 		do
 			model_modifier.set_argument_1 (is_checked)
-			model_modifier.check_precondition
-			if model_modifier.last_precondition_error = Void then
+			if model_modifier.check_precondition then
 				model_modifier.execute
 				last_error := model_modifier.last_error
 			else

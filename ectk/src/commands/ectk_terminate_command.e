@@ -1,11 +1,12 @@
 indexing
 	description: "Objects that call the terminate_event_loop feature of ECTK_MAIN_WINDOW"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/14 23:08:03 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_TERMINATE_COMMAND
+
 inherit
 	ECTK_COMMAND
 

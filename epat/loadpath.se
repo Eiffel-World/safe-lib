@@ -1,0 +1,3 @@
+${SAFE_EPAT}\observer\src\loadpath.se
+${SAFE_EPAT}\command\src\loadpath.se
+${SAFE_EPAT}\factory\src\loadpath.se

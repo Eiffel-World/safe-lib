@@ -1,18 +1,15 @@
 indexing
 	description: "Objects that display information in a character window, they have a behaviour that executes commands upon user-events"
 	author: "Fafchamps"
-	date: "$Date: 2001/11/21 08:26:15 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	ECTK_WIDGET
 
 inherit
 	
-	EMI_OBSERVER
-		rename
-			on_notification as refresh
-		end
+	EPAT_OBSERVER
 
 	ECTK_SHARED_SYSTEM
 		export	
@@ -26,7 +23,7 @@ feature -- Access
 
 feature -- Behaviour setting
 
-	add_command (a_command: ECTK_COMMAND; an_event: ECTK_EVENT; ) is
+	add_command (a_command: EPAT_COMMAND; an_event: ECTK_EVENT; ) is
 			-- Add `a_command object' to handle `an_event'.
 		do
 			behaviour.force (a_command, an_event)
@@ -115,7 +112,7 @@ feature {NONE} -- Implementation of initialization and behaviour
 		deferred
 		end
 
-	behaviour: DS_HASH_TABLE [ECTK_COMMAND,ECTK_EVENT]
+	behaviour: DS_HASH_TABLE [EPAT_COMMAND,ECTK_EVENT]
 			-- Behaviour definition.
 	
 feature {NONE} -- Implementation of Event handling
@@ -145,15 +142,14 @@ feature {NONE} -- Implementation of Event handling
 	on_event is
 			-- Try to handle the last event.
 		local
-			command: ECTK_COMMAND
+			command: EPAT_COMMAND
 			ectk_message: ECTK_MESSAGE			
 		do
 			behaviour.search (last_event)
 
 			if behaviour.found then
 				command := behaviour.found_item
-				command.check_precondition
-				if command.last_precondition_error = Void then --| The precondition to handle the event is met
+				if command.check_precondition then --| The precondition to handle the event is met
 					command.execute
 					if command.last_error /= Void then
 						!!ectk_message.make ( command.last_error.default_message)

@@ -1,8 +1,8 @@
 indexing
 	description: "Widgets that let you edit an object of type T in a single line of text"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/19 07:26:15 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	ECTK_ENTRY [T]
@@ -139,8 +139,8 @@ feature -- Status setting
 
 feature -- Basic operations	
 
-	refresh is
-			-- Refresh entry.
+	update is
+			-- Update entry.
 		do
 			if is_event_handler then
 				format_for_edit
@@ -312,8 +312,7 @@ feature {NONE} -- Implementation
 			scanner.scan (string)
 			if scanner.is_scanned then
 				model_modifier.set_argument_1 (scanner.last_object)
-				model_modifier.check_precondition
-				if model_modifier.last_precondition_error = Void then
+				if model_modifier.check_precondition then
 					model_modifier.execute	
 					last_error := model_modifier.last_error
 				else
@@ -339,46 +338,32 @@ feature {NONE} -- Implementation of initialization and behaviour
 	initialize_behaviour is
 			-- Initialise behaviour.
 		local
-			ectk_conditional_command: ECTK_CONDITIONAL_COMMAND
-			emi_command: EMI_COMMAND [ECTK_ENTRY[ANY]]
-			widget_emi_command: EMI_COMMAND [ECTK_WIDGET]
-			emi_cell: EMI_CELL [ECTK_ENTRY[ANY]]
+			epat_command: EPAT_COMMAND
 		do
 
-			!!emi_cell
-			emi_cell.define (Current)
+			!ECTK_ENTRY_PUT_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.character_event)
 
-			!ECTK_ENTRY_PUT_COMMAND!emi_command.make (emi_cell)
-			!!ectk_conditional_command.make (emi_command)
-			add_command (ectk_conditional_command, events_catalog.character_event)
+			!ECTK_ENTRY_REMOVE_LEFT_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.back_space_event)
 
-			!ECTK_ENTRY_REMOVE_LEFT_COMMAND!emi_command.make (emi_cell)
-			!!ectk_conditional_command.make (emi_command)
-			add_command (ectk_conditional_command, events_catalog.back_space_event)
+			!ECTK_ENTRY_BACK_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.left_event)
 
-			!ECTK_ENTRY_BACK_COMMAND!emi_command.make (emi_cell)
-			!!ectk_conditional_command.make (emi_command)
-			add_command (ectk_conditional_command, events_catalog.left_event)
+			!ECTK_ENTRY_FORTH_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.right_event)
 
-			!ECTK_ENTRY_FORTH_COMMAND!emi_command.make (emi_cell)
-			!!ectk_conditional_command.make (emi_command)
-			add_command (ectk_conditional_command, events_catalog.right_event)
+			!ECTK_ENTRY_REMOVE_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.delete_event)
 
-			!ECTK_ENTRY_REMOVE_COMMAND!emi_command.make (emi_cell)
-			!!ectk_conditional_command.make (emi_command)
-			add_command (ectk_conditional_command, events_catalog.delete_event)
+			!ECTK_ENTRY_START_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.home_event)
 
-			!ECTK_ENTRY_START_COMMAND!emi_command.make (emi_cell)
-			!!ectk_conditional_command.make (emi_command)
-			add_command (ectk_conditional_command, events_catalog.home_event)
-
-			!ECTK_ENTRY_FINISH_COMMAND!emi_command.make (emi_cell)
-			!!ectk_conditional_command.make (emi_command)
-			add_command (ectk_conditional_command, events_catalog.end_event)
+			!ECTK_ENTRY_FINISH_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.end_event)
 			
-			!ECTK_WIDGET_CANCEL_COMMAND!widget_emi_command.make (emi_cell)
-			!!ectk_conditional_command.make (widget_emi_command)
-			add_command (ectk_conditional_command, events_catalog.esc_event)
+			!ECTK_WIDGET_CANCEL_COMMAND!epat_command.make (Current)
+			add_command (epat_command, events_catalog.esc_event)
 
 		end
 

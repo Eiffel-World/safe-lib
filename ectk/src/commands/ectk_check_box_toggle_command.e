@@ -1,14 +1,14 @@
 indexing
 	description: "Command to toggle a check box"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/11/21 08:26:15 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_CHECK_BOX_TOGGLE_COMMAND
 
 inherit
-	ECTK_COMMAND
+	EPAT_COMMAND
 
 creation
 	make
@@ -23,6 +23,16 @@ feature {NONE} -- Initialization
 			check_box := a_check_box
 		end
 		
+feature -- Status report
+
+	check_precondition: BOOLEAN is
+			-- Check the precondition
+		do
+			Result := True
+			last_precondition_error := Void
+		ensure then
+			Result = True
+		end
 	
 feature -- Basic operation
 

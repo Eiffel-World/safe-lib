@@ -1,8 +1,8 @@
 indexing
 	description: "Container for widgets, arranged horizontally"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/10/07 10:44:05 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECTK_ROW
@@ -10,7 +10,7 @@ class
 inherit
 	ECTK_CONTAINER[ECTK_WIDGET]
 		redefine
-			refresh
+			update
 		end
 
 creation
@@ -52,8 +52,8 @@ feature -- Status report
 
 feature -- Basic operations	
 
-	refresh is
-			-- Refresh widget with model.			
+	update is
+			-- Update widget.		
 		local
 			children_cursor: DS_BILINKED_LIST_CURSOR [ECTK_WIDGET]
 		do
@@ -63,7 +63,7 @@ feature -- Basic operations
 			until
 				children_cursor.off				
 			loop
-				children_cursor.item.refresh
+				children_cursor.item.update
 				children_cursor.forth
 			end
 		end

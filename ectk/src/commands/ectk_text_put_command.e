@@ -1,15 +1,16 @@
 indexing
 	description: "Adds a character to a ECTK_TEXT"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/14 23:08:03 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_TEXT_PUT_COMMAND
 
 inherit
-	EMI_COMMAND [ECTK_TEXT]
 
+	EPAT_COMMAND
+	
 	KL_IMPORTED_INTEGER_ROUTINES
 		export
 			{NONE} all
@@ -18,14 +19,39 @@ inherit
 creation
 	make
 
+feature {NON} -- Initialization
+
+	make (an_ectk_text: ECTK_TEXT) is
+			-- Initialize with `an_ectk_text'.
+		require
+			ectk_text_exists: an_ectk_text /= Void
+		do
+			ectk_text := an_ectk_text
+		end
+		
+feature -- Status setting
+
+	check_precondition: BOOLEAN is
+			-- Check the precondition.
+		do
+			last_precondition_error := Void
+			Result := True
+		ensure then
+			Result = True
+		end
+
 feature -- Basic operation
 
 	execute is
 			-- Execute command.
 		do
-			object.put (INTEGER_.to_character(object.last_event.value \\ 256))
+			ectk_text.put (INTEGER_.to_character(ectk_text.last_event.value \\ 256))
 		end
 
+feature {NONE} -- Implementation
+
+	ectk_text: ECTK_TEXT
+	
 end -- class ECTK_TEXT_PUT_COMMAND
 
 

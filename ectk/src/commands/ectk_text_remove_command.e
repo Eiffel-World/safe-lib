@@ -1,38 +1,39 @@
 indexing
 	description: "Command to remove a character at the current cursor position of a ECTK_TEXT"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/14 23:08:03 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_TEXT_REMOVE_COMMAND
 
 inherit
-	EMI_COMMAND [ECTK_TEXT]
-		redefine
-			check_precondition
-		end
-
+	EPAT_COMMAND
+	
 creation
 	make
 
+feature {NON} -- Initialization
+
+	make (an_ectk_text: ECTK_TEXT) is
+			-- Initialize with `an_ectk_text'.
+		require
+			ectk_text_exists: an_ectk_text /= Void
+		do
+			ectk_text := an_ectk_text
+		end
+		
 feature -- Status setting
 
-	check_precondition is
+	check_precondition: BOOLEAN is
 			-- Check the precondition.
 		do
-			Precursor
-			if  last_precondition_error = Void and not (not object.after_text) then
+			if  not ectk_text.after_text then
+				last_precondition_error := Void
+			else
 				!EMI_PRECONDITION_ERROR!last_precondition_error.make ("	not_after_text: not after_text")
-			end	
-		end
-
-feature -- Status report
-
-	is_precondition_met: BOOLEAN is
-			-- Is the precondition for using this feature met?
-		do
-			Result := not object.after_text
+			end
+			Result := last_precondition_error = Void			
 		end
 
 feature -- Basic operation
@@ -40,9 +41,13 @@ feature -- Basic operation
 	execute is
 			-- Execute command.
 		do
-			object.remove_at
+			ectk_text.remove_at
 		end
 
+feature {NONE} -- Implementation
+
+	ectk_text: ECTK_TEXT
+	
 end -- class ECTK_TEXT_REMOVE_COMMAND
 
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Containers of rows, Widget on a DS_BILINKED_LIST_CURSOR [T], items of list are instances of ECTK_ROW, ends with a footer provided by a footer_querist"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:15:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_TABLE [T]
@@ -13,7 +13,7 @@ inherit
 			item as row,
 			children as rows
 		redefine
-			initialize_behaviour, refresh, start, forth, back, is_last, is_first, off, is_ready
+			initialize_behaviour, update, start, forth, back, is_last, is_first, off, is_ready
 		end			
 
 creation
@@ -107,12 +107,11 @@ feature -- Status report
 			Result = (item_factory /= Void)
 		end
 
-	item_factory: EMI_FACTORY[T]
+	item_factory: EPAT_FACTORY[T]
 			-- Factory for new items of type T.
 
 	footer_querist: EMI_REFERENCE[ARRAY [STRING]]
 			-- Querist for the strings that should be displayed after the last model items.
-
 
 	model_querist: EMI_REFERENCE[DS_BILINKED_LIST_CURSOR[T]]
 			-- Model querist.
@@ -140,7 +139,7 @@ feature -- Status setting
 			querist_defined: footer_querist = a_querist
 		end
 
-	define_item_factory (an_item_factory: EMI_FACTORY[T]) is
+	define_item_factory (an_item_factory: EPAT_FACTORY[T]) is
 		require
 			an_item_factory_exists: an_item_factory /= Void
 		do
@@ -168,8 +167,8 @@ feature -- Status setting
 		
 feature -- Basic operations	
 
-	refresh is
-			-- Refresh widget with model.	
+	update is
+			-- Update widget with model.	
 		local
 			focus_index: INTEGER
 			model_offset: INTEGER
@@ -203,7 +202,7 @@ feature -- Basic operations
 				until
 					terminate_loop
 				loop
-					rows.item_for_iteration.refresh
+					rows.item_for_iteration.update
 	
 					if rows.is_last or model_querist.item.is_last then
 						terminate_loop := True
@@ -270,7 +269,7 @@ feature -- Cursor movement
 		do
 			rows.start
 			model_querist.item.start
-			refresh
+			update
 		end
 
 	forth is
@@ -283,7 +282,7 @@ feature -- Cursor movement
 				if is_table_scrolled then
 					rows.start
 				end
-				refresh
+				update
 			end
 			rows.item_for_iteration.start
 		ensure then
@@ -319,7 +318,7 @@ feature -- Cursor movement
 				if is_table_scrolled then
 					rows.finish
 				end
-				refresh
+				update
 			end
 			rows.item_for_iteration.finish
 		ensure then
@@ -368,7 +367,7 @@ feature -- Element change
 					rows.start
 				end
 			end
-			refresh		
+			update	
 		ensure
 			one_more: model_querist.item.container.count = old (model_querist.item.container.count) + 1	
 		end
@@ -387,7 +386,7 @@ feature -- Element change
 				model_querist.item.put_left (an_item)
 				model_querist.item.back
 			end
-			refresh		
+			update	
 		ensure
 			one_more: model_querist.item.container.count = old (model_querist.item.container.count) + 1	
 		end
@@ -417,7 +416,7 @@ feature -- Removal
 					model_querist.item.remove_left
 				end
 			end
-			refresh
+			update
 		ensure
 			one_less: model_querist.item.container.count = old (model_querist.item.container.count) - 1
 		end	

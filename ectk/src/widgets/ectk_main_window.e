@@ -1,8 +1,8 @@
 indexing
 	description: "Top level windows that can hold several widgets, they are modal and can overlap"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/11/21 08:26:15 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/11/28 10:24:46 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	ECTK_MAIN_WINDOW
@@ -39,8 +39,7 @@ feature {NONE} -- Implementation of Event handling
 	initialize is
 			-- initialize event loop
 		do
-			refresh
-			
+			update
 			window.refresh --| needed to reflect new desk of panels
 			Precursor
 		end;
