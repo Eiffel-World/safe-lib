@@ -2,7 +2,7 @@ indexing
 	description: "Objects that behave like a text printer"
 	author: ""
 	date: "$Date: 2002/03/20 15:19:04 $"
-	revision: "$Revision: 1.1 $"
+	revision: "$Revision: 1.1.1.1 $"
 
 class
 	PDF_TEXT_WRITER

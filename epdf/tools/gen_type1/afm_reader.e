@@ -2,7 +2,7 @@ indexing
 	description: "Objects that read Adobe Font Metrics (AFM) files"
 	author: ""
 	date: "$Date: 2002/03/20 15:19:07 $"
-	revision: "$Revision: 1.1 $"
+	revision: "$Revision: 1.1.1.1 $"
 
 class
 	AFM_READER

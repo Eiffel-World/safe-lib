@@ -2,7 +2,7 @@ indexing
 	description: "PDF Rectangle"
 	author: ""
 	date: "$Date: 2002/03/20 15:19:06 $"
-	revision: "$Revision: 1.1 $"
+	revision: "$Revision: 1.1.1.1 $"
 
 class
 	PDF_RECTANGLE

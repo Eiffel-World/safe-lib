@@ -2,7 +2,7 @@ indexing
 	description: "Graphviz node."
 	author: "Paul G. Crismer"
 	date: "$Date: 2002/03/20 15:19:01 $"
-	revision: "$Revision: 1.1 $"
+	revision: "$Revision: 1.1.1.1 $"
 	licensing: "See notice at end of class"
 
 class

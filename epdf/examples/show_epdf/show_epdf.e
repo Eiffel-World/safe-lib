@@ -3,7 +3,7 @@ indexing
 	author: 	"Paul G. Crismer"
 	licence: 	"Released under the Eiffel Forum licence.  See file 'forum.txt'."
 	date: 		"$Date: 2002/03/20 15:19:02 $"
-	revision: 	"$Revision: 1.1 $"
+	revision: 	"$Revision: 1.1.1.1 $"
 
 class
 	SHOW_EPDF
