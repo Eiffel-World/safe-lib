@@ -2,8 +2,8 @@ indexing
 	description: "Objects that formats DATE objects"
 	limitation: "Long date formats like 23 septembre 2000 are not implemented for now"
 	author: "Fafchamps eric"
-	date: "$Date: 2001/09/16 10:50:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EFMT_DATE_FORMATTER
@@ -22,13 +22,13 @@ feature {NONE} -- Initialization.
 			a_width_strict_positif: a_width > 0
 		do
 			width := a_width
-			def_padding_character (defaults.padding_character)
-			def_overflow_character (defaults.overflow_character)	
-			def_prefix_string (defaults.prefix_string)
-			def_suffix_string (defaults.suffix_string)
+			set_padding_character (defaults.padding_character)
+			set_overflow_character (defaults.overflow_character)	
+			set_prefix_string (defaults.prefix_string)
+			set_suffix_string (defaults.suffix_string)
 			justification := defaults.justification
 			is_size_reduction_enabled := defaults.is_size_reduction_enabled
-			def_date_separator (defaults.date_separator)
+			set_date_separator (defaults.date_separator)
 			order := defaults.order
 			is_four_digits_year := defaults.is_four_digits_year
 			is_leading_zero_showed := defaults.is_leading_zero_showed
@@ -54,13 +54,13 @@ feature -- Status report
 			-- Shared default options for date formatters.
 		once
 			!!Result.make (10)
-			Result.def_padding_character (' ')
-			Result.def_overflow_character ('*')	
-			Result.def_prefix_string (Void)
-			Result.def_suffix_string (Void)
+			Result.set_padding_character (' ')
+			Result.set_overflow_character ('*')	
+			Result.set_prefix_string (Void)
+			Result.set_suffix_string (Void)
 			Result.center_justify
 			Result.disable_size_reduction
-			Result.def_date_separator ('-')
+			Result.set_date_separator ('-')
 			Result.show_date_separator
 			Result.select_ymd_order
 			Result.enable_four_digits_year
@@ -107,12 +107,12 @@ feature -- Status report
 
 feature -- Status setting
 
-	def_date_separator (a_separator: CHARACTER) is
-			-- Define date_separator with `a_separator'.
+	set_date_separator (a_separator: CHARACTER) is
+			-- Set date_separator with `a_separator'.
 		do
 			date_separator := a_separator
 		ensure
-			date_separator_defined: date_separator = a_separator
+			date_separator_set: date_separator = a_separator
 		end
 
 	select_ymd_order is
@@ -264,8 +264,8 @@ feature {NONE} -- Implementation
 			integer_formatter.no_justify
 			integer_formatter.hide_positive_sign
 			integer_formatter.show_zero
-			integer_formatter.def_suffix_string (Void)
-			integer_formatter.def_prefix_string (Void)
+			integer_formatter.set_suffix_string (Void)
+			integer_formatter.set_prefix_string (Void)
 			integer_formatter.hide_thousand_separator
 			if is_leading_zero_showed then 
 				integer_formatter.enable_zero_prefix
@@ -285,8 +285,8 @@ feature {NONE} -- Implementation
 			integer_formatter.no_justify
 			integer_formatter.hide_positive_sign
 			integer_formatter.show_zero
-			integer_formatter.def_suffix_string (Void)
-			integer_formatter.def_prefix_string (Void)
+			integer_formatter.set_suffix_string (Void)
+			integer_formatter.set_prefix_string (Void)
 			integer_formatter.hide_thousand_separator
 			if is_leading_zero_showed then 
 				integer_formatter.enable_zero_prefix
@@ -310,8 +310,8 @@ feature {NONE} -- Implementation
 			integer_formatter.no_justify
 			integer_formatter.hide_positive_sign
 			integer_formatter.show_zero
-			integer_formatter.def_suffix_string (Void)
-			integer_formatter.def_prefix_string (Void)
+			integer_formatter.set_suffix_string (Void)
+			integer_formatter.set_prefix_string (Void)
 			integer_formatter.hide_thousand_separator
 			if is_leading_zero_showed then 
 				integer_formatter.enable_zero_prefix

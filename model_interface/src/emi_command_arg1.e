@@ -1,8 +1,8 @@
 indexing
 	description: "Command with one argument of type A on model M"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:29:50 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	EMI_COMMAND_ARG1 [M,A]
@@ -16,8 +16,8 @@ feature -- Access
 
 feature -- Element change
 
-	def_argument_1 (an_argument: A) is
-			-- Define argument 1
+	set_argument_1 (an_argument: A) is
+			-- Set argument 1
 		do
 			argument_1 := an_argument
 		ensure

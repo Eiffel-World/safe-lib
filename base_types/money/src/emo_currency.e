@@ -1,8 +1,8 @@
 indexing
 	description: "Currency of money";
 	Author: "Fafchamps"
-	date: "$Date: 2001/09/15 08:37:25 $";
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $";
+	revision: "$Revision: 1.2 $"
 
 class 
 	EMO_CURRENCY
@@ -90,8 +90,8 @@ feature -- Comparison
 
 feature -- Status setting
 
-	def_precision (a_precision: DOUBLE) is
-			-- Define precision with `a_precision'.
+	set_precision (a_precision: DOUBLE) is
+			-- Set precision with `a_precision'.
 		require
 			strict_positive: a_precision > 0.0
 		do

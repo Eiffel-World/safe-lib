@@ -1,8 +1,8 @@
 indexing
 	description: "Collection of persistent objects"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:24:40 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EPOM_PERSISTENT_COLLECTION [P->EPOM_PERSISTENT]
@@ -25,8 +25,8 @@ feature -- Basic operations for persistent behaviour
 			end
 
 			if last_epom_error = Void then
-				def_persistent
-				def_not_modified
+				set_persistent
+				set_not_modified
 			end
 
 		end
@@ -42,8 +42,8 @@ feature -- Basic operations for persistent behaviour
 			end
 
 			if last_epom_error = Void then
-				def_persistent
-				def_not_modified
+				set_persistent
+				set_not_modified
 			end
 
 		end

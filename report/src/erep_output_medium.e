@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that can output characters on a medium"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:47:56 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	EREP_OUTPUT_MEDIUM
@@ -62,7 +62,7 @@ feature -- Status setting
 end -- class EREP_OUTPUT_MEDIUM
 
 --
--- Copyright: 2001, Eric Fafchamps, <eric.fafchamps@belgacom.net>
+-- Copyright: 2001, Paul G. Crismer, Eric Fafchamps
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

@@ -1,8 +1,8 @@
 indexing
 	description: "Shared currencies of a market"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 08:37:25 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EMO_SHARED_CURRENCIES
@@ -17,14 +17,14 @@ feature -- Access
 
 feature -- Element change
 
-	def_market (a_market: EMO_CURRENCY_MARKET) is
-			-- Define market with `a_market'). 
+	set_market (a_market: EMO_CURRENCY_MARKET) is
+			-- Set market with `a_market'). 
 		require
 			a_market_exists: a_market /= Void
 		do		
 			cell.put (a_market)
 		ensure
-			market_defined: market = a_market
+			market_set: market = a_market
 		end
 
 feature{NONE} -- Implementation	

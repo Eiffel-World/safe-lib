@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that formats numeric objects"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/16 10:50:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	EFMT_NUMERIC_FORMATTER [G]
@@ -112,8 +112,8 @@ feature -- Status setting
 			not_is_thousand_separator_showed: not is_thousand_separator_showed
 		end
 	
-	def_thousand_separator (a_character: CHARACTER) is
-			-- Define thousand separator with `a_character'.
+	set_thousand_separator (a_character: CHARACTER) is
+			-- Set thousand separator with `a_character'.
 		do
 			thousand_separator := a_character
 		ensure

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that formats other objects"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/16 10:50:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	EFMT_FORMATTER [G]
@@ -77,40 +77,40 @@ feature -- Status report
 
 feature -- Status setting
 
-	def_prefix_string (a_prefix: STRING) is
-			-- Define prefix_string with `a_prefix'.
+	set_prefix_string (a_prefix: STRING) is
+			-- Set prefix_string with `a_prefix'.
 		do
 			prefix_string := a_prefix
 		ensure
 			shared_prefix: prefix_string = a_prefix
 		end
 
-	def_suffix_string (a_suffix: STRING) is
-			-- Define suffix_string with `a_suffix'.
+	set_suffix_string (a_suffix: STRING) is
+			-- Set suffix_string with `a_suffix'.
 		do
 			suffix_string := a_suffix
 		ensure
 			shared_suffix: suffix_string = a_suffix
 		end
 
-	def_padding_character (a_character: CHARACTER) is
-			-- Define padding_character with ´a_character'.
+	set_padding_character (a_character: CHARACTER) is
+			-- Set padding_character with ´a_character'.
 		do
 			padding_character := a_character
 		ensure
 			padding_character_copied: padding_character = a_character
 		end
 
-	def_overflow_character (a_character: CHARACTER) is
-			-- Define overflow_character with `a_character'.
+	set_overflow_character (a_character: CHARACTER) is
+			-- Set overflow_character with `a_character'.
 		do
 			overflow_character := a_character
 		ensure
 			overflow_character_copied: overflow_character = a_character
 		end
 
-	def_width (a_width: INTEGER) is
-			-- Define width with `a_width'.
+	set_width (a_width: INTEGER) is
+			-- Set width with `a_width'.
 		require
 			a_width_strict_positif: a_width > 0
 		do

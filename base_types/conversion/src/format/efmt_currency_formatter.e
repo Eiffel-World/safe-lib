@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that formats CURRENCY objects"
 	author: "Fafchamps eric"
-	date: "$Date: 2001/09/16 10:50:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EFMT_CURRENCY_FORMATTER
@@ -21,10 +21,10 @@ feature {NONE} -- Initialization.
 			a_width_strict_positif: a_width > 0
 		do
 			width := a_width
-			def_padding_character (defaults.padding_character)
-			def_overflow_character (defaults.overflow_character)	
-			def_prefix_string (defaults.prefix_string)
-			def_suffix_string (defaults.suffix_string)
+			set_padding_character (defaults.padding_character)
+			set_overflow_character (defaults.overflow_character)	
+			set_prefix_string (defaults.prefix_string)
+			set_suffix_string (defaults.suffix_string)
 			justification := defaults.justification
 			is_size_reduction_enabled := defaults.is_size_reduction_enabled
 		ensure
@@ -43,10 +43,10 @@ feature -- Status report
 			-- Shared default options for string formatters.
 		once
 			!!Result.make (10)
-			Result.def_padding_character (' ')
-			Result.def_overflow_character ('*')	
-			Result.def_prefix_string (Void)
-			Result.def_suffix_string (Void)
+			Result.set_padding_character (' ')
+			Result.set_overflow_character ('*')	
+			Result.set_prefix_string (Void)
+			Result.set_suffix_string (Void)
 			Result.left_justify
 			Result.disable_size_reduction
 		end

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that scan a string representation of a EDT_DATE"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/16 10:50:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ESC_DATE_SCANNER
@@ -41,7 +41,7 @@ feature {NONE} -- Implementation
 			yy_nxt ?= yy_nxt_template
 			yy_chk ?= yy_chk_template
 			yy_base ?= yy_base_template
-			yy_def ?= yy_def_template
+			yy_def ?= yy_set_template
 			yy_ec ?= yy_ec_template
 			yy_meta ?= yy_meta_template
 			yy_accept ?= yy_accept_template
@@ -108,7 +108,7 @@ feature {NONE} -- Table templates
 			    0,    0,    0,   10,   11,   11,   11,    3,    2,   11>>)
 		end
 
-	yy_def_template: ANY is
+	yy_set_template: ANY is
 			-- This is supposed to be "like FIXED_INTEGER_ARRAY_TYPE",
 			-- but once functions cannot be declared with anchored types.
 		once
@@ -210,7 +210,7 @@ feature {NONE} -- Constants
 	INITIAL: INTEGER is 0
 			-- Start condition codes
 
-feature -- User-defined features
+feature -- User-set features
 
 
 

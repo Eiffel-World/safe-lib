@@ -1,8 +1,8 @@
 indexing
 	description: "Widgets that let you edit an object of type T in a single line of text"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:15:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	ECTK_ENTRY [T]
@@ -106,9 +106,9 @@ feature -- Status report
 feature -- Status setting
 
 	define_display_formatter (a_formatter: EFMT_FORMATTER[T]) is
-			-- Define display_formatter with `a_formattter'.
+			-- Set display_formatter with `a_formattter'.
 		require
-			a_formatter_defined: a_formatter /= Void
+			a_formatter_set: a_formatter /= Void
 			within_width: a_formatter.width <= window.width
 		do
 			display_formatter := a_formatter
@@ -117,9 +117,9 @@ feature -- Status setting
 		end
 
 	define_edit_formatter (a_formatter: EFMT_FORMATTER[T]) is
-			-- Define edit_formatter with `a_formattter'.
+			-- Set edit_formatter with `a_formattter'.
 		require
-			a_formatter_defined: a_formatter /= Void
+			a_formatter_set: a_formatter /= Void
 			within_width: a_formatter.width <= window.width
 		do
 			edit_formatter := a_formatter
@@ -129,7 +129,7 @@ feature -- Status setting
 
 
 	define_scanner (a_scanner: ESC_SCANNER[T]) is
-			-- Define scanner with `a_scanner'.
+			-- Set scanner with `a_scanner'.
 		do
 			scanner := a_scanner
 		ensure
@@ -311,7 +311,7 @@ feature {NONE} -- Implementation
 		do
 			scanner.scan (string)
 			if scanner.is_scanned then
-				model_modifier.def_argument_1 (scanner.last_object)
+				model_modifier.set_argument_1 (scanner.last_object)
 				model_modifier.check_precondition
 				if model_modifier.last_precondition_error = Void then
 					model_modifier.execute	

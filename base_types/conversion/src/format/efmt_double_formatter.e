@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that formats DOUBLE objects"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/16 10:50:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EFMT_DOUBLE_FORMATTER
@@ -26,20 +26,20 @@ feature {NONE} -- Initialization.
 		do
 			width := a_width
 			decimals := n_decimals
-			def_padding_character (defaults.padding_character)
-			def_overflow_character (defaults.overflow_character)	
-			def_prefix_string (defaults.prefix_string)
-			def_suffix_string (defaults.suffix_string)
+			set_padding_character (defaults.padding_character)
+			set_overflow_character (defaults.overflow_character)	
+			set_prefix_string (defaults.prefix_string)
+			set_suffix_string (defaults.suffix_string)
 			justification := defaults.justification
 			is_size_reduction_enabled := defaults.is_size_reduction_enabled
 			is_positive_sign_showed := defaults.is_positive_sign_showed
 			is_negative_sign_showed := defaults.is_negative_sign_showed
-			def_thousand_separator (defaults.thousand_separator)
+			set_thousand_separator (defaults.thousand_separator)
 			is_zero_showed := defaults.is_zero_showed
 			is_thousand_separator_showed := defaults.is_thousand_separator_showed
 			is_zero_prefixed := defaults.is_zero_prefixed
 			is_trailing_zero_showed := defaults.is_trailing_zero_showed
-			def_decimal_character (defaults.decimal_character)
+			set_decimal_character (defaults.decimal_character)
 		ensure
 			width_copied: width = a_width
 			decimals_copied: decimals = n_decimals
@@ -76,19 +76,19 @@ feature -- Status report
 			-- Shared default options for double formatters.
 		once
 			!!Result.make (10, 2)
-			Result.def_padding_character (' ')
-			Result.def_overflow_character ('*')	
-			Result.def_prefix_string (Void)
-			Result.def_suffix_string (Void)
+			Result.set_padding_character (' ')
+			Result.set_overflow_character ('*')	
+			Result.set_prefix_string (Void)
+			Result.set_suffix_string (Void)
 			Result.right_justify
 			Result.disable_size_reduction
-			Result.def_thousand_separator (',')
+			Result.set_thousand_separator (',')
 			Result.hide_positive_sign
 			Result.show_negative_sign
 			Result.show_zero
 			Result.disable_zero_prefix
 			Result.show_thousand_separator
-			Result.def_decimal_character ('.')
+			Result.set_decimal_character ('.')
 			Result.show_trailing_zero	
 		end
 
@@ -110,8 +110,8 @@ feature -- Status setting
 			is_trailing_zero_showed: is_trailing_zero_showed
 		end
 
-	def_decimals (n_decimals: INTEGER) is
-			-- Define decimals with `n_decimals'.
+	set_decimals (n_decimals: INTEGER) is
+			-- Set decimals with `n_decimals'.
 		require
 			n_decimals_positif: n_decimals >= 0
 		do
@@ -120,8 +120,8 @@ feature -- Status setting
 			decimals_copied: decimals = n_decimals
 		end
 
-	def_decimal_character (a_character: CHARACTER) is
-			-- Define decimal character with `a_character'.
+	set_decimal_character (a_character: CHARACTER) is
+			-- Set decimal character with `a_character'.
 		do
 			decimal_character := a_character
 		ensure

@@ -1,8 +1,8 @@
 indexing
 	description: "Widget that let you edit an INTEGER in a single line of text"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:15:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_INTEGER_ENTRY
@@ -43,8 +43,8 @@ feature {NONE} -- Initilization.
 			edit_formatter.enable_size_reduction
 			edit_formatter.hide_positive_sign
 			edit_formatter.show_negative_sign
-			edit_formatter.def_prefix_string (Void)
-			edit_formatter.def_suffix_string (Void)
+			edit_formatter.set_prefix_string (Void)
+			edit_formatter.set_suffix_string (Void)
 			edit_formatter.show_zero
 			edit_formatter.hide_thousand_separator
 			edit_formatter.disable_zero_prefix
@@ -75,13 +75,13 @@ feature -- Status report
 feature -- Status setting
 
 	define_display_formatter (a_formatter: EFMT_INTEGER_FORMATTER) is
-			-- Define display_formatter with `a_formattter'.
+			-- Set display_formatter with `a_formattter'.
 		do
 			display_formatter := a_formatter
 		end
 
 	define_edit_formatter (a_formatter: EFMT_INTEGER_FORMATTER) is
-			-- Define edit_formatter with `a_formattter'.
+			-- Set edit_formatter with `a_formattter'.
 		do
 			edit_formatter := a_formatter
 		end

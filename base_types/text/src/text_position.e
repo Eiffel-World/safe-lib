@@ -2,8 +2,8 @@ indexing
 	description: "Objects that represents a pair of positions, to locate a character within a paragraph"
 			  "A character position within an empty paragraph equals 0"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 11:08:46 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	TEXT_POSITION
@@ -21,8 +21,8 @@ feature {NONE} -- Initialization
 			strict_positif_paragraph_position: a_paragraph_position > 0
 			positif_character_position: a_character_position >= 0
 		do
-			def_paragraph_position (a_paragraph_position)
-			def_character_position (a_character_position) 
+			set_paragraph_position (a_paragraph_position)
+			set_character_position (a_character_position) 
 		ensure
 			paragraph_position_copied: paragraph_position = a_paragraph_position
 			character_position_copied: character_position = a_character_position
@@ -34,8 +34,8 @@ feature {NONE} -- Initialization
 		require
 			text_not_empty: a_text /= Void and then not a_text.is_empty
 		do
-			def_paragraph_position (a_text.count)
-			def_character_position (a_text.paragraph (a_text.count).count)
+			set_paragraph_position (a_text.count)
+			set_character_position (a_text.paragraph (a_text.count).count)
 		ensure
 			paragraph_position: paragraph_position = a_text.count
 			character_position: character_position = a_text.paragraph (a_text.count).count
@@ -51,8 +51,8 @@ feature -- Access
 
 feature -- Element change
 
-	def_paragraph_position (a_paragraph_position: INTEGER) is
-			-- Define paragraph_position with `a_paragraph_position'.
+	set_paragraph_position (a_paragraph_position: INTEGER) is
+			-- Set paragraph_position with `a_paragraph_position'.
 		require
 			strict_positif_paragraph_position: a_paragraph_position > 0
 		do
@@ -61,8 +61,8 @@ feature -- Element change
 			paragraph_position_copied: paragraph_position = a_paragraph_position
 		end
 
-	def_character_position (a_character_position: INTEGER) is
-			-- Define character_position with `a_character_position'.
+	set_character_position (a_character_position: INTEGER) is
+			-- Set character_position with `a_character_position'.
 		require
 			positif_character_position: a_character_position >= 0
 		do

@@ -130,7 +130,7 @@ feature {NONE} -- Implementation
 			--| Share the currency market
 
 			!! shared_currencies
-			shared_currencies.def_market (currency_market)
+			shared_currencies.set_market (currency_market)
 		end
 
 end -- class FORMAT_TEST

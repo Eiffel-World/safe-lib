@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that scan a string representation of an EMO_MONEY"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/16 10:50:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ESC_MONEY_SCANNER
@@ -21,14 +21,14 @@ feature -- Status report
 
 feature -- Status setting
 	
-	def_currency (a_currency: EMO_CURRENCY) is
-			-- Define currency with `a_currency'.
+	set_currency (a_currency: EMO_CURRENCY) is
+			-- Set currency with `a_currency'.
 		require
 			a_currency_exists: a_currency /= Void
 		do
 			currency := a_currency
 		ensure
-			currency_defined: currency = a_currency
+			currency_set: currency = a_currency
 		end
 
 feature -- Basic operation
@@ -48,11 +48,11 @@ feature -- Basic operation
 				--| Replace , with . to allow both decimal conventions in input
 				estring.replace_character_all (',', '.')
 				if estring.is_integer then
-					last_money.def_amount (estring.to_integer + 0.0)
+					last_money.set_amount (estring.to_integer + 0.0)
 					error := Void
 				else 
 					if estring.is_double then
-						last_money.def_amount (estring.to_double)
+						last_money.set_amount (estring.to_double)
 						error := Void	
 					else
 						!ESC_SYNTAX_ERROR!error.make (estring.string)

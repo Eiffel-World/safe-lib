@@ -1,8 +1,8 @@
 indexing
 	description: "Widget that let you edit a EMO_MONEY in a single line of text"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:15:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_MONEY_ENTRY
@@ -45,13 +45,13 @@ feature {NONE} -- Initilization.
 			edit_formatter.enable_size_reduction
 			edit_formatter.hide_positive_sign
 			edit_formatter.show_negative_sign
-			edit_formatter.def_prefix_string (Void)
-			edit_formatter.def_suffix_string (Void)
+			edit_formatter.set_prefix_string (Void)
+			edit_formatter.set_suffix_string (Void)
 			edit_formatter.show_zero
 			edit_formatter.hide_thousand_separator
 			edit_formatter.hide_trailing_zero
 			edit_formatter.disable_zero_prefix
-			edit_formatter.def_no_decimals_filler (Void)
+			edit_formatter.set_no_decimals_filler (Void)
 
 			!ESC_MONEY_SCANNER!scanner
 
@@ -88,26 +88,26 @@ feature -- Status report
 feature -- Status setting
 
 	define_display_formatter (a_formatter: EFMT_MONEY_FORMATTER) is
-			-- Define display_formatter with `a_formattter'.
+			-- Set display_formatter with `a_formattter'.
 		do
 			display_formatter := a_formatter
 		end
 
 	define_edit_formatter (a_formatter: EFMT_MONEY_FORMATTER) is
-			-- Define edit_formatter with `a_formattter'.
+			-- Set edit_formatter with `a_formattter'.
 		do
 			edit_formatter := a_formatter
 		end
 
 
 	define_currency_querist (a_querist: EMI_REFERENCE[EMO_CURRENCY]) is
-			-- Define currency querist with `a_querist'.
+			-- Set currency querist with `a_querist'.
 		require
 			a_querist_exists: a_querist /= Void
 		do
 			currency_querist := a_querist
 		ensure
-			currency_querist_defined: currency_querist = a_querist
+			currency_querist_set: currency_querist = a_querist
 		end	
 
 feature {NONE} -- Implementation
@@ -115,7 +115,7 @@ feature {NONE} -- Implementation
 	update_model is
 			-- Update model.
 		do
-			scanner.def_currency (currency_querist.item)
+			scanner.set_currency (currency_querist.item)
 			Precursor
 		end
 

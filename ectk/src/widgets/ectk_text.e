@@ -1,8 +1,8 @@
 indexing
 	description: "Widget that let you edit a TEXT optionally composed of multiple paragraphs"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:15:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_TEXT
@@ -90,8 +90,8 @@ feature -- Cursor movement
 			-- Move cursor to the first position.
 		do
 			first_visible_row := 1
-			cursor_position.def_y (0)
-			cursor_position.def_x (0)
+			cursor_position.set_y (0)
+			cursor_position.set_x (0)
 			refresh_from_row (0)
 		end
 
@@ -100,17 +100,17 @@ feature -- Cursor movement
 		do
 			if text.is_empty then
 				first_visible_row := 1
-				cursor_position.def_y (0)
-				cursor_position.def_x (0)
+				cursor_position.set_y (0)
+				cursor_position.set_x (0)
 			else
-				cursor_position.def_x (0)
+				cursor_position.set_x (0)
 				if map.count <= window.height then
 					first_visible_row := 1
 				else
 					first_visible_row := map.count - window.height + 1
 				end
-				cursor_position.def_y (map.count - first_visible_row )
-				cursor_position.def_x (last_valid_x)
+				cursor_position.set_y (map.count - first_visible_row )
+				cursor_position.set_x (last_valid_x)
 			end
 			refresh_from_row (0)
 		end
@@ -124,13 +124,13 @@ feature -- Cursor movement
 			if cursor_position.x = 0 then
 				if cursor_position.is_origin then
 					scroll_down
-					cursor_position.def_x (last_valid_x)
+					cursor_position.set_x (last_valid_x)
 				else
-					cursor_position.def_y (cursor_position.y - 1)
-					cursor_position.def_x (last_valid_x)
+					cursor_position.set_y (cursor_position.y - 1)
+					cursor_position.set_x (last_valid_x)
 				end
 			else
-				cursor_position.def_x (cursor_position.x - 1)
+				cursor_position.set_x (cursor_position.x - 1)
 			end
 			refresh_cursor
 		end
@@ -144,13 +144,13 @@ feature -- Cursor movement
 			if after_paragraph or (cursor_position.x = window.width - 1)  then
 				if cursor_position.y = window.height -1 then
 					scroll_up
-					cursor_position.def_x (0)
+					cursor_position.set_x (0)
 				else
-					cursor_position.def_x (0)
-					cursor_position.def_y (cursor_position.y + 1)
+					cursor_position.set_x (0)
+					cursor_position.set_y (cursor_position.y + 1)
 				end
 			else
-				cursor_position.def_x (cursor_position.x + 1)
+				cursor_position.set_x (cursor_position.x + 1)
 			end
 			refresh_cursor
 		end
@@ -271,7 +271,7 @@ feature {NONE} -- Implementation
 			mapped: first_visible_row + cursor_position.y <= map.count
 		do
 			Result := clone (map.item (first_visible_row + cursor_position.y))
-			Result.def_character_position (Result.character_position + cursor_position.x)
+			Result.set_character_position (Result.character_position + cursor_position.x)
 		end
 
 	text_paragraph: STRING is
@@ -314,7 +314,7 @@ feature {NONE} -- Implementation
 	update_model is
 			-- Update the model.
 		do
-			model_modifier.def_argument_1 (clone (text))
+			model_modifier.set_argument_1 (clone (text))
 			model_modifier.check_precondition
 			if model_modifier.last_precondition_error = Void then
 				model_modifier.execute	

@@ -1,8 +1,8 @@
 indexing
 	description: "Abstraction for a report"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:47:56 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	EREP_REPORT
@@ -99,8 +99,8 @@ feature -- Status report
 
 feature -- Element change
 
-	def_left_margin_width (a_width: INTEGER) is
-			-- Define left_margin_width with `a_width'.
+	set_left_margin_width (a_width: INTEGER) is
+			-- Set left_margin_width with `a_width'.
 		require
 			valid_width: a_width >= 0 and (reserved_width + (a_width - left_margin_width)) < page_width
 		do
@@ -109,8 +109,8 @@ feature -- Element change
 			left_margin_width_copied: left_margin_width = a_width
 		end
 
-	def_right_margin_width (a_width: INTEGER) is
-			-- Define right_margin_width with `a_width'.
+	set_right_margin_width (a_width: INTEGER) is
+			-- Set right_margin_width with `a_width'.
 		require
 			valid_width: a_width >= 0 and (reserved_width + (a_width - left_margin_width)) < page_width
 		do
@@ -119,8 +119,8 @@ feature -- Element change
 			right_margin_width_copied: right_margin_width = a_width
 		end
 
-	def_top_margin_height (a_height: INTEGER) is
-			-- Define top_margin_height with `a_height'.
+	set_top_margin_height (a_height: INTEGER) is
+			-- Set top_margin_height with `a_height'.
 		require
 			valid_height: a_height >= 0 and (reserved_height + (a_height - top_margin_height)) < page_height
  		do
@@ -129,8 +129,8 @@ feature -- Element change
 			top_margin_height_copied: top_margin_height = a_height
 		end
 
-	def_bottom_margin_height (a_height: INTEGER) is
-			-- Define bottom_margin_height with `a_height'.
+	set_bottom_margin_height (a_height: INTEGER) is
+			-- Set bottom_margin_height with `a_height'.
 		require
 			valid_height: a_height >= 0 and (reserved_height + (a_height - bottom_margin_height)) < page_height
 		do
@@ -139,8 +139,8 @@ feature -- Element change
 			bottom_margin_height_copied: bottom_margin_height = a_height
 		end
 
-	def_page_height (a_height: INTEGER) is
-			-- Define page_height with `a_height'.
+	set_page_height (a_height: INTEGER) is
+			-- Set page_height with `a_height'.
 		require
 			valid_height: a_height > reserved_height
 		do
@@ -149,8 +149,8 @@ feature -- Element change
 			page_height_copied: page_height = a_height
 		end
 
-	def_page_width (a_width: INTEGER) is
-			-- Define page_width with `a_width'.
+	set_page_width (a_width: INTEGER) is
+			-- Set page_width with `a_width'.
 		require
 			valid_width: a_width > reserved_width
 		do
@@ -159,8 +159,8 @@ feature -- Element change
 			page_width_copied: page_width = a_width
 		end
 
-	def_header_height (a_height: INTEGER) is
-			-- Define height of page header with `a_height' (the header appears on each page).
+	set_header_height (a_height: INTEGER) is
+			-- Set height of page header with `a_height' (the header appears on each page).
 		require
 			valid_height: a_height >= 0 and (reserved_height + ( a_height - header_height)) < page_height
 		do
@@ -169,8 +169,8 @@ feature -- Element change
 			header_height_copied: header_height = a_height
 		end
 
-	def_footer_height (a_height: INTEGER) is
-			-- Define height of page footer with `a_height' (the footer appears on each page).
+	set_footer_height (a_height: INTEGER) is
+			-- Set height of page footer with `a_height' (the footer appears on each page).
 		require
 			valid_height: a_height >= 0 and (reserved_height + ( a_height - footer_height)) < page_height
 		do
@@ -451,7 +451,7 @@ invariant
 end -- class EREP_REPORT
 
 --
--- Copyright: 2001, Eric Fafchamps, <eric.fafchamps@belgacom.net>
+-- Copyright: 2001, Paul G. Crismer, Eric Fafchamps
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

@@ -2,8 +2,8 @@ indexing
 	description: "Amount of a currency"
 	limitation: "MONEY doesn't inherit of COMPARABLE because order operators (=,<,>,...) can't be symmetric when A.currency /= B.currency"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 08:37:25 $";
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $";
+	revision: "$Revision: 1.2 $"
 
 class 
 	EMO_MONEY
@@ -21,7 +21,7 @@ feature {NONE} -- Initialization
 	make (an_amount: DOUBLE; a_currency: EMO_CURRENCY) is
 			-- Initialise with 'an_amount'  of 'a_currency'.
 		require
-			currency_defined: a_currency /= Void
+			currency_set: a_currency /= Void
 		do
 			currency := a_currency
 			amount := an_amount
@@ -124,8 +124,8 @@ feature -- Comparison
 
 feature -- Element change
 
-	def_amount (an_amount: DOUBLE) is
-			-- Define amount with `an_amount'.
+	set_amount (an_amount: DOUBLE) is
+			-- Set amount with `an_amount'.
 		do
 			amount := an_amount
 		ensure
@@ -276,25 +276,25 @@ feature {NONE} -- Implementation
 			-- Standard formatter for money (used to convert a string representation to a double)
 		once
 			!!Result.make (40)
-			Result.def_padding_character (' ')
-			Result.def_overflow_character ('*')	
-			Result.def_prefix_string (Void)
-			Result.def_suffix_string (Void)
+			Result.set_padding_character (' ')
+			Result.set_overflow_character ('*')	
+			Result.set_prefix_string (Void)
+			Result.set_suffix_string (Void)
 			Result.left_justify
 			Result.enable_size_reduction
-			Result.def_thousand_separator (',')
+			Result.set_thousand_separator (',')
 			Result.hide_positive_sign
 			Result.show_negative_sign
 			Result.show_zero
 			Result.disable_zero_prefix
 			Result.hide_thousand_separator
-			Result.def_decimal_character ('.')
+			Result.set_decimal_character ('.')
 			Result.show_trailing_zero
-			Result.def_no_decimals_filler (Void)	
+			Result.set_no_decimals_filler (Void)	
 		end
 
 invariant
-	currency_defined: currency /= Void
+	currency_set: currency /= Void
 
 end -- class EMO_MONEY
 

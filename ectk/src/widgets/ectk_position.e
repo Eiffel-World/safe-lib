@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that represents a position in a character based system"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:15:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/19 07:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_POSITION
@@ -19,8 +19,8 @@ feature {NONE} -- Initialization
 			x_positif: a_x >= 0
 			y_positif: a_y >= 0
 		do
-			def_x (a_x)
-			def_y (a_y)
+			set_x (a_x)
+			set_y (a_y)
 		ensure
 			x_copied: x = a_x
 			y_copied: y = a_y
@@ -39,11 +39,11 @@ feature {NONE} -- Initialization
 		require
 			window_not_void: a_window /= Void
 		do
-			def_x (a_window.width - 1)
-			def_y (a_window.height - 1)
+			set_x (a_window.width - 1)
+			set_y (a_window.height - 1)
 		ensure
-			x_defined: x = a_window.width - 1
-			y_defined: y = a_window.height - 1
+			x_set: x = a_window.width - 1
+			y_set: y = a_window.height - 1
 		end
 feature -- Access
 
@@ -55,8 +55,8 @@ feature -- Access
 
 feature -- Element change
 
-	def_x (a_x: INTEGER) is
-			-- Define x with `a_x'.
+	set_x (a_x: INTEGER) is
+			-- Set x with `a_x'.
 		require
 			x_positif: x >= 0
 		do
@@ -65,8 +65,8 @@ feature -- Element change
 			x_copied: x = a_x
 		end
 
-	def_y (a_y: INTEGER) is
-			-- Define y with `a_y'.
+	set_y (a_y: INTEGER) is
+			-- Set y with `a_y'.
 		require
 			y_positif: y >= 0
 		do
