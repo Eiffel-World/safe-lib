@@ -1,7 +1,7 @@
 indexing
 	description: "eCurses Hello World'"
-	version: "$Revision: 1.1 $"
-	date:	"$Date: 2000/01/07 11:33:32 $"
+	version: "$Revision: 1.2 $"
+	date:	"$Date: 2003/01/26 13:35:14 $"
 	Author: "Paul G. Crismer"
 class
 	HELLO_WORLD
@@ -24,14 +24,17 @@ feature
 		end
 
 
-end -- class BASIC_TEST
+end -- class HELLO_WORLD
 -------------------------------------------------------
 -- Copyright 1999 Paul G. Crismer, Eric Fafchamps
 -- Released under the Eiffel Forum free license
 -------------------------------------------------------
 -- $Log: hello_world.e,v $
--- Revision 1.1  2000/01/07 11:33:32  pgcrism
--- Initial revision
+-- Revision 1.2  2003/01/26 13:35:14  pgcrism
+-- .xace files added; old sebuild.bat, ace and .se file have been deleted
+--
+-- Revision 1.1.1.1  2000/01/07 11:33:32  pgcrism
+-- Initial checkin
 --
 --
 	
