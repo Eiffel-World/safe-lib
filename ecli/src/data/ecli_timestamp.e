@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIMESTAMP values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/15 10:24:10 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2001/09/16 12:49:38 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -202,8 +202,10 @@ feature -- Conversion
 				Result.append (pad_integer_2 (minute))
 				Result.append_character (':')
 				Result.append (pad_integer_2 (second))
-				Result.append_character ('.')
-				Result.append (nanosecond.out)
+				if nanosecond > 0 then
+					Result.append_character ('.')
+					Result.append (nanosecond.out)
+				end
 			end
 		end
 			
