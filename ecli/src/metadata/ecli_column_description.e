@@ -1,8 +1,11 @@
 indexing
 	description: "Description of result-set column"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:39 $"
-	revision: "$Revision: 1.6 $"
+	
+	library: "ECLI"
+	
+	date: "$Date: 2003/03/01 13:32:36 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -23,6 +26,7 @@ inherit
 		end
 
 	KL_IMPORTED_STRING_ROUTINES
+
 creation
 	make
 
@@ -68,7 +72,7 @@ feature {NONE} -- Implementation
 		
 end -- class ECLI_COLUMN_DESCRIPTION
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

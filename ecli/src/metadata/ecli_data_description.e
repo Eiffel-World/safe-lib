@@ -1,8 +1,11 @@
 indexing
 	description: "Properties of an ECLI data item"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:36 $"
-	revision: "$Revision: 1.3 $"
+	
+	library: "ECLI"
+	
+	date: "$Date: 2003/03/01 13:32:36 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -31,7 +34,7 @@ feature -- Status report
 		
 end -- class ECLI_DATA_DESCRIPTION
 --
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --
