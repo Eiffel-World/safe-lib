@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DEVICE"
-	date: "$Date: 2003/12/30 12:50:58 $";
-	revision: "$Revision: 1.7 $";
+	date: "$Date: 2003/12/30 21:12:43 $";
+	revision: "$Revision: 1.8 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -12,6 +12,11 @@ inherit
 	DRAWABLE
 	
 	ABSTRACT_DEVICE
+	
+	SHARED_OS
+		export
+			{NONE} all
+		end
 	
 feature {NONE} -- Initialization
 
@@ -136,23 +141,8 @@ feature {NONE} -- Implementation
 			end
 	end
 
-
 	color_ref_count : ARRAY [INTEGER]
 			-- Color reference count.
-
-feature {NONE} -- Onces
-
-	os : OS is
-			-- Windows operating system.
-		once
-			Create Result
-		end
-
-	swt : SWT is
-			-- Common constants and features.
-		once
-			Create Result
-		end
 
 invariant
 	invariant_clause: -- Your invariant here

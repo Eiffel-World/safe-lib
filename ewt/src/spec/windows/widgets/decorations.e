@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DECORATIONS"
-	date: "$Date: 2003/12/30 12:50:58 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2003/12/30 21:12:43 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -15,6 +15,11 @@ inherit
 		end
 		
 	ABSTRACT_DECORATIONS
+	
+	SHARED_OS
+		export
+			{NONE} all
+		end
 	
 feature {NONE} -- Initialization
 
@@ -63,11 +68,16 @@ feature {NONE} -- Implementation
 
 	create_widget is
 		do
-			--	FIXME
 			Precursor
---			swFlags = OS.IsWinCE ? OS.SW_SHOWMAXIMIZED : OS.SW_SHOWNOACTIVATE;
---			hAccel = -1;
+			sw_flags := os.SW_SHOWNOACTIVATE
+			h_accel := -1;
 		end
+
+feature {NONE} -- Attributes
+
+	h_accel : INTEGER
+	
+	sw_flags : INTEGER
 
 invariant
 	invariant_clause: -- Your invariant here

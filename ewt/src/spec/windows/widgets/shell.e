@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of an ABSTRACT_SHELL"
-	date: "$Date: 2003/12/30 12:50:58 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2003/12/30 21:12:43 $";
+	revision: "$Revision: 1.7 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -16,11 +16,6 @@ inherit
 			make as make_decorations
 		redefine
 			get_display
-		end
-	
-	XS_IMPORTED_UINT32_ROUTINES
-		export
-			{NONE} all
 		end
 		
 creation

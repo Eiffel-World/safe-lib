@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_SCROLLABLE"
-	date: "$Date: 2003/12/30 12:50:58 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/30 21:12:43 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -58,9 +58,17 @@ feature {NONE} -- Implementation
 		do
 			-- FIXME
 			Precursor
---			if ((style & SWT.H_SCROLL) != 0) horizontalBar = createScrollBar (SWT.H_SCROLL);
---			if ((style & SWT.V_SCROLL) != 0) verticalBar = createScrollBar (SWT.V_SCROLL);
---		}
+			if UINT32_.u_and (style, swt.Style_event_h_scroll) /= 0 then
+				-- horizontalBar = createScrollBar (swt.Style_event_h_scroll)
+			end
+			if UINT32_.u_and (style, swt.style_V_SCROLL) /= 0 then
+				-- verticalBar = createScrollBar (swt.style_V_SCROLL)
+			end
+		end
+
+	window_class : TCHAR is
+		do		
+			Result := get_display.window_class
 		end
 
 invariant

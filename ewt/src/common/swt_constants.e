@@ -11,8 +11,8 @@ indexing
 					These constants are marked as HINT. The set of widgets which support a particular HINT may change from release to release, 
 					although we typically will not withdraw support for a HINT once it is made available.
 					]"
-	date: "$Date: 2003/12/29 16:49:47 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/30 21:12:43 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 	
@@ -488,6 +488,10 @@ feature -- Accesss
 			-- This means that children will be assigned the orientation of their parent.
 			-- To override this behavior and force an orientation for a child, explicitly set the orientation of the child when that child is created.
 			-- Used By : Control, Menu and GC.
+
+	style_MIRRORED : INTEGER is 134217728
+			--  Style constant to indicate coordinate mirroring (value is 1<<27).
+	 		-- Used By: Control, Menu,
 
 	style_NO_RADIO_GROUP  : INTEGER is 4194304	--style constant for preventing child radio group behavior (value is 1<<22)  
 

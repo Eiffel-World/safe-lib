@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DISPLAY"
-	date: "$Date: 2003/12/30 12:50:58 $";
-	revision: "$Revision: 1.7 $";
+	date: "$Date: 2003/12/30 21:12:43 $";
+	revision: "$Revision: 1.8 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -29,6 +29,11 @@ inherit
 	MSGPROC_CALLBACKABLE
 	
 	XS_IMPORTED_UINT32_ROUTINES
+
+	SHARED_SWT
+		export
+			{NONE} all
+		end
 	
 creation
 	make, make_by_device_data
@@ -68,6 +73,33 @@ feature {DISPLAY} -- Access
 	trim_enabled : BOOLEAN
 		-- static
 
+feature {SCROLLABLE} -- Access
+
+	window_class : TCHAR
+
+feature {CONTROL} -- Access
+
+	system_font : POINTER is
+			-- System font handle.
+		local
+			a_font_handle : POINTER
+		do
+			if system_fonts /= Void then
+				if not system_fonts.is_empty then
+					a_font_handle := system_fonts.item (system_fonts.upper)
+				end
+			end
+			if a_font_handle = default_pointer then
+				a_font_handle := os.get_stock_object_external (os.Default_gui_font)
+			end
+			if a_font_handle = default_pointer then
+				a_font_handle := os.get_stock_object_external (os.System_font)
+			end
+			Result := a_font_handle
+		ensure
+			result_defined : Result /= Void
+		end
+
 feature {NONE} -- Access
 
 	window_proc_pointer : POINTER
@@ -77,8 +109,6 @@ feature {NONE} -- Access
 	thread_id : INTEGER
 	
 	process_id : INTEGER
-	
-	window_class : TCHAR
 
 	window_name : STRING is "SWT_Window"
 
@@ -335,27 +365,6 @@ feature {NONE} -- Implementation
 			a_status : INTEGER
 		do
 			a_status := os.release_dc_external (default_pointer, a_gc_handle)
-		end
-
-	system_font : POINTER is
-			-- System font handle.
-		local
-			a_font_handle : POINTER
-		do
-			if system_fonts /= Void then
-				if not system_fonts.is_empty then
-					a_font_handle := system_fonts.item (system_fonts.upper)
-				end
-			end
-			if a_font_handle = default_pointer then
-				a_font_handle := os.get_stock_object_external (os.Default_gui_font)
-			end
-			if a_font_handle = default_pointer then
-				a_font_handle := os.get_stock_object_external (os.System_font)
-			end
-			Result := a_font_handle
-		ensure
-			result_defined : Result /= Void
 		end
 
 	system_fonts : ARRAY [POINTER]

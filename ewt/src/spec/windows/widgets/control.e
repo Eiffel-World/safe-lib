@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_CONTROL"
-	date: "$Date: 2003/12/30 12:50:58 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2003/12/30 21:12:43 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -158,22 +158,137 @@ feature -- Constants
 
 feature {NONE} -- Implementation
 
+	create_handle is
+		local
+			l_hwnd_parent : POINTER
+			l_handle_IMC : POINTER
+			l_bits : INTEGER
+			xs_handle : XS_C_POINTER
+			dummy : INTEGER
+		do		
+			l_hwnd_parent := default_pointer
+			if (handle /= default_pointer) then
+				l_hwnd_parent := handle
+			else
+				if parent /= Void then
+					l_hwnd_Parent := parent.handle
+				end
+			end
+			handle := os.create_window_ex_a_external (
+						widget_ext_style ,
+						window_class.handle,
+						default_pointer,
+						widget_style,
+						os.Cw_usedefault,
+						0,
+						os.Cw_usedefault,
+						0,
+						l_hwnd_parent,
+						default_pointer,
+						os.get_module_handle_a_external (default_pointer),
+						default_pointer)
+			if handle = default_pointer then
+				error (swt.Error_no_handles)
+			end
+			l_bits := os.get_window_long_a_external (handle, os.Gwl_style)
+			if UINT32_.u_and (l_bits,os.Ws_child) /= 0 then
+				Create xs_handle.make
+				xs_handle.put (handle)
+				dummy := os.set_window_long_a_external (handle, os.Gwl_id, xs_handle.as_integer)
+			end
+			if os.is_db_locale and (parent /= Void) then
+--				l_handle_IMC := os. ImmGetContext (hwndParent) -- FIXME not found in OS
+--				os.ImmAssociateContext (handle, l_handle_IMC)  -- FIXME not found in OS
+--				os.ImmReleaseContext (hwndParent, l_handle_IMC) -- FIXME not found in OS
+			end
+		end
+
+	check_mirrored is
+		do
+-- FIXME
+--			if ((style & SWT.RIGHT_TO_LEFT) != 0) {
+--				int bits = OS.GetWindowLong (handle, OS.GWL_EXSTYLE);
+--				if ((bits & OS.WS_EX_LAYOUTRTL) != 0) style |= SWT.MIRRORED;
+--			}
+		end
+
+
 	create_widget is
 		do
+			foreground := -1
+			background := -1
+			check_orientation (parent)
+			create_handle
+			register
+			subclass
+			set_default_font
+			check_mirrored
+		end
+
+	register is
+		do
+			-- FIXME
+			-- WidgetTable.put (handle, this)
+		end
+
+	set_default_font is
+		local
+			l_display : DISPLAY
+			l_handle_font : XS_C_POINTER
+			dummy : INTEGER
+		do
+			l_display := get_display
+			Create l_handle_font.make
+			l_handle_font.put (l_display.system_font)
+			dummy := os.send_message_a_external (handle, os.Wm_setfont, l_handle_font.as_integer, 0)
+		end
+
+	subclass is
+		do
+-- FIXME
+--			int oldProc = windowProc ();
+--			int newProc = getDisplay ().windowProc;
+--			if (oldProc == newProc) return;
+--			OS.SetWindowLong (handle, OS.GWL_WNDPROC, newProc);			
+		end
+
+	widget_ext_style : INTEGER is
+		do	
 --	FIXME
---			foreground = background = -1;
---			checkOrientation (parent);
---			createHandle ();
---			register ();
---			subclass ();
---			setDefaultFont ();
---			checkMirrored ();
+--			int bits = 0;
+--			if ((style & SWT.BORDER) != 0) bits |= OS.WS_EX_CLIENTEDGE;
+--			/*
+--			* Feature in Windows NT.  When CreateWindowEx() is called with
+--			* WS_EX_LAYOUTRTL or WS_EX_NOINHERITLAYOUT, CreateWindowEx()
+--			* fails to create the HWND. The fix is to not use these bits.
+--			*/
+--			if ((OS.WIN32_MAJOR << 16 | OS.WIN32_MINOR) < (4 << 16 | 10))  {
+--				return bits;
+--			} 
+--			bits |= OS.WS_EX_NOINHERITLAYOUT;
+--			if ((style & SWT.RIGHT_TO_LEFT) != 0) bits |= OS.WS_EX_LAYOUTRTL;
+--			return bits;
 --		}
 		end
 
+	widget_style : INTEGER is
+		do
+			--|	Force clipping of siblings by setting WS_CLIPSIBLINGS
+			Result := UINT32_.u_or (UINT32_.u_or (os.Ws_child, os.Ws_visible), os.Ws_clipsiblings)
+		end
+
+
+	window_class : TCHAR is
+		deferred		
+		end
+		
 feature {NONE} -- Attributes
 
 	parent : COMPOSITE
+
+	foreground : INTEGER
+	
+	background : INTEGER
 
 invariant
 	invariant_clause: -- Your invariant here
