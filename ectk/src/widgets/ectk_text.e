@@ -1,8 +1,8 @@
 indexing
 	description: "Widget that let you edit a TEXT optionally composed of multiple paragraphs"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/19 07:26:15 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/11/07 11:49:47 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECTK_TEXT
@@ -78,9 +78,26 @@ feature -- Basic operations
 
 	refresh is
 			-- Refresh with current model.
+		local
+			a_text_position: TEXT_POSITION
+			a_length: INTEGER
 		do
 			text.copy (model_querist.item)
 			initialize_map
+			
+			--| Restore cursor on first if current position is invalid now
+			if  first_visible_row + cursor_position.y > map.count then
+				!!cursor_position.make_origin
+				first_visible_row := 1
+			else
+				a_text_position := map.item (first_visible_row + cursor_position.y)
+				a_length := text.paragraph (a_text_position.paragraph_position).count - a_text_position.character_position + 1
+				if cursor_position.x > a_length - 1 then					
+					!!cursor_position.make_origin
+					first_visible_row := 1
+				end
+			end
+			
 			refresh_from_row (0)
 		end
 
