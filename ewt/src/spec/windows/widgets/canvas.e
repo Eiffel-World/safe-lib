@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_CANVAS"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2004/06/29 19:57:56 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -12,6 +12,11 @@ inherit
 	COMPOSITE
 	
 	ABSTRACT_CANVAS
+		undefine
+			release_handle,
+			destroy_widget,
+			release_widget
+		end
 
 feature {NONE} -- Initialization
 

@@ -11,14 +11,21 @@ indexing
 	Dispose
 	
 	]"
-	date: "$Date: 2004/06/29 16:49:46 $";
-	revision: "$Revision: 1.7 $";
+	date: "$Date: 2004/06/29 19:57:42 $";
+	revision: "$Revision: 1.8 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
 deferred class
 	ABSTRACT_WIDGET
 	
+inherit
+	
+	XS_IMPORTED_UINT32_ROUTINES
+		export
+			{NONE} all
+		end
+		
 feature {NONE} -- Initialization
 
 feature -- Access
@@ -30,15 +37,22 @@ feature -- Access
 		deferred
 		end
 
+	state : INTEGER
+	
 feature -- Measurement
 
 feature -- Comparison
 
 feature -- Status report
 
-	is_resource_disposed : BOOLEAN
+	is_resource_disposed : BOOLEAN is
 			-- Is the operating system resource of `Current' disposed?
-
+		do
+			Result := UINT32_.u_and (state, DISPOSED_constant) /= 0
+		end
+		
+	is_widget_released : BOOLEAN
+	
 feature -- Status setting
 
 feature -- Cursor movement
@@ -73,21 +87,76 @@ feature -- Basic operations
 	dispose_resource is
 			-- Disposes of the operating system resource of `Current'.
 		do
---			FIXME
---			if (isDisposed ()) return;
---			if (!isValidThread ()) error (SWT.ERROR_THREAD_INVALID_ACCESS);
 			if is_resource_disposed then
 				do_nothing
 			else
-	--			release_child
-	--			release_widget
-	--			destroy_widget		
-			end
-			
+--			if (!isValidThread ()) error (SWT.ERROR_THREAD_INVALID_ACCESS);
+				release_child
+				release_widget
+				destroy_widget		
+			end			
 		ensure
 			is_resource_disposed : is_resource_disposed
 		end
 
+	release_child is
+			-- * Releases the receiver, a child in a widget hierarchy,
+			-- * from its parent.
+			-- * <p>
+			-- * When a widget is destroyed, it may be necessary to remove
+			-- * it from an internal data structure of the parent. When
+			-- * a widget has no handle, it may also be necessary for the
+			-- * parent to hide the widget or otherwise indicate that the
+			-- * widget has been disposed. For example, disposing a menu
+			-- * bar requires that the menu bar first be released from the
+			-- * shell when the menu bar is active.  This could not be done
+			-- * in <code>destroyWidget</code> for the menu bar because the
+			-- * parent shell as well as other fields have been null'd out
+			-- * already by <code>releaseWidget</code>.
+			-- * </p>
+			-- * This method is called first when a widget is disposed.
+		do
+		end
+		
+	release_widget is
+		do
+			
+			is_widget_released := True
+		end
+		
+	destroy_widget is
+			-- * Destroys the widget in the operating system and releases
+			-- * the widget's handle.  If the widget does not have a handle,
+			-- * this method may hide the widget, mark the widget as destroyed
+			-- * or do nothing, depending on the widget.
+			-- * <p>
+			-- * When a widget is destroyed in the operating system, its
+			-- * descendents are also destroyed by the operating system.
+			-- * This means that it is only necessary to call <code>destroyWidget</code>
+			-- * on the root of the widget tree.
+			-- * </p><p>
+		require
+			is_widget_released: is_widget_released
+		do
+			release_handle
+		end
+
+	release_handle is
+				-- * Releases the widget's handle by zero'ing it out.
+				-- * Does not destroy or release any operating system
+				-- * resources.
+				-- * <p>
+				-- * This method is called after <code>releaseWidget</code>
+				-- * or from <code>destroyWidget</code> when a widget is being
+				-- * destroyed to ensure that the widget is marked as destroyed
+				-- * in case the act of destroying the widget in the operating
+				-- * system causes application code to run in callback that
+				-- * could access the widget.
+				-- * </p>
+		do
+			state := UINT32_.u_or (state, DISPOSED_constant)
+		end
+		
 	check_widget is
 		do
 --FIXME
@@ -139,6 +208,19 @@ feature -- Obsolete
 feature -- Inapplicable
 
 feature -- Constants
+
+	DISABLED_constant : INTEGER is 64 --	= 1<<6;
+	HIDDEN_constant : INTEGER is 128 --			= 1<<7;
+--//	static final int FOREGROUND		= 1<<8;
+--//	static final int BACKGROUND		= 1<<9;
+	DISPOSED_constant : INTEGER is 1024 --		= 1<<10;
+--//	static final int HANDLE			= 1<<11;
+	CANVAS_constant : INTEGER is 4096 --		= 1<<12;
+--	
+--	/* Default widths for widgets */
+	DEFAULT_WIDTH_constant : INTEGER is 64 --	= 64;
+	DEFAULT_HEIGHT_constant : INTEGER is 64 --	= 64;
+	Mnemonic_constant : CHARACTER is '&'
 
 feature {NONE} -- Implementation
 

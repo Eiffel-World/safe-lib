@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of an ABSTRACT_SHELL"
-	date: "$Date: 2004/06/29 16:49:46 $";
-	revision: "$Revision: 1.9 $";
+	date: "$Date: 2004/06/29 19:57:56 $";
+	revision: "$Revision: 1.10 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -10,6 +10,11 @@ class
 
 inherit
 	ABSTRACT_SHELL
+		undefine
+			release_handle,
+			destroy_widget,
+			release_widget
+		end
 	
 	DECORATIONS
 		rename
@@ -17,7 +22,9 @@ inherit
 		redefine
 			get_display,
 			widget_style,
-			init_static
+			init_static,
+			call_window_proc,
+			create_handle
 		end
 		
 creation
@@ -160,6 +167,21 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
+	call_window_proc (msg: INTEGER; wparam: INTEGER; lparam: INTEGER) : INTEGER is
+		do
+			if parent /= Void then
+				if handle /= default_pointer then
+					if msg = os.WM_KILLFOCUS or else msg = os.WM_SETFOCUS then
+						Result := os.def_window_proc_a (handle, msg, wParam, lparam)
+					else
+						Result := os.call_window_proc_a (dialog_proc_pointer, handle, msg, wparam, lparam)
+					end
+				end
+			else
+				Result := Precursor (msg, wparam, lparam)
+			end			
+		end
+		
 	open is
 			-- Moves `Current' to the top of the drawing order for the display on which it was created (so that all other
 			-- shells on that display, which are not `Current' 's children will be drawn behind it), marks it visible, 
@@ -214,6 +236,33 @@ feature -- Constants
 
 feature {NONE} -- Implementation
 
+	create_handle is
+		local
+			l_embedded : BOOLEAN
+			l_bits : INTEGER
+			res : INTEGER
+		do
+			l_embedded := handle /= default_pointer
+			Precursor
+			if not l_embedded then
+				l_bits := os.get_window_long_a (handle, os.GWL_STYLE)
+				l_bits := UINT32_.u_and (l_bits, UINT32_.u_not (UINT32_.u_or (os.WS_OVERLAPPED, os.WS_CAPTION)))
+				if UINT32_.u_and (style, swt.Style_title) /= 0 then
+					l_bits := UINT32_.u_or (l_bits, os.WS_CAPTION)
+				end
+				if UINT32_.u_and (style, swt.Style_no_trim) /= 0 then
+					if UINT32_.u_and (style, UINT32_.u_or (swt.style_border , swt.style_resize)) = 0 then
+						l_bits := UINT32_.u_or (l_bits, os.WS_BORDER)
+					end
+				end
+				res := os.set_window_long_a (handle, os.GWL_STYLE, l_bits)
+			end
+			if os.is_db_locale then
+--		hIMC = OS.ImmCreateContext ();
+--		if (hIMC != 0) OS.ImmAssociateContext (handle, hIMC);
+			end
+		end
+		
 	dialog_proc_pointer : POINTER
 	
 	dialog_class : TCHAR is

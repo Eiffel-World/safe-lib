@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DECORATIONS"
-	date: "$Date: 2004/06/29 16:49:46 $";
-	revision: "$Revision: 1.7 $";
+	date: "$Date: 2004/06/29 19:57:56 $";
+	revision: "$Revision: 1.8 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -13,10 +13,16 @@ inherit
 		redefine
 			create_widget,
 			widget_ext_style,
-			widget_style
+			widget_style,
+			create_handle
 		end
 		
 	ABSTRACT_DECORATIONS
+		undefine
+			release_handle,
+			destroy_widget,
+			release_widget
+		end
 	
 	SHARED_OS
 		export
@@ -84,6 +90,18 @@ feature -- Constants
 
 feature {NONE} -- Implementation
 
+	create_handle is
+		do
+			Precursor
+			if parent = Void then
+				do_nothing
+			else
+--FIXME
+--				set_parent
+--				set_system_menu
+			end
+		end
+		
 	create_widget is
 		do
 			Precursor

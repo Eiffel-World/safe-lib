@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_SCROLLABLE"
-	date: "$Date: 2004/06/20 09:16:51 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2004/06/29 19:57:56 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -17,6 +17,11 @@ inherit
 		end
 		
 	ABSTRACT_SCROLLABLE
+		undefine
+			release_handle,
+			destroy_widget,
+			release_widget
+		end
 	
 feature {NONE} -- Initialization
 
@@ -46,7 +51,16 @@ feature -- Duplication
 
 feature -- Miscellaneous
 
-feature -- Basic operations
+feature {CONTROL}-- Basic operations
+
+	call_window_proc (msg, wParam, lParam : INTEGER) : INTEGER is
+		do
+			if handle = default_pointer then
+				Result := 0
+			else
+				Result := os.def_window_proc_a (handle, msg, wParam, lParam)
+			end
+		end
 
 feature -- Obsolete
 

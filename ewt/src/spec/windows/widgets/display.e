@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DISPLAY"
-	date: "$Date: 2004/06/29 16:49:46 $";
-	revision: "$Revision: 1.10 $";
+	date: "$Date: 2004/06/29 19:57:56 $";
+	revision: "$Revision: 1.11 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -34,6 +34,11 @@ inherit
 	XS_IMPORTED_UINT32_ROUTINES
 
 	SHARED_SWT
+		export
+			{NONE} all
+		end
+	
+	SHARED_WIDGET_TABLE
 		export
 			{NONE} all
 		end
@@ -156,10 +161,6 @@ feature {NONE} -- Access
 			create Result.make_new_unshared
 		end
 		
-	widget_table : WIDGET_TABLE is
-		once
-			create Result.make
-		end
 
 feature {NONE} -- Keyboard and Mouse State
 
@@ -324,7 +325,7 @@ feature {NONE} -- Implementation
 			info : NONCLIENTMETRICS
 			swl_result : INTEGER
 		do
-			Precursor
+			Precursor {DEVICE}
 
 			--	/* Create the callbacks */
 
@@ -546,6 +547,7 @@ feature {NONE} -- Implementation
 			elseif msg = OS.wm_null or else msg = OS.wm_queryendsession then
 				run_async_messages
 			elseif msg = os.wm_queryendsession then
+				do_nothing
 				--| FIXME
 				--			Event event = new Event ();
 				--			sendEvent (SWT.Close, event);

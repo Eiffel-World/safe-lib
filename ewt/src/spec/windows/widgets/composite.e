@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_COMPOSITE"
-	date: "$Date: 2004/06/20 09:16:51 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2004/06/29 19:57:56 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -10,6 +10,11 @@ class
 
 inherit	
 	ABSTRACT_COMPOSITE
+		undefine
+			release_handle,
+			destroy_widget,
+			release_widget
+		end
 	
 	SCROLLABLE
 		redefine
