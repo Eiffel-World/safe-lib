@@ -3,8 +3,8 @@ indexing
 	cluster: 	"ecurses, base";
 	interface: 	"mixin"
 	status: 	"See notice at end of class";
-	date: 		"$Date: 2000/10/01 19:16:52 $";
-	revision: 	"$Revision: 1.2 $";
+	date: 		"$Date: 2001/10/20 13:52:18 $";
+	revision: 	"$Revision: 1.3 $";
 	author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class 
@@ -13,6 +13,10 @@ class
 inherit
 
 	ANY --| Needed To avoid SE errors about is_equal that is not visible in invariant of GENERAL due to export {NONE} all
+
+	CURSES_ERROR_API
+	    export {NONE} all
+	    end
 
 	EXCEPTIONS
 	    export {NONE} all
@@ -58,16 +62,6 @@ feature {NONE} -- helper procedure
 			raise (message)
 		end
 	    end
-
-feature {NONE} -- C interface
-
-    c_ecurses_err: INTEGER is
-	external "C"
-	end
-
-    c_ecurses_ok: INTEGER is
-	external "C"
-	end
 
 end -- class CURSES_ERROR_HANDLING
 -----------------------------------------------------------
