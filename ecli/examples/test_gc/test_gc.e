@@ -1,8 +1,8 @@
 indexing
 	description: "Test for objects garbage collection";
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/08/04 09:37:25 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 class
 	TEST_GC
@@ -108,11 +108,25 @@ feature -- Initialization
 				memory.full_collect
 			end
 		rescue
-			a_ok := True
+			a_tried := True
 			retry
 		end
 	
+	do_case_b is
+		do
+		end
+	
+	do_case_c is
+		do
+		end
 		
+	do_case_d is
+		do
+		end
+		
+	do_case_e is
+		do
+		end
 
 	
 	args :  expanded ARGUMENTS

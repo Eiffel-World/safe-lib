@@ -1,8 +1,8 @@
 indexing
 	description: "Interactive SQL";
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2001/08/04 09:37:25 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -34,7 +34,16 @@ feature -- Initialization
 				end
 				-- definition of statement on session
 				!! statement.make (session)
+				--
+				-- interactive session
+				--
 				do_session
+				
+				-- closing statement
+				statement.close
+				-- disconnecting and closing session
+				session.disconnect
+				session.close
 			end;
 		end
 				

@@ -1,8 +1,8 @@
 indexing
 	description: "Transaction test appliation";
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2001/08/04 09:37:25 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 class
 	TRANSACT
@@ -33,11 +33,23 @@ feature -- Initialization
 				end
 				-- definition of statement on session
 				!! statement.make (session)
-				do_session
+				--
+				-- actual test 
+				--
+				if session.is_transaction_capable then
+					do_test
+				else
+					io.put_string ("The data source is not transaction-capable !")
+				end
+				--
+				-- cleanup
+				statement.close
+				session.disconnect
+				session.close
 			end;
 		end
 				
-	do_session is
+	do_test is
 		do
 			show_initial_message
 			create_table
