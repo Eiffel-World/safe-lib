@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2004/12/07 21:03:41 $"
 
 class PO_REFERENCE [G -> PO_PERSISTENT]
 
@@ -98,7 +98,7 @@ feature {PO_ADAPTER, PO_PERSISTENT, PO_REFERENCE_ACCESS} -- Element change
 			-- reset reference
 		do
 			pid := Void
-			object := Void
+			set_object (Void)
 		end
 		
 feature {NONE} -- Implementation
@@ -144,5 +144,13 @@ feature {NONE} -- Implementation
 				end
 			end
 		end
-	
+
+	set_object (an_object : G) is
+			-- Set `object' to `an_object'.
+		do
+			object := an_object
+		ensure
+			object_set: object = an_object
+		end
+		
 end
