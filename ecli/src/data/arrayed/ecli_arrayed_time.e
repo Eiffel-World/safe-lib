@@ -1,8 +1,8 @@
 indexing
 	description: "SQL TIME arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/07/27 12:46:39 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class
@@ -23,7 +23,7 @@ inherit
 		export
 			{NONE} make_single, set_single, make_default_single
 		undefine
-			release_handle, length_indicator_pointer, as_external, 
+			release_handle, length_indicator_pointer, to_external, 
 			is_null, set_null, 
 			-- is_equal, 
 			out, set_item, as_string

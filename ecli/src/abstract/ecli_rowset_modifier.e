@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that modify the database one rowset at a time."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/07/27 12:46:39 $"
+	revision: "$Revision: 1.10 $"
 
 class
 	ECLI_ROWSET_MODIFIER
@@ -121,7 +121,7 @@ feature -- Basic operations
 			--| advise ODBC that we are using parameter arrays, by column
 			set_status (ecli_c_set_integer_statement_attribute (handle, Sql_attr_param_bind_type, Sql_parameter_bind_by_column))
 			--| bind status array
-			set_status (ecli_c_set_pointer_statement_attribute (handle, Sql_attr_param_status_ptr, rowset_status.as_external, 0))
+			set_status (ecli_c_set_pointer_statement_attribute (handle, Sql_attr_param_status_ptr, rowset_status.to_external, 0))
 			
 			--| bind parameter arrays
 			from index := 1
@@ -154,4 +154,10 @@ feature {NONE} -- Implementation
 			command: not has_results
 		end
 	
+	make_row_count_capable is
+			-- 
+		do
+			create impl_row_count.make
+		end
+		
 end -- class ECLI_ROWSET_MODIFIER

@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2003/07/27 12:46:39 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 class
@@ -22,7 +22,7 @@ inherit
 		export
 			{NONE} make_single
 		undefine
-			release_handle, length_indicator_pointer, as_external, is_null, set_null, set_item, as_string
+			release_handle, length_indicator_pointer, to_external, is_null, set_null, set_item, as_string
 		redefine
 			item, transfer_octet_length, out, trace
 		end
@@ -138,7 +138,7 @@ invariant
 
 end -- class ECLI_ARRAYED_INTEGER
 --
--- Copyright: 2000, Paul G. Crismer, <pgcrism@attglobal.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

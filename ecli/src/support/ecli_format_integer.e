@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that provide integer formatting routines"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/05/08 13:59:24 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/07/27 12:46:39 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ECLI_FORMAT_INTEGER
@@ -34,7 +34,7 @@ feature -- Conversion
 
 end -- class ECLI_FORMAT_INTEGER
 --
--- Copyright: 2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

@@ -3,9 +3,9 @@ indexing
 	
 		"Objects that reflect status of rowset operations. They basically are an array of integer."
 
-	author: "Paul G. Crismer <pgcrism at pi.be>"
-	date: "$Date: 2003/06/12 14:32:02 $"
-	revision: "$Revision: 1.8 $"
+	author: "Paul G. Crismer "
+	date: "$Date: 2003/07/27 12:46:39 $"
+	revision: "$Revision: 1.9 $"
 
 class
 	ECLI_ROWSET_STATUS

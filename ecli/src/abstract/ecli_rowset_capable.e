@@ -1,10 +1,10 @@
 indexing
 	description: "Objects that are capable of operating on a rowset."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/12 14:32:01 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/07/27 12:46:39 $"
+	revision: "$Revision: 1.9 $"
 
-class
+deferred class
 	ECLI_ROWSET_CAPABLE
 
 feature -- Measurement
@@ -49,12 +49,11 @@ feature {NONE} -- implementation
 			end
 		end
 		
-	impl_row_count : XS_C_INT32
+	impl_row_count : XS_C_INT32 is deferred end
 
 	make_row_count_capable is
 			-- 
-		do
-			create impl_row_count.make
+		deferred
 		end
 		
 invariant

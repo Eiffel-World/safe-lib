@@ -1,8 +1,8 @@
 indexing
 	description: "CLI C Interface"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/02 19:50:35 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2003/07/27 12:46:39 $"
+	revision: "$Revision: 1.15 $"
 	licensing: "See notice at end of class"
 
 class
@@ -387,7 +387,7 @@ feature {NONE} -- TIME, DATE, TIMESTAMP getter and setter functions
 
 end -- class ECLI_EXTERNAL_API
 --
--- Copyright: 2000, Paul G. Crismer, <pgcrism@attglobal.net>
+-- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

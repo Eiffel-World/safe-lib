@@ -1,8 +1,8 @@
 indexing
 	description: "SQL TIMESTAMP arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2003/07/27 12:46:39 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 
 class
@@ -28,7 +28,7 @@ inherit
 			as_timestamp,
 			trace,
 			transfer_octet_length, convertible_as_timestamp , convertible_as_date, days_in_month,
-			Integer_format, Calendar
+			Integer_format, Calendar, size
 		redefine
 --			is_equal, copy, 
 			out_item_at, item_at, set_item_at, impl_item --, set_item, set_item_at,
@@ -55,7 +55,7 @@ inherit
 			release_handle,
 			set_date,
 			set_item,
-			as_external,
+			to_external,
 			as_string,
 			year, hour, minute, second, nanosecond, as_date
 --		redefine
