@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/07/29 19:55:08 $"
+	revision: "$Revision: 1.6 $"
 
 
 class
@@ -40,10 +40,12 @@ feature {NONE} -- Initialization
 					set_shared_schema_name (default_schema)
 				end
 				parse_xml_input_file
-				process_document
-				check_modules
-				resolve_parent_classes
-				generate_modules
+				if not has_error then
+					process_document
+					check_modules
+					resolve_parent_classes
+					generate_modules
+				end
 			end
 		end
 
