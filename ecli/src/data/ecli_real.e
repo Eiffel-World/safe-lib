@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL REAL value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:28 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2003/03/01 14:15:56 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 class
@@ -155,7 +155,7 @@ feature -- Basic operations
 
 	out : STRING is
 		local
-			message_buffer : C_STRING
+			message_buffer : XS_C_STRING
 		do
 			if is_null then
 				Result := "NULL"

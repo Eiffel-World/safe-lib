@@ -1,8 +1,12 @@
 indexing
-	description: "C allocated arrays of 32bits integer."
+	description: "C allocated arrays of 32 bits integer."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/03/01 13:49:55 $"
-	revision: "$Revision: 1.1 $"
+	
+	library: "XS_C : eXternal Support C"
+	
+	date: "$Date: 2003/03/01 14:15:57 $"
+	revision: "$Revision: 1.2 $"
+	licensing: "See notice at end of class"
 
 class
 	XS_C_ARRAY_INT32
@@ -32,7 +36,7 @@ feature -- Measurement
 feature -- Element change
 
 	put (value : INTEGER; index : INTEGER) is
-			-- 
+			-- put `value' at `index'
 		local
 			item_ptr : POINTER
 		do
@@ -43,3 +47,8 @@ feature -- Element change
 	actual_value : INTEGER
 	
 end -- class XS_C_ARRAY_INT32
+--
+-- Copyright: 2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL DOUBLE arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:33 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/03/01 14:15:56 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -89,7 +89,7 @@ feature -- Basic operations
 
 	out : STRING is
 		local
-			message_buffer : C_STRING
+			message_buffer : XS_C_STRING
 			i : INTEGER
 		do
 			from 

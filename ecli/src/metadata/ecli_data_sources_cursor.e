@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/03/01 13:32:37 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/03/01 14:15:56 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -154,8 +154,8 @@ feature {ECLI_DATA_SOURCE} -- Implementation
 	name : STRING
 	description : STRING
 	
-	c_name : C_STRING
-	c_description : C_STRING
+	c_name : XS_C_STRING
+	c_description : XS_C_STRING
 
 	actual_name_length : INTEGER
 	actual_description_length : INTEGER

@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/03/01 13:32:36 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/03/01 14:15:56 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 
@@ -155,3 +155,4 @@ end -- class ECLI_COLUMN
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --
+

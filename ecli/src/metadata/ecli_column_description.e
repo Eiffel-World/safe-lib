@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/03/01 13:32:36 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/03/01 14:15:56 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -40,7 +40,7 @@ feature {NONE} -- Initialization
 			valid_maximum: max_name_length > 0
 		local
 			stat : INTEGER
-			c_name : C_STRING
+			c_name : XS_C_STRING
 		do
 			create c_name.make (max_name_length + 1)
 			stat := ecli_c_describe_column (stmt.handle,

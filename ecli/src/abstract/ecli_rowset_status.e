@@ -4,15 +4,15 @@ indexing
 		"Objects that reflect status of rowset operations. They basically are an array of integer."
 
 	author: "Paul G. Crismer <pgcrism at pi.be>"
-	date: "$Date: 2003/02/25 19:39:53 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/03/01 14:15:56 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	ECLI_ROWSET_STATUS
 
 inherit
 
-	C_ARRAY_INT16
+	XS_C_ARRAY_INT16
 
 	ECLI_EXTERNAL_API
 		export 

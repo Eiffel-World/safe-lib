@@ -5,8 +5,8 @@ indexing
 		% and associated information messages"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/02/26 19:33:24 $"
-	revision: 	"$Revision: 1.12 $"
+	date: 		"$Date: 2003/03/01 14:15:56 $"
+	revision: 	"$Revision: 1.13 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -142,7 +142,7 @@ feature {NONE} -- Implementation
 		local
 			count : INTEGER
 			retcode : INTEGER
-			impl_error_buffer : C_STRING
+			impl_error_buffer : XS_C_STRING
 		do
 			if need_diagnostics then
 				impl_cli_state := STRING_.make_buffer (6)

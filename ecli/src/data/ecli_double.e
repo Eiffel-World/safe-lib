@@ -4,8 +4,8 @@ indexing
 		"CLI SQL DOUBLE value"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/28 16:19:53 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2003/03/01 14:15:56 $"
+	revision: "$Revision: 1.14 $"
 	licensing: "See notice at end of class"
 
 class
@@ -144,7 +144,7 @@ feature -- Basic operations
 
 	out : STRING is
 		local
-			message_buffer : C_STRING
+			message_buffer : XS_C_STRING
 		do
 			if is_null then
 				Result := "NULL"

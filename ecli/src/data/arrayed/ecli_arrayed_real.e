@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL REAL arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:34 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/03/01 14:15:56 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -94,7 +94,7 @@ feature -- Basic operations
 	out_item_at (index : INTEGER) : STRING is
 			--
 		local
-			message_buffer : C_STRING
+			message_buffer : XS_C_STRING
 			ext : ECLI_EXTERNAL_TOOLS
 		do
 			create ext
