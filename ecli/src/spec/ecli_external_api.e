@@ -1,8 +1,8 @@
 indexing
 	description: "CLI C Interface"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/12 14:32:02 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2003/06/30 21:24:57 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 
 class
@@ -93,6 +93,10 @@ feature {NONE} -- Implementation
 		external "C"
 		end
 	
+	ecli_c_row_count (stmt : POINTER; count : POINTER) : INTEGER is
+		external "c" 
+		end
+		
 	ecli_c_parameter_count (stmt : POINTER; count : POINTER) : INTEGER  is
 		external "C"
 		end

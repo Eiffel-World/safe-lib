@@ -4,17 +4,14 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/06/30 07:23:45 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/06/30 21:24:57 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 class
 	ECLI_PARAMETER_DESCRIPTION
 
 inherit
 	ECLI_DATA_DESCRIPTION
-		redefine
-			is_equal
-		end
 		
 	-- begin mix-in
 	ECLI_EXTERNAL_TOOLS
@@ -73,12 +70,6 @@ feature -- Access
 			-- maximum number of digits to the right of the decimal point, or the scale of the data. For numeric types only.
 
 feature -- Comparison
-
-	is_equal (other : like Current) : BOOLEAN is
-			-- 
-		do
-			Result := Precursor {ECLI_DATA_DESCRIPTION} (other) and then sql_type_code  = other.sql_type_code and then size = other.size and then decimal_digits = other.decimal_digits 
-		end
 		
 feature {NONE} -- Implementation
 

@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/11 13:11:12 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2003/06/30 21:24:56 $"
+	revision: "$Revision: 1.15 $"
 	licensing: "See notice at end of class"
 
 class
@@ -69,7 +69,7 @@ feature -- Access
 			Result := sql_c_long
 		end
 
-	column_precision: INTEGER is
+	size : INTEGER is
 		do
 			Result := 10
 		end
@@ -107,8 +107,6 @@ feature -- Element change
 			--ecli_c_value_set_value (buffer, $impl_item, transfer_octet_length)
 			c_memory_put_int32 (ecli_c_value_get_value(buffer), value)
 			ecli_c_value_set_length_indicator (buffer, transfer_octet_length)
-		ensure then
-			item_set: item = value
 		end
 
 feature -- Removal

@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/12 10:01:22 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/06/30 21:24:56 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -75,8 +75,6 @@ feature -- Element change
 			-- set item to 'value', truncating if necessary
 		do
 			set_item_at (value, cursor_index)
-		ensure then
-			item_set: item = value
 		end
 
 	set_item_at (value : INTEGER; index : INTEGER) is

@@ -4,8 +4,8 @@ indexing
 		"ISO CLI CHAR (n) values"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:27 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/06/30 21:24:56 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,7 +14,7 @@ class
 inherit
 	ECLI_VARCHAR
 		redefine
-			make, count, sql_type_code, item, truncated
+			make, count, sql_type_code, item, formatted
 		select
 		end
 
@@ -55,9 +55,9 @@ feature -- Status report
 
 feature -- Transformation
 
-	truncated (v : like item) : like item is
+	formatted (v : like item) : like item is
 		do
-			Result := clone (v)
+			create Result.make_from_string (v)
 			format (Result)
 		end
 

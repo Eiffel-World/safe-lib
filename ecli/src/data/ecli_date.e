@@ -4,8 +4,8 @@ indexing
 		"ISO CLI DATE value"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/12 10:01:19 $"
-	revision: "$Revision: 1.17 $"
+	date: "$Date: 2003/06/30 21:24:56 $"
+	revision: "$Revision: 1.18 $"
 	licensing: "See notice at end of class"
 
 class
@@ -114,7 +114,7 @@ feature -- Status report
 			Result := sql_c_type_date
 		end
 
-	column_precision: INTEGER is
+	size : INTEGER is
 		do
 			Result := 10
 		end
@@ -161,8 +161,6 @@ feature -- Element change
 	set_item (other : DT_DATE) is
 		do
 			set (other.year, other.month, other.day)
-		ensure then
-			item_set: item.is_equal (other)
 		end
 
 feature -- Removal

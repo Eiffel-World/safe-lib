@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/26 19:49:18 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/06/30 21:24:57 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	MODULE_PARAMETER
@@ -42,6 +42,8 @@ feature -- Access
 	name: STRING
 
 	metadata : ECLI_COLUMN
+
+	implementation : QA_VALUE
 	
 feature -- Measurement
 
@@ -106,6 +108,18 @@ feature {NONE} -- Element change
 		do
 			name := a_name
 		ensure
+		end
+
+feature -- Element change
+
+	set_implementation (value : QA_VALUE) is
+			-- 
+		require
+			value_exists: value /= Void
+		do
+			implementation := value
+		ensure
+			implementation_assigned: implementation = value
 		end
 
 feature -- Removal

@@ -11,8 +11,8 @@ indexing
 		% or column-wise binding of parameters for modifications.%
 		% Access modes: direct ('item_at'), linear ('start', 'forth', 'item')."
 
-	date: "$Date: 2003/05/08 13:59:23 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/06/30 21:24:56 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	ECLI_GENERIC_ARRAYED_VALUE [G]
@@ -56,6 +56,7 @@ feature -- Element change
 		end
 
 	set_item (value : G) is
+			-- affect 'value' to 'item'
 		do
 			set_item_at (value, cursor_index)
 		end
@@ -69,7 +70,7 @@ feature -- Transformation
 feature -- Duplication
 
 	copy (other : like Current) is
-			-- 
+			-- copy 'other' to Current
 		local
 			index : INTEGER
 		do
@@ -140,7 +141,9 @@ feature -- Conversion
 			Result.append_string (">>")
 		end
 
-	truncated (value : G) : G is
+	formatted (value : G) : G is
+			-- formatted 'value' - does nothing except for CHAR data
+			-- where the result is truncated or padded
 		deferred
 		end
 		

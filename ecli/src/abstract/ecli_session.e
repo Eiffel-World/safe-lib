@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/06/12 14:32:02 $"
-	revision: 	"$Revision: 1.19 $"
+	date: 		"$Date: 2003/06/30 21:24:56 $"
+	revision: 	"$Revision: 1.20 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -188,6 +188,18 @@ feature -- Status report
 			connected_valid: Result implies is_valid
 		end
 
+	is_connection_dead : BOOLEAN is
+			-- is the connection dead ?
+		local
+			uint_result : XS_C_UINT32
+			att : ECLI_CONNECTION_ATTRIBUTE_CONSTANTS
+		do
+			create uint_result.make
+			create att
+			set_status (ecli_c_get_integer_connection_attribute (handle, att.Sql_attr_connection_dead,uint_result.handle))
+			Result := (uint_result.item = att.Sql_cd_true)
+		end
+		
 	is_transaction_capable : BOOLEAN is
 		require
 			connected: is_connected

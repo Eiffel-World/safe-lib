@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI CHAR (n) arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/05/08 13:59:23 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/06/30 21:24:56 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,7 +14,7 @@ inherit
 		export
 		undefine
 		redefine
-			make, content_count, sql_type_code, item_at, truncated
+			make, content_count, sql_type_code, item_at, formatted
 		select
 		end
 
@@ -74,9 +74,9 @@ feature -- Resizing
 
 feature -- Transformation
 
-	truncated (v : like item) : like item is
+	formatted (v : like item) : like item is
 		do
-			Result := clone (v)
+			create Result.make_from_string (v)
 			format (Result)
 		end
 

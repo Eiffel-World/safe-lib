@@ -1,19 +1,29 @@
 indexing
 	description: "Sets of parameters of an access modules"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/11 13:14:36 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/06/30 21:24:57 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	PARAMETER_SET
 
 inherit
 	COLUMN_SET[MODULE_PARAMETER]
+		redefine
+			make
+		end
 
 creation
 	make, make_with_parent_name
 	
 feature {NONE} -- Initialization
+
+	make (a_name: STRING) is
+			-- 
+		do
+			Precursor (a_name)
+			set_equality_tester (create {KL_EQUALITY_TESTER [MODULE_PARAMETER]})
+		end
 		
 feature -- Access
 	

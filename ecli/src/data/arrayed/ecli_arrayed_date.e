@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI DATE arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/12 10:01:21 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2003/06/30 21:24:56 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 class
@@ -152,8 +152,6 @@ feature -- Element change
 	set_item (other : DT_DATE) is
 		do
 			set_item_at (other, cursor_index)
-		ensure then
-			item_set: item.is_equal (other)
 		end
 
 	set_item_at (other : DT_DATE; index : INTEGER) is

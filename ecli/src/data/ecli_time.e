@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIME value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/05/08 13:59:23 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2003/06/30 21:24:56 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 class
@@ -90,7 +90,7 @@ feature -- Status report
 			Result := sql_c_type_time
 		end
 
-	column_precision: INTEGER is
+	size : INTEGER is
 		do
 			Result := 8
 		end
@@ -112,7 +112,7 @@ feature -- Status report
 
 	display_size: INTEGER is
 		do
-			Result := column_precision
+			Result := size
 		end
 
 feature -- Status setting
@@ -145,8 +145,6 @@ feature -- Element change
 	set_item (other : DT_TIME) is
 		do
 			set (other.hour, other.minute, other.second)
-		ensure then
-			item_set: item.is_equal (other)
 		end
 
 feature -- Removal

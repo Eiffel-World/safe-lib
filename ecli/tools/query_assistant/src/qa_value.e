@@ -4,8 +4,8 @@ indexing
 		"  "
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/06/26 19:49:18 $"
-	revision: 	"$Revision: 1.4 $"
+	date: 		"$Date: 2003/06/30 21:24:57 $"
+	revision: 	"$Revision: 1.5 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -53,7 +53,7 @@ feature {NONE} -- implementation
 		do
 			create Result.make (12)
 			Result.append ("make (")
-			Result.append (column_precision.out)
+			Result.append (size.out)
 			Result.append (")")
 		end
 

@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/06/26 19:49:18 $"
-	revision: 	"$Revision: 1.20 $"
+	date: 		"$Date: 2003/06/30 21:24:56 $"
+	revision: 	"$Revision: 1.21 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -296,7 +296,7 @@ feature {ECLI_STATEMENT} -- Basic operations
 				index,
 				c_type_code,
 				sql_type_code,
-				column_precision,
+				size,
 				decimal_digits,
 				to_external,
 				transfer_octet_length,
