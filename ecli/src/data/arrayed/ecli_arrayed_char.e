@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI CHAR (n) arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/22 19:28:48 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/09/28 08:52:04 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -100,7 +100,7 @@ feature {NONE} -- Implementation
 			s_not_void: s /= Void
 		do
 			if s.count > content_count then
-				s.head (content_capacity)
+				s.keep_head (content_capacity)
 			else
 				pad (s, content_capacity)
 			end

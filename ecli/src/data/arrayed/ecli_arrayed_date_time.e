@@ -1,8 +1,8 @@
 indexing
 	description: "Arrayed Date and time objects; synonym of ECLI_TIMESTAMP"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/22 19:28:48 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/09/28 08:52:04 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -10,9 +10,19 @@ class
 
 inherit
 	ECLI_ARRAYED_TIMESTAMP
+		redefine
+			sql_type_code			
+		end
 
 creation
-	make, make_first
+	make
+
+feature -- Access
+
+	sql_type_code : INTEGER is
+		once
+			Result := Sql_datetime
+		end
 
 end -- class ECLI_ARRAYED_DATE_TIME
 --

@@ -1,8 +1,8 @@
 indexing
 	description: "Query assistant"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:16:58 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2002/09/28 08:52:04 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -216,14 +216,15 @@ feature -- Basic operations
 				io.put_string ("+ Prepared%N")
 				if qacursor.has_parameters then
 					-- create and set 'parameters' array
-					create parameters.make (1, qacursor.parameter_count)
+					create parameters.make (1, qacursor.parameters_count)
 					--qacursor.set_parameters (parameters)
 					-- try to describe parameters
-					qacursor.describe_parameters
-					if qacursor.parameters_description = Void then
-						create_parameters_manually
-					else
+					if qacursor.is_describe_parameters_capable then
+						qacursor.describe_parameters
 						create_parameters_automatically
+					else
+						io.put_string ("Data source cannot describe parameters%N")
+						create_parameters_manually
 					end
 					define_parameters
 					qacursor.bind_parameters

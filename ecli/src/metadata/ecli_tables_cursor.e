@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that ..."
+	description: "Objects that search the database repository for tables."
 	author: ""
-	date: "$Date: 2002/09/27 14:19:14 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/09/28 08:52:04 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_TABLES_CURSOR

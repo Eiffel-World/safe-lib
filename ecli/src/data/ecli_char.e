@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI CHAR (n) values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:09 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/09/28 08:52:04 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -80,7 +80,7 @@ feature {NONE} -- Implementation
 			s_not_void: s /= Void
 		do
 			if s.count > count then
-				s.head (capacity)
+				s.keep_head (capacity)
 			else
 				pad (s)
 			end

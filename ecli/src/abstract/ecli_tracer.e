@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that trace SQL execution on an output medium"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:09 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2002/09/28 08:52:04 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -12,7 +12,7 @@ creation
 	make
 	
 feature -- Initialization
-	make (a_medium : IO_MEDIUM) is
+	make (a_medium : like medium) is
 			-- make tracer
 		require
 			medium_exists: a_medium /= Void
@@ -25,7 +25,7 @@ feature -- Initialization
 		
 feature -- Access
 
-	medium : IO_MEDIUM
+	medium : KI_CHARACTER_OUTPUT_STREAM
 
 feature {ECLI_STATEMENT} -- Basic operations
 	
@@ -78,6 +78,7 @@ feature {ECLI_STATEMENT} -- Basic operations
 				index := index + 1
 			end		
 			medium.put_string(";%N")
+			medium.flush
 		end
 		
 feature {ECLI_SESSION} -- Basic operations

@@ -1,8 +1,8 @@
 indexing
 	description: "Date and time objects - SQL: DATETIME"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:11 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/09/28 08:52:04 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -15,7 +15,7 @@ inherit
 		end
 		
 creation
-	make, make_first
+	make, make_first, make_default
 
 feature
 
