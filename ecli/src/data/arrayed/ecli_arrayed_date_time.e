@@ -1,8 +1,8 @@
 indexing
-	description: "Date and time objects; synonym of ECLI_TIMESTAMP"
+	description: "Arrayed Date and time objects; synonym of ECLI_TIMESTAMP"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/09/22 19:28:48 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class

@@ -1,8 +1,8 @@
 indexing
-	description: "CLI SQL INTEGER value"
+	description: "CLI SQL INTEGER arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/15 20:08:48 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/09/22 19:28:48 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -28,19 +28,15 @@ inherit
 creation
 	make
 
-feature -- Initialization
+feature {NONE} -- Initialization
 
 	make (a_capacity : INTEGER) is
 			-- make with `capacity' values
-		require
-			valid_capacity: a_capacity >= 1
 		do
 			buffer := ecli_c_alloc_array_value (4, a_capacity)
 			capacity := a_capacity
 			count := capacity
-		ensure
-			capacity_set: capacity = a_capacity
-			count_set: count = capacity
+			set_all_null
 		end
 
 feature -- Access

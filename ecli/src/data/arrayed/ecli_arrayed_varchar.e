@@ -1,8 +1,8 @@
 indexing
-	description: "ISO CLI VARCHAR (n) values"
+	description: "ISO CLI VARCHAR (n) arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/15 20:08:48 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/09/22 19:28:48 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
