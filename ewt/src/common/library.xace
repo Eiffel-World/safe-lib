@@ -6,8 +6,8 @@
     description: "Xace file for EWT common implementation classes for all platforms"
     copyright: "Copyright (c) 2003-, Paul G. Crismer and Eric Fafchamps"
     license: "Eiffel Forum License v2"
-    date: "$Date: 2003/12/28 22:04:41 $"
-    revision: "$Revision: 1.1 $"
+    date: "$Date: 2003/12/29 16:49:47 $"
+    revision: "$Revision: 1.2 $"
   </description>
  
 	<cluster name="common" location="${EWT}/src/common">
@@ -22,6 +22,7 @@
 		<cluster name="printing" prefix="common_"/>
 		<cluster name="program" prefix="common_"/>
 		<cluster name="widgets" prefix="common_"/>			
+		<cluster name="eiffel" prefix="common_"/>
   	</cluster>						
 </library>
 

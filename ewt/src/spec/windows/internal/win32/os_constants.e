@@ -1,7 +1,7 @@
 indexing
 	description : "OS specific constants"
-	date: "$Date: 2003/12/28 22:04:41 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/29 16:49:48 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 	note: "This class has been obtained by extracting OS related constants from the corresponding Javadoc"
@@ -1053,6 +1053,7 @@ feature -- Constants
 	WS_EX_TOPMOST : INTEGER is 8 
 	WS_EX_TRANSPARENT : INTEGER is 32 
 	WS_HSCROLL : INTEGER is 1048576 
+	WS_OVERLAPPED : INTEGER is 0
 	WS_OVERLAPPEDWINDOW : INTEGER is 13565952 
 	WS_POPUP : INTEGER is -2147483648 
 	WS_SYSMENU : INTEGER is 524288 
@@ -1060,7 +1061,7 @@ feature -- Constants
 	WS_THICKFRAME : INTEGER is 262144 
 	WS_VISIBLE : INTEGER is 268435456 
 	WS_VSCROLL : INTEGER is 2097152 
-
+	
 end 
 
 -- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>

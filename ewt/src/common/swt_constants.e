@@ -11,8 +11,8 @@ indexing
 					These constants are marked as HINT. The set of widgets which support a particular HINT may change from release to release, 
 					although we typically will not withdraw support for a HINT once it is made available.
 					]"
-	date: "$Date: 2003/12/28 22:04:41 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/29 16:49:47 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 	
@@ -60,7 +60,8 @@ feature -- Accesss
 	style_BOTTOM  : INTEGER is 1024	--style constant for align bottom behavior (value is 1<<10, since align DOWN and align BOTTOM are considered the same)  
 
 	BS  : CHARACTER is '%/8/'	--ASCII character convenience constant for the backspace character (value is the CHARACTER '\b') 
-
+	key_BS : INTEGER is 8
+	
 	key_BUTTON1  : INTEGER is 524288	--keyboard and/or mouse event mask indicating that mouse button one was pushed when the event was generated. 
 
 	key_BUTTON2  : INTEGER is 1048576	--keyboard and/or mouse event mask indicating that mouse button two was pushed when the event was generated. 
@@ -158,7 +159,8 @@ feature -- Accesss
 	key_CONTROL  : INTEGER is 262144	--keyboard and/or mouse event mask indicating that the CTRL key was pushed on the keyboard when the event was generated. 
 
 	CR  : CHARACTER is '%/13/'	--ASCII character convenience constant for the carriage return character (value is the CHARACTER '\r') 
-
+	key_CR : INTEGER is 13
+	
 	key_CTRL  : INTEGER is 262144	--keyboard and/or mouse event mask indicating that the CTRL key was pushed on the keyboard when the event was generated (value is 1<<18) 
 
 	CURSOR_APPSTARTING  : INTEGER is 3	--system app startup cursor (value is 3) 
@@ -216,7 +218,8 @@ feature -- Accesss
 	event_Deiconify  : INTEGER is 20	--de-iconify event type (value is 20) 
 
 	DEL  : CHARACTER is '%/127/'	--ASCII character convenience constant for the delete character (value is the CHARACTER with value 127) 
-
+	key_DEL : INTEGER is 127
+	
 	DIALOG_TRIM  : INTEGER is 2144	--trim style convenience constant for the most common dialog shell appearance (value is CLOSE|TITLE|BORDER)  
 
 	event_Dispose  : INTEGER is 12	--dispose event type (value is 12) 
@@ -320,7 +323,8 @@ feature -- Accesss
 	ERROR_WIDGET_DISPOSED  : INTEGER is 24	--SWT error constant indicating that an attempt was made to invoke an SWT operation using a widget which had already been disposed. 
 
 	ESC  : CHARACTER is '%/27/'	--ASCII character convenience constant for the escape character (value is the CHARACTER with value 27) 
-
+	key_ESC : INTEGER is 27
+	
 	event_Expand  : INTEGER is 17	--expand event type (value is 17) 
 
 	key_F1  : INTEGER is 16777226	--keyboard event constant representing the F1 key (value is (1<<24)+10) 
@@ -418,7 +422,11 @@ feature -- Accesss
 	style_LEFT  : INTEGER is 16384	--style constant for align left behavior (value is 1<<14)  
 
 	LF  : CHARACTER is '%/10/'	--ASCII character convenience constant for the line feed character (value is the CHARACTER '\n') 
-
+	key_LF : INTEGER is 10
+	
+	TAB : CHARACTER is '%/9/'
+	key_TAB : INTEGER is 9
+	
 	LINE_DASH  : INTEGER is 2	--line drawing style for dashed lines (value is 2) 
 
 	LINE_DASHDOT  : INTEGER is 4	--line drawing style for alternating dash-dot lines (value is 4) 

@@ -20,8 +20,8 @@ indexing
 	Events:
 		Close, Release	
 	]"
-	date: "$Date: 2003/12/28 22:04:41 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2003/12/29 16:49:47 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -62,8 +62,18 @@ feature -- Resizing
 
 feature -- Transformation
 
-feature -- Conversion
+feature {NONE} -- Conversion
 
+	translate_key (internal_code : INTEGER) : INTEGER is
+		do
+			Result := key_table.swt_from_internal (internal_code)
+		end
+
+	untranslate_key (swt_code : INTEGER) : INTEGER is
+		do
+			Result := Key_table.internal_from_swt (swt_code)
+		end
+		
 feature -- Duplication
 
 feature -- Miscellaneous
@@ -98,6 +108,34 @@ feature -- Constants
 
 feature {NONE} -- Implementation
 
+	create_display (data : DEVICE_DATA) is
+		deferred
+		end
+		
+
+	key_table : KEY_TABLE is
+			-- key table, mapping internal codes to swt codes
+		once
+			create Result.make
+			initialize_key_table
+		end
+		
+	initialize_key_table is
+			-- initialize key table
+		deferred
+		end
+
+	default_display : DISPLAY is
+		do
+			Result := default_display_cell.item
+		end
+		
+	default_display_cell : DS_CELL[DISPLAY] is
+		once
+			Create Result.make (Void)
+		end
+		
+		
 invariant
 	invariant_clause: -- Your invariant here
 

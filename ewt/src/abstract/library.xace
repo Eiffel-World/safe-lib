@@ -6,8 +6,8 @@
     description: "Xace file for EWT abstractions"
     copyright: "Copyright (c) 2003-, Paul G. Crismer and Eric Fafchamps"
     license: "Eiffel Forum License v2"
-    date: "$Date: 2003/12/28 22:04:41 $"
-    revision: "$Revision: 1.1 $"
+    date: "$Date: 2003/12/29 16:49:47 $"
+    revision: "$Revision: 1.2 $"
   </description>
  
   <cluster name="abstract" location="${EWT}/src/abstract">			
@@ -21,7 +21,7 @@
 	<cluster name="ole" prefix="abstract_"/>
 	<cluster name="printing" prefix="abstract_"/>
 	<cluster name="program" prefix="abstract_"/>
-	<cluster name="widgets" prefix="abstract_"/>									
+	<cluster name="widgets" prefix="abstract_"/>
   </cluster>						
 </library>
 
