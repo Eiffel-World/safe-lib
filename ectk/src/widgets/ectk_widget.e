@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that display information in a character window, they have a behaviour that executes commands upon user-events"
 	author: "Fafchamps"
-	date: "$Date: 2001/09/15 07:15:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/21 08:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	ECTK_WIDGET
@@ -85,6 +85,15 @@ feature -- Basic operations
 			end
 			terminate
 			is_event_handler := False
+		end
+
+	terminate_event_loop is
+			-- Terminate the event loop.
+		do
+			last_event := clone (events_catalog.terminate_event)
+		ensure
+			-- Control will be returned to caller of do_events.
+			-- Window remains open.
 		end
 
 feature {NONE} -- Implementation of initialization and behaviour

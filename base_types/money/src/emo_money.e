@@ -2,8 +2,8 @@ indexing
 	description: "Amount of a currency"
 	limitation: "MONEY doesn't inherit of COMPARABLE because order operators (=,<,>,...) can't be symmetric when A.currency /= B.currency"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/19 07:26:15 $";
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/11/21 08:26:38 $";
+	revision: "$Revision: 1.3 $"
 
 class 
 	EMO_MONEY
@@ -11,7 +11,7 @@ class
 inherit
 	PLATFORM
 		redefine
-			is_equal, out
+			is_equal, copy, out
 		end
 creation
 	make
@@ -260,11 +260,13 @@ feature -- Output
 			Result.append_string (currency.identifier)
 		end
 
-feature {NONE} -- Implementation
+feature {EMO_MONEY} -- Implementation
 
 
 	amount: DOUBLE 
 			-- Internal representation
+
+feature { NONE} -- Implementation
 
 	maximum_integer: INTEGER is
 			-- Maximum absolute value of INTEGER type.
@@ -291,6 +293,18 @@ feature {NONE} -- Implementation
 			Result.set_decimal_character ('.')
 			Result.show_trailing_zero
 			Result.set_no_decimals_filler (Void)	
+		end
+
+feature -- Duplication
+
+	copy (other: like Current) is
+			-- Reinitialize by copying state from `other'.
+			-- (This is also used by `clone'.)
+		do
+			if other /= Current then
+				amount := other.amount
+				currency := other.currency
+			end	
 		end
 
 invariant

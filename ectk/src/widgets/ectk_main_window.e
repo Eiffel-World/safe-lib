@@ -1,8 +1,8 @@
 indexing
 	description: "Top level windows that can hold several widgets, they are modal and can overlap"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:15:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/21 08:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	ECTK_MAIN_WINDOW
@@ -26,17 +26,6 @@ feature -- Status report
 			Result := True
 		ensure then
 			Result = True
-		end
-
-feature -- Basic operations
-
-	terminate_event_loop is
-			-- Terminate the event loop.
-		do
-			last_event := clone (events_catalog.terminate_event)
-		ensure
-			-- Control will be returned to caller of do_events.
-			-- Window remains open.
 		end
 
 feature {NONE} -- Implementation of Event handling

@@ -2,8 +2,8 @@ indexing
 	description: "Widgets that manages the traversal of their child widgets"
 	author: "Fafchamps Eric"
 	usage: "Inherit from this class, and in your make routine call in order make_curses_window (or make_subwindow_relative); initialize_widget and refresh"
-	date: "$Date: 2001/09/15 07:15:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/11/21 08:26:15 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	ECTK_CONTAINER [W->ECTK_WIDGET]
@@ -134,12 +134,15 @@ feature -- Cursor movement
 		require
 			valid_index: valid_index (i)
 		do
+			before_child_move
 			children.go_i_th (i)
+			after_child_move
 		end
 
 	start is
 			-- Move to the first editable child widget.
 		do
+			before_child_move
 			from
 				children.start 
 			until
@@ -147,6 +150,7 @@ feature -- Cursor movement
 			loop
 				children.forth	
 			end
+			after_child_move
 		end
 			
 
@@ -156,8 +160,10 @@ feature -- Cursor movement
 			has_widget: has (an_ectk_widget)
 			editable: an_ectk_widget.is_editable
 		do
+			before_child_move
 			children.start
 			children.search_forth (an_ectk_widget)
+			after_child_move
 		ensure
 			moved: item = an_ectk_widget
 		end
@@ -168,6 +174,7 @@ feature -- Cursor movement
 		require
 			not_is_last: not off and then not is_last
 		do
+			before_child_move
 			from
 				children.forth
 			until
@@ -175,6 +182,7 @@ feature -- Cursor movement
 			loop
 				children.forth	
 			end
+			after_child_move
 		end
 
 	back is
@@ -182,6 +190,7 @@ feature -- Cursor movement
 		require
 			not_is_first: not off and then not is_first
 		do
+			before_child_move
 			from
 				children.back
 			until
@@ -189,11 +198,13 @@ feature -- Cursor movement
 			loop
 				children.back
 			end
+			after_child_move
 		end
 
 	finish is
 			-- Move to last editable child widget.
 		do
+			before_child_move
 			from
 				children.finish 
 			until
@@ -201,6 +212,7 @@ feature -- Cursor movement
 			loop
 				children.back	
 			end
+			after_child_move
 		end
 
 		
@@ -213,7 +225,9 @@ feature {NONE} -- Implementation of initialization and behaviour
 			!!children.make
 			initialize_child_widgets
 			initialize_child_widgets_behaviour
+			before_child_move
 			children.start
+			after_child_move
 		end
 
 	initialize_child_widgets is
@@ -256,6 +270,21 @@ feature {NONE} -- Implementation of Event handling
 			else
 				Precursor
 			end
+		end
+
+feature {NONE} -- Internal events
+
+	before_child_move is
+			-- Called before a new child becomes the current child
+		do
+			--| To be redefined by descendants if needed
+		end
+		
+	
+	after_child_move is
+			-- Called after a new child becomes the current child
+		do
+			--| To be redefined by descendants if needed
 		end
 
 feature {NONE} -- Internal state
