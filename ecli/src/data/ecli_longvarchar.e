@@ -4,8 +4,8 @@ indexing
 		"SQL LONGVARCHAR (n) values"
 		
 	author: "Paul-G.Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.17 $"
+	date: "$Date: 2003/08/19 15:59:09 $"
+	revision: "$Revision: 1.18 $"
 	licensing: "See notice at end of class"
 
 class
@@ -32,7 +32,9 @@ feature {NONE} -- Initialization
 			buffer := ecli_c_alloc_value (n+1)
 			create s.make (0)
 			impl_item := s
+			set_null
 		ensure
+			is_null: is_null
 			capacity: capacity = n
 		end
 		

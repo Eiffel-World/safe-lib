@@ -9,8 +9,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/06/11 13:11:14 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2003/08/19 15:59:09 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 class
@@ -72,7 +72,7 @@ feature -- Access
 			-- queried column name; Void if all columns in a table
 		do
 			if queried_column_impl /= Void then
-				Result := queried_column_impl.item
+				Result := queried_column_impl.as_string
 			end
 		end
 		

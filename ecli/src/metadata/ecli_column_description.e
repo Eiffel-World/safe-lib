@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/06/30 21:24:56 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2003/08/19 15:59:09 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 
 class
@@ -63,7 +63,7 @@ feature {NONE} -- Initialization
 				ext_decimal_digits.handle,
 				ext_nullability.handle)
 			stmt.set_status (stat)
-			name := c_name.item
+			name := c_name.as_string
 			--actual_name_length := ext_actual_name_length.item
 			sql_type_code := ext_sql_type_code.item
 			size := ext_size.item
@@ -88,7 +88,7 @@ feature -- Comparison
 	is_equal (other : like Current) : BOOLEAN is
 			-- 
 		do
-			Result := Precursor {ECLI_PARAMETER_DESCRIPTION} (other) and then name.is_equal (other.name)
+			Result := same_description (other) and then name.is_equal (other.name)
 		end
 		
 feature {NONE} -- Implementation

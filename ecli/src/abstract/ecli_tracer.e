@@ -4,8 +4,8 @@ indexing
 		"Objects that trace SQL execution on an output medium"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/08/19 15:59:09 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -15,6 +15,7 @@ creation
 	make
 	
 feature -- Initialization
+
 	make (a_medium : like medium) is
 			-- Make tracer
 		require

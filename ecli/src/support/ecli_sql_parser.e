@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that parse SQL queries, searching for parameters."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/27 12:46:39 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/08/19 15:59:09 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	ECLI_SQL_PARSER
@@ -49,7 +49,7 @@ feature -- Status setting
 
 feature -- Basic operations
 
-	parse (sql : STRING; statement : ECLI_STATEMENT) is
+	parse (sql : STRING; callback : ECLI_SQL_PARSER_CALLBACK) is
 			-- parse s, replacing every parameter by the ODBC/CLI marker '?'
 		local
 			index, sql_count : INTEGER
@@ -136,7 +136,7 @@ feature -- Basic operations
 						parameters_count := parameters_count + 1
 						if parameter_begin > 0 and then parameter_begin <= parameter_end then
 							parameter := original_sql.substring (parameter_begin, parameter_end)
-							statement.add_new_parameter (parameter, parameters_count)
+							callback.add_new_parameter (parameter, parameters_count)
 							parameter_begin := 0
 							parameter_end := 0
 						end
@@ -149,7 +149,7 @@ feature -- Basic operations
 				parameters_count := parameters_count + 1
 				if parameter_begin > 0 and then parameter_begin <= parameter_end then
 					parameter := original_sql.substring (parameter_begin, parameter_end)
-					statement.add_new_parameter (parameter, parameters_count)
+					callback.add_new_parameter (parameter, parameters_count)
 					parameter_begin := 0
 					parameter_end := 0
 				end

@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/07/25 18:24:23 $"
-	revision: 	"$Revision: 1.21 $"
+	date: 		"$Date: 2003/08/19 15:59:09 $"
+	revision: 	"$Revision: 1.22 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -121,17 +121,17 @@ feature -- Access
 
 	data_source : STRING is
 		do
-			Result := impl_data_source.item
+			Result := impl_data_source.as_string
 		end
 
 	user_name : STRING is
 		do
-			Result := impl_user_name.item
+			Result := impl_user_name.as_string
 		end
 
 	password : STRING is
 		do
-			Result := impl_password.item
+			Result := impl_password.as_string
 		end
 
 	transaction_capability : INTEGER is

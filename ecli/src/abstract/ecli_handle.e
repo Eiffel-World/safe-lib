@@ -9,8 +9,8 @@ indexing
 	   % and should also be redefined by descendant classes."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/08/19 15:59:09 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -68,9 +68,8 @@ feature {NONE} -- Implementation
 					debug ("ecli_check_closes")
 						raise (disposal_failure_reason)					
 					end
-				else
-					release_handle
 				end
+				release_handle
 			end
 		end
 
