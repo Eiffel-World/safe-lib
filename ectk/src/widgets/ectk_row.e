@@ -1,8 +1,8 @@
 indexing
 	description: "Container for widgets, arranged horizontally"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 07:15:23 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/10/07 10:44:05 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECTK_ROW
@@ -71,6 +71,8 @@ feature -- Basic operations
 
 	update_widget_with_string (a_string: STRING) is
 			-- Update widget with `a_string'.
+		require
+			string_exists: a_string /= Void
 		local
 			children_cursor: DS_BILINKED_LIST_CURSOR [ECTK_WIDGET]
 			an_estring: ESTRING
