@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that show how to use PDF images, as supported by ePDF"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/21 21:31:13 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/08/25 19:00:26 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	TEST_IMAGES
@@ -73,7 +73,7 @@ feature -- Basic operations
 			page.scale (image2.width / 2 ,image2.height / 2)
 			page.put_image (image2)
 			page.grestore
-			
+			check page.save_level = 0 end
 			document.add_page
 			page := document.last_page
 			document.create_outline_item ("Test PNG", page, page.mediabox.llx, page.mediabox.ury)
@@ -102,6 +102,7 @@ feature -- Basic operations
 				j := j - image.height - 5
 				i := i + 2
 			end
+			check page.save_level = 0 end
 		end
 		
 	images : ARRAY [STRING] is

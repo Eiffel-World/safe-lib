@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that know the ASCII 85 format"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/19 15:38:06 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/08/25 19:00:26 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ASCII_85_FORMAT
@@ -20,7 +20,7 @@ feature -- Measurement
 
 	last_encoded_count (medium : PDF_OUTPUT_MEDIUM) : INTEGER is
 		do
-			Result := 	last_encoded.count - 2 + last_encoded.occurrences ('%N') * (medium.eol_count - 1)
+			Result := 	last_encoded.count - 2 --+ last_encoded.occurrences ('%N') * (medium.eol_count - 1)
 		end
 		
 feature -- Status report

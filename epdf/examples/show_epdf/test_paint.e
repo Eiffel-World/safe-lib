@@ -5,8 +5,8 @@ indexing
 
 	author: 	"Paul G. Crismer"
 	licencing: 	"See notice at end of class"
-	date: 		"$Date: 2003/02/27 15:07:12 $"
-	revision: 	"$Revision: 1.2 $"
+	date: 		"$Date: 2003/08/25 19:00:26 $"
+	revision: 	"$Revision: 1.3 $"
 
 class
 	TEST_PAINT
@@ -100,6 +100,7 @@ feature -- Initialization
 			p.pie (510, 60, 50, p.math.Pi/8, -2*p.math.Pi+p.math.Pi/4)
 			p.stroke
 			center_label (510, 0, "pie",p)
+			p.grestore
 		end
 		
 	test_winding_fill (d : PDF_DOCUMENT; p : PDF_PAGE) is
