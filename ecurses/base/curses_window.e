@@ -3,8 +3,8 @@ indexing
 	cluster: 	"ecurses, base"
     	interface: 	"client, classification"
     	status: 	"See notice at end of class"
-    	date: 		"$Date: 2001/07/01 16:57:37 $"
-    	revision: 	"$Revision: 1.4 $"
+    	date: 		"$Date: 2004/11/16 20:41:16 $"
+    	revision: 	"$Revision: 1.5 $"
     	author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class 
@@ -135,7 +135,7 @@ feature {NONE} -- construction
 
     post_creation_command is
 	    do
-		on_create
+			on_create
 	    end
 
 feature -- events processing
@@ -339,6 +339,9 @@ feature -- general status setting
 		exists: exists
 	do
 		handle_curses_call (meta(wptr, True),"meta")
+		metacharacters_enabled := True
+	ensure
+		metacharacters_enabled: metacharacters_enabled
 	end
 
     disable_metacharacters is
@@ -347,6 +350,9 @@ feature -- general status setting
 		exists: exists
 	do
 		handle_curses_call (meta(wptr, False),"meta")
+		metacharacters_enabled := False
+	ensure
+		not_metacharacters_enabled: not metacharacters_enabled
 	end
 
     enable_auto_update is
