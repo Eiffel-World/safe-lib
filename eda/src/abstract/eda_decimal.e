@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 
-	date: "$Date: 2003/03/23 09:03:24 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/11/11 20:00:31 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -153,40 +153,63 @@ feature {NONE} -- Initialization
 			value_string_exists: value_string /= Void --and then value_string.count > 0
 			context_exists: ctx /= Void
 		local
-			parser : EDA_DECIMAL_TEXT_PARSER
-			e : expanded EXCEPTIONS
-			invalid_nan : BOOLEAN
+			l_double_exponent : DOUBLE
+			l_parser : like parser
 		do
-			!!parser
-			parser.decimal_parse (value_string)
-			--! TODO : CHECK if error
-			invalid_nan := ((parser.is_nan or else parser.is_snan) and then parser.coefficient_sign /= '%U')
-			if parser.error or else invalid_nan then
+			l_parser := parser
+			l_parser.decimal_parse (value_string)
+			if l_parser.error then
 				if ctx.is_extended then
-					!EDA_COEFFICIENT_IMP!coefficient.make (1)
-					coefficient.put (0, 0)
+					create {EDA_COEFFICIENT_IMP}coefficient.make (1)
+					coefficient.put (0,0)
 					set_quiet_nan
 				else
-					if invalid_nan then
-						e.raise ("Sign with NaN or sNaN")
-					else
-						e.raise (parser.error_message)
-					end
+					set_signaling_nan
 				end
 			else
-				-- Set the sign indicator
-				if parser.coefficient_sign = '-' then
-					set_negative
+				if l_parser.is_infinity then
+					set_infinity
+					if parser.sign < 0 then
+						set_negative
+					else
+						set_positive
+					end
+				elseif l_parser.is_snan then
+					 -- parser is sNaN
+					set_signaling_nan
+				elseif l_parser.is_nan then
+					set_quiet_nan
 				else
-					set_positive
+					if l_parser.sign < 0 then
+						set_negative
+					else
+						set_positive
+					end
+					if l_parser.has_exponent then
+						l_double_exponent := l_parser.exponent.to_double
+						if l_double_exponent > Platform.Maximum_integer then
+							exponent := ctx.Maximum_exponent + ctx.digits + l_parser.exponent.count + 2
+						else
+							exponent := l_double_exponent.truncated_to_integer
+						end
+						if parser.exponent_sign < 0 then
+							exponent := -exponent
+						end
+					else
+						exponent := 0
+					end
+					if l_parser.has_point then
+						exponent := exponent - l_parser.decimal_part_count
+					end
+					create {EDA_COEFFICIENT_IMP}coefficient.make ((ctx.digits+1).max (l_parser.coefficient.count))
+					coefficient.set_from_string (l_parser.coefficient)
+					clean_up (ctx)
 				end
-				-- Check for special values
-				if parser.is_special then
-					make_special (parser)
-				else
-					make_standard (parser, ctx)
+				if is_special then
+					-- Create a fake coefficient
+					create {EDA_COEFFICIENT_IMP}coefficient.make (1)
+					coefficient.put (0, 0)				
 				end
-				-- Trailing zeros are preserved
 			end
 		end
 
@@ -228,6 +251,8 @@ feature -- Access
 	exponent : INTEGER
 			-- current exponent
 
+feature {EDA_DECIMAL} -- Access
+
 	adjusted_exponent : INTEGER is
 			-- exponent of the most significant digit; see SDAS page 5
 		do
@@ -235,8 +260,6 @@ feature -- Access
 		ensure
 			definition: Result = (exponent + count - 1)
 		end
-
-feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Access
 
 	coefficient : EDA_COEFFICIENT
 			-- storage for digits
@@ -282,6 +305,7 @@ feature -- Status report
 			-- May current object be divided by `other'?
 		do
 			--| TODO
+			Result := not other.is_zero
 		end
 
 	exponentiable (other: NUMERIC): BOOLEAN is
@@ -1359,7 +1383,7 @@ feature -- Obsolete
 
 feature -- Inapplicable
 
-feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Implementation
+feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Element change
 
 	set_coefficient (m : like coefficient) is
 		require
@@ -1383,7 +1407,15 @@ feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Implementation
 	set_positive is do is_negative := False ensure positive: is_positive end
 
 
-feature {EDA_DECIMAL} -- Implementation
+feature {NONE} -- Constants
+
+		Align_hint_current : INTEGER is 1
+		Align_hint_other : INTEGER is 2
+		Align_hint_both : INTEGER is 3
+		Align_hint_current_zero : INTEGER is 4
+		Align_hint_other_zero : INTEGER is 5
+
+feature {EDA_DECIMAL} -- Status setting
 
 	special : INTEGER
 
@@ -1408,79 +1440,8 @@ feature {EDA_DECIMAL} -- Implementation
 			qNaN: is_quiet_nan
 		end
 
-	plain_unlimited_context : EDA_MATH_CONTEXT is
-				-- context for plain unlimited math
-			once
-				!!Result.make_default
-				Result.set_digits (0)
-			ensure
-				digits_zero: Result.digits = 0
-			end
-
-	default_context : EDA_MATH_CONTEXT is
-			once
-				!!Result.make_default
-			end
-
-	exception : expanded EXCEPTIONS
-
-	make_special (parser : EDA_DECIMAL_TEXT_PARSER) is
-			-- make special value
-		require
-			parser_not_void: parser /= Void
-			parser_special: parser.is_special
-		do
-			-- Create a fake coefficient
-			!EDA_COEFFICIENT_IMP!coefficient.make (1)
-			coefficient.put (0, 0)
-			if parser.is_infinity then
-				set_infinity
-			elseif parser.is_snan then
-				 -- parser is sNaN
-				set_signaling_nan
-			else
-				set_quiet_nan
-			end
-		end
-
-	make_standard (parser : EDA_DECIMAL_TEXT_PARSER; ctx : EDA_MATH_CONTEXT) is
-			-- make standard value
-		require
-		local
-			l_double_exponent : DOUBLE
-		do
-			-- Evaluate exponent
-			if parser.has_explicit_exponent then
---				if parser.exponent.is_integer then
-				l_double_exponent := parser.exponent.to_double
-				if l_double_exponent > Platform.Maximum_integer then
-					exponent := ctx.maximum_exponent + ctx.digits + parser.exponent.count + 2
-				else
-					exponent := l_double_exponent.truncated_to_integer --parser.exponent.to_integer
-				end
---				else
---				if parser.exponent.to_double > (ctx.Maximum_exponent + ctx.digits + 1) then
---					exponent := ctx.Maximum_exponent + ctx.digits + 1
---				else
---					exponent := parser.exponent.to_integer
---				end
-				if parser.exponent_sign = '-' then
-					exponent := -exponent
-				end
-			else
-				exponent := 0
-			end
-			-- Adjust exponent if had dot
-			if parser.dot > 0 then
-				exponent := exponent - parser.coefficient_decimals_count
-			end
-			-- Create the coefficient array
-			!EDA_COEFFICIENT_IMP!coefficient.make (parser.stripped_coefficient_digits_count.max (ctx.digits + 1))
-			coefficient.set_from_string (parser.stripped_coefficient)
-			-- Handle the case of Zero
-			clean_up (ctx)
-		end
-
+feature {EDA_DECIMAL} -- Basic operations
+			
 	add_special (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
 			-- add special numbers
 		require
@@ -1566,54 +1527,54 @@ feature {EDA_DECIMAL} -- Implementation
 			end
 		end
 
-	add_zero (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- add zero numbers
-		require
-			other_not_void: other /= Void
-			both_zero : is_zero and other.is_zero
-			ctx_not_void: ctx /= Void
-		do
-			create Result.make_zero
-			--| set sign
-			if is_negative and then other.is_negative then
-				Result.set_negative
-			elseif ctx.rounding_mode = Round_floor then
-				if sign /= other.sign then
-					--| they have opposite signs
-					Result.set_negative
-				end
-			end
-		end
+--	add_zero (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
+--			-- add zero numbers
+--		require
+--			other_not_void: other /= Void
+--			both_zero : is_zero and other.is_zero
+--			ctx_not_void: ctx /= Void
+--		do
+--			create Result.make_zero
+--			--| set sign
+--			if is_negative and then other.is_negative then
+--				Result.set_negative
+--			elseif ctx.rounding_mode = Round_floor then
+--				if sign /= other.sign then
+--					--| they have opposite signs
+--					Result.set_negative
+--				end
+--			end
+--		end
 
-	subtract_zero (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- subtract zero numbers
-		require
-			other_not_void: other /= Void
-			both_zero : is_zero and other.is_zero
-			ctx_not_void: ctx /= Void
-		do
-			create Result.make_zero
-			--| set sign
-			if is_negative and then not other.is_negative  then
-				Result.set_negative
-			elseif ctx.rounding_mode = Round_floor and then sign = other.sign and then ctx.is_extended then
-					--| they have opposite signs
-				Result.set_negative
-			else
-				Result.set_positive
-			end
-		end
+--	subtract_zero (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
+--			-- subtract zero numbers
+--		require
+--			other_not_void: other /= Void
+--			both_zero : is_zero and other.is_zero
+--			ctx_not_void: ctx /= Void
+--		do
+--			create Result.make_zero
+--			--| set sign
+--			if is_negative and then not other.is_negative  then
+--				Result.set_negative
+--			elseif ctx.rounding_mode = Round_floor and then sign = other.sign and then ctx.is_extended then
+--					--| they have opposite signs
+--				Result.set_negative
+--			else
+--				Result.set_positive
+--			end
+--		end
 
-	set_canonical_zero is
-			-- set Current to canonical zero
-		require
-			coefficient_zero: coefficient.is_zero
-		do
-			coefficient.keep_head (1)
-			exponent := 0
-		ensure
-			definition: exponent = 0 and coefficient.count = 1 and coefficient.item (0) = 0
-		end
+--	set_canonical_zero is
+--			-- set Current to canonical zero
+--		require
+--			coefficient_zero: coefficient.is_zero
+--		do
+--			coefficient.keep_head (1)
+--			exponent := 0
+--		ensure
+--			definition: exponent = 0 and coefficient.count = 1 and coefficient.item (0) = 0
+--		end
 
 	unsigned_add (other : like Current; ctx : EDA_MATH_CONTEXT) is
 			-- Subtract other from Current
@@ -1651,7 +1612,7 @@ feature {EDA_DECIMAL} -- Implementation
 		end
 
 	unsigned_subtract (other : like Current; ctx : EDA_MATH_CONTEXT) is
-			--
+			-- subtract other without taken the sign into account
 		require
 			other_not_void: other /= Void
 			ctx_not_void: ctx /= Void
@@ -1705,8 +1666,6 @@ feature {EDA_DECIMAL} -- Implementation
 				if is_signaling_nan then
 					ctx.signal (Signal_invalid_operation, "sNaN in 'round'")
 				end
---			elseif ctx.digits < 1 then
---				round_for_greater_exponent (ctx)
 			elseif count > ctx.digits then
 				ctx.signal (Signal_rounded, "Argument rounded")
 				if lost_digits (ctx) then
@@ -1836,11 +1795,11 @@ feature {EDA_DECIMAL} -- Implementation
 			end
 			new_digits := count.max (other.count)
 			--| adjust count to be 'precision'
-			if new_digits > other.count then -- + 1
-				other.grow (new_digits) -- + 1) -- - other.count)
+			if new_digits > other.count then 
+				other.grow (new_digits)
 			end
-			if new_digits > count then --  + 1
- 				grow (new_digits) --- - count) --  + 1
+			if new_digits > count then
+ 				grow (new_digits)
 			end
 		ensure
 			count: count = other.count
@@ -1870,13 +1829,13 @@ feature {EDA_DECIMAL} -- Implementation
 			same_exponent: exponent = other.exponent
 		end
 
-	is_aligned (other : like Current) : BOOLEAN is
-			-- is other aligned to Current ?
-		do
-			Result := (count = other.count) and then exponent = other.exponent
-		ensure
-			definition_count: Result implies (count = other.count and exponent = other.exponent)
-		end
+--	is_aligned (other : like Current) : BOOLEAN is
+--			-- is other aligned to Current ?
+--		do
+--			Result := (count = other.count) and then exponent = other.exponent
+--		ensure
+--			definition_count: Result implies (count = other.count and exponent = other.exponent)
+--		end
 
 	shift_left (a_count : INTEGER) is
 			-- shift the coefficient left `a_count' position and adjust exponent
@@ -2054,14 +2013,14 @@ feature {EDA_DECIMAL} -- Implementation
 			end
 		end
 
-	shall_overflow_with_exponent_increment (increment : INTEGER; ctx : EDA_MATH_CONTEXT) : BOOLEAN is
-			--
-		local
-			new_adjusted_exponent : INTEGER
-		do
-			new_adjusted_exponent := exponent + count + increment - 1
-			Result := new_adjusted_exponent < - ctx.exponent_limit or else new_adjusted_exponent > ctx.exponent_limit
-		end
+--	shall_overflow_with_exponent_increment (increment : INTEGER; ctx : EDA_MATH_CONTEXT) : BOOLEAN is
+--			-- shall current overflow wrt `ctx' if exponent is increased by `increment' ?
+--		local
+--			new_adjusted_exponent : INTEGER
+--		do
+--			new_adjusted_exponent := exponent + count + increment - 1
+--			Result := new_adjusted_exponent < - ctx.exponent_limit or else new_adjusted_exponent > ctx.exponent_limit
+--		end
 
 	lost_digits (ctx : EDA_MATH_CONTEXT) : BOOLEAN is
 			-- are there non-zero digits after ctx.digits digits ?
@@ -2099,45 +2058,45 @@ feature {EDA_DECIMAL} -- Implementation
 			definition:	Result = (adjusted_exponent < - ctx.exponent_limit)
 		end
 
-	round_for_greater_exponent (ctx : EDA_MATH_CONTEXT) is
-			--
-		local
-			index : INTEGER
-			fake_context : EDA_MATH_CONTEXT
-		do
-			if (exponent < ctx.digits) then
-				--| are we loosing information
-				from
-					index := 0
-				until
-					index >= (ctx.digits - exponent) or else index >= count or else coefficient.item (index) /= 0
-				loop
-					index := index + 1
-				end
-				if not (index >= (ctx.digits - exponent) or else index >= count) then
-					ctx.signal (Signal_lost_digits, "Lost digits while rounding")
-				end
-				fake_context := new_temporary_context (ctx)
-				fake_context.set_digits (count + exponent - ctx.digits)
-				if fake_context.digits < 1 then
-					fake_context.set_digits (1)
-					coefficient.grow (count + 1)
-					coefficient.put (0, coefficient.count - 1)
-					round (fake_context)
-				else
-					round (fake_context)
-				end
-				if is_zero then
-					set_canonical_zero
-				end
-			end
-		end
+--	round_for_greater_exponent (ctx : EDA_MATH_CONTEXT) is
+--			--
+--		local
+--			index : INTEGER
+--			fake_context : EDA_MATH_CONTEXT
+--		do
+--			if (exponent < ctx.digits) then
+--				--| are we loosing information
+--				from
+--					index := 0
+--				until
+--					index >= (ctx.digits - exponent) or else index >= count or else coefficient.item (index) /= 0
+--				loop
+--					index := index + 1
+--				end
+--				if not (index >= (ctx.digits - exponent) or else index >= count) then
+--					ctx.signal (Signal_lost_digits, "Lost digits while rounding")
+--				end
+--				fake_context := new_temporary_context (ctx)
+--				fake_context.set_digits (count + exponent - ctx.digits)
+--				if fake_context.digits < 1 then
+--					fake_context.set_digits (1)
+--					coefficient.grow (count + 1)
+--					coefficient.put (0, coefficient.count - 1)
+--					round (fake_context)
+--				else
+--					round (fake_context)
+--				end
+--				if is_zero then
+--					set_canonical_zero
+--				end
+--			end
+--		end
 
-	prepare_operand (ctx : EDA_MATH_CONTEXT) is
-			-- prepare operand, rounding it if necessary
-		do
-			-- do nothing...
-		end
+--	prepare_operand (ctx : EDA_MATH_CONTEXT) is
+--			-- prepare operand, rounding it if necessary
+--		do
+--			-- do nothing...
+--		end
 
 	clean_up (ctx : EDA_MATH_CONTEXT) is
 			-- clean up result, rounding it if necessary
@@ -2174,38 +2133,38 @@ feature {EDA_DECIMAL} -- Implementation
 			end
 		end
 
-	convert_to_plain_integer (ctx : EDA_MATH_CONTEXT) is
-			-- make it a plain integer
-		require
-			ctx_not_void: ctx /= Void
-			can_contert_to_integer: exponent > 0 and then count + exponent <= ctx.digits
-			not_special: not is_special
-		local
-			index, old_count : INTEGER
-		do
-			old_count := count
-			coefficient.grow (ctx.digits)
-			from
-				index := old_count - 1
-			until
-				index < 0
-			loop
-				coefficient.put (coefficient.item (index), index + exponent)
-				index := index - 1
-			end
-			from
-				index := 0
-			until
-				index >= exponent
-			loop
-				coefficient.put (0, index)
-				index := index + 1
-			end
-			strip_leading_zeroes
-			exponent := 0
-		ensure
-			exponent_zero: exponent = 0
-		end
+--	convert_to_plain_integer (ctx : EDA_MATH_CONTEXT) is
+--			-- make it a plain integer
+--		require
+--			ctx_not_void: ctx /= Void
+--			can_contert_to_integer: exponent > 0 and then count + exponent <= ctx.digits
+--			not_special: not is_special
+--		local
+--			index, old_count : INTEGER
+--		do
+--			old_count := count
+--			coefficient.grow (ctx.digits)
+--			from
+--				index := old_count - 1
+--			until
+--				index < 0
+--			loop
+--				coefficient.put (coefficient.item (index), index + exponent)
+--				index := index - 1
+--			end
+--			from
+--				index := 0
+--			until
+--				index >= exponent
+--			loop
+--				coefficient.put (0, index)
+--				index := index + 1
+--			end
+--			strip_leading_zeroes
+--			exponent := 0
+--		ensure
+--			exponent_zero: exponent = 0
+--		end
 
 	strip_leading_zeroes is
 		require
@@ -2214,23 +2173,23 @@ feature {EDA_DECIMAL} -- Implementation
 			coefficient.strip_leading_zeroes
 		end
 
-	strip_trailing_zeroes is
-		local
-			index : INTEGER
-		do
-			from
-				index := 0
-			until
-				index >= coefficient.count or else coefficient.item (index) > 0
-			loop
-				index := index + 1
-			end
-			if index >= 1 and then index < count then
-				-- index is displacement
-				shift_right (index)
-			end
-			coefficient.keep_head (count - index)
-		end
+--	strip_trailing_zeroes is
+--		local
+--			index : INTEGER
+--		do
+--			from
+--				index := 0
+--			until
+--				index >= coefficient.count or else coefficient.item (index) > 0
+--			loop
+--				index := index + 1
+--			end
+--			if index >= 1 and then index < count then
+--				-- index is displacement
+--				shift_right (index)
+--			end
+--			coefficient.keep_head (count - index)
+--		end
 
 
 	set_largest (ctx : EDA_MATH_CONTEXT) is
@@ -2273,15 +2232,19 @@ feature {EDA_DECIMAL} -- Implementation
 			sign: sign = a_sign
 		end
 
+--	do_overflow (ctx : EDA_MATH_CONTEXT) is
+--			-- do overflow
+--		require
+--			overflow: is_overflow (ctx)
+--		do
+--			internal_do_overflow (ctx)
+--		end
+
+--	internal_do_overflow (ctx : EDA_MATH_CONTEXT) is
 	do_overflow (ctx : EDA_MATH_CONTEXT) is
 			-- do overflow
 		require
 			overflow: is_overflow (ctx)
-		do
-			internal_do_overflow (ctx)
-		end
-
-	internal_do_overflow (ctx : EDA_MATH_CONTEXT) is
 		do
 			if not is_zero then
 				ctx.signal (Signal_overflow,"")
@@ -2349,14 +2312,6 @@ feature {EDA_DECIMAL} -- Implementation
 						else
 							value := 1
 						end
---					when Round_half_up then
---						if three_way_compare_discarded_to_half (ctx) >= 0 then
---							value := 1
---						end
---					when Round_half_down then
---						if three_way_compare_discarded_to_half (ctx) = 1 then
---							value := 1
---						end
 					else
 						value := 0
 					end
@@ -2382,9 +2337,6 @@ feature {EDA_DECIMAL} -- Implementation
 						ctx.set_digits (subnormal_count)
 					end
 					round (ctx)
---					if ctx.rounding_mode = ctx.Round_up and then is_zero and then not l_is_zero then
---						coefficient.put (1, 0)
---					end
 					ctx.set_digits (saved_digits)
 					strip_leading_zeroes
 					if ctx.is_flagged (Signal_subnormal) and then ctx.is_flagged (Signal_inexact) then
@@ -2405,26 +2357,20 @@ feature {EDA_DECIMAL} -- Implementation
 			end
 		end
 
-		Align_hint_current : INTEGER is 1
-		Align_hint_other : INTEGER is 2
-		Align_hint_both : INTEGER is 3
-		Align_hint_current_zero : INTEGER is 4
-		Align_hint_other_zero : INTEGER is 5
+--	new_temporary_context, assertion_context (ctx : EDA_MATH_CONTEXT) : EDA_MATH_CONTEXT is
+--			do
+--				Result := Temporary_context
+--				Result.set_digits (ctx.digits)
+--				Result.set_rounding_mode (ctx.rounding_mode)
+--			ensure
+--				digits: ctx.digits = Result.digits
+--				rounding_mode: ctx.rounding_mode = Result.rounding_mode
+--			end
 
-	new_temporary_context, assertion_context (ctx : EDA_MATH_CONTEXT) : EDA_MATH_CONTEXT is
-			do
-				Result := Temporary_context
-				Result.set_digits (ctx.digits)
-				Result.set_rounding_mode (ctx.rounding_mode)
-			ensure
-				digits: ctx.digits = Result.digits
-				rounding_mode: ctx.rounding_mode = Result.rounding_mode
-			end
-
-	temporary_context : EDA_MATH_CONTEXT is
-		once
-			!!Result.make (1, Round_half_up)
-		end
+--	temporary_context : EDA_MATH_CONTEXT is
+--		once
+--			!!Result.make (1, Round_half_up)
+--		end
 
 	division_standard, division_integer, division_remainder : INTEGER is unique
 
@@ -2522,9 +2468,7 @@ feature {EDA_DECIMAL} -- Implementation
 			integer_division := (division_type /= division_standard)
 			create dividend.make_copy (Current)
 			create divisor.make_copy (other)
-			--| round if necessary
-			--dividend.prepare_operand (ctx)
-			--divisor.prepare_operand (ctx)
+			--
 			original_divisor_exponent := divisor.exponent
 			original_dividend_exponent := dividend.exponent
 			if dividend.is_zero then
@@ -2685,18 +2629,25 @@ feature {EDA_DECIMAL} -- Implementation
 			end
 		end
 
-	negate is
-			-- negate sign
-		do
+--	negate is
+--			-- negate sign
+--		do
+--			if is_negative then
+--				set_positive
+--			else
+--				set_negative
+--			end
+--		ensure
+--			negated: sign = - old sign
+--		end
 
-			if is_negative then
-				set_positive
-			else
-				set_negative
-			end
-		ensure
-			negated: sign = - old sign
+feature {NONE} -- Implementation
+
+	parser : EDA_DECIMAL_TEXT_PARSER is
+		once
+			create Result
 		end
+		
 
 invariant
 	special_values: special >= Special_none and then special <= Special_quiet_nan
