@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2004/09/01 20:38:35 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/10/26 12:36:40 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	DATA_TEST_ARRAYED_VALUES
@@ -77,7 +77,7 @@ feature -- Basic operations
 			assert ("set_null", v.is_null)
 			v.set_item_at (string_long, 3)
 			assert_equal ("set_item_at2",string_long,v.item_at (3))
-			create z.make (v.capacity,3)
+			create z.make (v.content_capacity,3)
 			z.copy (v)
 			assert_equal("copy", v, z)
 		end

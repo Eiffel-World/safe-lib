@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/09/01 19:45:09 $"
+	date: "$Date: 2004/10/26 12:36:39 $"
 
 deferred class ECLI_ARRAYED_STRING_VALUE
 
@@ -45,12 +45,12 @@ feature {NONE} -- Initialization
 			buffer := ecli_c_alloc_array_value (a_content_capacity+1, a_capacity)
 			capacity := a_capacity
 			count := capacity
-			set_all_null
 			create s.make (0)
 			impl_item := s
 			--| create ext_item, with dummy values
 			create ext_item.make_shared_from_pointer (ecli_c_array_value_get_value_at (buffer, 1), 
 				ecli_c_array_value_get_length_indicator_at(buffer,1))
+			set_all_null
 		ensure
 			content_capacity_set: content_capacity = a_content_capacity
 			capacity_set: capacity = a_capacity

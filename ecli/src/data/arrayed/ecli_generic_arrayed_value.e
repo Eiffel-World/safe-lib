@@ -11,7 +11,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/09/01 19:45:09 $"
+	date: "$Date: 2004/10/26 12:36:39 $"
 
 	usage: "Used in row-set operations : column-wise binding for result-sets, %
 		% or column-wise binding of parameters for modifications.%
@@ -23,7 +23,9 @@ inherit
 
 	ECLI_ARRAYED_VALUE
 		redefine
-			out, is_equal, copy
+			out, 
+--			is_equal, 
+			copy
 		end
 
 feature -- Access

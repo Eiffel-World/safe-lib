@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2004/10/26 12:36:39 $"
 
 class ECLI_INTEGER
 
@@ -15,10 +15,15 @@ inherit
 
 	ECLI_GENERIC_VALUE [INTEGER]
 		redefine
-			item, set_item, out,
-			as_integer, convertible_as_integer,
-			as_real, convertible_as_real,
-			as_double, convertible_as_double
+			item, 
+			set_item, 
+			out--,
+--			as_integer, 
+--			convertible_as_integer,
+--			as_real, 
+--			convertible_as_real,
+--			as_double, 
+--			convertible_as_double
 		end
 
 	XS_C_MEMORY_ROUTINES

@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/09/01 19:45:09 $"
+	date: "$Date: 2004/10/26 12:36:39 $"
 
 class ECLI_ARRAYED_CHAR
 
@@ -18,7 +18,10 @@ inherit
 		export
 		undefine
 		redefine
-			make, content_count, sql_type_code, item_at, formatted
+			make, 
+			content_count, 
+--			sql_type_code, 
+			item_at, formatted
 		select
 		end
 

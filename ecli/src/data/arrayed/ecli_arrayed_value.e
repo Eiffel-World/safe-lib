@@ -11,7 +11,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/09/01 19:45:09 $"
+	date: "$Date: 2004/10/26 12:36:39 $"
 
 	usage: "Used in row-set operations : column-wise binding for result-sets, %
 		% or column-wise binding of parameters for modifications.%
@@ -23,19 +23,10 @@ inherit
 
 	ECLI_VALUE
 		undefine
---			as_character, convertible_as_character,
---			as_boolean, convertible_as_boolean,
---			as_integer, convertible_as_integer,
---			as_real, convertible_as_real,
---			as_double, convertible_as_double,
---			as_date, convertible_as_date,
---			as_time, convertible_as_time,
---			as_timestamp, convertible_as_timestamp,
 			set_null, length_indicator_pointer,
 			can_trace
 		redefine
-			release_handle, to_external, is_null --,
---			as_string
+			release_handle, to_external, is_null
 		end
 
 feature -- Initialization
