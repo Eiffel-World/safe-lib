@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/24 19:40:44 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2004/10/04 20:19:43 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -509,7 +509,7 @@ feature {NONE} -- Implementation
 			put_signature_to_routine (module.parameters, eiffel_routine)
 			
 			--| precondition
-			create routine_precondition.make ("cursor_not_void, "cursor /= Void")
+			create routine_precondition.make ("cursor_not_void", "cursor /= Void")
 			eiffel_routine.add_precondition (routine_precondition)
 		
 			if module.parameters.count > 0 then
@@ -594,9 +594,9 @@ feature {NONE} -- Implementation
 				create eiffel_routine.make (routine_name)
 				create routine_parameter.make ("row", as_upper (module.results.final_set.name))
 				eiffel_routine.add_param (routine_parameter)
-				create routine_precondition.make ("row_not_void, "row /= Void")
+				create routine_precondition.make ("row_not_void", "row /= Void")
 				eiffel_routine.add_precondition (routine_precondition)
-				create routine_precondition.make ("last_cursor_not_void, "last_cursor /= Void")
+				create routine_precondition.make ("last_cursor_not_void", "last_cursor /= Void")
 				eiffel_routine.add_precondition (routine_precondition)
 				create routine_postcondition.make ("last_cursor_extended", "not is_error implies (last_cursor.count = old (last_cursor.count) + 1)")
 				eiffel_routine.add_postcondition (routine_postcondition)
