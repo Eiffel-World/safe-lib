@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2002/05/09 20:15:42 $"
-	revision: 	"$Revision: 1.10 $"
+	date: 		"$Date: 2002/09/03 20:35:50 $"
+	revision: 	"$Revision: 1.11 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -240,6 +240,8 @@ feature {NONE} -- Implementation
 			-- external 'C' address of value
 		do
 			Result := ecli_c_value_get_value (buffer)
+		ensure
+			not_null: Result /= default_pointer	
 		end
 
 	length_indicator_pointer : POINTER is

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that create buffers for DB to application information exchange."
 	author: ""
-	date: "$Date: 2002/04/30 12:31:42 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/09/03 20:35:50 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_BUFFER_FACTORY
@@ -75,6 +75,9 @@ feature -- Basic operations
 
 		create_buffers (cursor_description :ARRAY [ECLI_COLUMN_DESCRIPTION]) is
 			-- create all ECLI_VALUE objects
+		require
+			cursor_description_not_void: cursor_description /= Void
+			lower_is_one: cursor_description.lower = 1
 		local
 			i, cols, type_code : INTEGER
 			factory : like value_factory

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that reflect status of rowset operations.  They basically are an array of integer."
 	author: "Paul G. Crismer <pgcrism at pi.be>"
-	date: "$Date: 2002/07/11 20:49:48 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/09/03 20:35:50 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ECLI_ROWSET_STATUS
@@ -17,7 +17,9 @@ inherit
 			{ANY} Sql_row_success, Sql_row_success_with_info, Sql_row_error,
 				  Sql_row_deleted, Sql_row_updated,	Sql_row_norow, Sql_row_added
 		end
-		
+	
+	ANY
+	
 creation
 	make
 
