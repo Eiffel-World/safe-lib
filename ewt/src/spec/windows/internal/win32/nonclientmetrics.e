@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2003/12/29 16:49:48 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/12/29 21:26:54 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	NONCLIENTMETRICS
@@ -27,34 +27,37 @@ inherit
 	TAG_NONCLIENTMETRICSA_STRUCT_EXTERNAL2
 	
 creation
-	make_new_unshared
+	make_new_unshared,
+	make_new_shared,
+	make_unshared,
+	make_shared
 	
 feature -- Access
 
-  lfCaptionFont : LOGFONT is
-  	do
-  		create Result.make_shared (get_lfCaptionFont_external (item))
-  	end
-  	
-  lfSmCaptionFont : LOGFONT is
-  	do
-  		create Result.make_shared (get_lfSmCaptionFont_external (item))
-  	end
-  	
-  lfMenuFont : LOGFONT is
-  	do
-  		create Result.make_shared (get_lfMenuFont_external (item))
-  	end
-  	
-  lfStatusFont : LOGFONT is
-  	do
-  		create Result.make_shared (get_lfStatusFont_external (item))
-  	end
-  	
-  lfMessageFont : LOGFONT is
-  	do
-  		create Result.make_shared (get_lfmessagefont_external (item))
-  	end
+	lfCaptionFont : LOGFONT is
+		do
+			create Result.make_shared (get_lfCaptionFont_external (item))
+		end
+		
+	lfSmCaptionFont : LOGFONT is
+		do
+			create Result.make_shared (get_lfSmCaptionFont_external (item))
+		end
+		
+	lfMenuFont : LOGFONT is
+		do
+			create Result.make_shared (get_lfMenuFont_external (item))
+		end
+		
+	lfStatusFont : LOGFONT is
+		do
+			create Result.make_shared (get_lfStatusFont_external (item))
+		end
+		
+	lfMessageFont : LOGFONT is
+		do
+			create Result.make_shared (get_lfmessagefont_external (item))
+		end
 
 feature -- Measurement
 

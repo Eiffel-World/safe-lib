@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DEVICE"
-	date: "$Date: 2003/12/29 21:26:54 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2003/12/29 21:30:27 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -131,7 +131,7 @@ feature {NONE} -- Implementation
 		--				colorRefCount [numEntries - 1 - i] = 1;
 		--			}
 		--			internal_dispose_GC (device_context_handle, null);
-					h_Palette := OS.create_palette_external (logPalette);
+		--			h_Palette := OS.create_palette_external (logPalette);
 		--		}
 			end
 	end

@@ -13,8 +13,8 @@ indexing
 	MouseExit, MouseHover, MouseUp, MouseMove, Move, Paint, Resize
 	
 	]"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/29 21:26:54 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -55,6 +55,12 @@ feature -- Duplication
 feature -- Miscellaneous
 
 feature -- Basic operations
+
+feature {DISPLAY} -- Basic operations
+
+	window_proc (msg, wparam, lparam : INTEGER) : INTEGER is
+		deferred
+		end
 
 feature -- Obsolete
 

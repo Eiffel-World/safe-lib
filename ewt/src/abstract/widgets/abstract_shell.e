@@ -33,8 +33,8 @@ indexing
 	Note: Only one of the styles APPLICATION_MODAL, MODELESS, PRIMARY_MODAL and SYSTEM_MODAL may be specified.
 	
 	]"
-	date: "$Date: 2003/12/28 22:04:41 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/29 21:26:54 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -91,7 +91,7 @@ feature -- Basic operations
  			not_is_resource_disposed : not is_resource_disposed
 		deferred
 		end
-
+		
 feature -- Obsolete
 
 feature -- Inapplicable
