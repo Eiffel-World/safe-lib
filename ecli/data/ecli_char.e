@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI CHAR (n) values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/06/06 21:45:14 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2000/06/22 21:22:46 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,7 +14,7 @@ inherit
 		export
 		undefine
 		redefine
-			make, count, db_type_code, item
+			make, count, db_type_code, item, truncated
 		select
 		end
 
@@ -41,11 +41,7 @@ feature -- Access
 		do
 			if not is_null then
 				Result := Precursor
-				if Result.count > count then
-					Result.head (capacity)
-				else
-					pad (Result)
-				end
+				format (Result)
 			end
 		ensure then
 			Result.count = count
@@ -72,6 +68,12 @@ feature -- Resizing
 
 feature -- Transformation
 
+	truncated (v : like item) : like item is
+		do
+			Result := clone (v)
+			format (Result)
+		end
+
 feature -- Conversion
 
 feature -- Duplication
@@ -97,6 +99,18 @@ feature {NONE} -- Implementation
 			end
 		ensure
 			s.count = capacity
+		end
+
+	format (s : STRING) is
+			-- format 's' according to 'capacity'
+		require
+			s_not_void: s /= Void
+		do
+			if s.count > count then
+				s.head (capacity)
+			else
+				pad (s)
+			end
 		end
 	
 invariant
