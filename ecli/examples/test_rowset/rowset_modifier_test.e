@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2003/02/25 09:23:15 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/02/25 19:39:53 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ROWSET_MODIFIER_TEST
@@ -130,7 +130,7 @@ feature -- Basic operations
 		do  
 			!!cursor.make (session, sql_count)
 			cursor.start
-			i := (cursor @i 1).to_integer
+			i := cursor.item_by_index (1).to_integer
 			print ("Bulk insert : ")
 			if i = 26 then
 				print ("Passed")
@@ -251,6 +251,10 @@ feature {NONE} -- Implementation
 				buffer_age.set_item_at (age_array @ index, j)
 				if j \\ 10 = 0 or index = name_array.upper then
 					rowset_modifier.execute (j)
+					if rowset_modifier.has_information_message or else rowset_modifier.is_error then
+						print (rowset_modifier.diagnostic_message)
+						print ("%N")
+					end
 				end
 				index := index + 1
 				j := j \\ 10 + 1

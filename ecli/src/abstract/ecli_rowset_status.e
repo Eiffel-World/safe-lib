@@ -4,8 +4,8 @@ indexing
 		"Objects that reflect status of rowset operations. They basically are an array of integer."
 
 	author: "Paul G. Crismer <pgcrism at pi.be>"
-	date: "$Date: 2003/02/25 09:23:22 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/25 19:39:53 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	ECLI_ROWSET_STATUS
@@ -20,8 +20,6 @@ inherit
 			{ANY} Sql_row_success, Sql_row_success_with_info, Sql_row_error,
 				  Sql_row_deleted, Sql_row_updated,	Sql_row_norow, Sql_row_added
 		end
-	
-	ANY
 	
 creation
 	make
@@ -44,18 +42,6 @@ feature -- Status report
 			Result := (item (index) = Sql_row_error)
 		end
 
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
 feature -- Conversion
 
 	to_external : POINTER is
@@ -63,16 +49,6 @@ feature -- Conversion
 		do
 			Result := handle
 		end
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
 
 feature {NONE} -- Implementation
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects give access to C memory"
 	author: ""
-	date: "$Date: 2003/02/25 09:23:47 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/25 19:42:24 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	C_MEMORY
@@ -80,6 +80,6 @@ feature {NONE} -- Implementation
 		end	
 
 invariant
-	invariant_clause: True -- Your invariant here
+	memory_allocated: handle /= default_pointer
 
 end -- class C_MEMORY
