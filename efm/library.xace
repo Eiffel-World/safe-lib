@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<library name="library_efm" location="${EFM}">
+
+	<description>
+		description : "Eiffel single and multi-line formats"
+	</description>
+	
+	<cluster name="library_efm" location="${EFM}" prefix="efm_">
+		<option name="assertion" value="all" if="${DEBUG}"/>
+		<cluster name="src">
+			<cluster name="format"/>
+			<cluster name="kernel">
+				<cluster name="string">
+					<cluster name="spec">
+						<cluster name="${GOBO_EIFFEL}"/>
+					</cluster>
+				</cluster>
+				<cluster name="text"/>
+			</cluster>
+		</cluster>		
+	</cluster>
+</library>
