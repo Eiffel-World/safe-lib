@@ -2,12 +2,12 @@ indexing
 
 	description:
 	
-			"Objects that ..."
+			"Buffers for exchanging string-based values between application and database."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2004/12/07 21:25:19 $"
 
 deferred class ECLI_STRING_VALUE
 
@@ -15,7 +15,7 @@ inherit
 
 	ECLI_GENERIC_VALUE[STRING]
 		redefine
-			item, set_item,
+			item,
 			out, 
 			impl_item
 		end

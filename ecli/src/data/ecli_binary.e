@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2004/12/07 21:25:18 $"
 
 class ECLI_BINARY
 
@@ -15,7 +15,7 @@ inherit
 
 	ECLI_BINARY_VALUE
 		redefine
-			formatted
+			valid_item
 		end
 		
 creation
@@ -35,39 +35,14 @@ feature -- Access
 			Result := sql_binary
 		end
 		
-feature -- Inapplicable
+feature -- Status report
 
-	formatted (v : like item) : like item is
+	valid_item (value : STRING) : BOOLEAN is
 		do
-			create Result.make_from_string (v)
-			format (Result)
+			Result := Precursor (value)
+			Result := Result and value.count = capacity
+		ensure then
+			definition2: Result implies value.count = capacity
 		end
-
-feature {NONE} -- Implementation
-
-	pad (s : STRING) is
-			-- pad 's' with blanks
-		do
-			from
-			until
-				s.count = capacity
-			loop
-				s.append_character ('%/0/')
-			end
-		ensure
-			s.count = capacity
-		end
-
-	format (s : STRING) is
-			-- format 's' according to 'capacity'
-		require
-			s_not_void: s /= Void
-		do
-			if s.count > count then
-				s.keep_head (capacity)
-			else
-				pad (s)
-			end
-		end
-
+		
 end

@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/10/26 12:36:39 $"
+	date: "$Date: 2004/12/07 21:25:19 $"
 
 class ECLI_TIMESTAMP
 
@@ -16,7 +16,7 @@ inherit
 	ECLI_GENERIC_VALUE [DT_DATE_TIME]
 		redefine
 			create_impl_item, impl_item, is_equal, out, 
-			set_item, item
+			item
 		end
 		
 creation
