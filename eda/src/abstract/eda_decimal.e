@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 
-	date: "$Date: 2003/02/26 18:54:03 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/03/23 09:03:24 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -51,11 +51,12 @@ inherit
 		end
 
 creation
---	make,
 	make_from_integer,
 	make_from_string,
 	make_from_string_ctx,
+	make_copy,
 	make_zero,
+	make_one,
 	make
 
 feature {NONE} -- Initialization
@@ -72,6 +73,19 @@ feature {NONE} -- Initialization
 			zero: is_zero
 		end
 
+	make_copy (other : like Current) is
+			-- make a copy of `other'
+		do
+			if not other.is_special then
+				make (other.count)
+			else
+				make (1)
+			end
+			copy (other)
+		ensure
+			is_equal_other: Current.is_equal (other)
+		end
+		
 	make_zero is
 			-- make zero
 		do
@@ -80,6 +94,13 @@ feature {NONE} -- Initialization
 			zero: is_zero
 		end
 
+	make_one is
+			-- make one
+		do
+			make (1)
+			coefficient.put (1, 0)
+		end
+		
 	make_from_integer (value : INTEGER) is
 			-- make a new decimal from integer `value'
 		local
@@ -632,15 +653,16 @@ feature -- Duplication
 
 	copy (other : like Current) is
 		do
-			if coefficient = Void then
-				coefficient := clone (other.coefficient)
-			else
-				coefficient.copy (other.coefficient) -- := clone (other.coefficient)
+			if other /= Current then
+				if coefficient = Void then
+					coefficient := other.coefficient.to_twin
+				else
+					coefficient.copy (other.coefficient)
+				end
+				exponent := other.exponent
+				is_negative := other.is_negative
+				special := other.special
 			end
-			exponent := other.exponent
-			is_negative := other.is_negative
-			special := other.special
---			formatting_style := other.formatting_style
 		end
 
 feature -- Miscellaneous
@@ -661,8 +683,8 @@ feature -- Basic operations
 			else
 				--| Addition of non-special values
 				--| instantiate "registers"
-				create operand_a.make (ctx.digits+1); operand_a.copy (Current) --operand_a := clone (Current); operand_a.set_positive
-				create operand_b.make (ctx.digits+1); operand_b.copy (other) -- operand_b := clone (other); operand_b.set_positive
+				create operand_a.make (ctx.digits+1); operand_a.copy (Current)
+				create operand_b.make (ctx.digits+1); operand_b.copy (other)
 				----| round if necessary
 				--operand_a.prepare_operand (ctx)
 				--operand_b.prepare_operand (ctx)
@@ -708,7 +730,7 @@ feature -- Basic operations
 				Result := subtract_special (other, ctx)
 			else
 				--| a + b = a + (-b)
-				operand_b := clone (other)
+				create operand_b.make_copy (other) -- := clone (other)
 				if operand_b.is_positive then
 					operand_b.set_negative
 				else
@@ -726,7 +748,6 @@ feature -- Basic operations
 		local
 			operand_a, operand_b : like Current
 		do
---			Result := clone(zero)
 			--|	specials
 			if is_special or else other.is_special then
 				-- sNan
@@ -759,8 +780,8 @@ feature -- Basic operations
 						Result.set_negative
 					end
 				else
-					operand_a := clone (Current)
-					operand_b := clone (other)
+					create operand_a.make_copy (Current)
+					create operand_b.make_copy (other)
 					--| round if necessary
 					--operand_a.prepare_operand (ctx)
 					--operand_b.prepare_operand (ctx)
@@ -805,7 +826,7 @@ feature -- Basic operations
 		do
 			if is_special or else other.is_special then
 				-- sNan
-				Result := clone (zero)
+				create Result.make_zero
 				if is_nan or else other.is_nan then
 					if is_signaling_nan or else other.is_signaling_nan then
 						ctx.signal (Signal_invalid_operation ,"sNan in remainder")
@@ -818,18 +839,18 @@ feature -- Basic operations
 					check
 						Result.is_zero
 					end
-					Result := clone (Current)
+					create Result.make_copy (Current)
 					if is_negative then
 						Result.set_negative
 					end
 				end
 			else
 				if other.is_zero then
-					Result := clone (zero)
+					create Result.make_zero
 					ctx.signal (Signal_invalid_operation ,"Zero divisor in remainder")
 					Result.set_quiet_nan
 				elseif Current.is_zero then
-						Result := clone (zero)
+						create Result.make_zero
 						if exponent < 0 then
 							Result.set_exponent (Current.exponent)
 						else
@@ -856,7 +877,7 @@ feature -- Basic operations
 			shared_digits, digits_upto_new_exponent, exponent_delta : INTEGER
 			saved_exponent_limit, result_count : INTEGER
 		do
-			--Result := clone (Current)
+			--create Result.make_copy (Current)
 			if not (new_exponent <= ctx.exponent_limit and then new_exponent >= ctx.e_tiny) then
 				ctx.signal (Signal_invalid_operation, "new exponent is not within limits [Etiny..Emax]")
 				create Result.make (1)
@@ -865,7 +886,7 @@ feature -- Basic operations
 				--Result.do_rescale (new_exponent, ctx)
 				-- rescale to new_exponent
 				if is_special then
-					Result := clone (Current)
+					create Result.make_copy (Current)
 					Result.do_rescale_special (ctx)
 				elseif exponent < new_exponent then
 					-- same as underflowing to e_tiny where e_tiny = new_exponent
@@ -902,7 +923,7 @@ feature -- Basic operations
 							Result.shift_left (exponent - new_exponent)
 						end
 					else
-						Result := clone (Current)
+						create Result.make_copy (Current)
 					end
 					Result.set_exponent (new_exponent)
 				elseif exponent > new_exponent then
@@ -954,7 +975,7 @@ feature -- Basic operations
 								Result.copy (Current)
 								Result.shift_left (exponent_delta)
 							else
-								Result := clone (Current)
+								create Result.make_copy (Current)
 							end
 							Result.set_exponent (new_exponent)
 						end
@@ -963,7 +984,7 @@ feature -- Basic operations
 				else
 					--| new_exponent = exponent
 					--| still detect conditions
-					Result := clone (Current)
+					create Result.make_copy (Current)
 					Result.clean_up (ctx)
 				end
 			end
@@ -1087,7 +1108,7 @@ feature -- Basic operations
 			temp_ctx : EDA_MATH_CONTEXT
 		do
 			if new_exponent.is_special or else is_special then
-				Result := clone (zero)
+				create Result.make_zero
 				if new_exponent.is_signaling_nan or else is_signaling_nan then
 					ctx.signal (Signal_invalid_operation, "sNaN as new exponent in 'rescale_decimal'")
 					Result.set_quiet_nan
@@ -1097,16 +1118,15 @@ feature -- Basic operations
 					ctx.signal (Signal_invalid_operation, "Inf as new exponent in 'rescale_decimal'")
 					Result.set_quiet_nan
 				else
-					Result := clone (Current)
+					create Result.make_copy (Current)
 					Result.do_rescale_special (ctx)
 				end
 			else
-
-				!! e_max.make_from_integer (ctx.exponent_limit)
-				!! e_min.make_from_integer (ctx.e_tiny)
+				create e_max.make_from_integer (ctx.exponent_limit)
+				create e_min.make_from_integer (ctx.e_tiny)
 				if new_exponent <= e_max and then new_exponent >= e_min then
-					!! temp_ctx.make_double
-					--Result := clone (Current)
+					create temp_ctx.make_double
+					--create Result.make_copy (Current)
 					if new_exponent.is_integer then
 						new_integer_exponent := new_exponent.to_integer_ctx (temp_ctx)
 						if new_integer_exponent <= ctx.exponent_limit and then new_integer_exponent >= ctx.e_tiny then
@@ -1140,7 +1160,7 @@ feature -- Basic operations
 		local
 			l_zero : like Current
 		do
-			l_zero := clone (zero)
+			create l_zero.make (ctx.digits + 1)
 			l_zero.set_exponent (Current.exponent)
 			Result := l_zero.add (Current, ctx)
 		end
@@ -1179,7 +1199,7 @@ feature -- Basic operations
 		local
 			l_zero : like Current
 		do
-			l_zero := clone (zero)
+			create l_zero.make (ctx.digits+1)
 			l_zero.set_exponent (Current.exponent)
 			Result := l_zero.subtract (Current, ctx)
 		end
@@ -1214,7 +1234,7 @@ feature -- Basic operations
 				if is_signaling_nan or else other.is_signaling_nan then
 					ctx.signal (Signal_invalid_operation ,"sNan in max")
 				end
-				Result := clone (zero)
+				create Result.make_zero
 				Result.set_quiet_nan
 			else
 				comparison_result := Current.compare (other, ctx)
@@ -1239,7 +1259,7 @@ feature -- Basic operations
 				if is_signaling_nan or else other.is_signaling_nan then
 					ctx.signal (Signal_invalid_operation ,"sNan in max")
 				end
-				Result := clone (zero)
+				create Result.make_zero
 				Result.set_quiet_nan
 			else
 				comparison_result := Current.compare (other, ctx)
@@ -1266,7 +1286,7 @@ feature -- Basic operations
 		do
 			if is_special or else other.is_special then
 				if is_nan or else other.is_nan then
-					Result := clone (zero)
+					create Result.make_zero
 					Result.set_quiet_nan
 					if is_signaling_nan or else other.is_signaling_nan then
 						ctx.signal (Signal_invalid_operation, "sNaN in 'compare'")
@@ -1274,47 +1294,45 @@ feature -- Basic operations
 				elseif is_infinity then
 					if other.is_infinity and then is_negative = other.is_negative then
 						--| compare (Inf,Inf) or compare (-Inf,-Inf)
-						Result := clone (zero)
+						create Result.make_zero
 					elseif is_negative then
 						--| compare (-Inf, x) : -Inf < x
-						Result := clone (one)
+						create Result.make_one
 						Result.set_negative
 					else
-						Result := clone (one)
+						create Result.make_one
 					end
 				elseif other.is_infinity then
 					if is_infinity and then is_negative = other.is_negative then
 						--| compare (Inf,Inf) or compare (-Inf,-Inf)
-						Result := clone (zero)
+						create Result.make_zero
 					elseif other.is_negative then
 						--| compare ( x, -Inf) : x > -Inf
-						Result := clone (one)
+						create Result.make_one
 					else
 						--| compare (x, +inf) : x < Inf
-						Result := clone (one)
+						create Result.make_one
 						Result.set_negative
 					end
 				end
 			else
-				operand_a := clone (Current)
-				operand_b := clone (other)
-				operand_a.prepare_operand (ctx)
-				operand_b.prepare_operand (ctx)
+				create operand_a.make_copy (Current)
+				create operand_b.make_copy (other)
 				--| avoid over/underflow during comparison
 				if is_negative /= other.is_negative then
 					-- signs are different
 					if is_zero then
-						operand_a := clone (zero)
+						create operand_a.make_zero
 					else
-						operand_a := clone (one)
+						create operand_a.make_one
 						if is_negative then
 							operand_a.set_negative
 						end
 					end
 					if other.is_zero then
-						operand_b := clone (zero)
+						create operand_b.make_zero
 					else
-						operand_b := clone (one)
+						create operand_b.make_one
 						if other.is_negative then
 							operand_b.set_negative
 						end
@@ -1325,13 +1343,13 @@ feature -- Basic operations
 				Result := operand_a.subtract (operand_b, temp_ctx)
 				if Result.is_zero and then not temp_ctx.is_flagged (Signal_subnormal) then
 					--| avoid considering equal, numbers whose difference is an epsilon
-					Result := clone (zero)
+					create Result.make_zero
 				else
 					if Result.is_negative then
-						Result := clone (one)
+						create Result.make_one
 						Result.set_negative
 					else
-						Result := clone (one)
+						create Result.make_one
 					end
 				end
 			end
@@ -1471,7 +1489,7 @@ feature {EDA_DECIMAL} -- Implementation
 			ctx_not_void: ctx /= Void
 		do
 			--| prepare result
-			Result := clone (zero)
+			create Result.make_zero
 			--| set its value
 			if is_nan or else other.is_nan then
 				if is_signaling_nan or else other.is_signaling_nan then
@@ -1511,7 +1529,7 @@ feature {EDA_DECIMAL} -- Implementation
 			ctx_not_void: ctx /= Void
 		do
 			--| prepare result
-			Result := clone (zero)
+			create Result.make_zero
 			--| set its value
 			if is_nan or else other.is_nan then
 				if is_signaling_nan or else other.is_signaling_nan then
@@ -1555,7 +1573,7 @@ feature {EDA_DECIMAL} -- Implementation
 			both_zero : is_zero and other.is_zero
 			ctx_not_void: ctx /= Void
 		do
-			Result := clone (zero)
+			create Result.make_zero
 			--| set sign
 			if is_negative and then other.is_negative then
 				Result.set_negative
@@ -1574,7 +1592,7 @@ feature {EDA_DECIMAL} -- Implementation
 			both_zero : is_zero and other.is_zero
 			ctx_not_void: ctx /= Void
 		do
-			Result := clone (zero)
+			create Result.make_zero
 			--| set sign
 			if is_negative and then not other.is_negative  then
 				Result.set_negative
@@ -2420,7 +2438,7 @@ feature {EDA_DECIMAL} -- Implementation
 		do
 			integer_division := (division_type = division_integer) or else (division_type = division_remainder)
 			if is_special or else other.is_special then
-				Result := clone (zero)
+				create Result.make_zero
 				-- sNan
 				if is_nan or else other.is_nan then
 					if is_signaling_nan or else other.is_signaling_nan then
@@ -2452,7 +2470,7 @@ feature {EDA_DECIMAL} -- Implementation
 				end
 			else
 				if other.is_zero then
-					Result := clone (zero)
+					create Result.make_zero
 					if Current.is_zero then
 						ctx.signal (Signal_invalid_operation, "Division Undefined : O/O")
 						Result.set_quiet_nan
@@ -2466,7 +2484,7 @@ feature {EDA_DECIMAL} -- Implementation
 						end
 					end
 				elseif Current.is_zero then
-						Result := clone (zero)
+						create Result.make_zero
 						if integer_division then
 							Result.set_exponent (0)
 						else
@@ -2502,10 +2520,8 @@ feature {EDA_DECIMAL} -- Implementation
 			done, integer_division, impossible, is_negative_exponent, dividend_is_zero : BOOLEAN
 		do
 			integer_division := (division_type /= division_standard)
-			create dividend.make (1) --dividend := clone (Current)
-			dividend.copy (Current)
-			create divisor.make (1)  --divisor := --clone (other)
-			divisor.copy (other)
+			create dividend.make_copy (Current)
+			create divisor.make_copy (other)
 			--| round if necessary
 			--dividend.prepare_operand (ctx)
 			--divisor.prepare_operand (ctx)
@@ -2515,7 +2531,6 @@ feature {EDA_DECIMAL} -- Implementation
 				dividend_is_zero := True
 			end
 			--| prepare result
-			--Result := clone (zero)
 			create Result.make (ctx.digits + 1)
 			adjust := 0; divisor_adjust := 0; dividend_adjust := 0
 			--| adjust coefficients so that
@@ -2646,7 +2661,7 @@ feature {EDA_DECIMAL} -- Implementation
 					if is_negative_exponent then
 						--| correct left_shift bias introduced in steps preparing division
 						--| division has not occurred
-						Result := clone (Current)
+						create Result.make_copy (Current)
 					else
 						new_exponent := original_dividend_exponent.min (original_divisor_exponent)
 						bias := new_exponent - (dividend.exponent.min (divisor.exponent))

@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 
-	date: "$Date: 2003/02/26 18:54:04 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/03/23 09:03:25 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 
@@ -33,7 +33,7 @@ inherit
 		end
 
 creation
-	make
+	make, make_copy
 
 feature {NONE} -- Initialization
 
@@ -44,6 +44,13 @@ feature {NONE} -- Initialization
 			set_count (0)
 		end
 
+	make_copy (other : like Current) is
+			-- make a copy of `other'
+		do
+			make (other.capacity)
+			copy (other)
+		end
+		
 feature -- Access
 
 	item (index: INTEGER): INTEGER is
@@ -213,23 +220,31 @@ feature -- Duplication
 			index, l_upper : INTEGER
 			l_digits, l_other_digits : like digits
 		do
-			l_upper := other.count -1
-			if digits = Void then
-				make (l_upper + 1)
-			elseif capacity < other.capacity then
+			if Current /= other then
+				l_upper := other.count -1
+				if digits = Void then
+					make (l_upper + 1)
+				elseif capacity < other.capacity then
 					grow (other.capacity)
+				end
+				from
+					index := 0
+					l_digits := digits
+					l_other_digits := other.digits
+				until
+					index > l_upper
+				loop
+					l_digits.put (l_other_digits.item (index), index) --put (other.item (index), index)
+					index := index + 1
+				end
+				set_count (index)
 			end
-			from
-				index := 0
-				l_digits := digits
-				l_other_digits := other.digits
-			until
-				index > l_upper
-			loop
-				l_digits.put (l_other_digits.item (index), index) --put (other.item (index), index)
-				index := index + 1
-			end
-			set_count (index)
+		end
+
+	to_twin : like Current is
+			-- 
+		do
+			create Result.make_copy (Current)
 		end
 
 feature -- Miscellaneous

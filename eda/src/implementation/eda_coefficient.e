@@ -7,8 +7,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/03/23 09:03:25 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -35,6 +35,16 @@ feature {NONE} -- Initialization
 			count_zero: count = 0
 			lower_set: lower = 0
 			upper_set: upper = capacity - 1
+		end
+
+	make_copy (other : like Current) is
+			-- make a copy of `other'
+		require
+			other_not_void: other /= Void
+		deferred
+		ensure
+			capacity_set: capacity >= other.capacity
+			equal_other: is_equal (other)
 		end
 		
 feature -- Access
@@ -177,6 +187,14 @@ feature -- Conversion
 
 feature -- Duplication
 
+	to_twin : like Current is
+			-- 
+		deferred
+		ensure
+			result_not_current: Result /= Current
+			result_equal_current: Result.is_equal (Current)
+		end
+		
 feature -- Miscellaneous
 
 feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
