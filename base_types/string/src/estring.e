@@ -315,6 +315,30 @@ feature -- Element change
 			same_size: (count = capacity) and (capacity = old capacity)
 		end
 
+feature -- Removal
+
+	remove_substring (start_pos, end_pos: INTEGER) is
+			-- Remove the characters of Current from positions
+			-- start_pos .. end_pos.
+		require
+			index_small_enough: end_pos <= count
+			order_respected: start_pos <= end_pos
+			index_large_enough: start_pos > 0
+		local
+			i: INTEGER
+		do
+			from
+				i := start_pos
+			until
+				i > end_pos
+			loop
+				remove (start_pos)
+				i := i + 1
+			end
+		ensure
+			new_count: count = old count  - (end_pos - start_pos + 1)
+		end
+
 feature -- Status report
 
 	is_integer: BOOLEAN is
