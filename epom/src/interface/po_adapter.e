@@ -28,8 +28,8 @@ indexing
 	
 
 	Usage: "Inherit.  Define all deferred features."
-	date: "$Date: 2005/02/08 10:43:56 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2005/03/08 20:17:40 $"
+	revision: "$Revision: 1.9 $"
 
 deferred class PO_ADAPTER [G -> PO_PERSISTENT]
 
@@ -270,7 +270,7 @@ feature -- Basic operations
 		require
 			can_update: can_update
 			object_not_void: object /= Void
-			object_is_persistent: object.is_persistent
+			object_updatable: object.is_persistent or else exists (pid_for_object (object))
 			datastore_connected: datastore.is_connected
 			is_ok: status.is_ok
 		deferred			

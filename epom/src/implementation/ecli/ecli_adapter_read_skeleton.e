@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/08 10:43:56 $"
+	date: "$Date: 2005/03/08 20:17:39 $"
 
 deferred class ECLI_ADAPTER_READ_SKELETON[G->PO_PERSISTENT]
 
@@ -34,7 +34,9 @@ feature -- Basic operations
 			if is_enabled_cache_on_read then
 				cache.search (a_pid)
 				if cache.found then
-					last_cursor.add_object (cache.found_item)				
+					if cache.found_item /= Void then
+						last_cursor.add_object (cache.found_item)
+					end
 				end
 			end
 			if not is_enabled_cache_on_read or else not cache.found then

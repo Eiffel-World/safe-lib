@@ -20,8 +20,8 @@
 	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
 	%	exact-match or multiple-match queries, respectively."
 		
-	date: "$Date: 2005/02/08 10:43:56 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2005/03/08 20:17:39 $"
+	revision: "$Revision: 1.7 $"
 
 deferred class ECLI_SIMPLE_ADAPTER[G->PO_PERSISTENT]
 
@@ -176,7 +176,9 @@ feature -- Basic operations
 			if is_enabled_cache_on_read then
 				cache.search (a_pid)
 				if cache.found then
-					last_cursor.add_object (cache.found_item)
+					if cache.found_item /= Void then
+						last_cursor.add_object (cache.found_item)
+					end
 				end
 			end
 			if not is_enabled_cache_on_read or else not cache.found then

@@ -8,7 +8,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/08 10:43:56 $"
+	date: "$Date: 2005/03/08 20:17:39 $"
 
 class
 	PO_CACHE_USE [G -> PO_PERSISTENT]
@@ -30,5 +30,9 @@ feature {PO_ADAPTER} -- Basic operations
 feature {NONE} -- Implementation
 
 	cache : PO_CACHE[G]
+
+invariant
+	
+	cache_not_void: cache /= Void
 	
 end -- class PO_CACHE_USE
