@@ -1,8 +1,8 @@
 indexing
 	description: "Objects handle cpmmunication with external objects"
-	author: ""
-	date: "$Date: 2003/06/11 13:11:15 $"
-	revision: "$Revision: 1.2 $"
+	author: "Paul G. Crismer"
+	date: "$Date: 2003/07/02 19:50:35 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	ECLI_EXTERNAL_TOOLS_COMMON

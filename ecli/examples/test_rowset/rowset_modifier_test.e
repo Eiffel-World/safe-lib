@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that test bulk operations."
-	author: ""
-	date: "$Date: 2003/06/12 10:01:15 $"
-	revision: "$Revision: 1.7 $"
+	author: "Paul G. Crismer"
+	date: "$Date: 2003/07/02 19:50:35 $"
+	revision: "$Revision: 1.8 $"
 
 class
 	ROWSET_MODIFIER_TEST

@@ -1,8 +1,11 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2003/06/12 14:32:02 $"
-	revision: "$Revision: 1.2 $"
+	description: "Object that abstract a transaction isolation type"
+	
+	library: "ECLI"
+	
+	author: "Paul G. Crismer"
+	date: "$Date: 2003/07/02 19:50:35 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_TRANSACTION_ISOLATION

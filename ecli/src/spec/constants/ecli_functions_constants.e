@@ -1,8 +1,8 @@
 indexing
 	description: "Constants accepted by SQLGetFunctions;"
-	author: ""
-	date: "$Date: 2003/02/25 09:23:42 $"
-	revision: "$Revision: 1.2 $"
+	author: "Paul G. Crismer"
+	date: "$Date: 2003/07/02 19:50:35 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_FUNCTIONS_CONSTANTS
