@@ -1,8 +1,8 @@
 indexing
 	description: "Abstraction for a report"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/19 07:26:15 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/09/26 11:04:51 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	EREP_REPORT
@@ -341,7 +341,7 @@ feature {NONE} -- Implementation
 			-- Write header.
 		deferred
 		ensure
-			within_height: line <= header_height
+			within_height: header_height > 0 implies line <= header_height
 		end
 
 	write_footer is
