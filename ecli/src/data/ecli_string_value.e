@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2004/05/18 11:17:38 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/06/03 19:39:29 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	ECLI_STRING_VALUE
@@ -19,7 +19,7 @@ feature {NONE} -- Initialization
 
 	make (n : INTEGER) is
 		require
-			n > 0 and n <= max_capacity
+			valid_n: n > 0 and n <= max_capacity
 		local
 			s : STRING
 		do
