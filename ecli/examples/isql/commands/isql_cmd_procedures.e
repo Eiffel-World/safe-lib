@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that list procedures available on a datasource."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/11 13:10:45 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/09/16 18:52:25 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ISQL_CMD_PROCEDURES
@@ -36,7 +36,7 @@ feature -- Basic operations
 		local
 			query : ECLI_NAMED_METADATA
 			cursor : ECLI_PROCEDURES_CURSOR
-			l_procedure : ECLI_PROCEDURE
+			l_procedure : ECLI_PROCEDURE_METADATA
 		do
 			create query.make (Void, Void, Void)
 			create cursor.make (query, context.session)

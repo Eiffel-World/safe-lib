@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that create arrayed buffers for rowset commands"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:32 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/09/16 18:52:26 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ECLI_ARRAYED_BUFFER_FACTORY
@@ -61,8 +61,6 @@ feature -- Inapplicable
 
 feature {NONE} -- Implementation
 
-	impl_value_factory : like value_factory
-
 	value_factory : ECLI_ARRAYED_VALUE_FACTORY is
 		do
 			if impl_value_factory = Void then
@@ -73,8 +71,7 @@ feature {NONE} -- Implementation
 	
 	value_anchor : ECLI_ARRAYED_VALUE is
 			-- 
-		do
-			
+		do			
 		end
 	
 invariant

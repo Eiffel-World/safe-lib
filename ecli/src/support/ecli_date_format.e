@@ -1,8 +1,10 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2003/08/19 15:59:09 $"
-	revision: "$Revision: 1.1 $"
+	description: "ISO Date formats and conversion facilities."
+	author: "Paul G. Crismer"
+	
+	library: "ECLI"
+	date: "$Date: 2003/09/16 18:52:26 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_DATE_FORMAT
@@ -65,10 +67,13 @@ feature {NONE} -- Implementation
 
 	regex : RX_PCRE_REGULAR_EXPRESSION is
 		local
-			
+			cli_regex : STRING	
 		once
 			create Result.make
-			Result.compile ("\{ '([0-9]{1,4})\-([0-9]{2})\-([0-9]{2})'\}")
+			create cli_regex.make_from_string ("\{d '")
+			cli_regex.append_string (Date_regex)
+			cli_regex.append_string ("'\}")
+			Result.compile (cli_regex) -- "([0-9]{1,4})\-([0-9]{2})\-([0-9]{2}))
 		end
 		
 	ifmt : ECLI_FORMAT_INTEGER is once create Result end

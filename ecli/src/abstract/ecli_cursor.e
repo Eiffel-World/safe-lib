@@ -1,8 +1,8 @@
 indexing
 	description: "Abstraction of a SQL cursor."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2003/09/16 18:52:25 $"
+	revision: "$Revision: 1.14 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -20,7 +20,7 @@ feature -- Basic Operations
 			end
 			execute
 			if is_ok then
-				if has_results then
+				if has_result_set then
 					create_buffers
 					statement_start
 				end
@@ -33,7 +33,7 @@ feature {NONE} -- Implementation
 			-- create all ECLI_VALUE objects
 		deferred
 		ensure
-			cursor_set: cursor /= Void
+			results_set: results /= Void
 		end
 	
 end -- class ECLI_CURSOR

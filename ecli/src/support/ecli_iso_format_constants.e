@@ -1,8 +1,10 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2003/08/19 15:59:09 $"
-	revision: "$Revision: 1.1 $"
+	description: "Date and Time ISO formats and corresponding helper functions."
+	author: "Paul G. Crismer"
+	
+	library: "ECLI"
+	date: "$Date: 2003/09/16 18:52:26 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_ISO_FORMAT_CONSTANTS

@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/19 15:58:07 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/09/16 18:52:26 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	PARAMETER_SET
@@ -34,15 +34,17 @@ feature -- Status report
 		local
 			sc : DS_SET_CURSOR[MODULE_PARAMETER]
 		do
-			from
-				sc := new_cursor
-				sc.start
-				Result := True
-			until
-				sc.off
-			loop
-				Result := Result and sc.item.has_sample
-				sc.forth
+			if count > 0 then
+				from
+					sc := new_cursor
+					sc.start
+					Result := True
+				until
+					sc.off
+				loop
+					Result := Result and sc.item.has_sample
+					sc.forth
+				end
 			end
 		end
 		

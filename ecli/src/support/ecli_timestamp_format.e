@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that know the iso TIMESTAMP format and are able to convert from/to it"
 	author: "Paul "
-	date: "$Date: 2003/08/19 15:59:09 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/09/16 18:52:26 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_TIMESTAMP_FORMAT
@@ -88,11 +88,15 @@ feature {NONE} -- Implementation
 			cli_regex_string.append_string (time_regex)
 			cli_regex_string.append_string ("'}")
 			Result.compile (cli_regex_string)
+		ensure then
+			regex_exists: Result /= Void
 		end
 	
 	ifmt : ECLI_FORMAT_INTEGER is
 		once
 			create Result
+		ensure
+			result_exists: Result /= Void
 		end
 		
 	regex_component_count : INTEGER is 7

@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/09/16 18:52:26 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	REFERENCE_COLUMN
@@ -97,7 +97,6 @@ feature -- Inapplicable
 feature {NONE} -- Implementation
 
 invariant
-	invariant_clause: True -- Your invariant here
 	table_not_void: table /= Void
 	column_not_void: column /= Void
 

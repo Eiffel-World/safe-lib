@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that test bulk operations."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/09/16 18:52:25 $"
+	revision: "$Revision: 1.10 $"
 
 class
 	ROWSET_MODIFIER_TEST
@@ -171,7 +171,6 @@ feature -- Basic operations
 	test_update is
 			-- test if bulk update was ok
 		local
-			i : INTEGER
 			ok : BOOLEAN
 			index : INTEGER
 		do  
@@ -349,7 +348,4 @@ feature {NONE} -- Implementation
 			end
 		end
 		
-invariant
-	invariant_clause: True -- Your invariant here
-
 end -- class ROWSET_MODIFIER_TEST

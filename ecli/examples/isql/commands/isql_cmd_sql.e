@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that execute SQL statements."
 	author: "Paul G. Crismer."
-	date: "$Date: 2003/06/12 10:01:14 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/09/16 18:52:25 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	ISQL_CMD_SQL
@@ -55,7 +55,7 @@ feature -- Basic operations
 					end
 				end
 				if cursor.is_prepared then 
-					if cursor.has_results then
+					if cursor.has_result_set then
 						from 
 							cursor.start
 							if cursor.has_information_message then
