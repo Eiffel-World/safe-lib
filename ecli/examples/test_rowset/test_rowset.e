@@ -1,8 +1,8 @@
 indexing
 	description: "ECLI test of rowset classes";
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 10:51:18 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2002/12/10 20:06:36 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET
@@ -72,6 +72,8 @@ feature -- Access
 	statement : ECLI_STATEMENT
 		
 	error_message : STRING
+
+	rowset_cursor: ECLI_ROWSET_CURSOR
 	
 feature -- Status Report
 
