@@ -3,15 +3,16 @@
  *
  * Released under the Eiffel Forum Licence, or the LGPL
  * 
- * Author : Paul G. Crismer (pgcrism@ibm.net)
+ * Author : Paul G. Crismer (pgcrism@ibm.net); Eric Fafchamps (eric.fafchamps@win.be)
  * 
  * $Version: $
- * $Date: 2000/01/07 11:33:25 $
+ * $Date: 2000/10/01 19:16:54 $
  * 
 */
 #include <ncurses.h>
-#include <eif_eiffel.h>
+#include <se_types.h>
 
 #define ecurses_cursor_x(w) ((w)->_curx)
 #define ecurses_cursor_y(w) ((w)->_cury)
+
 

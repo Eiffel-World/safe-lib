@@ -1,7 +1,7 @@
 indexing
 	description: "Abstract class for a single test";
-	date: "$Date: 2000/01/07 11:33:32 $";
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2000/10/01 19:16:54 $";
+	revision: "$Revision: 1.2 $"
 
 deferred class 
 	SINGLE_TEST
@@ -21,6 +21,8 @@ inherit
 	CURSES_ERROR_HANDLING
 		export {NONE} all
 		end
+
+	ANY
 
 feature {NONE} -- Initialisation
 
@@ -42,7 +44,6 @@ feature -- Commands
 			-- Execute the test
 		deferred			
 		end
-
 
 end -- class SINGLE_TEST
 -----------------------------------------------------------

@@ -1,7 +1,7 @@
 indexing
 	description: "Basic event manager";
-	date: "$Date: 2000/01/07 11:33:35 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2000/10/01 19:16:55 $";
+	revision: "$Revision: 1.2 $";
 	author: "Paul G. Crismer, Eric Fafchamps";
 
 deferred class
@@ -69,6 +69,7 @@ feature -- Operations
 		end
 		terminate
 	end
+
 end -- class CURSES_EVENT_MANAGER
 -----------------------------------------------------------
 -- Copyright (C) 1999 Paul G. Crismer, Eric Fafchamps

@@ -1,7 +1,7 @@
 indexing
 	description: "Character attribute test";
-	date: "$Date: 2000/01/07 11:33:32 $";
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2000/10/01 19:16:54 $";
+	revision: "$Revision: 1.2 $"
 
 class 
 	ATTR_TEST
@@ -70,11 +70,13 @@ feature {NONE} -- Implementation
 				pair := foreground * curses.maximum_colors + background
 				if pair /= 0 then
 					window.define_color_pair (pair, foreground, background)
-				end
-				window.use_color_pair (pair)
+					window.use_color_pair (pair)
+				end	
 			end
-		
-			window.set_background (' ', Attribute_normal, pair)
+			if (pair /= 0) then
+				window.set_background (' ', Attribute_normal, pair)
+			end
+
 			window.clear	
 
 			window.move (0, 20)

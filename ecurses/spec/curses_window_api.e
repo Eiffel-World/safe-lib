@@ -3,8 +3,8 @@ indexing
     cluster: 	"ecurses, spec"
     interface: 	"mixin"
     status: 	"See notice at end of class"
-    date: 	"$Date: 2000/01/07 11:33:20 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2000/10/01 19:16:53 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class 
@@ -706,15 +706,14 @@ feature -- window queries
 	external "C"
 	alias "c_ecurses_cursor_y"
 	end
-
-    
-
+   
 end -- class CURSES_WINDOW_API
 -----------------------------------------------------------
 -- Copyright (C) 1999 Paul G. Crismer, Eric Fafchamps
 -- Licensed under Eiffel Forum Freeware License, version 1
 -- (see forum.txt)
 -----------------------------------------------------------
+
 
 
 
