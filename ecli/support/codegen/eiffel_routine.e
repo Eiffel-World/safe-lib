@@ -2,8 +2,8 @@ indexing
 	description: "Objects that can represent either Eiffel functions or procedures"
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "Eiffel Code Generator"
-	date: "$Date: 2003/05/08 13:58:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/10/20 19:52:56 $"
+	revision: "$Revision: 1.2 $"
 	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
 	copyright: "Copyright (c) 2001 Glenn Maughan and others"
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
@@ -64,8 +64,17 @@ feature -- Access
 			Result := body = Void
 		end
 
+	is_once : BOOLEAN
+	
 feature -- Status setting
 
+	set_once is 
+		do 
+			is_once := True 
+		ensure 
+			is_once: is_once 
+		end
+	
 	set_type (new_type: STRING) is
 			-- Set the type of this routine to 'type'
 		require
@@ -210,7 +219,11 @@ feature {NONE} -- Implementation
 
 	write_body (output: KI_TEXT_OUTPUT_STREAM) is
 		do
-			output.put_string ("%T%Tdo")
+			if is_once then
+				output.put_string ("%T%Tonce")
+			else
+				output.put_string ("%T%Tdo")
+			end
 			output.put_new_line
 			from
 				body.start
