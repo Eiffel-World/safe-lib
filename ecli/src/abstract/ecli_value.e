@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2001/08/04 09:40:49 $"
-	revision: 	"$Revision: 1.4 $"
+	date: 		"$Date: 2001/08/24 22:26:32 $"
+	revision: 	"$Revision: 1.5 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -115,10 +115,6 @@ feature {ECLI_VALUE, ECLI_STATEMENT} -- Status Report
 			Result := ecli_c_value_get_length_indicator (buffer)
 		end
 
-feature -- Status setting
-
-feature -- Cursor movement
-
 feature -- Element change
 
 
@@ -138,10 +134,6 @@ feature -- Element change
 		ensure
 			null_value: is_null 
 		end
-
-feature -- Removal
-
-feature -- Resizing
 
 feature -- Transformation
 
