@@ -11,8 +11,8 @@ indexing
 	Dispose
 	
 	]"
-	date: "$Date: 2003/12/30 12:50:58 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2004/06/20 09:16:50 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -76,9 +76,14 @@ feature -- Basic operations
 --			FIXME
 --			if (isDisposed ()) return;
 --			if (!isValidThread ()) error (SWT.ERROR_THREAD_INVALID_ACCESS);
---			releaseChild ();
---			releaseWidget ();
---			destroyWidget ();		
+			if is_resource_disposed then
+				do_nothing
+			else
+	--			release_child
+	--			release_widget
+	--			destroy_widget		
+			end
+			
 		ensure
 			is_resource_disposed : is_resource_disposed
 		end

@@ -3,8 +3,8 @@ indexing
 		This class provides access to a small number of SWT system-wide methods,
 		and in addition inherit from the public constants provided by SWT.
 					]"
-	date: "$Date: 2003/12/28 22:04:41 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2004/06/20 09:16:50 $";
+	revision: "$Revision: 1.2 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -48,7 +48,7 @@ feature -- Basic operations
 			-- Throws an appropriate exception based on the passed in `an_error_code'.
 		do
 			-- FIXME
-			print ("Error code =  %%N" +an_error_code.out) 
+			print ("Error code = " +an_error_code.out + "%N") 
 		end
 
 feature -- Obsolete

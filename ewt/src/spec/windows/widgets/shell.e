@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of an ABSTRACT_SHELL"
-	date: "$Date: 2003/12/30 21:12:43 $";
-	revision: "$Revision: 1.7 $";
+	date: "$Date: 2004/06/20 09:16:51 $";
+	revision: "$Revision: 1.8 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -15,7 +15,9 @@ inherit
 		rename
 			make as make_decorations
 		redefine
-			get_display
+			get_display,
+			widget_style,
+			init_static
 		end
 		
 creation
@@ -51,7 +53,7 @@ feature {NONE} -- Initialization
 			-- the display argument is not considered to be good coding style,
 			-- and may not be supported in a future release of EWT.
 		do
-			make_by_display_style (display, swt.Shell_trim)
+			make_by_display_style (a_display, swt.Shell_trim)
 		end
 
 	make_by_display_style (a_display : DISPLAY; a_style : INTEGER) is
@@ -101,8 +103,11 @@ feature {NONE} -- Initialization
 		local
 			l_display : DISPLAY
 		do
+			init_static
+			
 			make_decorations
-			if a_display = Void then 
+			l_display := a_display
+			if l_display = Void then 
 				l_display := display.get_current
 			end
 			if l_display = Void then
@@ -177,6 +182,25 @@ feature -- Constants
 
 feature {NONE} -- Implementation
 
+	dialog_proc_pointer : POINTER
+	
+	dialog_class : TCHAR is
+		once
+			create Result.make_from_string ("#32770")
+		end
+		
+	init_static is
+			-- "static" initializations
+		local
+			lp_wndclass : WNDCLASS
+			l_result : INTEGER
+		once
+			Precursor
+			create lp_wndclass.make_new_unshared
+			l_result := os.get_class_info_a_external (default_pointer, dialog_class.handle, lp_wndclass.item)
+			dialog_proc_pointer := lp_wndclass.lpfnwndproc
+		end
+		
 	
  	check_style (a_style : INTEGER) : INTEGER is
  		local
@@ -201,6 +225,59 @@ feature {NONE} -- Implementation
 			end
 		end
 
+	widget_style : INTEGER is
+		local
+			l_bits : INTEGER
+		do
+			--	int bits = super.widgetStyle () & ~OS.WS_POPUP;
+			--	if (handle != 0) return bits | OS.WS_CHILD;
+			
+			l_bits := UINT32_.u_and (Precursor, UINT32_.u_not (os.Ws_popup))
+			if handle /= default_pointer then
+				l_bits := UINT32_.u_or (l_bits, os.ws_child)
+			else
+				l_bits := UINT32_.u_and (l_bits, UINT32_.u_not (os.Ws_child))
+				--	bits &= ~OS.WS_CHILD;
+				--	/*
+				
+				--	* Feature in WinCE.  Calling CreateWindowEx () with WS_OVERLAPPED
+				--	* and a parent window causes the new window to become a WS_CHILD of
+				--	* the parent instead of a dialog child.  The fix is to use WS_POPUP
+				--	* for a window with a parent.  
+				--	* 
+				--	* Feature in WinCE PPC.  A window without a parent with WS_POPUP
+				--	* always shows on top of the Pocket PC 'Today Screen'. The fix
+				--	* is to not set WS_POPUP for a window without a parent on WinCE
+				--	* devices.
+				--	* 
+				--	* NOTE: WS_POPUP causes CreateWindowEx () to ignore CW_USEDEFAULT
+				--	* and causes the default window location and size to be zero.
+				--	*/
+				--	if (OS.IsWinCE) {
+				--		if (OS.IsSP) return bits | OS.WS_POPUP;
+				--		return parent == null ? bits : bits | OS.WS_POPUP;
+				--	}
+				
+				--	
+				--	/*
+				--	* Use WS_OVERLAPPED for all windows, either dialog or top level
+				--	* so that CreateWindowEx () will respect CW_USEDEFAULT and set
+				--	* the default window location and size.
+				--	* 
+				--	* NOTE:  When a WS_OVERLAPPED window is created, Windows gives
+				--	* the new window WS_CAPTION style bits.  These two constants are
+				--	* as follows:
+				--	* 
+				--	* 	WS_OVERLAPPED = 0
+				--	* 	WS_CAPTION = WS_BORDER | WS_DLGFRAME
+				--	* 
+				--	*/
+				--	return bits | OS.WS_OVERLAPPED | OS.WS_CAPTION;
+				l_bits := UINT32_.u_or (l_bits, UINT32_.u_or (os.Ws_overlapped, os.Ws_caption))
+			end
+			Result := l_bits
+		end
+		
 feature {NONE} -- Attributes
 
 	display : DISPLAY

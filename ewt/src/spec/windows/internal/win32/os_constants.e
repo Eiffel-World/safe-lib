@@ -1,7 +1,7 @@
 indexing
 	description : "OS specific constants"
-	date: "$Date: 2003/12/29 16:49:48 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2004/06/20 09:16:50 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 	note: "This class has been obtained by extracting OS related constants from the corresponding Javadoc"
@@ -1053,6 +1053,8 @@ feature -- Constants
 	WS_EX_TOPMOST : INTEGER is 8 
 	WS_EX_TRANSPARENT : INTEGER is 32 
 	WS_HSCROLL : INTEGER is 1048576 
+	WS_MAXIMIZEBOX : INTEGER is 65536 -- 0x10000;
+	WS_MINIMIZEBOX : INTEGER is 131072 -- 0x20000;
 	WS_OVERLAPPED : INTEGER is 0
 	WS_OVERLAPPEDWINDOW : INTEGER is 13565952 
 	WS_POPUP : INTEGER is -2147483648 

@@ -1,21 +1,14 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2003/12/29 21:32:33 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/06/20 09:16:50 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	MSG
 
 inherit
 	TAG_MSG_STRUCT
-		rename
-			get_hwnd as hwnd,
-			get_lparam as lParam,
-			get_message as message,
-			get_time as time,
-			get_wparam as wParam
-		end
 
 creation
 

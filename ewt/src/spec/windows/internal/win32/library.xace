@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<library name="swt_library">
+
+  <description>
+    description: "Xace file for the wwin32"
+    copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+    license: "Eiffel Forum License v2 (see forum.txt)"
+    date: "$Date: 2004/06/20 09:20:07 $"
+    revision: "$Revision: 1.1 $"
+  </description>
+	<cluster name="win32_abstract" location="${WWIN32}\library\abstract"/>
+	<cluster name="win32_library_wrapper" location="${WWIN32}\library\wrapper">
+		<option name="abstract" value="true"/>
+
+		<cluster name="eiffel" >
+			<option name="abstract" value="true"/>
+			<cluster name="external" prefix="callback_external_">
+				<option name="abstract" value="true"/>
+				<cluster name="struct">
+					<cluster name="spec" prefix="win32_external_struct_">
+						<option name="abstract" value="true"/>
+						<cluster name="${GOBO_EIFFEL}"/>
+					</cluster>
+				</cluster>
+				<cluster name="enum">
+					<cluster name="spec" prefix="win32_external_enum_">
+						<option name="abstract" value="true"/>
+						<cluster name="${GOBO_EIFFEL}"/>
+					</cluster>
+				</cluster>
+				<cluster name="function">
+					<cluster name="spec" prefix="win32_external_function_">
+						<option name="abstract" value="true"/>
+						<cluster name="${GOBO_EIFFEL}"/>
+					</cluster>
+				</cluster>
+				<cluster name="callback" prefix="win32_external_callback_">
+					<cluster name="spec">
+						<option name="abstract" value="true"/>
+						<cluster name="${GOBO_EIFFEL}"/>
+					</cluster>
+				</cluster>
+			</cluster>
+			<cluster name="abstraction" prefix="win32_abstraction_">
+				<option name="abstract" value="true"/>
+				<cluster name="struct"/>
+				<cluster name="enum"/>
+				<cluster name="function"/>
+				<cluster name="callback"/>
+			</cluster>
+		</cluster>
+    <option name="header" value="${WWIN32}\library\wrapper"/>
+    <option name="header" value="${WWIN32}\library/src"/>
+
+    <option if="${GOBO_OS}=windows">
+      <option name="link" value="${WWIN32}\library\wwin32_c_eiffel_glue_library_${GOBO_EIFFEL}_${GOBO_CC}.lib"/>
+      <option name="link" value="OPENGL32.lib"/>
+      <option name="link" value="msimg32.lib"/>
+      <option name="link" value="imm32.lib"/>
+      <option name="link" value="wintrust.lib"/>
+    </option>
+
+  </cluster>
+
+</library>
+

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<project name="wwin32" default="help">
+
+  <description>
+    description: "ewg example: win32 wrapper"
+    copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+    license: "Eiffel Forum License v2 (see forum.txt)"
+    date: "$Date: 2004/06/20 09:20:07 $"
+    revision: "$Revision: 1.1 $"
+  </description>
+
+  <inherit>
+    <parent location="${EWG}/misc/ewg_library.eant">
+      <redefine target="init_ewg"/>
+      <redefine target="c_compile"/>
+      <redefine target="c_build_library"/>
+      <redefine target="clean"/>
+    </parent>
+  </inherit>
+
+  <!-- Implementation -->
+
+  <target name="c_compile" depend="init">
+    <precursor/>
+    <set name="ewg.cc.dir_name" value="."/>
+    <set name="ewg.cc.options" value="${ewg.c_compile_options}" if="${GOBO_CC}=gcc"/>
+    <geant target="c_compile_${GOBO_CC}_internal"/>
+  </target>
+  
+  <target name="c_build_library" depend="init">
+    <precursor/>
+    <set name="ewg.lib.dir_name" value=""/>
+    <set name="ewg.lib.lib_name" value="ewg_ewt_library"/>
+    <geant target="c_build_library_${GOBO_CC}_internal"/>
+  </target>
+  
+  <target name="clean" depend="init">
+    <precursor/>
+  </target>
+
+
+  <target name="init_ewg">
+    <set name="system_dir" value="${WWIN32}"/>
+    <set name="ewg.library_name" value="wwin32"/>
+    <set name="ewg.short_header_name" value="wwin32.h"/>
+    <set name="ewg.use_config_file" value="True"/>
+    <geant target="init_wwin32_windows"/>
+  </target>
+
+  <target name="init_wwin32_windows" if="${GOBO_OS}=windows">
+    <set name="ewg.full_header_name" value="${system_dir}\src\wwin32.h"/>
+    <set name="ewg.c_compile_options" value="/I${system_dir}\src"/>
+    <set name="ewg.c_link_options" value=""/>
+  </target>
+
+</project>

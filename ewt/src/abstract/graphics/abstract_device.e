@@ -5,8 +5,8 @@ indexing
 	Devices can have a graphics context (GC) created for them, and they can be drawn on by sending messages to the associated GC.
 
 	]"
-	date: "$Date: 2003/12/28 22:04:41 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2004/06/20 09:16:50 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -67,7 +67,7 @@ feature -- Basic operations
 			if not is_resource_disposed then
 				-- FIXME
 --				checkDevice ();
---				release ();
+				release
 --				destroy ();
 				is_resource_disposed := True;
 --				if (tracking) {
@@ -98,8 +98,8 @@ feature {NONE} -- Implementation
 	create_os_device (a_device_data : ABSTRACT_DEVICE_DATA) is
 			-- Creates the device in the operating system with `a_device_data'.	
 			-- If the device does not have a handle, this method may do nothing depending on the device.
-		require
-			a_device_data_defined : a_device_data /= Void
+--		require
+--			a_device_data_defined : a_device_data /= Void
 		deferred			
 		end
 

@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DISPLAY"
-	date: "$Date: 2003/12/30 21:12:43 $";
-	revision: "$Revision: 1.8 $";
+	date: "$Date: 2004/06/20 09:16:51 $";
+	revision: "$Revision: 1.9 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -21,10 +21,10 @@ inherit
 			on_callback as window_proc
 		end
 
-	HOOKPROC_CALLBACK
-		rename
-			on_callback as msg_filter_proc
-		end
+--	HOOKPROC_CALLBACK
+--		rename
+--			on_callback as msg_filter_proc
+--		end
 		
 	MSGPROC_CALLBACKABLE
 	
@@ -122,7 +122,7 @@ feature {NONE} -- Access
 	
 	message_callbacker : MSGPROC_CALLBACK
 	
-	msg_filter_callback : HOOKPROC_DISPATCHER
+--	msg_filter_callback : HOOKPROC_DISPATCHER
 
 	msg_filter_proc_pointer : POINTER
 	
@@ -218,7 +218,7 @@ feature {NONE} -- Implementation
 		local
 			l_window_class_name : STRING
 			h_heap, h_instance : POINTER
-			lp_wndclass : WNDCLASSEX
+			lp_wndclass : WNDCLASS
 			cursor_index : XS_C_INT32
 			msgproc_pointer : XS_C_POINTER
 			hclass : INTEGER
@@ -246,11 +246,11 @@ feature {NONE} -- Implementation
 			window_class.from_string (l_window_class_name)
 
 			--	/* Register the SWT window class */
-			h_heap := OS.get_process_heap_external
+--			h_heap := OS.get_process_heap_external
 			h_instance := OS.get_module_handle_a_external (default_pointer)
 		
 			create lp_wndclass.make_new_unshared
-			lp_wndclass.set_cbsize (lp_wndclass.sizeof)
+--			lp_wndclass.set_cbsize (lp_wndclass.sizeof)
 			lp_wndclass.set_hinstance (h_instance)
 			lp_wndclass.set_lpfnwndproc (window_proc_pointer)
 			lp_wndclass.set_style (UINT32_.u_or (OS.Cs_bytealignwindow, os.Cs_dblclks))
@@ -258,9 +258,9 @@ feature {NONE} -- Implementation
 			cursor_index.put (os.Idc_arrow)
 			lp_wndclass.set_hcursor (os.load_cursor_a_external (default_pointer, cursor_index.as_pointer))
 			lp_wndclass.set_lpszclassname (window_class.handle)
-			hclass := os.register_class_ex_a_external (lp_wndclass.item)
+			hclass := os.register_class_a_external (lp_wndclass.item)
 			check
-				hclass /= 0
+				window_class_registered: hclass /= 0
 			end
 
 			--	/* Initialize the system font */
@@ -313,9 +313,9 @@ feature {NONE} -- Implementation
 			--		if (msgFilterProc == 0) error (SWT.ERROR_NO_MORE_CALLBACKS);
 			--		hHook = OS.SetWindowsHookEx (OS.WH_MSGFILTER, msgFilterProc, 0, threadId);
 			--	}
-			create msg_filter_callback.make (Current)
-			msg_filter_proc_pointer := msg_filter_callback.c_dispatcher
-			h_hook := Os.set_windows_hook_ex_a_external (OS.wh_msgfilter, msg_filter_proc_pointer, default_pointer, thread_id)
+--			create msg_filter_callback.make (Current)
+--			msg_filter_proc_pointer := msg_filter_callback.c_dispatcher
+--			h_hook := Os.set_windows_hook_ex_a_external (OS.wh_msgfilter, msg_filter_proc_pointer, default_pointer, thread_id)
 	end
 	
 	create_os_device (a_device_data : DEVICE_DATA) is
@@ -323,6 +323,7 @@ feature {NONE} -- Implementation
 			-- If the device does not have a handle, this method may do nothing depending on the device.
 		do	
 				--	checkDisplay (thread = Thread.currentThread ());
+			
 			create_display (a_device_data)
 				--	register (this);
 				--	if (Default == null) Default = this;
@@ -375,9 +376,11 @@ feature {NONE} -- Implementation
 		local
 			control : CONTROL
 		do
-			control := widget_table.item (hwnd)
+			if widget_table.count > 0 then
+				control := widget_table.item (hwnd)
+			end
 			if control /= Void then
-				Result := control.window_proc (msg, wparam, lparam)
+					Result := control.window_proc (msg, wparam, lparam)
 			else
 				Result := OS.def_window_proc_a_external (hwnd, msg, wParam, lParam);
 			end

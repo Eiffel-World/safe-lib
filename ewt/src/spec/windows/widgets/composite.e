@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_COMPOSITE"
-	date: "$Date: 2003/12/30 21:12:43 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2004/06/20 09:16:51 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -12,6 +12,9 @@ inherit
 	ABSTRACT_COMPOSITE
 	
 	SCROLLABLE
+		redefine
+			widget_style
+		end
 	
 feature {NONE} -- Initialization
 
@@ -51,6 +54,12 @@ feature -- Constants
 
 feature {NONE} -- Implementation
 
+	widget_style : INTEGER is
+		do
+		--	/* Force clipping of children by setting WS_CLIPCHILDREN */
+			Result := UINT32_.u_or (Precursor, OS.WS_CLIPCHILDREN)
+		end
+		
 invariant
 	invariant_clause: -- Your invariant here
 

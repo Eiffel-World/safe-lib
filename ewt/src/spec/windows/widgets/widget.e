@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implemenation of ABSTRACT_WIDGET"
-	date: "$Date: 2003/12/30 21:12:43 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2004/06/20 09:16:51 $";
+	revision: "$Revision: 1.7 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -146,6 +146,14 @@ feature {NONE} -- Onces
 			swt.error(a_code)
 		end
 
+	major : INTEGER is 4
+	
+	init_static is
+		once
+			--| FIXME
+			-- Initialize common controls
+		end
+		
 invariant
 	invariant_clause: -- Your invariant here
 

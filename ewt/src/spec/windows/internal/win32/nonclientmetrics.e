@@ -1,30 +1,19 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2003/12/29 21:26:54 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/06/20 09:16:50 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	NONCLIENTMETRICS
 
 inherit
 	TAG_NONCLIENTMETRICSA_STRUCT
-		rename
-			get_cbsize as cbSize,
-			get_iborderwidth as iBorderWidth,
-			get_icaptionheight as iCaptionHeight,
-			get_icaptionwidth as iCaptionWidth,
-			get_imenuheight as iMenuHeight,
-			get_imenuwidth as iMenuWidth,
-			get_iscrollheight as iScrollHeight,
-			get_iscrollwidth as iScrollWidth,
-			get_ismcaptionheight as iSmCaptionHeight,
-			get_ismcaptionwidth as iSmCaptionWidth
 		export
 			{ANY} sizeof
 		end
-		
-	TAG_NONCLIENTMETRICSA_STRUCT_EXTERNAL2
+
+	WIN32_STRUCT_COMPLEMENT_FUNCTIONS
 	
 creation
 	make_new_unshared,
@@ -36,27 +25,27 @@ feature -- Access
 
 	lfCaptionFont : LOGFONT is
 		do
-			create Result.make_shared (get_lfCaptionFont_external (item))
+			create Result.make_shared (ewg_struct_nonclientmetricsa_member_get_lf_Caption_Font (item))
 		end
 		
 	lfSmCaptionFont : LOGFONT is
 		do
-			create Result.make_shared (get_lfSmCaptionFont_external (item))
+			create Result.make_shared (ewg_struct_nonclientmetricsa_member_get_lf_Sm_Caption_Font (item))
 		end
 		
 	lfMenuFont : LOGFONT is
 		do
-			create Result.make_shared (get_lfMenuFont_external (item))
+			create Result.make_shared (ewg_struct_nonclientmetricsa_member_get_lf_Menu_Font (item))
 		end
 		
 	lfStatusFont : LOGFONT is
 		do
-			create Result.make_shared (get_lfStatusFont_external (item))
+			create Result.make_shared (ewg_struct_nonclientmetricsa_member_get_lf_Status_Font (item))
 		end
 		
 	lfMessageFont : LOGFONT is
 		do
-			create Result.make_shared (get_lfmessagefont_external (item))
+			create Result.make_shared (ewg_struct_nonclientmetricsa_member_get_lf_message_font (item))
 		end
 
 feature -- Measurement

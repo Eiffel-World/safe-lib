@@ -11,8 +11,8 @@ indexing
 					These constants are marked as HINT. The set of widgets which support a particular HINT may change from release to release, 
 					although we typically will not withdraw support for a HINT once it is made available.
 					]"
-	date: "$Date: 2003/12/30 21:12:43 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2004/06/20 09:16:50 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 	
@@ -359,7 +359,7 @@ feature -- Accesss
 
 	style_FULL_SELECTION  : INTEGER is 65536	--style constant for full row selection behavior. 
 
-	style_event_H_SCROLL  : INTEGER is 256	--style constant for horizontal scrollbar behavior (value is 1<<8)  
+	style_H_SCROLL  : INTEGER is 256	--style constant for horizontal scrollbar behavior (value is 1<<8)  
 
 	event_HardKeyDown  : INTEGER is 33	--hardware key down event type (value is 33) 
 

@@ -1,0 +1,3827 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ewg_config>
+
+<!-- Ajouter la possibilité de spécifier un nombre
+     de callbacks à gérer comme cela le wrapper peut gérer un tableau de fonctions -->
+     
+  <rule_list>
+
+
+	<rule>
+		<match>
+			<identifier name="ewg_.*"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+
+	<rule>
+		<match>
+			<identifier name="AbortDoc"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ActivateKeyboardLayout"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="AdjustWindowRectEx"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="Arc"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="BeginDeferWindowPos"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="BeginPaint"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="BitBlt"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="BringWindowToTop"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="Call"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CallNextHookEx"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CallWindowProcA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CallWindowProcW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CharLowerA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CharLowerW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CharUpperA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CharUpperW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CheckMenuItem"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ChooseColorA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ChooseColorW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ChooseFontA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ChooseFontW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ClientToScreen"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CloseClipboard"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CombineRgn"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CommDlgExtendedError"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CommandBar_AddAdornments"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CommandBar_Create"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CommandBar_Destroy"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CommandBar_DrawMenuBar"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CommandBar_Height"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CommandBar_InsertMenubarEx"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CommandBar_Show"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CopyImage"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateAcceleratorTableA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateAcceleratorTableW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateBitmap"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateCaret"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateCompatibleBitmap"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateCompatibleDC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateCursor"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateDCA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateDCW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateDIBSection"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateFontIndirectA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateFontIndirectW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateIconIndirect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateMenu"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreatePalette"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreatePatternBrush"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreatePen"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreatePopupMenu"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateRectRgn"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateSolidBrush"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateWindowExA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="CreateWindowExW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DefWindowProcA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DefWindowProcW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DeferWindowPos"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DeleteDC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DeleteMenu"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DeleteObject"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DestroyAcceleratorTable"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DestroyCaret"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DestroyCursor"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DestroyIcon"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DestroyMenu"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DestroyWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DispatchMessageA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DispatchMessageW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+<!--	<rule>
+		<match>
+			<identifier name="DragDetect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+-->
+
+	<rule>
+		<match>
+			<identifier name="DragFinish"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DragQueryFileA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DragQueryFileW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DrawEdge"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DrawFocusRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DrawFrameControl"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DrawIconEx"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DrawMenuBar"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DrawStateA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DrawStateW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DrawTextA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="DrawTextW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="Ellipse"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EnableMenuItem"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EnableScrollBar"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EnableWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EndDeferWindowPos"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EndDoc"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EndPage"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EndPaint"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EnumFontFamiliesA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EnumFontFamiliesW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EnumSystemLanguageGroupsA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EnumSystemLanguageGroupsW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EnumSystemLocalesA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EnumSystemLocalesW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EqualRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="EqualRgn"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ExpandEnvironmentStringsA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ExpandEnvironmentStringsW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ExtTextOutA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ExtTextOutW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ExtractIconExA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ExtractIconExW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="FillRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="FindWindowA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="FindWindowW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="FreeLibrary"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetACP"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetActiveWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetBkColor"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCapture"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCaretPos"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCharABCWidthsA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCharABCWidthsW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCharWidthA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCharWidthW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCharacterPlacementA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCharacterPlacementW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetClassInfoA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetClassInfoW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetClientRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetClipBox"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetClipRgn"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetClipboardData"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetClipboardFormatNameA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetClipboardFormatNameW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetComboBoxInfo"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCurrentObject"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCurrentProcessId"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCurrentThreadId"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCursor"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetCursorPos"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetDC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetDCEx"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetDIBColorTable"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetDIBits"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetDesktopWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetDeviceCaps"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetDialogBaseUnits"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetDlgItem"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetDoubleClickTime"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetFocus"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetFontLanguageInfo"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetIconInfo"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetKeyNameTextA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetKeyNameTextW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetKeyboardLayout"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetKeyboardLayoutList"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetKeyboardState"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetLastActivePopup"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetLastError"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetLayout"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetLibraryHandle"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetLocaleInfoA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetLocaleInfoW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetMenu"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetMenuDefaultItem"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetMenuInfo"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetMenuItemCount"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetMenuItemInfoA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetMenuItemInfoW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetMessageA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetMessagePos"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetMessageTime"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetMessageW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetModuleHandleA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetModuleHandleW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetNearestPaletteIndex"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetObjectA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetObjectW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetOpenFileNameA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetOpenFileNameW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetPaletteEntries"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetParent"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetPixel"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetProcAddress"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetProcessHeap"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetProfileStringA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetProfileStringW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetROP2"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetRegionData"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetRgnBox"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetSaveFileNameA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetSaveFileNameW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetScrollInfo"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetStockObject"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetSysColor"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetSysColorBrush"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetSystemMenu"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetSystemMetrics"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetSystemPaletteEntries"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetTextCharset"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetTextColor"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetTextExtentPoint32A"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetTextExtentPoint32W"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetTextMetricsA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetTextMetricsW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetTickCount"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetUpdateRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetUpdateRgn"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetVersionExA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetVersionExW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetWindowLongA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetWindowLongW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetWindowPlacement"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetWindowRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetWindowTextA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetWindowTextLengthA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetWindowTextLengthW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetWindowTextW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GetWindowThreadProcessId"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GlobalAlloc"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GlobalFree"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GlobalLock"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GlobalSize"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="GlobalUnlock"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+<!-- FIXME
+<rule>
+		<match>
+			<identifier name="GradientFill"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+-->
+
+	<rule>
+		<match>
+			<identifier name="HeapAlloc"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="HeapFree"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="HideCaret"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_Add"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_AddMasked"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_Create"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_Destroy"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_GetIcon"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_GetIconSize"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_GetImageCount"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_Remove"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_Replace"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_ReplaceIcon"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImageList_SetIconSize"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmAssociateContext"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmCreateContext"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmDestroyContext"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmGetCompositionFontA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmGetCompositionFontW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmGetCompositionStringA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmGetCompositionStringW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmGetContext"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmGetConversionStatus"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmGetDefaultIMEWnd"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmGetOpenStatus"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmReleaseContext"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmSetCompositionFontA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmSetCompositionFontW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmSetCompositionWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmSetConversionStatus"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ImmSetOpenStatus"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="InitCommonControls"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="InitCommonControlsEx"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="InsertMenuA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="InsertMenuItemA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="InsertMenuItemW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="InsertMenuW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="InvalidateRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="InvalidateRgn"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="IsDBCSLeadByte"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="IsIconic"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="IsPPC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="IsSP"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="IsWindowEnabled"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="IsWindowVisible"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="IsZoomed"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="KillTimer"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LineTo"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LoadBitmapA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LoadBitmapW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LoadCursorA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LoadCursorW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LoadIconA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LoadIconW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LoadImageA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LoadImageW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LoadLibraryA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="LoadLibraryW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MapVirtualKeyA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MapVirtualKeyW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MapWindowPoints"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MessageBeep"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MessageBoxA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MessageBoxW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MoveMemory"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MoveMemoryA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MoveMemoryW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MoveToEx"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MsgWaitForMultipleObjectsEx"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="MultiByteToWideChar"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="OleInitialize"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="OleUninitialize"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="OpenClipboard"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="PatBlt"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="PeekMessageA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="PeekMessageW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="Pie"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="Polygon"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="Polyline"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="PostMessageA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="PostMessageW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="PostQuitMessage"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	
+	<rule>
+		<match>
+			<identifier name="PostThreadMessageA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="PostThreadMessageW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="PrintDlgA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="PrintDlgW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+<!--	<rule>
+		<match>
+			<identifier name="PtInRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+-->
+	<rule>
+		<match>
+			<identifier name="PtInRegion"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RealizePalette"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RectInRegion"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="Rectangle"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RedrawWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegCloseKey"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegEnumKeyExA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegEnumKeyExW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegOpenKeyExA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegOpenKeyExW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegQueryInfoKeyA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegQueryInfoKeyW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegQueryValueExA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegQueryValueExW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegisterClassA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegisterClassW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegisterClipboardFormatA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RegisterClipboardFormatW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ReleaseCapture"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ReleaseDC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RemoveMenu"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="RoundRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHBrowseForFolderA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHBrowseForFolderW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHCreateMenuBar"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHGetMalloc"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHGetPathFromIDListA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHGetPathFromIDListW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHHandleWMSettingChange"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHRecognizeGesture"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHSendBackToFocusWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHSetAppKeyWndAssoc"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SHSipPreference"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ScreenToClient"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ScrollWindowEx"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SelectClipRgn"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SelectObject"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SelectPalette"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SendMessageA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SendMessageW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetActiveWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetBkColor"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetBkMode"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetCapture"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetCaretPos"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetClipboardData"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetCursor"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetCursorPos"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetDIBColorTable"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetFocus"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetForegroundWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetLayout"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetMenu"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetMenuDefaultItem"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetMenuInfo"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetMenuItemInfoA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetMenuItemInfoW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetPaletteEntries"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetParent"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetPixel"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetROP2"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetRectRgn"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetScrollInfo"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetStretchBltMode"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetTextAlign"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetTextColor"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetTimer"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetWindowLongA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetWindowLongW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetWindowPlacement"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetWindowPos"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetWindowTextA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetWindowTextW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetWindowsHookExA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SetWindowsHookExW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ShellExecuteExA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ShellExecuteExW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ShowCaret"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ShowOwnedPopups"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ShowScrollBar"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ShowWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SipGetInfo"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="StartDocA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="StartDocW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="StartPage"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="StretchBlt"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SystemParametersInfoA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="SystemParametersInfoW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ToAscii"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ToUnicode"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="TrackMouseEvent"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="TrackPopupMenu"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="TranslateAcceleratorA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="TranslateAcceleratorW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="TranslateCharsetInfo"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="TranslateMessage"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="TransparentImage"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="UnregisterClassA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="UnregisterClassW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="UpdateWindow"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ValidateRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="VkKeyScanA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="VkKeyScanW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="VtblCall"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="WaitMessage"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="WideCharToMultiByte"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="WindowFromDC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+<!--	<rule>
+		<match>
+			<identifier name="WindowFromPoint"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+-->
+
+<rule>
+	<match>
+		<identifier name="WNDPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="MSGBOXCALLBACK"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="DLGPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="TIMERPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="FONTENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="FONTENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="FONTENUMPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+
+
+<!--
+	<rule>
+		<match>
+			<identifier name="OLDFONTENUMPROCA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="OLDFONTENUMPROCW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ENUMRESTYPEPROC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ENUMRESNAMEPROC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ENUMRESLANGPROC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+-->
+
+<rule>
+	<match>
+		<identifier name="GOBJENUMPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="LINEDDAPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="MFENUMPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="ENHMFENUMPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="ABORTPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="ICMENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="ICMENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="GRAYSTRINGPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="WNDENUMPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="HOOKPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="SENDASYNCPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="PROPENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="PROPENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="PROPENUMPROCEXA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="PROPENUMPROCEXW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="EDITWORDBREAKPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="EDITWORDBREAKPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="DRAWSTATEPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="PROPENUMPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="PROPENUMPROCEX"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="EDITWORDBREAKPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="NAMEENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="NAMEENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="WINSTAENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="DESKTOPENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="WINSTAENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="DESKTOPENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="WINSTAENUMPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="DESKTOPENUMPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="LOCALE_ENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="CODEPAGE_ENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="DATEFMT_ENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="DATEFMT_ENUMPROCEXA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="TIMEFMT_ENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="CALINFO_ENUMPROCA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="CALINFO_ENUMPROCEXA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="LOCALE_ENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="CODEPAGE_ENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="DATEFMT_ENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="DATEFMT_ENUMPROCEXW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="TIMEFMT_ENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="CALINFO_ENUMPROCW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="CALINFO_ENUMPROCEXW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="PFNPROCESSPOLICIESA"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="PFNPROCESSPOLICIESW"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="LPOFNHOOKPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="LPCCHOOKPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="LPFRHOOKPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="LPCFHOOKPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="LPPRINTHOOKPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<rule>
+	<match>
+		<identifier name="LPSETUPHOOKPROC"/>
+	</match>
+	<wrapper type="default"/>
+</rule>
+
+<!--
+	<rule>
+		<match>
+			<identifier name="REGISTERWORDENUMPROCA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="REGISTERWORDENUMPROCW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+-->
+
+	<!-- Structures -->
+	<rule>
+		<match>
+			<identifier name="ACCEL"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="ACP"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="BITMAP"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="BITMAPINFOHEADER"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="BROWSEINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="CHOOSECOLOR"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="CHOOSEFONT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="COMPOSITIONFORM"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="CREATESTRUCT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="DC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="DCA"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="DCW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="DIBSECTION"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="DLLVERSIONINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="DOCINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="DRAWITEMSTRUCT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="DROPFILES"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="FILETIME"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="HDITEM"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="HELPINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="ICONINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="INITCOMMONCONTROLSEX"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="LOGBRUSH"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="LOGFONT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="LOGPEN"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="LVCOLUMN"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="LVHITTESTINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="LVITEM"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="MEASUREITEMSTRUCT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="MENUINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="MENUITEMINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="MSG"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="NMHDR"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="NMHEADER"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="NMLISTVIEW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="NMLVCUSTOMDRAW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="NMREBARCHEVRON"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="NMTOOLBAR"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="NMTTDISPINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="NMTVCUSTOMDRAW"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="NONCLIENTMETRICS"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="OPENFILENAME"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="OSVERSIONINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="PAINTSTRUCT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="POINT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="PRINTDLG"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="REBARBANDINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="RECT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="RESULTS"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="SCROLLINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="SHACTIVATEINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="SHELLEXECUTEINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="SHMENUBARINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="SHRGINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="SIPINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="SIZE"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="TBBUTTON"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="TBBUTTONINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="TCITEM"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="TEXTMETRIC"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="TOOLINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="TRACKMOUSEEVENT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="TRIVERTEX"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="TVHITTESTINFO"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="TVINSERTSTRUCT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="TVITEM"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="WINDOWPLACEMENT"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="WINDOWPOS"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+	<rule>
+		<match>
+			<identifier name="WNDCLASS"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ewg_function_macro_PtInRect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ewg_function_macro_WindowFromPoint"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="ewg_function_macro_DragDetect"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+  </rule_list>
+
+</ewg_config>
