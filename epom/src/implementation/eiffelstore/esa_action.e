@@ -1,13 +1,17 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2004/06/06 12:52:52 $"
-	revision: "$Revision: 1.1 $"
 
-deferred class
-	ESA_ACTION
+	description:
+
+		"Actions for EIFFELSTORE_SIMPLE_ADAPTER"
+
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/06 20:26:28 $"
+
+deferred class ESA_ACTION
 
 inherit
+
 	ACTION
 
 feature -- Initialization
@@ -56,6 +60,7 @@ feature -- Inapplicable
 feature {NONE} -- Implementation
 
 invariant
+
 	adapter_not_void: adapter /= Void
 	
-end -- class ESA_ACTION
+end

@@ -1,8 +1,8 @@
 indexing
 	description: "Virtual row on BORROWER table."
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/06 12:52:52 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/06/06 20:26:28 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	BORROWER_ROW
@@ -46,6 +46,7 @@ feature -- Inapplicable
 feature {NONE} -- Implementation
 
 invariant
+
 	invariant_clause: True -- Your invariant here
 
-end -- class BORROWER_ROW
+end

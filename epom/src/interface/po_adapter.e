@@ -1,6 +1,7 @@
 indexing
-	description: 
-	
+
+	description:
+
 		"Objects that handle all accesses to persistent objects of type G on a datastore.%N%
 		% %
 		%The persistent objects all have `class_name' as persistence name.%N%
@@ -27,13 +28,13 @@ indexing
 	
 
 	Usage: "Inherit.  Define all deferred features."
-	date: "$Date: 2004/06/06 12:52:53 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/06/06 20:26:28 $"
+	revision: "$Revision: 1.2 $"
 
-deferred class
-	PO_ADAPTER [G -> PO_PERSISTENT]
+deferred class PO_ADAPTER [G -> PO_PERSISTENT]
 
 inherit
+
 	PO_STATUS_USE
 	PO_STATUS_MANAGEMENT
 	
@@ -350,6 +351,7 @@ feature {NONE} -- Implementation
 	cache : DS_HASH_TABLE [G, STRING]
 	
 invariant
+
 	class_name_defined: class_name /= Void and then not class_name.is_empty
 	datastore_exists : datastore /= Void
 	registered_to_datastore: datastore.adapters.has (Current)
@@ -357,4 +359,4 @@ invariant
 	cache_not_void: cache /= Void
 	last_cursor_not_void: last_cursor /= Void
 	
-end -- class PO_ADAPTER
+end

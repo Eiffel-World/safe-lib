@@ -1,19 +1,24 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2004/06/06 12:52:52 $"
-	revision: "$Revision: 1.1 $"
 
-class
-	ESA_READ_COLLECTION_ACTION
+	description:
+
+		"Actions for EIFFELSTORE_SIMPLE_ADAPTER.read_object_collection"
+
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/06 20:26:28 $"
+
+class ESA_READ_COLLECTION_ACTION
 
 inherit
+
 	ESA_ACTION
 		redefine
 			execute
 		end
 		
 creation
+
 	make
 	
 feature -- Access
@@ -54,6 +59,7 @@ feature -- Inapplicable
 feature {NONE} -- Implementation
 
 invariant
+
 	invariant_clause: True -- Your invariant here
 
-end -- class ESA_READ_COLLECTION_ACTION
+end

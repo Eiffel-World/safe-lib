@@ -1,14 +1,17 @@
 indexing
-	description: "Access to persistence related objects of the BOOKS datastore"
-	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/06 12:52:52 $"
-	revision: "$Revision: 1.1 $"
 
-class
-	BOOKS_DATASTORE_ACCESS
+	description:
+
+		"Access to persistence related objects of the BOOKS datastore"
+
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/06 20:26:28 $"
+
+class BOOKS_DATASTORE_ACCESS
 
 inherit
-	
+
 	PO_SHARED_MANAGER 
 	PO_LAUNCHER
 	DATABASE_APPL[ODBC]
@@ -70,6 +73,7 @@ feature {NONE} -- Implementation
 	store : EIFFELSTORE_DATASTORE
 	
 invariant
+
 	invariant_clause: True -- Your invariant here
 
-end -- class BOOKS_DATASTORE_ACCESS
+end

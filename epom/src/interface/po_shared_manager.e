@@ -1,11 +1,14 @@
 indexing
-	description: "Objects that share a single PO_MANAGER."
-	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/06 12:52:53 $"
-	revision: "$Revision: 1.1 $"
 
-class
-	PO_SHARED_MANAGER
+	description:
+
+		"Objects that share a single PO_MANAGER."
+
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/06 20:26:28 $"
+
+class PO_SHARED_MANAGER
 
 feature -- Access
 
@@ -64,6 +67,7 @@ feature {NONE} -- Implementation
 		end
 
 invariant
+
 	cell_not_void: cell /= Void
 	
-end -- class PO_SHARED_MANAGER
+end

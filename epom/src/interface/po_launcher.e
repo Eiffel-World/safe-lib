@@ -1,51 +1,14 @@
 indexing
-	description: "[
-		
-		Objects launch the persistence system.  
-		Give access to selectively exported features of PO_SHARED_MANAGER and PO_MANAGER. 
-		
-		]"
 
-	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/06 12:52:53 $"
-	revision: "$Revision: 1.1 $"
+	description:
 
-class
-	PO_LAUNCHER
+		"Objects that launch the persistence system. %
+	 % They give access to selectively exported features of PO_SHARED_MANAGER and PO_MANAGER."
 
-feature -- Access
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/06 20:26:28 $"
 
-feature -- Measurement
+class PO_LAUNCHER
 
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
-
-feature {NONE} -- Implementation
-
-invariant
-	invariant_clause: True -- Your invariant here
-
-end -- class PO_LAUNCHER
+end

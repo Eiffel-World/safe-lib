@@ -1,8 +1,8 @@
 indexing
 	description: "Persistent class names for BORROWER objects"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/06 12:52:52 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/06/06 20:26:27 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	BORROWER_PERSISTENT_CLASS_NAME
@@ -14,9 +14,11 @@ inherit
 		end
 	
 creation
+
 	make
 	
 creation
+
 	{STRING} make_string
 	
 feature -- Initialization
@@ -31,6 +33,7 @@ feature -- Constants
 	name_constant : STRING is "BORROWER"
 	
 invariant
+
 	book_name: string.is_equal (name_constant)
 	
-end -- class BORROWER_PERSISTENT_CLASS_NAME
+end

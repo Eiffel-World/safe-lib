@@ -1,11 +1,14 @@
 indexing
-	description: "Error codes for PO_ADAPTER_IMPL descendants."
-	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/06 12:52:52 $"
-	revision: "$Revision: 1.1 $"
 
-class
-	PO_ADAPTER_ERROR_CODES
+	description:
+
+		"Error codes for PO_ADAPTER_IMPL descendants."
+
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/06 20:26:28 $"
+
+class PO_ADAPTER_ERROR_CODES
 
 feature {NONE} -- Implementation
 
@@ -54,4 +57,4 @@ feature {NONE} -- Implementation
 	po_meaning_could_not_find_adapter: STRING is "Could not find adapter"
 	po_meaning_no_data_found: STRING is "No data found for pid"
 		
-end -- class PO_ADAPTER_ERROR_CODES
+end

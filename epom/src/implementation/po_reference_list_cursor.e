@@ -1,9 +1,12 @@
 indexing
-	description: "Basic implementation of PO_CURSOR[G] using a DS_LINKED_LIST[PO_REFERENCE[G]]."
+
+	description:
+
+		"Basic implementation of PO_CURSOR[G] using a DS_LINKED_LIST[PO_REFERENCE[G]]."
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2004/06/06 12:52:52 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/06/06 20:26:28 $"
+	revision: "$Revision: 1.2 $"
 
 class PO_REFERENCE_LIST_CURSOR[G->PO_PERSISTENT]
 

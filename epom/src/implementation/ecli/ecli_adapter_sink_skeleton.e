@@ -1,13 +1,17 @@
 indexing
-	description: "Adapters using ECLI that implement no access"
-	author: ""
-	date: "$Date: 2004/06/06 12:52:52 $"
-	revision: "$Revision: 1.1 $"
 
-deferred class
-	ECLI_ADAPTER_SINK_SKELETON[G->PO_PERSISTENT]
+	description:
+
+		"Adapters using ECLI that implement no access"
+
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/06 20:26:28 $"
+
+deferred class ECLI_ADAPTER_SINK_SKELETON[G->PO_PERSISTENT]
 
 inherit
+
 	ECLI_ADAPTER_COMMON_SKELETON[G]
 
 feature -- Status report
@@ -63,6 +67,7 @@ feature -- Inapplicable
 feature {NONE} -- Implementation
 
 invariant
+
 	invariant_clause: True -- Your invariant here
 
-end -- class ECLI_ADAPTER_SINK_SKELETON
+end

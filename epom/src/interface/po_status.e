@@ -1,13 +1,17 @@
 indexing
-	description: "Objects that give status information about latest persistance operation."
-	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/06 12:52:53 $"
-	revision: "$Revision: 1.1 $"
 
-class
-	PO_STATUS
+	description:
+
+		"Objects that give status information about latest persistance operation."
+
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/06 20:26:28 $"
+
+class PO_STATUS
 	
 inherit
+
 	ANY
 		redefine
 			is_equal,
@@ -267,9 +271,10 @@ feature {NONE} -- Implementation
 	meaning_could_not_refresh_object : STRING is "Could not refresh object : nothing found in datastore"
 	
 invariant
+
 	ok: is_ok implies not is_error
 	warning: is_warning implies is_ok
 	framework_error_code: (not is_datastore and is_error) implies valid_framework_error_code (code)
 	valid_status: status >= status_ok and then status <= status_error
 	
-end -- class PO_STATUS
+end

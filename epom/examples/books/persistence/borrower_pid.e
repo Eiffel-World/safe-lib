@@ -1,16 +1,21 @@
 indexing
-	description: "Persistent identifiers for BORROWER objects"
-	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/06 12:52:52 $"
-	revision: "$Revision: 1.1 $"
 
-class
-	BORROWER_PID
+	description:
+
+		"Persistent identifiers for BORROWER objects"
+
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/06 20:26:27 $"
+
+class BORROWER_PID
 	
 inherit
+
 	PO_PID
 	
 creation
+
 	{BORROWER_ADAPTER} make
 	
 feature -- Initialization
@@ -42,6 +47,7 @@ feature -- Conversion
 		end
 		
 invariant
+
 	id_gt0: id > 0
 	
-end -- class BORROWER_PID
+end

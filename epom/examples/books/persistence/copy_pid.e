@@ -1,8 +1,8 @@
 indexing
 	description: "Persitent identifiers for COPY objects"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/06 12:52:52 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/06/06 20:26:27 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	COPY_PID
@@ -11,6 +11,7 @@ inherit
 	PO_PID
 	
 creation
+
 	--{COPY_ADAPTER} 
 	make
 	
@@ -19,7 +20,7 @@ feature -- Initialization
 	make (an_isbn : STRING; a_serial : INTEGER) is
 			-- make pid by `an_isbn', `a_serial'
 		require
-			an_isbn_exists: an_isbn /= Void
+			an_isbn_not_void:  an_isbn /= Void
 			a_serial_gt0: a_serial > 0
 		do
 			isbn := an_isbn
@@ -50,7 +51,8 @@ feature -- Conversion
 		end
 		
 invariant
-	isbn_exists: isbn /= Void
+
+	isbn_not_void:  isbn /= Void
 	serial_greater_zero: serial > 0
 	
-end -- class COPY_PID
+end
