@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of an ABSTRACT_SHELL"
-	date: "$Date: 2004/07/06 20:15:18 $";
-	revision: "$Revision: 1.11 $";
+	date: "$Date: 2004/08/30 19:41:21 $";
+	revision: "$Revision: 1.12 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -121,7 +121,7 @@ feature {NONE} -- Initialization
 		do
 			init_static
 			
-			make_decorations
+			--make_decorations
 			l_display := a_display
 			if l_display = Void then 
 				l_display := display.get_current
@@ -204,7 +204,6 @@ feature -- Access
 	get_shells : DS_LIST[SHELL] is
 			-- Shells which are descendents of the receiver.
 		local
-			count : INTEGER
 			shells_cursor : DS_LIST_CURSOR[SHELL]
 			shell : CONTROL
 		do
@@ -564,6 +563,8 @@ feature -- Basic operations
 			display.clear_modal (Current)
 			display := Void
 			if lpstr_tip /= default_pointer then
+--FIXME: check is lpstr_tip has been allocated by os.heap_alloc
+--       remove if not because a segmentation violation could occur.
 				hHeap := os.get_process_heap
 				res := os.heap_free (hHeap, 0, lpstr_tip)
 			end

@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_CONTROL"
-	date: "$Date: 2004/07/06 20:15:18 $";
-	revision: "$Revision: 1.9 $";
+	date: "$Date: 2004/08/30 19:41:21 $";
+	revision: "$Revision: 1.10 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -14,6 +14,8 @@ inherit
 			release_handle,
 			destroy_widget,
 			release_widget
+		redefine
+			make
 		end
 	
 	DRAWABLE
@@ -36,6 +38,35 @@ inherit
 		end
 
 feature {NONE} -- Initialization
+
+	make (p_parent : COMPOSITE; p_style : INTEGER) is
+			-- Constructs a new instance of this class given its parent
+			-- and a style value describing its behavior and appearance.
+			-- 
+			-- The style value is either one of the style constants defined in
+			-- class <code>SWT</code> which is applicable to instances of this
+			-- class, or must be built by <em>bitwise OR</em>'ing together 
+			-- (that is, using the <code>int</code> "|" operator) two or more
+			-- of those <code>SWT</code> style constants. The class description
+			-- lists the style constants that are applicable to the class.
+			-- Style bits are also inherited from superclasses.
+			-- 
+			-- @param parent a composite control which will be the parent of the new instance (cannot be null)
+			-- @param style the style of control to construct
+			-- 
+			-- @exception SWTException <ul>
+			--    <li>ERROR_THREAD_INVALID_ACCESS - if not called from the thread that created the parent</li>
+			--    <li>ERROR_INVALID_SUBCLASS - if this class is not an allowed subclass</li>
+			-- </ul>
+			-- 
+			-- @see SWT#BORDER
+			-- @see Widget#checkSubclass
+			-- @see Widget#getStyle
+		do
+			Precursor (p_parent, p_style)
+			parent := p_parent
+			create_widget
+		end
 
 feature -- Access
 
@@ -92,6 +123,21 @@ feature -- Access
 	get_foreground : COLOR is
 		do
 			
+		end
+	
+	get_border_width : INTEGER is
+		local
+			l_bits : INTEGER
+		do
+			check_widget
+			l_bits := os.get_window_long_a (handle, os.Gwl_exstyle)
+			if Uint32_.u_and (l_bits, os.Ws_ex_clientedge) /= 0 then
+				Result := os.get_system_metrics (os.Sm_cxedge)
+			elseif Uint32_.u_and (l_bits, os.Ws_ex_staticedge) /= 0 then
+				Result := os.get_system_metrics (os.Sm_cxborder)
+			else
+				Result := 0
+			end
 		end
 		
 feature {WIDGET, DISPLAY} -- Access

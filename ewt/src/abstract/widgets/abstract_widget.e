@@ -11,8 +11,8 @@ indexing
 	Dispose
 	
 	]"
-	date: "$Date: 2004/07/06 20:15:18 $";
-	revision: "$Revision: 1.9 $";
+	date: "$Date: 2004/08/30 19:41:21 $";
+	revision: "$Revision: 1.10 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -64,7 +64,8 @@ feature -- Status report
 		end
 		
 	is_widget_released : BOOLEAN
-	
+
+		
 feature -- Status setting
 
 feature -- Cursor movement

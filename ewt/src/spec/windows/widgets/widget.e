@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implemenation of ABSTRACT_WIDGET"
-	date: "$Date: 2004/07/06 20:15:18 $";
-	revision: "$Revision: 1.9 $";
+	date: "$Date: 2004/08/30 19:41:21 $";
+	revision: "$Revision: 1.10 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -28,6 +28,16 @@ inherit
 		
 feature {NONE} -- Initialization
 
+	make (p_parent: COMPOSITE; p_style: INTEGER) is
+		require
+			p_parent_not_void: p_parent /= Void
+		do
+			check_subclass
+			check_parent (p_parent)
+			style := p_style
+		end
+			
+		
 feature -- Access
 
 feature -- Measurement
@@ -151,7 +161,31 @@ feature {NONE} -- Implementation
 		end
 		
 feature {WIDGET} -- Attributes
-			
+
+feature {WIDGET} -- Status report
+
+	is_valid_subclass : BOOLEAN is
+		do
+			Result := get_display.is_valid_class (Current)
+		end
+		
+feature {WIDGET} -- Basic operations
+
+	check_subclass is
+		do
+			if not is_valid_subclass then
+				error (Swt.Error_invalid_subclass)
+			end
+		end
+
+	check_parent (p_parent : COMPOSITE) is
+		require
+			p_parent_not_void: p_parent /= Void
+			p_parent_not_disposed: not p_parent.is_resource_disposed
+		do
+			--	if (!parent.isValidThread ()) error (SWT.ERROR_THREAD_INVALID_ACCESS);
+		end
+		
 feature {NONE} -- Onces
 
 	error (a_code : INTEGER) is

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2004/07/06 20:15:17 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/08/30 19:41:20 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	ABSTRACT_CARET
@@ -44,6 +44,8 @@ feature -- Access
 		deferred
 		end
 		
+feature -- Status report
+
 	is_visible : BOOLEAN is
 		deferred
 		end

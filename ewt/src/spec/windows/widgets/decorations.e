@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DECORATIONS"
-	date: "$Date: 2004/07/06 20:15:18 $";
-	revision: "$Revision: 1.9 $";
+	date: "$Date: 2004/08/30 19:41:21 $";
+	revision: "$Revision: 1.10 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -42,12 +42,6 @@ inherit
 	
 feature {NONE} -- Initialization
 
-	make is
-			-- Initialize
-		do
-			do_nothing
-		end
-		
 
 feature -- Access
 

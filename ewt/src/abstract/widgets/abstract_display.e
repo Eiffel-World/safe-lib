@@ -20,8 +20,8 @@ indexing
 	Events:
 		Close, Release	
 	]"
-	date: "$Date: 2004/07/06 20:15:17 $";
-	revision: "$Revision: 1.7 $";
+	date: "$Date: 2004/08/30 19:41:21 $";
+	revision: "$Revision: 1.8 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -64,6 +64,14 @@ feature -- Measurement
 feature -- Comparison
 
 feature -- Status report
+
+	is_valid_class (a_class : ANY) : BOOLEAN is
+			-- Is `a_class' a valid class from EWT's perspective?
+		do
+			-- FIXME
+			-- Should check if a_class is part of the EWT package...
+			Result := True
+		end
 
 feature -- Status setting
 
