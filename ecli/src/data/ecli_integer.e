@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:11 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2002/10/24 20:19:29 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -12,7 +12,9 @@ inherit
 	ECLI_VALUE
 		redefine
 			item, set_item, out,
-			to_integer, convertible_to_integer
+			to_integer, convertible_to_integer,
+			to_real, convertible_to_real,
+			to_double, convertible_to_double 
 		end
 
 creation
@@ -47,7 +49,16 @@ feature -- Status report
 			Result := True
 		end
 
-
+	convertible_to_double : BOOLEAN is
+		do
+			Result := True
+		end
+		
+	convertible_to_real : BOOLEAN is
+		do
+			Result := True
+		end
+		
 feature -- Status setting
 
 
@@ -108,6 +119,20 @@ feature -- Conversion
 			end
 		end
 
+	to_real : REAL is
+		do
+			if not is_null then
+				Result := item.item
+			end
+		end
+		
+	to_double : DOUBLE is
+		do
+			if not is_null then
+				Result := item.item
+			end
+		end
+		
 feature -- Duplication
 
 feature -- Miscellaneous

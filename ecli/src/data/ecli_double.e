@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL DOUBLE value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:11 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2002/10/24 20:19:29 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -121,14 +121,14 @@ feature -- Conversion
 	to_integer : INTEGER is
 		do
 			if not is_null then
-				Result := item.item.truncated_to_integer
+				Result := item.truncated_to_integer
 			end
 		end
 
 	to_real : REAL is
 		do
 			if not is_null then
-				Result := item.item.truncated_to_real
+				Result := item.truncated_to_real
 			end
 		end
 		
