@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/21 19:52:21 $"
+	date: "$Date: 2005/02/25 13:35:23 $"
 
 class QA_ERROR_HANDLER
 
@@ -334,6 +334,17 @@ feature -- Validity
 			report_error (error)
 		end
 
+	report_rejected (module_name : STRING) is
+			-- Report `module_name' is rejected.
+		require
+			module_name_not_void: module_name /= Void
+		local
+			error : QA_VALIDITY_ERROR
+		do
+			create error.make_rejected (module_name)
+			report_error (error)
+		end
+		
 	report_invalid_reference_column (module, name, table, column: STRING) is
 			-- Report  `name' in `module' has an invalid reference column as `table'.`column'.
 		local

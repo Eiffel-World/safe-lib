@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/12/21 19:52:21 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2005/02/25 13:35:23 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	COLUMN_SET[G->ACCESS_MODULE_METADATA]
@@ -154,7 +154,9 @@ feature -- Basic operations
 				create local_items.make (count)
 				local_items.set_equality_tester (equality_tester)
 				if parent /= Void then
-					parent.flatten
+					check
+						parent_flattened: parent.is_flattened
+					end --parent.flatten
 					merge (parent)
 					local_items.merge (Current)
 					local_items.symdif (parent)

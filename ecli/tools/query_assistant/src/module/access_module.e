@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2005/01/21 21:51:36 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2005/02/25 13:35:23 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ACCESS_MODULE
@@ -224,7 +224,7 @@ feature {NONE} -- Implementation
 					current_description :=  query_statement.results_description.item (index)
 					if current_description.size > reasonable_maximum_size then
 						if  (maximum_length > 0 and then current_description.size > maximum_length) then
-							a_error_handler.report_column_length_truncated (name, current_description.name, current_description.size, False)
+							a_error_handler.report_column_length_truncated (name, current_description.name, maximum_length, False)
 						else
 							a_error_handler.report_column_length_too_large (name, current_description.name, current_description.size, False)
 						end
