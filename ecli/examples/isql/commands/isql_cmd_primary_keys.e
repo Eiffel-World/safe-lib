@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that list the primary key columns of a table."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:08 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_PRIMARY_KEYS
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("pk <table-name>", command_width)
-			Result.append ("List all primary columns in <table-name>.")
+			Result.append_string ("List all primary columns in <table-name>.")
 		end
 
 	match_string : STRING is "pk"

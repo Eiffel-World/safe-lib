@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that begin a transaction."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:08 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:15 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_USAGE
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("usage", command_width)
-			Result.append ("Print command usage.")
+			Result.append_string ("Print command usage.")
 		end
 
 	match_string : STRING is "usage"

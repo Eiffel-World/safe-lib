@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that list available datasourcess."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:13 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_SOURCES
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("sou[rces]", command_width)
-			Result.append ("List all datasources defined on current system.")
+			Result.append_string ("List all datasources defined on current system.")
 		end
 
 	match_string : STRING is "sou"

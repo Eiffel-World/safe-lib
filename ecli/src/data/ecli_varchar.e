@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI VARCHAR (n) values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:32 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/02/26 19:33:30 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -13,7 +13,7 @@ inherit
 		redefine
 			max_capacity, sql_type_code
 		end
-
+		
 creation
 	make
 
@@ -30,7 +30,7 @@ feature -- Status report
 		once
 			Result := sql_varchar
 		end
-
+		
 end -- class ECLI_VARCHAR
 --
 -- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that iterate over data sources"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 14:29:34 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/26 19:33:40 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	ECLI_DATA_SOURCES_CURSOR
@@ -191,19 +191,17 @@ feature {NONE} -- Implementation
 			c_name : C_STRING
 			c_description : C_STRING
 		do
-			protect
 			create c_name.make (max_source_name_length + 1)
 			create c_description.make (max_source_description_length + 1)
 			set_status (ecli_c_get_datasources (Shared_environment.handle, direction, c_name.handle, max_source_name_length, $actual_name_length, c_description.handle, max_source_description_length, $actual_description_length))
 			if is_ok and then not is_no_data then
-				name := pointer_to_string (c_name.handle)
-				description := pointer_to_string (c_description.handle)
+				name := c_name.to_string
+				description := c_description.to_string
 				!!item_.make (Current)
 			else
 				item_ := Void
 				after := True
 			end
-			unprotect
 		end
 
 	item_ : ECLI_DATA_SOURCE

@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that list the columns of a table."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:05 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:01 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_COLUMNS
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("col[umns] <table-name>", command_width)
-			Result.append ("List all columns in <table-name>.")
+			Result.append_string ("List all columns in <table-name>.")
 		end
 
 	match_string : STRING is "col"

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that quit CLISQL."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:11 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_QUIT
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("q[uit]", command_width)
-			Result.append ("Quit the application.") -- and closes current connection
+			Result.append_string ("Quit the application.") -- and closes current connection
 		end
 
 	match_string : STRING is "q"

@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that execute SQL scripts in a file."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:05 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_EXECUTE
@@ -17,7 +17,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("exec[ute] <filename>", command_width)
-			Result.append ("Execute clisql command_stream from <filename>.")
+			Result.append_string ("Execute clisql command_stream from <filename>.")
 		end
 
 	match_string : STRING is "exec"

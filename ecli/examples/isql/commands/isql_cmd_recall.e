@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that RECALL commands from the history."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:12 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_RECALL
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("re[call] <i>", Command_width)
-			Result.append ("Recall the <i>th command in the history.")
+			Result.append_string ("Recall the <i>th command in the history.")
 		end
 
 	match_string : STRING is "re"

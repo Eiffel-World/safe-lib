@@ -1,8 +1,8 @@
 indexing
 	description: "Interactive SQL";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:08 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/26 19:33:15 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 class
 	QA_EXAMPLE
@@ -84,7 +84,7 @@ feature -- Basic Operations
 			last_command.copy("")
 			io.put_string ("enter value (0=quit) >")
 			io.read_line
-			last_command.append (io.last_string)
+			last_command.append_string (io.last_string)
 		end
 
 	last_command : STRING is

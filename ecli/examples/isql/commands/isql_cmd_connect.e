@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that CONNECT to a database."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:06 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:02 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_CONNECT
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("con[nect] <dsn> <user> <pwd>", Command_width)
-			Result.append ("Connect to <dsn> datasource as <user> with password <pwd>.")
+			Result.append_string ("Connect to <dsn> datasource as <user> with password <pwd>.")
 		end
 
 	match_string : STRING is "con"

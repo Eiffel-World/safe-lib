@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that list procedures available on a datasource."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:10 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_PROCEDURES
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("pro[cedures]", command_width)
-			Result.append ("List all procedures in current catalog")
+			Result.append_string ("List all procedures in current catalog")
 		end
 
 	match_string : STRING is "pro"

@@ -1,18 +1,17 @@
 indexing
 	description: "CLI SQL REAL arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 14:29:33 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/26 19:33:34 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
 	ECLI_ARRAYED_REAL
 
 inherit
-	ECLI_ARRAYED_VALUE
+	ECLI_GENERIC_ARRAYED_VALUE [REAL]
 		undefine
 		redefine
-			item,
 			out_item_at
 		end
 
@@ -44,19 +43,14 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	item_at (index : INTEGER) : like item is
+	item_at (index : INTEGER) : REAL is
 			--
 		do
-			if is_null_at (index) then
-				Result := Void
-			else
-				ecli_c_array_value_copy_value_at (buffer, $actual_value, index)
-				!! Result
-				Result.set_item (actual_value)
-			end
+			ecli_c_array_value_copy_value_at (buffer, $impl_item, index)
+			Result := impl_item
 		end
 
-	item : REAL_REF is
+	item : REAL is
 			--
 		do
 			Result := item_at (cursor_index)
@@ -75,11 +69,11 @@ feature -- Cursor movement
 
 feature -- Element change
 
-	set_item_at (value : like item; index : INTEGER) is
+	set_item_at (value : REAL; index : INTEGER) is
 			-- set item to 'value', truncating if necessary
 		do
-			actual_value := value.item
-			ecli_c_array_value_set_value_at (buffer, $actual_value, transfer_octet_length,index)
+			impl_item := value.item
+			ecli_c_array_value_set_value_at (buffer, $impl_item, transfer_octet_length,index)
 			ecli_c_array_value_set_length_indicator_at (buffer, transfer_octet_length,index)
 		end
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Cursor class generator"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:49 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/02/26 19:33:47 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -477,8 +477,8 @@ feature {NONE} -- Implementation
 			a_name_not_void: a_name /= Void
 		do
 			!!Result.make (a_name.count + 2)
-			Result.append ("p_")
-			Result.append (a_name)
+			Result.append_string ("p_")
+			Result.append_string (a_name)
 			Result.to_lower
 		end
 		

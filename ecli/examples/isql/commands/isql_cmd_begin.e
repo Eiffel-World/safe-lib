@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that begin a transaction."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:04 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:32:59 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_BEGIN
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("be[gin transaction]", command_width)
-			Result.append ("Begin a new transaction.") -- No effect if a transaction is already active.")
+			Result.append_string ("Begin a new transaction.") -- No effect if a transaction is already active.")
 		end
 
 	match_string : STRING is "be"

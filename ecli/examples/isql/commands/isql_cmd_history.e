@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that list the command history."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:05 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_HISTORY
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("hist[ory]", Command_width)
-			Result.append ("Print the commands history.")
+			Result.append_string ("Print the commands history.")
 		end
 
 	match_string : STRING is "hist"

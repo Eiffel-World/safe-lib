@@ -1,8 +1,8 @@
 indexing
 	description: "Procedures metadata."
 	author: "Paul G. Crismer."
-	date: "$Date: 2003/02/25 09:23:39 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/02/26 19:33:41 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ECLI_PROCEDURE
@@ -82,14 +82,14 @@ feature -- Conversion
 			--
 		do
 			Result :=  Precursor {ECLI_NAMED_METADATA}
-			Result.append ("%T")
-			append_to_string(Result, description); Result.append ("%T")
+			Result.append_string ("%T")
+			append_to_string(Result, description); Result.append_string ("%T")
 			if type = sql_pt_procedure then
-				Result.append ("Procedure")
+				Result.append_string ("Procedure")
 			elseif type = sql_pt_function then
-				Result.append ("Function")
+				Result.append_string ("Function")
 			else
-				Result.append ("Unknown type")
+				Result.append_string ("Unknown type")
 			end
 		end
 

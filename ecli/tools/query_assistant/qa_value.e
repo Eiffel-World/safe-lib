@@ -4,8 +4,8 @@ indexing
 		"  "
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/02/25 09:23:51 $"
-	revision: 	"$Revision: 1.7 $"
+	date: 		"$Date: 2003/02/26 19:33:48 $"
+	revision: 	"$Revision: 1.8 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -46,22 +46,22 @@ feature {NONE} -- implementation
 	make_call : STRING is
 		do
 			create Result.make (12)
-			Result.append ("make")
+			Result.append_string ("make")
 		end
 
 
 	make_call_with_precision : STRING is
 		do
 			create Result.make (12)
-			Result.append ("make (")
-			Result.append (column_precision.out)
-			Result.append (")")
+			Result.append_string ("make (")
+			Result.append_string (column_precision.out)
+			Result.append_string (")")
 		end
 
 	make_first_call : STRING is
 		do
 			create Result.make (12)
-			Result.append ("make_first")
+			Result.append_string ("make_first")
 		end
 		
 end -- class QA_VALUE

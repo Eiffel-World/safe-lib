@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that describe an SQL Table"
 	author: ""
-	date: "$Date: 2003/02/25 09:23:39 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/02/26 19:33:43 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ECLI_TABLE
@@ -68,9 +68,9 @@ feature -- Conversion
 			--
 		do
 			!!Result.make (128)
-			Result.append (Precursor)
-			Result.append ("%T")
-			append_to_string (Result, type) Result.append ("%T")
+			Result.append_string (Precursor)
+			Result.append_string ("%T")
+			append_to_string (Result, type) Result.append_string ("%T")
 			append_to_string (Result, description)
 		end
 

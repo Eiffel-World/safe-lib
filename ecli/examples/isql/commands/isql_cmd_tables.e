@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that list tables on current session."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:08 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:14 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_TABLES
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("tab[les]", command_width)
-			Result.append ("List all tables in current catalog.")
+			Result.append_string ("List all tables in current catalog.")
 		end
 
 	match_string : STRING is "tab"

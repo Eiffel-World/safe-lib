@@ -1,8 +1,8 @@
 indexing
 	description: "C allocated arrays of 16bits integer (short)."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 19:39:56 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/26 19:33:44 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	C_ARRAY_INT16
@@ -30,17 +30,13 @@ feature -- Measurement
 
 feature -- Element change
 
-	put (value : like item; index : INTEGER) is
+	put (value : INTEGER; index : INTEGER) is
 			-- 
-		require
-			valid_index: index > 0 and index <= capacity
 		local
 			item_ptr : POINTER
 		do
 			item_ptr := item_pointer (index)
 			c_memory_copy (item_ptr, $value, item_size)
-		ensure
-			item_set: item (index).is_equal (value)
 		end
 		
 end -- class C_ARRAY_INT16

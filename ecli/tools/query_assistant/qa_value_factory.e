@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:51 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/02/26 19:33:48 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -110,7 +110,7 @@ feature -- Basic operations
 		do
 			Result := clone ("")
 			if db_type_code = sql_char or db_type_code = sql_varchar then
-				Result.append (" ("); Result.append (precision.out); Result.append (")")
+				Result.append_string (" ("); Result.append_string (precision.out); Result.append_string (")")
 			end
 		end
 

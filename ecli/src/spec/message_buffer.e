@@ -2,8 +2,8 @@ indexing
 	description: "Fixed length buffer, for external usage"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:15 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/26 19:33:44 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 	
@@ -40,7 +40,7 @@ feature
 			until 
 				i > capacity
 			loop
-				append (" ")	
+				append_string (" ")	
 				i := i + 1
 			end
 		end

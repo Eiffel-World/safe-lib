@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are named metadata, i.e. with catalog, schema and name."
 	author: ""
-	date: "$Date: 2003/02/25 09:23:38 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/02/26 19:33:40 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ECLI_NAMED_METADATA
@@ -104,8 +104,8 @@ feature -- Conversion
 			-- 
 		do
 			!!Result.make (0)
-			append_to_string (Result, catalog) Result.append ("%T")
-			append_to_string (Result, schema) Result.append ("%T")
+			append_to_string (Result, catalog) Result.append_string ("%T")
+			append_to_string (Result, schema) Result.append_string ("%T")
 			append_to_string (Result, name)			
 		end
 		
@@ -125,9 +125,9 @@ feature {NONE} -- Implementation
 			-- 
 		do
 			if src = Void then
-				dest.append ("NULL")
+				dest.append_string ("NULL")
 			else
-				dest.append (src)
+				dest.append_string (src)
 			end
 		end
 

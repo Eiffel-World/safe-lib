@@ -1,8 +1,8 @@
 indexing
 	description: "ECLI test of rowset classes";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:15 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/02/26 19:33:21 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET
@@ -130,10 +130,10 @@ feature {NONE} -- Implementation
 	set_error (message, value : STRING) is
 		do
 						!!error_message.make (0)
-						error_message.append (message)
-						error_message.append (" '")
-						error_message.append (value)
-						error_message.append ("'")		
+						error_message.append_string (message)
+						error_message.append_string (" '")
+						error_message.append_string (value)
+						error_message.append_string ("'")		
 		ensure
 			error_message /= Void
 		end

@@ -1,8 +1,8 @@
 indexing
 	description: "Query assistant"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:52 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/02/26 19:33:49 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class
@@ -184,7 +184,7 @@ feature -- Basic operations
 						if qcount > 0 and then query.item (qcount) /= ' ' and then scount > 0 and then s.item (1) /= ' ' then
 						   query.append_character (' ')
 						end
-						query.append (query_file.last_string)
+						query.append_string (query_file.last_string)
 					end
 				end
 				query_file.close
@@ -302,8 +302,8 @@ feature -- Basic operations
 			-- generate class	
 			create gen
 			file_name := clone (target_directory_name)
-			file_name.append (class_name)
-			file_name.append (".e")
+			file_name.append_string (class_name)
+			file_name.append_string (".e")
 			create target_file.make_open_write (file_name)
 			qacursor.set_name (class_name)
 			gen.execute (qacursor, target_file)

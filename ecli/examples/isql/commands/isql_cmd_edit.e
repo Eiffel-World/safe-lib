@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that edit the query buffer in an editor."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:06 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:05 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_EDIT
@@ -21,7 +21,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("edit", command_width)
-			Result.append ("Edit query buffer with current editor.")
+			Result.append_string ("Edit query buffer with current editor.")
 		end
 
 	match_string : STRING is "edit"

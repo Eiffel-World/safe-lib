@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that show HELP about CLISQL commands."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:05 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_HELP
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("he[lp]", Command_width)
-			Result.append ("Print the list of available commands.")
+			Result.append_string ("Print the list of available commands.")
 		end
 
 	match_string : STRING is "he"

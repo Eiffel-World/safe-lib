@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2003/02/25 19:39:56 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:46 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	C_STRING
@@ -10,6 +10,11 @@ class
 inherit
 	C_MEMORY
 
+	ECLI_EXTERNAL_TOOLS
+		undefine
+			dispose
+		end
+	
 creation
 	make
 	
@@ -46,6 +51,12 @@ feature -- Transformation
 
 feature -- Conversion
 
+	to_string : STRING is
+			-- 
+		do
+			Result := pointer_to_string (handle)
+		end
+		
 feature -- Duplication
 
 feature -- Miscellaneous

@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that commit a transaction."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:05 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/26 19:33:02 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_COMMIT
@@ -15,7 +15,7 @@ feature -- Access
 	help_message : STRING is
 		do
 			Result := padded ("com[mit transaction]", command_width)
-			Result.append ("Commit current transaction.")
+			Result.append_string ("Commit current transaction.")
 		end
 
 	match_string : STRING is "com"
