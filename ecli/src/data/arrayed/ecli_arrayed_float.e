@@ -2,14 +2,14 @@ indexing
 	description: "CLI SQL FLOAT value"
 	author: "Paul G. Crismer"
 	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.5 $"
+	revision: "$Revision: 1.1 $"
 	licensing: "See notice at end of class"
 
 class
-	ECLI_FLOAT
+	ECLI_ARRAYED_FLOAT
 
 inherit
-	ECLI_DOUBLE
+	ECLI_ARRAYED_DOUBLE
 		redefine
 			column_precision, db_type_code, decimal_digits, display_size, transfer_octet_length
 		end
@@ -54,7 +54,7 @@ feature -- Status setting
 
 	transfer_octet_length: INTEGER is
 		do
-			Result := ecli_c_value_get_length (buffer)
+			Result := ecli_c_array_value_get_length (buffer)
 		end
 
 feature -- Cursor movement
@@ -77,7 +77,7 @@ feature -- Basic operations
 
 feature {NONE} -- Implementation
 
-end -- class ECLI_FLOAT
+end -- class ECLI_ARRAYED_FLOAT
 --
 -- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>

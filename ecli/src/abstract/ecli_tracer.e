@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that trace SQL execution on an output medium"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/16 12:49:38 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/03/21 20:34:30 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -130,6 +130,16 @@ feature {ECLI_VALUE} -- Basic operations
 		do
 			medium.put_string ("{ts '")
 			medium.put_string (a_date_time.out)
+			medium.put_string ("'}")
+		end
+
+	put_time (a_time : ECLI_TIME) is
+			-- put 'a_time' as a time constant
+		require
+			a_time /= Void and then not a_time.is_null
+		do
+			medium.put_string ("{t '")
+			medium.put_string (a_time.out)
 			medium.put_string ("'}")
 		end
 		

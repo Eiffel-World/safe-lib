@@ -1,27 +1,25 @@
 indexing
 	description: "Abstraction of a cursor.  Used by 'query_assistant'-generated classes."
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/15 10:24:10 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2002/03/21 20:34:30 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 deferred class
 	ECLI_CURSOR
 
 inherit
-	ANY
-
 	ECLI_STATEMENT
 		rename
 			close as statement_close,
 			close_cursor as close, 
-			start as statement_start		
+			start as statement_start
 		export
 			{NONE} all
 			{ANY} 
-				forth, close, make, is_ok, is_prepared, is_executed, off, 
-				before, after, has_information_message, diagnostic_message,
-				has_results, cursor_status, Cursor_after, Cursor_before, Cursor_in
+				forth, close, is_closed, make, is_ok, is_prepared, is_executed, off, 
+				before, after, has_information_message, diagnostic_message, sql, cursor,
+				array_routines, has_results, cursor_status, Cursor_after, Cursor_before, Cursor_in
 		redefine
 			make
 		end
@@ -32,7 +30,6 @@ feature {NONE} -- Initialization
 		do
 			Precursor (a_session)
 			set_sql (definition)
-			create_buffers
 			prepare
 		ensure then
 			prepared: is_ok implies is_prepared
@@ -57,6 +54,7 @@ feature {NONE} -- Implementation
 			execute
 			if is_ok then
 				if has_results then
+					create_buffers
 					statement_start
 				end
 			end
