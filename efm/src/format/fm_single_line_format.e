@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2004/12/19 11:49:51 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps Eric"
 
 deferred class
@@ -148,7 +148,7 @@ feature -- Element change
 		do
 			void_string := clone (a_string)
 		ensure
-			void_string_copied: equal (void_string, a_string) and void_string /= a_string
+			void_string_copied: equal (void_string, a_string) and (a_string /= Void implies void_string /= a_string)
 		end
 
 	set_prefix_string (a_prefix: STRING) is
@@ -159,7 +159,7 @@ feature -- Element change
 		do
 			prefix_string := clone (a_prefix)
 		ensure
-			prefix_string_copied: equal (prefix_string, a_prefix) and prefix_string /= a_prefix
+			prefix_string_copied: equal (prefix_string, a_prefix) and (a_prefix /= Void implies prefix_string /= a_prefix)
 		end
 
 	set_suffix_string (a_suffix: STRING) is
@@ -170,7 +170,7 @@ feature -- Element change
 		do
 			suffix_string := clone (a_suffix)
 		ensure
-			suffix_string_copied: equal (suffix_string, a_suffix) and suffix_string /= a_suffix
+			suffix_string_copied: equal (suffix_string, a_suffix) and (a_suffix /= Void implies suffix_string /= a_suffix)
 		end
 
 	set_padding_character (a_character: CHARACTER) is

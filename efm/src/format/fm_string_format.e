@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2004/12/19 11:49:51 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps eric"
 
 class
@@ -105,9 +105,9 @@ feature -- Status report
 	can_format (a_string: STRING) : BOOLEAN is
 			-- Can `a_string be' formatted by `Current'?
 		do
-			Result := not a_string.has('%N')
+			Result := a_string = Void or else not a_string.has('%N')
 		ensure then
-			has_not_new_lines: Result = not a_string.has('%N')
+			has_not_new_lines: Result = (a_string = Void or else not a_string.has('%N'))
 		end
 
 feature -- Status setting
@@ -129,7 +129,7 @@ feature -- Element change
 		do
 			string_for_empty_string := clone (a_string)
 		ensure
-			string_copied: equal (string_for_empty_string, a_string) and string_for_empty_string /= a_string
+			string_copied: equal (string_for_empty_string, a_string) and (a_string /= Void implies string_for_empty_string /= a_string)
 		end
 
 feature -- Removal

@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2004/12/19 11:49:51 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps Eric"
 
 deferred class
@@ -83,7 +83,7 @@ feature -- Element change
 		do
 			void_text := clone (a_text)
 		ensure
-			void_text_copied : equal (void_text, a_text) and void_text /= a_text
+			void_text_copied : equal (void_text, a_text) and (a_text /= Void implies void_text /= a_text)
 		end
 
 	set_left_margin_width (a_width: INTEGER) is
@@ -133,8 +133,7 @@ feature -- Basic operations
 		deferred
 		ensure
 			result_defined: Result /= Void
-			same_paragraph_width: Result.is_same_paragraph_width
-			width: not Result.is_empty implies Result.paragraphs.first.count = width
+			width: Result.maximum_paragraph_size <= width			
 		end
 
 feature -- Obsolete

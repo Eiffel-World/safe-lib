@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2004/12/19 11:49:51 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps eric"
 
 class
@@ -133,8 +133,6 @@ feature -- Basic operations
 				end
 			end
 			Result := last_formatted
-		ensure then
-			width: Result.maximum_paragraph_size <= width
 		end
 
 feature -- Obsolete
