@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are images coming from a PNG file"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/19 15:38:06 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/08/26 19:34:50 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	PDF_PNG_IMAGE
@@ -140,17 +140,17 @@ feature {PDF_DOCUMENT}-- Implementation
 					j > width
 				loop
 					if color_count = 1 then
-						put_sample (pimage.item_at (index).code, j, i)
+						put_sample (pimage.item_integer (index), j, i)
 					    if has_alpha then
-							alpha.put_sample (pimage.item_at (index + 1).code, j, i)						
+							alpha.put_sample (pimage.item_integer (index + 1), j, i)						
 					    end
 					else
-						put_rgb_at (pimage.item_at (index).code,
-							pimage.item_at (index + 1).code,
-							pimage.item_at (index + 2).code,
+						put_rgb_at (pimage.item_integer (index),
+							pimage.item_integer (index + 1),
+							pimage.item_integer (index + 2),
 							j, i)
 						if has_alpha then
-							alpha.put_sample (pimage.item_at (index + 3).code, j, i)													
+							alpha.put_sample (pimage.item_integer (index + 3), j, i)													
 						end						
 					end
 					index := index + channels

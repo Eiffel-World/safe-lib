@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that represent XObjects"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/19 15:38:06 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/08/26 19:34:50 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	PDF_XOBJECT
@@ -39,7 +39,7 @@ feature -- Basic operations
 		do
 			create Result.make (1_000)
 			create buffer.make (Result)
-			create medium.make (buffer)
+			create medium.make_string (buffer)
 			put_pdf (medium)
 			Result := buffer.string
 		end

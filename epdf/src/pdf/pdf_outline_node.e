@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are outline nodes"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/20 15:39:58 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/08/26 19:34:50 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	PDF_OUTLINE_NODE
@@ -154,7 +154,7 @@ feature -- Conversion
 		do
 			create Result.make (25)
 			create buffer.make (Result)
-			create medium.make (buffer)
+			create medium.make_string (buffer)
 			put_pdf (medium)
 			Result := buffer.string
 		end

@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL DOUBLE arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/27 12:46:39 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2003/08/26 19:34:49 $"
+	revision: "$Revision: 1.14 $"
 	licensing: "See notice at end of class"
 
 class
@@ -106,7 +106,7 @@ feature -- Basic operations
 					Result.append_string ("NULL")
 				else
 					sprintf_double (message_buffer.handle, item_at (i).item)
-					Result.append_string (pointer_to_string(message_buffer.handle))
+					Result.append_string (message_buffer.as_string)
 				end
 				if i < count then
 					Result.append_string (",")					
