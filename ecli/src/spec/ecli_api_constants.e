@@ -1,8 +1,8 @@
 indexing
 	description: "CLI/ODBC API constants"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/30 12:26:50 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/05/09 20:18:00 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_API_CONSTANTS
@@ -45,6 +45,8 @@ feature {NONE} -- boolean values
 feature {NONE} -- fetch operations for SQLDataSources or SQLFetchScroll
 	Sql_fetch_next  : INTEGER is    1
 	Sql_fetch_first  : INTEGER is   2
+	Sql_fetch_first_user: INTEGER is 31
+	Sql_fetch_first_system: INTEGER is 32
 
 feature {NONE} -- Procedure types
 
