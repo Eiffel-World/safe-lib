@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/10/20 19:50:50 $"
+	revision: "$Revision: 1.10 $"
 
 class
 	MODULE_PARAMETER
@@ -78,11 +78,6 @@ feature -- Access
 	sample : STRING 
 	
 feature -- Measurement
-
-	hash_code : INTEGER is 
-		do
-			Result := name.hash_code
-		end
 		
 feature -- Status report
 	

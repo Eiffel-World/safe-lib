@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/10/20 19:50:51 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	PARAMETER_SET
@@ -47,6 +47,20 @@ feature -- Status report
 				end
 			end
 		end
+
+feature {NONE} -- Implementation
+
+	item_eiffel_type (an_item : like item) : STRING is
+		do
+			Result := an_item.value_type
+		end
+		
+	item_eiffel_name (an_item : like item) : STRING is
+			-- 
+		do
+			Result := an_item.eiffel_name
+		end
+		
 		
 end -- class PARAMETER_SET
 --

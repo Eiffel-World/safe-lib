@@ -1,8 +1,8 @@
 indexing
 	description: "SQL TIMESTAMP values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/10/20 19:50:51 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -20,7 +20,7 @@ feature
 
 	ecli_type : STRING is "ECLI_TIMESTAMP"
 		
-	value_type : STRING is "ECLI_TIMESTAMP"
+	value_type : STRING is "DT_DATE_TIME"
 		
 	creation_call : STRING is
 		do

@@ -1,8 +1,8 @@
 indexing
 	description: "SQL TIME value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/10/20 19:50:51 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -20,7 +20,7 @@ feature
 
 	ecli_type : STRING is "ECLI_TIME"
 		
-	value_type : STRING is "ECLI_TIME"
+	value_type : STRING is "DT_TIME"
 
 	creation_call : STRING is
 		do

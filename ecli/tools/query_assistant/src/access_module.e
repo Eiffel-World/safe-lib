@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/10/20 19:50:50 $"
+	revision: "$Revision: 1.9 $"
 
 class
 	ACCESS_MODULE
@@ -50,6 +50,8 @@ feature -- Access
 			-- Name of current acces module. Generated names shall include it
 			
 feature -- Status report
+
+	is_prepared: BOOLEAN
 
 	is_query_valid : BOOLEAN
 			-- is query executable ?
@@ -105,6 +107,14 @@ feature -- Status setting
 		end
 
 feature -- Element change
+
+	set_prepared is
+			-- Set `is_prepared'
+		do
+			is_prepared := True
+		ensure
+			is_prepared: is_prepared
+		end
 
 
 	set_description (a_description: STRING) is
@@ -187,7 +197,7 @@ feature {NONE} -- Implementation
 					--| FIXME: verify that a same column does not exist...
 					current_result := create {MODULE_RESULT}.make(query_statement.results_description.item (index))
 					if results.has (current_result) then
-						a_error_handler.report_error_message ("! [Error] Result set '"+results.name+"' has two columns named '"+current_result.metadata.name+"'")
+						a_error_handler.report_error_message ("! [Error] Result set '"+results.name+"' has two columns named '"+current_result.name+"'")
 						is_results_valid := False
 						results := Void
 					else
