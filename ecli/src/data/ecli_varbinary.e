@@ -3,17 +3,14 @@ indexing
 	author: "Paul G. Crismer"
 	
 	library: "ECLI"
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/05/18 11:17:38 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_VARBINARY
 
 inherit
-	ECLI_LONGVARBINARY
-		redefine
-			max_capacity, sql_type_code
-		end
+	ECLI_BINARY_VALUE
 		
 creation
 	make

@@ -4,22 +4,28 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/05/18 11:17:38 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_BINARY
 
 inherit
-	ECLI_VARBINARY
+	ECLI_BINARY_VALUE
 		redefine
-			sql_type_code, formatted
+			formatted
 		end
 		
 creation
 	make
 	
 feature -- Access
+
+	max_capacity : INTEGER is
+			-- 
+		once
+			Result := 8_192
+		end
 
 	sql_type_code : INTEGER is
 			-- 

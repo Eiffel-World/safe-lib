@@ -1,18 +1,15 @@
 indexing
 	description: "SQL VARCHAR (n) values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2004/05/18 11:17:38 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
 	ECLI_VARCHAR
 
 inherit
-	ECLI_LONGVARCHAR
-		redefine
-			max_capacity, sql_type_code
-		end
+	ECLI_STRING_VALUE
 		
 creation
 	make

@@ -3,26 +3,23 @@ indexing
 	author: "Paul G. Crismer"
 	
 	library: "ECLI"
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/05/18 11:17:38 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_LONGVARBINARY
 
 inherit
-	ECLI_LONGVARCHAR
-		redefine
-			c_type_code, sql_type_code, item
-		end
+	ECLI_BINARY_VALUE
 		
 creation
 	make
 	
 feature -- Access
 
-	c_type_code : INTEGER is
-		once
-			Result := sql_c_binary
+	max_capacity : INTEGER is
+		do
+			Result := 1_000_000
 		end
 		
 	sql_type_code : INTEGER is
@@ -30,14 +27,4 @@ feature -- Access
 			Result := sql_varbinary
 		end
 		
-	item : STRING is
-		do
-			if is_null then
-				Result := Void
-			else
-				ext_item.copy_substring_to (1, count, impl_item)
-				Result := impl_item
-			end
-		end
-
 end -- class ECLI_LONGVARBINARY
