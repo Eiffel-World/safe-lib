@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<system name="hello">
+	<description>
+		system:      "EWT hello application."
+
+		author:      "Paul G. Crismer [pgcrism@users.sourceforge.net]; Eric Fafchamps [efa@users.sourceforge.net]"
+		copyright:   "Copyright (c) 2003, Paul G. Crismer; Eric Fafchamps"
+		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
+		date:        "$Date $"
+		revision:    "$Revision: 1.1 $"
+	</description>
+
+	<root class="HELLO" creation="make"/>
+	<option unless="${DEBUG}">
+		<option name="assertion" value="none"/>
+		<option name="finalize" value="true" unless="${GOBO_EIFFEL}=ve"/>
+	</option>
+	<option if="${DEBUG}">
+		<option name="assertion" value="all"/>
+		<option name="finalize" value="false"/>
+	</option>
+	<option if="${GOBO_OS}=windows">
+		<option name="linker" value="microsoft" if="${GOBO_EIFFEL}=ve"/>
+	</option>
+
+	<cluster name="hello" location="${EWT}/examples/hello"/>
+
+	<mount location="${EWT}/library.xace"/>
+
+</system>

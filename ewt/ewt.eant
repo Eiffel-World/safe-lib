@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<project name="ewt" default="help">
+
+	<description>
+		system: "EWT parent project file."
+		copyright: "Copyright (c) 2003, Paul G. Crismer; Eric Fafchamps"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)"
+		date: "$Date: 2003/12/10 22:15:04 $"
+		revision: "$Revision: 1.1 $"
+	</description>
+
+	<inherit>
+		<parent location="${GOBO}/misc/eiffel.eant">
+			<redefine target="init"/>
+			<redefine target="prepare_compile"/>
+			<redefine target="help"/>
+		</parent>
+	</inherit>
+
+
+<!-- Implementation -->
+
+	<target name="init">
+		<precursor/>
+		<geant target="check_ewt_variables"/>
+	</target>
+
+	<target name="check_ewt_variables">
+		<echo message="ERROR: GOBO_EIFFEL must be set." unless="${GOBO_EIFFEL}"/>
+		<echo message="WARNING: EWT variable not set" unless="${EWT}"/>
+		<echo message="WARNING: GOBO_CC variable not set. Must be msc|bcc|gcc|lcc" unless="${GOBO_CC}"/>
+		<echo message="WARNING: ECLI_C_BCC_DIR variable not set" if="${GOBO_CC}=bcc" unless="${ECLI_C_BCCDIR}"/>
+		<echo message="WARNING: SAFE_KERNEL variable not set" unless="${SAFE_KERNEL}"/>
+		<echo message="WARNING: SMARTEIFFELDIR variable not set" unless="${SMARTEIFFELDIR}" if="${GOBO_EIFFEL}=se"/>
+	</target>
+
+	<target name="prepare_compile" depend="init">
+		<description>
+			Prepare compilation : check for C libraries, and compile them if necessary
+		</description>
+		<set name="eiffel" value="${GOBO_EIFFEL}"/>
+		<!-- Check for C libraries -->
+		
+		<!-- Compile them if necessary -->
+	</target>
+
+	<target name="compile_libs" depend="prepare_compile">
+	</target>
+	
+	<target name="help">
+		<echo message="   geant compile_libs"/>
+		<echo message="   geant install"/>
+		<echo message="   geant compile"/>
+		<echo message="   geant compile_ise"/>
+		<echo message="   geant compile_se"/>
+		<echo message="   geant compile_ve"/>
+		<echo message="   geant compile_debug_ise"/>
+		<echo message="   geant compile_debug_se"/>
+		<echo message="   geant compile_debug_ve"/>
+		<echo message="   geant clean"/>
+		<echo message="   geant clobber"/>
+	</target>
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<project name="hello" default="help">
+
+	<description>
+		system: "HELLO application"
+		copyright: "Copyright (c) 2003, Paul G. Crismer ; Eric Fafchamps"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)"
+		date: "$Date: 2003/12/10 22:15:04 $"
+		revision: "$Revision: 1.1 $"
+	</description>
+
+	<inherit>
+		<parent location="${GOBO}/misc/eiffel.eant">
+			<redefine target="init_system"/>
+		</parent>
+	</inherit>
+
+
+<!-- Implementation -->
+
+	<target name="init_system">
+		<set name="system" value="hello"/>
+		<set name="system_dir" value="${EWT}/examples/${system}"/>
+	</target>
+
+</project>
