@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 class COPY_ADAPTER_EIFFELSTORE
 
@@ -44,7 +44,7 @@ feature -- Basic operations
 		end
 	
 	read_borrowed is
-			-- read borrowed copies
+			-- Read borrowed copies.
 		do
 			read_pid_collection ("select isbn, serial_number from copy where borrower is not null and borrower > 0")
 		end
@@ -104,7 +104,7 @@ feature {NONE} -- Implementation
 	
 
 	init_parameters_for_refresh (t : like last_pid) is
-			-- initialize refresh query parameters with pid information
+			-- Initialize refresh query parameters with pid information.
 		do
 			init_parameters_for_read (t)
 		end

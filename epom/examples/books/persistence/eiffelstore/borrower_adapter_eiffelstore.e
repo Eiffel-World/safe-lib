@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 class BORROWER_ADAPTER_EIFFELSTORE
 
@@ -51,12 +51,12 @@ feature -- Basic operations
 
 		
 	read_by_name_pattern (name_pattern : STRING) is
-			-- read by name like `name_pattern'
+			-- Read by name like `name_pattern'.
 		do
 		end
 
 	read_by_id (id : INTEGER) is
-			-- read by `id'
+			-- Read by `id'.
 		do
 			create_pid_from_id (id)
 			read (last_pid)
@@ -109,7 +109,7 @@ feature {NONE} -- Implementation
 	
 
 	init_parameters_for_refresh (t : like last_pid) is
-			-- initialize refresh query parameters with pid information
+			-- Initialize refresh query parameters with pid information.
 		do
 			init_parameters_for_read (t)
 		end

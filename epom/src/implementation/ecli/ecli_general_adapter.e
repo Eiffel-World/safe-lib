@@ -19,8 +19,8 @@ indexing
 	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
 	%	exact-match or multiple-match queries, respectively."
 
-	date: "$Date: 2004/12/07 20:58:24 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
+	revision: "$Revision: 1.5 $"
 
 deferred class ECLI_GENERAL_ADAPTER[G->PO_PERSISTENT]
 
@@ -39,37 +39,37 @@ inherit
 feature {PO_ADAPTER} -- Basic operations
 
 	init_parameters_for_exists (a_pid : like last_pid) is
-			-- Initialize parameters of `Sql_exists' with information from `a_pid'
+			-- Initialize parameters of `Sql_exists' with information from `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
 	init_parameters_for_read (a_pid : like last_pid) is
-			-- Initialize parameters of `Sql_read' with information from `a_pid'
+			-- Initialize parameters of `Sql_read' with information from `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
 	init_parameters_for_refresh (a_pid : like last_pid) is
-			-- Initialize parameters of `Sql_refresh' with information from `a_pid'
+			-- Initialize parameters of `Sql_refresh' with information from `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
 	init_parameters_for_delete (a_pid : like last_pid) is
-			-- Initialize parameters of `Sql_delete' with information from `a_pid'
+			-- Initialize parameters of `Sql_delete' with information from `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
 	init_parameters_for_write (object : like last_object; a_pid : like last_pid) is
-			-- Initialize parameters of `Sql_write' with information from `object' and `a_pid'
+			-- Initialize parameters of `Sql_write' with information from `object' and `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end
 
 	init_parameters_for_update (object : like last_object; a_pid : like last_pid) is
-			-- Initialize parameters of `Sql_update' with information from `object' and `a_pid'
+			-- Initialize parameters of `Sql_update' with information from `object' and `a_pid'.
 		do
 			--| Redefine in descendant classes
 		end

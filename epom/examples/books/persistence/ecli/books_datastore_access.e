@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/03 22:07:46 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 class BOOKS_DATASTORE_ACCESS
 
@@ -31,7 +31,6 @@ feature -- Basic operations
 		require
 			not_initialized: not is_persistence_framework_initialized
 		local
-			adapter : PO_ADAPTER[PO_PERSISTENT]
 			session : ECLI_SESSION
 			simple_login : ECLI_SIMPLE_LOGIN
 			manager : PO_MANAGER_IMPL
@@ -50,6 +49,8 @@ feature -- Basic operations
 				set_manager (manager)
 				if store.is_connected then
 					create {BOOK_ADAPTER_ECLI}book_adapter.make (store)
+					book_adapter.enable_cache_on_write
+					book_adapter.enable_cache_on_read
 					pom.add_adapter (book_adapter)
 					create {BORROWER_ADAPTER_ECLI}borrower_adapter.make (store)
 					pom.add_adapter (borrower_adapter)

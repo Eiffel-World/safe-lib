@@ -1,8 +1,8 @@
 indexing
 	description: "Persitent identifiers for COPY objects"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/12/07 20:58:24 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2005/02/08 10:43:55 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	COPY_PID
@@ -22,7 +22,7 @@ creation
 feature -- Initialization
 
 	make (an_isbn : STRING; a_serial : INTEGER) is
-			-- make pid by `an_isbn', `a_serial'
+			-- Make pid by `an_isbn', `a_serial'.
 		require
 			an_isbn_not_void:  an_isbn /= Void
 			a_serial_gt0: a_serial > 0
@@ -42,8 +42,7 @@ feature -- Access
 	
 feature -- Conversion
 
-	to_string : STRING is
-			-- 
+	as_string : STRING is
 		do
 			create Result.make_from_string (persistent_class_name)
 			Result.append_character(',')

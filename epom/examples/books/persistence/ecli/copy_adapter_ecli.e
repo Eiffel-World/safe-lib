@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 class COPY_ADAPTER_ECLI
 
@@ -81,7 +81,7 @@ feature -- Basic operations
 		end
 
 	read_from_isbn (isbn : STRING) is
-			-- read copies identified by `isbn'
+			-- Read copies identified by `isbn'.
 		do
 			
 		end

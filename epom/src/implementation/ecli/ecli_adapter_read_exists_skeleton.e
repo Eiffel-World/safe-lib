@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 deferred class ECLI_ADAPTER_READ_EXISTS_SKELETON [G -> PO_PERSISTENT] 
 
@@ -38,8 +38,4 @@ feature {NONE} -- Implementation
 			end	
 		end
 		
-invariant
-
-	invariant_clause: True -- Your invariant here
-
 end

@@ -6,14 +6,14 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 class PO_STATUS_USE
 
 feature -- Access
 
 	status : PO_STATUS is
-			-- status related to latest persistance operation
+			-- Status related to latest persistance operation.
 		do
 			if impl_status = Void then
 				create impl_status

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 deferred class ECLI_ADAPTER_WRITE_SKELETON[G->PO_PERSISTENT]
 
@@ -36,7 +36,7 @@ feature -- Basic operations
 					object.set_pid (last_pid)
 					object.disable_modified
 					if is_enabled_cache_on_write then
-						cache.force (last_object, last_pid.to_string)
+						cache.put (last_object)
 					end
 				else
 					status.set_datastore_error (write_query.native_code, write_query.diagnostic_message)

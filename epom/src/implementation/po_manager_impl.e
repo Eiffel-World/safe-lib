@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/03 22:07:46 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 class PO_MANAGER_IMPL
 
@@ -21,7 +21,7 @@ creation
 feature {NONE} -- Initialization
 
 	make is
-			-- creation
+			-- Creation.
 
 		do
 			create adapters_table.make (10)
@@ -116,6 +116,6 @@ feature {NONE} -- Implementation
 	
 invariant
 
-	invariant_clause: True -- Your invariant here
-
+	adapters_table_not_void: adapters_table /= Void
+	
 end

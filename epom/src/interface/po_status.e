@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 class PO_STATUS
 	
@@ -51,13 +51,13 @@ feature -- Access
 		end
 		
 	code : INTEGER is
-			-- code describing the current error or warning
+			-- Code describing the current error or warning.
 		do
 			Result := impl_code
 		end
 		
 	message : STRING is
-			-- message describing the current status
+			-- Message describing the current status.
 		do
 			if is_datastore then
 				Result := impl_message
@@ -82,7 +82,7 @@ feature -- Status report
 feature {PO_STATUS_MANAGEMENT}-- Status setting
 
 	reset is
-			-- reset status
+			-- Reset status.
 		do
 			set_ok
 			set_is_datastore (False)
@@ -247,7 +247,7 @@ feature {NONE} -- Implementation
 		end
 		
 	error_meaning (a_code : INTEGER) : STRING is
-			-- error meaning for a non-datastore code
+			-- Error meaning for a non-datastore code.
 		require
 			not_is_datastore: not is_datastore
 			is_error: is_error

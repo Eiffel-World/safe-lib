@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/09/01 19:15:37 $"
+	date: "$Date: 2005/02/08 10:43:55 $"
 
 deferred class BOOK_ADAPTER
 
@@ -16,26 +16,28 @@ inherit
 		
 	BOOK_PERSISTENT_CLASS_NAME
 	
+	PO_CACHE_USE [BOOK]
+	
 feature -- Access
 	
 feature -- Basic operations
 		
 	read_by_isbn (an_isbn : STRING) is
-			-- read book by `an_isbn'
+			-- Read book by `an_isbn'.
 		require
 			an_isbn_not_void: an_isbn /= Void
 		deferred
 		end
 
 	read_by_title (a_title : STRING) is
-			-- read book by `a_title'
+			-- Read book by `a_title'.
 		require
 			a_title_not_void: a_title /= Void
 		deferred
 		end
 	
 	read_by_author (author_name : STRING) is
-			-- read books by `author_name'
+			-- Read books by `author_name'.
 		require
 			author_name_not_void:  author_name /= Void
 		deferred

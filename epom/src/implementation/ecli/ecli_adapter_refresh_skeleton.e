@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/03 22:07:46 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 deferred class ECLI_ADAPTER_REFRESH_SKELETON[G->PO_PERSISTENT]
 
@@ -53,7 +53,7 @@ feature -- Basic operations
 feature {PO_ADAPTER} -- Basic operations
 
 	init_parameters_for_refresh (a_pid : like last_pid) is
-			-- Initialize parameters of `refresh_cursor' with information from `a_pid'
+			-- Initialize parameters of `refresh_cursor' with information from `a_pid'.
 		deferred
 		ensure
 			bound_parameters: refresh_cursor.bound_parameters

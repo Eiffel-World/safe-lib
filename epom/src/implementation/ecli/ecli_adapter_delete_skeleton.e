@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 deferred class ECLI_ADAPTER_DELETE_SKELETON[G->PO_PERSISTENT]
 
@@ -37,9 +37,9 @@ feature -- Basic operations
 				delete_query.execute
 				if delete_query.is_ok then
 					status.reset
-					cache.search (last_pid.to_string)
+					cache.search (last_pid)
 					if cache.found then
-						cache.remove (cache.found_key)
+						cache.remove (last_pid)
 					end
 					object.set_deleted
 				else

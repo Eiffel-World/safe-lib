@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2005/02/08 10:43:55 $"
 
 class BOOK_PID
 	
@@ -27,7 +27,7 @@ creation
 feature -- Initialization
 
 	make_from_isbn (an_isbn : STRING) is
-			-- make from `an_isbn'
+			-- Make from `an_isbn'.
 		require
 			an_isbn_not_void:  an_isbn /= Void
 		do
@@ -43,8 +43,7 @@ feature -- Access
 	
 feature -- Basic operations
 
-	to_string : STRING is
-			-- 
+	as_string : STRING is
 		do
 			create Result.make_from_string (persistent_class_name)
 			Result.append_character(',')

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2005/02/08 10:43:55 $"
 
 deferred class COPY_ADAPTER
 
@@ -15,6 +15,8 @@ inherit
 	PO_ADAPTER[COPY]
 
 	COPY_PERSISTENT_CLASS_NAME
+	
+	PO_CACHE_USE [COPY]
 	
 feature -- Access
 			
@@ -29,7 +31,7 @@ feature -- Basic operations
 		end
 	
 	read_from_isbn (isbn : STRING) is
-			-- read copies identified by `isbn'
+			-- Read copies identified by `isbn'.
 		require
 			isbn_not_void:  isbn /= Void
 		deferred
@@ -39,5 +41,5 @@ feature -- Basic operations
 			-- Read all borrowed copies.
 		deferred
 		end
-				
+
 end

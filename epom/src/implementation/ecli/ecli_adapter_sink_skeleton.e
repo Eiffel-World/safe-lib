@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 deferred class ECLI_ADAPTER_SINK_SKELETON[G->PO_PERSISTENT]
 
@@ -60,14 +60,4 @@ feature -- Basic operations
 		end
 		
 		
-feature -- Obsolete
-
-feature -- Inapplicable
-
-feature {NONE} -- Implementation
-
-invariant
-
-	invariant_clause: True -- Your invariant here
-
 end

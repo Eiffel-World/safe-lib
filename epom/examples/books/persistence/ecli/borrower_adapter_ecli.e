@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2005/02/08 10:43:56 $"
 
 class BORROWER_ADAPTER_ECLI
 
@@ -80,14 +80,14 @@ feature {PO_DATASTORE}-- Basic operations
 feature -- Basic operations
 
 	read_by_id (id : INTEGER) is
-			-- read by `id'
+			-- Read by `id'.
 		do
 			create last_pid.make (id)
 			read (last_pid)
 		end
 
 	read_by_name_pattern (name_pattern : STRING) is
-			-- read by `name_pattern'
+			-- Read by `name_pattern'.
 		local
 			cursor : BORROWER_READ_LIKE
 		do

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2005/02/08 10:43:55 $"
 
 class BOOK_ADAPTER_ECLI
 
@@ -77,14 +77,14 @@ feature {PO_ADAPTER} -- Factory
 feature -- Basic operations
 
 	read_by_isbn (isbn : STRING) is
-			-- read by `isbn'
+			-- Read by `isbn'.
 		do
 			create last_pid.make_from_isbn (isbn)
 			read (last_pid)
 		end
 		
 	read_by_title (title : STRING) is
-			-- read by `title'
+			-- Read by `title'.
 		require else
 			title_not_void:  title /= Void
 		local
