@@ -1,8 +1,8 @@
 indexing
 	description: "Page-tree node."
 	author: ""
-	date: "$Date: 2002/03/20 15:19:06 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/10/25 20:07:16 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	PDF_PAGE_TREE_NODE
@@ -33,6 +33,13 @@ feature {PDF_OBJECT} -- Measurement
 		require
 			not_leaf: not is_page
 		deferred
+		end
+
+feature {PDF_DOCUMENT} -- Element change
+
+	empty_kids is
+		do
+			kids.wipe_out
 		end
 		
 feature -- Status report
