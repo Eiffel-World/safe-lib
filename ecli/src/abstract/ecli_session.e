@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2001/09/15 10:24:10 $"
-	revision: 	"$Revision: 1.8 $"
+	date: 		"$Date: 2002/09/22 19:30:14 $"
+	revision: 	"$Revision: 1.9 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -162,12 +162,12 @@ feature -- Status report
 			connected: is_connected
 		do
 			set_status (ecli_c_transaction_capable (handle, $impl_transaction_capability))
-			Result := impl_transaction_capability /= tc_none
+			Result := impl_transaction_capability /= sql_tc_none
 		ensure
-			capability: Result implies (transaction_capability = tc_all or
-				transaction_capability = tc_dml or
-				transaction_capability = tc_ddl_commit or
-				transaction_capability = tc_ddl_ignore )
+			capability: Result implies (transaction_capability = sql_tc_all or
+				transaction_capability = sql_tc_dml or
+				transaction_capability = sql_tc_ddl_commit or
+				transaction_capability = sql_tc_ddl_ignore )
 		end
 		
 	is_tracing : BOOLEAN is
