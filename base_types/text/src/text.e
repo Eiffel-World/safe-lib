@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that represents a text, a text is composed of 0 or more paragraphs of characters"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/15 11:08:46 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/26 11:02:02 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	TEXT
@@ -34,7 +34,7 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	paragraphs: DS_BILINEAR [STRING] is
+	paragraphs: DS_ARRAYED_LIST [STRING] is
 			-- Paragraphs.
 		do
 			Result := paragraphs_i
@@ -47,6 +47,31 @@ feature -- Access
 		do
 			Result := paragraphs_i.item (i)
 		end
+		
+	last_paragraph: STRING is
+			-- Last paragraph.
+		require
+			not_is_empty: not is_empty
+		do
+			Result := paragraphs_i.last
+		ensure
+			exists: Result /= Void
+		end
+		
+
+feature -- Status report
+
+	valid_position (a_text_position: TEXT_POSITION): BOOLEAN is
+			-- Is `a_text_position' a valid position in `Current'?
+		do
+			if a_text_position.paragraph_position <= count 
+					and then a_text_position.character_position <= paragraphs_i.item (a_text_position.paragraph_position).count
+					and then (a_text_position.character_position /= 0) or (paragraphs_i.item (a_text_position.paragraph_position).count = 0) then
+				Result := True
+			else
+				Result := False
+			end
+		end
 
 feature -- Measurement
 
@@ -55,6 +80,24 @@ feature -- Measurement
 		do
 			Result := paragraphs_i.count
 		end
+		
+	average_paragraph_size: INTEGER is
+			-- 	Average number of characters in the paragraphes.
+		local
+			paragraphs_cursor: DS_BILINEAR_CURSOR [STRING]
+		do
+			from
+				paragraphs_cursor := paragraphs.new_cursor
+				paragraphs_cursor.start
+			until
+				paragraphs_cursor.off
+			loop
+				Result := Result + paragraphs_cursor.item.count
+				paragraphs_cursor.forth
+			end
+			Result := Result // count
+		end
+		
 
 feature -- Status report
 
@@ -100,7 +143,7 @@ feature -- Element change
 	insert_character (a_character: CHARACTER; a_text_position: TEXT_POSITION) is
 			-- Insert `a_character' to the left of `a_text_position'.
 		require
-			valid_text_position: a_text_position /= Void
+			valid_text_position: a_text_position /= Void and then valid_position (a_text_position)
 		local
 			elks_string: ELKS_STRING
 		do
@@ -110,11 +153,89 @@ feature -- Element change
 			on_character_more: paragraphs_i.item (a_text_position.paragraph_position).count = old (paragraphs_i.item (a_text_position.paragraph_position).count) + 1	
 		end
 
+	insert_text (a_text: TEXT; a_text_position: TEXT_POSITION) is
+			-- Insert `a_text' to the left of `a_text_position'.
+		require
+			non_empty_text: not a_text.is_empty
+			valid_text_position: a_text_position /= Void  and then valid_position (a_text_position)
+		local
+			paragraphs_cursor: DS_BILINEAR_CURSOR [STRING]	--| cursor on paragraphs of a_text
+			estring: ESTRING
+			right: ESTRING 				--| substring to the right of a_text_position (position included)
+			target_index: INTEGER		--| index in Current target
+		do
+			from
+				paragraphs_cursor := a_text.paragraphs.new_cursor
+				paragraphs_cursor.start
+				target_index := a_text_position.paragraph_position
+				
+				!!estring.make_from_string (paragraphs_i.item (target_index))
+				if estring.is_empty then
+					!!right.make (1)
+				else
+					--| save right substring
+					right := estring.substring (a_text_position.character_position, estring.count)
+					--| remove right substring
+					estring.head (target_index - 1)
+				end
+				estring.string.append_string (paragraphs_cursor.item)
+				paragraphs_cursor.forth
+			until
+				paragraphs_cursor.off
+			loop
+				if target_index < count then
+					insert_paragraph (paragraphs_cursor.item, target_index + 1)
+				else
+					append_paragraph (paragraphs_cursor.item)
+				end
+				target_index := target_index + 1
+				paragraphs_cursor.forth
+			end
+			paragraphs_i.item (target_index).append_string (right.string)					
+		ensure
+			new_count: count = old count + a_text.count - 1
+		end
+
+
+	append_text (a_text: TEXT; a_paragraph_index: INTEGER) is
+			-- Append `a_text' to the paragraph with `a_paragraph_index'.
+		require
+			valid_paragraph_index: a_paragraph_index > 0 and a_paragraph_index <= count
+			non_empty_text: not a_text.is_empty
+		local
+			paragraphs_cursor: DS_BILINEAR_CURSOR [STRING]	--| cursor on paragraphs of a_text
+			estring: ESTRING
+			target_index: INTEGER		--| index in Current target
+		do
+			from
+				paragraphs_cursor := a_text.paragraphs.new_cursor
+				paragraphs_cursor.start
+				target_index := a_paragraph_index
+				
+				!!estring.make_from_string (paragraphs_i.item (target_index))
+				estring.string.append_string (paragraphs_cursor.item)
+				paragraphs_cursor.forth
+			until
+				paragraphs_cursor.off
+			loop
+				if target_index < count then
+					insert_paragraph (paragraphs_cursor.item, target_index + 1)
+				else
+					append_paragraph (paragraphs_cursor.item)
+				end
+				target_index := target_index + 1
+				paragraphs_cursor.forth
+			end
+		ensure
+			new_count: count = old count + a_text.count - 1
+		end
+
+
+
 	put_character (a_character: CHARACTER; a_text_position: TEXT_POSITION) is
 			-- Replace character at `a_text_position' with  `a_character'.
 		require
-			valid_text_position: a_text_position /= Void
-
+			valid_text_position: a_text_position /= Void and then valid_position (a_text_position)
 		do
 			paragraphs_i.item (a_text_position.paragraph_position).put (a_character, a_text_position.character_position)	
 		ensure
@@ -147,6 +268,7 @@ feature -- Removal
 	remove_character (a_text_position: TEXT_POSITION) is
 			-- Remove character at `a_text_position'.
 		require
+			valid_text_position: a_text_position /= Void and then valid_position (a_text_position)
 			valid_character_position: a_text_position.character_position /= 0
 		do
 			paragraphs_i.item (a_text_position.paragraph_position).remove (a_text_position.character_position)
@@ -225,8 +347,6 @@ feature -- Comparison
 				end					
 			end;
 		end;
-
-
 	
 
 feature -- Basic operations
@@ -248,6 +368,8 @@ feature -- Basic operations
 
 	split_paragraph (a_text_position: TEXT_POSITION) is
 			-- Split paragraph in one paragraph before `a_text_position' and one paragraph from `a_text_position' to the paragraph end.
+		require
+			valid_text_position: a_text_position /= Void and then valid_position (a_text_position)
 		local
 			first: ESTRING
 			second: ESTRING	
