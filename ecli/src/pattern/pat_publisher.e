@@ -1,8 +1,8 @@
 indexing
 	description: "Publisher part of the publish/subscribe pattern"
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/07/30 20:34:14 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2000/11/03 20:33:08 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -48,7 +48,7 @@ feature -- Removal
 			-- de-subscribe statement 's'
 		require
 			valid_statement: subscriber /= Void
-			subscribeed: has_subscribed (subscriber)
+			subscribed: has_subscribed (subscriber)
 		do
 			subscribers.delete (subscriber)
 		ensure

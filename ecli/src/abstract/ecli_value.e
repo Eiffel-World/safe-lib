@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2000/07/30 20:34:11 $"
-	revision: 	"$Revision: 1.1 $"
+	date: 		"$Date: 2000/11/03 20:33:08 $"
+	revision: 	"$Revision: 1.2 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -247,6 +247,7 @@ feature {NONE} -- Implementation
 		do
 			ecli_c_free_value (buffer)
 			buffer := default_pointer
+			ready_for_disposal := True
 		end
 
 	to_external : POINTER is

@@ -5,8 +5,8 @@ indexing
 		% and associated information messages"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2000/07/30 20:34:11 $"
-	revision: 	"$Revision: 1.1 $"
+	date: 		"$Date: 2000/11/03 20:33:08 $"
+	revision: 	"$Revision: 1.2 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -68,8 +68,6 @@ feature -- Access
 		do
 			Result := status = cli_error
 		end
-	
-feature -- Measurement
 
 feature -- Status report
 
@@ -91,28 +89,6 @@ feature -- Status setting
 		ensure
 			continue_on_error: not exception_on_error
 		end
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
 
 feature {NONE} -- Implementation
 
@@ -151,8 +127,9 @@ feature {NONE} -- Implementation
 		do
 			status := v
 			need_diagnostics := True
-			if exception_on_error and then not is_ok
-			then
+			if status = cli_invalid_handle then
+				raise ("[ECLI][Internal] Invalid Handle")
+			elseif exception_on_error and then not is_ok then
 				raise (diagnostic_message)
 			end
 
@@ -188,7 +165,7 @@ feature {NONE} -- Implementation
 				impl_error_buffer.fill_blank
 				from 
 					count := 1
-				until retcode = cli_no_data
+				until retcode = cli_no_data or retcode = cli_invalid_handle or retcode = cli_error
 				loop
 					retcode := get_error_diagnostic (count, 
 							tools.string_to_pointer (impl_cli_state),
