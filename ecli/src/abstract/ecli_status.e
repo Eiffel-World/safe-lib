@@ -5,8 +5,8 @@ indexing
 		% and associated information messages"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/08/19 15:59:09 $"
-	revision: 	"$Revision: 1.18 $"
+	date: 		"$Date: 2003/08/20 09:42:53 $"
+	revision: 	"$Revision: 1.19 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -30,9 +30,9 @@ inherit
 		export {NONE} all
 		end
 
-	ECLI_EXTERNAL_TOOLS
-		export {NONE} all
-		end
+--	XS_C_EXTERNAL_TOOLS
+--		export {NONE} all
+--		end
 		
 feature -- Access
 

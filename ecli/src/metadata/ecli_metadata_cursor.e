@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/08/19 15:59:09 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/08/20 09:42:54 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -22,14 +22,7 @@ inherit
 			start, forth, create_buffers, definition
 		end
 
-	ECLI_EXTERNAL_TOOLS
-		export
-			{NONE} all
-		undefine
-			dispose
-		end
-
-feature --
+feature {NONE} -- Initialization
 
 	make (a_name : ECLI_NAMED_METADATA; a_session : ECLI_SESSION) is
 			-- Void values for a_name.catalog, a_name.schema, a_name.name can be Void are 'wildcards'
@@ -130,7 +123,6 @@ feature -- Cursor Movement
 				create_item
 			end
 		end
-
 
 feature {NONE} -- Implementation
 

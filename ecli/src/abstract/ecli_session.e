@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/08/19 15:59:09 $"
-	revision: 	"$Revision: 1.22 $"
+	date: 		"$Date: 2003/08/20 09:42:53 $"
+	revision: 	"$Revision: 1.23 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -13,9 +13,6 @@ class
 
 inherit
 	ECLI_STATUS
-		undefine
-			dispose
-		end
 
 	ECLI_HANDLE
 		export

@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/08/19 15:59:09 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/08/20 09:42:54 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class
@@ -19,15 +19,6 @@ inherit
 	ECLI_STATUS
 		export
 			{ANY} Sql_fetch_first, Sql_fetch_first_user, Sql_fetch_first_system
-		undefine
-			dispose
-		end
-
-	ECLI_EXTERNAL_TOOLS
-		export
-			{NONE} all
-		undefine
-			dispose
 		end
 
 	KL_IMPORTED_STRING_ROUTINES

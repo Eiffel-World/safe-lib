@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/06/30 21:24:57 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/08/20 09:42:54 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 class
 	ECLI_PARAMETER_DESCRIPTION
@@ -14,12 +14,6 @@ inherit
 	ECLI_DATA_DESCRIPTION
 		
 	-- begin mix-in
-	ECLI_EXTERNAL_TOOLS
-		export {NONE} all
-		undefine
-			is_equal
-		end
-
 	ECLI_EXTERNAL_API
 		undefine
 			is_equal

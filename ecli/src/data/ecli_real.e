@@ -4,8 +4,8 @@ indexing
 		"SQL REAL values"
 		
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.15 $"
+	date: "$Date: 2003/08/20 09:42:53 $"
+	revision: "$Revision: 1.16 $"
 	licensing: "See notice at end of class"
 
 class
@@ -18,13 +18,6 @@ inherit
 			as_real, convertible_as_real,
 			as_integer, convertible_as_integer,
 			as_double, convertible_as_double
-		end
-
-	ECLI_EXTERNAL_TOOLS
-		export
-			{NONE} all
-		undefine
-			dispose, out, copy, is_equal
 		end
 
 	KL_IMPORTED_STRING_ROUTINES
@@ -169,7 +162,7 @@ feature -- Basic operations
 			else
 				create message_buffer.make (50)
 				sprintf_real (message_buffer.handle, item.item)
-				Result := pointer_to_string(message_buffer.handle)
+				Result := message_buffer.as_string
 			end
 		end
 

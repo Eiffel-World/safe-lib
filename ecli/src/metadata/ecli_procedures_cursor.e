@@ -9,8 +9,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/03/01 13:32:37 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/08/20 09:42:54 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -23,13 +23,6 @@ inherit
 			queried_name as queried_procedure
 		redefine
 			item, impl_item
-		end
-
-	ECLI_EXTERNAL_TOOLS
-		export
-			{NONE} all
-		undefine
-			dispose
 		end
 
 creation

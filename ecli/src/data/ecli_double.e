@@ -4,8 +4,8 @@ indexing
 		"SQL DOUBLE values"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.17 $"
+	date: "$Date: 2003/08/20 09:42:53 $"
+	revision: "$Revision: 1.18 $"
 	licensing: "See notice at end of class"
 
 class
@@ -153,7 +153,7 @@ feature -- Basic operations
 			else
 				create message_buffer.make (50)
 				sprintf_double (message_buffer.handle, item.item)
-				Result := pointer_to_string(message_buffer.handle)
+				Result := message_buffer.as_string
 			end
 		end
 

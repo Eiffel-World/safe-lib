@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/08/19 15:59:09 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2003/08/20 09:42:53 $"
+	revision: "$Revision: 1.14 $"
 	licensing: "See notice at end of class"
 
 class
@@ -18,13 +18,6 @@ inherit
 		export {NONE} make_parameter
 		redefine
 			is_equal
-		end
-
-	ECLI_EXTERNAL_TOOLS
-		export
-			{NONE} all
-		undefine
-			dispose, is_equal
 		end
 
 	KL_IMPORTED_STRING_ROUTINES

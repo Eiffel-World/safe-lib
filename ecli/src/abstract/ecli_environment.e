@@ -4,8 +4,8 @@ indexing
 				% This object is a handle to the CLI facilities : it is the first%
 				% CLI object to be created, and the last to be deleted."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/08/20 09:42:53 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -17,9 +17,6 @@ inherit
 	ECLI_EXTERNAL_API
 
 	ECLI_STATUS
-		undefine
-			dispose
-		end
 		
 	PAT_PUBLISHER [ECLI_SESSION]
 		rename

@@ -6,8 +6,8 @@ indexing
 		% Provide CLI/ODBC CORE and some Level 1 functionalities."
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/08/19 15:59:09 $"
-	revision: 	"$Revision: 1.26 $"
+	date: 		"$Date: 2003/08/20 09:42:53 $"
+	revision: 	"$Revision: 1.27 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -17,8 +17,6 @@ inherit
 	ECLI_STATUS
 		export
 			{ECLI_STATEMENT, ECLI_DATA_DESCRIPTION, ECLI_VALUE} set_status
-		undefine
-			dispose
 		end
 
 	ECLI_HANDLE

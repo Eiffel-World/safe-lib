@@ -9,21 +9,14 @@ indexing
 	   % and should also be redefined by descendant classes."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/19 15:59:09 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/08/20 09:42:53 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 deferred class
 	ECLI_HANDLE
 
 inherit
-
-	ECLI_EXTERNAL_TOOLS
-		export
-			{NONE} all
-		redefine
-			dispose
-		end
 
 	EXCEPTIONS
 		export

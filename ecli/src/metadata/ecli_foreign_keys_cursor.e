@@ -9,8 +9,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/08/20 09:42:54 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -21,14 +21,6 @@ inherit
 		redefine
 			item, make, forth, do_query_metadata, definition,
 			set_buffer_into_cursor, create_buffers, create_item
-		end
-
-
-	ECLI_EXTERNAL_TOOLS
-		export
-			{NONE} all
-		undefine
-			dispose
 		end
 
 creation
