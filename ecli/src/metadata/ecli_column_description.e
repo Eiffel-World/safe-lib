@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/06/11 13:11:14 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/06/26 19:49:18 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class
@@ -22,12 +22,18 @@ inherit
 		export
 			{NONE} all
 		undefine
-			dispose
+			dispose, is_equal
 		end
 
 	KL_IMPORTED_STRING_ROUTINES
+		undefine
+			is_equal
+		end
 
 	HASHABLE
+		undefine
+			is_equal
+		end
 
 creation
 	make

@@ -4,12 +4,18 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/11 13:11:16 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/06/26 19:49:18 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	REFERENCE_COLUMN
 
+inherit
+	ANY
+		redefine
+			is_equal
+		end
+		
 create
 	make
 
@@ -77,7 +83,14 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
-feature -- Obsolete
+feature -- Comparison
+
+	is_equal (other : like Current) : BOOLEAN is
+			-- 
+		do
+			Result := column.is_equal (other.column) and then table.is_equal (other.table)
+		end
+		
 
 feature -- Inapplicable
 

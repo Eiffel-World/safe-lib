@@ -4,12 +4,18 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/03/01 13:32:36 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/06/26 19:49:18 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 deferred class
 	ECLI_DATA_DESCRIPTION
+	
+inherit
+	ANY
+		redefine
+			is_equal
+		end
 
 feature -- Status report
 
@@ -30,6 +36,14 @@ feature -- Status report
 			-- decimal digits or scale
 			-- (redefine in descendant classes)
 		deferred
+		end
+		
+feature -- Comparison
+
+	is_equal (other : like Current) : BOOLEAN is
+			-- is Current equal to `other' ?
+		do
+			Result := sql_type_code = other.sql_type_code and then column_precision = other.column_precision and then decimal_digits = other.decimal_digits
 		end
 		
 end -- class ECLI_DATA_DESCRIPTION
