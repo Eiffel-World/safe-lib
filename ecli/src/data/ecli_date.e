@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI DATE value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/08/24 22:59:52 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2001/09/15 09:56:52 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -201,6 +201,11 @@ feature -- Conversion
 		end
 		
 feature -- Basic operations
+
+	trace (a_tracer : ECLI_TRACER) is
+		do
+			a_tracer.put_date (Current)
+		end
 
 	is_equal (other : like Current) : BOOLEAN is
 		do

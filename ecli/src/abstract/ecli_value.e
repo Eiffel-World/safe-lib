@@ -4,14 +4,15 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2001/08/24 22:26:32 $"
-	revision: 	"$Revision: 1.5 $"
+	date: 		"$Date: 2001/09/15 09:56:52 $"
+	revision: 	"$Revision: 1.6 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
 	ECLI_VALUE
 
 inherit
+	ECLI_TRACEABLE
 
 	ECLI_HANDLE
 		rename
@@ -91,6 +92,13 @@ feature -- Status report
 		do
 		end
 
+	can_trace : BOOLEAN is
+		do
+			Result := True
+		ensure then
+			ok: Result
+		end
+		
 feature {ECLI_VALUE, ECLI_STATEMENT} -- Status Report
 
 	c_type_code : INTEGER is

@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI LONGVARCHAR (n) values"
 	author: "Paul-G.Crismer"
-	date: "$Date: 2001/08/24 22:24:57 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2001/09/15 09:56:52 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -135,6 +135,22 @@ feature -- Basic operations
 				Result := item
 			end
 		end
+
+	trace (a_tracer : ECLI_TRACER) is
+		do
+			a_tracer.put_string (Current)
+		end
+		
+
+feature -- Obsolete
+
+feature -- Inapplicable
+
+feature {NONE} -- Implementation
+
+invariant
+	invariant_clause: -- Your invariant here
+
 
 end -- class ECLI_LONGVARCHAR
 --

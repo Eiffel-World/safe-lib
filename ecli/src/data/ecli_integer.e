@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/09/15 09:56:52 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -124,6 +124,11 @@ feature -- Basic operations
 			else
 				Result := item.item.out
 			end
+		end
+
+	trace (a_tracer : ECLI_TRACER) is
+		do
+			a_tracer.put_integer (Current)
 		end
 
 feature -- Obsolete

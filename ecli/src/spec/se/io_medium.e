@@ -3,8 +3,8 @@ indexing
 description: "Attempt to make IO portable";
 keywords: "IO", "portable"
 status: "See notice at end of class";
-date: "$Date: 2001/05/16 13:56:51 $";
-revision: "$Revision: 1.2 $"
+date: "$Date: 2001/09/15 09:56:52 $";
+revision: "$Revision: 1.3 $"
 
 deferred class IO_MEDIUM
     
@@ -136,6 +136,16 @@ feature -- Status
             result := true -- until further notice
         end
     
+    is_open_read: BOOLEAN is
+		-- Is this medium opened for input
+	deferred
+	end
+
+    is_open_write: BOOLEAN is
+		-- Is this medium opened for output
+	deferred
+	end
+  
 end -- class IO_MEDIUM
 
 ------------------------------------------------------------------------

@@ -5,8 +5,8 @@ indexing
 		% and associated information messages"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2001/05/16 13:56:51 $"
-	revision: 	"$Revision: 1.3 $"
+	date: 		"$Date: 2001/09/15 09:56:52 $"
+	revision: 	"$Revision: 1.4 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -189,7 +189,7 @@ feature {NONE} -- Implementation
 
 	impl_native_code : INTEGER
 
-	impl_cli_state : STRING
+	impl_cli_state : MESSAGE_BUFFER
 
 	impl_error_message : MESSAGE_BUFFER
 

@@ -1,58 +1,18 @@
 indexing
-	description: "Objects that ..."
+	description: "Date and time objects; synonym of ECLI_TIMESTAMP"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/09/15 09:56:52 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
 	ECLI_DATE_TIME
 
 inherit
-	ANY
-		rename
-		export
-		undefine
-		redefine
-		select
-		end
+	ECLI_TIMESTAMP
 
-feature -- Initialization
-
-feature -- Access
-
-feature -- Measurement
-
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
-
-feature {NONE} -- Implementation
-
-invariant
-	invariant_clause: -- Your invariant here
+creation
+	make, make_first
 
 end -- class ECLI_DATE_TIME
 --
