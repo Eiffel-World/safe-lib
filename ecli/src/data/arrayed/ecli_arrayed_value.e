@@ -11,8 +11,8 @@ indexing
 		% or column-wise binding of parameters for modifications.%
 		% Access modes: direct ('item_at'), linear ('start', 'forth', 'item')."
 
-	date: "$Date: 2002/09/27 14:19:13 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/12/10 15:26:00 $"
+	revision: "$Revision: 1.5 $"
 
 deferred class
 	ECLI_ARRAYED_VALUE
@@ -170,6 +170,7 @@ feature -- Element change
 		deferred
 		ensure
 			item_set: equal (item_at (index), truncated (value))
+			not_null: not is_null_at (index)
 		end
 	
 	set_null_at (index: INTEGER) is

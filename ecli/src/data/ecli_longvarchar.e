@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI LONGVARCHAR (n) values"
 	author: "Paul-G.Crismer"
-	date: "$Date: 2002/09/27 14:19:12 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2002/12/10 15:25:58 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -160,6 +160,8 @@ feature -- Obsolete
 feature -- Inapplicable
 
 feature {NONE} -- Implementation
+
+	octet_size : INTEGER is do Result := transfer_octet_length end
 
 invariant
 	invariant_clause: -- Your invariant here

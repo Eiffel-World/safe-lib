@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL REAL value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/10/24 20:19:29 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2002/12/10 15:25:58 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -24,7 +24,7 @@ feature -- Initialization
 
 	make is
 		do
-			buffer := ecli_c_alloc_value (4)
+			buffer := ecli_c_alloc_value (transfer_octet_length)
 		end
 		
 feature -- Access
@@ -89,7 +89,7 @@ feature -- Status setting
 
 	transfer_octet_length: INTEGER is
 		do
-			Result := ecli_c_value_get_length (buffer)
+			Result := 4
 		end
 
 feature -- Cursor movement
@@ -163,6 +163,7 @@ feature {NONE} -- Implementation
 
 	actual_value : REAL
 	
+	octet_size : INTEGER is do Result := 4 ensure then result_is_4: Result = 4 end
 
 	sprintf_real (s : POINTER; r : REAL) is
 			-- 

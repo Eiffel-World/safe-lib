@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2002/12/10 10:47:50 $"
-	revision: 	"$Revision: 1.14 $"
+	date: 		"$Date: 2002/12/10 15:25:35 $"
+	revision: 	"$Revision: 1.15 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -321,7 +321,7 @@ feature {NONE} -- Implementation values
 	is_ready_for_disposal : BOOLEAN is True
 	
 	disposal_failure_reason : STRING is do	end
-	
+		
 invariant
 	invariant_clause: is_valid
 
