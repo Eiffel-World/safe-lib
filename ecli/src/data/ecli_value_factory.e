@@ -1,8 +1,8 @@
 indexing
 	description: "Factory of ECLI_VALUE descendant instances"
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/07/30 20:34:11 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2000/08/11 21:30:42 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -79,7 +79,11 @@ feature -- Miscellaneous
 
 	create_varchar_value (column_precision : INTEGER) is
 		do
-			create {ECLI_VARCHAR}last_result.make (column_precision)
+			if column_precision > 254 then
+				create {ECLI_LONGVARCHAR} last_result.make (column_precision)
+			else
+				create {ECLI_VARCHAR}last_result.make (column_precision)
+			end		
 		end
 
 	create_date_value is
@@ -130,7 +134,8 @@ feature -- Basic operations
 			end					
 		ensure
 			last_result /= Void implies 
-				(last_result.column_precision >= column_precision and last_result.decimal_digits >= decimal_digits)
+				((last_result.column_precision >= column_precision or db_type = sql_float) and last_result.decimal_digits >= decimal_digits)
+			-- condition is relaxed for sql_float.  Oracle's NUMBER is given as sql_float with precision 38 !!!
 		end
 
 feature -- Obsolete
