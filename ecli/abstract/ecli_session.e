@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2000/06/06 21:45:12 $"
-	revision: 	"$Revision: 1.1 $"
+	date: 		"$Date: 2000/06/07 20:28:54 $"
+	revision: 	"$Revision: 1.2 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -248,18 +248,17 @@ feature -- Basic Operations
 			-- disconnect the session
 		require
 			connected: is_connected
-		local
-			cursor : DS_LIST_CURSOR[ECLI_STATEMENT]
 		do
-			from
-				cursor := statements.new_cursor
-				cursor.start
-			until
-				cursor.off
-			loop
-				cursor.item.session_disconnect (Current)
-				cursor.forth
+			-- | Do not use list iterator, since ECLI_STATEMENT.session_disconnect
+			-- | unsubscribes the statement, removing it from the statements list.
+			-- | Using an iterator would raise an precondition-exception.
+			from 
+			until 
+				statements.is_empty 
+			loop 
+				statements.first.session_disconnect (Current) 
 			end
+
 			statements.wipe_out
 			--| actual disconnect
 			set_status (ecli_c_disconnect (handle))

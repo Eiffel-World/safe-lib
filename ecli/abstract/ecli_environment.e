@@ -4,8 +4,8 @@ indexing
 				% This object is a handle to the CLI facilities : it is the first%
 				% CLI object to be created, and the last to be deleted."
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/06/06 21:45:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2000/06/07 20:28:54 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -82,17 +82,15 @@ feature {NONE} -- Implementation
 
 	release_handle is
 			-- release environment handle
-		local
-			cursor : DS_LIST_CURSOR [ECLI_SESSION]
 		do
-			from
-				cursor := sessions.new_cursor
-				cursor.start
-			until
-				cursor.off
-			loop
-				cursor.item.environment_release (Current)
-				cursor.forth
+			-- | Do not use iterator here, since ECLI_SESSION.environment_release
+			-- | unsubscribes the session, thereby modifying the sessions list.
+			-- | Using an iterator would raise an precondition-exception.
+			from 
+			until 
+				sessions.is_empty 
+			loop 
+				sessions.first.environment_release (Current) 
 			end
 			-- | actual release of the handle.
 			set_status (ecli_c_free_environment (handle))
