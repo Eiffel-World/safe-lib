@@ -1,8 +1,8 @@
 indexing
 	description: "Description of Parameter data"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:39 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/25 21:01:11 $"
+	revision: "$Revision: 1.3.2.1 $"
 	licensing: "See notice at end of class"
 
 class
@@ -26,7 +26,7 @@ creation
 
 feature {NONE} -- Initialization
 	
-	make (stmt : ECLI_STATEMENT; index : INTEGER) is
+	make (stmt : ECLI_ABSTRACT_STATEMENT [ECLI_VALUE,ECLI_VALUE]; index : INTEGER) is
 		do
 			stmt.set_status (
 				ecli_c_describe_parameter (stmt.handle,

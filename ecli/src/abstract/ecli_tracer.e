@@ -4,8 +4,8 @@ indexing
 		"Objects that trace SQL execution on an output medium"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:26 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/02/25 21:00:49 $"
+	revision: "$Revision: 1.8.2.1 $"
 	licensing: "See notice at end of class"
 
 class
@@ -30,7 +30,7 @@ feature -- Access
 
 	medium : KI_CHARACTER_OUTPUT_STREAM
 
-feature {ECLI_STATEMENT} -- Basic operations
+feature {ECLI_ABSTRACT_STATEMENT} -- Basic operations
 	
 	trace (a_sql : STRING; a_parameters : ARRAY[ECLI_VALUE]) is
 			-- Trace 'a_sql', substituting parameter markers by 'a_parameters'

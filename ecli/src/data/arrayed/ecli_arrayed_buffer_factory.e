@@ -1,21 +1,18 @@
 indexing
 	description: "Objects that create arrayed buffers for rowset commands"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:32 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/25 21:01:06 $"
+	revision: "$Revision: 1.3.2.1 $"
 
 class
 	ECLI_ARRAYED_BUFFER_FACTORY
 
 inherit
-	ECLI_BUFFER_FACTORY
-		redefine
-			value_factory, value_anchor
-		end
-	
+	ECLI_ABSTRACT_BUFFER_FACTORY [ECLI_ARRAYED_VALUE]
+
 creation
 	make
-	
+
 feature {NONE} -- Initialization
 
 	make (a_row_count : INTEGER) is
@@ -25,14 +22,14 @@ feature {NONE} -- Initialization
 		ensure
 			row_count_set: row_count = a_row_count
 		end
-		
+
 feature -- Access
-	
-		
+
+
 feature -- Measurement
 
 	row_count : INTEGER
-	
+
 feature -- Status report
 
 feature -- Status setting
@@ -70,13 +67,13 @@ feature {NONE} -- Implementation
 			end
 			Result := impl_value_factory
 		end
-	
+
 	value_anchor : ECLI_ARRAYED_VALUE is
-			-- 
+			--
 		do
-			
+
 		end
-	
+
 invariant
 	invariant_clause: -- Your invariant here
 

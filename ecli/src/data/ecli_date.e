@@ -4,8 +4,8 @@ indexing
 		"ISO CLI DATE value"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 14:29:31 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2003/02/25 21:01:00 $"
+	revision: "$Revision: 1.13.2.1 $"
 	licensing: "See notice at end of class"
 
 class
@@ -32,10 +32,13 @@ feature {NONE} -- Initialization
 		require
 			month: a_month >= 1 and a_month <= 12
 			day: a_day >= 1 and a_day <= days_in_month (a_month, a_year)
+		local
+			date : DT_DATE
 		do
 			allocate_buffer
 			set (a_year, a_month, a_day)
-			create impl_item.make (a_year,a_month,a_day)
+			create date.make (a_year,a_month,a_day)
+			impl_item := date
 		ensure
 			year_set: year = a_year
 			month_set: month = a_month

@@ -4,8 +4,8 @@ indexing
 	note: "Supported SQL data types currently are : sql_char, sql_decimal, sql_double, sql_float, sql_integer, sql_longvarchar, sql_numeric, sql_real, sql_smallint, sql_type_date, sql_type_time, sql_type_timestamp,	sql_varchar"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:35 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/02/25 21:01:08 $"
+	revision: "$Revision: 1.7.2.1 $"
 	licensing: "See notice at end of class"
 
 class
@@ -13,22 +13,7 @@ class
 
 inherit
 
-	ECLI_VALUE_FACTORY
-		rename
-			make as make_value
-		export {NONE}
-			make_value
-		redefine
-			last_result,
-			create_double_value, 
-			create_real_value, 
-			create_integer_value, 
-			create_time_value, 
-			create_timestamp_value,
-			create_date_value,
-			create_char_value,
-			create_varchar_value
-		end
+	ECLI_ABSTRACT_VALUE_FACTORY [ECLI_ARRAYED_VALUE]
 			
 creation
 	make
@@ -41,11 +26,6 @@ feature {NONE} -- Initialization
 		ensure
 			row_count_set: row_count = a_row_count
 		end
-
-feature -- Access
-
-	last_result : ECLI_ARRAYED_VALUE
-			-- last result of `create_instance'
 
 feature -- Measurement
 

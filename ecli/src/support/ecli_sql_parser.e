@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that parse SQL queries, searching for parameters."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:48 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/25 21:01:16 $"
+	revision: "$Revision: 1.3.2.1 $"
 
 class
 	ECLI_SQL_PARSER
@@ -49,7 +49,7 @@ feature -- Status setting
 
 feature -- Basic operations
 
-	parse (sql : STRING; statement : ECLI_STATEMENT) is
+	parse (sql : STRING; statement : ECLI_ABSTRACT_STATEMENT[ECLI_VALUE,ECLI_VALUE]) is
 			-- parse s, replacing every parameter by the ODBC/CLI marker '?'
 		local
 			index, sql_count : INTEGER

@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/02/25 09:23:24 $"
-	revision: 	"$Revision: 1.15 $"
+	date: 		"$Date: 2003/02/25 21:00:45 $"
+	revision: 	"$Revision: 1.15.2.1 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -24,7 +24,7 @@ inherit
 
 	ECLI_SHARED_ENVIRONMENT
 
-	PAT_PUBLISHER [ECLI_STATEMENT]
+	PAT_PUBLISHER [ECLI_ABSTRACT_STATEMENT[ECLI_VALUE,ECLI_VALUE]]
 		rename
 			subscribe as register_statement,
 			unsubscribe as unregister_statement,
@@ -33,7 +33,7 @@ inherit
 			impl_subscribers as impl_statements,
 			count as statements_count
 		export
-			{ECLI_STATEMENT}
+			{ECLI_ABSTRACT_STATEMENT}
 				register_statement,
 				unregister_statement,
 				is_registered_statement

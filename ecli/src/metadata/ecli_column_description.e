@@ -1,8 +1,8 @@
 indexing
 	description: "Description of result-set column"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 14:29:34 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/25 21:01:09 $"
+	revision: "$Revision: 1.5.2.1 $"
 	licensing: "See notice at end of class"
 
 class
@@ -28,7 +28,7 @@ creation
 
 feature {NONE} -- Initialization
 
-	make (stmt : ECLI_STATEMENT; index : INTEGER; max_name_length : INTEGER) is
+	make (stmt : ECLI_ABSTRACT_STATEMENT[ECLI_VALUE,ECLI_VALUE]; index : INTEGER; max_name_length : INTEGER) is
 			-- Describe `index'th column of current result-set of `stmt', limiting the name length to `max_name_length'
 		require
 			stmt_prepared_or_executed : stmt /= Void and then stmt.is_prepared or stmt.is_executed
