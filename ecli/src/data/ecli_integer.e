@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/07/30 20:34:11 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/05/16 13:56:51 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -24,7 +24,7 @@ feature -- Initialization
 		do
 			buffer := ecli_c_alloc_value (4)
 		end
-		
+
 feature -- Access
 
 	item : INTEGER_REF is
@@ -35,7 +35,7 @@ feature -- Access
 				Result := Void
 			else
 				ecli_c_value_copy_value (buffer, $actual_value)
-				create Result
+				!! Result
 				Result.set_item (actual_value)
 			end
 		end
@@ -67,9 +67,9 @@ feature -- Status setting
 		once
 			Result := sql_integer
 		end
-	
+
 	decimal_digits: INTEGER is
-		do 
+		do
 			Result := 0
 		end
 
@@ -109,7 +109,7 @@ feature -- Conversion
 				Result := item.item
 			end
 		end
-		
+
 feature -- Duplication
 
 feature -- Miscellaneous
@@ -133,7 +133,7 @@ feature -- Inapplicable
 feature {NONE} -- Implementation
 
 	actual_value : INTEGER
-	
+
 invariant
 	invariant_clause: -- Your invariant here
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/09/12 21:14:05 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2001/05/16 13:56:51 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class

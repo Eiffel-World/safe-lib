@@ -5,8 +5,8 @@ indexing
 		% and associated information messages"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2000/11/03 20:33:08 $"
-	revision: 	"$Revision: 1.2 $"
+	date: 		"$Date: 2001/05/16 13:56:51 $"
+	revision: 	"$Revision: 1.3 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -150,13 +150,13 @@ feature {NONE} -- Implementation
 		do
 			if need_diagnostics then
 				if impl_cli_state = Void then
-					create impl_cli_state.make (6)
+					!! impl_cli_state.make (6)
 				end
 				if impl_error_message = Void then
-					create impl_error_message.make (256)
+					!! impl_error_message.make (256)
 				end
 				if impl_error_buffer = Void then
-					create impl_error_buffer.make (256)
+					!! impl_error_buffer.make (256)
 				end
 				impl_error_message.clear_content
 				-- fill cli_state and buffer with blanks so that count=capacity
@@ -165,7 +165,9 @@ feature {NONE} -- Implementation
 				impl_error_buffer.fill_blank
 				from 
 					count := 1
-				until retcode = cli_no_data or retcode = cli_invalid_handle or retcode = cli_error
+					retcode := cli_ok
+				until 
+					retcode = cli_no_data or retcode = cli_invalid_handle or retcode = cli_error
 				loop
 					retcode := get_error_diagnostic (count, 
 							tools.string_to_pointer (impl_cli_state),

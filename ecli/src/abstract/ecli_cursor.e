@@ -1,8 +1,8 @@
 indexing
 	description: "Abstraction of a cursor.  Used by 'query_assistant'-generated classes."
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/09/06 20:44:45 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/05/16 13:56:51 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -13,7 +13,9 @@ inherit
 
 	ECLI_STATEMENT
 		rename
-			close_cursor as close, start as statement_start
+			close as statement_close,
+			close_cursor as close, 
+			start as statement_start		
 		export
 			{NONE} all
 			{ANY} 
@@ -46,34 +48,6 @@ feature -- Access
 	definition : STRING is
 		deferred
 		end
-
-feature -- Measurement
-
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
 
 feature {NONE} -- Implementation
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2001/05/16 13:17:32 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/05/16 13:56:51 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	QA_CURSOR_GENERATOR2

@@ -2,8 +2,8 @@ indexing
 	description: "Fixed length buffer, for external usage"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/07/30 20:34:14 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/05/16 13:56:51 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 	

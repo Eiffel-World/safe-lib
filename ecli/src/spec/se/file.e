@@ -3,8 +3,8 @@ indexing
 description: "Attempt to make portable files";
 keywords: "file", "portable"
 status: "See notice at end of class";
-date: "$Date: 2000/08/11 21:26:07 $";
-revision: "$Revision: 1.2 $"
+date: "$Date: 2001/05/16 13:56:51 $";
+revision: "$Revision: 1.3 $"
 
 deferred class FILE
 

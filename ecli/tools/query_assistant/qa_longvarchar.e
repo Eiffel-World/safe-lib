@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI LONGVARCHAR (n) values"
 	author: ""
-	date: "$Date: 2000/08/11 21:44:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/05/16 13:56:51 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	QA_LONGVARCHAR
