@@ -1,8 +1,8 @@
 indexing
 	description: "Factory of ECLI_VALUE descendant instances"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 08:52:04 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2002/10/03 20:27:12 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -80,11 +80,6 @@ feature -- Miscellaneous
 			!ECLI_TIMESTAMP!last_result.make_default
 		end
 
-	create_datetime_value is
-		do
-			!ECLI_DATE_TIME!last_result.make_default
-		end
-		
 	create_time_value is
 		do
 			!ECLI_TIME!last_result.make_default
@@ -120,8 +115,6 @@ feature -- Basic operations
 					end
 			elseif db_type = sql_type_date then
 					create_date_value
-			elseif db_type = Sql_datetime then
-					create_datetime_value	
 			elseif db_type = sql_type_timestamp then
 					create_timestamp_value
 			else

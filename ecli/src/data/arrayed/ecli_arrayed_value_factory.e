@@ -1,8 +1,8 @@
 indexing
 	description: "Factory of ECLI_VALUE descendant instances"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 08:52:04 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/10/03 20:27:12 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -20,7 +20,6 @@ inherit
 			create_integer_value, 
 			create_time_value, 
 			create_timestamp_value,
-			create_datetime_value,
 			create_date_value,
 			create_char_value,
 			create_varchar_value
@@ -87,11 +86,6 @@ feature -- Miscellaneous
 	create_timestamp_value is
 		do
 			!ECLI_ARRAYED_TIMESTAMP!last_result.make (row_count)
-		end
-
-	create_datetime_value is
-		do
-			!ECLI_ARRAYED_DATE_TIME!last_result.make (row_count)
 		end
 		
 	create_time_value is
