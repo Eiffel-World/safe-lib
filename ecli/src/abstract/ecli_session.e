@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2000/08/11 21:32:48 $"
-	revision: 	"$Revision: 1.2 $"
+	date: 		"$Date: 2000/09/12 20:57:07 $"
+	revision: 	"$Revision: 1.3 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -43,7 +43,7 @@ inherit
 creation
 	make
 
-feature -- Initialization
+feature {NONE} -- Initialization
 
 	make (a_data_source, a_user_name, a_password : STRING) is
 			-- Make session using 'session_string'

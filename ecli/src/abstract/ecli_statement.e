@@ -6,8 +6,8 @@ indexing
 		% Provide CLI/ODBC CORE and some Level 1 functionalities."
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2000/08/11 21:32:48 $"
-	revision: 	"$Revision: 1.2 $"
+	date: 		"$Date: 2000/09/12 20:57:07 $"
+	revision: 	"$Revision: 1.3 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -32,7 +32,7 @@ inherit
 creation
 	make
 
-feature -- Initialization
+feature {NONE} -- Initialization
 
 	make (a_session : ECLI_SESSION) is
 			-- create a statement for use on 'session'
@@ -422,6 +422,7 @@ feature -- Basic operations
 		end
 
 	describe_cursor is
+			-- get metadata about current result-set in 'cursor_description'
 		require
 			executed: is_executed
 			has_results: has_results
@@ -629,6 +630,7 @@ feature {NONE} -- Implementation
 	release_handle is
 		do
 			session.unregister_statement (Current)
+			session := Void
 			free_statement_handle
 		end
 
