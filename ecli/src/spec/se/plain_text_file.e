@@ -3,8 +3,8 @@ indexing
 description: "Attempt to make files portable";
 keywords: "text", "file", "portable"
 status: "See notice at end of class";
-date: "$Date: 2000/07/30 20:34:16 $";
-revision: "$Revision: 1.1.1.1 $"
+date: "$Date: 2001/05/16 13:17:18 $";
+revision: "$Revision: 1.1.1.2 $"
 
 class PLAIN_TEXT_FILE
     

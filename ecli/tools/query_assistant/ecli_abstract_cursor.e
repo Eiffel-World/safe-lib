@@ -1,8 +1,8 @@
 indexing
 	description: "Operations common to all cursors"
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/07/30 20:34:26 $"
-	revision: "$Revision: 1.1.1.1 $"
+	date: "$Date: 2001/05/16 13:17:32 $"
+	revision: "$Revision: 1.1.1.2 $"
 	licensing: "See notice at end of class"
 
 deferred class

@@ -1,8 +1,8 @@
 indexing
 	description: "Subscriber part of the publisher/subscriber pattern"
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/07/30 20:34:14 $"
-	revision: "$Revision: 1.1.1.1 $"
+	date: "$Date: 2001/05/16 13:17:14 $"
+	revision: "$Revision: 1.1.1.2 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -16,27 +16,11 @@ feature -- Access
 		deferred
 		end
 
-feature -- Measurement
-
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
+	unsubscribed : BOOLEAN is
+		do
+			Result := (publisher = Void)
+		end
+		
 
 feature -- Basic operations
 
@@ -46,14 +30,14 @@ feature -- Basic operations
 		do
 		end
 
-feature -- Obsolete
-
-feature -- Inapplicable
-
-feature {NONE} -- Implementation
-
+	has_publisher : BOOLEAN is
+		do
+			Result := (publisher /= Void)
+		end
+	
 invariant
-	has_publisher: publisher /= Void
+
+	subscription: unsubscribed or else has_publisher
 
 end -- class PAT_SUBSCRIBER
 --

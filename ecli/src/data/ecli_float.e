@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL FLOAT value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/07/30 20:34:11 $"
-	revision: "$Revision: 1.1.1.1 $"
+	date: "$Date: 2001/05/16 13:17:12 $"
+	revision: "$Revision: 1.1.1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -35,7 +35,7 @@ feature -- Access
 				Result := Void
 			else
 				ecli_c_value_copy_value (buffer, $actual_value)
-				create Result
+				!! Result
 				Result.set_item (actual_value)
 			end
 		end

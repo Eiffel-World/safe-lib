@@ -1,8 +1,8 @@
 indexing
 	description: "Shared CLI environment"
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/07/30 20:34:09 $"
-	revision: "$Revision: 1.1.1.1 $"
+	date: "$Date: 2001/05/16 13:17:12 $"
+	revision: "$Revision: 1.1.1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -10,7 +10,7 @@ class
 
 feature -- Access
 
-	environment : ECLI_ENVIRONMENT is
+	shared_environment : ECLI_ENVIRONMENT is
 		once
 			!!Result.make
 		end

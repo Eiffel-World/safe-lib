@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: "Paul G. Crismer"
-	date: "$Date: 2000/07/30 20:34:29 $"
-	revision: "$Revision: 1.1.1.1 $"
+	date: "$Date: 2001/05/16 13:17:32 $"
+	revision: "$Revision: 1.1.1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -78,7 +78,11 @@ feature -- Miscellaneous
 
 	create_varchar_value (column_precision : INTEGER) is
 		do
-			create {QA_VARCHAR}last_result.make (column_precision)
+			if column_precision > 254 then
+				create {QA_LONGVARCHAR} last_result.make (column_precision)
+			else
+				create {QA_VARCHAR}last_result.make (column_precision)
+			end
 		end
 
 	create_date_value is
@@ -106,7 +110,7 @@ feature -- Basic operations
 		do
 			Result := clone ("")
 			if db_type_code = sql_char or db_type_code = sql_varchar then
-				Result.append (" ("+precision.out+")")
+				Result.append (" ("); Result.append (precision.out); Result.append (")")
 			end
 		end
 

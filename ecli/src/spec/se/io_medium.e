@@ -3,8 +3,8 @@ indexing
 description: "Attempt to make IO portable";
 keywords: "IO", "portable"
 status: "See notice at end of class";
-date: "$Date: 2000/07/30 20:34:16 $";
-revision: "$Revision: 1.1.1.1 $"
+date: "$Date: 2001/05/16 13:17:17 $";
+revision: "$Revision: 1.1.1.2 $"
 
 deferred class IO_MEDIUM
     
