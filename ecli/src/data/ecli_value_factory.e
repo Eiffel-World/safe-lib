@@ -1,8 +1,8 @@
 indexing
 	description: "Factory of ECLI_VALUE descendant instances"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2002/09/22 19:31:05 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -121,8 +121,8 @@ feature -- Basic operations
 				create_varchar_value (column_precision)
 			end
 		ensure
-			last_result /= Void implies
-				((last_result.column_precision >= column_precision or db_type = sql_float or db_type = sql_double) and last_result.decimal_digits >= decimal_digits)
+			not_void: last_result /= Void
+			--	((db_type = sql_double or else db_type = sql_float or else db_type = sql_numeric or else db_type = sql_decimal or else last_result.column_precision >= column_precision) and then last_result.decimal_digits >= decimal_digits)
 			-- condition is relaxed for sql_float.  Oracle's NUMBER is given as sql_float or sql_double with precision 38 !!!
 		end
 
