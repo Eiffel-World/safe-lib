@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2001/05/16 13:56:51 $"
-	revision: 	"$Revision: 1.3 $"
+	date: 		"$Date: 2001/08/04 09:40:49 $"
+	revision: 	"$Revision: 1.4 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -202,7 +202,7 @@ feature -- Conversion
 		do
 		end
 
-	to_date : ECLI_DATE is
+	to_date : DT_DATE is
 			-- ...
 		require
 			convertible: convertible_to_date
@@ -210,7 +210,7 @@ feature -- Conversion
 		do
 		end
 
-	to_time : ECLI_TIME is
+	to_time : DT_TIME is
 			-- ...
 		require
 			convertible: convertible_to_time
@@ -218,7 +218,7 @@ feature -- Conversion
 		do
 		end
 
-	to_timestamp : ECLI_TIMESTAMP is
+	to_timestamp : DT_DATE_TIME is
 			-- ...
 		require
 			convertible: convertible_to_timestamp

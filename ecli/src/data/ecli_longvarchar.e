@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI LONGVARCHAR (n) values"
 	author: "Paul-G.Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/08/04 09:40:49 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -11,7 +11,7 @@ class
 inherit
 	ECLI_VALUE
 		redefine
-			item, set_item,convertible_to_string, out
+			item, set_item,convertible_to_string, to_string, out
 		end
 
 creation
@@ -63,8 +63,10 @@ feature -- Measurement
 
 feature -- Status report
 
-	convertible_to_string : BOOLEAN is True
-
+	convertible_to_string : BOOLEAN is 
+		do
+			Result := True
+		end
 
 	c_type_code: INTEGER is
 		once
@@ -129,6 +131,12 @@ feature -- Transformation
 
 feature -- Conversion
 
+	to_string : STRING is
+			-- Conversion to STRING value
+		do
+			Result := item
+		end
+		
 feature -- Duplication
 
 feature -- Miscellaneous
