@@ -5,8 +5,8 @@ indexing
 
 	author: 	"Paul G. Crismer"
 	licencing: 	"See notice at end of class"
-	date: 		"$Date: 2003/11/10 20:21:15 $"
-	revision: 	"$Revision: 1.4 $"
+	date: 		"$Date: 2004/01/20 21:06:58 $"
+	revision: 	"$Revision: 1.5 $"
 
 class
 	PDF_OUTPUT_MEDIUM
@@ -59,7 +59,7 @@ feature -- Measurement
 feature -- Basic operations
 
 	put_string (s : STRING) is
-			-- 
+			-- put string `s'
 		require
 			s /= Void
 		local
@@ -98,7 +98,7 @@ feature -- Basic operations
 		end
 		
 	put_double (d : DOUBLE) is
-			-- 
+			-- put double `d'
 		local
 			integral, fraction : INTEGER
 			s : STRING
@@ -125,7 +125,7 @@ feature -- Basic operations
 		end
 
 	put_new_line is
-			-- 
+			-- put a newline
 		do
 			medium.put_character ('%N') --medium.put_new_line
 			increment_count (eol_count)

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2003/08/20 15:39:58 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/01/20 21:06:58 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PDF_VIEWER_PREFERENCES
@@ -150,6 +150,7 @@ feature -- Conversion
 		end
 		
 	put_pdf (medium: PDF_OUTPUT_MEDIUM) is
+			-- put PDF code on `medium'
 		local
 			pdf_true : STRING
 			name : PDF_NAME

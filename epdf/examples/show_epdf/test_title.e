@@ -1,12 +1,12 @@
 indexing
 	description: 
 		
-		"Objects that show the title page for PDeiFfel"
+		"Objects that show the title page for ePDF"
 
 	author: 	"Paul G. Crismer"
 	licencing: 	"See notice at end of class"
-	date: 		"$Date: 2003/02/27 15:07:12 $"
-	revision: 	"$Revision: 1.2 $"
+	date: 		"$Date: 2004/01/20 21:06:58 $"
+	revision: 	"$Revision: 1.3 $"
 
 class
 	TEST_TITLE
