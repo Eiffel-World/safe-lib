@@ -6,8 +6,8 @@
 		system: "EPDF parent project file."
 		copyright: "Copyright (c) 2002, Paul G. Crismer"
 		license: "Eiffel Forum Freeware License v1 (see forum.txt)"
-		date: "$Date: 2003/08/19 15:44:26 $"
-		revision: "$Revision: 1.1 $"
+		date: "$Date: 2003/08/19 15:46:47 $"
+		revision: "$Revision: 1.2 $"
 	</description>
 
 	<inherit>
@@ -37,7 +37,6 @@
 		<echo message="WARNING: GOBO_EIFFEL variable not set." unless="${GOBO_EIFFEL}"/>
 		<echo message="WARNING: BCC_DIR variable not set." if="${GOBO_CC}=bcc" unless="${BCC_DIR}"/>
 		<set name="eiffel" value="${GOBO_EIFFEL}"/>
-ZLIB, ZLIB_LIB, LIBPNG, LIBPNG_LIB,%
 	</target>
 
 	<target name="install" depend="init">
