@@ -4,8 +4,8 @@ indexing
 		"SQL TIMESTAMP values"
 		
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/03/01 14:08:43 $"
-	revision: "$Revision: 1.24 $"
+	date: "$Date: 2004/04/13 10:06:38 $"
+	revision: "$Revision: 1.25 $"
 	licensing: "See notice at end of class"
 
 class
@@ -418,8 +418,6 @@ feature {NONE} -- Implementation
 		end
 
 	allocate_buffer is
-		local
-			e : EXCEPTIONS
 		do
 			if buffer = default_pointer then
 				buffer := ecli_c_alloc_value (transfer_octet_length)

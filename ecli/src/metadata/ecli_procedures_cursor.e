@@ -1,7 +1,7 @@
 indexing
 	description:
 
-		"Objects that search the database repository for procedures. %
+		"Cursor on procedures matching criteria. %
 		%Search criterias are (1) catalog name, (2) schema name, (3) procedure name.%
 		%A Void criteria is considered as a wildcard."
 
@@ -9,8 +9,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2004/04/13 10:06:08 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class

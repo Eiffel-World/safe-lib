@@ -1,8 +1,8 @@
 indexing
-	description: "Abstraction of a SQL cursor. Starting iteration creates `results' object through `create_buffers'."
+	description: "Cursors over SQL query result set. Starting iteration creates `results' object through `create_buffers'."
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/03/01 14:08:42 $"
-	revision: "$Revision: 1.18 $"
+	date: "$Date: 2004/04/13 10:07:03 $"
+	revision: "$Revision: 1.19 $"
 	licensing: "See notice at end of class"
 
 deferred class

@@ -1,11 +1,11 @@
 indexing
-	description: "Objects that iterate over the SQL types supported by a datasource"
+	description: "Cursors over the SQL types supported by the datasource related to a session."
 	author: "Paul G. Crismer"
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2004/04/13 10:06:08 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 
 class

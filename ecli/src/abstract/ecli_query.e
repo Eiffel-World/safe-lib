@@ -1,10 +1,9 @@
 indexing
-	description: "Abstraction of an SQL query."
+	description: "SQL Queries, defined by a SQL text. Heir for classes whose SQL definition remains constant, (static, not modifiable)."
 	
-	usage: "Heir for classes with constant SQL query"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/03/01 14:08:42 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2004/04/13 10:07:03 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 deferred class
