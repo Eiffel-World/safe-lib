@@ -1,0 +1,93 @@
+system
+	format_test
+
+root
+	FORMAT_TEST: "make"
+
+default
+	assertion (all)
+	multithreaded (no)
+	console_application (yes)
+	dynamic_runtime (no)
+	dead_code_removal (no)
+	profile (no)
+	line_generation (no)
+	debug  (no)
+	array_optimization (no)
+	inlining (no)
+	inlining_size ("4")
+
+
+cluster
+	root_cluster: 	"$SAFE_EBT\conversion\test\format";
+
+		-- Base types
+	base_types:						"$SAFE_EBT";
+
+	conversion (base_types):			"$\conversion\src";
+	format (conversion):				"$\format";
+	money (base_types):					"$\money\src"		
+	string (base_types):				"$\string\src";
+	string_ise (string):				"$\spec\ise";
+
+
+	kernel:		"$EIFFEL4\library/base\kernel"
+
+	support:		"$EIFFEL4\library\base\support"
+
+	access:		"$EIFFEL4\library\base\structures\access"
+
+	cursors:		"$EIFFEL4\library\base\structures\cursors"
+
+	cursor_tree:		"$EIFFEL4\library\base\structures\cursor_tree"
+
+	dispenser:		"$EIFFEL4\library\base\structures\dispenser"
+
+	iteration:		"$EIFFEL4\library\base\structures\iteration"
+
+	list:		"$EIFFEL4\library\base\structures\list"
+
+	set:		"$EIFFEL4\library\base\structures\set"
+
+	sort:		"$EIFFEL4\library\base\structures\sort"
+
+	storage:		"$EIFFEL4\library\base\structures\storage"
+
+	table:		"$EIFFEL4\library\base\structures\table"
+
+	traversing:		"$EIFFEL4\library\base\structures\traversing"
+
+	tree:		"$EIFFEL4\library\base\structures\tree"
+
+	ut_command:		"$GOBO\library\utility\command"
+
+	ut_error:		"$GOBO\library\utility\error"
+
+	ut_formatter:		"$GOBO\library\utility\formatter"
+
+	ut_support:		"$GOBO\library\utility\support"
+
+	kl_kernel:		"$GOBO\library\kernel"
+
+	kl_kernel_spec:		"$GOBO\library\kernel\spec\ise"
+
+	ds_container:		"$GOBO\library\structure\container"
+
+	ds_dispenser:		"$GOBO\library\structure\dispenser"
+
+	ds_list:		"$GOBO\library\structure\list"
+
+	ds_sort:		"$GOBO\library\structure\sort"
+
+	ds_support:		"$GOBO\library\structure\support"
+
+	ds_table:		"$GOBO\library\structure\table"
+
+end
+
+
+--
+-- Copyright: 2001, Eric Fafchamps, <eric.fafchamps@belgacom.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--
