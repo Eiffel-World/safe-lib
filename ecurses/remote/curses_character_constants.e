@@ -4,8 +4,8 @@ indexing
     cluster: 	"ecurses, spec"
     interface: 	"mixin"
     status: 	"See notice at end of class"
-    date: 	"$Date: 2002/06/05 09:45:52 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2002/08/17 21:57:38 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class CURSES_CHARACTER_CONSTANTS
@@ -21,6 +21,8 @@ inherit
 		export
 			{NONE} all
 		end
+
+	ANY
 
 feature
 

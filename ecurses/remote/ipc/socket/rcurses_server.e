@@ -2,8 +2,8 @@ indexing
 	description	: "System's root class"
     cluster: 	"ecurses, spec, remote_access, server"
     status: 	"See notice at do end of class"
-    date: 	"$Date: 2002/06/05 09:45:52 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2002/08/17 21:57:38 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -48,10 +48,9 @@ feature {ANY}
 			client_socket.receive_string (input_buffer)
 			!!client_message.make_from_string (input_buffer.substring(1,client_socket.bytes_received))
 			
-            curses_adapter.call_feature (client_message.feature_identifier, client_message.arguments)
+            		curses_adapter.call_feature (client_message)
 		
-			!!server_message.make (curses_adapter.last_results)
-			client_socket.send_string (server_message.to_string)
+			client_socket.send_string (curses_adapter.last_server_message.to_string)
 		end
 
 

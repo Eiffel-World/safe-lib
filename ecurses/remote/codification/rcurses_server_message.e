@@ -2,8 +2,8 @@ indexing
 	description: "Objects that encode/decode a curses server message"
     cluster: 	"ecurses, spec, remote_access"
     status: 	"See notice at do end of class"
-    date: 	"$Date: 2002/06/05 09:45:52 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2002/08/17 21:57:38 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -35,37 +35,6 @@ feature  -- Initialization
 				result_list.forth
 				i := i + 1
 			end
-		end
-
-feature -- Access
-
-	results: ARRAY[STRING]
-			-- Returned results.
-
-feature -- Conversion
-
-	to_string: STRING is
-			-- Encode message in a string.
-		local
-			i: INTEGER
-			s: STRING
-		do
-			from
-				!!Result.make (70)
-				result.append_string (results.count.out)
-				i := results.lower		
-			until
-				i > results.upper
-			loop
-				Result.append_character (separator)				
-				s := results.item(i)
-				Result.append_string (s.count.out)
-				Result.append_character (separator)
-				Result.append_string (s)
-				i := i + 1
-			end
-		ensure then
-			-- (result_1, .. result_n) is encoded as "results.count results.item(1).count results.item(1) ... results.item(n).count results.item(n)
 		end
 
 	make_from_string (a_string: STRING) is
@@ -110,6 +79,62 @@ feature -- Conversion
 				i := i + 1		
 			end					
 		end
+
+
+feature -- Access
+
+	results: ARRAY[STRING]
+			-- Returned results.
+
+feature -- Conversion
+
+	to_string: STRING is
+			-- Encode message in a string.
+		local
+			i: INTEGER
+			s: STRING
+		do
+			from
+				!!Result.make (70)
+				result.append_string (results.count.out)
+				i := results.lower		
+			until
+				i > results.upper
+			loop
+				Result.append_character (separator)				
+				s := results.item(i)
+				Result.append_string (s.count.out)
+				Result.append_character (separator)
+				Result.append_string (s)
+				i := i + 1
+			end
+		ensure then
+			-- (result_1, .. result_n) is encoded as "results.count results.item(1).count results.item(1) ... results.item(n).count results.item(n)
+		end
+
+	trace_output: STRING is
+			-- Output for trace.
+		local
+			i: INTEGER
+			s: STRING
+		do
+			from
+				!!Result.make (70)
+				result.append_string ("(")
+				i := results.lower		
+			until
+				i > results.upper
+			loop
+				s := results.item(i)
+				Result.append_string (s)
+				i := i + 1
+				if i <= results.upper then
+					Result.append_string (", ")
+				end
+			end
+			Result.append_string (")")
+		end
+
 		
 invariant
 	results_not_void: results /= Void

@@ -2,8 +2,8 @@ indexing
 	description: "Objects that sends messages to an rcurses server using a shared memory implementation"
     cluster: 	"ecurses, spec, remote_access"
     status: 	"See notice at end of class"
-    date: 	"$Date: 2002/06/05 09:45:52 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2002/08/17 21:57:38 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -16,7 +16,13 @@ feature {NONE} -- Initialize
 
 	make is
 			-- Initialization
+		local
+			shell_command: UT_SHELL_COMMAND		
 		do
+
+--			!!shell_command.make ("rcurses")
+--			shell_command.execute 						
+
 	  		!!server_turn.make ("ECURSES_SERVER_TURN")
 			server_turn.create_only (1,  1)
 			server_turn.wait
@@ -26,7 +32,7 @@ feature {NONE} -- Initialize
 
 			!!shared_memory.make ("ECURSES_SHARED_MEMORY")
 			shared_memory.create_map
-			
+
 		end
 	
 feature -- Access

@@ -3,8 +3,8 @@ indexing
     cluster: 	"ecurses, spec"
     interface: 	"mixin"
     status: 	"See notice at end of class"
-    date: 	"$Date: 2002/06/05 09:45:52 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2002/08/17 21:57:38 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -59,14 +59,14 @@ feature -- Conversion
 
 feature {NONE} -- Implementation
 
-	identifiers: HASH_TABLE [STRING, INTEGER] is
+	identifiers: DS_HASH_TABLE [STRING, INTEGER] is
 			-- Table of indentifiers indexed by integers
 			-- Used to hold (avoid garbage collection) pointer identifiers
 		once
 			!!Result.make (1000)
 		end
 
-	pointers: HASH_TABLE [INTEGER, STRING] is
+	pointers: DS_HASH_TABLE [INTEGER, STRING] is
 			-- Table of integer (pointers) indexed by string identifiers
 		once
 			!!Result.make (1000)
