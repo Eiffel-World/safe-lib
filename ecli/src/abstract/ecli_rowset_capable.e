@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2002/04/25 20:14:24 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/05/09 20:06:51 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_ROWSET_CAPABLE
@@ -34,8 +34,8 @@ feature {NONE} -- implementation
 			index: INTEGER
 		do
 			from index := 1
-				!!status_array.make (1, processed_row_count)
-			until index > processed_row_count
+				!!status_array.make (1, row_count)
+			until index > row_count
 			loop
 				status_array.put (rowset_status.item (index), index)
 				index := index + 1
