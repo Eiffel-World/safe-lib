@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI CHAR (n) arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 14:29:32 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/05/08 13:59:23 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -22,7 +22,7 @@ inherit
 		export
 			{NONE} all
 		undefine
-			out
+			out, is_equal, copy
 		end
 
 creation

@@ -1,8 +1,8 @@
 indexing
 	description: "Command Line Interactive SQL for ODBC datasources";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:32:57 $"
-	revision: "$Revision: 1.18 $"
+	date: "$Date: 2003/05/08 13:59:23 $"
+	revision: "$Revision: 1.19 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -68,7 +68,9 @@ feature {NONE} -- Initialization
 					if current_context.session.is_connected then
 						current_context.session.disconnect
 					end
-					current_context.session.close
+					if current_context.session.is_valid then
+						current_context.session.close
+					end
 				end
 			end;
 		end
@@ -219,8 +221,6 @@ feature {NONE} -- Implementation
 			commands.put_last (l_command)			
 			create {ISQL_CMD_COLUMNS}l_command
 			commands.put_last (l_command)
---			create {ISQL_CMD_COMMENT}l_command
---			commands.put_last (l_command)
 			create {ISQL_CMD_CONNECT}l_command
 			commands.put_last (l_command)
 			create {ISQL_CMD_COMMIT}l_command

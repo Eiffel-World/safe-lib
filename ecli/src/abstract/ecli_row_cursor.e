@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that define a row cursor and allow sweeping through it."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:21 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/05/08 13:59:23 $"
+	revision: "$Revision: 1.10 $"
 
 class
 	ECLI_ROW_CURSOR
@@ -12,7 +12,8 @@ inherit
 		rename
 			make as cursor_make, open as statement_open,
 			make_prepared as cursor_make_prepared,
-			create_buffers as create_row_buffers
+			create_buffers as create_row_buffers,
+			start as cursor_start
 		export
 			{NONE} cursor_make;
 			{ANY}

@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/03/01 13:32:37 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/05/08 13:59:24 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class
@@ -243,7 +243,7 @@ feature {NONE} -- Implementation
 					set_cursor_after
 				end
 			 else
-				impl_result_columns_count := 0
+				impl_result_columns_count.put (0)
 			end
 			create_buffers
 		end

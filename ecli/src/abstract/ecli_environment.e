@@ -4,8 +4,8 @@ indexing
 				% This object is a handle to the CLI facilities : it is the first%
 				% CLI object to be created, and the last to be deleted."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:20 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/05/08 13:59:23 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -43,9 +43,13 @@ feature -- Initialization
 
 	make is
 			-- initialize CLI environment
+		local
+			ext_handle : XS_C_POINTER
 		do
 			-- | Actual allocation of CLI handle
-			set_status (ecli_c_allocate_environment ($handle))
+			create ext_handle.make
+			set_status (ecli_c_allocate_environment (ext_handle.handle))
+			handle := ext_handle.item
 		end
 
 

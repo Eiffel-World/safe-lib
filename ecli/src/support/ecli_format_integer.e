@@ -1,14 +1,13 @@
 indexing
 	description: "Objects that provide integer formatting routines"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:46 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/05/08 13:59:24 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ECLI_FORMAT_INTEGER
 
-feature {NONE} -- Implementation
-
+feature -- Conversion
 
 	pad_integer_4 (value : INTEGER) : STRING is
 		do
@@ -34,3 +33,8 @@ feature {NONE} -- Implementation
 
 
 end -- class ECLI_FORMAT_INTEGER
+--
+-- Copyright: 2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

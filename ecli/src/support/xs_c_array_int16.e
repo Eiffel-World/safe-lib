@@ -4,8 +4,8 @@ indexing
 	
 	library: "XS_C : eXternal Support C"
 	
-	date: "$Date: 2003/03/01 14:15:57 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/05/08 13:59:24 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -25,7 +25,7 @@ feature -- Access
 			item_ptr : POINTER
 		do
 			item_ptr := item_pointer (index)
-			Result := c_memory_short_to_integer (item_ptr)
+			Result := c_memory_get_int16 (item_ptr)
 		end
 		
 feature -- Measurement
@@ -40,7 +40,7 @@ feature -- Element change
 			item_ptr : POINTER
 		do
 			item_ptr := item_pointer (index)
-			c_memory_copy (item_ptr, $value, item_size)
+			c_memory_put_int16 (item_ptr, value)
 		end
 		
 end -- class XS_C_ARRAY_INT16

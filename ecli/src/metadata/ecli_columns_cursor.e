@@ -9,8 +9,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/03/01 13:32:36 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/05/08 13:59:24 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -57,14 +57,13 @@ feature {NONE} -- Initialization
 			-- search for column whose name matches `a_search_criteria' and `a_column_name'
 			-- Void values are wildcards
 		do
-			make (a_search_criteria, a_session)
 			queried_column := a_column_name
+			make (a_search_criteria, a_session)
 		end
 
 	make (a_table: ECLI_NAMED_METADATA; a_session: ECLI_SESSION) is
 			-- make cursor on all columns of `a_table'
 		do
-			queried_column := Void
 			Precursor (a_table, a_session)
 		end
 

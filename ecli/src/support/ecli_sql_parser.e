@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that parse SQL queries, searching for parameters."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:48 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/05/08 13:59:24 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ECLI_SQL_PARSER
@@ -171,3 +171,8 @@ invariant
 	good_parameter_marker: (":?~°@§").has (parameter_marker)
 	
 end -- class ECLI_SQL_PARSER
+--
+-- Copyright: 2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

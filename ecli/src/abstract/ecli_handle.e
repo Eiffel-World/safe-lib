@@ -9,16 +9,14 @@ indexing
 	   % and should also be redefined by descendant classes."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 14:29:31 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/05/08 13:59:23 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 deferred class
 	ECLI_HANDLE
 
 inherit
-
-	ANY
 
 	ECLI_EXTERNAL_TOOLS
 		export
@@ -27,6 +25,10 @@ inherit
 			dispose
 		end
 
+	EXCEPTIONS
+		export
+			{NONE} all
+		end
 
 feature {ANY} -- Status report
 
@@ -60,13 +62,12 @@ feature {NONE} -- Implementation
 		end
 
 	dispose is
-		local
-			exception : expanded EXCEPTIONS
 		do
 			if is_valid then
 				if not is_ready_for_disposal then
-					exception.raise (disposal_failure_reason)
---					print (disposal_failure_reason)
+					debug ("ecli_check_closes")
+						raise (disposal_failure_reason)					
+					end
 				else
 					release_handle
 				end
@@ -81,7 +82,7 @@ feature {NONE} -- Implementation
 		ensure
 			invalid:    not is_valid
 		end
-
+	
 end -- class ECLI_HANDLE
 --
 -- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>

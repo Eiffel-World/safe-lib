@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI LONGVARCHAR (n) arrayed values"
 	author: "Paul-G.Crismer"
-	date: "$Date: 2003/02/26 19:33:34 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/05/08 13:59:23 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -12,7 +12,7 @@ inherit
 	ECLI_LONGVARCHAR
 		rename
 			make as make_single, capacity as content_capacity, max_capacity as max_content_capacity,
-			count as content_count
+			count as content_count, is_equal as is_equal_item, copy as copy_item
 		undefine
 			release_handle, length_indicator_pointer, to_external, is_null, set_null, out, trace,
 			set_item, transfer_octet_length, to_string, convertible_to_string
@@ -25,6 +25,8 @@ inherit
 			make as make_arrayed
 		redefine
 			set_item, out_item_at, to_string
+		select
+			is_equal, copy
 		end
 
 creation
