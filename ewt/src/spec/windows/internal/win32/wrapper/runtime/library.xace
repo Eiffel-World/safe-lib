@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<library name="runtime" prefix="ewg_">
+	<description>
+		system: "Eiffel Wrapper Generator Runtime Library"
+		copyright: "Copyright (c) 2002, Andreas Leitner and others"
+		license: "Eiffel Forum License v2 (see forum.txt)"
+		date: "$Date: 2003/12/29 16:54:52 $"
+		revision: "$Revision: 1.1 $"
+	</description>
+
+	<cluster name="runtime" location="${EWG}/library/runtime">
+		<cluster name="spec">
+			<option name="abstract" value="true"/>
+			<cluster name="${GOBO_EIFFEL}" prefix="runtime_spec_"/>
+		</cluster>
+	</cluster>
+
+</library>

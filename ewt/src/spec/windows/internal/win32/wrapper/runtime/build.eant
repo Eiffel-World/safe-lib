@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<project name="runtime" default="help">
+
+	<description>
+		description: "Eiffel Ant file for the EWG Runtime Library"
+		library: "EWG Runtime library"
+		copyright: "Copyright (c) 2001-2002, Andreas Leitner and others"
+		license: "Eiffel Forum License v2 (see forum.txt)"
+		date: "$Date: 2003/12/29 16:54:52 $"
+		revision: "$Revision: 1.1 $"
+	</description>
+
+	<inherit>
+		<parent location="${GOBO}/misc/ge2e.eant"/>
+	</inherit>
+
+	<target name="help">
+		<echo message="usage:"/>
+		<echo message="   geant install"/>
+		<echo message="   geant clean"/>
+		<echo message="   geant clobber"/>
+	</target>
+
+	<target name="install">
+		<description>
+			Install the EWG Runtime Library.
+			Generate Eiffel files from .ge files.
+		</description>
+
+		<set name="gepp_dir" value="."/>
+		<set name="spec_dir" value="spec"/>
+		<set name="gepp_file" value="ewg_external_string_routines"/>
+		<geant target="ge2e"/>
+		<set name="gepp_file" value="ewg_external_garbage_collector_routines"/>
+		<geant target="ge2e"/>
+		<set name="gepp_file" value="ewg_external_memory_routines"/>
+		<geant target="ge2e"/>
+		<set name="gepp_file" value="ewg_double_math"/>
+		<geant target="ge2e"/>
+		<set name="gepp_file" value="ewg_identified"/>
+		<geant target="ge2e"/>
+	</target>
+
+	<target name="clean">
+		<description>
+			Remove intermediary generated files.
+		</description>
+
+	</target>
+
+	<target name="clobber">
+		<description>
+			Remove all generated files.
+		</description>
+
+		<geant target="clean"/>
+		<delete directory="spec"/>
+	</target>
+
+<!-- Implementation -->
+
+</project>
