@@ -1,30 +1,21 @@
 indexing
-	description: "[
-
-Objets that represent controls that have standard scroll bars.
-
-Styles:
-H_SCROLL, V_SCROLL
-
-Events:
-(none)	
-					]"
+	description: "Windows implementation of ABSTRACT_LISTENER"
 
 	usage: ""
 	quality: ""
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2003/12/10 22:15:04 $";
+	date: "$Date: 2003/12/13 19:34:50 $";
 	revision: "$Revision: 1.1 $";
 	author: ""
 
-deferred class
-	ABSTRACT_SCROLLABLE
+class
+	LISTENER
 
 inherit
-	ABSTRACT_CONTROL
-
+	ABSTRACT_LISTENER
+		
 feature {NONE} -- Initialization
 
 feature -- Access
@@ -66,11 +57,14 @@ feature {NONE} -- Implementation
 invariant
 	invariant_clause: -- Your invariant here
 
-end -- class ABSTRACT_SCROLLABLE
+end -- class LISTENER
 
 --
---    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widget/Attic/abstract_scrollable.e,v $";
--- $Log: abstract_scrollable.e,v $
+--    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widgets/listener.e,v $";
+-- $Log: listener.e,v $
+-- Revision 1.1  2003/12/13 19:34:50  efa
+-- spécification and creation of  directories
+--
 -- Revision 1.1  2003/12/10 22:15:04  efa
 -- library setup and specifications
 --

@@ -1,21 +1,23 @@
 indexing
-	description: "Windows implementation of ABSTRACT_LISTENER"
+	description: "Windows implementation of ABSTRACT_DECORATIONS"
 
 	usage: ""
 	quality: ""
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2003/12/10 22:15:04 $";
+	date: "$Date: 2003/12/13 19:34:50 $";
 	revision: "$Revision: 1.1 $";
 	author: ""
 
-class
-	LISTENER
+deferred class
+	DECORATIONS
 
 inherit
-	ABSTRACT_LISTENER
-		
+	CANVAS
+	
+	ABSTRACT_DECORATIONS
+	
 feature {NONE} -- Initialization
 
 feature -- Access
@@ -57,11 +59,17 @@ feature {NONE} -- Implementation
 invariant
 	invariant_clause: -- Your invariant here
 
-end -- class LISTENER
+end -- class DECORATIONS
 
 --
---    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widget/Attic/listener.e,v $";
--- $Log: listener.e,v $
+--    copyright: "Groupe S (c) 1997-2003"
+--    licence: "All rights reserved. Duplication and distribution prohibited."
+--
+--    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widgets/decorations.e,v $";
+-- $Log: decorations.e,v $
+-- Revision 1.1  2003/12/13 19:34:50  efa
+-- spécification and creation of  directories
+--
 -- Revision 1.1  2003/12/10 22:15:04  efa
 -- library setup and specifications
 --

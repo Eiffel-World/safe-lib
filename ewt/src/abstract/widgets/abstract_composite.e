@@ -1,18 +1,20 @@
 indexing
 	description: "[
 
-Control is the abstraction for all windowed user interface classes.
+ Objets that are capable of containing other controls.
  
  Styles:
- BORDER,LEFT_TO_RIGHT, RIGHT_TO_LEFT
+ NO_BACKGROUND, NO_FOCUS, NO_MERGE_PAINTS, NO_REDRAW_RESIZE, NO_RADIO_GROUP
 
- Only one of LEFT_TO_RIGHT or RIGHT_TO_LEFT may be specified.
- 
  Events:
- FocusIn, FocusOut, Help, KeyDown, KeyUp, MouseDoubleClick, MouseDown, MouseEnter,
- MouseExit, MouseHover, MouseUp, MouseMove, Move, Paint, Resize
-	
-	
+ (none)
+ 
+ Note: The NO_BACKGROUND, NO_FOCUS, NO_MERGE_PAINTS, and NO_REDRAW_RESIZE styles are intended for use with Canvas.
+ They can be used with Composite if you are drawing your own, but their behavior is undefined if they are used with subclasses
+ of Composite other than Canvas.
+ 
+ This class may be subclassed by custom control implementors who are building controls that are constructed from aggregates of other controls.
+ 	
 	]"
 
 	usage: ""
@@ -20,17 +22,15 @@ Control is the abstraction for all windowed user interface classes.
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2003/12/10 22:15:04 $";
+	date: "$Date: 2003/12/13 19:34:21 $";
 	revision: "$Revision: 1.1 $";
 	author: ""
 
 deferred class
-	ABSTRACT_CONTROL
+	ABSTRACT_COMPOSITE
 
 inherit
-	ABSTRACT_WIDGET
-	
---	DRAWABLE (for implementation only)
+	ABSTRACT_SCROLLABLE
 	
 feature {NONE} -- Initialization
 
@@ -73,14 +73,17 @@ feature {NONE} -- Implementation
 invariant
 	invariant_clause: -- Your invariant here
 
-end -- class ABSTRACT_CONTROL
+end -- class ABSTRACT_COMPOSITE
 
 --
 --    copyright: "Groupe S (c) 1997-2003"
 --    licence: "All rights reserved. Duplication and distribution prohibited."
 --
---    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widget/Attic/abstract_control.e,v $";
--- $Log: abstract_control.e,v $
+--    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widgets/abstract_composite.e,v $";
+-- $Log: abstract_composite.e,v $
+-- Revision 1.1  2003/12/13 19:34:21  efa
+-- spécification and creation of  directories
+--
 -- Revision 1.1  2003/12/10 22:15:04  efa
 -- library setup and specifications
 --

@@ -1,36 +1,31 @@
 indexing
-	description: "[
-	
-Objets that provides a surface for drawing arbitrary graphics.
-
- Styles:
- (none)
- 
- Events:
- (none)
- 
- This class may be subclassed by custom control implementors who are building controls that are not constructed
- from aggregates of other controls.
- That is, they are either painted using EWT graphics calls or are handled by native methods.
- 
-	]"
+	description: "Windows implementation of ABSTRACT_DISPLAY"
 
 	usage: ""
 	quality: ""
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2003/12/10 22:15:04 $";
+	date: "$Date: 2003/12/13 19:34:50 $";
 	revision: "$Revision: 1.1 $";
 	author: ""
 
-deferred class
-	ABSTRACT_CANVAS
+class
+	DISPLAY
 
 inherit
-	ABSTRACT_COMPOSITE
-
+	ABSTRACT_DISPLAY
+	
+creation
+	make
+	
 feature {NONE} -- Initialization
+
+	make is
+			-- Initialize.
+		do
+			--| FIXME
+		end
 
 feature -- Access
 
@@ -71,11 +66,14 @@ feature {NONE} -- Implementation
 invariant
 	invariant_clause: -- Your invariant here
 
-end -- class ABSTRACT_CANVAS
+end -- class DISPLAY
 
 --
---    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widget/Attic/abstract_canvas.e,v $";
--- $Log: abstract_canvas.e,v $
+--    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widgets/display.e,v $";
+-- $Log: display.e,v $
+-- Revision 1.1  2003/12/13 19:34:50  efa
+-- spécification and creation of  directories
+--
 -- Revision 1.1  2003/12/10 22:15:04  efa
 -- library setup and specifications
 --

@@ -6,7 +6,7 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2003/12/10 22:15:04 $";
+	date: "$Date: 2003/12/13 19:34:50 $";
 	revision: "$Revision: 1.1 $";
 	author: ""
 
@@ -62,8 +62,11 @@ invariant
 end -- class CONTROL
 
 --
---    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widget/Attic/control.e,v $";
+--    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widgets/control.e,v $";
 -- $Log: control.e,v $
+-- Revision 1.1  2003/12/13 19:34:50  efa
+-- spécification and creation of  directories
+--
 -- Revision 1.1  2003/12/10 22:15:04  efa
 -- library setup and specifications
 --

@@ -17,7 +17,7 @@ Dispose
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2003/12/10 22:15:04 $";
+	date: "$Date: 2003/12/13 19:34:21 $";
 	revision: "$Revision: 1.1 $";
 	author: ""
 
@@ -51,7 +51,7 @@ feature -- Element change
  			-- event does occur in the widget, the listener is notified by
  			-- calling it's handle_event routine.
  		require
- 			is_released : is_released
+ 			not_is_released : not is_released
  			a_listener_defined : a_listener /= Void
 		deferred
 		end
@@ -84,8 +84,11 @@ invariant
 end -- class ABSTRACT_WIDGET
 
 --
---    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widget/Attic/abstract_widget.e,v $";
+--    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widgets/abstract_widget.e,v $";
 -- $Log: abstract_widget.e,v $
+-- Revision 1.1  2003/12/13 19:34:21  efa
+-- spécification and creation of  directories
+--
 -- Revision 1.1  2003/12/10 22:15:04  efa
 -- library setup and specifications
 --

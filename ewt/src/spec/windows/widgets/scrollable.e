@@ -1,23 +1,23 @@
 indexing
-	description: "Windows implementation of ABSTRACT_CANVAS"
+	description: "Windows implementation of ABSTRACT_SCROLLABLE"
 
 	usage: ""
 	quality: ""
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2003/12/10 22:15:04 $";
+	date: "$Date: 2003/12/13 19:34:50 $";
 	revision: "$Revision: 1.1 $";
 	author: ""
 
 deferred class
-	CANVAS
+	SCROLLABLE
 
 inherit
-	COMPOSITE
+	CONTROL
 	
-	ABSTRACT_CANVAS
-
+	ABSTRACT_SCROLLABLE
+	
 feature {NONE} -- Initialization
 
 feature -- Access
@@ -59,11 +59,14 @@ feature {NONE} -- Implementation
 invariant
 	invariant_clause: -- Your invariant here
 
-end -- class CANVAS
+end -- class SCROLLABLE
 
 --
---    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widget/Attic/canvas.e,v $";
--- $Log: canvas.e,v $
+--    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widgets/scrollable.e,v $";
+-- $Log: scrollable.e,v $
+-- Revision 1.1  2003/12/13 19:34:50  efa
+-- spécification and creation of  directories
+--
 -- Revision 1.1  2003/12/10 22:15:04  efa
 -- library setup and specifications
 --

@@ -20,7 +20,7 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2003/12/10 22:15:04 $";
+	date: "$Date: 2003/12/13 19:34:21 $";
 	revision: "$Revision: 1.1 $";
 	author: ""
 
@@ -71,8 +71,11 @@ invariant
 end -- class ABSTRACT_LISTENER
 
 --
---    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widget/Attic/abstract_listener.e,v $";
+--    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widgets/abstract_listener.e,v $";
 -- $Log: abstract_listener.e,v $
+-- Revision 1.1  2003/12/13 19:34:21  efa
+-- spécification and creation of  directories
+--
 -- Revision 1.1  2003/12/10 22:15:04  efa
 -- library setup and specifications
 --

@@ -19,22 +19,52 @@
 		copyright:   "Copyright (c) 2003, Paul G. Crismer and Eric Fafchamps"
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
 		date:        "$Date $"
-		revision:    "$Revision: 1.1 $"
+		revision:    "$Revision: 1.2 $"
 	</description>
 
 	<cluster name="ewt" location="${EWT}/src">
 		<option name="abstract" value="True"/>
 		<cluster name="abstract">
-			<cluster name="widget" prefix="abstract_"/>
+			<cluster name="accessibility" prefix="abstract_"/>
+			<cluster name="custom" prefix="abstract_"/>
+			<cluster name="dnd" prefix="abstract_"/>
 			<cluster name="events" prefix="abstract_"/>
+			<cluster name="graphics" prefix="abstract_"/>			
+			<cluster name="internal" prefix="abstract_"/>
+			<cluster name="layout" prefix="abstract_"/>
+			<cluster name="ole" prefix="abstract_"/>
+			<cluster name="printing" prefix="abstract_"/>
+			<cluster name="program" prefix="abstract_"/>
+			<cluster name="widgets" prefix="abstract_"/>			
 		</cluster>
 		<cluster name="spec">
 			<cluster name="windows">
-				<cluster name="widget" prefix="windows_"/>
-				<cluster name="events" prefix="windows_"/>
+			<cluster name="accessibility" prefix="windows_"/>
+			<cluster name="custom" prefix="windows_"/>
+			<cluster name="dnd" prefix="windows_"/>
+			<cluster name="events" prefix="windows_"/>
+			<cluster name="graphics" prefix="windows_"/>			
+			<cluster name="internal" prefix="windows_"/>
+			<cluster name="layout" prefix="windows_"/>
+			<cluster name="ole" prefix="windows_"/>
+			<cluster name="printing" prefix="windows_"/>
+			<cluster name="program" prefix="windows_"/>
+			<cluster name="widgets" prefix="windows_"/>			
 			</cluster>
 		</cluster>
-		<cluster name="common"/>
+		<cluster name="common">
+			<cluster name="accessibility" prefix="common_"/>
+			<cluster name="custom" prefix="common_"/>
+			<cluster name="dnd" prefix="common_"/>
+			<cluster name="events" prefix="common_"/>
+			<cluster name="graphics" prefix="common_"/>			
+			<cluster name="internal" prefix="common_"/>
+			<cluster name="layout" prefix="common_"/>
+			<cluster name="ole" prefix="common_"/>
+			<cluster name="printing" prefix="common_"/>
+			<cluster name="program" prefix="common_"/>
+			<cluster name="widgets" prefix="common_"/>					
+		</cluster>
 	</cluster>
 
 	<mount location="${SAFE_KERNEL}/library.xace"/>

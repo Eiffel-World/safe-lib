@@ -36,7 +36,7 @@ DIALOG_TRIM the result of combining the constants which are required to produce 
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2003/12/10 22:15:04 $";
+	date: "$Date: 2003/12/13 19:34:21 $";
 	revision: "$Revision: 1.1 $";
 	author: ""
 
@@ -90,8 +90,11 @@ invariant
 end -- class ABSTRACT_DECORATIONS
 
 --
---    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widget/Attic/abstract_decorations.e,v $";
+--    source: "$Source: /cvsroot/safe/lib/ewt/src/abstract/widgets/abstract_decorations.e,v $";
 -- $Log: abstract_decorations.e,v $
+-- Revision 1.1  2003/12/13 19:34:21  efa
+-- spécification and creation of  directories
+--
 -- Revision 1.1  2003/12/10 22:15:04  efa
 -- library setup and specifications
 --

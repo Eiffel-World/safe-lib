@@ -1,24 +1,23 @@
 indexing
-	description: "Windows implementation of ABSTRACT_COMPOSITE"
+	description: "Windows implementation of ABSTRACT_CANVAS"
 
 	usage: ""
 	quality: ""
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2003/12/10 22:15:04 $";
+	date: "$Date: 2003/12/13 19:34:50 $";
 	revision: "$Revision: 1.1 $";
 	author: ""
 
 deferred class
-	COMPOSITE
+	CANVAS
 
-inherit	
-	ABSTRACT_COMPOSITE
+inherit
+	COMPOSITE
 	
-	SCROLLABLE
-	
-		
+	ABSTRACT_CANVAS
+
 feature {NONE} -- Initialization
 
 feature -- Access
@@ -60,14 +59,14 @@ feature {NONE} -- Implementation
 invariant
 	invariant_clause: -- Your invariant here
 
-end -- class COMPOSITE
+end -- class CANVAS
 
 --
---    copyright: "Groupe S (c) 1997-2003"
---    licence: "All rights reserved. Duplication and distribution prohibited."
+--    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widgets/canvas.e,v $";
+-- $Log: canvas.e,v $
+-- Revision 1.1  2003/12/13 19:34:50  efa
+-- spécification and creation of  directories
 --
---    source: "$Source: /cvsroot/safe/lib/ewt/src/spec/windows/widget/Attic/composite.e,v $";
--- $Log: composite.e,v $
 -- Revision 1.1  2003/12/10 22:15:04  efa
 -- library setup and specifications
 --
