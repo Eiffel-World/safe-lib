@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that test font capabilities of eif-PDF"
 	author: ""
-	date: "$Date: 2002/03/20 15:19:02 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/27 15:07:08 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	TEST_FONTS
@@ -141,7 +141,7 @@ invariant
 	
 end -- class TEST_FONTS
 --
--- Copyright: 2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2001, 2003 Paul G. Crismer, <pgcrism@users.sf.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

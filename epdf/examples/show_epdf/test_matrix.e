@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that test user space transformations"
 	author: ""
-	date: "$Date: 2002/03/20 15:19:03 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/27 15:07:12 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	TEST_MATRIX
@@ -172,7 +172,7 @@ invariant
 
 end -- class TEST_MATRIX
 --
--- Copyright: 2001, Paul G. Crismer, <pgcrism@Pi.be>
+-- Copyright: 2001, 2003 Paul G. Crismer, <pgcrism@users.sf.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that behave like a text printer"
 	author: ""
-	date: "$Date: 2002/03/20 15:19:04 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/27 15:07:20 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	PDF_TEXT_WRITER
@@ -97,7 +97,7 @@ invariant
 
 end -- class PDF_TEXT_WRITER
 --
--- Copyright: 2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2001, 2003 Paul G. Crismer, <pgcrism@users.sf.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

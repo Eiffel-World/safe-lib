@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that ..."
+	description: "PDF page states relative to text and graphics operations"
 	author: ""
-	date: "$Date: 2002/03/20 15:19:06 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/27 15:07:26 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	PDF_PAGE_STATE
@@ -25,7 +25,7 @@ inherit
 		select
 			copy
 		end
-create
+creation
 	make
 
 feature -- Access

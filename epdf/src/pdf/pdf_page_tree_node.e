@@ -1,8 +1,8 @@
 indexing
 	description: "Page-tree node."
 	author: ""
-	date: "$Date: 2002/10/25 20:07:16 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/27 15:07:27 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	PDF_PAGE_TREE_NODE
@@ -49,13 +49,7 @@ feature -- Status report
 		deferred
 		end
 		
-	is_tree_node : BOOLEAN is
-			-- is this a pages tree node (by contrast to a leaf).
-		do
-			Result := not is_page
-		end
-		
-feature {PDF_OBJECT} -- Element change
+feature {PDF_DOCUMENT, PDF_PAGE_TREE_NODE} -- Element change
 
 	set_parent (a_parent : PDF_PAGES) is
 			-- 
