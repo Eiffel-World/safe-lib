@@ -1,8 +1,13 @@
 indexing
-	description: "Objects that define a row cursor and allow sweeping through it."
+	description: "Row cursors.%N%
+			%A row cursor allows sweeping, row by row, through a result-set of a SQL query.%N%
+			%The ECLI_VALUE buffers composing the row are built by `buffer_factory' using%N%
+			%the result-set description obtained from the database server.%N%
+			%Individual column items can be accessed by name or by index."
+			
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/03/01 14:08:42 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2004/04/13 19:56:58 $"
+	revision: "$Revision: 1.15 $"
 
 class
 	ECLI_ROW_CURSOR
@@ -64,7 +69,7 @@ feature {NONE} -- Initialization
 			prepared_if_ok: is_ok implies is_prepared
 		end
 
-	make_with_buffer_factory (a_session : ECLI_SESSION; sql_definition : STRING; a_buffer_factory : ECLI_BUFFER_FACTORY) is
+	make_with_buffer_factory (a_session : ECLI_SESSION; sql_definition : STRING; a_buffer_factory : like buffer_factory) is
 			-- Make cursor on `a_session' for `sql_definition', using `a_buffer_factory'
 		require
 			a_session_exists: a_session /= Void
@@ -82,7 +87,7 @@ feature {NONE} -- Initialization
 			buffer_factory_assigned: buffer_factory = a_buffer_factory
 		end
 		
-	make_prepared_with_buffer_factory (a_session : ECLI_SESSION; sql_definition : STRING; a_buffer_factory : ECLI_BUFFER_FACTORY) is
+	make_prepared_with_buffer_factory (a_session : ECLI_SESSION; sql_definition : STRING; a_buffer_factory :  like buffer_factory) is
 			-- Make cursor on `a_session' for prepared `sql_definition', using `a_buffer_factory'
 		require
 			a_session_exists: a_session /= Void

@@ -1,9 +1,9 @@
 indexing
 	description: "SQL Queries, defined by a SQL text. Heir for classes whose SQL definition remains constant, (static, not modifiable)."
-	
+
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/04/13 10:07:03 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2004/04/13 19:56:58 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 deferred class

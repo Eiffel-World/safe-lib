@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2004/04/13 10:06:08 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2004/04/13 19:56:58 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -25,7 +25,7 @@ inherit
 feature {NONE} -- Initialization
 
 	make (criteria : ECLI_NAMED_METADATA; a_session : ECLI_SESSION) is
-			-- Create cursor on items matching 
+			-- Create cursor on items matching `criteria'
 			-- Void values for criteria.catalog, criteria.schema, criteria.name can be Void are 'wildcards'
 		require
 			criteria_not_void: criteria /= Void

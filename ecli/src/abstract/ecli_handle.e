@@ -2,15 +2,15 @@ indexing
 	description:
 
 		"Objects that use an implementation (external) handle. This can be used %
-	   % in any case where an allocate/free scheme is needed.%
+	   % in any case where an allocate/free scheme is needed.%N%
 	   % Safety  note: %NIn case of using this handle for storing externally allocated memory,%
 	   % descendant classes should redefine 'release_handle',%
 	   % in order to free externally allocated memory. `prepare_for_disposal' is executed before `release_handle'%
 	   % and should also be redefined by descendant classes."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/03/01 14:08:42 $"
-	revision: "$Revision: 1.15 $"
+	date: "$Date: 2004/04/13 19:56:58 $"
+	revision: "$Revision: 1.16 $"
 	licensing: "See notice at end of class"
 
 deferred class

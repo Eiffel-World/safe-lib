@@ -9,8 +9,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2004/04/13 10:06:08 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2004/04/13 19:56:59 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 class
@@ -31,7 +31,7 @@ creation
 feature {NONE} -- Initialization
 
 	make_all_tables (a_session : ECLI_SESSION) is
-			-- make cursor for all types of session
+			-- make cursor on all tables of database underlying `session'
 		obsolete
 			"Use feature `make' "
 		require
