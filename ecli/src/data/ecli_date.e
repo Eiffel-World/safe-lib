@@ -4,8 +4,8 @@ indexing
 		"ISO CLI DATE value"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:26 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2003/02/26 21:01:40 $"
+	revision: "$Revision: 1.15 $"
 	licensing: "See notice at end of class"
 
 class
@@ -176,6 +176,8 @@ feature -- Transformation
 feature -- Conversion
 
 	out : STRING is
+		local
+			string_routines : expanded KL_STRING_ROUTINES	
 		do
 			if is_null then
 				Result := "NULL"
@@ -216,8 +218,6 @@ feature -- Basic operations
 		end
 
 feature {NONE} -- Implementation
-
-	string_routines : expanded KL_STRING_ROUTINES
 
 
 	allocate_buffer is
