@@ -1,14 +1,17 @@
 indexing
 	description: "Objects that describe an SQL Table"
 	author: ""
-	date: "$Date: 2002/09/28 10:51:18 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/12/14 21:07:07 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_TABLE
 
 inherit
 	ECLI_NAMED_METADATA
+		rename
+			make as make_metadata
+		export {NONE} make_metadata
 		redefine
 			out
 		end

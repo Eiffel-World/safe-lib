@@ -1,14 +1,17 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2002/04/15 20:09:28 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/14 21:07:07 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_PROCEDURE
 
 inherit
 	ECLI_NAMED_METADATA
+		rename
+			make as make_metadata
+		export {NONE} make_metadata
 		redefine
 			out
 		end
