@@ -1,18 +1,20 @@
 indexing
-	description: "Objects that describe nullability metadata"
-	author: "Paul G. Crismer"
+
+	description:
 	
+			"Objects that describe nullability metadata"
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:43 $"
+
 	usage: "mix-in"
-	library: "ECLI"
-	
-	date: "$Date: 2003/03/01 13:32:37 $"
-	revision: "$Revision: 1.4 $"
-	licensing: "See notice at end of class"
-	
-class
-	ECLI_NULLABLE_METADATA
+
+class ECLI_NULLABLE_METADATA
 
 inherit
+
 	ECLI_EXTERNAL_API
 
 	ECLI_NULLABILITY_CONSTANTS
@@ -45,9 +47,4 @@ feature {NONE}  -- Implementation
 
 	nullability : INTEGER
 
-end -- class ECLI_NULLABLE_METADATA
---
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+end

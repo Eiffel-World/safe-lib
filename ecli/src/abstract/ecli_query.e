@@ -1,15 +1,18 @@
 indexing
-	description: "SQL Queries, defined by a SQL text. Heir for classes whose SQL definition remains constant, (static, not modifiable)."
 
-	author: "Paul G. Crismer"
-	date: "$Date: 2004/04/13 19:56:58 $"
-	revision: "$Revision: 1.9 $"
-	licensing: "See notice at end of class"
+	description:
+	
+			"SQL Queries, defined by a SQL text. Heir for classes whose SQL definition remains constant, (static, not modifiable)."
 
-deferred class
-	ECLI_QUERY
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:42 $"
+
+deferred class ECLI_QUERY
 
 inherit
+
 	ECLI_STATEMENT
 		rename
 			start as statement_start
@@ -38,7 +41,7 @@ feature -- Initialization
 
 	make_prepared (a_session : ECLI_SESSION) is
 		require
-			a_session_exists: a_session /= void
+			a_session_not_void: a_session /= void
 			a_session_connected: a_session.is_connected
 			not_valid: not is_valid
 		do
@@ -60,13 +63,8 @@ feature -- Access
 		end
 			
 invariant
-	definition_exists: definition /= Void
+	definition_not_void: definition /= Void
 	sql_is_definition: sql /= Void and then sql.is_equal (definition)
 
-end -- class ECLI_QUERY
---
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+end
 

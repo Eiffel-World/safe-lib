@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/01/29 20:30:37 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	MODULE_RESULT
@@ -26,7 +26,7 @@ feature {NONE} -- Initialization
 	make (the_metadata : ECLI_COLUMN_DESCRIPTION; maximum_length : INTEGER) is
 			-- Initialize `Current'.
 		require
-			the_metadata_exist: the_metadata /= Void
+			the_metadata_not_void: the_metadata /= Void
 		do
 			metadata := the_metadata
 			if maximum_length > 0 then

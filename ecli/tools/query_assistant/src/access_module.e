@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/04/13 10:02:20 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.13 $"
 
 class
 	ACCESS_MODULE
@@ -152,7 +152,7 @@ feature -- Element change
 		
 	set_type (new_type : ACCESS_TYPE) is
 		require
-			new_type_exists: new_type /= VOid
+			new_type_not_void: new_type /= VOid
 		do
 			type := new_type
 		ensure

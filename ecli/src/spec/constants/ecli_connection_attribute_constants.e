@@ -1,14 +1,15 @@
 indexing
-	description: "Connection attribute constants : keys and values."
-	author: "Paul G. Crismer"
-	
-	library: "ECLI"
-	
-	date: "$Date: 2003/06/11 13:15:36 $"
-	revision: "$Revision: 1.1 $"
 
-class
-	ECLI_CONNECTION_ATTRIBUTE_CONSTANTS
+	description:
+	
+			"Connection attribute constants : keys and values."
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:43 $"
+
+class ECLI_CONNECTION_ATTRIBUTE_CONSTANTS
 
 feature -- Keys
 
@@ -87,4 +88,4 @@ feature -- Values
 	Sql_cd_true	:	INTEGER is	1		 --  Connection is	closed/dead 
 	Sql_cd_false	:	INTEGER is	0	 --  Connection is	open/available 
 
-end -- class ECLI_CONNECTION_ATTRIBUTE_CONSTANTS
+end

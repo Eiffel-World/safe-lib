@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:50:50 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.7 $"
 
 deferred class
 	COLUMN_SET[G->ACCESS_MODULE_METADATA]
@@ -149,23 +149,23 @@ feature {NONE} -- Implementation
 	item_eiffel_name (an_item : G) : STRING is
 			-- 
 		require
-			an_item_exists: an_item /= Void
+			an_item_not_void: an_item /= Void
 		deferred
 		ensure
-			result_exists: Result /= Void
+			result_not_void: Result /= Void
 		end
 
 	item_eiffel_type (an_item : G) : STRING is
 			-- 
 		require
-			an_item_exists: an_item /= Void
+			an_item_not_void: an_item /= Void
 		deferred
 		ensure
-			result_exists: Result /= Void
+			result_not_void: Result /= Void
 		end
 		
 invariant
-	equality_tester_exists: equality_tester /= Void 
+	equality_tester_not_void: equality_tester /= Void
 
 end -- class COLUMN_SET
 --

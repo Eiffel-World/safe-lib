@@ -2,8 +2,8 @@ indexing
 	description: "Objects that represent Eiffel attributes"
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "Eiffel Code Generator"
-	date: "$Date: 2003/05/08 13:58:07 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.2 $"
 	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
 	copyright: "Copyright (c) 2001 Glenn Maughan and others"
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
@@ -26,8 +26,8 @@ feature -- Initialization
 	make (new_name, new_type: STRING) is
 			-- Create a new attribute
 		require
-			new_name_exists: new_name /= Void
-			new_type_exists: new_type /= Void
+			new_name_not_void: new_name /= Void
+			new_type_not_void: new_type /= Void
 		do
 			feature_make (new_name)
 			set_type (new_type)
@@ -76,6 +76,6 @@ feature -- Basic operations
 
 invariant
 
-	type_exists: type /= Void
+	type_not_void: type /= Void
 
 end -- class EIFFEL_ATTRIBUTE

@@ -1,12 +1,15 @@
 indexing
-	description: "Publisher part of the publish/subscribe pattern"
-	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.7 $"
-	licensing: "See notice at end of class"
 
-class
-	PAT_PUBLISHER [G->PAT_SUBSCRIBER]
+	description:
+	
+			"Publisher part of the publish/subscribe pattern"
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:43 $"
+
+class PAT_PUBLISHER [G -> PAT_SUBSCRIBER]
 
 feature -- Status report
 
@@ -65,9 +68,4 @@ feature {NONE} -- Implementation
 
 	impl_subscribers : DS_LIST [G]
 
-end -- class PAT_PUBLISHER
---
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+end

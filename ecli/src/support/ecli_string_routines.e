@@ -1,14 +1,17 @@
 indexing
-	description: "Supporting string routines"
-	author: "Paul G. Crismer"
+
+	description:
+	
+			"Supporting string routines"
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:44 $"
 
 	usage: "mix-in, module-object"
 
-	date: "$Date: 2003/07/27 12:46:39 $"
-	revision: "$Revision: 1.4 $"
-
-class
-	ECLI_STRING_ROUTINES
+class ECLI_STRING_ROUTINES
 
 feature
 
@@ -64,9 +67,4 @@ feature
 			pad (Result, a_capacity)
 		end
 		
-end -- class ECLI_STRING_ROUTINES
---
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+end

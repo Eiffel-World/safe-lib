@@ -1,11 +1,15 @@
 indexing
-	description: "Procedure column type metadata constants"
-	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.1 $"
 
-class
-	ECLI_PROCEDURE_TYPE_METADATA_CONSTANTS
+	description:
+	
+			"Procedure column type metadata constants"
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:43 $"
+
+class ECLI_PROCEDURE_TYPE_METADATA_CONSTANTS
 
 feature -- Constants
 
@@ -16,4 +20,4 @@ feature -- Constants
 	Sql_param_output            : INTEGER is     4
 	Sql_return_value            : INTEGER is     5
 
-end -- class ECLI_PROCEDURE_TYPE_METADATA_CONSTANTS
+end

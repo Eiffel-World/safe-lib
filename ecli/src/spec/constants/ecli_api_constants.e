@@ -1,11 +1,15 @@
 indexing
-	description: "CLI/ODBC misc. API constants"
-	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:41 $"
-	revision: "$Revision: 1.2 $"
 
-class
-	ECLI_API_CONSTANTS
+	description:
+	
+			"CLI/ODBC misc. API constants"
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:43 $"
+
+class ECLI_API_CONSTANTS
 
 feature {NONE} -- statement attributes
 
@@ -54,4 +58,4 @@ feature {NONE} -- Procedure types
 	Sql_pt_procedure: INTEGER is 1
 	Sql_pt_function: INTEGER is 2
 
-end -- class ECLI_API_CONSTANTS
+end

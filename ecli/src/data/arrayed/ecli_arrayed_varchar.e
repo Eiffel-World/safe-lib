@@ -1,17 +1,22 @@
 indexing
-	description: "SQL VARCHAR (n) arrayed values"
-	author: "Paul G. Crismer"
-	date: "$Date: 2004/05/18 11:18:42 $"
-	revision: "$Revision: 1.7 $"
-	licensing: "See notice at end of class"
 
-class
-	ECLI_ARRAYED_VARCHAR
+	description:
+	
+			"SQL VARCHAR (n) arrayed values"
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:43 $"
+
+class ECLI_ARRAYED_VARCHAR
 
 inherit
+
 	ECLI_ARRAYED_STRING_VALUE
 
 creation
+
 	make
 
 feature -- Access
@@ -28,9 +33,4 @@ feature -- Status report
 			Result := sql_varchar
 		end
 
-end -- class ECLI_ARRAYED_VARCHAR
---
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+end

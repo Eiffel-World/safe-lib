@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"	
-	date: "$Date: 2003/10/20 19:50:50 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.4 $"
 
 deferred class
 	ACCESS_MODULE_METADATA
@@ -135,7 +135,7 @@ feature {NONE} -- Implementation
 		end
 		
 invariant
-	name_exists: name /= Void
+	name_not_void: name /= Void
 
 end -- class ACCESS_MODULE_METADATA
 --

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that give access to a shared columns repository object"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	SHARED_COLUMNS_REPOSITORY
@@ -14,7 +14,7 @@ feature -- Access
 		do
 			Result := columns_repository_cell.item	
 		ensure
-			repository_exists: Result /= Void
+			repository_not_void: Result /= Void
 		end
 		
 feature -- Element change

@@ -1,13 +1,18 @@
 indexing
-	description: "SQL statement parameters : value and direction."
-	author: ""
-	date: "$Date: 2004/03/01 14:08:43 $"
-	revision: "$Revision: 1.3 $"
 
-deferred class
-	ECLI_STATEMENT_PARAMETER
+	description:
+	
+			"SQL statement parameters : value and direction."
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:43 $"
+
+deferred class ECLI_STATEMENT_PARAMETER
 
 inherit
+
 	DS_CELL[ECLI_VALUE]
 		export
 			{NONE} put,make
@@ -35,7 +40,7 @@ feature {ECLI_STATEMENT} -- Basic operations
 	bind (statement : ECLI_STATEMENT; position : INTEGER) is
 			-- Bind Current as `position'-th parameter in `statement'
 		require
-			statement_exists: statement /= Void
+			statement_not_void: statement /= Void
 			positive_position: position > 0
 		deferred
 		end
@@ -44,4 +49,4 @@ invariant
 	exclusive_direction: is_input xor is_output xor is_input_output
 	item_set: item /= Void
 	
-end -- class ECLI_STATEMENT_PARAMETER
+end

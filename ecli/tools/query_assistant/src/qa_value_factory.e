@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -55,7 +55,7 @@ feature -- Element change
 			-- * ECLI_TIME if sample is a valid CLI time literal {d 'yyyy-mm-dd'}
 			-- * ECLI_TIMESTAMP if sample if a valid CLI timestamp literal {ts 'yyyy-mm-dd hh:mm:ss[.nnn ]'}
 		require
-			sample_exists: sample /= Void
+			sample_not_void: sample /= Void
 		local
 			converted : BOOLEAN
 			date_result : QA_DATE

@@ -1,8 +1,8 @@
 indexing
 	description: "Name routines that help follow the Eiffel style rules"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/01/29 20:30:37 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	EIFFEL_NAME_ROUTINES
@@ -34,34 +34,34 @@ feature -- Conversion
 	camel_to_class_name (string : STRING) : STRING is
 			-- convert `string' from camel case to an eiffel class name
 		require
-			string_exists: string /= Void
+			string_not_void: string /= Void
 		do
 			Result := camel_to_eiffel_words (string)
 			Result.to_upper
 		ensure
-			result_exists: Result /= Void
+			result_not_void: Result /= Void
 		end
 		
 	camel_to_feature_name (string : STRING) : STRING is
 			-- convert `string' from camel case to an eiffel feature name
 		require
-			string_exists: string /= Void
+			string_not_void: string /= Void
 		do
 			Result := camel_to_eiffel_words (string)
 			Result.to_lower
 		ensure
-			result_exists: Result /= Void
+			result_not_void: Result /= Void
 		end
 		
 	camel_to_constant_name (string : STRING) : STRING is
 			-- convert `string' from camel case to an eiffel constant name
 		require
-			string_exists: string /= Void
+			string_not_void: string /= Void
 		do
 			Result := camel_to_feature_name (string)
 			Result.put (character_.as_upper (Result.item (1)), 1)
 		ensure
-			result_exists: Result /= Void
+			result_not_void: Result /= Void
 		end
  
 		
@@ -80,7 +80,7 @@ feature {NONE} -- Implementation
 	camel_to_eiffel_words (string : STRING)  : STRING is
 			-- convert `string' from camel case to eiffel words separated by '_'
 		require
-			string_exists: string /= Void
+			string_not_void: string /= Void
 		local
 			last_upper, upper, changed : BOOLEAN
 			index : INTEGER
@@ -131,7 +131,7 @@ feature {NONE} -- Implementation
 				index := index + 1
 			end
 		ensure
-			result_exists: Result /= Void
+			result_not_void: Result /= Void
 		end
 
 end -- class EIFFEL_NAME_ROUTINES

@@ -1,4 +1,5 @@
 indexing
+
 	description: 
 	
 		"Objects that are traceable through an ECLI_TRACER"
@@ -7,9 +8,10 @@ indexing
 			% This way it is possible to customize tracers without impacting %
 			% other traceable classes."
 
-	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:25 $"
-	revision: "$Revision: 1.3 $"
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:43 $"
 
 deferred class
 
@@ -30,4 +32,4 @@ feature -- Basic operations
 		deferred
 		end
 		
-end -- class ECLI_TRACEABLE
+end

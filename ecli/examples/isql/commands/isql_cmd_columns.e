@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that list the columns of a table."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/12/22 10:09:03 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2004/06/24 19:40:42 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	ISQL_CMD_COLUMNS
@@ -112,7 +112,7 @@ feature {NONE} -- Implementation
 	put_heading (filter : ISQL_FILTER) is
 			-- 
 		require
-			filter_exists: filter /= Void
+			filter_not_void: filter /= Void
 			filter_heading_begun: filter.is_in_heading
 		do
 			filter.put_heading ("COLUMN_NAME")
@@ -124,8 +124,8 @@ feature {NONE} -- Implementation
 	put_detail (the_column : like column_type; filter : ISQL_FILTER) is
 			-- 
 		require
-			the_column_exists: the_column /= Void
-			filter_exists: filter /= Void
+			the_column_not_void: the_column /= Void
+			filter_not_void: filter /= Void
 			filter_row_begun: filter.is_in_row
 		do
 			filter.put_column (nullable_string (the_column.name))

@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/04/13 10:02:20 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.13 $"
 
 class
 	MODULE_PARAMETER
@@ -155,7 +155,7 @@ feature -- Element change
 	set_sample (s : STRING) is
 			-- 
 		require
-			s_exists: s /= Void
+			s_not_void: s /= Void
 			s_not_empty: not s.is_empty
 		do
 			sample := s

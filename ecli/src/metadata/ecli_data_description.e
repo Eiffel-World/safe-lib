@@ -1,17 +1,18 @@
 indexing
-	description: "Objects that describe SQL properties of data items; Usually got from catalog queries."
-	author: "Paul G. Crismer"
-	
-	library: "ECLI"
-	
-	date: "$Date: 2003/08/19 15:59:09 $"
-	revision: "$Revision: 1.9 $"
-	licensing: "See notice at end of class"
 
-deferred class
-	ECLI_DATA_DESCRIPTION
+	description:
+	
+			"Objects that describe SQL properties of data items; Usually got from catalog queries."
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:43 $"
+
+deferred class ECLI_DATA_DESCRIPTION
 	
 inherit
+
 	ANY
 		redefine
 			is_equal
@@ -58,7 +59,7 @@ feature -- Comparison
 
 	same_description (other : like Current) : BOOLEAN is
 		require
-			other_exists: other /= Void
+			other_not_void: other /= Void
 		do
 			Result := (sql_type_code = other.sql_type_code 
 								and then size = other.size 
@@ -67,9 +68,4 @@ feature -- Comparison
 			symmetry: Result implies other.same_description (Current)
 		end
 		
-end -- class ECLI_DATA_DESCRIPTION
---
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+end

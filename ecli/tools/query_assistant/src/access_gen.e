@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/01/29 20:30:37 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.13 $"
 
 
 class
@@ -229,9 +229,9 @@ feature -- Basic operations
 				a_cursor.forth
 			end
 		ensure
-			modules_exist: modules /= Void
-			parameter_sets_exist: parameter_sets /= Void
-			result_sets_exist: result_sets /= Void
+			modules_not_void: modules /= Void
+			parameter_sets_not_void: parameter_sets /= Void
+			result_sets_not_void: result_sets /= Void
 		end
 	
 	parse_xml_input_file is

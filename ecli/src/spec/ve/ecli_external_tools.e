@@ -1,14 +1,18 @@
 indexing
-	description: "Tools for Eiffel/External (to C) communication"
-	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/20 15:39:08 $"
-	revision: "$Revision: 1.9 $"
-	licensing: "See notice at end of class"
 
-class
-	ECLI_EXTERNAL_TOOLS
+	description:
+	
+			"Tools for Eiffel/External (to C) communication"
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/06/24 19:40:43 $"
+
+class ECLI_EXTERNAL_TOOLS
 
 inherit
+
 	ECLI_EXTERNAL_TOOLS_COMMON
 
 feature -- Basic operations
@@ -41,9 +45,4 @@ feature {NONE} -- Implementation
 invariant
 	invariant_clause: -- Your invariant here
 
-end -- class ECLI_EXTERNAL_TOOLS
---
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+end

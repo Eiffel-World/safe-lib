@@ -1,8 +1,8 @@
 indexing
 	description: "Access type enumeration"
 	author: "Paul G. Crismer & others."
-	date: "$Date: 2003/12/22 10:44:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/06/24 19:40:44 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ACCESS_TYPE
@@ -14,7 +14,7 @@ feature -- Initialization
 
 	make_from_string (name : STRING) is
 		require
-			name_exists: name /= Void
+			name_not_void: name /= Void
 		do
 			if name.is_equal ("read") then
 				type := c_read
@@ -50,7 +50,7 @@ feature -- Status report
 	
 	valid_type (name : STRING) : BOOLEAN is
 		require
-			name_exists: name /= Void
+			name_not_void: name /= Void
 		do
 			if name.is_equal ("read") then
 				Result := True
