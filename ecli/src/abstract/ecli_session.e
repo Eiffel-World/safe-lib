@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2002/10/03 20:18:32 $"
-	revision: 	"$Revision: 1.12 $"
+	date: 		"$Date: 2002/12/10 10:47:50 $"
+	revision: 	"$Revision: 1.13 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -138,6 +138,9 @@ feature -- Access
 				set_status (ecli_c_transaction_capable (handle, $impl_transaction_capability))
 			end
 			Result := impl_transaction_capability
+		ensure
+			definition: Result = Sql_tc_all or else Result = Sql_tc_ddl_commit or else Result = Sql_tc_ddl_ignore
+				or else Result = Sql_tc_dml or else Result = Sql_tc_none
 		end
 
 	tracer : ECLI_TRACER

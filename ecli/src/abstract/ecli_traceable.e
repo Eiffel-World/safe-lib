@@ -3,8 +3,8 @@ indexing
 	rationale: "Usage of visitor pattern.  This way it is possible to customize tracers without impacting %
 			% other traceable classes."
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/15 09:56:52 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/12/10 10:47:50 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 
@@ -13,7 +13,7 @@ deferred class
 feature -- Basic operations
 
 	trace (a_tracer : ECLI_TRACER) is
-			-- trace current object through 'a_tracer'
+			-- Trace current object through 'a_tracer'
 		require
 			trace_possible: can_trace
 			tracer_writable: a_tracer /= Void
@@ -21,7 +21,7 @@ feature -- Basic operations
 		end
 
 	can_trace : BOOLEAN is
-			-- can Current trace itself ?
+			-- Can Current trace itself ?
 		deferred
 		end
 		
