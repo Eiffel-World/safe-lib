@@ -6,7 +6,7 @@
  * Author : Paul G. Crismer (pgcrism@ibm.net)
  * 
  * $Version: $
- * $Date: 2000/10/01 20:01:29 $
+ * $Date: 2001/02/04 16:51:53 $
  * 
 */
 #include <curses.h>
