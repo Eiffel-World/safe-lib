@@ -7,12 +7,12 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 21:13:05 $"
+	date: "$Date: 2004/12/21 19:52:21 $"
 
-class
-	QA_ARGUMENTS_ERROR
+class QA_ARGUMENTS_ERROR
 
 inherit
+
 	QA_ERROR
 
 creation

@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/12/07 21:13:05 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/12/21 19:52:21 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	COLUMN_SET[G->ACCESS_MODULE_METADATA]
@@ -118,6 +118,31 @@ feature -- Element change
 			end
 		ensure
 			parent_set : parent = a_parent
+		end
+		
+feature -- Conversion
+
+	as_set_name : DS_SET [STRING] is
+			-- Set constituted with the names of the parameters
+		local
+			cursor : DS_SET_CURSOR[G]
+			equality : KL_EQUALITY_TESTER[STRING]
+		do
+			create equality
+			create {DS_HASH_SET[STRING]}Result.make (count)
+			Result.set_equality_tester (equality)
+			from
+				cursor := new_cursor
+				cursor.start
+			until
+				cursor.off
+			loop
+				Result.put (cursor.item.name)
+				cursor.forth
+			end
+		ensure
+			result_not_void: Result /= Void
+			same_count: Result.count = count
 		end
 		
 feature -- Basic operations
