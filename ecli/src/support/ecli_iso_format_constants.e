@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:44 $"
+	date: "$Date: 2004/09/01 19:46:20 $"
 
 class ECLI_ISO_FORMAT_CONSTANTS
 
@@ -29,6 +29,10 @@ feature -- Access
 			Result.append_string (time_regex)
 		end
 	
+	date_regex : STRING is "([0-9]{4})-([0-1][0-9])-([0-3][0-9])"
+	date_separator : STRING is " "
+	
+	date_to_string (date : DT_DATE) : STRING is
 			-- convert `date' to corresponding ISO format
 		do
 			create Result.make (10)

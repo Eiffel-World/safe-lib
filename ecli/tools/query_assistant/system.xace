@@ -3,10 +3,13 @@
 <system name="query_assistant">
 	<description>
 		system: "query_assistant: Access modules Generator"
-		copyright: "Copyright (c) 2002, Paul G. Crismer and others."
-		license: "Eiffel Forum License v1 (see forum.txt)"
-		date: "$Date: 2003/05/08 13:54:36 $"
-		revision: "$Revision: 1.3 $"
+
+
+		library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+		copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+		license: "Eiffel Forum License v2 (see forum.txt)"
+		date: "$Date: 2004/09/01 19:46:20 $"
+
 	</description>
 
 	<root class="ACCESS_GEN" creation="make"/>
