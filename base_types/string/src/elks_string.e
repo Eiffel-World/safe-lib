@@ -296,7 +296,6 @@ feature -- Element change
 			index_small_enough: i <= count ; 
 			index_large_enough: i > 0		 
 		local
-			last_character: CHARACTER
 			j : INTEGER
 		do
 			--| Implementation issues:
