@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/11/20 20:37:27 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/12/22 10:53:13 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -24,14 +24,14 @@ feature -- Access
 		
 feature -- Element change
 
-	set_shared_decimal_context (a_context : EDA_MATH_CONTEXT) is
-			-- 
+	set_shared_decimal_context (new_context : EDA_MATH_CONTEXT) is
+			-- set `shared_decimal_context' to `new_context'
 		require
-			a_context_not_void: a_context /= Void
+			new_context_not_void: new_context /= Void
 		do
-			cell.put (a_context)
+			cell.put (new_context)
 		ensure
-			context_set: shared_decimal_context = a_context
+			context_set: shared_decimal_context = new_context
 		end
 		
 feature {NONE} -- Implementation
@@ -39,10 +39,10 @@ feature {NONE} -- Implementation
 	cell : KL_CELL[EDA_MATH_CONTEXT] is
 			-- 
 		local
-			a_context : EDA_MATH_CONTEXT
+			new_context : EDA_MATH_CONTEXT
 		once
-			!!a_context.make_default
-			!!Result.make (a_context)
+			!!new_context.make_default
+			!!Result.make (new_context)
 		end
 		
 invariant

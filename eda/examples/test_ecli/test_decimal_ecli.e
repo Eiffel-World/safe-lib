@@ -14,10 +14,10 @@ feature
 			insert : ECLI_STATEMENT
 			table_exists : BOOLEAN
 		do 
-			create session.make ("Northwind", "","");
+--			create session.make ("Northwind", "","");
 
 --			create session.make ("firebird", "","");
---			create session.make ("ecli_db", "","");
+			create session.make ("ecli_db", "","");
 			session.connect
 			if session.is_connected then
 				create stmt.make (session)
@@ -33,22 +33,28 @@ feature
 				end
 				tables_cursor := Void
 				--| create table and populate
-				stmt.set_sql ("[
-create table TEST_DECIMAL (d18 NUMERIC(18,0), d182 NUMERIC (18,2), dl83 NUMERIC (18,3), d184 NUMERIC(18,4))
-]")
+-- SQL Server
+--				stmt.set_sql ("[
+--create table TEST_DECIMAL (d18 NUMERIC(18,0), d182 NUMERIC (18,2), dl83 NUMERIC (18,3), d184 NUMERIC(18,4))
+--]")
+
+-- Firebird/Interbase
 --				stmt.set_sql ("[
 --create table TEST_DECIMAL (d18 DECIMAL(18,0), d182 DECIMAL (18,2), dl83 DECIMAL (5,3), d184 DECIMAL(18,4))
 --]")
---					stmt.set_sql ("[
---	create table TEST_DECIMAL (d18 CURRENCY, d182 CURRENCY, dl83 CURRENCY, d184 CURRENCY)
---	]")
+
+-- Access
+					stmt.set_sql ("[
+	create table TEST_DECIMAL (d18 CURRENCY, d182 CURRENCY, dl83 CURRENCY, d184 CURRENCY)
+	]")
 				stmt.execute
 				if stmt.is_ok then
 					-- populate
 					stmt.set_sql ("insert into TEST_DECIMAL VALUES (123456789012345678,'1234567890123456.78', '25.212', '12345678901234.5678')")
 					stmt.execute
-					stmt.go_after
+--					stmt.go_after
 				end
+				stmt.close
 				create decimal_18_0.make(19,0)
 				create decimal_18_2.make(18,2)
 				create decimal_5_3.make (5,3)
@@ -111,6 +117,8 @@ create table TEST_DECIMAL (d18 NUMERIC(18,0), d182 NUMERIC (18,2), dl83 NUMERIC 
 					print (stmt.diagnostic_message)
 				end
 				stmt.close
+				session.disconnect
+				session.close
 			end
 		end
 

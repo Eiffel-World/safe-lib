@@ -1,8 +1,8 @@
 indexing
 	description: "Access to decimal math constants and shared context"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/20 20:37:27 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/12/22 10:53:13 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EDA_DECIMAL_MATH
@@ -43,4 +43,14 @@ feature -- Access
 			Result := zero.negative_infinity
 		end
 
+	not_a_number : EDA_DECIMAL is
+		once
+			Result := zero.nan
+		end
+		
+	signaling_not_a_number : EDA_DECIMAL is
+		once
+			Result := zero.Snan
+		end
+		
 end -- class EDA_DECIMAL_MATH

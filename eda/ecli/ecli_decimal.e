@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2003/11/20 20:39:07 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/12/22 10:53:13 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_DECIMAL
@@ -201,7 +201,7 @@ feature -- Element change
 			l := value.rescale (-decimal_digits, value.shared_decimal_context)
 			set_item (l.to_scientific_string)
 		ensure
-			set: item.is_equal (value.to_scientific_string)
+			set: as_decimal.is_equal (value.rescale (-decimal_digits, value.shared_decimal_context))
 		end
 		
 feature -- Conversion
@@ -232,21 +232,10 @@ feature -- Conversion
 		
 		
 	out : STRING is
-		local
-			index : INTEGER
 		do
 			if is_null then
 				Result := "NULL"
 			else
---				from
---					index := 1
---					create Result.make (38)
---				until
---					index > 19
---				loop
---					integer_.append_hexadecimal_integer (Result, ext_item.item_integer (index), True)
---					index := index + 1
---				end
 				Result := item
 			end
 		end

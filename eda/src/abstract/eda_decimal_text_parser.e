@@ -1,25 +1,23 @@
 indexing
 
-	description: "Decimal number parsers, whose BNF syntax follows :  %
-		% sign ::= '+' | '-' %
-		% digit ::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' %
-		% indicator ::= 'e' | 'E' %
-		% digits ::= digit [digit]... %
-		% point ::= '.' | ',' %
-		% decimal-part ::= digits point [digits] | [point] digits %
-		% exponent-part ::= indicator [sign] digits %
-		% infinity ::= 'Infinity' | 'Inf' %
-		% nan ::= 'NaN' | 'sNaN' %
-		% numeric-value ::= decimal-part [exponent-part] | infinity %
-		% numeric-string ::= [sign] numeric-value | nan	 "
-
-	note: "Those parsers use a finite state automaton described <a href=%"doc/decimal_parser_fsm.png%">here</a>"
+	description: "Decimal number parsers, whose BNF syntax follows :  %N%
+		% sign ::= '+' | '-' %N%
+		% digit ::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' %N%
+		% indicator ::= 'e' | 'E' %N%
+		% digits ::= digit [digit]... %N%
+		% point ::= '.' | ',' %N%
+		% decimal-part ::= digits point [digits] | [point] digits %N%
+		% exponent-part ::= indicator [sign] digits %N%
+		% infinity ::= 'Infinity' | 'Inf' %N%
+		% nan ::= 'NaN' | 'sNaN' %N%
+		% numeric-value ::= decimal-part [exponent-part] | infinity %N%
+		% numeric-string ::= [sign] numeric-value | nan%N"
 	
 	library: "EDA"
 	author: "Paul G. Crismer"
 
-	date: "$Date: 2003/11/20 20:33:15 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/12/22 10:53:13 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -32,7 +30,7 @@ inherit
 	KL_IMPORTED_STRING_ROUTINES
 
 feature -- Access
-
+		
 	sign : INTEGER
 		-- sign of last parsed decimal
 		
