@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/02/06 22:24:10 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/06 22:42:26 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -25,11 +25,6 @@ inherit
 	KL_EXCEPTIONS
 		export 
 			{NONE} all
-		undefine
-			out, copy, is_equal
-		end
-	
-	KL_IMPORTED_ARRAY_ROUTINES
 		undefine
 			out, copy, is_equal
 		end
@@ -100,7 +95,7 @@ feature {NONE} -- Initialization
 			-- creation of a math context
 		require
 			good_digits : a_digits >= Minimum_digits and a_digits <= Maximum_digits
-			good_rounding_mode: INTEGER_ARRAY_.has (Rounds, a_rounding_mode)
+			good_rounding_mode: Rounds.has (a_rounding_mode)
 		do
 			digits := a_digits
 			rounding_mode := a_rounding_mode
@@ -113,19 +108,6 @@ feature {NONE} -- Initialization
 			exponent_limit: exponent_limit = Maximum_exponent
 		end 
  	
-feature -- Comparison
-
-	is_equal (other: like Current): BOOLEAN is
-		do
-			Result := digits = other.digits
-			Result := Result and then exception_on_trap = other.exception_on_trap
-			Result := Result and then exponent_limit = other.exponent_limit
-			Result := Result and then flags.is_equal (other.flags)
-			Result := Result and then is_extended = other.is_extended
-			Result := Result and then rounding_mode = other.rounding_mode
-			Result := Result and then traps.is_equal (other.traps)
-		end
-
  feature -- Constants
  
  	Rounds : ARRAY[INTEGER] is
@@ -195,7 +177,7 @@ feature -- Status report
 	valid_signal (a_signal : INTEGER) : BOOLEAN is
 			-- is `a_signal' a valid one ?
 		do
-			Result := INTEGER_ARRAY_.has (signals,a_signal)
+			Result := signals.has (a_signal)
 		end
 
 	is_extended : BOOLEAN
@@ -302,7 +284,7 @@ feature -- Status setting
 	set_rounding_mode (a_mode : INTEGER) is
 			-- set `rounding_mode' to `a_mode'
 		require
-			valid_mode: INTEGER_ARRAY_.has (Rounds, a_mode)
+			valid_mode: Rounds.has (a_mode)
 		do
 			rounding_mode := a_mode
 		ensure
@@ -325,6 +307,20 @@ feature -- Conversion
 			Result.append (Round_words.item (Round_words.lower+rounding_mode))
 		end
 
+feature -- Comparison
+
+	is_equal (other : like Current) : BOOLEAN is
+			-- is `other' equal to Current ?
+		do
+			Result := digits = other.digits
+			Result := Result and then exception_on_trap = other.exception_on_trap
+			Result := Result and then exponent_limit = other.exponent_limit
+			Result := Result and then flags.is_equal (other.flags)
+			Result := Result and then is_extended = other.is_extended
+			Result := Result and then rounding_mode = other.rounding_mode
+			Result := Result and then traps.is_equal (other.traps)
+		end
+		
 feature -- Basic operations
 
 	signal (a_signal : INTEGER; a_message : STRING) is

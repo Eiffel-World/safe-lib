@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/01/22 10:57:52 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/06 22:42:26 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -251,7 +251,6 @@ feature -- Basic operations
 			packed_string, number_string : STRING
 			index : INTEGER
 			lo, hi, l_count, zero_code, c_code : INTEGER
-			integer_routines : expanded KL_INTEGER_ROUTINES
 			c : CHARACTER
 			e : expanded EXCEPTIONS
 		do
@@ -259,37 +258,45 @@ feature -- Basic operations
 			if not a_file.end_of_input then
 				if calculate then
 					packed_string := a_file.last_string
-					create number_string.make (32)
-					number_string.append_character ('+')
-					zero_code := ('0').code
-					from
-						index := 1
-						l_count := packed_string.count
-					until
-						index > l_count 
-					loop
-						c := packed_string.item (index)
-						c_code := c.code
-						lo := c_code \\ 16
-						hi := c_code // 16
-						number_string.append_character (integer_routines.to_character (zero_code+ hi))
-						last_nibble := hi
-						if index < l_count then
-							number_string.append_character (integer_routines.to_character (zero_code + lo))
-							last_nibble := lo
-						else
-							inspect lo
-							when 11,13 then
-								number_string.put ('-', 1)
-							when 10,12,14,15 then
-							else
-								create e
-								e.raise ("Invalid file format : need 8 bytes packed decimal")
-							end
-						end					
-						index := index + 1
+					bcd_parser.parse (packed_string)
+					if not bcd_parser.error then
+						last_number := bcd_parser.last_decimal
+					else
+						create e
+						e.raise ("Invalid file format : need 8 bytes packed decimal")						
 					end
-					create last_number.make_from_string_ctx (number_string, default_context)
+					last_nibble := bcd_parser.last_nibble
+--					create number_string.make (32)
+--					number_string.append_character ('+')
+--					zero_code := ('0').code
+--					from
+--						index := 1
+--						l_count := packed_string.count
+--					until
+--						index > l_count 
+--					loop
+--						c := packed_string.item (index)
+--						c_code := c.code
+--						lo := c_code \\ 16
+--						hi := c_code // 16
+--						number_string.append_character (integer_routines.to_character (zero_code+ hi))
+--						last_nibble := hi
+--						if index < l_count then
+--							number_string.append_character (integer_routines.to_character (zero_code + lo))
+--							last_nibble := lo
+--						else
+--							inspect lo
+--							when 11,13 then
+--								number_string.put ('-', 1)
+--							when 10,12,14,15 then
+--							else
+--								create e
+--								e.raise ("Invalid file format : need 8 bytes packed decimal")
+--							end
+--						end					
+--						index := index + 1
+--					end
+--					create last_number.make_from_string_ctx (number_string, default_context)
 				else
 					last_number := decimal_zero
 				end
@@ -297,6 +304,13 @@ feature -- Basic operations
 			end
 		end
 
+	bcd_parser : EDA_DECIMAL_BCD_PARSER is
+			-- 
+		once
+			create Result
+		end
+		
+	
 end -- class TELCO
 
 --

@@ -3,12 +3,11 @@
 <project name="telco" default="help">
 
 	<description>
-		description: "Eiffel Ant file for 'telco'"
-		system: "Eiffel Decimal Arithmetic 'telco' benchmark application."
-		copyright: "Copyright (c) 2002, Paul G. Crismer."
-		license: "Eiffel Forum License v1 (see forum.txt)"
-		date: "$Date: 2003/01/22 10:57:52 $"
-		revision: "$Revision: 1.1 $"
+		system: "Telco benchmark application for EDA.  Specification can be found at http://www2.hursley.ibm.com/decimal."
+		copyright: "Copyright (c) 2002, Paul G. Crismer"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)"
+		date: "$Date: 2003/02/06 22:42:26 $"
+		revision: "$Revision: 1.2 $"
 	</description>
 
 	<inherit>
@@ -22,7 +21,7 @@
 
 	<target name="init_system">
 		<set name="system" value="telco"/>
-		<set name="system_dir" value="${EDA}/examples/${system}"/>
+		<set name="system_dir" value="${EDA}/examples/telco"/>
 	</target>
 
 </project>

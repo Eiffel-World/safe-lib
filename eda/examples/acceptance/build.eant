@@ -1,14 +1,13 @@
 <?xml version="1.0"?>
 
-<project name="acceptance" default="help">
+<project name="eda_acceptance" default="help">
 
 	<description>
-		description: "Eiffel Ant file for 'test_eda'"
-		system: "Eiffel Decimal Arithmetic Acceptance tests."
-		copyright: "Copyright (c) 2002, Paul G. Crismer."
-		license: "Eiffel Forum License v1 (see forum.txt)"
-		date: "$Date: 2003/01/22 10:57:51 $"
-		revision: "$Revision: 1.1 $"
+		system: "Acceptance/Non-regression tests for EDA."
+		copyright: "Copyright (c) 2002, Paul G. Crismer"
+		license: "Eiffel Forum Freeware License v1 (see forum.txt)"
+		date: "$Date: 2003/02/06 22:42:25 $"
+		revision: "$Revision: 1.2 $"
 	</description>
 
 	<inherit>
@@ -22,7 +21,7 @@
 
 	<target name="init_system">
 		<set name="system" value="acceptance"/>
-		<set name="system_dir" value="${EDA}/examples/${system}"/>
+		<set name="system_dir" value="${EDA}/examples/acceptance"/>
 	</target>
 
 </project>

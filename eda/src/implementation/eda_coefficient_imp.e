@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/01/22 10:57:52 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/06 22:42:26 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 
@@ -485,6 +485,7 @@ feature -- Basic operations
 			to_add : INTEGER
 			l_digits, l_other_digits : like digits
 			l_count : INTEGER
+			shifting_delta : INTEGER
 		do
 			l_digits := digits
 			l_count := count
@@ -492,6 +493,7 @@ feature -- Basic operations
 				carry := 0
 				index := count - digits_count
 				to_add := other
+				shifting_delta := count + digits_count
 			until
 				index >= l_count
 			loop

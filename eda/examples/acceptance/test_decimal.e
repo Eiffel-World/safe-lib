@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 
-	date: "$Date: 2002/12/18 22:05:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/06 22:42:25 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -76,6 +76,8 @@ feature {NONE} -- Implementation
 --rounding.decTest
 --single.decTest
 --subtract.decTest
+			create {TEST_MANY} test.make_file (File_system.pathname (test_path_string, "new.decTest"))
+			do_case (test)
 			create {TEST_ABS} test.make_file (File_system.pathname (test_path_string, "abs.decTest"))
 			do_case (test)
 			create {TEST_ADD} test.make_file (File_system.pathname (test_path_string, "add.decTest"))
@@ -139,7 +141,7 @@ feature {NONE} -- Implementation
 --			condition_met : BOOLEAN
 		do
 			print ("Test " + test.file.name + "%N")
---	test.set_start_tag ("rovx112")
+--	test.set_start_tag ("basx577")
 			from test.start
 			until
 				test.off

@@ -3,9 +3,6 @@ TELCO benchmark application.
 This is the 'telco' benchmark as specified at http://www2.hursley.ibm.com/decimal/telcoSpec.html.
 More on this benchmark can be viewed at http://www2.hursley.ibm.com/decimal/telco.html
 
-WARNING : this application expects files having 8-byte PACKED  decimal numbers.
-
-
 -- Specifications are Copyright 2002, IBM Corporation
 --
 -- This implementation belongs to the Eiffel Decimal Arithmetic Library

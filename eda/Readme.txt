@@ -16,7 +16,7 @@ in file License.txt.
 
 Software dependencies
 ---------------------
-EDA uses the multi-platform, multi-compiler GOBO 3.0 library (see References, 2).
+EDA uses the multi-platform, multi-compiler GOBO 3.1 library (see References, 2).
 
 Standard conformance 
 --------------------
@@ -48,8 +48,8 @@ From the GDAS, this library implements
     * rescale
     * round-to-integer
     *** Eiffel specific : +, -, *, /, //, \\
-- 
-! Not Implemented :
+
+- ! Not Implemented :
     * remainder-near
     * square-root
     * power

@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/02/06 22:24:10 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/06 22:42:26 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -132,12 +132,12 @@ feature {NONE} -- Initialization
 			value_string_exists: value_string /= Void --and then value_string.count > 0
 			context_exists: ctx /= Void
 		local
-			parser : EDA_DECIMAL_PARSER
+			parser : EDA_DECIMAL_TEXT_PARSER
 			e : expanded EXCEPTIONS
 			invalid_nan : BOOLEAN
 		do
 			!!parser
-			parser.parse (value_string)
+			parser.decimal_parse (value_string)
 			--! TODO : CHECK if error
 			invalid_nan := ((parser.is_nan or else parser.is_snan) and then parser.coefficient_sign /= '%U')
 			if parser.error or else invalid_nan then 
@@ -215,7 +215,7 @@ feature -- Access
 			definition: Result = (exponent + count - 1)
 		end
 
-feature {EDA_DECIMAL} -- Access
+feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Access
 
 	coefficient : EDA_COEFFICIENT
 			-- storage for digits
@@ -319,7 +319,7 @@ feature -- Status report
 				Result := True
 			end
 		ensure
-			definition: Result implies (--coefficient.count = 1 and then 
+			definition: Result implies (coefficient.count = 1 and then 
 				coefficient.item (0) = 0)
 		end
 		
@@ -1342,23 +1342,33 @@ feature -- Obsolete
 
 feature -- Inapplicable
 	
-feature {EDA_DECIMAL} -- Implementation
+feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Implementation
+	
+	set_coefficient (m : like coefficient) is
+		require
+			m_exists: m /= Void
+		do
+			coefficient := m
+		ensure
+			m_set: coefficient = m
+		end
+		
+	set_exponent (e : like exponent) is
+		require
+		do
+			exponent := e
+		ensure
+			exponent_set: exponent = e
+		end
 
---	set_formatting_style (a_format : INTEGER) is
---			-- set `formatting_style' to `a_format'
---		require
---			good_format: a_format = Format_plain or else a_format = Format_scientific
---		do
---			formatting_style := a_format
---		ensure
---			definition: formatting_style = a_format
---		end
-	
-	special : INTEGER
-	
 	set_negative is do is_negative := True ensure negative: is_negative end
 	
 	set_positive is do is_negative := False ensure positive: is_positive end
+	
+
+feature {EDA_DECIMAL} -- Implementation
+	
+	special : INTEGER
 	
 	set_infinity is
 		do 
@@ -1380,23 +1390,6 @@ feature {EDA_DECIMAL} -- Implementation
 		ensure 
 			qNaN: is_quiet_nan 
 		end
-	
-	set_coefficient (m : like coefficient) is
-		require
-			m_exists: m /= Void
-		do
-			coefficient := m
-		ensure
-			m_set: coefficient = m
-		end
-		
-	set_exponent (e : like exponent) is
-		require
-		do
-			exponent := e
-		ensure
-			exponent_set: exponent = e
-		end
 		
 	plain_unlimited_context : EDA_MATH_CONTEXT is
 				-- context for plain unlimited math
@@ -1414,7 +1407,7 @@ feature {EDA_DECIMAL} -- Implementation
 
 	exception : expanded EXCEPTIONS
 
-	make_special (parser : EDA_DECIMAL_PARSER) is
+	make_special (parser : EDA_DECIMAL_TEXT_PARSER) is
 			-- make special value
 		require
 			parser_not_void: parser /= Void
@@ -1433,13 +1426,27 @@ feature {EDA_DECIMAL} -- Implementation
 			end			
 		end
 
-	make_standard (parser : EDA_DECIMAL_PARSER; ctx : EDA_MATH_CONTEXT) is
+	make_standard (parser : EDA_DECIMAL_TEXT_PARSER; ctx : EDA_MATH_CONTEXT) is
 			-- make standard value
 		require
+		local
+			l_double_exponent : DOUBLE
 		do
 			-- Evaluate exponent
 			if parser.has_explicit_exponent then
-				exponent := parser.exponent.to_integer
+--				if parser.exponent.is_integer then
+				l_double_exponent := parser.exponent.to_double
+				if l_double_exponent > Platform.Maximum_integer then
+					exponent := ctx.maximum_exponent + ctx.digits + parser.exponent.count + 2
+				else
+					exponent := l_double_exponent.truncated_to_integer --parser.exponent.to_integer
+				end
+--				else
+--				if parser.exponent.to_double > (ctx.Maximum_exponent + ctx.digits + 1) then
+--					exponent := ctx.Maximum_exponent + ctx.digits + 1
+--				else
+--					exponent := parser.exponent.to_integer
+--				end
 				if parser.exponent_sign = '-' then
 					exponent := -exponent
 				end
@@ -2128,14 +2135,15 @@ feature {EDA_DECIMAL} -- Implementation
 				ctx.reset_flag (Signal_lost_digits)
 				--| avoid loosing significant digits in msd
 				strip_leading_zeroes
-				if ctx.digits > 0 and then count > ctx.digits then
-					round (ctx)
-				end
 				if is_underflow (ctx) then
 					do_underflow (ctx)
-				end
-				if is_overflow (ctx) then
-					do_overflow (ctx)
+				else
+					if ctx.digits > 0 and then count > ctx.digits then
+						round (ctx)
+					end
+					if is_overflow (ctx) then
+						do_overflow (ctx)
+					end
 				end
 				--| restore flags and traps
 				if lost_digits_trap then
@@ -2258,27 +2266,31 @@ feature {EDA_DECIMAL} -- Implementation
 	
 	internal_do_overflow (ctx : EDA_MATH_CONTEXT) is	
 		do
-			ctx.signal (Signal_overflow,"")
-			inspect ctx.rounding_mode
-			when Round_half_up, Round_half_even, Round_half_down, Round_up then
-				promote_to_infinity (sign)
-			when Round_down then
-				set_largest (ctx)
-			when Round_ceiling then
-				if is_negative then
-					set_largest (ctx)
-				else
+			if not is_zero then
+				ctx.signal (Signal_overflow,"")
+				inspect ctx.rounding_mode
+				when Round_half_up, Round_half_even, Round_half_down, Round_up then
 					promote_to_infinity (sign)
-				end
-			when Round_floor then
-				if is_positive then
+				when Round_down then
 					set_largest (ctx)
-				else
-					promote_to_infinity (sign)
-				end					
-			end							
-			ctx.signal (Signal_inexact,"do_overflow")
-			ctx.signal (Signal_rounded,"do_overflow")			
+				when Round_ceiling then
+					if is_negative then
+						set_largest (ctx)
+					else
+						promote_to_infinity (sign)
+					end
+				when Round_floor then
+					if is_positive then
+						set_largest (ctx)
+					else
+						promote_to_infinity (sign)
+					end					
+				end							
+				ctx.signal (Signal_inexact,"do_overflow")
+				ctx.signal (Signal_rounded,"do_overflow")			
+			else
+				set_exponent (ctx.exponent_limit)
+			end
 		end
 
 	do_underflow (ctx : EDA_MATH_CONTEXT) is
@@ -2287,9 +2299,14 @@ feature {EDA_DECIMAL} -- Implementation
 			underflow: is_underflow (ctx)
 		local
 			e_tiny, shared_digits, subnormal_count, count_upto_elimit, saved_digits : INTEGER
+			l_is_zero, l_was_rounded : BOOLEAN
+			value : INTEGER
 		do
-			if not is_zero then
+			l_is_zero := is_zero
+			if not l_is_zero then
 				ctx.signal (Signal_subnormal,"")
+			else
+				l_was_rounded := ctx.is_flagged (Signal_rounded)
 			end
 			-- rescale to e_tiny
 			e_tiny := ctx.e_tiny
@@ -2298,7 +2315,36 @@ feature {EDA_DECIMAL} -- Implementation
 				shared_digits := adjusted_exponent - e_tiny + 1
 				if shared_digits < 0 then 
 					-- impossible to share any digit with e_tiny 
-					coefficient.put (0, 0)
+					saved_digits := ctx.digits
+					ctx.set_digits (coefficient.count - 1)
+					value := 0
+					inspect ctx.rounding_mode 
+					when Round_up then
+						value := 1
+					when Round_ceiling then
+						if is_positive and then lost_digits (ctx) then
+						--not (is_negative or else not lost_digits (ctx)) then
+							value := 1
+						end
+					when Round_floor then
+						if is_positive or else not lost_digits (ctx) then
+							value := 0
+						else
+							value := 1
+						end
+--					when Round_half_up then
+--						if three_way_compare_discarded_to_half (ctx) >= 0 then
+--							value := 1
+--						end
+--					when Round_half_down then
+--						if three_way_compare_discarded_to_half (ctx) = 1 then
+--							value := 1
+--						end
+					else
+						value := 0
+					end
+					ctx.set_digits (saved_digits)
+					coefficient.put (value, 0)
 					coefficient.keep_head (1)					
 					exponent := e_tiny
 					ctx.signal (Signal_inexact, "Rescaling to e_tiny")
@@ -2319,6 +2365,9 @@ feature {EDA_DECIMAL} -- Implementation
 						ctx.set_digits (subnormal_count)
 					end
 					round (ctx)
+--					if ctx.rounding_mode = ctx.Round_up and then is_zero and then not l_is_zero then
+--						coefficient.put (1, 0)
+--					end
 					ctx.set_digits (saved_digits)
 					strip_leading_zeroes
 					if ctx.is_flagged (Signal_subnormal) and then ctx.is_flagged (Signal_inexact) then
@@ -2329,6 +2378,13 @@ feature {EDA_DECIMAL} -- Implementation
 					end
 				end
 				exponent := e_tiny
+				if l_is_zero then
+					if l_was_rounded then
+						ctx.signal (Signal_rounded, ctx.reason)
+					else
+						ctx.reset_flag (Signal_rounded)
+					end
+				end
 			end
 		end		
 
@@ -2415,13 +2471,14 @@ feature {EDA_DECIMAL} -- Implementation
 						if integer_division then
 							Result.set_exponent (0)
 						else
-							Result.set_exponent (Current.exponent)-- - other.exponent)
+							Result.set_exponent (Current.exponent - other.adjusted_exponent)
 						end
 						if sign = other.sign then
 							Result.set_positive
 						else
 							Result.set_negative
-						end						
+						end
+						Result.clean_up (ctx)
 				else	
 					Result := internal_divide (other, ctx, division_type)
 					if sign = other.sign then

@@ -7,8 +7,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/02/06 22:24:10 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/06 22:42:26 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -144,7 +144,7 @@ feature -- Comparison
 --			greater: True -- Result = -1 implies Current > other
 --		end
 
-feature {EDA_DECIMAL} -- Element change
+feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Element change
 
 	put (v, index : INTEGER) is
 			-- put `v' at `index'-th item
@@ -275,7 +275,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		deferred
 		ensure
 			adapted_count: count = old count + a_count
-			zero_shifted: item (0) = 0 --and then item (1) = old (item (0))
+			zero_shifted: item (0) = 0 --and then item (1) = old item (0)
 		end
 
 	shift_right (a_count : INTEGER) is
