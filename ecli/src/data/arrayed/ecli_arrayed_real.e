@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2004/09/01 19:45:09 $"
 
 class ECLI_ARRAYED_REAL
 
@@ -111,12 +111,10 @@ feature -- Basic operations
 			--
 		local
 			message_buffer : XS_C_STRING
-			ext : ECLI_EXTERNAL_TOOLS
 		do
-			create ext
 			create message_buffer.make (50) 
 			sprintf_real (message_buffer.handle, item_at (index).item)
-			Result := ext.pointer_to_string(message_buffer.handle)
+			Result := message_buffer.as_string -- ext.pointer_to_string(message_buffer.handle)
 		end
 
 feature {NONE} -- Implementation

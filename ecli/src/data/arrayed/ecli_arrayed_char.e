@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2004/09/01 19:45:09 $"
 
 class ECLI_ARRAYED_CHAR
 
@@ -59,10 +59,10 @@ feature -- Access
 
 feature -- Measurement
 
-	max_content_capacity : INTEGER is
-		do
-			Result := 255
-		end
+--	max_content_capacity : INTEGER is
+--		do
+--			Result := 255
+--		end
 		
 feature -- Status report
 
@@ -115,6 +115,10 @@ feature {NONE} -- Implementation
 			end
 		end
 
+feature {NONE} -- Implementation
+
+	default_maximum_capacity : INTEGER is 255
+	
 invariant
 --	count_capacity: count <= capacity
 

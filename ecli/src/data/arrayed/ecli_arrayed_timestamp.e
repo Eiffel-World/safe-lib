@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2004/09/01 19:45:09 $"
 
 class ECLI_ARRAYED_TIMESTAMP
 
@@ -64,7 +64,7 @@ inherit
 		undefine
 			allocate_buffer,
 			day,
---			is_equal,
+			make_null,
 			is_null, set_null,
 			length_indicator_pointer,
 			month,

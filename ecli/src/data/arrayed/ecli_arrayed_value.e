@@ -3,8 +3,7 @@ indexing
 	description:
 	
 		"Objects that represent ARRAYs of typed values to be exchanged with the database.%
-		% These mainly are exchange buffers.  The capacity is set at creation
- and cannot be changed.%
+		% These mainly are exchange buffers.  The capacity is set at creation and cannot be changed.%
 		% The actual number of elements to take into account is set using set_count.%
 		% 'set_count' must not be used by a client except when passing parameters.  The other private usage is %
 		% when a rowset_cursor fetches the last set of data (usually less than the capacity)."
@@ -12,7 +11,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2004/09/01 19:45:09 $"
 
 	usage: "Used in row-set operations : column-wise binding for result-sets, %
 		% or column-wise binding of parameters for modifications.%
