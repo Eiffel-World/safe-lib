@@ -1,8 +1,8 @@
 indexing
 	description: "CLI C Interface"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/16 19:16:15 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/02/25 09:23:40 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class

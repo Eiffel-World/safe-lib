@@ -1,8 +1,8 @@
 indexing
 	description: "Description of Parameter data"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/25 20:07:15 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/25 09:23:39 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2002/04/15 20:09:28 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/25 09:23:37 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_DATA_SOURCE

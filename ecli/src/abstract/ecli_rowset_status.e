@@ -1,8 +1,11 @@
 indexing
-	description: "Objects that reflect status of rowset operations.  They basically are an array of integer."
+	description: 
+	
+		"Objects that reflect status of rowset operations. They basically are an array of integer."
+
 	author: "Paul G. Crismer <pgcrism at pi.be>"
-	date: "$Date: 2002/09/03 20:35:50 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/02/25 09:23:22 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ECLI_ROWSET_STATUS

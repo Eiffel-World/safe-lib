@@ -1,8 +1,8 @@
 indexing
 	description: "Properties of an ECLI data item"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:14 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/25 09:23:36 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 deferred class

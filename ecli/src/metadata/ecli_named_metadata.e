@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are named metadata, i.e. with catalog, schema and name."
 	author: ""
-	date: "$Date: 2003/02/16 19:16:15 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/25 09:23:38 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ECLI_NAMED_METADATA
@@ -130,8 +130,5 @@ feature {NONE} -- Implementation
 				dest.append (src)
 			end
 		end
-
-invariant
-	invariant_clause: True -- Your invariant here
 
 end -- class ECLI_NAMED_METADATA

@@ -1,8 +1,8 @@
 indexing
 	description: "Transaction capability constants"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 08:36:00 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/25 09:23:43 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_TRANSACTION_CAPABILITY_CONSTANTS

@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/01/02 19:35:01 $"
-	revision: 	"$Revision: 1.14 $"
+	date: 		"$Date: 2003/02/25 09:23:24 $"
+	revision: 	"$Revision: 1.15 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -13,6 +13,9 @@ class
 
 inherit
 	ECLI_STATUS
+		undefine
+			dispose
+		end
 
 	ECLI_HANDLE
 		export
@@ -383,8 +386,9 @@ feature -- Basic Operations
 			user_set : user_name/= Void
 			password_set : password /= Void
 		local
-			tools : ECLI_EXTERNAL_TOOLS
+			tools : expanded ECLI_EXTERNAL_TOOLS
 		do
+			tools.protect
 			set_status (ecli_c_connect (handle,
 					tools.string_to_pointer (data_source),
 					tools.string_to_pointer (user_name),
@@ -392,6 +396,7 @@ feature -- Basic Operations
 			if is_ok then
 				set_connected
 			end
+			tools.unprotect
 		ensure
 			connected: is_connected implies is_ok
 		end

@@ -1,13 +1,15 @@
 indexing
 	description: "Objects that abstract ISQL commands."
-	author: ""
-	date: "$Date: 2003/02/16 19:16:15 $"
-	revision: "$Revision: 1.3 $"
+	author: "Paul G. Crismer"
+	date: "$Date: 2003/02/25 09:23:01 $"
+	revision: "$Revision: 1.4 $"
 
 deferred class
 	ISQL_COMMAND
 
 inherit
+	ANY
+	
 	ECLI_STRING_ROUTINES
 		export {NONE} all
 		end
@@ -21,8 +23,6 @@ feature -- Access
 		
 	error_message : STRING
 	
-feature -- Measurement
-
 feature -- Status report
 
 	matches (text : STRING) : BOOLEAN is
@@ -36,11 +36,12 @@ feature -- Status report
 		ensure
 			definition: Result = (error_message /= Void)
 		end
+
+	needs_session : BOOLEAN is
+			-- does this command need a connected session ?
+		deferred
+		end
 		
-feature -- Status setting
-
-feature -- Cursor movement
-
 feature -- Element change
 
 	set_error (a_message : STRING) is
@@ -53,18 +54,6 @@ feature -- Element change
 			is_error: is_error
 		end
 		
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
 feature -- Basic operations
 
 	execute (text : STRING; context : ISQL_CONTEXT) is
@@ -73,14 +62,10 @@ feature -- Basic operations
 			text_not_void: text /= Void
 			text_matches_command: matches (text)
 			context_not_void: context /= Void
-			context_executable: context.is_executable
+--			context_executable: context.is_executable
 		deferred
 		end
 		
-feature -- Obsolete
-
-feature -- Inapplicable
-
 feature {NONE} -- Implementation
 
 	matches_single_string (text : STRING; matcher : STRING) : BOOLEAN is
@@ -117,7 +102,4 @@ feature {NONE} -- Implementation
 		
 	command_width : INTEGER is 30
 	
-invariant
-	invariant_clause: True -- Your invariant here
-
 end -- class ISQL_COMMAND

@@ -1,8 +1,8 @@
 indexing
 	description: "Transaction test appliation";
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:07 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/25 09:23:12 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 class
 	TRANSACT

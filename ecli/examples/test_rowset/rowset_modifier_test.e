@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2002/05/31 19:19:54 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/25 09:23:15 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ROWSET_MODIFIER_TEST

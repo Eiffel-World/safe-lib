@@ -11,8 +11,8 @@ indexing
 		% or column-wise binding of parameters for modifications.%
 		% Access modes: direct ('item_at'), linear ('start', 'forth', 'item')."
 
-	date: "$Date: 2003/01/02 19:35:02 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/25 09:23:34 $"
+	revision: "$Revision: 1.7 $"
 
 deferred class
 	ECLI_ARRAYED_VALUE
@@ -95,7 +95,7 @@ feature -- Status report
 			else
 				Result := is_null_at (cursor_index)
 			end
-		ensure
+		ensure then
 			null_when_off: off implies Result
 			definition: (not off) implies (Result = is_null_at (cursor_index))
 		end

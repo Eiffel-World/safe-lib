@@ -1,8 +1,8 @@
 indexing
 	description: "Interactive SQL";
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:05 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/25 09:23:08 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 class
 	QA_EXAMPLE

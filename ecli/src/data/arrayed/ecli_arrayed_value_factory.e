@@ -4,8 +4,8 @@ indexing
 	note: "Supported SQL data types currently are : sql_char, sql_decimal, sql_double, sql_float, sql_integer, sql_longvarchar, sql_numeric, sql_real, sql_smallint, sql_type_date, sql_type_time, sql_type_timestamp,	sql_varchar"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/01/02 19:35:02 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/25 09:23:35 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class

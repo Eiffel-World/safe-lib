@@ -1,8 +1,11 @@
 indexing
-	description: "Objects that create buffers for DB to application information exchange."
-	author: ""
-	date: "$Date: 2003/01/02 19:35:01 $"
-	revision: "$Revision: 1.3 $"
+	description: 
+		
+		"Objects that create buffers for DB to application information exchange."
+
+	author: "Paul G. Crismer."
+	date: "$Date: 2003/02/25 09:23:26 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ECLI_BUFFER_FACTORY

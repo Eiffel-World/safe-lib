@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that create arrayed buffers for rowset commands"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/01/02 19:35:01 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/25 09:23:32 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_ARRAYED_BUFFER_FACTORY

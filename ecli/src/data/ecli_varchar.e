@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI VARCHAR (n) values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:13 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/25 09:23:32 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -30,11 +30,6 @@ feature -- Status report
 		once
 			Result := sql_varchar
 		end
-
-feature {NONE} -- Implementation
-
-invariant
-	invariant_clause: -- Your invariant here
 
 end -- class ECLI_VARCHAR
 --

@@ -1,8 +1,8 @@
 indexing
 	description: "CLI/ODBC misc. API constants"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 08:36:00 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/25 09:23:41 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_API_CONSTANTS

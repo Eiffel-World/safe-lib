@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/01/02 19:35:02 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/02/25 09:23:33 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that modify the database one rowset at a time."
 	author: ""
-	date: "$Date: 2002/09/03 20:35:50 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/25 09:23:22 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ECLI_ROWSET_MODIFIER

@@ -1,8 +1,8 @@
 indexing
 	description: "Cursor class generator"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/10/17 07:07:29 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/02/25 09:23:49 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -13,7 +13,7 @@ inherit
 
 feature -- Initialization
 
-	execute (a_cursor : QA_CURSOR; a_file : FILE) is
+	execute (a_cursor : QA_CURSOR; a_file : KL_TEXT_INPUT_FILE) is
 		require
 			cursor: a_cursor /= Void and then a_cursor.name /= Void
 			cursor_executed: a_cursor.is_executed
@@ -33,7 +33,7 @@ feature -- Access
 
 	current_cursor : QA_CURSOR
 	
-	current_file : FILE
+	current_file : KL_TEXT_INPUT_FILE
 	
 feature -- Measurement
 

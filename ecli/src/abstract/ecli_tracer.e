@@ -1,8 +1,11 @@
 indexing
-	description: "Objects that trace SQL execution on an output medium"
+	description: 
+	
+		"Objects that trace SQL execution on an output medium"
+
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/12/10 10:47:50 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/02/25 09:23:26 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class

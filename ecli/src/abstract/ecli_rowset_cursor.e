@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that define a rowset cursor and allow sweeping through it.  Rows are physically retrieved `row_count' at a time, minimizing network traffic if any."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/16 19:16:15 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/02/25 09:23:21 $"
+	revision: "$Revision: 1.8 $"
 
 class
 	ECLI_ROWSET_CURSOR
@@ -60,7 +60,7 @@ feature -- Initialization
 			definition_set: definition = a_definition
 			definition_is_sql: equal (definition, sql)
 			prepared_if_ok: is_ok implies is_prepared
---			definition_is_a_query:  is_ok implies has_results
+			definition_is_a_query:  is_ok implies has_results
 			limit_set: buffer_factory.precision_limit = buffer_factory.Default_precision_limit
 			row_count_set: row_capacity = a_row_count
 		end

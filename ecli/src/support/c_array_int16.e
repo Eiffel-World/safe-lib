@@ -1,8 +1,8 @@
 indexing
 	description: "C allocated arrays of 16bits integer (short)."
 	author: ""
-	date: "$Date: 2002/04/30 12:26:50 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/25 09:23:47 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	C_ARRAY_INT16

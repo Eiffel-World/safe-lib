@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are capable of operating on a rowset."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/01/02 19:35:01 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/02/25 09:23:21 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ECLI_ROWSET_CAPABLE

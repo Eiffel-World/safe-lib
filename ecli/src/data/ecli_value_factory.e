@@ -4,8 +4,8 @@ indexing
 	note: "Supported SQL data types currently are : sql_char, sql_decimal, sql_double, sql_float, sql_integer, sql_longvarchar, sql_numeric, sql_real, sql_smallint, sql_type_date, sql_type_time, sql_type_timestamp,	sql_varchar"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/01/02 19:35:01 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/02/25 09:23:32 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class
@@ -33,8 +33,6 @@ feature -- Access
 
 	last_result : ECLI_VALUE
 			-- last result of `create_instance'
-
-feature -- Measurement
 
 feature -- Status report
 
@@ -130,10 +128,6 @@ feature -- Basic operations
 			-- condition is relaxed for sql_float.  Oracle's NUMBER is given as sql_float or sql_double with precision 38 !!!
 		end
 
-feature -- Obsolete
-
-feature -- Inapplicable
-
 feature {NONE} -- Implementation
 
 	valid_types : ARRAY[INTEGER] is
@@ -156,9 +150,6 @@ feature {NONE} -- Implementation
 		end
 
 	array_routines : expanded KL_ARRAY_ROUTINES[INTEGER]
-
-invariant
-	invariant_clause: -- Your invariant here
 
 end -- class ECLI_VALUE_FACTORY
 --

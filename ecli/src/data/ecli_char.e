@@ -1,8 +1,11 @@
 indexing
-	description: "ISO CLI CHAR (n) values"
+	description: 
+	
+		"ISO CLI CHAR (n) values"
+
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 08:52:04 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/02/25 09:23:27 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -32,7 +35,6 @@ feature {NONE} -- Initialization
 feature -- Access
 
 	count : INTEGER
-	
 
 	item : STRING is
 		do

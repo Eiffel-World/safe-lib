@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL FLOAT value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/12/10 15:25:58 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/02/25 09:23:29 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class

@@ -1,8 +1,8 @@
 indexing
-	description: "Abstraction of a cursor."
+	description: "Abstraction of a SQL cursor."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/01/02 19:35:01 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/02/25 09:23:20 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -13,7 +13,7 @@ inherit
 		rename
 			start as statement_start
 		export
-			{NONE} all
+			{NONE} all;
 			{ANY} 
 				make, forth, close, 
 				is_closed,is_ok, is_prepared, is_prepared_execution_mode, is_executed, is_valid, 
@@ -52,6 +52,8 @@ feature {NONE} -- Initialization
 	create_buffers is
 			-- create all ECLI_VALUE objects
 		deferred
+		ensure
+			cursor_set: cursor /= Void
 		end
 
 feature -- Access

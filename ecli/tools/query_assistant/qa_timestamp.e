@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIMESTAMP values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/10/17 07:07:29 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/25 09:23:51 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class

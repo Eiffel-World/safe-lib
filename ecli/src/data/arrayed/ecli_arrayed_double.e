@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL DOUBLE arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/01/02 19:35:02 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/25 09:23:33 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -94,23 +94,22 @@ feature -- Basic operations
 
 	out : STRING is
 		local
-			ext : expanded ECLI_EXTERNAL_TOOLS
-			message_buffer : MESSAGE_BUFFER
+			message_buffer : STRING
 			i : INTEGER
 		do
+			protect
 			from 
 				i := 1
 				!!Result.make (10)
 				Result.append ("<<")
+				message_buffer := STRING_.make_filled (' ', 50)
 			until i = count 
 			loop
 				if is_null_at (i) then
 					Result.append ("NULL")
 				else
-					!!message_buffer.make (50)
-					message_buffer.fill_blank
-					sprintf_double (ext.string_to_pointer(message_buffer), item_at (i).item)
-					Result.append (ext.pointer_to_string(ext.string_to_pointer (message_buffer)))
+					sprintf_double (string_to_pointer(message_buffer), item_at (i).item)
+					Result.append (pointer_to_string(string_to_pointer (message_buffer)))
 				end
 				if i < count then
 					Result.append (",")					
@@ -118,6 +117,7 @@ feature -- Basic operations
 				i := i + 1
 			end
 			Result.append (">>")
+			unprotect
 		end
 
 feature {NONE} -- Implementation

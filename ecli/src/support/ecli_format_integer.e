@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that provide integer formatting routines"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/30 12:26:50 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/25 09:23:47 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_FORMAT_INTEGER

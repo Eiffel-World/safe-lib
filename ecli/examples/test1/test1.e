@@ -1,8 +1,8 @@
 indexing
 	description: "TEST1 sample application";
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/10/03 20:27:12 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2003/02/25 09:23:10 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 

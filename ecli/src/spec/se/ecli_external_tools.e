@@ -1,12 +1,15 @@
 indexing
 	description: "Tools for Eiffel/External (to C) communication"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:15 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/25 09:23:44 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
-expanded class
+class
 	ECLI_EXTERNAL_TOOLS
+
+inherit
+	ECLI_EXTERNAL_TOOLS_COMMON
 
 feature -- Basic operations
 
@@ -23,6 +26,12 @@ feature -- Basic operations
 			good_pointer: p /= default_pointer
 		do
 			create Result.from_external_copy (p)
+		end
+
+	string_copy_from_pointer (s : STRING; p : POINTER) is
+			-- copy 'C' string at `p' into `s'
+		do
+			s.from_external_copy (p)
 		end
 
 feature -- Inapplicable

@@ -1,8 +1,11 @@
 indexing
-	description: "Date and time objects - SQL: DATETIME"
+	description: 
+	
+		"Date and time objects - SQL: DATETIME"
+
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/10/03 20:13:33 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2003/02/25 09:23:29 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class

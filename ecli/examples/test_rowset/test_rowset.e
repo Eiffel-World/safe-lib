@@ -1,8 +1,8 @@
 indexing
 	description: "ECLI test of rowset classes";
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/12/10 20:06:36 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/25 09:23:15 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET

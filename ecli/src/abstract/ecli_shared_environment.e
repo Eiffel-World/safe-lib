@@ -1,8 +1,11 @@
 indexing
-	description: "Shared CLI environment"
+	description: 
+	
+		"Shared CLI environment"
+	
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:08 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/02/25 09:23:24 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class

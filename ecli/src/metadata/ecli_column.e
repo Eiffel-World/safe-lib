@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that describe a SQL column in a table"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/12/14 21:07:07 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/02/25 09:23:35 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ECLI_COLUMN

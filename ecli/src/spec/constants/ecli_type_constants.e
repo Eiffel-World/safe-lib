@@ -37,8 +37,8 @@ indexing
 --unsupported* SQL_INTERVAL_HOUR_TO_SECOND
 --unsupported* SQL_INTERVAL_MINUTE_TO_SECOND
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/01/02 19:35:02 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/25 09:23:44 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class

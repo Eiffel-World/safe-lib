@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that describe nullability metadata"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 08:52:04 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/25 09:23:38 $"
+	revision: "$Revision: 1.3 $"
 	usage: "mix-in"
 	
 class

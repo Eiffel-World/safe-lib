@@ -1,8 +1,8 @@
 indexing
 	description: "Description of result-set column"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:13 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/02/25 09:23:36 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -13,6 +13,13 @@ inherit
 		rename
 			make as make_parameter
 		export {NONE} make_parameter
+		end
+
+	ECLI_EXTERNAL_TOOLS
+		export
+			{NONE} all
+		undefine
+			dispose
 		end
 
 	KL_IMPORTED_STRING_ROUTINES
@@ -30,6 +37,7 @@ feature {NONE} -- Initialization
 		local
 			stat : INTEGER
 		do
+			protect
 			name := STRING_.make_buffer (max_name_length + 1)
 			stat := ecli_c_describe_column (stmt.handle,
 				index,
@@ -42,6 +50,7 @@ feature {NONE} -- Initialization
 				pointer ($nullability))
 			stmt.set_status (stat)
 			name := pointer_to_string (string_to_pointer(name))
+			unprotect
 		end
 
 feature -- Access

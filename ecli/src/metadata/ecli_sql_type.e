@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that describe a SQL type, as supported by a datasource."
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/08/22 20:12:30 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/25 09:23:39 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_SQL_TYPE
