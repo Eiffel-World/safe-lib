@@ -9,8 +9,8 @@ indexing
 	   % and should also be redefined by descendant classes."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/20 09:42:53 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2003/11/20 20:42:39 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -18,6 +18,11 @@ deferred class
 
 inherit
 
+	MEMORY
+		redefine
+			dispose
+		end
+		
 	EXCEPTIONS
 		export
 			{NONE} all
