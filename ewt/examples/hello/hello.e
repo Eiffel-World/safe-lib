@@ -1,7 +1,7 @@
 indexing
 	description	: "System's root class"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/20 17:57:28 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -18,9 +18,20 @@ feature -- Initialization
 		local
 			a_shell : SHELL
 			a_display : DISPLAY
+			a_boolean : BOOLEAN
 		do
 			Create a_display.make
 			Create a_shell.make_by_display (a_display)
+			from
+				a_shell.open			
+			until
+				a_shell.is_released
+			loop
+				if not a_display.read_and_dispatch then
+					a_boolean := a_display.sleep
+				end
+			end
+			a_display.release
 		end
 
 end -- class HELLO

@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DISPLAY"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/20 17:57:28 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -10,17 +10,13 @@ class
 
 inherit
 	ABSTRACT_DISPLAY
+
+	DEVICE
 	
 creation
-	make
+	make, make_by_device_data
 	
 feature {NONE} -- Initialization
-
-	make is
-			-- Initialize.
-		do
-			--| FIXME
-		end
 
 feature -- Access
 
@@ -69,6 +65,12 @@ feature -- Basic operations
 			-- FIXME
 		end
 
+	release is
+			-- Releases any internal resources back to the operating system.
+		do
+			-- FIXME
+		end
+
 feature -- Obsolete
 
 feature -- Inapplicable
@@ -76,6 +78,20 @@ feature -- Inapplicable
 feature -- Constants
 
 feature {NONE} -- Implementation
+
+	create_os_device (a_device_data : DEVICE_DATA) is
+			-- Creates the device in the operating system with `a_device_data'.
+			-- If the device does not have a handle, this method may do nothing depending on the device.
+		do	
+			do_nothing
+		end
+
+
+	internal_new_GC (gc_data : ABSTRACT_GC_DATA ) : INTEGER is
+			-- Allocate a new platform specific GC handle.
+		do
+			-- FIXME
+		end
 
 invariant
 	invariant_clause: -- Your invariant here

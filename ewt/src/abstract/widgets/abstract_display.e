@@ -20,8 +20,8 @@ indexing
 	Events:
 		Close, Release	
 	]"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/20 17:57:28 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -36,7 +36,7 @@ feature {NONE} -- Initialization
 	make is
 			-- Initialize.
 		deferred
-		ensure
+		ensure then
 			-- The resulting display is marked as the current display. 
 			-- If this is the first display which has been constructed since the application started, it is also
  			-- marked as the default display.
@@ -93,6 +93,14 @@ feature -- Basic operations
 		deferred
 		ensure
 			-- true if an event requiring dispatching was placed on the queue
+		end
+
+	release is
+			-- Releases any internal resources back to the operating system.
+		deferred
+		ensure
+			-- All related shells are released.
+			is_released : is_released
 		end
 		
 feature -- Obsolete
