@@ -1,8 +1,8 @@
 indexing
 	description: "Persitent identifiers for COPY objects"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/06 20:26:27 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/08/30 20:07:26 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	COPY_PID
@@ -10,9 +10,13 @@ class
 inherit
 	PO_PID
 	
+	COPY_PERSISTENT_CLASS_NAME
+		undefine
+			is_equal
+		end
+
 creation
 
-	--{COPY_ADAPTER} 
 	make
 	
 feature -- Initialization
@@ -32,8 +36,6 @@ feature -- Initialization
 	
 feature -- Access
 
-	class_name : COPY_PERSISTENT_CLASS_NAME is once create Result.make end
-	
 	isbn : STRING
 	
 	serial : INTEGER

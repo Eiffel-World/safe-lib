@@ -6,13 +6,18 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:27 $"
+	date: "$Date: 2004/08/30 20:07:26 $"
 
 class BOOK_PID
 	
 inherit
 
 	PO_PID
+	
+	BOOK_PERSISTENT_CLASS_NAME
+		undefine
+			is_equal
+		end
 
 creation
 
@@ -34,8 +39,6 @@ feature -- Initialization
 	
 feature -- Access
 
-	class_name : BOOK_PERSISTENT_CLASS_NAME is once create Result.make end
-	
 	isbn : STRING
 	
 feature -- Basic operations

@@ -28,8 +28,8 @@ indexing
 	
 
 	Usage: "Inherit.  Define all deferred features."
-	date: "$Date: 2004/06/06 20:26:28 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/08/30 20:07:26 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class PO_ADAPTER [G -> PO_PERSISTENT]
 
@@ -117,7 +117,7 @@ feature -- Status report
 		require
 			some_pid_not_void: some_pid /= Void
 		do
-			Result := some_pid.class_name.is_equal (class_name)
+			Result := some_pid.persistent_class_name.is_equal (persistent_class_name)
 		end
 	
 	no_data_found : BOOLEAN is

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2004/08/30 20:07:26 $"
 
 class PO_REFERENCE [G -> PO_PERSISTENT]
 
@@ -110,7 +110,7 @@ feature {NONE} -- Implementation
 		local
 			persistent_adapter : PO_ADAPTER[G]
 		do
-			persistence_manager.search_adapter (pid.class_name)
+			persistence_manager.search_adapter (pid.persistent_class_name)
 			if persistence_manager.found then
 				persistent_adapter ?= persistence_manager.last_adapter
 				check

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:27 $"
+	date: "$Date: 2004/08/30 20:07:26 $"
 
 class BORROWER_PID
 	
@@ -14,6 +14,11 @@ inherit
 
 	PO_PID
 	
+	BORROWER_PERSISTENT_CLASS_NAME
+		undefine
+			is_equal
+		end
+		
 creation
 
 	{BORROWER_ADAPTER} make
@@ -31,8 +36,6 @@ feature -- Initialization
 		end
 		
 feature -- Access
-
-	class_name : BORROWER_PERSISTENT_CLASS_NAME is once create Result.make end
 	
 	id : INTEGER
 	

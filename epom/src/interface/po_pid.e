@@ -11,7 +11,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2004/08/30 20:07:26 $"
 
 deferred class PO_PID
 
@@ -25,7 +25,13 @@ inherit
 feature -- Access			
 
 	class_name: STRING is
-			-- Class name of object this PID identifies
+		obsolete "[2004-08-26] Use `persistent_class_name' instead."
+		do
+			Result := persistent_class_name
+		end
+
+	persistent_class_name: STRING is
+			-- Name of class for persistence that this PID identifies
 			-- Used by PO_REFERENCE to obtain an adapter
 		deferred
 		end

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:27 $"
+	date: "$Date: 2004/08/30 20:07:25 $"
 
 class COPY
 
@@ -17,6 +17,8 @@ inherit
 			persistent_class_name
 		end
 	
+	COPY_PERSISTENT_CLASS_NAME
+
 creation
 
 	make
@@ -79,10 +81,6 @@ feature -- Access
 			end
 		end
 
-	persistent_class_name : STRING is
-		do
-			create {COPY_PERSISTENT_CLASS_NAME}Result.make
-		end
 		
 feature -- Status report
 
