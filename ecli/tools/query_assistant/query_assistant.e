@@ -1,8 +1,8 @@
 indexing
 	description: "Query assistant"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2001/08/04 09:30:53 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -477,7 +477,7 @@ feature -- Basic operations
 			Result := io.last_string.to_integer
 		end
 
-	date_from_string (s: STRING) : ECLI_DATE is
+	date_from_string (s: STRING) : DT_DATE is
 			-- read a date in format yyyy-mm-dd
 		local
 			y, m, d : INTEGER
@@ -491,12 +491,20 @@ feature -- Basic operations
 			y := sy.to_integer
 			m := sm.to_integer
 			d := sd.to_integer
-			create Result.make (y, m, d)
+			!! Result.make (y, m, d)
 		end
 
-	timestamp_from_string (s: STRING) : ECLI_TIMESTAMP is
+	timestamp_from_string (s: STRING) : DT_DATE_TIME is
+			-- read a timestamp in format yyyy-mm-dd hh:mm:ss
+		local
+			hh, mm, ss : INTEGER
+			date : DT_DATE
 		do
-			create Result.make_first
+			date := date_from_string (s)
+			hh := s.substring (12,13).to_integer
+			mm := s.substring (15,16).to_integer
+			ss := s.substring (18,19).to_integer
+			!! Result.make(date.year, date.month, date.day, hh, mm, ss)
 		end
 						
 feature -- Obsolete
