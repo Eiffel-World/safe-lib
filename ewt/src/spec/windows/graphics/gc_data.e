@@ -2,8 +2,8 @@ indexing
 	description: "[
 					Windows implementation of ABSTRACT_GC_DATA.
 					]"
-	date: "$Date: 2004/06/29 16:49:46 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -38,8 +38,8 @@ feature -- Access
 	style : INTEGER
 			-- Style.
 			
---	image : IMAGE
-			-- Image. FIXME
+	image : IMAGE
+			-- Image.
 			
 	foreground : INTEGER
 			-- Foreground.
@@ -82,6 +82,22 @@ feature -- Element change
 			font_handle_shared : font_handle = a_font_handle
 		end
 
+	set_null_bitmap_handle (a_null_bitmap_handle : POINTER) is
+			-- Set null bitmap handle with `a_null_bitmap_handle'.
+		do
+			null_bitmap_handle := a_null_bitmap_handle
+		ensure
+			null_bitmap_handle_shared : null_bitmap_handle = a_null_bitmap_handle
+		end
+
+	set_window_handle (a_window_handle : POINTER) is
+			-- Set window handle with `a_window_handle'.
+		do
+			window_handle := a_window_handle
+		ensure
+			window_handle_shared : window_handle = a_window_handle
+		end
+
 	set_device (a_device : DEVICE) is
 			-- Set device with `a_device'.
 		do
@@ -120,6 +136,16 @@ feature -- Element change
 			foreground := a_foreground
 		ensure
 			foreground_copied : foreground = a_foreground
+		end
+
+	set_paint_structure (a_paint_structure : like paint_structure) is
+			-- Set foreground with `a_foreground'.
+		require
+			a_paint_structure_not_void: a_paint_structure /= Void
+		do
+			paint_structure := a_paint_structure
+		ensure
+			paint_structure_copied : paint_structure = a_paint_structure
 		end
 
 feature -- Removal

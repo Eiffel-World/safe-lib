@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_CONTROL"
-	date: "$Date: 2004/06/29 19:57:56 $";
-	revision: "$Revision: 1.8 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.9 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -54,13 +54,81 @@ feature -- Access
 			end
 		end
 
-	handle : POINTER
-			-- Handle to the OS ressource.
+	get_bounds : RECTANGLE is
+		local
+			rect : RECT
+			res : INTEGER
+			hwnd_parent : POINTER
+			width, height : INTEGER
+		do
+			check_widget
+			force_resize
+			create rect.make_new_unshared
+			res := os.get_window_rect (handle, rect.item)
+			if parent = Void then
+				hwnd_parent := default_pointer
+			else
+				hwnd_parent := parent.handle
+			end
+			res := os.map_window_points (default_pointer, hwnd_parent, rect.item, 2)
+			width := rect.right - rect.left
+			height := rect.bottom - rect.top
+			create Result.make (rect.left, rect.top, width, height)			
+		end
 
 	get_shell : SHELL is
 		do
 			check_widget
 			Result := parent.get_shell			
+		end
+
+	parent : COMPOSITE
+	
+	get_background : COLOR is
+		do
+			
+		end
+		
+	get_foreground : COLOR is
+		do
+			
+		end
+		
+feature {WIDGET, DISPLAY} -- Access
+
+	menu_shell : DECORATIONS is
+		require
+			parent_not_void: parent /= Void
+		do
+			Result := parent.menu_shell
+		end
+
+	handle : POINTER
+			-- Handle to the OS ressource.
+
+	get_background_pixel : INTEGER is
+			-- Get background pixel color.
+		do
+			if background = -1 then
+				Result := default_background
+			else
+				Result := background
+			end
+		end
+
+	get_foreground_pixel : INTEGER is
+			-- Get foreground pixel color.
+		do
+			if foreground = -1 then
+				Result := default_foreground
+			else
+				Result := foreground
+			end
+		end
+
+	find_brush (pixel : INTEGER) : POINTER is
+		do
+			Result := parent.find_brush (pixel)
 		end
 		
 feature -- Measurement
@@ -81,6 +149,104 @@ feature -- Status report
 --	return control == this;
 		end
 
+	get_enabled : BOOLEAN is
+		do
+			check_widget
+			Result := os.is_window_enabled (handle) /= 0
+		end
+
+	is_active : BOOLEAN is
+		local
+			display : DISPLAY
+			modal, shell : SHELL
+			bits : INTEGER
+			control : CONTROL
+		do
+			display := get_display
+			modal := display.get_modal_shell
+			Result := True
+			if modal /= Void and then modal /= Current then
+				if UINT32_.u_and (modal.style, swt.style_primary_modal) /= 0 then
+					shell := get_shell
+					if modal.parent = shell then
+						Result := false
+					end
+				end
+				bits := UINT32_.u_or (swt.Style_application_modal, swt.Style_system_modal)
+				if UINT32_.u_and (modal.style, bits) /= 0 then
+					from
+						control := Current				
+					until
+						control = Void or else control = modal
+					loop
+						control := control.parent
+					end
+					if control /= modal then
+						Result := False
+					end
+				end
+			end
+			if Result then
+				Result := get_shell.get_enabled
+			end			
+		end
+	
+	is_enabled : BOOLEAN is
+		do
+			check_widget
+			Result := get_enabled and parent.is_enabled
+		end
+	
+	is_visible : BOOLEAN is
+		do
+			check_widget
+			Result := os.is_window_visible (handle) /= 0
+		end
+
+	is_focus_control : BOOLEAN is
+		do
+			check_widget
+			Result := has_focus
+		end
+		
+	has_focus : BOOLEAN is
+		local
+			hwndFocus : POINTER
+			done : BOOLEAN
+		do
+			hwndFocus := os.get_focus
+			from
+			until
+				hwndFocus = default_pointer or else done
+			loop
+				if hwndFocus = handle then
+					done := True
+					Result := True
+				end
+				if Widget_table.item (handle) /= Void then
+					Result := False
+					done := True
+				end
+				hwndFocus := os.get_parent (handle)
+			end 
+		end
+	
+	get_visible : BOOLEAN is
+		local
+			bits : INTEGER
+		do
+			check_widget
+			bits := os.get_window_long_a (handle, os.GWL_STYLE)
+			Result := UINT32_.u_and (bits, os.WS_VISIBLE) /= 0
+		end
+		
+	is_tab_group : BOOLEAN is
+		local
+			list : DS_LIST[CONTROL]
+		do
+			list := parent.get_tab_list_
+		end
+		
 feature -- Status setting
 
 	set_visible (visible : BOOLEAN) is
@@ -131,10 +297,127 @@ feature -- Status setting
 			end
 		end
 
+	super_set_enabled, set_enabled (enabled : BOOLEAN) is
+		local
+			must_fix_focus : BOOLEAN
+			enable_value : INTEGER
+			res : INTEGER
+		do
+			check_widget
+			--* Feature in Windows.  If the receiver has focus, disabling
+			--* the receiver causes no window to have focus.  The fix is
+			--* to assign focus to the first ancestor window that takes
+			--* focus.  If no window will take focus, set focus to the
+			--* desktop.
+			--*/
+			if not enabled then
+				must_fix_focus := is_focus_ancestor
+			end
+			if enabled then
+				enable_value := 1
+			else
+				enable_value := 0
+			end
+			res := os.enable_window (handle, enable_value)
+			if must_fix_focus then
+				fix_focus
+			end			
+		end
+		
 feature -- Cursor movement
 
-feature -- Element change
+feature {WIDGET} -- Element change
 
+	set_saved_focus : BOOLEAN is
+		do
+			Result := force_focus
+		end
+	
+	force_focus : BOOLEAN is
+		local
+			shell : DECORATIONS
+		do
+			check_widget
+			shell := menu_shell
+			shell.set_saved_focus_control (Current)
+			if not is_enabled or else not is_visible or else not is_active then
+				Result := False
+			else
+				if is_focus_control then
+					Result := True
+				else
+					shell.bring_to_top
+					--/*
+					--* This code is intentionally commented.
+					--*
+					--* When setting focus to a control, it is
+					--* possible that application code can set
+					--* the focus to another control inside of
+					--* WM_SETFOCUS.  In this case, the original
+					--* control will no longer have the focus
+					--* and the call to setFocus() will return
+					--* false indicating failure.
+					--* 
+					--* We are still working on a solution at
+					--* this time.
+					--*/
+					--//	if (OS.GetFocus () != OS.SetFocus (handle)) return false;
+					--OS.SetFocus (handle);
+					--return isFocusControl ();
+				end
+			end
+			
+		end
+
+	force_resize is
+		local
+			wp : WINDOWPOS
+			lpwp : DS_LIST[WINDOWPOS]
+			cursor : DS_LIST_CURSOR[WINDOWPOS]
+			res : INTEGER
+			done : BOOLEAN
+		do
+			if parent = Void then
+				do_nothing
+			else
+				lpwp := parent.lpwp
+				if lpwp /= Void then
+					from
+						cursor := lpwp.new_cursor
+						cursor.start
+					until
+						cursor.off or else done
+					loop
+						wp := cursor.item
+						if wp /= Void and then wp.hwnd = handle then
+							--		* This code is intentionally commented.  All widgets that
+							--		* are created by SWT have WS_CLIPSIBLINGS to ensure that
+							--		* application code does not draw outside of the control.
+							--		*/	
+							--//			int count = parent.getChildrenCount ();
+							--//			if (count > 1) {
+							--//				int bits = OS.GetWindowLong (handle, OS.GWL_STYLE);
+							--//				if ((bits & OS.WS_CLIPSIBLINGS) == 0) wp.flags |= OS.SWP_NOCOPYBITS;
+							--//			}
+							res := os.set_window_pos (wp.hwnd, default_pointer, wp.x, wp.y, wp.cx, wp.cy, wp.flags)
+							done := True
+						end
+						cursor.forth
+					end
+				end
+			end
+		end
+	
+	set_background (a_background : COLOR) is
+		do
+--FIXME			
+		end
+		
+	set_foreground (a_foreground : COLOR) is
+		do	
+--FIXME
+		end
+		
 feature -- Removal
 
 feature -- Resizing
@@ -147,6 +430,28 @@ feature -- Duplication
 
 feature -- Miscellaneous
 
+	compute_tab_root : CONTROL is
+		do
+			
+		end
+		
+	compute_tab_group : CONTROL is
+		do
+			
+		end
+	
+	compute_tab_list : DS_LIST[CONTROL] is
+		do
+			create {DS_LINKED_LIST[CONTROL]}Result.make
+			if is_tab_group then
+				if get_visible and then get_enabled then
+					Result.put_last (Current)
+				end
+			end
+		ensure
+			compute_tab_list_not_void: Result /= Void
+		end
+		
 feature -- Basic operations
 
 	fix_focus is
@@ -156,7 +461,8 @@ feature -- Basic operations
 		do
 			l_shell := get_shell
 			l_control := Current
---	while ((control = control.parent) != null) {
+--FIXME
+-- while ((control = control.parent) != null) {
 --		if (control.setFocus () || control == shell) return;
 --	}
 --	OS.SetFocus (0);			
@@ -254,6 +560,28 @@ feature -- Basic operations
 				Result := call_window_proc (msg, wParam, lParam)
 			end
 		end
+
+	draw_background (hdc : POINTER; rect : RECT) is
+		local
+			display : DISPLAY
+			hpalette : POINTER
+			pixel : INTEGER
+			hbrush : POINTER
+			res : INTEGER
+			pres : POINTER
+		do
+			display := get_display
+			hpalette := display.h_palette
+			if hpalette /= default_pointer then
+				pres := os.select_palette (hdc, hpalette, 0)
+				res := os.realize_palette (hdc)
+			end
+			pixel := get_background_pixel
+			hbrush := find_brush (pixel)
+			res := os.fill_rect (hdc, rect.item, hbrush)
+		end
+		
+feature -- Event handling
 
 	do_WM_ACTIVATE (wParam, lParam : INTEGER) : LRESULT is
 		do
@@ -1270,57 +1598,67 @@ feature -- Basic operations
 		end
 
 	do_WM_PAINT (wParam, lParam : INTEGER) : LRESULT is
+		local
+			rgn : POINTER
+			ps : PAINTSTRUCT
+			l_data : GC_DATA
+			gc : GC
+			event : EVENT
+			res : INTEGER
 		do
-
-	--	/* Exit early - don't draw the background */
-	--	if (!hooks (SWT.Paint) && !filters (SWT.Paint)) {
-	--		return null;
-	--	}
-
-	--	/* Get the damage */
-	--	int result = 0;
-	--	if (OS.IsWinCE) {
-	--		RECT rect = new RECT ();
-	--		OS.GetUpdateRect (handle, rect, false);
-	--		result = callWindowProc (OS.WM_PAINT, wParam, lParam);
-	--		OS.InvalidateRect (handle, rect, false);
-	--	} else {
-	--		int rgn = OS.CreateRectRgn (0, 0, 0, 0);
-	--		OS.GetUpdateRgn (handle, rgn, false);
-	--		result = callWindowProc (OS.WM_PAINT, wParam, lParam);
-	--		OS.InvalidateRgn (handle, rgn, false);
-	--		OS.DeleteObject (rgn);
-	--	}
-
-	--	/* Create the paint GC */
-	--	PAINTSTRUCT ps = new PAINTSTRUCT ();
-	--	GCData data = new GCData ();
-	--	data.ps = ps;
-	--	GC gc = GC.win32_new (this, data);
-	--	
-	--	/* Send the paint event */
-	--	Event event = new Event ();
-	--	event.gc = gc;
-	--	event.x = ps.left;
-	--	event.y = ps.top;
-	--	event.width = ps.right - ps.left;
-	--	event.height = ps.bottom - ps.top;
-	--	/*
-	--	* It is possible (but unlikely), that application
-	--	* code could have disposed the widget in the paint
-	--	* event.  If this happens, attempt to give back the
-	--	* paint GC anyways because this is a scarce Windows
-	--	* resource.
-	--	*/
-	--	sendEvent (SWT.Paint, event);
-	--	// widget could be disposed at this point	
-
-	--	/* Dispose the paint GC	*/
-	--	event.gc = null;
-	--	gc.dispose ();
-	--	
-	--	if (result == 0) return LRESULT.ZERO;
-	--	return new LRESULT (result);
+			create Result
+			--	/* Exit early - don't draw the background */
+			--	if (!hooks (SWT.Paint) && !filters (SWT.Paint)) {
+			--		return null;
+			--	}
+		
+			--	/* Get the damage */
+			--	int result = 0;
+			if os.is_wince then
+				--		RECT rect = new RECT ();
+				--		OS.GetUpdateRect (handle, rect, false);
+				--		result = callWindowProc (OS.WM_PAINT, wParam, lParam);
+				--		OS.InvalidateRect (handle, rect, false);				
+			else
+				rgn := os.create_rect_rgn (0, 0, 0, 0)
+				res := os.get_update_rgn (handle, rgn, 0) -- False
+				Result.set_value (call_window_proc (os.WM_PAINT, wparam, lparam))
+				res := os.invalidate_rgn (handle, rgn, 0)
+				res := os.delete_object (rgn)
+			--		int rgn = OS.CreateRectRgn (0, 0, 0, 0);
+			--		OS.GetUpdateRgn (handle, rgn, false);
+			--		result = callWindowProc (OS.WM_PAINT, wParam, lParam);
+			--		OS.InvalidateRgn (handle, rgn, false);
+			--		OS.DeleteObject (rgn);
+			--	}
+			end
+			--	/* Create the paint GC */
+			create ps.make_new_unshared
+			create l_data.make
+			l_data.set_paint_structure (ps)
+			create gc.make_win32 (Current, l_data)
+			
+			--	/* Send the paint event */
+			create event.make
+			event.set_gc (gc)
+			event.set_x (ps.left)
+			event.set_y (ps.top)
+			event.set_width (ps.right - ps.left)
+			event.set_height (ps.bottom - ps.top)
+			
+			--	/*
+			--	* It is possible (but unlikely), that application
+			--	* code could have disposed the widget in the paint
+			--	* event.  If this happens, attempt to give back the
+			--	* paint GC anyways because this is a scarce Windows
+			--	* resource.
+			--	*/
+			send_event_by_type_and_event (swt.event_PAINT, event)
+			--	// widget could be disposed at this point	
+		
+			--	/* Dispose the paint GC	*/
+			event.set_gc (Void)
+			gc.dispose_resource
 		end
 
 	do_WM_PALETTECHANGED (wParam, lParam : INTEGER) : LRESULT is
@@ -1902,8 +2240,15 @@ feature -- Basic operations
 		end
 		
 		
-	traverse_group (next : BOOLEAN) is --  : BOOLEAN is
+	traverse_group (next : BOOLEAN) : BOOLEAN is
+		local
+			root, group : CONTROL
+			list : DS_LIST[CONTROL]
 		do
+			root := compute_tab_root
+			group := compute_tab_group
+			list := root.compute_tab_list
+--FIXME			
 	--	Control root = computeTabRoot ();
 	--	Control group = computeTabGroup ();
 	--	Control [] list = root.computeTabList ();
@@ -1952,28 +2297,34 @@ feature {NONE} -- Implementation
 		end
 
 	release_widget is
+		local
+			pres : POINTER
+			shell : SHELL
 		do
 			Precursor
-			--	if (OS.IsDBLocale) {
-			--		OS.ImmAssociateContext (handle, 0);
-			--	}
-			--	if (toolTipText != null) {
-			--		Shell shell = getShell ();
-			--		shell.setToolTipText (handle, null);
-			--	}
-			--	toolTipText = null;
-			--	if (menu != null && !menu.isDisposed ()) {
-			--		menu.dispose ();
-			--	}
-			--	menu = null;
+			if os.is_db_locale then
+				pres := os.imm_associate_context (handle, default_pointer)
+			end
+			if tooltip_text /= Void then
+				shell := get_shell
+				shell.set_tooltip_text (handle, Void)
+			end
+			tooltip_text := Void
+			if menu /= Void and then not menu.is_resource_disposed then
+				menu.dispose_resource
+			end
+			menu := Void
 			deregister
 			--	unsubclass ();
 			parent := Void
-			--	layoutData = null;
-			--	if (accessible != null) {
-			--		accessible.internal_dispose_Accessible ();
-			--	}
-			--	accessible = null;
+			layout_data := Void
+			if accessible /= Void then
+				accessible.internal_dispose_accessible
+			end
+			accessible := Void
+			
+			-- ensure postcondition
+			is_widget_released := True
 		end
 		
 	release_handle is
@@ -1987,11 +2338,12 @@ feature {NONE} -- Implementation
 	create_handle is
 		local
 			l_hwnd_parent : POINTER
-			l_handle_IMC : INTEGER
+			l_handle_IMC : POINTER
 			l_bits : INTEGER
 			xs_handle : XS_C_POINTER
 			dummy : INTEGER
 			res : INTEGER
+			pres : POINTER
 		do		
 			l_hwnd_parent := default_pointer
 			if (handle /= default_pointer) then
@@ -2024,8 +2376,8 @@ feature {NONE} -- Implementation
 				dummy := os.set_window_long_a (handle, os.Gwl_id, xs_handle.as_integer)
 			end
 			if os.is_db_locale and (parent /= Void) then
-				l_handle_IMC := os.imm_get_context (l_hwnd_parent) 
-				res := os.imm_associate_context (handle, l_handle_IMC)
+				l_handle_IMC := os.imm_get_context (l_hwnd_parent)
+				pres := os.imm_associate_context (handle, l_handle_IMC)
 				res := os.imm_release_context (l_hwnd_parent, l_handle_IMC)
 			end
 		end
@@ -2080,12 +2432,21 @@ feature {NONE} -- Implementation
 		end
 
 	subclass is
+		local
+			old_proc : POINTER
+			new_proc : POINTER
+			proc_index : XS_C_POINTER
+			res : INTEGER
 		do
--- FIXME
---			int oldProc = windowProc ();
---			int newProc = getDisplay ().windowProc;
---			if (oldProc == newProc) return;
---			OS.SetWindowLong (handle, OS.GWL_WNDPROC, newProc);			
+			old_proc := window_proc_pointer
+			new_proc := get_display.window_proc_pointer
+			if old_proc = new_proc then
+				do_nothing
+			else
+				create proc_index.make
+				proc_index.put (new_proc)
+				res := os.set_window_long_a (handle, os.GWL_WNDPROC, proc_index.as_integer)
+			end
 		end
 
 	widget_ext_style : INTEGER is
@@ -2121,15 +2482,82 @@ feature {NONE} -- Implementation
 	window_class : TCHAR is
 		deferred		
 		end
+	
+	window_proc_pointer : POINTER is
+		deferred
+		end
+
+	internal_new_GC (l_data : GC_DATA ) : POINTER is
+			-- Allocate a new platform specific GC handle.
+		local
+			mask : INTEGER
+			layout : INTEGER
+			res : XS_C_UINT32
+		do
+			check_widget
+			if l_data = Void or else l_data.paint_structure = Void then
+				Result := os.get_dc (handle)
+			else
+				Result := os.begin_paint (handle, l_data.paint_structure.item)
+			end
+			if Result = default_pointer then
+				swt.error(SWT.ERROR_NO_HANDLES)
+			else
+				if l_data /= Void then
+					if UINT32_.u_or (UINT32_.left_shift (os.win32_major, 16), os.win32_minor) >=
+					   UINT32_.u_or (UINT32_.left_shift (4, 16), 10) then
+						mask := UINT32_.u_or (swt.Style_left_to_right, swt.Style_right_to_left)
+						if UINT32_.u_and (l_data.style, mask) /= 0 then
+							if UINT32_.u_and (l_data.style, swt.Style_right_to_left) /= 0 then
+								layout := os.Layout_rtl
+							else
+								layout := 0
+							end
+							l_data.set_layout (layout)
+						else
+							layout := os.get_layout (Result)
+							if UINT32_.u_and (layout, os.LAYOUT_RTL) /= 0 then
+								l_data.set_style (UINT32_.u_or (UINT32_.u_or (l_data.style, swt.Style_right_to_left), swt.Style_mirrored))
+							else
+								l_data.set_style (UINT32_.u_or (l_data.style, swt.style_left_to_right))
+							end
+						end
+					else
+						l_data.set_style (UINT32_.u_or (l_data.style, swt.style_left_to_right))		
+					end
+					l_data.set_device (get_display)
+					l_data.set_foreground (get_foreground_pixel)
+					l_data.set_background (get_background_pixel)
+					create res.make
+					res.put (os.send_message_a (handle, os.WM_GETFONT, 0, 0))
+					l_data.set_font_handle (res.as_pointer)
+					l_data.set_window_handle (handle)
+				end
+			end
+		end
+
+	internal_dispose_GC (a_gc_handle : POINTER; a_gc_data : GC_DATA )is
+			-- Dispose a platform specific GC handle.
+		do
+		end
 		
 feature {NONE} -- Attributes
-
-	parent : COMPOSITE
 
 	foreground : INTEGER
 	
 	background : INTEGER
 
+	default_foreground : INTEGER is
+		do
+			Result := os.get_sys_color (os.COLOR_WINDOWTEXT)
+		end
+		
+	default_background : INTEGER is
+		do
+			Result := os.get_sys_color (os.COLOR_BTNFACE)
+		end
+		
+		
 invariant
 	invariant_clause: -- Your invariant here
 

@@ -1,7 +1,7 @@
 indexing
 	description : "OS specific constants"
-	date: "$Date: 2004/06/29 19:57:56 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 	note: "This class has been obtained by extracting OS related constants from the corresponding Javadoc"
@@ -346,6 +346,7 @@ feature -- Constants
 	LB_SETHORIZONTALEXTENT : INTEGER is 404 
 	LB_SETSEL : INTEGER is 389 
 	LB_SETTOPINDEX : INTEGER is 407 
+	LAYOUT_RTL : INTEGER is 1
 	LBN_DBLCLK : INTEGER is 2 
 	LBN_SELCHANGE : INTEGER is 1 
 	LBS_EXTENDEDSEL : INTEGER is 2048 
@@ -701,10 +702,12 @@ feature -- Constants
 	SW_HIDE : INTEGER is 0 
 	SW_INVALIDATE : INTEGER is 2 
 	SW_PARENTOPENING : INTEGER is 3 
+	SW_RESTORE : INTEGER is 9
 	SW_SCROLLCHILDREN : INTEGER is 1 
 	SW_SHOW : INTEGER is 5 
 	SW_SHOWMINNOACTIVE : INTEGER is 7 
 	SW_SHOWNA : INTEGER is 8 
+	SW_SHOWMAXIMIZED : INTEGER is 3
 	SW_SHOWNOACTIVATE : INTEGER is 4 
 	SWP_DRAWFRAME : INTEGER is 32 
 	SWP_NOACTIVATE : INTEGER is 16 

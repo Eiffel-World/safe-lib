@@ -5,8 +5,8 @@ indexing
 	Devices can have a graphics context (GC) created for them, and they can be drawn on by sending messages to the associated GC.
 
 	]"
-	date: "$Date: 2004/06/29 16:49:46 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2004/07/06 20:15:17 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -32,6 +32,8 @@ feature {NONE} -- Initialization
 		
 feature -- Access
 
+	objects_errors : DS_LIST[DS_PAIR[ANY,UT_ERROR]]
+	
 feature -- Measurement
 
 feature -- Comparison
@@ -107,22 +109,6 @@ feature {NONE} -- Implementation
 			-- Initializes any internal resources needed by the device.
 			-- This method is called after create.
 			-- If subclasses reimplement this method, they must call the super implementation.
-		deferred
-		end
-
-	internal_new_GC (a_gc_data : ABSTRACT_GC_DATA ) : POINTER is
-			-- Allocate a new platform specific GC handle.
-		require
-			not_is_resource_disposed : not is_resource_disposed
-		deferred
-		ensure
-			handle_defined : Result /= Void
-		end
-
-	internal_dispose_GC (a_gc_handle : POINTER; a_gc_data : ABSTRACT_GC_DATA )is
-			-- Dispose a platform specific GC handle.
-		require
-			a_gc_handle_defined : a_gc_handle /= Void
 		deferred
 		end
 

@@ -3,8 +3,8 @@ indexing
 		This class provides access to a small number of SWT system-wide methods,
 		and in addition inherit from the public constants provided by SWT
 		]"
-	date: "$Date: 2003/12/30 21:12:43 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.2 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -18,7 +18,7 @@ feature -- Access
 	swt : SWT is
 			-- Common constants and features.
 		once
-			Create Result
+			Create Result.make
 		end
 
 feature -- Measurement

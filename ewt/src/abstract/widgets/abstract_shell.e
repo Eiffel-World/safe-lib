@@ -33,8 +33,8 @@ indexing
 	Note: Only one of the styles APPLICATION_MODAL, MODELESS, PRIMARY_MODAL and SYSTEM_MODAL may be specified.
 	
 	]"
-	date: "$Date: 2003/12/30 10:58:04 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -111,20 +111,95 @@ feature {NONE} -- Initialization
 		deferred
 		end
 
+
 feature -- Access
 
+	get_bounds : RECTANGLE is
+			-- Rectangle describing the receiver's size and location relative to its parent (or its display if its parent is null). 
+		deferred
+		end
+
+	get_display : DISPLAY is
+			-- Display that the receiver was created on.
+		deferred
+		end
+	
+	get_ime_input_mode : INTEGER is
+			-- Input method editor mode.
+		deferred
+		end
+
+	get_location : POINT is
+			-- Point describing the receiver's location relative to its parent (or its display if its parent is null). 
+		deferred
+		end
+		
+	get_shell : SHELL is
+			-- Shell of Current
+		deferred
+		end
+		
+	get_shells : DS_LIST[SHELL] is
+			-- Shells which are descendents of the receiver.
+		deferred
+		end
+
+	last_active : CONTROL
+			-- Last active control.
+		
 feature -- Measurement
 
 feature -- Comparison
 
 feature -- Status report
 
+	get_enabled : BOOLEAN is
+		deferred
+		end
+
+	is_enabled : BOOLEAN is
+			-- Is Current enabled and are all of the Current's ancestors enabled ?
+		deferred
+		end
+
 feature -- Status setting
+
+	set_enabled (enabled : BOOLEAN) is
+		deferred
+		ensure
+--FIXME?
+			enabled: get_enabled
+		end
 
 feature -- Cursor movement
 
 feature -- Element change
 
+	remove_shell_listener (listener : SHELL_LISTENER) is
+			-- Removes the listener from the collection of listeners who will be notified 
+			-- when operations are performed on Current.
+		deferred
+		end
+		
+	set_active is
+			-- Moves the receiver to the top of the drawing order for the display on which it was created 
+			-- (so that all other shells on that display, which are not the receiver's children will be drawn behind it) 
+			-- and asks the window manager to make the shell active.
+		deferred	
+		end
+	
+	set_ime_input_mode (mode : INTEGER) is
+			-- Sets the input method editor mode to the argument which should be the result 
+			-- of bitwise OR'ing together one or more of the following constants defined 
+			-- in class SWT: NONE, ROMAN, DBCS, PHONETIC, NATIVE, ALPHA.
+		deferred
+		end
+		
+	set_visible (visible : BOOLEAN) is
+			-- Marks Current as visible if the argument is true, and marks it invisible otherwise.
+		deferred
+		end
+		
 feature -- Removal
 
 feature -- Resizing
@@ -145,6 +220,30 @@ feature -- Basic operations
 			-- and sets focus to its default button (if it has one) and asks the window manager to make the shell active.
 		require
  			not_is_resource_disposed : not is_resource_disposed
+		deferred
+		end
+
+	add_shell_listener (listener : SHELL_LISTENER) is
+			-- Adds the listener to the collection of listeners who will be notified when operations are performed on 
+			-- Current, by sending the listener one of the messages defined in the ShellListener interface.  
+		deferred
+		end
+		
+	close is
+			-- Requests that the window manager close the receiver in the same way it would be closed when the user clicks on the "close box" or performs some other platform 
+			-- specific key or mouse combination that indicates the window should be removed. 
+		deferred
+		end
+	
+	dispose_resources is
+			-- Disposes of the operating system resources associated with the receiver and all its descendents.
+		deferred
+		end
+
+	force_active is
+			-- Moves the receiver to the top of the drawing order for the display on which it was created (so 
+			-- that all other shells on that display, which are not Current's 
+			-- children will be drawn behind it) and forces the window manager to make the shell active. 
 		deferred
 		end
 		

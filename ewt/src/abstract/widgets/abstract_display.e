@@ -20,8 +20,8 @@ indexing
 	Events:
 		Close, Release	
 	]"
-	date: "$Date: 2003/12/30 12:50:58 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2004/07/06 20:15:17 $";
+	revision: "$Revision: 1.7 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -31,6 +31,8 @@ deferred class
 inherit
 	ABSTRACT_DEVICE
 
+	SHARED_DISPLAY
+	
 feature {NONE} -- Initialization
 
 	make is
@@ -136,18 +138,7 @@ feature {NONE} -- Implementation
 	initialize_key_table is
 			-- initialize key table
 		deferred
-		end
-
-	default_display : DISPLAY is
-		do
-			Result := default_display_cell.item
-		end
-		
-	default_display_cell : DS_CELL[DISPLAY] is
-		once
-			Create Result.make (Void)
-		end
-		
+		end		
 		
 invariant
 	invariant_clause: -- Your invariant here

@@ -1,54 +1,33 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DRAWABLE"
-	date: "$Date: 2003/12/30 12:50:58 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
-class
+deferred class
 	DRAWABLE
 	
-feature {NONE} -- Initialization
+inherit
+	ABSTRACT_DRAWABLE
+	
+feature -- Platform specific
 
-feature -- Access
+	internal_new_GC (a_gc_data : ABSTRACT_GC_DATA ) : POINTER is
+			-- Allocate a new platform specific GC handle.
+--		require
+--			not_is_resource_disposed : not is_resource_disposed
+		deferred
+		ensure
+			handle_defined : Result /= default_pointer
+		end
 
-feature -- Measurement
-
-feature -- Comparison
-
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
-
-feature -- Constants
-
-feature {NONE} -- Implementation
-
-		
-invariant
-	invariant_clause: -- Your invariant here
+	internal_dispose_GC (a_gc_handle : POINTER; a_gc_data : ABSTRACT_GC_DATA )is
+			-- Dispose a platform specific GC handle.
+		require
+			a_gc_handle_defined : a_gc_handle /= default_pointer
+		deferred
+		end
 
 end -- class DRAWABLE
 

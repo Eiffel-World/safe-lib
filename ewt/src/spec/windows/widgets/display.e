@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DISPLAY"
-	date: "$Date: 2004/06/29 19:57:56 $";
-	revision: "$Revision: 1.11 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.12 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -85,6 +85,7 @@ feature -- Access
 --			public static synchronized Display getCurrent () {
 --				return findDisplay (Thread.currentThread ());
 --			}
+			Result := get_default
 		end
 
 	get_default : DISPLAY is
@@ -96,17 +97,39 @@ feature -- Access
 --				if (Default == null) Default = new Display ();
 --					return Default;
 --				}
+			Result := default_display
 		end
 
-feature {DISPLAY} -- Access
+feature {CONTROL} -- Access
 
 	trim_enabled : BOOLEAN
 		-- static
-
-feature {SCROLLABLE} -- Access
-
+		
 	window_class : TCHAR
 
+	window_proc_pointer : POINTER
+
+	get_shells : DS_LIST[SHELL] is
+		local
+			shells_cursor : DS_LIST_CURSOR[SHELL]
+		do
+			check_device
+			create {DS_LINKED_LIST[SHELL]}Result.make
+			from
+				shells_cursor := Widget_table.shells.new_cursor
+				shells_cursor.start
+			until
+				shells_cursor.off
+			loop
+				if not shells_cursor.item.is_resource_disposed and shells_cursor.item.get_display = Current then
+					Result.put_last (shells_cursor.item)
+				end
+				shells_cursor.forth
+			end
+		ensure
+			get_shells_not_void: Result /= Void
+		end
+		
 feature {CONTROL} -- Access
 
 	system_font : POINTER is
@@ -130,11 +153,17 @@ feature {CONTROL} -- Access
 			result_defined : Result /= Void
 		end
 
+	modal_widgets : DS_LIST[SHELL]
+	
 feature {NONE} -- Access
 
+
+	msg_filter_proc_pointer : POINTER
+	message_proc_pointer : POINTER
+
+		-- message only procedure
 	
 	window_dispatcher_instance : WNDPROC_DISPATCHER_INSTANCE
-	window_proc_pointer : POINTER
 	
 	thread_id : INTEGER	
 	process_id : INTEGER
@@ -144,11 +173,8 @@ feature {NONE} -- Access
 	hwnd_message : POINTER
 		-- message only window handle
 		
-	message_proc_pointer : POINTER
-		-- message only procedure
 
 	message_dispatcher_instance : MSGPROC_DISPATCHER_INSTANCE
-	msg_filter_proc_pointer : POINTER
 
 	hook_dispatcher_instance : HOOKPROC_DISPATCHER_INSTANCE	
 	h_hook : POINTER
@@ -162,7 +188,7 @@ feature {NONE} -- Access
 		end
 		
 
-feature {NONE} -- Keyboard and Mouse State
+feature {CONTROL} -- Keyboard and Mouse State
 
 	lock_active_window : BOOLEAN
 	last_virtual : BOOLEAN
@@ -187,6 +213,27 @@ feature -- Status setting
 feature -- Cursor movement
 
 feature -- Element change
+
+	set_modal_shell (shell : SHELL) is
+		local
+			shells_cursor : DS_LIST_CURSOR[SHELL]
+		do
+			if modal_widgets = Void then
+				create {DS_LINKED_LIST[SHELL]}modal_widgets.make
+			end
+			if not modal_widgets.has (shell) then
+				modal_widgets.put_last (shell)
+			end
+			from
+				shells_cursor := get_shells.new_cursor
+				shells_cursor.start
+			until
+				shells_cursor.off
+			loop
+				shells_cursor.item.update_modal
+				shells_cursor.forth
+			end
+		end
 
 feature -- Removal
 
@@ -304,6 +351,33 @@ feature -- Basic operations
 		do
 			--| FIXME
 		end
+	
+	get_focus_control : CONTROL is
+		do
+			check_device
+			Result := find_control (os.get_focus)
+
+		end
+	
+	clear_modal (shell : SHELL) is
+		local
+			shells_cursor : DS_LIST_CURSOR[SHELL]
+		do
+			if modal_widgets /= Void then
+				if modal_widgets.has (shell) then
+					modal_widgets.delete (shell)
+					from
+						shells_cursor := get_shells.new_cursor
+						shells_cursor.start
+					until
+						shells_cursor.off
+					loop
+						shells_cursor.item.update_modal
+						shells_cursor.forth
+					end
+				end
+			end
+		end
 		
 feature -- Obsolete
 
@@ -312,6 +386,11 @@ feature -- Inapplicable
 feature -- Constants
 
 feature {NONE} -- Implementation
+
+	check_device is
+		do
+			-- FIXME	
+		end
 
 	init is
 		local
@@ -401,7 +480,7 @@ feature {NONE} -- Implementation
 			create message_dispatcher_instance.make (Current)
 			create msgproc_pointer.make
 			msgproc_pointer.put (message_dispatcher_instance.c_dispatcher)
-			swl_result := os.set_window_long_a_external (hwnd_message, os.Gwl_wndproc, msgproc_pointer.as_integer)
+			swl_result := os.set_window_long_a (hwnd_message, os.Gwl_wndproc, msgproc_pointer.as_integer)
 	
 			--	/* Create the message filter hook */
 			

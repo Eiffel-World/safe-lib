@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DECORATIONS"
-	date: "$Date: 2004/06/29 19:57:56 $";
-	revision: "$Revision: 1.8 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.9 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -11,17 +11,28 @@ deferred class
 inherit
 	CANVAS
 		redefine
+			get_bounds,
 			create_widget,
 			widget_ext_style,
 			widget_style,
-			create_handle
+			create_handle,
+			set_visible,
+			menu_shell,
+			compute_tab_root,
+			compute_tab_group,
+			is_tab_group,
+			window_proc,
+			do_WM_WINDOWPOSCHANGING,
+			do_WM_NCACTIVATE,
+			do_WM_ACTIVATE,
+			do_WM_CLOSE
 		end
 		
 	ABSTRACT_DECORATIONS
 		undefine
-			release_handle,
-			destroy_widget,
-			release_widget
+			release_handle
+		redefine
+			saved_focus
 		end
 	
 	SHARED_OS
@@ -40,18 +51,140 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
+	get_bounds : RECTANGLE is
+		local
+			placement : WINDOWPLACEMENT
+			res : INTEGER
+			width, height : INTEGER
+		do
+			check_widget
+			if not os.is_wince then
+				if os.is_iconic (handle) /= 0 then
+					create placement.make_new_unshared
+					placement.set_length (placement.sizeof)
+					res := os.get_window_placement (handle, placement.item)
+					width := placement.right - placement.left
+					height := placement.bottom - placement.top
+					create Result.make (placement.left, placement.top, width, height)
+				end
+			else
+				Result := Precursor
+			end
+		end
+		
+feature {CONTROL} -- Access
+
+	menu_shell : DECORATIONS is
+		do
+			Result := Current
+		end
+
+	image : IMAGE 
+		
+	menu_bar : MENU
+	menus : ARRAY[MENU]
+	saved_focus : CONTROL
+	default_button : BUTTON
+	save_default : BUTTON
+	
+	items : ARRAY[ABSTRACT_MENU_ITEM]
+	sw_flags : INTEGER
+	h_accel : INTEGER
+	n_accel : INTEGER
+	h_icon : INTEGER
+
+		
 feature -- Measurement
 
 feature -- Comparison
 
 feature -- Status report
 
+	is_tab_group : BOOLEAN is
+		do
+			Result := True
+		end
+	
 feature -- Status setting
 
+	set_visible (visible : BOOLEAN) is
+		local
+			res : INTEGER
+		do
+			check_widget
+			if visible = (os.is_window_visible (handle) /= 0) then
+				do_nothing
+			else
+				if visible then
+					send_event_by_type (swt.event_show)
+				--		if (isDisposed ()) return;
+				--		if (OS.IsHPC) {
+				--			if (menuBar != null) {
+				--				int hwndCB = menuBar.hwndCB;
+				--				OS.CommandBar_DrawMenuBar (hwndCB, 0);
+				--			}
+				--		}
+				--		if (OS.IsWinCE) {
+				--			OS.ShowWindow (handle, OS.SW_SHOW);
+				--		} else {
+				--			if (menuBar != null) {
+				--				Display display = getDisplay ();
+				--				display.removeBar (menuBar);
+				--				OS.DrawMenuBar (handle);
+				--			}
+							res := os.show_window (handle, sw_flags)
+				--		}
+						res := os.update_window (handle)
+				else
+						if not os.is_wince then
+							if os.is_iconic (handle) /= 0 then
+								sw_flags := os.SW_SHOWMINNOACTIVE
+							else
+								if os.is_zoomed (handle) /= 0 then
+									sw_flags := os.SW_SHOWMAXIMIZED
+								else
+									if handle = os.get_active_window then
+										sw_flags := os.SW_RESTORE
+									else
+										sw_flags := os.SW_SHOWNOACTIVATE
+									end
+								end
+							end						
+						end
+						res := os.show_window (handle, os.SW_HIDE)
+						send_event_by_type (swt.Event_hide);
+				--	}
+				end
+			end			
+		end
+		
 feature -- Cursor movement
 
-feature -- Element change
+feature {CONTROL} -- Element change
 
+	save_focus is
+		local
+			control : CONTROL
+		do
+			control := get_display.get_focus_control
+			if control /= Void then
+				set_saved_focus_control (control)
+			end
+		end
+		
+	set_saved_focus_control (control : CONTROL) is
+		do
+			if control = Current then
+				saved_focus := Void
+			else
+				if Current /= control.menu_shell then
+					do_nothing
+				else
+					saved_focus := control
+				end
+			end
+		end
+		
 feature -- Removal
 
 feature -- Resizing
@@ -62,26 +195,161 @@ feature -- Conversion
 
 feature -- Duplication
 
-feature -- Miscellaneous
+feature {CONTROL} -- Miscellaneous
 
+	compute_tab_root : CONTROL is
+		do
+			Result := Current
+		end
+	
+	compute_tab_group : CONTROL is
+		do
+			Result := Current
+		end
+		
+	window_proc (msg: INTEGER; wparam: INTEGER; lparam: INTEGER) : INTEGER is
+		do
+			if msg = os.WM_APP or else msg = os.WM_APP + 1 then
+				if (h_accel = -1) then
+					create_accelerators
+				end
+				if msg = os.WM_APP then
+					Result := n_accel
+				else
+					Result := h_accel
+				end
+			else
+				Result := Precursor (msg, wparam, lparam)
+			end
+		end
+		
+	
 feature -- Basic operations
 
 	restore_focus : BOOLEAN is
 		do
-		
-	--	if (savedFocus != null && savedFocus.isDisposed ()) savedFocus = null;
-	--	if (savedFocus != null && savedFocus.setSavedFocus ()) return true;
-	--	/*
-	--	* This code is intentionally commented.  When no widget
-	--	* has been given focus, some platforms give focus to the
-	--	* default button.  Windows doesn't do this.
-	--	*/
-	--//	if (defaultButton != null && !defaultButton.isDisposed ()) {
-	--//		if (defaultButton.setFocus ()) return true;
-	--//	}
-	--	return false;
+			if saved_focus /= Void and then saved_focus.is_resource_disposed  then
+				saved_focus := Void
+			end
+			if saved_focus /= Void and then saved_focus.set_saved_focus then
+				do_nothing
+			else
+				--	/*
+				--	* This code is intentionally commented.  When no widget
+				--	* has been given focus, some platforms give focus to the
+				--	* default button.  Windows doesn't do this.
+				--	*/
+				--//	if (defaultButton != null && !defaultButton.isDisposed ()) {
+				--//		if (defaultButton.setFocus ()) return true;
+				--//	}
+				Result := False
+			end
 		end
 
+	bring_to_top is
+		local
+			res : INTEGER
+		do
+			res := os.bring_window_to_top (handle)
+		end
+
+feature {CONTROL} -- Basic operations
+
+	do_WM_ACTIVATE (wparam, lparam : INTEGER) : LRESULT is
+		local
+			shell : SHELL
+		do
+			Result := Precursor (wparam, lparam)
+			if Result /= Void then
+				do_nothing
+			else
+				if UINT32_.u_and (wparam, 0xFFFF) /= 0 then
+					if UINT32_.right_shift (wparam, 16) /= 0 then
+						do_nothing
+					else
+						send_event_by_type (swt.Event_activate)
+						if is_resource_disposed or else restore_focus or else traverse_group (true) then
+							create Result
+							Result.set_value (0)
+						end
+					end
+				else
+					shell := get_shell
+					shell.set_active_control (Void)
+					if is_resource_disposed then
+						create Result
+						Result.set_value (0)
+					else
+						send_event_by_type (swt.Event_deactivate)
+						if is_resource_disposed then
+							create Result
+							Result.set_value (0)
+						else
+							save_focus
+						end
+					end
+				end
+			end
+		end
+		
+	do_WM_CLOSE (wparam, lparam : INTEGER) : LRESULT is
+		local
+			event : EVENT
+		do
+			Result := Precursor (wparam, lparam)
+			if result /= Void then
+				do_nothing
+			else
+				create event.make
+				send_event_by_type_and_event (swt.Event_close,event)
+				if event.doit and then not is_resource_disposed then
+					dispose_resource
+				else
+					create Result
+					Result.set_value (0)
+				end
+			end
+		end
+		
+	do_WM_NCACTIVATE (wparam: INTEGER; lparam: INTEGER) : LRESULT is
+		local
+			display : DISPLAY
+		do
+			Result := Precursor (wparam, lparam)	
+			if Result /= Void then
+				do_nothing
+			else
+				if wparam = 0 then
+					display := get_display
+					if display.lock_active_window then
+						create Result
+						Result.set_value (0)
+					end
+				end
+			end
+		end
+
+	do_WM_WINDOWPOSCHANGING (wparam: INTEGER; lparam: INTEGER) : LRESULT is
+		local
+			windowpos : WINDOWPOS
+			windowpos_pointer : XS_C_INT32
+			display : DISPLAY
+		do
+			Result := Precursor (wparam, lparam)
+			if Result /= Void then
+				do_nothing
+			else
+				display := get_display
+				if (display.lock_active_window) then
+					create windowpos_pointer.make
+					windowpos_pointer.put (lparam)
+					create windowpos.make_shared (windowpos_pointer.as_pointer)
+					windowpos.set_flags (UINT32_.u_or (windowpos.flags, os.SWP_NOZORDER))
+				end
+			end
+		end
+
+		
 feature -- Obsolete
 
 feature -- Inapplicable
@@ -126,6 +394,11 @@ feature {NONE} -- Implementation
 					end
 				end
 			end
+		end
+	
+	create_accelerators is
+		do
+			--FIXME
 		end
 		
 
@@ -178,7 +451,7 @@ feature {NONE} -- Implementation
 		--		}
 		
 				if UINT32_.u_and (style, swt.Style_resize) /= 0 then
-					do_nothing
+					Result := UINT32_.u_or (Result, os.Ws_thickframe)
 				else
 					if UINT32_.u_and (style, swt.Style_border) = 0 then
 						Result := UINT32_.u_or (Result, os.ws_border)
@@ -199,11 +472,7 @@ feature {NONE} -- Implementation
 		end
 
 feature {NONE} -- Attributes
-
-	h_accel : INTEGER
 	
-	sw_flags : INTEGER
-
 invariant
 	invariant_clause: -- Your invariant here
 

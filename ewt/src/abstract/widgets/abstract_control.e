@@ -13,8 +13,8 @@ indexing
 	MouseExit, MouseHover, MouseUp, MouseMove, Move, Paint, Resize
 	
 	]"
-	date: "$Date: 2004/06/29 16:49:46 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2004/07/06 20:15:17 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -30,11 +30,34 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	handle : POINTER is
-			-- Handle to the OS ressource.
+	parent : COMPOSITE is
+			-- Parent widget.
 		deferred
 		end
-
+		
+	menu : MENU
+			-- Associated menu.
+		
+	tooltip_text : STRING
+			-- Associated tooltip string.
+		
+	layout_data : ANY
+			-- Layout data.
+		
+	accessible : ACCESSIBLE
+			-- Accessible.
+		
+	get_foreground : COLOR is
+			-- Get foreground color.
+		deferred
+		end
+		
+	get_background : COLOR is
+			-- Get background color.
+		deferred
+		end
+		
+		
 feature -- Measurement
 
 feature -- Comparison
@@ -56,6 +79,17 @@ feature -- Cursor movement
 
 feature -- Element change
 
+	set_background (a_color : COLOR) is
+			-- Set `background_color' to `a_color'.
+		deferred
+		end
+		
+	set_foreground (a_color : COLOR) is
+			-- Set `foreground_color' to `a_color'.
+		deferred
+		end
+	
+		
 feature -- Removal
 
 feature -- Resizing

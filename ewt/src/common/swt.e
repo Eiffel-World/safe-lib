@@ -3,8 +3,8 @@ indexing
 		This class provides access to a small number of SWT system-wide methods,
 		and in addition inherit from the public constants provided by SWT.
 					]"
-	date: "$Date: 2004/06/20 09:16:50 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -14,10 +14,54 @@ class
 inherit
 	SWT_CONSTANTS
 	
+	XS_IMPORTED_UINT32_ROUTINES
+		export
+			{NONE} all
+		end
+		
+creation
+	make
+	
 feature {NONE} -- Initialization
 
+	make is
+			-- creation of computed constants
+		do
+			key_BUTTON_MASK := UINT32_.u_or (UINT32_.u_or (key_BUTTON1, key_BUTTON2), key_BUTTON3)
+			key_MODIFIER_MASK := UINT32_.u_or (UINT32_.u_or (UINT32_.u_or (key_ALT, key_SHIFT), key_CTRL), key_COMMAND)
+			
+			--	String platform = getPlatform ();
+			--	if ("carbon".equals (platform)) { //$NON-NLS-1$
+			--		MOD1 = COMMAND;
+			--		MOD2 = SHIFT;
+			--		MOD3 = ALT;
+			--		MOD4 = CONTROL;
+			--	} else {
+			key_MOD1 := key_CONTROL
+			key_MOD2 := key_SHIFT
+			key_MOD3 := key_ALT
+			key_MOD4 := 0
+			
+			--		MOD1 = CONTROL;
+			--		MOD2 = SHIFT;
+			--		MOD3 = ALT;
+			--		MOD4 = 0;
+		end
+		
 feature -- Access
 
+	key_MOD1 : INTEGER
+	
+	key_MOD2 : INTEGER
+	
+	key_MOD3 : INTEGER
+	
+	key_MOD4 : INTEGER
+	
+	key_BUTTON_MASK : INTEGER
+	
+	key_MODIFIER_MASK : INTEGER
+	
 feature -- Measurement
 
 feature -- Comparison

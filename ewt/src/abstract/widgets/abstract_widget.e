@@ -11,8 +11,8 @@ indexing
 	Dispose
 	
 	]"
-	date: "$Date: 2004/06/29 19:57:42 $";
-	revision: "$Revision: 1.8 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.9 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -20,6 +20,8 @@ deferred class
 	ABSTRACT_WIDGET
 	
 inherit
+	
+	DISPOSABLE_RESOURCE
 	
 	XS_IMPORTED_UINT32_ROUTINES
 		export
@@ -39,6 +41,16 @@ feature -- Access
 
 	state : INTEGER
 	
+	style : INTEGER
+	
+	event_table : EVENT_TABLE
+	
+	data : ANY
+			-- Single attached data.
+	
+	property_table : DS_TABLE [ANY, STRING]
+			-- Application defined properties.
+
 feature -- Measurement
 
 feature -- Comparison
@@ -95,8 +107,6 @@ feature -- Basic operations
 				release_widget
 				destroy_widget		
 			end			
-		ensure
-			is_resource_disposed : is_resource_disposed
 		end
 
 	release_child is
@@ -115,13 +125,11 @@ feature -- Basic operations
 			-- * already by <code>releaseWidget</code>.
 			-- * </p>
 			-- * This method is called first when a widget is disposed.
-		do
+		deferred
 		end
 		
 	release_widget is
-		do
-			
-			is_widget_released := True
+		deferred
 		end
 		
 	destroy_widget is
@@ -137,8 +145,7 @@ feature -- Basic operations
 			-- * </p><p>
 		require
 			is_widget_released: is_widget_released
-		do
-			release_handle
+		deferred
 		end
 
 	release_handle is
@@ -155,6 +162,14 @@ feature -- Basic operations
 				-- * </p>
 		do
 			state := UINT32_.u_or (state, DISPOSED_constant)
+		ensure
+			state_is_disposed: UINT32_.u_or (state, DISPOSED_constant) /= 0
+		end
+
+	release_resources is
+		do
+			release_widget
+			release_handle
 		end
 		
 	check_widget is

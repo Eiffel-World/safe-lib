@@ -30,8 +30,8 @@ indexing
 	DIALOG_TRIM the result of combining the constants which are required to produce a typical application dialog shell: (that is, TITLE | CLOSE | BORDER)
 
 	]"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2004/07/06 20:15:17 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -44,6 +44,33 @@ inherit
 feature {NONE} -- Initialization
 
 feature -- Access
+
+feature {ABSTRACT_WIDGET} -- Access
+
+	image : ABSTRACT_IMAGE is
+		deferred
+		end
+		
+	menu_bar : ABSTRACT_MENU is
+		deferred
+		end
+
+	menus : ARRAY[ABSTRACT_MENU] is
+		deferred
+		end
+
+	saved_focus : ABSTRACT_CONTROL is
+		deferred
+		end
+
+	default_button : ABSTRACT_BUTTON is
+		deferred
+		end
+
+	save_default : ABSTRACT_BUTTON is
+		deferred
+		end
+
 
 feature -- Measurement
 

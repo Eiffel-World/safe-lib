@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DEVICE"
-	date: "$Date: 2004/06/29 16:49:46 $";
-	revision: "$Revision: 1.9 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.10 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -49,6 +49,14 @@ feature -- Comparison
 
 feature -- Status report
 
+	tracking : BOOLEAN is
+		do
+			debug ("DEBUG")
+				Result := True
+			end
+		end
+	
+		
 feature -- Status setting
 
 feature -- Cursor movement
@@ -69,6 +77,20 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
+	new_object (object : ANY) is
+		require
+			object_not_void: object /= Void
+		local
+			pair : DS_PAIR[ANY, UT_ERROR]
+			error : UT_ERROR
+		do
+			if objects_errors = Void then
+				create {DS_LINKED_LIST[DS_PAIR[ANY,UT_ERROR]]}objects_errors.make
+			end
+			create pair.make (object, error)
+			objects_errors.put_last (pair)
+		end
+		
 feature -- Obsolete
 
 feature -- Inapplicable

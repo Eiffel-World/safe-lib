@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_SCROLLABLE"
-	date: "$Date: 2004/06/29 19:57:56 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.7 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -18,9 +18,7 @@ inherit
 		
 	ABSTRACT_SCROLLABLE
 		undefine
-			release_handle,
-			destroy_widget,
-			release_widget
+			release_handle
 		end
 	
 feature {NONE} -- Initialization
@@ -113,6 +111,11 @@ feature {NONE} -- Implementation
 			Result := get_display.window_class
 		end
 
+	window_proc_pointer : POINTER is
+		do
+			Result := get_display.window_proc_pointer
+		end
+		
 invariant
 	invariant_clause: -- Your invariant here
 

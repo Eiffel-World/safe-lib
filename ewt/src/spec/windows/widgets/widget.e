@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implemenation of ABSTRACT_WIDGET"
-	date: "$Date: 2004/06/29 16:49:46 $";
-	revision: "$Revision: 1.8 $";
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.9 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -64,7 +64,24 @@ feature -- Duplication
 feature -- Miscellaneous
 
 feature -- Basic operations
-
+		
+	release_child is
+		do
+			
+		end
+		
+	release_widget is
+		do
+			send_event_by_type (swt.Event_dispose)
+			event_table := Void
+			data := Void
+		end
+		
+	destroy_widget is
+		do
+			release_handle
+		end
+		
 feature -- Obsolete
 
 feature -- Inapplicable
@@ -134,9 +151,6 @@ feature {NONE} -- Implementation
 		end
 		
 feature {WIDGET} -- Attributes
-
-	style : INTEGER
-			-- Style.
 			
 feature {NONE} -- Onces
 

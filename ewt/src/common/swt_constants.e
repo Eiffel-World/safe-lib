@@ -1,29 +1,27 @@
 indexing
-	description: "[
-					SWT general constants.
-					All event types have been prefixed by 'event_' ,
-		 			all key codes have been prefixed by 'key_', 
-		 			all MessagBox styles by 'MB_' and 
-		 			all styles by 'style_'.
+	description: 
+	
+		"[
+			SWT general constants.
+			All event types have been prefixed by 'event_' ,
+ 			all key codes have been prefixed by 'key_', 
+ 			all MessageBox styles by 'MB_' and 
+ 			all styles by 'style_' and
+ 			DEFAULT has been renamed DEFAULT_value.
 
-					Note that some of the constants provided by this class represent optional, appearance related aspects 
-					of widgets which are available either only on some window systems, or for a differing set of widgets on each window system. 
-					These constants are marked as HINT. The set of widgets which support a particular HINT may change from release to release, 
-					although we typically will not withdraw support for a HINT once it is made available.
-					]"
-	date: "$Date: 2004/06/20 09:16:50 $";
-	revision: "$Revision: 1.5 $";
+			Note that some of the constants provided by this class represent optional, appearance related aspects 
+			of widgets which are available either only on some window systems, or for a differing set of widgets on each window system. 
+			These constants are marked as HINT. The set of widgets which support a particular HINT may change from release to release, 
+			although we typically will not withdraw support for a HINT once it is made available.
+		]"
+		
+	date: "$Date: 2004/07/06 20:15:18 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 	
 class
 	SWT_CONSTANTS
-	
-inherit
-	ANY
-		rename
-			default as any_default
-		end
 	
 feature -- Accesss
 
@@ -163,6 +161,8 @@ feature -- Accesss
 	
 	key_CTRL  : INTEGER is 262144	--keyboard and/or mouse event mask indicating that the CTRL key was pushed on the keyboard when the event was generated (value is 1<<18) 
 
+	key_COMMAND : INTEGER is 4194304 -- Keyboard and/or mouse event mask indicating that the COMMAND key was pushed on the keyboard when the event was generated
+	
 	CURSOR_APPSTARTING  : INTEGER is 3	--system app startup cursor (value is 3) 
 
 	CURSOR_ARROW  : INTEGER is 0	--system arrow cursor (value is 0) 
@@ -211,7 +211,7 @@ feature -- Accesss
 
 	event_Deactivate  : INTEGER is 27	--deactivate event type (value is 27) 
 
-	DEFAULT  : INTEGER is -1	--indicates that a default should be used (value is -1) 
+	DEFAULT_value  : INTEGER is -1	--indicates that a default should be used (value is -1) 
 
 	event_DefaultSelection  : INTEGER is 14	--default selection event type (value is 14) 
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Widget tables"
 	author: ""
-	date: "$Date: 2003/12/29 21:26:54 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/07/06 20:15:18 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	WIDGET_TABLE
@@ -25,12 +25,12 @@ feature {NONE} -- Initialization
 		
 feature -- Access
 
-	shells : ARRAY [SHELL] is
+	shells : DS_LIST [SHELL] is
 		local
 			cursor : DS_HASH_TABLE_CURSOR [CONTROL, POINTER]
 			shell : SHELL
 		do
-			create Result.make (1, 0)
+			create {DS_LINKED_LIST[SHELL]}Result.make
 			from
 				cursor := new_cursor
 				cursor.start
@@ -39,7 +39,7 @@ feature -- Access
 			loop
 				shell ?= cursor.item	
 				if shell /= Void then
-					Result.force (shell, Result.upper + 1)
+					Result.put_last (shell)
 				end
 				cursor.forth
 			end
