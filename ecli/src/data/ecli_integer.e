@@ -4,8 +4,8 @@ indexing
 		"SQL INTEGER values"
 		
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/01/29 20:30:37 $"
-	revision: "$Revision: 1.19 $"
+	date: "$Date: 2004/03/01 14:08:43 $"
+	revision: "$Revision: 1.20 $"
 	licensing: "See notice at end of class"
 
 class
@@ -210,7 +210,7 @@ feature -- Basic operations
 	out : STRING is
 		do
 			if is_null then
-				Result := Precursor {ECLI_GENERIC_VALUE}
+				Result := out_null
 			else
 				Result := item.out
 			end

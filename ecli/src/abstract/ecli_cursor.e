@@ -1,8 +1,8 @@
 indexing
 	description: "Abstraction of a SQL cursor. Starting iteration creates `results' object through `create_buffers'."
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/01/29 20:30:37 $"
-	revision: "$Revision: 1.17 $"
+	date: "$Date: 2004/03/01 14:08:42 $"
+	revision: "$Revision: 1.18 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -11,7 +11,7 @@ deferred class
 inherit
 	ECLI_QUERY
 			
-feature -- Basic Operations
+feature -- Cursor movement
 
 	start is
 			-- Start sweeping through cursor, after execution of `sql'

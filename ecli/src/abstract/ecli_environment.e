@@ -4,8 +4,8 @@ indexing
 				% This object is a handle to the CLI facilities : it is the first%
 				% CLI object to be created, and the last to be deleted."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/20 09:42:53 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2004/03/01 14:08:42 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -34,12 +34,12 @@ inherit
 			end
 
 creation
-	make
+	{ECLI_SHARED_ENVIRONMENT} make
 
-feature -- Initialization
+feature {NONE} -- Initialization
 
 	make is
-			-- initialize CLI environment
+			-- Initialize CLI environment
 		local
 			ext_handle : XS_C_POINTER
 		do
@@ -63,7 +63,7 @@ feature {NONE} -- Implementation
 		end
 			
 	release_handle is
-			-- release environment handle
+			-- Release environment handle
 		do
 			-- | actual release of the handle.
 			set_status (ecli_c_free_environment (handle))
@@ -71,13 +71,13 @@ feature {NONE} -- Implementation
 		end
 
 	get_error_diagnostic (record_index : INTEGER; state : POINTER; native_error : POINTER; message : POINTER; buffer_length : INTEGER; length_indicator : POINTER) : INTEGER  is
-			-- to be redefined in descendant classes
+			-- To be redefined in descendant classes
 		do
 			Result := ecli_c_environment_error (handle, record_index, state, native_error, message, buffer_length, length_indicator)
 		end
 
 invariant
-	invariant_clause: -- Your invariant here
+	is_valid: is_valid
 
 end -- class ECLI_ENVIRONMENT
 --

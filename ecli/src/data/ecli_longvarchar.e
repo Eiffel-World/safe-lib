@@ -4,8 +4,8 @@ indexing
 		"SQL LONGVARCHAR (n) values"
 		
 	author: "Paul-G.Crismer"
-	date: "$Date: 2004/01/29 20:30:37 $"
-	revision: "$Revision: 1.23 $"
+	date: "$Date: 2004/03/01 14:08:43 $"
+	revision: "$Revision: 1.24 $"
 	licensing: "See notice at end of class"
 
 class
@@ -184,7 +184,7 @@ feature -- Conversion
 	out : STRING is
 		do
 			if is_null then
-				Result := Precursor
+				Result := out_null
 			else
 				Result := item
 			end

@@ -1,8 +1,8 @@
 indexing
 	description: "SQL statement parameters : value and direction."
 	author: ""
-	date: "$Date: 2003/11/11 19:31:07 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/03/01 14:08:43 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	ECLI_STATEMENT_PARAMETER
@@ -30,7 +30,7 @@ feature -- Status report
 		deferred
 		end
 		
-feature -- Basic operations
+feature {ECLI_STATEMENT} -- Basic operations
 
 	bind (statement : ECLI_STATEMENT; position : INTEGER) is
 			-- Bind Current as `position'-th parameter in `statement'

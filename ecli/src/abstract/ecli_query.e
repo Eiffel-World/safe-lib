@@ -3,8 +3,8 @@ indexing
 	
 	usage: "Heir for classes with constant SQL query"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/12/22 10:03:06 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2004/03/01 14:08:42 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -56,7 +56,7 @@ feature -- Initialization
 feature -- Access
 
 	definition : STRING	is
-			-- cursor definition (i.e. SQL text); remains constant.
+			-- Cursor definition (i.e. SQL text); remains constant.
 		deferred
 		end
 			

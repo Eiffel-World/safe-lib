@@ -1,8 +1,8 @@
 indexing
 	description: "Input/Output parameters in SQL statements."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/11 19:31:07 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/03/01 14:08:42 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_INPUT_OUTPUT_PARAMETER
@@ -19,9 +19,26 @@ feature -- Measurement
 
 feature -- Status report
 
-	is_input : BOOLEAN is do Result := False end
-	is_input_output : BOOLEAN is do Result := True end
-	is_output : BOOLEAN is do Result := False end
+	is_input : BOOLEAN is 
+		do 
+			Result := False 
+		ensure then
+			is_false: not Result
+		end
+		
+	is_input_output : BOOLEAN is 
+		do 
+			Result := True 
+		ensure then
+			is_true: Result
+		end
+		
+	is_output : BOOLEAN is 
+		do 
+			Result := False 
+		ensure then
+			is_false: not Result
+		end
 	
 feature -- Status setting
 
@@ -41,10 +58,9 @@ feature -- Duplication
 
 feature -- Miscellaneous
 
-feature -- Basic operations
+feature {ECLI_STATEMENT} -- Basic operations
 
 	bind (statement : ECLI_STATEMENT; position : INTEGER) is
-			-- Bind Current as `position'-th parameter in `statement'
 		do
 			item.bind_as_input_output_parameter (statement, position)
 		end

@@ -11,8 +11,8 @@ indexing
 		% or column-wise binding of parameters for modifications.%
 		% Access modes: direct ('item_at'), linear ('start', 'forth', 'item')."
 
-	date: "$Date: 2003/10/20 19:54:41 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2004/03/01 14:08:43 $"
+	revision: "$Revision: 1.14 $"
 
 deferred class
 	ECLI_ARRAYED_VALUE
@@ -69,6 +69,7 @@ feature -- Measurement
 		do
 			Result := count
 		end
+		
 feature -- Status report
 
 	is_null_at (index : INTEGER) : BOOLEAN is

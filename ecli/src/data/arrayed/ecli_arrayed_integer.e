@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:54:39 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2004/03/01 14:08:43 $"
+	revision: "$Revision: 1.14 $"
 	licensing: "See notice at end of class"
 
 class
@@ -112,7 +112,7 @@ feature -- Basic operations
 			until i > count
 			loop
 				if is_null_at (i) then
-					Result.append_string ("NULL")
+					Result.append_string (out_null)
 				else
 					Result.append_string (item_at (i).out)
 				end

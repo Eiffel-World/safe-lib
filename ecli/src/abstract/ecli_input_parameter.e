@@ -1,8 +1,8 @@
 indexing
 	description: "Input parameters in SQL statements"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/11 19:31:07 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/03/01 14:08:42 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_INPUT_PARAMETER
@@ -41,10 +41,9 @@ feature -- Duplication
 
 feature -- Miscellaneous
 
-feature -- Basic operations
+feature {ECLI_STATEMENT} -- Basic operations
 
 	bind (statement : ECLI_STATEMENT; position : INTEGER) is
-			-- Bind Current as `position'-th parameter in `statement'
 		do
 			item.bind_as_parameter (statement, position)
 		end
@@ -56,6 +55,6 @@ feature -- Inapplicable
 feature {NONE} -- Implementation
 
 invariant
-	input_parameter: is_input
+	is_input: is_input
 
 end -- class ECLI_INPUT_PARAMETER

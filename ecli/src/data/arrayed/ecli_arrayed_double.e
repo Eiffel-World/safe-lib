@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL DOUBLE arrayed value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:54:38 $"
-	revision: "$Revision: 1.15 $"
+	date: "$Date: 2004/03/01 14:08:43 $"
+	revision: "$Revision: 1.16 $"
 	licensing: "See notice at end of class"
 
 class
@@ -104,7 +104,7 @@ feature -- Basic operations
 			until i = count 
 			loop
 				if is_null_at (i) then
-					Result.append_string ("NULL")
+					Result.append_string (out_null)
 				else
 					sprintf_double (message_buffer.handle, item_at (i).item)
 					Result.append_string (message_buffer.as_string)
@@ -119,8 +119,6 @@ feature -- Basic operations
 
 feature {NONE} -- Implementation
 		
-invariant
-	invariant_clause: -- Your invariant here
 
 end -- class ECLI_ARRAYED_DOUBLE
 --

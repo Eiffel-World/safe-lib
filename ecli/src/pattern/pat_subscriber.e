@@ -1,8 +1,8 @@
 indexing
 	description: "Subscriber part of the publisher/subscriber pattern"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2004/03/01 14:08:43 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -16,11 +16,21 @@ feature -- Access
 		deferred
 		end
 
+feature -- Status report
+
 	unsubscribed : BOOLEAN is
 		do
 			Result := (publisher = Void)
+		ensure
+			definition: Result = (publisher = Void)
 		end
-		
+
+	has_publisher : BOOLEAN is
+		do
+			Result := (publisher /= Void)
+		ensure
+			definition: Result = (publisher /= Void)
+		end
 
 feature -- Basic operations
 
@@ -30,10 +40,6 @@ feature -- Basic operations
 		do
 		end
 
-	has_publisher : BOOLEAN is
-		do
-			Result := (publisher /= Void)
-		end
 	
 invariant
 

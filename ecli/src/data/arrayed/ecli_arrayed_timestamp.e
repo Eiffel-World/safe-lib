@@ -1,8 +1,8 @@
 indexing
 	description: "SQL TIMESTAMP arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:54:41 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2004/03/01 14:08:43 $"
+	revision: "$Revision: 1.15 $"
 	licensing: "See notice at end of class"
 
 class
@@ -64,7 +64,7 @@ inherit
 			is_null, set_null,
 			length_indicator_pointer,
 			month,
-			out,
+			out, out_null,
 			release_handle,
 			set_date,
 			set_item,

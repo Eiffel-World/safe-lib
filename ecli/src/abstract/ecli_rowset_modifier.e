@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that modify the database one rowset at a time."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2004/03/01 14:08:42 $"
+	revision: "$Revision: 1.12 $"
 
 class
 	ECLI_ROWSET_MODIFIER
@@ -18,7 +18,7 @@ inherit
 				statement_make, statement_open, statement_bind_parameters, statement_execute, set_sql, 
 				cursor, set_cursor
 		redefine
-			parameter_anchor--, execute
+			parameter_anchor
 		end
 	
 	ECLI_ROWSET_CAPABLE
@@ -53,8 +53,6 @@ feature -- Access
 	parameter_anchor : ECLI_ARRAYED_VALUE is do end
 	
 feature -- Measurement
-
---	bound_rows_count : INTEGER
 	
 feature -- Status report
 

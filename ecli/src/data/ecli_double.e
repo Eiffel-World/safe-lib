@@ -4,8 +4,8 @@ indexing
 		"SQL DOUBLE values"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/01/29 20:30:37 $"
-	revision: "$Revision: 1.20 $"
+	date: "$Date: 2004/03/01 14:08:43 $"
+	revision: "$Revision: 1.21 $"
 	licensing: "See notice at end of class"
 
 class
@@ -211,7 +211,7 @@ feature -- Basic operations
 			message_buffer : XS_C_STRING
 		do
 			if is_null then
-				Result := "NULL"
+				Result := out_null
 			else
 				create message_buffer.make (50)
 				sprintf_double (message_buffer.handle, item.item)
