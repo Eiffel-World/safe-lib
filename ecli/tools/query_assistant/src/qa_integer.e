@@ -1,34 +1,34 @@
 indexing
-	description: "ISO CLI CHAR (n) values"
+	description: "CLI SQL INTEGER value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:48 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/05/08 13:54:36 $"
+	revision: "$Revision: 1.1 $"
 	licensing: "See notice at end of class"
 
 class
-	QA_CHAR
+	QA_INTEGER
 
 inherit
-	ECLI_CHAR
+	ECLI_INTEGER
 	
 	QA_VALUE
-	
+
 
 creation
 	make
 	
 feature
 
-	ecli_type : STRING is "ECLI_CHAR"
+	ecli_type : STRING is "ECLI_INTEGER"
 		
-	value_type : STRING is "STRING"
-		
+	value_type : STRING is "INTEGER"
+
 	creation_call : STRING is
 		do
-			Result := make_call_with_precision
+			Result := make_call
 		end
-
-end -- class QA_CHAR
+	
+end -- class QA_INTEGER
 --
 -- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>

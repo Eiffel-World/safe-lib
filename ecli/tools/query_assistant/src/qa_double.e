@@ -1,17 +1,18 @@
 indexing
-	description: "ISO CLI TIME value"
+	description: "CLI SQL DOUBLE value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:51 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/05/08 13:54:36 $"
+	revision: "$Revision: 1.1 $"
 	licensing: "See notice at end of class"
 
 class
-	QA_TIME
+	QA_DOUBLE
 
 inherit
-	ECLI_TIME
+	ECLI_DOUBLE
 	
 	QA_VALUE
+
 
 creation
 	make
@@ -19,11 +20,17 @@ creation
 feature
 
 
-	ecli_type : STRING is "ECLI_TIME"
+	ecli_type : STRING is "ECLI_DOUBLE"
 		
-	value_type : STRING is "ECLI_TIME"
+	value_type : STRING is "DOUBLE"
+
+	creation_call : STRING is
+		do
+			Result := make_call
+		end
+
 		
-end -- class QA_TIME
+end -- class QA_DOUBLE
 --
 -- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>

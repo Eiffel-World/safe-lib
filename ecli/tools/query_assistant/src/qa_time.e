@@ -1,15 +1,15 @@
 indexing
-	description: "CLI SQL FLOAT value"
+	description: "ISO CLI TIME value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:51 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/05/08 13:54:36 $"
+	revision: "$Revision: 1.1 $"
 	licensing: "See notice at end of class"
 
 class
-	QA_FLOAT
+	QA_TIME
 
 inherit
-	ECLI_FLOAT
+	ECLI_TIME
 	
 	QA_VALUE
 
@@ -18,16 +18,12 @@ creation
 	
 feature
 
-	ecli_type : STRING is "ECLI_FLOAT"
-		
-	value_type : STRING is "DOUBLE"
 
-	creation_call : STRING is
-		do
-			Result := make_call
-		end
+	ecli_type : STRING is "ECLI_TIME"
 		
-end -- class QA_FLOAT
+	value_type : STRING is "ECLI_TIME"
+		
+end -- class QA_TIME
 --
 -- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>

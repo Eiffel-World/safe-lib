@@ -1,34 +1,35 @@
 indexing
-	description: "CLI SQL REAL value"
+	description: "ISO CLI VARCHAR (n) values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:51 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/05/08 13:54:36 $"
+	revision: "$Revision: 1.1 $"
 	licensing: "See notice at end of class"
 
 class
-	QA_REAL
-
+	QA_VARCHAR
+	
 inherit
-	ECLI_REAL
-	
+
+	ECLI_VARCHAR
+
 	QA_VALUE
-	
+
 creation
 	make
-	
+
 feature
 
 
-	ecli_type : STRING is "ECLI_REAL"
+	ecli_type : STRING is "ECLI_VARCHAR"
 		
-	value_type : STRING is "REAL"
+	value_type : STRING is "STRING"
 		
 	creation_call : STRING is
 		do
-			Result := make_call
+			Result := make_call_with_precision
 		end
-
-end -- class QA_REAL
+		
+end -- class QA_VARCHAR
 --
 -- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>

@@ -1,26 +1,24 @@
 indexing
-	description: "CLI SQL DOUBLE value"
+	description: "CLI SQL FLOAT value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:50 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/05/08 13:54:36 $"
+	revision: "$Revision: 1.1 $"
 	licensing: "See notice at end of class"
 
 class
-	QA_DOUBLE
+	QA_FLOAT
 
 inherit
-	ECLI_DOUBLE
+	ECLI_FLOAT
 	
 	QA_VALUE
-
 
 creation
 	make
 	
 feature
 
-
-	ecli_type : STRING is "ECLI_DOUBLE"
+	ecli_type : STRING is "ECLI_FLOAT"
 		
 	value_type : STRING is "DOUBLE"
 
@@ -28,9 +26,8 @@ feature
 		do
 			Result := make_call
 		end
-
 		
-end -- class QA_DOUBLE
+end -- class QA_FLOAT
 --
 -- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
