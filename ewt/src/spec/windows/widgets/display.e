@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DISPLAY"
-	date: "$Date: 2003/12/20 17:57:28 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/28 22:04:44 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -25,12 +25,6 @@ feature -- Measurement
 feature -- Comparison
 
 feature -- Status report
-
-	is_released : BOOLEAN is
-			-- Are the operating system ressources associated with `Current' released?
-		do
-			-- FIXME
-		end
 		
 feature -- Status setting
 
@@ -86,13 +80,66 @@ feature {NONE} -- Implementation
 			do_nothing
 		end
 
-
-	internal_new_GC (gc_data : ABSTRACT_GC_DATA ) : INTEGER is
-			-- Allocate a new platform specific GC handle.
+	internal_new_gc (a_gc_data : GC_DATA) : POINTER is
+			-- Allocate a new handle for a Graphical Context using `a_gc_data' if defined.
+		local
+			dc_handle : POINTER
+			a_mask : INTEGER
 		do
-			-- FIXME
+			dc_handle := os.get_dc_external (default_pointer)
+			if dc_handle = default_pointer then
+				swt.error (swt.Error_no_handles)
+			else
+				if a_gc_data /= Void then
+					a_mask := swt.Style_left_to_right | swt.Style_right_to_left
+					if (a_gc_data.style & a_mask) /= 0 then
+						if (a_gc_data.style & swt.Style_right_to_left) /= 0 then
+							a_gc_data.set_layout (os.WS_EX_LAYOUTRTL)
+						else
+							a_gc_data.set_layout (0)
+						end
+					else
+						a_gc_data.set_style (a_gc_data.style | swt.Style_left_to_right)
+					end
+					a_gc_data.set_device (Current)
+					a_gc_data.set_font_handle (system_font)
+				end
+				Result := dc_handle
+			end
 		end
 
+	internal_dispose_GC (a_gc_handle : POINTER; a_gc_data : GC_DATA )is
+			-- Dispose a platform specific GC handle.
+		local
+			a_status : INTEGER
+		do
+			a_status := os.release_dc_external (default_pointer, a_gc_handle)
+		end
+
+	system_font : POINTER is
+			-- System font handle.
+		local
+			a_font_handle : POINTER
+		do
+			if system_fonts /= Void then
+				if not system_fonts.is_empty then
+					a_font_handle := system_fonts.item (system_fonts.upper)
+				end
+			end
+			if a_font_handle = default_pointer then
+				a_font_handle := os.get_stock_object_external (os.Default_gui_font)
+			end
+			if a_font_handle = default_pointer then
+				a_font_handle := os.get_stock_object_external (os.System_font)
+			end
+			Result := a_font_handle
+		ensure
+			result_defined : Result /= Void
+		end
+
+	system_fonts : ARRAY [POINTER]
+			-- System fonts.
+	
 invariant
 	invariant_clause: -- Your invariant here
 

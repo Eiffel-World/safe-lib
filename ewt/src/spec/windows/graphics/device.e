@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DEVICE"
-	date: "$Date: 2003/12/20 17:57:28 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/28 22:04:41 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -25,8 +25,8 @@ feature {NONE} -- Initialization
 			-- Initialize by using `a_device_data'.
 		do
 			create_os_device (a_device_data)
+			init	
 			-- FIXME
-			--	init ();	
 			--	systemFont = getSystemFont().handle;
 		end
 
@@ -69,29 +69,33 @@ feature {NONE} -- Implementation
 	init is
 			-- Initializes any internal resources needed by the device.
 			-- This method is called after create.
-			-- If subclasses reimplement this method, they must call the super implementation.
+			-- If subclasses reimplement this method, they must call the precursor implementation.
 		local
-			device_context_handle : INTEGER
-			raster_caps : INTEGER
-			bits : INTEGER
-			planes : INTEGER
+			a_device_context_handle : POINTER
+			the_raster_caps : INTEGER
+			the_bits : INTEGER
+			the_planes : INTEGER
+			a_num_reserved : INTEGER
+			a_num_entries : INTEGER
 		do
 			-- FIXME
---			int hDC = internal_new_GC (null);
---			int rc = OS.GetDeviceCaps (hDC, OS.RASTERCAPS);
---			int bits = OS.GetDeviceCaps (hDC, OS.BITSPIXEL);
---			int planes = OS.GetDeviceCaps (hDC, OS.PLANES);
---			
---			bits *= planes;
---			if ((rc & OS.RC_PALETTE) == 0 || bits != 8) {
---				internal_dispose_GC (hDC, null);
---				return;
---			}
---			
---			int numReserved = OS.GetDeviceCaps (hDC, OS.NUMRESERVED);
---			int numEntries = OS.GetDeviceCaps (hDC, OS.SIZEPALETTE);
---		
+			a_device_context_handle := internal_new_GC (Void);
+			the_raster_caps := os.get_device_caps_external (a_device_context_handle, os.Rastercaps)
+			the_bits := os.get_device_caps_external (a_device_context_handle, os.Bitspixel )
+			the_planes := os.get_device_caps_external (a_device_context_handle, os.Planes )
+			
+			the_bits := the_bits * the_planes
+
+			if ((the_raster_caps & os.Rc_palette) = 0) or (the_bits /= 8) then
+				internal_dispose_GC (a_device_context_handle, Void)
+			else
+		
+			a_num_reserved := os.get_device_caps_external (a_device_context_handle, os.Numreserved)
+			a_num_entries := os.get_device_caps_external (a_device_context_handle, os.Sizepalette)
+
+
 --			/* Create the palette and reference counter */
+			Create color_ref_count.make (1, a_num_entries)
 --			colorRefCount = new int [numEntries];
 --		
 --			/* 4 bytes header + 4 bytes per entry * numEntries entries */
@@ -114,7 +118,7 @@ feature {NONE} -- Implementation
 --			* will be the first 10 entries and the last 10 ones.
 --			*/
 --			byte[] lppe = new byte [4 * numEntries];
---			OS.GetSystemPaletteEntries (hDC, 0, numEntries, lppe);
+--			OS.GetSystemPaletteEntries (device_context_handle, 0, numEntries, lppe);
 --			/* Copy all entries from the system palette */
 --			System.arraycopy (lppe, 0, logPalette, 4, 4 * numEntries);
 --			/* Lock the indices corresponding to the system entries */
@@ -122,11 +126,17 @@ feature {NONE} -- Implementation
 --				colorRefCount [i] = 1;
 --				colorRefCount [numEntries - 1 - i] = 1;
 --			}
---			internal_dispose_GC (hDC, null);
+--			internal_dispose_GC (device_context_handle, null);
 --			hPalette = OS.CreatePalette (logPalette);
 --		}
-			
-		end
+
+
+			end
+	end
+
+
+	color_ref_count : ARRAY [INTEGER]
+			-- Color reference count.
 
 invariant
 	invariant_clause: -- Your invariant here

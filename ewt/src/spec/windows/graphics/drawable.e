@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DRAWABLE"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2003/12/28 22:04:41 $";
+	revision: "$Revision: 1.2 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -46,6 +46,18 @@ feature -- Constants
 
 feature {NONE} -- Implementation
 
+	os : OS is
+			-- Windows operating system.
+		once
+			Create Result
+		end
+
+	swt : SWT is
+			-- Common constants and features.
+		once
+			Create Result
+		end
+		
 invariant
 	invariant_clause: -- Your invariant here
 

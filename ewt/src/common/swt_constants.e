@@ -1,13 +1,29 @@
 indexing
-	description: "SWT general constants"
+	description: "[
+					SWT general constants.
+					All event types have been prefixed by 'event_' ,
+		 			all key codes have been prefixed by 'key_', 
+		 			all MessagBox styles by 'MB_' and 
+		 			all styles by 'style_'.
+
+					Note that some of the constants provided by this class represent optional, appearance related aspects 
+					of widgets which are available either only on some window systems, or for a differing set of widgets on each window system. 
+					These constants are marked as HINT. The set of widgets which support a particular HINT may change from release to release, 
+					although we typically will not withdraw support for a HINT once it is made available.
+					]"
+	date: "$Date: 2003/12/28 22:04:41 $";
+	revision: "$Revision: 1.2 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
+	licensing: "See notice at end of class"
 	
-	note: "All event types have been prefixed by 'event_' %
-		% and all key codes have been prefixed by 'key_', %
-		% all MessagBox styles by 'MB_' and %
-		% all styles by 'style_'."
 class
 	SWT_CONSTANTS
+	
+inherit
+	ANY
+		rename
+			default as any_default
+		end
 	
 feature -- Accesss
 
@@ -451,6 +467,20 @@ feature -- Accesss
 
 	style_NO_MERGE_PAINTS  : INTEGER is 2097152	--style constant for no paint event merging behavior (value is 1<<21)  
 
+	style_LEFT_TO_RIGHT : INTEGER is 33554432 
+			-- Style constant for left to right orientation (value is 1<<25) 
+			-- When orientation is not explicitly specified, orientation is inherited.  
+			-- This means that children will be assigned the orientation of their parent.
+			-- To override this behavior and force an orientation for a child, explicitly set the orientation of the child when that child is created.
+			-- Used By : Control, Menu and GC.
+
+	style_RIGHT_TO_LEFT : INTEGER is 67108864 
+			-- Style constant for right to left orientation (value is 1<<26) 
+			-- When orientation is not explicitly specified, orientation is inherited.  
+			-- This means that children will be assigned the orientation of their parent.
+			-- To override this behavior and force an orientation for a child, explicitly set the orientation of the child when that child is created.
+			-- Used By : Control, Menu and GC.
+
 	style_NO_RADIO_GROUP  : INTEGER is 4194304	--style constant for preventing child radio group behavior (value is 1<<22)  
 
 	style_NO_REDRAW_RESIZE  : INTEGER is 1048576	--style constant for no redraw on resize behavior (value is 1<<20)  
@@ -577,3 +607,8 @@ feature -- Accesss
 
 	MB_YES  : INTEGER is 64	--MessageBox style constant for YES button. 
 end
+
+-- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<library name="ewt_abstract">
+
+  <description>
+    description: "Xace file for EWT abstractions"
+    copyright: "Copyright (c) 2003-, Paul G. Crismer and Eric Fafchamps"
+    license: "Eiffel Forum License v2"
+    date: "$Date: 2003/12/28 22:04:41 $"
+    revision: "$Revision: 1.1 $"
+  </description>
+ 
+  <cluster name="abstract" location="${EWT}/src/abstract">			
+	<cluster name="accessibility" prefix="abstract_"/>
+	<cluster name="custom" prefix="abstract_"/>
+	<cluster name="dnd" prefix="abstract_"/>
+	<cluster name="events" prefix="abstract_"/>
+	<cluster name="graphics" prefix="abstract_"/>			
+	<cluster name="internal" prefix="abstract_"/>
+	<cluster name="layout" prefix="abstract_"/>
+	<cluster name="ole" prefix="abstract_"/>
+	<cluster name="printing" prefix="abstract_"/>
+	<cluster name="program" prefix="abstract_"/>
+	<cluster name="widgets" prefix="abstract_"/>									
+  </cluster>						
+</library>
+

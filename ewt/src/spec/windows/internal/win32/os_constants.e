@@ -1,7 +1,9 @@
 indexing
 	description : "OS specific constants"
+	date: "$Date: 2003/12/28 22:04:41 $";
+	revision: "$Revision: 1.2 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
-	
+	licensing: "See notice at end of class"
 	note: "This class has been obtained by extracting OS related constants from the corresponding Javadoc"
 	
 class
@@ -1060,3 +1062,8 @@ feature -- Constants
 	WS_VSCROLL : INTEGER is 2097152 
 
 end 
+
+-- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

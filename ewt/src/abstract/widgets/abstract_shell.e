@@ -33,8 +33,8 @@ indexing
 	Note: Only one of the styles APPLICATION_MODAL, MODELESS, PRIMARY_MODAL and SYSTEM_MODAL may be specified.
 	
 	]"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/28 22:04:41 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -88,7 +88,7 @@ feature -- Basic operations
 			-- shells on that display, which are not `Current' 's children will be drawn behind it), marks it visible, 
 			-- and sets focus to its default button (if it has one) and asks the window manager to make the shell active.
 		require
- 			not_is_released : not is_released			
+ 			not_is_resource_disposed : not is_resource_disposed
 		deferred
 		end
 

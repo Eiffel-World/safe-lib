@@ -1,7 +1,7 @@
 indexing
 	description	: "System's root class"
-	date: "$Date: 2003/12/20 17:57:28 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2003/12/28 22:04:41 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -25,7 +25,7 @@ feature -- Initialization
 			from
 				a_shell.open			
 			until
-				a_shell.is_released
+				a_shell.is_resource_disposed
 			loop
 				if not a_display.read_and_dispatch then
 					a_boolean := a_display.sleep

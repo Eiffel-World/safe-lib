@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<library name="ewt_common">
+
+  <description>
+    description: "Xace file for EWT common implementation classes for all platforms"
+    copyright: "Copyright (c) 2003-, Paul G. Crismer and Eric Fafchamps"
+    license: "Eiffel Forum License v2"
+    date: "$Date: 2003/12/28 22:04:41 $"
+    revision: "$Revision: 1.1 $"
+  </description>
+ 
+	<cluster name="common" location="${EWT}/src/common">
+		<cluster name="accessibility" prefix="common_"/>
+		<cluster name="custom" prefix="common_"/>
+		<cluster name="dnd" prefix="common_"/>
+		<cluster name="events" prefix="common_"/>
+		<cluster name="graphics" prefix="common_"/>			
+		<cluster name="internal" prefix="common_"/>
+		<cluster name="layout" prefix="common_"/>
+		<cluster name="ole" prefix="common_"/>
+		<cluster name="printing" prefix="common_"/>
+		<cluster name="program" prefix="common_"/>
+		<cluster name="widgets" prefix="common_"/>			
+  	</cluster>						
+</library>
+

@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implemenation of ABSTRACT_WIDGET"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/28 22:04:44 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -20,12 +20,6 @@ feature -- Measurement
 feature -- Comparison
 
 feature -- Status report
-
-	is_released : BOOLEAN is
-			-- Are the operating system ressources associated with `Current' released?
-		do
-			-- FIXME
-		end
 
 feature -- Status setting
 

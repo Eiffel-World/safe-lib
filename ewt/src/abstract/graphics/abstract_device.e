@@ -5,8 +5,8 @@ indexing
 	Devices can have a graphics context (GC) created for them, and they can be drawn on by sending messages to the associated GC.
 
 	]"
-	date: "$Date: 2003/12/20 17:57:28 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/28 22:04:41 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -38,6 +38,9 @@ feature -- Comparison
 
 feature -- Status report
 
+	is_resource_disposed : BOOLEAN
+			-- Is the operating system resource of `Current' disposed?
+
 feature -- Status setting
 
 feature -- Cursor movement
@@ -57,6 +60,32 @@ feature -- Duplication
 feature -- Miscellaneous
 
 feature -- Basic operations
+
+	dispose_resource is
+			-- Disposes of the operating system resource of `Current'.
+		do
+			if not is_resource_disposed then
+				-- FIXME
+--				checkDevice ();
+--				release ();
+--				destroy ();
+				is_resource_disposed := True;
+--				if (tracking) {
+--					objects = null;
+--					errors = null;
+--				}
+			end
+		ensure
+			is_resource_disposed : is_resource_disposed
+		end
+
+	release is
+			-- Releases any internal resources back to the operating system.
+		deferred
+		
+		ensure
+			-- Fonts, colors and palettes are cleared.
+		end
 
 feature -- Obsolete
 
@@ -81,13 +110,20 @@ feature {NONE} -- Implementation
 		deferred
 		end
 
-	internal_new_GC (gc_data : ABSTRACT_GC_DATA ) : INTEGER is
+	internal_new_GC (a_gc_data : ABSTRACT_GC_DATA ) : POINTER is
 			-- Allocate a new platform specific GC handle.
 		require
-	--		not_is_released : not is_released
+			not_is_resource_disposed : not is_resource_disposed
 		deferred
 		ensure
-			-- Result contains handle
+			handle_defined : Result /= Void
+		end
+
+	internal_dispose_GC (a_gc_handle : POINTER; a_gc_data : ABSTRACT_GC_DATA )is
+			-- Dispose a platform specific GC handle.
+		require
+			a_gc_handle_defined : a_gc_handle /= Void
+		deferred
 		end
 
 invariant

@@ -20,8 +20,8 @@ indexing
 	Events:
 		Close, Release	
 	]"
-	date: "$Date: 2003/12/20 17:57:28 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/28 22:04:41 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -50,11 +50,6 @@ feature -- Comparison
 
 feature -- Status report
 
-	is_released : BOOLEAN is
-			-- Are the operating system ressources associated with `Current' released?
-		deferred
-		end
-
 feature -- Status setting
 
 feature -- Cursor movement
@@ -78,7 +73,7 @@ feature -- Basic operations
 	read_and_dispatch : BOOLEAN is
 			-- Reads an event from the operating system's event queue, dispatches it appropriately.
 		require
-			not_is_released : not is_released
+			not_is_resource_disposed : not is_resource_disposed
 		deferred			
 		ensure
 			-- true if there is potentially more work to do, or false if the caller can sleep
@@ -89,18 +84,10 @@ feature -- Basic operations
 			-- Causes the user-interface process to sleep (that is, to be put in a state where it does not consume CPU cycles)
 			-- until an event is received or it is otherwise awakened.
 		require
-			not_is_released : not is_released
+			not_is_resource_disposed : not is_resource_disposed
 		deferred
 		ensure
 			-- true if an event requiring dispatching was placed on the queue
-		end
-
-	release is
-			-- Releases any internal resources back to the operating system.
-		deferred
-		ensure
-			-- All related shells are released.
-			is_released : is_released
 		end
 		
 feature -- Obsolete

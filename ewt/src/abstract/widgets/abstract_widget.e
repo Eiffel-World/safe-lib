@@ -11,8 +11,8 @@ indexing
 	Dispose
 	
 	]"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/28 22:04:41 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -29,10 +29,8 @@ feature -- Comparison
 
 feature -- Status report
 
-	is_released : BOOLEAN is
-			-- Are the operating system ressources associated with `Current' released?
-		deferred
-		end
+	is_resource_disposed : BOOLEAN
+			-- Is the operating system resource of `Current' disposed?
 
 feature -- Status setting
 
@@ -46,7 +44,7 @@ feature -- Element change
  			-- event does occur in the widget, the listener is notified by
  			-- calling it's handle_event routine.
  		require
- 			not_is_released : not is_released
+ 			not_is_resource_disposed : not is_resource_disposed
  			a_listener_defined : a_listener /= Void
 		deferred
 		end
@@ -64,6 +62,19 @@ feature -- Duplication
 feature -- Miscellaneous
 
 feature -- Basic operations
+
+	dispose_resource is
+			-- Disposes of the operating system resource of `Current'.
+		do
+--			FIXME
+--			if (isDisposed ()) return;
+--			if (!isValidThread ()) error (SWT.ERROR_THREAD_INVALID_ACCESS);
+--			releaseChild ();
+--			releaseWidget ();
+--			destroyWidget ();		
+		ensure
+			is_resource_disposed : is_resource_disposed
+		end
 
 feature -- Obsolete
 

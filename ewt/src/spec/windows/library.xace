@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+
+<library name="win32">
+
+  <description>
+    description: "Xace file for the win32 internals"
+    copyright: "Copyright (c) 2003-, Paul G. Crismer and Eric Fafchamps"
+    license: "Eiffel Forum License v2"
+    date: "$Date: 2003/12/28 22:04:41 $"
+    revision: "$Revision: 1.1 $"
+  </description>
+ 
+  			<cluster name="windows" location="${EWT}/src/spec/windows">
+  				<cluster name="accessibility" prefix="windows_"/>
+  				<cluster name="custom" prefix="windows_"/>
+  				<cluster name="dnd" prefix="windows_"/>
+  				<cluster name="events" prefix="windows_"/>
+  				<cluster name="graphics" prefix="windows_"/>			
+  				<cluster name="internal" prefix="windows_">
+	  				<cluster name="win32">
+						<cluster name="wrapper">
+							<cluster name="eiffel">
+								<cluster name="abstraction" prefix="wrapper_abstraction_">
+									<cluster name="callback"/>
+									<cluster name="enum"/>
+									<cluster name="function"/>
+									<cluster name="struct"/>
+									<cluster name="union"/>
+								</cluster>
+								<cluster name="external" prefix="wrapper_external_">
+									<cluster name="callback">
+										<cluster name="spec">
+											<cluster name="${GOBO_EIFFEL}"/>
+										</cluster>
+									</cluster>
+									<cluster name="enum">
+										<cluster name="spec" prefix="enum">
+											<cluster name="${GOBO_EIFFEL}"/>
+										</cluster>
+									</cluster>
+									<cluster name="function">
+										<cluster name="spec" prefix="function">
+											<cluster name="${GOBO_EIFFEL}"/>
+										</cluster>
+									</cluster>
+									<cluster name="struct">
+										<cluster name="spec" prefix="struct">
+											<cluster name="${GOBO_EIFFEL}"/>
+										</cluster>
+									</cluster>
+									<cluster name="union">
+										<cluster name="spec" prefix="union">
+											<cluster name="${GOBO_EIFFEL}"/>
+										</cluster>
+									</cluster>
+								</cluster>
+							</cluster>
+						</cluster>
+					</cluster>
+				</cluster>
+				<cluster name="layout" prefix="windows_"/>
+  				<cluster name="ole" prefix="windows_"/>
+  				<cluster name="printing" prefix="windows_"/>
+  				<cluster name="program" prefix="windows_"/>
+  				<cluster name="widgets" prefix="windows_"/>			
+  		</cluster>
+
+
+	<option name="header" value="${EWT}\src\spec\windows\internal\win32\wrapper"/>
+	<option name="header" value="${EWT}\src\spec\windows\internal\win32"/>
+
+	<option name="link" value="${EWT}\src\spec\windows\internal\win32\winbase_c_eiffel_glue_library_${GOBO_EIFFEL}_${GOBO_CC}.lib"/>
+	<option name="link" value="OPENGL32.lib"/>
+	<option name="link" value="msimg32.lib"/>
+	<option name="link" value="wintrust.lib"/>
+		
+</library>
+
