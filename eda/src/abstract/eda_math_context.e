@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2002/12/18 22:06:14 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/02/06 22:24:10 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,24 +14,24 @@ class
 inherit
 	ANY
 		redefine
-			out, copy
+			out, copy, is_equal
 		end
 	
 	EDA_CONSTANTS
 		undefine
-			out, copy
+			out, copy, is_equal
 		end
 
 	KL_EXCEPTIONS
 		export 
 			{NONE} all
 		undefine
-			out, copy
+			out, copy, is_equal
 		end
 	
 	KL_IMPORTED_ARRAY_ROUTINES
 		undefine
-			out, copy
+			out, copy, is_equal
 		end
 	
 creation
@@ -113,6 +113,19 @@ feature {NONE} -- Initialization
 			exponent_limit: exponent_limit = Maximum_exponent
 		end 
  	
+feature -- Comparison
+
+	is_equal (other: like Current): BOOLEAN is
+		do
+			Result := digits = other.digits
+			Result := Result and then exception_on_trap = other.exception_on_trap
+			Result := Result and then exponent_limit = other.exponent_limit
+			Result := Result and then flags.is_equal (other.flags)
+			Result := Result and then is_extended = other.is_extended
+			Result := Result and then rounding_mode = other.rounding_mode
+			Result := Result and then traps.is_equal (other.traps)
+		end
+
  feature -- Constants
  
  	Rounds : ARRAY[INTEGER] is
@@ -342,7 +355,7 @@ feature -- Basic operations
 			!!flags.make (other.flags.lower, other.flags.upper)
 			flags.copy (other.flags)
 			!!traps.make (other.traps.lower, other.traps.upper)
-			traps.copy (other.flags)
+			traps.copy (other.traps)
 		end
 		
 feature {NONE} -- Implementation

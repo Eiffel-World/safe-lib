@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/01/22 10:57:52 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/06 22:24:10 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -319,7 +319,7 @@ feature -- Status report
 				Result := True
 			end
 		ensure
-			definition: Result implies (coefficient.count = 1 and then 
+			definition: Result implies (--coefficient.count = 1 and then 
 				coefficient.item (0) = 0)
 		end
 		

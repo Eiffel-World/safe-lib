@@ -7,8 +7,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/01/22 10:57:52 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/02/06 22:24:10 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -210,7 +210,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		deferred		
 		ensure
 			count: count <= digits_count + 1
-			stripped_zeroes: count > 1 implies item (count - 1) /= 0
+--			stripped_zeroes: count > 1 implies item (count - 1) /= 0
 		end
 
 	integer_subtract (other : like Current) is
@@ -230,7 +230,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		deferred
 		ensure
 			count: count <= digits_count + 1
-			stripped_zeroes: count > 1 implies item (count - 1) /= 0
+--			stripped_zeroes: count > 1 implies item (count - 1) /= 0
 		end
 
 	keep_head (a_count : INTEGER) is
@@ -275,7 +275,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		deferred
 		ensure
 			adapted_count: count = old count + a_count
-			zero_shifted: item (0) = 0 and then item (1) = old item (0)
+			zero_shifted: item (0) = 0 --and then item (1) = old (item (0))
 		end
 
 	shift_right (a_count : INTEGER) is
@@ -286,7 +286,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		deferred
 		ensure
 			adapted_count: count = old count
-			zero_shifted: item (count) = 0
+			zero_shifted: item (count-1) = 0
 		end
 		
 feature -- Obsolete
