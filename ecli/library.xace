@@ -19,7 +19,7 @@
 		copyright:   "Copyright (c) 2001, Paul G. Crismer and others"
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
 		date:        "$Date $"
-		revision:    "$Revision: 1.7 $"
+		revision:    "$Revision: 1.8 $"
 	</description>
 
 	<cluster name="ecli" location="${ECLI}/src">
@@ -48,4 +48,5 @@
 		</option>
 	</cluster>
 
+	<mount location="${SAFE}/lib/kernel/library.xace"/>
 </library>
