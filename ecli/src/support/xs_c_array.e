@@ -1,14 +1,14 @@
 indexing
 	description: "C allocated arrays of `item_size' bytes items."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 19:39:55 $"
+	date: "$Date: 2003/03/01 13:49:55 $"
 	revision: "$Revision: 1.1 $"
 
 deferred class
-	C_ARRAY [G]
+	XS_C_ARRAY [G]
 
 inherit
-	C_MEMORY
+	XS_C_MEMORY
 	
 feature {NONE} -- Initialization
 
@@ -83,4 +83,4 @@ feature {NONE} -- Implementation
 invariant
 	invariant_clause: True -- Your invariant here
 
-end -- class C_ARRAY_INT16
+end -- class XS_C_ARRAY

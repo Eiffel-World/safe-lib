@@ -1,14 +1,14 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2003/02/26 19:33:46 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/03/01 13:49:55 $"
+	revision: "$Revision: 1.1 $"
 
 class
-	C_STRING
+	XS_C_STRING
 
 inherit
-	C_MEMORY
+	XS_C_MEMORY
 
 	ECLI_EXTERNAL_TOOLS
 		undefine
@@ -72,4 +72,4 @@ feature {NONE} -- Implementation
 invariant
 	invariant_clause: True -- Your invariant here
 
-end -- class C_STRING
+end -- class XS_C_STRING

@@ -1,11 +1,11 @@
 indexing
 	description: "Objects give access to C memory"
 	author: ""
-	date: "$Date: 2003/02/25 19:42:24 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/03/01 13:49:55 $"
+	revision: "$Revision: 1.1 $"
 
 class
-	C_MEMORY
+	XS_C_MEMORY
 
 inherit
 	MEMORY
@@ -82,4 +82,4 @@ feature {NONE} -- Implementation
 invariant
 	memory_allocated: handle /= default_pointer
 
-end -- class C_MEMORY
+end -- class XS_C_MEMORY
