@@ -2,8 +2,8 @@ indexing
 	description: "[
 					Windows implementation of ABSTRACT_GC_DATA.
 					]"
-	date: "$Date: 2003/12/28 22:04:41 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2004/06/29 16:49:46 $";
+	revision: "$Revision: 1.2 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -56,7 +56,7 @@ feature -- Access
 	window_handle : POINTER
 			-- Handle of the window.
 			
---	paint_structure : PAINTSTRUCT
+	paint_structure : PAINTSTRUCT
 			-- Paint structure. FIXME
 	
 	layout : INTEGER

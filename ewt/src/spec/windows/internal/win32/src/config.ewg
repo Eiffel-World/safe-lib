@@ -14,6 +14,19 @@
 		<wrapper type="default"/>
 	</rule>
 
+	<rule>
+		<match>
+			<identifier name=".*_clbk_.*"/>
+		</match>
+		<wrapper type="default"/>
+	</rule>
+
+	<rule>
+		<match>
+			<identifier name="callback_.*_eiffel_feature"/>
+		</match>
+		<wrapper type="none"/>
+	</rule>
 
 	<rule>
 		<match>

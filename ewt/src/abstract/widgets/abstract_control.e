@@ -13,8 +13,8 @@ indexing
 	MouseExit, MouseHover, MouseUp, MouseMove, Move, Paint, Resize
 	
 	]"
-	date: "$Date: 2003/12/30 12:50:58 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2004/06/29 16:49:46 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -42,6 +42,15 @@ feature -- Comparison
 feature -- Status report
 
 feature -- Status setting
+
+	set_visible (enable : BOOLEAN) is
+			-- Marks the receiver as visible if the argument is <code>true</code>,
+			-- and marks it invisible otherwise. 
+			-- If one of the receiver's ancestors is not visible or some
+			-- other condition makes the receiver not visible, marking
+			-- it visible may not actually cause it to be displayed.
+		deferred
+		end
 
 feature -- Cursor movement
 

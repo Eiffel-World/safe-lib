@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of an ABSTRACT_SHELL"
-	date: "$Date: 2004/06/20 09:16:51 $";
-	revision: "$Revision: 1.8 $";
+	date: "$Date: 2004/06/29 16:49:46 $";
+	revision: "$Revision: 1.9 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -164,8 +164,40 @@ feature -- Basic operations
 			-- Moves `Current' to the top of the drawing order for the display on which it was created (so that all other
 			-- shells on that display, which are not `Current' 's children will be drawn behind it), marks it visible, 
 			-- and sets focus to its default button (if it has one) and asks the window manager to make the shell active.
+		local
+			msg : MSG
+			res : INTEGER
 		do
-			-- FIXME
+				check_widget
+				bring_to_top
+				--	/*
+				--	* Feature on WinCE PPC.  A new application becomes
+				--	* the foreground application only if it has at least
+				--	* one visible window before the event loop is started.
+				--	* The workaround is to explicitely force the shell to
+				--	* be the foreground window.
+				--	*/
+				--	if (OS.IsWinCE) OS.SetForegroundWindow (handle);
+				res := os.send_message_a (handle, os.WM_CHANGEUISTATE, os.UIS_INITIALIZE, 0)
+				set_visible (True)
+				--	/*
+				--	* Bug in Windows XP.  Despite the fact that an icon has been
+				--	* set for a window, the task bar displays the wrong icon the
+				--	* first time the window is made visible with ShowWindow() after
+				--	* a call to BringToTop(), when a long time elapses between the
+				--	* ShowWindow() and the time the event queue is read.  The icon
+				--	* in the window trimming is correct but the one in the task
+				--	* bar does not get updated until a new icon is set into the
+				--	* window or the window text is changed.  The fix is to call
+				--	* PeekMessage() with the flag PM_NOREMOVE to touch the event
+				--	* queue but not dispatch events.
+				--	*/
+				--	MSG msg = new MSG ();
+				create msg.make_new_unshared
+				res := os.peek_message_a (msg.item, default_pointer, 0, 0, os.PM_NOREMOVE)
+				if not restore_focus then
+					traverse_group (true)
+				end
 		end
 
 	bring_to_top is
@@ -204,7 +236,6 @@ feature {NONE} -- Implementation
 	
  	check_style (a_style : INTEGER) : INTEGER is
  		local
- 			l_style : INTEGER
  			l_mask : INTEGER
  			l_bits : INTEGER
 		do

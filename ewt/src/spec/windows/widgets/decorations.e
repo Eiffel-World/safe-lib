@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DECORATIONS"
-	date: "$Date: 2004/06/20 09:16:51 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2004/06/29 16:49:46 $";
+	revision: "$Revision: 1.7 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -59,6 +59,22 @@ feature -- Duplication
 feature -- Miscellaneous
 
 feature -- Basic operations
+
+	restore_focus : BOOLEAN is
+		do
+		
+	--	if (savedFocus != null && savedFocus.isDisposed ()) savedFocus = null;
+	--	if (savedFocus != null && savedFocus.setSavedFocus ()) return true;
+	--	/*
+	--	* This code is intentionally commented.  When no widget
+	--	* has been given focus, some platforms give focus to the
+	--	* default button.  Windows doesn't do this.
+	--	*/
+	--//	if (defaultButton != null && !defaultButton.isDisposed ()) {
+	--//		if (defaultButton.setFocus ()) return true;
+	--//	}
+	--	return false;
+		end
 
 feature -- Obsolete
 

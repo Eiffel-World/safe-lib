@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DISPLAY"
-	date: "$Date: 2004/06/20 09:16:51 $";
-	revision: "$Revision: 1.9 $";
+	date: "$Date: 2004/06/29 16:49:46 $";
+	revision: "$Revision: 1.10 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -16,17 +16,20 @@ inherit
 			init
 		end
 	
-	WNDPROC_CALLBACK
+	WNDPROC_CALLBACKABLE
 		rename
-			on_callback as window_proc
+			call_window_procedure as window_proc
 		end
 
---	HOOKPROC_CALLBACK
---		rename
---			on_callback as msg_filter_proc
---		end
+	HOOKPROC_CALLBACKABLE
+		rename
+			call_hook_procedure as msg_filter_proc
+		end
 		
 	MSGPROC_CALLBACKABLE
+		rename
+			call_message_procedure as message_proc
+		end
 	
 	XS_IMPORTED_UINT32_ROUTINES
 
@@ -47,6 +50,28 @@ feature {NONE} -- Initialization
 		end
 
 feature -- Access
+
+	find_control (handle : POINTER) : CONTROL is
+		local
+			done : BOOLEAN
+			l_handle : POINTER
+		do
+			if handle /= default_pointer then
+				from
+					l_handle := handle
+				until
+					done or else l_handle = default_pointer
+				loop
+					Result := widget_table.item (handle)
+					if Result /= Void and then Result.handle = handle then
+						done := True
+					else
+						l_handle := os.get_parent (handle)
+					end
+				end
+			end
+		end
+		
 
 	get_current : DISPLAY is
 			-- Returns the display which the currently running process.
@@ -102,12 +127,11 @@ feature {CONTROL} -- Access
 
 feature {NONE} -- Access
 
+	
+	window_dispatcher_instance : WNDPROC_DISPATCHER_INSTANCE
 	window_proc_pointer : POINTER
 	
-	window_callback : WNDPROC_DISPATCHER
-	
-	thread_id : INTEGER
-	
+	thread_id : INTEGER	
 	process_id : INTEGER
 
 	window_name : STRING is "SWT_Window"
@@ -117,23 +141,39 @@ feature {NONE} -- Access
 		
 	message_proc_pointer : POINTER
 		-- message only procedure
-		
-	message_callback : WNDPROC_DISPATCHER
-	
-	message_callbacker : MSGPROC_CALLBACK
-	
---	msg_filter_callback : HOOKPROC_DISPATCHER
 
+	message_dispatcher_instance : MSGPROC_DISPATCHER_INSTANCE
 	msg_filter_proc_pointer : POINTER
-	
+
+	hook_dispatcher_instance : HOOKPROC_DISPATCHER_INSTANCE	
 	h_hook : POINTER
 
 	hook_msg : MSG
 	
+	current_message : MSG is
+			-- original SWT: msg
+		once
+			create Result.make_new_unshared
+		end
+		
 	widget_table : WIDGET_TABLE is
 		once
 			create Result.make
 		end
+
+feature {NONE} -- Keyboard and Mouse State
+
+	lock_active_window : BOOLEAN
+	last_virtual : BOOLEAN
+	last_null : BOOLEAN
+	last_key : INTEGER
+	last_ascii : INTEGER
+	
+	last_mouse : INTEGER
+	
+	keyboard : ARRAY[INTEGER] -- byte [] keyboard = new byte [256];
+	accel_key_hit : BOOLEAN
+	mnemonic_key_hit : BOOLEAN
 		
 feature -- Measurement
 
@@ -163,8 +203,28 @@ feature -- Basic operations
 
 	read_and_dispatch : BOOLEAN is
 			-- Reads an event from the operating system's event queue, dispatches it appropriately.
+		local
+			res : INTEGER
 		do
-			-- FIXME
+			
+			-- check_device  --	checkDevice ();
+			
+			-- draw_menu_bars	--	drawMenuBars ();
+			-- run_popups		--	runPopups ();
+			
+			if os.peek_message_a (current_message.item, default_pointer, 0, 0, os.PM_REMOVE) /= 0 then
+				if not is_wake_message (current_message) then
+					if not filter_message (current_message) then
+						res := os.translate_message (current_message.item)
+						res := os.dispatch_message_a (current_message.item)
+					end
+					run_deferred_events
+					Result := True
+				end
+			end
+			if not Result then
+				run_async_messages
+			end
 		end
 
 	sleep : BOOLEAN is
@@ -188,6 +248,44 @@ feature -- Basic operations
 			do_nothing
 		end
 
+	run_deferred_events is
+		do
+	--boolean runDeferredEvents () {
+	--	/*
+	--	* Run deferred events.  This code is always
+	--	* called in the Display's thread so it must
+	--	* be re-enterant but need not be synchronized.
+	--	*/
+	--	while (eventQueue != null) {
+	--		
+	--		/* Take an event off the queue */
+	--		Event event = eventQueue [0];
+	--		if (event == null) break;
+	--		int length = eventQueue.length;
+	--		System.arraycopy (eventQueue, 1, eventQueue, 0, --length);
+	--		eventQueue [length] = null;
+	--
+	--		/* Run the event */
+	--		Widget widget = event.widget;
+	--		if (widget != null && !widget.isDisposed ()) {
+	--			Widget item = event.item;
+	--			if (item == null || !item.isDisposed ()) {
+	--				widget.sendEvent (event);
+	--			}
+	--		}
+	--
+	--		/*
+	--		* At this point, the event queue could
+	--		* be null due to a recursive invokation
+	--		* when running the event.
+	--		*/
+	--	}
+	--
+	--	/* Clear the queue */
+	--	eventQueue = null;
+	--	return true;
+	--}
+		end
 	run_timer (id : INTEGER) is
 			-- run timer identified by `id'
 		do
@@ -217,7 +315,7 @@ feature {NONE} -- Implementation
 	init is
 		local
 			l_window_class_name : STRING
-			h_heap, h_instance : POINTER
+			h_instance : POINTER
 			lp_wndclass : WNDCLASS
 			cursor_index : XS_C_INT32
 			msgproc_pointer : XS_C_POINTER
@@ -230,10 +328,10 @@ feature {NONE} -- Implementation
 
 			--	/* Create the callbacks */
 
-			create window_callback.make (Current)
-			window_proc_pointer := window_callback.c_dispatcher
+			create window_dispatcher_instance.make (Current)
+			window_proc_pointer := window_dispatcher_instance.c_dispatcher
 			
-			--	/* Remember the current procsss and thread */
+			--	/* Remember the current process and thread */
 			thread_id := Os.get_current_thread_id_external
 			process_id := Os.get_current_process_id_external
 
@@ -299,10 +397,9 @@ feature {NONE} -- Implementation
 				default_pointer --lpparam: POINTER
 				)
 
-			create message_callbacker.make (Current)
-			create message_callback.make (message_callbacker)
+			create message_dispatcher_instance.make (Current)
 			create msgproc_pointer.make
-			msgproc_pointer.put (message_callback.c_dispatcher)
+			msgproc_pointer.put (message_dispatcher_instance.c_dispatcher)
 			swl_result := os.set_window_long_a_external (hwnd_message, os.Gwl_wndproc, msgproc_pointer.as_integer)
 	
 			--	/* Create the message filter hook */
@@ -313,9 +410,9 @@ feature {NONE} -- Implementation
 			--		if (msgFilterProc == 0) error (SWT.ERROR_NO_MORE_CALLBACKS);
 			--		hHook = OS.SetWindowsHookEx (OS.WH_MSGFILTER, msgFilterProc, 0, threadId);
 			--	}
---			create msg_filter_callback.make (Current)
---			msg_filter_proc_pointer := msg_filter_callback.c_dispatcher
---			h_hook := Os.set_windows_hook_ex_a_external (OS.wh_msgfilter, msg_filter_proc_pointer, default_pointer, thread_id)
+			create hook_dispatcher_instance.make (Current)
+			msg_filter_proc_pointer := hook_dispatcher_instance.c_dispatcher
+			h_hook := Os.set_windows_hook_ex_a_external (OS.wh_msgfilter, msg_filter_proc_pointer, default_pointer, thread_id)
 	end
 	
 	create_os_device (a_device_data : DEVICE_DATA) is
@@ -325,8 +422,8 @@ feature {NONE} -- Implementation
 				--	checkDisplay (thread = Thread.currentThread ());
 			
 			create_display (a_device_data)
-				--	register (this);
-				--	if (Default == null) Default = this;
+				--	register (this); FIXME
+				--	if (Default == null) Default = this; FIXME
 			if default_display = Void then
 				default_display_cell.put (Current)
 			end
@@ -366,6 +463,33 @@ feature {NONE} -- Implementation
 			a_status : INTEGER
 		do
 			a_status := os.release_dc_external (default_pointer, a_gc_handle)
+		end
+
+	is_wake_message (a_message : MSG) : BOOLEAN is
+		do
+			Result := (a_message.hwnd = hwnd_message and then a_message.message = os.WM_NULL)
+		end
+
+	filter_message (a_message : MSG) : BOOLEAN is
+		local
+			message : INTEGER
+			control : CONTROL
+		do
+			message := a_message.message
+			if os.WM_KEYFIRST <= message and then message <= os.WM_KEYLAST then
+				control := find_control (a_message.hwnd)
+				if control /= Void then
+					if translate_accelerator (a_message, control) 
+								or else translate_mnemonic (a_message, control) 
+								or else translate_traversal (a_message, control) then
+						last_ascii := 0
+						last_key := 0
+						last_virtual := false
+						last_null := false
+						Result := True
+					end
+				end
+			end
 		end
 
 	system_fonts : ARRAY [POINTER]
@@ -526,8 +650,72 @@ feature {NONE} -- Implementation static code
 	--		key_table.put (OS.VK_NUMPAD9,		SWT.key_KP_9)
 		end
 
+	translate_accelerator (a_message : MSG; control : CONTROL) : BOOLEAN is
+		do
+			accel_key_hit := True
+			Result := control.translate_accelerator (a_message)
+			accel_key_hit := False
+		end
+		
+	translate_mnemonic (a_message : MSG; control : CONTROL) : BOOLEAN is
+		do
+			if a_message.message = os.WM_CHAR or else a_message.message = os.WM_SYSCHAR then
+				Result := control.translate_mnemonic (a_message)
+			end
+		end
+		
+	translate_traversal (a_message : MSG; control : CONTROL) : BOOLEAN is
+		do
+			if a_message.message = os.WM_KEYDOWN then
+				if a_message.wparam = os.VK_RETURN or else
+				a_message.wparam = os.VK_ESCAPE or else 
+				a_message.wparam = os.VK_TAB or else 
+				a_message.wparam = os.VK_UP or else 
+				a_message.wparam = os.VK_DOWN or else 
+				a_message.wparam = os.VK_LEFT or else
+				a_message.wparam = os.VK_RIGHT or else
+				a_message.wparam = os.VK_PRIOR or else
+				a_message.wparam = os.VK_NEXT then
+					Result := control.translate_traversal (a_message)					
+				end
+			elseif a_message.message = os.WM_SYSKEYDOWN then
+				if a_message.wparam = os.VK_MENU then
+					Result := control.translate_traversal (a_message)
+				end
+			else
+				Result := False
+			end
+		end
+		
+	--boolean translateTraversal (MSG msg, Control control) {
+	--	switch (msg.message) {
+	--		case OS.WM_KEYDOWN:
+	--			switch (msg.wParam) {
+	--				case OS.VK_RETURN:
+	--				case OS.VK_ESCAPE:
+	--				case OS.VK_TAB:
+	--				case OS.VK_UP:
+	--				case OS.VK_DOWN:
+	--				case OS.VK_LEFT:
+	--				case OS.VK_RIGHT:
+	--				case OS.VK_PRIOR:
+	--				case OS.VK_NEXT:
+	--					return control.translateTraversal (msg);
+	--			}
+	--			break;
+	--		case OS.WM_SYSKEYDOWN:
+	--			switch (msg.wParam) {
+	--				case OS.VK_MENU:
+	--					return control.translateTraversal (msg);
+	--			}
+	--			break;
+	--	}
+	--	return false;
+	--}
+
 invariant
-	invariant_clause: -- Your invariant here
+	
+	current_message_not_void: current_message /= Void
 
 end -- class DISPLAY
 

@@ -11,8 +11,8 @@ indexing
 	Dispose
 	
 	]"
-	date: "$Date: 2004/06/20 09:16:50 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2004/06/29 16:49:46 $";
+	revision: "$Revision: 1.7 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -55,7 +55,7 @@ feature -- Element change
  			a_listener_defined : a_listener /= Void
 		deferred
 		end
-
+		
 feature -- Removal
 
 feature -- Resizing
@@ -86,6 +86,52 @@ feature -- Basic operations
 			
 		ensure
 			is_resource_disposed : is_resource_disposed
+		end
+
+	check_widget is
+		do
+--FIXME
+--	if (!isValidThread ()) error (SWT.ERROR_THREAD_INVALID_ACCESS);
+--	if (isDisposed ()) error (SWT.ERROR_WIDGET_DISPOSED);
+		end
+
+	send_event (event : EVENT) is
+		do
+--	Display display = event.display;
+--	if (!display.filterEvent (event)) {
+--		if (eventTable != null) eventTable.sendEvent (event);
+--	}
+		end
+		
+	send_event_by_type (event_type : INTEGER) is 
+		do
+			send_event_by_type_and_event_conditional (event_type, Void, True)
+		end
+		
+	send_event_by_type_and_event (event_type : INTEGER; event : EVENT) is
+		do
+			send_event_by_type_and_event_conditional (event_type, event, True)
+		end
+		
+	send_event_by_type_and_event_conditional (event_type : INTEGER; event : EVENT; send : BOOLEAN) is
+		do
+--	Display display = getDisplay ();
+--	if (eventTable == null && !display.filters (eventType)) {
+--		return;			
+--	}
+--	if (event == null) event = new Event ();
+--	event.type = eventType;
+--	event.display = display;
+--	event.widget = this;
+--	if (event.time == 0) {
+--		event.time = display.getLastEventTime ();
+--	}
+--	if (send) {
+--		sendEvent (event);
+--	} else {
+--		display.postEvent (event);
+--	}
+--}
 		end
 
 feature -- Obsolete

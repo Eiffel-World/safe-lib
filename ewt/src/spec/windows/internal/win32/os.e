@@ -1,7 +1,7 @@
 indexing
 	description: "Windows Operating System specific constants and functions"
-	date: "$Date: 2003/12/30 21:12:43 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2004/06/29 16:47:05 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -12,12 +12,24 @@ inherit
 
 	OS_CONSTANTS
 
-	WINGDI_FUNCTIONS_EXTERNAL
+	WINGDI_FUNCTIONS
 	
-	WINBASE_FUNCTIONS_EXTERNAL
+	WINBASE_FUNCTIONS
 	
-	WINUSER_FUNCTIONS_EXTERNAL
+	WINUSER_FUNCTIONS
 
+	WINNLS_FUNCTIONS
+	
+	WINREG_FUNCTIONS
+	
+	COMMDLG_FUNCTIONS
+	
+	IMM_FUNCTIONS
+	
+	OLE2_FUNCTIONS
+	
+	SHELLAPI_FUNCTIONS
+	
 creation
 	make
 	

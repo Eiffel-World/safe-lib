@@ -1,7 +1,7 @@
 indexing
 	description	: "System's root class"
-	date: "$Date: 2003/12/28 22:04:41 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2004/06/29 16:49:46 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -33,7 +33,7 @@ feature -- Initialization
 			end
 			a_display.release
 		end
-
+			
 end -- class HELLO
 
 -- Copyright: 2003, Paul G. Crismer & Eric Fafchamps, <pgcrism@users.sourceforge.net> & <efa@users.sourceforge.net>

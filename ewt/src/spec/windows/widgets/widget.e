@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implemenation of ABSTRACT_WIDGET"
-	date: "$Date: 2004/06/20 09:16:51 $";
-	revision: "$Revision: 1.7 $";
+	date: "$Date: 2004/06/29 16:49:46 $";
+	revision: "$Revision: 1.8 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -132,7 +132,7 @@ feature {NONE} -- Implementation
 			end
 			style := check_bits (style, swt.Style_left_to_right, swt.Style_right_to_left, 0, 0, 0, 0)
 		end
-
+		
 feature {WIDGET} -- Attributes
 
 	style : INTEGER

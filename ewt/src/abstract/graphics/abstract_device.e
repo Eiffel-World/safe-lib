@@ -5,8 +5,8 @@ indexing
 	Devices can have a graphics context (GC) created for them, and they can be drawn on by sending messages to the associated GC.
 
 	]"
-	date: "$Date: 2004/06/20 09:16:50 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2004/06/29 16:49:46 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -25,8 +25,8 @@ feature {NONE} -- Initialization
 
 	make_by_device_data  (a_device_data  : ABSTRACT_DEVICE_DATA) is
 			-- Initialize by using `a_device_data'.
-		require
-			a_device_data_defined : a_device_data /= Void
+--		require
+--			a_device_data_defined : a_device_data /= Void
 		deferred
 		end
 		

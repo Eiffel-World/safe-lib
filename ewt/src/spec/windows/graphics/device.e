@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DEVICE"
-	date: "$Date: 2003/12/30 21:12:43 $";
-	revision: "$Revision: 1.8 $";
+	date: "$Date: 2004/06/29 16:49:46 $";
+	revision: "$Revision: 1.9 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -17,6 +17,8 @@ inherit
 		export
 			{NONE} all
 		end
+	
+	XS_IMPORTED_UINT32_ROUTINES
 	
 feature {NONE} -- Initialization
 
@@ -95,7 +97,7 @@ feature {NONE} -- Implementation
 			
 			the_bits := the_bits * the_planes
 
-			if ((the_raster_caps & os.Rc_palette) = 0) or (the_bits /= 8) then
+			if UINT32_.u_and (the_raster_caps , os.Rc_palette) = 0 or (the_bits /= 8) then
 				internal_dispose_GC (a_device_context_handle, Void)
 			else
 	
