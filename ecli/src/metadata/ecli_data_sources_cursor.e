@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/08/20 09:42:54 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2004/05/18 11:19:54 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 class
@@ -164,7 +164,7 @@ feature {NONE} -- Implementation
 	get_error_diagnostic (record_index : INTEGER; state : POINTER; native_error : POINTER; message : POINTER; buffer_length : INTEGER; length_indicator : POINTER) : INTEGER  is
 			-- to be redefined in descendant classes
 		do
-			set_status (ecli_c_environment_error (Shared_environment.handle, record_index, state, native_error, message, buffer_length, length_indicator))
+			Result := ecli_c_environment_error (Shared_environment.handle, record_index, state, native_error, message, buffer_length, length_indicator)
 		end
 
 	do_fetch (direction : INTEGER) is
