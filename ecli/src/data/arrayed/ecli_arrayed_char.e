@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI CHAR (n) arrayed values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:33 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/02/25 14:29:32 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -19,12 +19,12 @@ inherit
 		end
 
 	ECLI_STRING_ROUTINES
-		export 
-			{NONE} all 
-		undefine 
+		export
+			{NONE} all
+		undefine
 			out
 		end
-		
+
 creation
 	make
 
@@ -37,13 +37,13 @@ feature {NONE} -- Initialization
 		ensure then
 			content_count = content_capacity
 		end
-		
+
 
 feature -- Access
 
 	content_count : INTEGER
 
-	item_at (index : INTEGER) : STRING is
+	item_at (index : INTEGER) : like item is
 		do
 			if not is_null_at (index) then
 				Result := Precursor (index)
@@ -105,7 +105,7 @@ feature {NONE} -- Implementation
 				pad (s, content_capacity)
 			end
 		end
-	
+
 invariant
 --	count_capacity: count <= capacity
 

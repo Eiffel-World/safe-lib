@@ -4,8 +4,8 @@ indexing
 		"CLI SQL DOUBLE value"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:29 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/02/25 14:29:32 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class
@@ -161,16 +161,14 @@ feature -- Basic operations
 
 	out : STRING is
 		local
-			message_buffer : STRING
+			message_buffer : C_STRING
 		do
 			if is_null then
 				Result := "NULL"
 			else
-				message_buffer := STRING_.make_filled (' ', 50)
-				protect
-				sprintf_double (string_to_pointer(message_buffer), item.item)
-				Result := pointer_to_string(string_to_pointer (message_buffer))
-				unprotect
+				create message_buffer.make (50)
+				sprintf_double (message_buffer.handle, item.item)
+				Result := pointer_to_string(message_buffer.handle)
 			end
 		end
 

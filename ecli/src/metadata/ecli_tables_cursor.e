@@ -7,8 +7,8 @@ indexing
 
 	author: "Paul G. Crismer"
 
-	date: "$Date: 2003/02/25 09:23:39 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/25 14:29:34 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	ECLI_TABLES_CURSOR
@@ -111,7 +111,7 @@ feature {NONE} -- Implementation
 				>>)
 		end
 
-	impl_item : ECLI_TABLE
+	impl_item : like item
 
 	definition : STRING is once Result := "SQLTables" end
 

@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:29 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/02/25 14:29:32 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,7 +14,7 @@ inherit
 			item, set_item, out,
 			to_integer, convertible_to_integer,
 			to_real, convertible_to_real,
-			to_double, convertible_to_double 
+			to_double, convertible_to_double
 		end
 
 creation
@@ -53,12 +53,12 @@ feature -- Status report
 		do
 			Result := True
 		end
-		
+
 	convertible_to_real : BOOLEAN is
 		do
 			Result := True
 		end
-		
+
 feature -- Access
 
 
@@ -128,14 +128,14 @@ feature -- Conversion
 				Result := to_integer
 			end
 		end
-		
+
 	to_double : DOUBLE is
 		do
 			if not is_null then
 				Result := to_integer
 			end
 		end
-		
+
 feature -- Duplication
 
 feature -- Miscellaneous
@@ -165,7 +165,12 @@ feature {NONE} -- Implementation
 
 	actual_value : INTEGER
 
-	octet_size : INTEGER is do Result := 4 ensure then result_is_4: Result = 4 end
+	octet_size : INTEGER is 
+		do 
+			Result := 4 
+		ensure 
+			result_is_4: Result = 4 
+		end
 
 invariant
 	invariant_clause: -- Your invariant here

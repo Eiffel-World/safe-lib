@@ -6,8 +6,8 @@ indexing
 		%A Void criteria is considered as a wildcard."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:39 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/25 14:29:34 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	ECLI_PROCEDURES_CURSOR
@@ -102,7 +102,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	impl_item : ECLI_PROCEDURE
+	impl_item : like item
 
 	definition : STRING is once Result := "SQLProcedures" end
 

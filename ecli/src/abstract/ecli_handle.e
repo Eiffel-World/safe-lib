@@ -1,5 +1,5 @@
 indexing
-	description: 
+	description:
 
 		"Objects that use an implementation (external) handle. This can be used %
 	   % in any case where an allocate/free scheme is needed.%
@@ -9,8 +9,8 @@ indexing
 	   % and should also be redefined by descendant classes."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:21 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/25 14:29:31 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -18,11 +18,11 @@ deferred class
 
 inherit
 
-	ANY 
-	
+	ANY
+
 	ECLI_EXTERNAL_TOOLS
 		export
-			{NONE} all;
+			{NONE} all
 		redefine
 			dispose
 		end
@@ -49,7 +49,7 @@ feature {ECLI_HANDLE} -- Status report
 			-- why is this object not ready_for_disposal
 		deferred
 		end
-		
+
 feature {NONE} -- Implementation
 
 	set_handle (h : POINTER) is

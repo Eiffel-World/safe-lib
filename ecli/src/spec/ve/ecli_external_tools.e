@@ -1,8 +1,8 @@
 indexing
 	description: "Tools for Eiffel/External (to C) communication"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:46 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/25 14:29:34 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -15,15 +15,11 @@ feature -- Basic operations
 
 	string_to_pointer (s : STRING) : POINTER is
 			-- pointer to "C" version of 's'
-		require
-			good_string: s /= Void
 		do
 			Result := s.to_c
 		end
 
 	pointer_to_string (p : POINTER) : STRING is
-		require
-			good_pointer: p /= default_pointer
 		do
 			!! Result.make (0)
 			Result.from_c (p)

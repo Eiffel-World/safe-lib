@@ -6,8 +6,8 @@ indexing
 		%A Void criteria is considered as a wildcard."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:36 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/02/25 14:29:34 $"
+	revision: "$Revision: 1.8 $"
 
 class
 	ECLI_COLUMNS_CURSOR
@@ -154,7 +154,7 @@ feature {NONE} -- Implementation
 				>>)
 		end
 
-	impl_item : ECLI_COLUMN
+	impl_item : like item
 
 	definition : STRING is once Result := "SQLColumns" end
 
