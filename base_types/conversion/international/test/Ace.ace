@@ -1,0 +1,62 @@
+system
+	test
+
+root
+	ROOT_CLASS: "make"
+
+default
+	assertion (all)
+	multithreaded (no)
+	console_application (yes)
+	dynamic_runtime (no)
+	dead_code_removal (yes)
+	profile (no)
+	line_generation (no)
+	debug  (no)
+	array_optimization (no)
+	inlining (no)
+	inlining_size ("4")
+
+
+cluster
+	
+	root_cluster: "$SEP_ELIB\support\international\test";
+
+		-- Eiffel international
+	eint:					"$SEP_ELIB\support\international\src";
+	eint_french (eint):		"$\french";
+
+		-- Base type string
+	elks_string:				"$SEP_ELIB\base_types\string\src";
+	elks_string_spec(elks_string):	"$\spec\ise";
+
+		-- Gobo Eiffel Kernel Library
+	kl_kernel:			"$GOBO\library\kernel";
+	kl_kernel_spec:		"$GOBO\library\kernel\spec\ise";
+
+		-- Gobo Eiffel Structure Library
+	ds_container:		"$GOBO\library\structure\container";
+	ds_cursor:			"$GOBO\library\structure\cursor";
+	ds_dispenser:		"$GOBO\library\structure\dispenser";
+	ds_list:			"$GOBO\library\structure\list";
+	ds_sort:			"$GOBO\library\structure\sort";
+	ds_support:			"$GOBO\library\structure\support";
+	ds_table:			"$GOBO\library\structure\table";
+
+
+		-- EiffelBase
+	all base:						"$EIFFEL4\library\base"
+		exclude
+			"desc";"table_eiffel3"
+		end
+
+	thread:						"$EIFFEL4\library\thread"
+
+end
+
+
+--
+-- Copyright: 2001, Eric Fafchamps, <eric.fafchamps@belgacom.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--
