@@ -2,8 +2,8 @@ indexing
 	description: 	"System's root class"
 	author: 	"Paul G. Crismer"
 	licence: 	"Released under the Eiffel Forum licence.  See file 'forum.txt'."
-	date: 		"$Date: 2003/08/26 19:34:50 $"
-	revision: 	"$Revision: 1.5 $"
+	date: 		"$Date: 2003/08/27 06:53:50 $"
+	revision: 	"$Revision: 1.6 $"
 
 class
 	SHOW_EPDF
@@ -21,7 +21,6 @@ feature -- Initialization
 		local
 			medium : PDF_OUTPUT_MEDIUM
 			file : KI_BINARY_OUTPUT_FILE
-			page : PDF_PAGE
 		do
 			print ("show_epdf application%N")
 			create document.make

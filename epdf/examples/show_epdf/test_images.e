@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that show how to use PDF images, as supported by ePDF"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/25 19:00:26 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2003/08/27 06:53:50 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	TEST_IMAGES
@@ -17,10 +17,9 @@ feature -- Basic operations
 	do_test (document : PDF_DOCUMENT; images_outline : PDF_OUTLINE_ITEM) is
 			-- 
 		local
-			page, page1, page2 : PDF_PAGE
+			page : PDF_PAGE
 			image, alpha, image2 : PDF_IMAGE
 			i,j, c : INTEGER
-			png : PDF_PNG_IMAGE
 		do
 			page := document.last_page
 			document.create_png_image (file_system.pathname (images_dir,"toucan.png"))

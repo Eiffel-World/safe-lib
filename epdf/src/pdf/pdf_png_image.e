@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are images coming from a PNG file"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/26 19:34:50 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/08/27 06:53:50 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PDF_PNG_IMAGE
@@ -118,7 +118,6 @@ feature {PDF_DOCUMENT}-- Implementation
 			has_alpha : BOOLEAN
 			i, j, index : INTEGER
 			pimage : XS_C_STRING
-			color_r, color_g, color_b, color_a : INTEGER
 		do
 			create pimage.make_from_pointer (image, width * height * channels)
 			if channels \\ 2 = 0 then

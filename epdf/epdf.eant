@@ -6,8 +6,8 @@
 		system: "EPDF parent project file."
 		copyright: "Copyright (c) 2002, Paul G. Crismer"
 		license: "Eiffel Forum Freeware License v1 (see forum.txt)"
-		date: "$Date: 2003/08/25 19:00:26 $"
-		revision: "$Revision: 1.4 $"
+		date: "$Date: 2003/08/27 06:53:50 $"
+		revision: "$Revision: 1.5 $"
 	</description>
 
 	<inherit>
@@ -35,6 +35,8 @@
 		<echo message="WARNING: GOBO_CC variable not set. Must be msc|bcc|gcc|lcc" unless="${GOBO_CC}"/>
 		<echo message="WARNING: GOBO_OS variable not set." unless="${GOBO_OS}"/>
 		<echo message="WARNING: GOBO_EIFFEL variable not set." unless="${GOBO_EIFFEL}"/>
+		<echo message="WARNING: VE_BIN variable not set." if="${GOBO_EIFFEL}=ve"/>
+
 		<echo message="WARNING: BCC_DIR variable not set." if="${GOBO_CC}=bcc" unless="${BCC_DIR}"/>
 		<set name="eiffel" value="${GOBO_EIFFEL}"/>
 	</target>

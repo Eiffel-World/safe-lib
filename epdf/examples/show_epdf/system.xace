@@ -6,8 +6,8 @@
 		author:      "Paul G. Crismer"
 		copyright:   "Copyright (c) 2001, Paul G. Crismer and others"
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
-		date:        "$Date: 2003/08/26 19:34:50 $"
-		revision:    "$Revision: 1.8 $"
+		date:        "$Date: 2003/08/27 06:53:50 $"
+		revision:    "$Revision: 1.9 $"
 	</description>
 
 	<root class="SHOW_EPDF" creation="make"/>
@@ -23,7 +23,6 @@
 	</option>	
 	<mount location="${EPDF}/library.xace"/>
 	<option if="${GOBO_OS}=windows">
-		<option name="linker" value="microsoft" if="${GOBO_EIFFEL}=ve"/>
 		<option name="link" value="libc.lib" if="${GOBO_EIFFEL}=ve"/>
 		<option name="link" value="/entry:_mainCRTStartup" if="${GOBO_EIFFEL}=ve"/>
 	</option>
