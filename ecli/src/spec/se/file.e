@@ -3,8 +3,8 @@ indexing
 description: "Attempt to make portable files";
 keywords: "file", "portable"
 status: "See notice at end of class";
-date: "$Date: 2001/05/16 13:56:51 $";
-revision: "$Revision: 1.3 $"
+date: "$Date: 2002/03/21 20:33:37 $";
+revision: "$Revision: 1.4 $"
 
 deferred class FILE
 
@@ -141,7 +141,7 @@ feature -- Initialization
         do
             create ah
             p := ah.string_to_pointer (name)
-            result := (fdata /= Default_pointer) or else ext_exists (p.item)
+            result := (not fdata.is_null) or else ext_exists (p.item)
         end
 ----------------------
 
@@ -178,7 +178,7 @@ feature -- Initialization
             create ah
             p := ah.string_to_pointer (name)
             fdata := ext_open_read (p)
-            if fdata /= Default_pointer then
+            if not fdata.is_null then
                 flags := Read
             else
                 error_message := ah.pointer_to_string (ext_error_message)
@@ -197,7 +197,7 @@ feature -- Initialization
             create ah
             p := ah.string_to_pointer (name)
             fdata := ext_open_write (p)
-            if fdata /= Default_pointer then
+            if not fdata.is_null then
                 flags := Write
             else
                 error_message := ah.pointer_to_string (ext_error_message)
@@ -216,7 +216,7 @@ feature -- Initialization
             create ah
             p := ah.string_to_pointer (name)
             fdata := ext_open_append (p)
-            if fdata /= Default_pointer then
+            if not fdata.is_null then
                 flags := Append
             else
                 error_message := ah.pointer_to_string (ext_error_message)
@@ -235,7 +235,7 @@ feature -- Initialization
             create ah
             p := ah.string_to_pointer (name)
             fdata := ext_open_read_write (p)
-            if fdata /= Default_pointer then
+            if not fdata.is_null then
                 flags := Read_write
             else
                 error_message := ah.pointer_to_string (ext_error_message)

@@ -3,8 +3,8 @@ indexing
 description: "Attempt to make files portable";
 keywords: "text", "file", "portable"
 status: "See notice at end of class";
-date: "$Date: 2001/05/16 13:56:51 $";
-revision: "$Revision: 1.2 $"
+date: "$Date: 2002/03/21 20:33:37 $";
+revision: "$Revision: 1.3 $"
 
 class PLAIN_TEXT_FILE
     
@@ -147,7 +147,7 @@ feature -- Input
         do
             last_string := clone ("")
             p           := ext_readline (fdata)
-            if p /= Default_pointer then
+            if not p.is_null then
                 create ah
                 last_string := ah.pointer_to_string (p)
             end
