@@ -19,8 +19,8 @@ indexing
 	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
 	%	exact-match or multiple-match queries, respectively."
 
-	date: "$Date: 2004/06/06 20:26:28 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/09/01 19:23:57 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class EIFFELSTORE_SIMPLE_ADAPTER[G->PO_PERSISTENT]
 
@@ -153,7 +153,7 @@ feature -- Basic operations
 
 	disable_cache_on_write is
 		do 
-			is_enabled_cache_on_write := True 
+			is_enabled_cache_on_write := False 
 		end
 
 feature -- Access

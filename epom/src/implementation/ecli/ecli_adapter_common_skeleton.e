@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2004/09/01 19:23:57 $"
 
 deferred class ECLI_ADAPTER_COMMON_SKELETON[G->PO_PERSISTENT]
 
@@ -122,7 +122,7 @@ feature -- Basic operations
 
 	disable_cache_on_write is
 		do 
-			is_enabled_cache_on_write := True 
+			is_enabled_cache_on_write := False 
 		end
 	
 feature {PO_ADAPTER} -- Basic operations
