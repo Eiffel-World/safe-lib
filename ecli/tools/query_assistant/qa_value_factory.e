@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2001/09/15 10:24:10 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -160,7 +160,7 @@ invariant
 
 end -- class QA_VALUE_FACTORY
 --
--- Copyright: 2000, Paul G. Crismer, <pgcrism@attglobal.net>
+-- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

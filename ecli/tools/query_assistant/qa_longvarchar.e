@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI LONGVARCHAR (n) values"
 	author: ""
-	date: "$Date: 2001/05/16 13:56:51 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/09/15 10:24:10 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	QA_LONGVARCHAR
@@ -31,7 +31,7 @@ feature
 
 end -- class QA_LONGVARCHAR
 --
--- Copyright: 2000, Paul G. Crismer, <pgcrism@attglobal.net>
+-- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

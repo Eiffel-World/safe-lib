@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that trace SQL execution on an output medium"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/15 09:56:52 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/15 10:24:10 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -230,7 +230,7 @@ invariant
 
 end -- class ECLI_TRACER
 --
--- Copyright: 2000, Paul G. Crismer, <pgcrism@attglobal.net>
+-- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

@@ -5,8 +5,8 @@ indexing
 		% and associated information messages"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2001/09/15 09:56:52 $"
-	revision: 	"$Revision: 1.4 $"
+	date: 		"$Date: 2001/09/15 10:24:10 $"
+	revision: 	"$Revision: 1.5 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -204,7 +204,7 @@ invariant
 
 end -- class ECLI_STATUS
 --
--- Copyright: 2000, Paul G. Crismer, <pgcrism@attglobal.net>
+-- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --
