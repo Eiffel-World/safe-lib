@@ -4,8 +4,8 @@ indexing
 		"SQL TIMESTAMP values"
 		
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.18 $"
+	date: "$Date: 2003/07/29 19:54:27 $"
+	revision: "$Revision: 1.19 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,7 +14,10 @@ class
 inherit
 	ECLI_GENERIC_VALUE [DT_DATE_TIME]
 		redefine
-			create_impl_item, impl_item, is_equal,as_timestamp, out, as_string, convertible_as_string, set_item, item
+			create_impl_item, impl_item, is_equal, out, 
+			as_string, convertible_as_string, 
+			set_item, item,
+			convertible_as_timestamp, as_timestamp
 		end
 
 	KL_IMPORTED_STRING_ROUTINES
@@ -252,6 +255,12 @@ feature -- Status report
 
 	convertible_as_string : BOOLEAN is
 			--
+		do
+			Result := True
+		end
+
+	convertible_as_timestamp : BOOLEAN is
+			-- is Current convertible to a timestamp ?
 		do
 			Result := True
 		end
