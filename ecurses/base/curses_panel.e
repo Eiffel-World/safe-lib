@@ -3,8 +3,8 @@ indexing
 	cluster:        "ecurses, base"
     	interface: 	"client, classification"
     	status: 	"See notice at end of class"
-    	date: 		"$Date: 2000/01/07 11:33:20 $"
-    	revision: 	"$Revision: 1.1 $"
+    	date: 		"$Date: 2001/07/01 16:49:24 $"
+    	revision: 	"$Revision: 1.2 $"
     	author: 	"Paul G. Crismer, Eric Fafchamps"
 class 
 	CURSES_PANEL
@@ -56,7 +56,7 @@ feature  -- commands
     close is
 	do
 	    handle_curses_call(del_panel(pptr), "del_panel")
-	    Precursor
+	    Precursor		
 	end
 
     hide is
