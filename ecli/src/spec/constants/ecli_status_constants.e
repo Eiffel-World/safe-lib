@@ -1,8 +1,8 @@
 indexing
 	description: "Status constants"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:43 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/05/18 11:20:45 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_STATUS_CONSTANTS
@@ -18,5 +18,6 @@ feature -- Status Report
 
 	Sql_still_executing	:	INTEGER is	2
 	Sql_need_data	:	INTEGER is	99
+	Sql_no_total    : 	INTEGER is	-4
 
 end -- class ECLI_STATUS_CONSTANTS

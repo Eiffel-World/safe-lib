@@ -1,8 +1,8 @@
 indexing
 	description: "CLI C Interface"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.16 $"
+	date: "$Date: 2004/05/18 11:20:45 $"
+	revision: "$Revision: 1.17 $"
 	licensing: "See notice at end of class"
 
 class
@@ -170,6 +170,18 @@ feature {NONE} -- Implementation
 		end
 
 	ecli_c_get_data (stmt : POINTER; column_number, c_type : INTEGER; target_pointer : POINTER; buffer_length : INTEGER; len_indicator_pointer : POINTER) : INTEGER is
+		external "C"
+		end
+
+	ecli_c_param_data (stmt, value_ptr_ptr : POINTER)  : INTEGER is
+		external "C"
+		end
+
+	ecli_c_put_data (stmt, data_ptr : POINTER; str_len_or_ind : INTEGER)  : INTEGER is
+		external "C"
+		end
+
+	ecli_c_len_data_at_exe (len : INTEGER) : INTEGER is
 		external "C"
 		end
 
