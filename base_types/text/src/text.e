@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that represents a text, a text is composed of 0 or more paragraphs of characters"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/26 11:02:02 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2001/11/07 11:47:10 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	TEXT
@@ -73,6 +73,24 @@ feature -- Status report
 			end
 		end
 
+
+	has_string (a_string: STRING): BOOLEAN is
+			-- Does text include `a_string' in one of it paragraphs?
+		local
+			paragraphs_cursor: DS_BILINEAR_CURSOR [STRING]
+		do
+			from
+				paragraphs_cursor := paragraphs.new_cursor
+				paragraphs_cursor.start
+				Result := False
+			until
+				paragraphs_cursor.off or Result
+			loop
+				Result := paragraphs_cursor.item.substring_index (a_string, 1) > 0
+				paragraphs_cursor.forth
+			end
+		end
+		
 feature -- Measurement
 
 	count: INTEGER is
@@ -115,6 +133,30 @@ feature -- Status report
 			!!Result.make (paragraphs_i.count, paragraphs_i.item (paragraphs_i.count).count)
 		end
 
+	first_position_of_string (a_string: STRING): TEXT_POSITION is
+			-- Position of first occurence of `a_string'.
+		require
+			string_not_empty: a_string /= Void and then not a_string.is_empty
+			has_string: has_string (a_string)
+		local
+			substring_index : INTEGER
+			paragraphs_cursor: DS_ARRAYED_LIST_CURSOR [STRING]
+		do
+			from
+				paragraphs_cursor := paragraphs.new_cursor
+				paragraphs_cursor.start
+			until
+				paragraphs_cursor.off or Result /= Void
+			loop
+				substring_index := paragraphs_cursor.item.substring_index (a_string, 1)
+				if  substring_index > 0 then
+					!!Result.make (paragraphs_cursor.index, substring_index)
+				end
+				paragraphs_cursor.forth
+			end
+		ensure
+			Result /= Void		
+		end
 
 feature -- Element change
 
@@ -176,7 +218,7 @@ feature -- Element change
 					--| save right substring
 					right := estring.substring (a_text_position.character_position, estring.count)
 					--| remove right substring
-					estring.head (target_index - 1)
+					estring.head (a_text_position.character_position - 1)
 				end
 				estring.string.append_string (paragraphs_cursor.item)
 				paragraphs_cursor.forth
@@ -251,6 +293,35 @@ feature -- Element change
 			paragraphs_i.item (a_paragraph_index).append_character (a_character)	
 		ensure
 			on_character_more: paragraphs_i.item (a_paragraph_index).count = old (paragraphs_i.item (a_paragraph_index).count) + 1	
+		end
+
+
+	replace_all_string_with_text (a_string: STRING; a_text: like Current) is
+			-- Replace every occurence of `a_string' with ´a_text'.
+		require
+			string_not_empty: a_string /= Void and then not a_string.is_empty
+			text_exists: a_text /= Void
+		local
+			string_position: TEXT_POSITION
+			estring: ESTRING
+		do
+			from		
+			until
+				not has_string (a_string)
+			loop
+				string_position := first_position_of_string (a_string)
+				--| remove a_string from Current
+				!!estring.make_from_string (paragraphs_i.item (string_position.paragraph_position))
+				estring.remove_substring (string_position.character_position, string_position.character_position + a_string.count - 1)
+				if not a_text.is_empty then
+					--| insert or append a_text
+					if valid_position (string_position) then
+						insert_text (a_text, string_position)
+					else
+						append_text (a_text, string_position.paragraph_position)
+					end
+				end
+			end
 		end
 
 feature -- Removal
