@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that iterate over the SQL types supported by a datasource"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/25 20:14:43 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/08/22 19:57:58 $"
+	revision: "$Revision: 1.1 $"
 
 class
 	ECLI_SQL_TYPES_CURSOR
@@ -138,7 +138,7 @@ feature {ECLI_SQL_TYPE} -- Status
 	is_odbc_v3 : BOOLEAN is
 			-- 
 		do
-			Result := result_column_count > 15
+			Result := result_columns_count > 15
 		end
 
 feature {ECLI_SQL_TYPE} -- Access
@@ -222,7 +222,7 @@ feature {NONE} -- Implementation
 		do
 			set_status (ecli_c_get_type_info ( handle, type))
 			if is_ok then
-				get_result_column_count
+				get_result_columns_count
 				is_executed := True
 				if has_results then
 					set_cursor_before
@@ -230,7 +230,7 @@ feature {NONE} -- Implementation
 					set_cursor_after
 				end
 	         else
-	         	impl_result_column_count := 0
+	         	impl_result_columns_count := 0
 			end
 			create_buffers
 		end
