@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2005/02/08 21:40:02 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps Eric"
 
 class
@@ -47,6 +47,7 @@ feature {NONE} -- Initialization.
 			is_leading_zero_shown := shared_default_format.is_leading_zero_shown
 			is_decimal_format := shared_default_format.is_decimal_format
 			decimals := shared_default_format.decimals
+			decimal_character := shared_default_format.decimal_character
 		ensure
 			width_copied: width = a_width
 			padding_character_default: padding_character = shared_default_format.padding_character 
@@ -61,6 +62,7 @@ feature {NONE} -- Initialization.
 			leading_zero_shown_default: is_leading_zero_shown = shared_default_format.is_leading_zero_shown		
 			decimal_format_default : is_decimal_format = shared_default_format.is_decimal_format
 			decimals_default : decimals = shared_default_format.decimals
+			decimal_character_default: decimal_character = shared_default_format.decimal_character
 		end
 
 		make_default is
