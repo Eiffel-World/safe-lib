@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that converts a number to it's representation in words"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/13 18:09:40 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/15 08:24:45 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	EINT_NUMBER_TO_WORDS_CONVERTER
@@ -20,3 +20,9 @@ feature -- Basic operations
 		end
 
 end -- class EINT_NUMBER_TO_WORDS_CONVERTER
+
+--
+-- Copyright: 2001, Eric Fafchamps, <eric.fafchamps@belgacom.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

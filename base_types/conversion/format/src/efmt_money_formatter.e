@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that formats EMO_MONEY objects"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/13 18:03:04 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/15 08:24:45 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EFMT_MONEY_FORMATTER
@@ -216,3 +216,9 @@ feature -- Basic operations
 		end
 
 end -- class EFMT_MONEY_FORMATTER
+
+--
+-- Copyright: 2001, Eric Fafchamps, <eric.fafchamps@belgacom.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

@@ -135,3 +135,9 @@ feature {NONE} -- Implementation
 
 end -- class FORMAT_TEST
 
+
+--
+-- Copyright: 2001, Eric Fafchamps, <eric.fafchamps@belgacom.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

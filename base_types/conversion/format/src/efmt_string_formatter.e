@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that formats STRING objects"
 	author: "Fafchamps eric"
-	date: "$Date: 2001/09/13 18:03:04 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2001/09/15 08:24:45 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EFMT_STRING_FORMATTER
@@ -74,3 +74,10 @@ feature -- Basic operations
 
 
 end -- class EFMT_STRING_FORMATTER
+
+--
+-- Copyright: 2001, Eric Fafchamps, <eric.fafchamps@belgacom.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--
+

@@ -1,2 +1,2 @@
-${SEP_ELIB}\base_types\conversion\international\src\
-${SEP_ELIB}\base_types\conversion\international\src\french\
+${SAFE_EBT}\conversion\international\src\
+${SAFE_EBT}\conversion\international\src\french\
