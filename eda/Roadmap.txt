@@ -1,0 +1,5 @@
+Version 1.* Beta
+	Working (passing GDAS test cases), NOT optimized version
+	 
+Version 1.* Release
+	Working, optimized version

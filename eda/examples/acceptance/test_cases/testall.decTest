@@ -1,0 +1,89 @@
+------------------------------------------------------------------------
+-- testall.decTest -- run all core and simplified decimal testcases   --
+-- Copyright (c) IBM Corporation, 1981, 2002.  All rights reserved.   --
+------------------------------------------------------------------------
+-- Please see the document "Standard Decimal Arithmetic Testcases"    --
+-- at http://www2.hursley.ibm.com/decimal for the description of      --
+-- these testcases.                                                   --
+--                                                                    --
+-- These testcases are experimental ('beta' versions), and they       --
+-- may contain errors.  They are offered on an as-is basis.  In       --
+-- particular, achieving the same results as the tests here is not    --
+-- a guarantee that an implementation complies with any Standard      --
+-- or specification.  The tests are not exhaustive.                   --
+--                                                                    --
+-- Please send comments, suggestions, and corrections to the author:  --
+--   Mike Cowlishaw, IBM Fellow                                       --
+--   IBM UK, PO Box 31, Birmingham Road, Warwick CV34 5JL, UK         --
+--   mfc@uk.ibm.com                                                   --
+------------------------------------------------------------------------
+version: 2.12
+
+-- core tests (using Extended: 1) --------------------------------------
+dectest: base
+dectest: abs
+dectest: add
+dectest: compare
+dectest: divide
+dectest: divideint
+dectest: extend
+dectest: inexact
+dectest: integer
+dectest: max
+dectest: min
+dectest: minus
+dectest: multiply
+dectest: normalize
+dectest: plus
+dectest: power
+dectest: randoms
+dectest: remainder
+dectest: remaindernear
+dectest: rescale
+dectest: rounding
+dectest: squareroot
+dectest: subtract
+dectest: trim
+
+-- The next four are for suggested concrete representations
+dectest: single
+dectest: double
+dectest: randomSingle
+dectest: randomDouble
+
+-- General 31->33-digit boundary tests
+dectest: randomBound32
+
+-- subset arithmetic tests (using Extended: 0) ---------------------
+dectest: base0
+dectest: abs0
+dectest: add0
+dectest: compare0
+dectest: divide0
+dectest: divideint0
+dectest: inexact0
+dectest: integer0
+dectest: max0
+dectest: min0
+dectest: minus0
+dectest: multiply0
+dectest: normalize0
+dectest: plus0
+dectest: power0
+dectest: randoms0
+dectest: remainder0
+dectest: remaindernear0
+dectest: rescale0
+dectest: rounding0
+dectest: squareroot0
+dectest: subtract0
+dectest: trim0
+
+-- The next four are for suggested concrete representations
+dectest: single0
+dectest: double0
+dectest: randomSingle0
+dectest: randomDouble0
+
+-- General 31->33-digit boundary tests
+dectest: randomBound320

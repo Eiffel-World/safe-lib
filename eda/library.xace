@@ -1,0 +1,28 @@
+<library name="eda">
+
+	<description>
+		description:[
+
+			Xace file for the EDA Library.
+			
+			Define EDA environment variable.
+			
+			]
+		library:     "EDA Library"
+		author:      "Paul G. Crismer [pgcrism@users.sourceforge.net]"
+		copyright:   "Copyright (c) 2002, Paul G. Crismer and others"
+		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
+		date:        "$Date $"
+		revision:    "$Revision: 1.1 $"
+	</description>
+
+	<cluster name="src" location="${EDA}/src" prefix="eda_">
+		<cluster name="abstract"/>
+		<cluster name="implementation"/>
+		<cluster name="spec">
+			<option name="abstract" value="true"/>
+			<cluster name="${GOBO_EIFFEL}"/>
+		</cluster>
+	</cluster>
+
+</library>
