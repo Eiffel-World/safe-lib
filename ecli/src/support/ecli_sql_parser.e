@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that parse SQL queries, searching for parameters."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/12/22 10:43:34 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2004/01/25 20:42:16 $"
+	revision: "$Revision: 1.8 $"
 
 class
 	ECLI_SQL_PARSER
@@ -161,7 +161,7 @@ feature -- Basic operations
 				end
 			end
 			check
-				state=state_sql
+				state=state_sql or else state=state_parameter
 			end
 		end
 		

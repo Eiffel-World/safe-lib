@@ -1,8 +1,8 @@
 indexing
 	description: "Abstraction of a SQL cursor."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/11 19:31:07 $"
-	revision: "$Revision: 1.15 $"
+	date: "$Date: 2004/01/25 20:42:15 $"
+	revision: "$Revision: 1.16 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -30,7 +30,7 @@ feature -- Basic Operations
 				end
 			end
 		ensure
-			result_set_created_if_executed: (is_executed and then has_result_set) implies (results.count = result_columns_count and then not array_routines.has (results, Void))
+--FIXME			result_set_created_if_executed: (is_executed and then has_result_set) implies (results.count = result_columns_count and then not array_routines.has (results, Void))
 			not_before_if_executed: (is_executed and then has_result_set) implies not before
 		end
 

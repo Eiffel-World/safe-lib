@@ -1,8 +1,8 @@
 indexing
 	description: "Command Line Interactive SQL for ODBC datasources";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.21 $"
+	date: "$Date: 2004/01/25 20:42:14 $"
+	revision: "$Revision: 1.22 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -32,7 +32,7 @@ feature {NONE} -- Initialization
 			create_commands
 			create std
 			output_file := std.output
-			create current_context.make (output_file, commands, sql_command) 
+			create_current_context (output_file, commands, sql_command) 
 			create_default_system_variables (current_context)
 			print_banner
 			-- session opening
@@ -284,6 +284,12 @@ feature {NONE} -- Implementation
 	sql_command : ISQL_CMD_SQL
 	
 	usage_command : ISQL_CMD_USAGE
+	
+	create_current_context  (a_output_file : KI_TEXT_OUTPUT_STREAM; a_commands : DS_LIST[ISQL_COMMAND]; a_sql_command : ISQL_CMD_SQL) is
+		do
+			create current_context.make (a_output_file, a_commands, a_sql_command)			
+		end
+		
 	
 end -- class ISQL
 --
