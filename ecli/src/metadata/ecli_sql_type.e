@@ -1,7 +1,7 @@
 indexing
 	description: "Objects that describe a SQL type, as supported by a datasource."
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/15 20:09:28 $"
+	date: "$Date: 2002/08/22 20:12:30 $"
 	revision: "$Revision: 1.1 $"
 
 class
