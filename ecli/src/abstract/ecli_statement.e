@@ -6,8 +6,8 @@ indexing
 		% Provide CLI/ODBC CORE and some Level 1 functionalities."
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2002/05/09 20:10:31 $"
-	revision: 	"$Revision: 1.11 $"
+	date: 		"$Date: 2002/05/31 19:19:54 $"
+	revision: 	"$Revision: 1.12 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -361,6 +361,7 @@ feature -- Cursor movement
 		do
 			set_status (ecli_c_close_cursor (handle))
 			set_cursor_after
+			fetched_columns_count := 0
 		ensure
 			after: after
 			fetched_columns: fetched_columns_count = 0

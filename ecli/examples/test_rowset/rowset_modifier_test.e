@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2002/05/09 20:03:54 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/05/31 19:19:54 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ROWSET_MODIFIER_TEST
@@ -30,7 +30,7 @@ feature -- Access
 			-- array of names
 		once
 			Result := <<
-				"a",
+				"a very long name",
 				"b",
 				"c",
 				"d",
@@ -79,7 +79,7 @@ feature -- Access
 
 feature -- Constants
 
-	sql_create : STRING is "CREATE TABLE ROWSETSAMPLE (NAME VARCHAR(30), AGE INTEGER)"
+	sql_create : STRING is "CREATE TABLE ROWSETSAMPLE (NAME VARCHAR(5), AGE INTEGER)"
 	
 	sql_insert : STRING is "INSERT INTO ROWSETSAMPLE VALUES (?name, ?age)"
 	

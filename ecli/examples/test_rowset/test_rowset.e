@@ -1,8 +1,8 @@
 indexing
 	description: "ECLI test of rowset classes";
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/05/09 20:03:54 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/05/31 19:19:54 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET
@@ -138,13 +138,10 @@ feature {NONE} -- Implementation
 				io.put_string (error_message)
 			io.put_new_line
 			end
-			io.put_string ("Usage: test_rowset -dsn <data_source> -user <user_name> -pwd <password> [-sql <file_name>] [echo] [[-set <name>=<value> ]...]%N%
+			io.put_string ("Usage: test_rowset -dsn <data_source> -user <user_name> -pwd <password>%N%
 						%%T-dsn data_source%T%TODBC data source name%N%
 						%%T-user user_name%T%Tuser name for database login%N%
-						%%T-pwd password%T%Tpassword for database login%N%
-						%%T-sql file_name%T%Toptional file_name for batch SQL execution%N%
-						%%Techo %T%T%T%Techo batch commands%N%
-						%%T-set <name>=<value>%Tset variable 'name' to 'value', for parametered statements.%N")
+						%%T-pwd password%T%Tpassword for database login%N")
 		end
 
 		
@@ -154,12 +151,12 @@ feature {NONE} -- Implementation
 			io.put_string (stmt.diagnostic_message)
 			io.put_character ('%N')
 		end
-
-			
-	formatting_buffer : MESSAGE_BUFFER is
-		once
-			!!Result.make (1000)
-		end
+--
+--			
+--	formatting_buffer : MESSAGE_BUFFER is
+--		once
+--			!!Result.make (1000)
+--		end
 		
 end -- class TEST_ROWSET
 --
