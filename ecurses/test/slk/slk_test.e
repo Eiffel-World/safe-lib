@@ -1,6 +1,6 @@
 indexing
 	description: "eCurses Hello World'"
-	version: "$Revision: 1.1 $"
+	version: "$Revision: 1.1.1.1 $"
 	date:	"$Date: 2000/01/07 11:33:35 $"
 	Author: "Paul G. Crismer"
 class
@@ -292,8 +292,8 @@ end -- class BASIC_TEST
 -- Released under the Eiffel Forum free license
 -------------------------------------------------------
 -- $Log: slk_test.e,v $
--- Revision 1.1  2000/01/07 11:33:35  pgcrism
--- Initial revision
+-- Revision 1.1.1.1  2000/01/07 11:33:35  pgcrism
+-- Initial checkin
 --
 --
 	

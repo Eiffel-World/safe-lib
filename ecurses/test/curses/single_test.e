@@ -1,7 +1,7 @@
 indexing
 	description: "Abstract class for a single test";
 	date: "$Date: 2000/01/07 11:33:32 $";
-	revision: "$Revision: 1.1 $"
+	revision: "$Revision: 1.1.1.1 $"
 
 deferred class 
 	SINGLE_TEST

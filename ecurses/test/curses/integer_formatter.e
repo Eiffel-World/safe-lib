@@ -1,7 +1,7 @@
 indexing
 	description: "Formatter for integer values";
 	date: "$Date: 2000/01/07 11:33:35 $";
-	revision: "$Revision: 1.1 $"
+	revision: "$Revision: 1.1.1.1 $"
 
 class 
 	INTEGER_FORMATTER

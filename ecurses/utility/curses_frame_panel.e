@@ -3,7 +3,7 @@ indexing
 		    % A client subwindow is available %
 		    % It does not overlap neither the border nor the header or the footer";
 	date: "$Date: 2000/01/07 11:33:35 $";
-	revision: "$Revision: 1.1 $"
+	revision: "$Revision: 1.1.1.1 $"
 
 class 
 	CURSES_FRAME_PANEL

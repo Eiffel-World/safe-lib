@@ -5,7 +5,7 @@ indexing
     interface: 	"mixin"
     status: 	"See notice at end of class"
     date: 	"$Date: 2000/01/07 11:33:25 $"
-    revision: 	"$Revision: 1.1 $"
+    revision: 	"$Revision: 1.1.1.1 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class CURSES_COLOR_CONSTANTS
