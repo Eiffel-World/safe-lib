@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/10/11 20:42:28 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2004/11/16 20:53:07 $"
+	revision: "$Revision: 1.15 $"
 
 class
 	ACCESS_MODULE
@@ -329,6 +329,9 @@ feature {NONE} -- Implementation
 						loop
 							-- créer paramètre
 							factory.create_value_from_sample (cs.item.sample)
+							if factory.last_error /= Void then
+								a_error_handler.report_error_message ("Parameter '"+cs.item.name+"' :"+factory.last_error+". Could not create sample value.")
+							end
 							query_statement.put_parameter (factory.last_result, cs.item.name)
 							cs.forth
 						end

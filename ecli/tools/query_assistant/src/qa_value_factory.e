@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/24 19:40:44 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2004/11/16 20:53:07 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -38,6 +38,8 @@ feature -- Access
 
 	last_result : QA_VALUE
 
+	last_error : STRING
+	
 feature -- Measurement
 
 feature -- Status report
@@ -64,6 +66,8 @@ feature -- Element change
 			varchar_result : QA_VARCHAR
 		do
 			last_result := Void
+			last_error := Void
+			converted := False
 			if sample.is_equal ("NULL") then
 				create varchar_result.make (1)
 				last_result := varchar_result
@@ -77,23 +81,29 @@ feature -- Element change
 									create timestamp_result.make_default
 									timestamp_result.set_item (Fmt_timestamp.last_result)
 									last_result := timestamp_result
+									converted := True
+								else
+									last_error := "Invalid timestamp format"
 								end
-								converted := True
 							elseif fmt_time.matching_string (sample) then
 								fmt_time.create_from_string (sample)
 								create time_result.make_default
 								time_result.set_item (fmt_time.last_result)
 								last_result := time_result
+								converted := True
+							else
+								last_error := "Invalid time format"
 							end
-							converted := True
 						elseif sample.item (2) = 'd' then
 							if fmt_date.matching_string (sample) then
 								fmt_date.create_from_string (sample)
 								create date_result.make_default
 								date_result.set_item (fmt_date.last_result)
 								last_result := date_result
+								converted := True
+							else
+								last_error := "Invalid date format"
 							end
-							converted := True
 						else
 							converted := False
 							-- force conversion to varchar
