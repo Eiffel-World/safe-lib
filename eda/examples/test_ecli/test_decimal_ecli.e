@@ -18,9 +18,10 @@ feature
 			ctx : MA_DECIMAL_CONTEXT
 			insert : ECLI_STATEMENT
 			table_exists : BOOLEAN
+			numerics : DS_LIST[ECLI_SQL_TYPE]
 		do 
-			create session.make ("Northwind", "","");
---			create session.make ("Postgresql", "pgc", "pgc")
+--			create session.make ("Northwind", "","");
+			create session.make ("Postgresql", "pgc", "pgc")
 --			create session.make ("EssaiOracle", "SYSTEM", "masterkey")
 --			create session.make ("firebird", "","");
 --			create session.make ("ecli_db", "","");
@@ -36,6 +37,22 @@ feature
 					stmt.set_sql ("drop table test_decimal")
 					stmt.execute
 				else
+				end
+				create type_catalog.make (session)
+				numerics := type_catalog.numeric_types
+				from
+					numerics.start
+				until
+					numerics.off
+				loop
+					print ("Name : "+numerics.item_for_iteration.name)
+					print ("%T ("+numerics.item_for_iteration.size.out)
+					if numerics.item_for_iteration.is_maximum_scale_applicable then
+						print (", "+numerics.item_for_iteration.maximum_scale.out)
+					end
+					print (")")
+					print ("%N")
+					numerics.forth
 				end
 				tables_cursor := Void
 				--| create table and populate
@@ -61,10 +78,10 @@ create table TEST_DECIMAL (d18 NUMERIC(18,0), d182 NUMERIC (18,2), dl83 NUMERIC 
 --					stmt.go_after
 				end
 				stmt.close
-				create decimal_18_0.make(19,0, Round_up)
-				create decimal_18_2.make(18,2, Round_up)
-				create decimal_5_3.make (5,3, Round_up)
-				create decimal_18_4.make(18,4, Round_up)
+				create decimal_18_0.make(19, 0)
+				create decimal_18_2.make(18, 2)
+				create decimal_5_3.make (5, 3)
+				create decimal_18_4.make(18, 4)
 				
 				--| 1 insert
 				create ctx.make (189,0)
@@ -90,10 +107,10 @@ create table TEST_DECIMAL (d18 NUMERIC(18,0), d182 NUMERIC (18,2), dl83 NUMERIC 
 				test_insert (insert, decimal_18_4)
 				--|
 				print ("%N")
-				create decimal_18_0.make(19,0, Round_up)
-				create decimal_18_2.make(18,2, Round_up)
-				create decimal_5_3.make (5,3, Round_up)
-				create decimal_18_4.make(18,4, Round_up)
+				create decimal_18_0.make(19, 0)
+				create decimal_18_2.make(18, 2)
+				create decimal_5_3.make (5, 3)
+				create decimal_18_4.make(18, 4)
 				create stmt.make (session)
 				stmt.set_sql ("select * from TEST_DECIMAL")
 				stmt.execute
@@ -157,4 +174,7 @@ create table TEST_DECIMAL (d18 NUMERIC(18,0), d182 NUMERIC (18,2), dl83 NUMERIC 
 	decimal_18_4 : ECLI_DECIMAL
 
 	tables_cursor: ECLI_TABLES_CURSOR	
+	
+	type_catalog : ECLI_TYPE_CATALOG
+	
 end
