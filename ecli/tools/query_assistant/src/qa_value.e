@@ -4,8 +4,8 @@ indexing
 		"ECLI_VALUE with eiffel generation metadata"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/07/25 18:24:24 $"
-	revision: 	"$Revision: 1.7 $"
+	date: 		"$Date: 2003/12/22 10:44:12 $"
+	revision: 	"$Revision: 1.8 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -15,14 +15,6 @@ inherit
 	ECLI_VALUE
 		undefine
 			out,
-			as_character, convertible_as_character,
-			as_double, convertible_as_double,
-			as_integer, convertible_as_integer,
-			as_string, convertible_as_string,
-			as_real, convertible_as_real,
-			as_date, convertible_as_date,
-			as_timestamp, convertible_as_timestamp,
-			as_time, convertible_as_time,
 			copy
 		end
 

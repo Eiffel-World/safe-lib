@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:50:50 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/12/22 10:44:12 $"
+	revision: "$Revision: 1.11 $"
 
 
 class
@@ -451,7 +451,7 @@ feature {NONE} -- Implementation
 			end
 			create resolver
 			all_parents_set := resolver.resolve_parents (all_sets, error_handler)
-			resolver.resolve_descendants (all_parents_set)
+			resolver.resolve_descendants (all_sets)
 		end
 		
 		

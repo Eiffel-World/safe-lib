@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:50:50 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/12/22 10:44:12 $"
+	revision: "$Revision: 1.10 $"
 
 class
 	ACCESS_MODULE
@@ -48,7 +48,9 @@ feature -- Access
 
 	name: STRING
 			-- Name of current acces module. Generated names shall include it
-			
+		
+	type : ACCESS_TYPE
+	
 feature -- Status report
 
 	is_prepared: BOOLEAN
@@ -145,6 +147,15 @@ feature -- Element change
 			results := a_results
 		ensure
 			result_set: results = a_results
+		end
+		
+	set_type (new_type : ACCESS_TYPE) is
+		require
+			new_type_exists: new_type /= VOid
+		do
+			type := new_type
+		ensure
+			type_set: type = new_type
 		end
 		
 feature {NONE} -- Element change
@@ -293,7 +304,7 @@ feature {NONE} -- Implementation
 			query_statement.set_sql (query)
 			query_statement.prepare
 			if query_statement.is_ok then
-				if parameters.count = query_statement.parameter_names.count and then parameters.has_samples then
+				if parameters.count = 0 or else (parameters.count = query_statement.parameter_names.count and then parameters.has_samples) then
 					if session.is_transaction_capable then
 						-- create parameters
 						from
@@ -311,7 +322,9 @@ feature {NONE} -- Implementation
 						-- begin transaction
 						session.begin_transaction
 						-- try query
-						query_statement.bind_parameters
+						if query_statement.parameters_count > 0 then
+							query_statement.bind_parameters
+						end
 						query_statement.execute
 						if query_statement.is_ok then
 							is_query_valid := True
