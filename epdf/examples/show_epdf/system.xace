@@ -6,8 +6,8 @@
 		author:      "Paul G. Crismer"
 		copyright:   "Copyright (c) 2001, Paul G. Crismer and others"
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
-		date:        "$Date: 2003/02/27 15:07:07 $"
-		revision:    "$Revision: 1.4 $"
+		date:        "$Date: 2003/08/19 15:42:45 $"
+		revision:    "$Revision: 1.5 $"
 	</description>
 
 	<root class="SHOW_EPDF" creation="make"/>
@@ -21,7 +21,7 @@
 		<option name="finalize" value="false"/>
 	</option>
 
-	<mount location="${EPDF}/library.xace"/>
+	<mount location="${SAFE}/lib/epdf/library.xace"/>
 	<mount location="${GOBO}/library/library.xace"/>
 	<mount location="${GOBO}/library/kernel.xace"/>
 </system>

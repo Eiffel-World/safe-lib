@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that test font capabilities of eif-PDF"
+	description: "Objects that test font capabilities of ePDF"
 	author: ""
-	date: "$Date: 2003/02/27 15:07:08 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2003/08/19 15:42:45 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	TEST_FONTS

@@ -6,12 +6,12 @@
 		system: "Show EPDF features by example."
 		copyright: "Copyright (c) 2002,2003 Paul G. Crismer"
 		license: "Eiffel Forum Freeware License v1 (see forum.txt)"
-		date: "$Date: 2003/02/27 15:07:07 $"
-		revision: "$Revision: 1.1 $"
+		date: "$Date: 2003/08/19 15:42:44 $"
+		revision: "$Revision: 1.2 $"
 	</description>
 
 	<inherit>
-		<parent location="${GOBO}/misc/eiffel.eant">
+		<parent location="${SAFE}/lib/epdf/epdf.eant">
 			<redefine target="init_system"/>
 		</parent>
 	</inherit>
