@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that execute SQL statements."
 	author: "Paul G. Crismer."
-	date: "$Date: 2005/01/09 20:23:32 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2005/01/09 20:43:36 $"
+	revision: "$Revision: 1.8 $"
 
 class
 	ISQL_CMD_SQL
@@ -73,15 +73,7 @@ feature -- Basic operations
 						end
 						if not cursor.is_ok then
 							print_error (cursor, context)
-						else
-							--| io.put_string ("OK%N")				
 						end				
-					else
-						a_statement := cursor
-						a_statement.execute
-						if not a_statement.is_ok then
-							print_error (cursor, context)
-						end
 					end
 				else
 					print_error (cursor, context)                                          

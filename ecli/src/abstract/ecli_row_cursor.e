@@ -11,7 +11,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:42 $"
+	date: "$Date: 2005/01/09 20:43:36 $"
 
 class ECLI_ROW_CURSOR
 
@@ -200,7 +200,7 @@ feature -- Cursor movement
 			end
 		ensure
 			executed: is_ok implies is_executed
-			results_created_by_factory: is_ok implies results /= Void
+			results_created_by_factory: (is_ok and then has_result_set) implies results /= Void
 			off_if_not_query: is_ok implies (not has_result_set implies off)
 		end
 
