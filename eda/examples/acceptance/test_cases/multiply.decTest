@@ -1,8 +1,8 @@
 ------------------------------------------------------------------------
 -- multiply.decTest -- decimal multiplication                         --
--- Copyright (c) IBM Corporation, 1981, 2002.  All rights reserved.   --
+-- Copyright (c) IBM Corporation, 1981, 2003.  All rights reserved.   --
 ------------------------------------------------------------------------
--- Please see the document "Standard Decimal Arithmetic Testcases"    --
+-- Please see the document "General Decimal Arithmetic Testcases"     --
 -- at http://www2.hursley.ibm.com/decimal for the description of      --
 -- these testcases.                                                   --
 --                                                                    --
@@ -17,7 +17,7 @@
 --   IBM UK, PO Box 31, Birmingham Road, Warwick CV34 5JL, UK         --
 --   mfc@uk.ibm.com                                                   --
 ------------------------------------------------------------------------
-version: 2.12
+version: 2.15
 
 extended:    1
 precision:   9
@@ -459,26 +459,26 @@ mulx785 multiply 1e-600000000 1e-400000998 -> 0E-1000000997 Underflow Subnormal 
 
 -- following testcases [through mulx800] not yet run against code
 precision: 9999
-mulx786 multiply 1e-600000000 1e-400009997 -> 1E-1000009997 Underflow Subnormal Inexact Rounded
+mulx786 multiply 1e-600000000 1e-400009997 -> 1E-1000009997 Subnormal
 mulx787 multiply 1e-600000000 1e-400009998 -> 0E-1000009997 Underflow Subnormal Inexact Rounded
 precision: 99999
-mulx788 multiply 1e-600000000 1e-400099997 -> 1E-1000099997 Underflow Subnormal Inexact Rounded
+mulx788 multiply 1e-600000000 1e-400099997 -> 1E-1000099997 Subnormal
 mulx789 multiply 1e-600000000 1e-400099998 -> 0E-1000099997 Underflow Subnormal Inexact Rounded
 precision: 999999
-mulx790 multiply 1e-600000000 1e-400999997 -> 1E-1000999997 Underflow Subnormal Inexact Rounded
+mulx790 multiply 1e-600000000 1e-400999997 -> 1E-1000999997 Subnormal
 mulx791 multiply 1e-600000000 1e-400999998 -> 0E-1000999997 Underflow Subnormal Inexact Rounded
 precision: 9999999
-mulx792 multiply 1e-600000000 1e-409999997 -> 1E-1009999997 Underflow Subnormal Inexact Rounded
+mulx792 multiply 1e-600000000 1e-409999997 -> 1E-1009999997 Subnormal
 mulx793 multiply 1e-600000000 1e-409999998 -> 0E-1009999997 Underflow Subnormal Inexact Rounded
 precision: 99999999
-mulx794 multiply 1e-600000000 1e-499999997 -> 1E-1099999997 Underflow Subnormal Inexact Rounded
+mulx794 multiply 1e-600000000 1e-499999997 -> 1E-1099999997 Subnormal
 mulx795 multiply 1e-600000000 1e-499999998 -> 0E-1099999997 Underflow Subnormal Inexact Rounded
 precision: 999999999
-mulx796 multiply 1e-999999999 1e-999999997 -> 1E-1999999996 Underflow Subnormal Inexact Rounded
-mulx797 multiply 1e-999999999 1e-999999998 -> 1E-1999999997 Underflow Subnormal Inexact Rounded
+mulx796 multiply 1e-999999999 1e-999999997 -> 1E-1999999996 Subnormal
+mulx797 multiply 1e-999999999 1e-999999998 -> 1E-1999999997 Subnormal
 mulx798 multiply 1e-999999999 1e-999999999 -> 0E-1999999997 Underflow Subnormal Inexact Rounded
-mulx799 multiply 1e-600000000 1e-400000007 -> 1E-1000000007 Underflow Subnormal Inexact Rounded
-mulx800 multiply 1e-600000000 1e-400000008 -> 1E-1000000008 Underflow Subnormal Inexact Rounded
+mulx799 multiply 1e-600000000 1e-400000007 -> 1E-1000000007 Subnormal
+mulx800 multiply 1e-600000000 1e-400000008 -> 1E-1000000008 Subnormal
 
 -- test subnormals rounding
 precision:   5

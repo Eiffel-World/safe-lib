@@ -2,7 +2,7 @@
 -- min.decTest -- decimal minimum                                     --
 -- Copyright (c) IBM Corporation, 1981, 2002.  All rights reserved.   --
 ------------------------------------------------------------------------
--- Please see the document "Standard Decimal Arithmetic Testcases"    --
+-- Please see the document "General Decimal Arithmetic Testcases"     --
 -- at http://www2.hursley.ibm.com/decimal for the description of      --
 -- these testcases.                                                   --
 --                                                                    --
@@ -17,7 +17,7 @@
 --   IBM UK, PO Box 31, Birmingham Road, Warwick CV34 5JL, UK         --
 --   mfc@uk.ibm.com                                                   --
 ------------------------------------------------------------------------
-version: 2.12
+version: 2.15
 
 -- we assume that base comparison is tested in compare.decTest, so
 -- these mainly cover special cases and rounding

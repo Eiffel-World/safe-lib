@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2002/12/18 22:06:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/01/22 10:57:52 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,7 +14,7 @@ class
 inherit
 	EDA_NUMERIC
 		redefine
-			out, is_equal, copy
+			out, is_equal, copy, infix "+", infix "-", prefix "+", prefix "-"
 		end
 
 	EDA_CONSTANTS
@@ -54,10 +54,32 @@ creation
 --	make, 
 	make_from_integer, 
 	make_from_string,
-	make_from_string_ctx
+	make_from_string_ctx,
+	make_zero,
+	make
 	
 feature {NONE} -- Initialization
 
+	make (precision : INTEGER) is
+			-- make using `precision' digits
+		require
+			positive_precision: precision > 0
+		do
+			!EDA_COEFFICIENT_IMP!coefficient.make (precision)
+			set_positive
+			coefficient.put (0, 0)
+		ensure
+			zero: is_zero
+		end
+
+	make_zero is
+			-- make zero
+		do
+			make (1)
+		ensure
+			zero: is_zero
+		end
+		
 	make_from_integer (value : INTEGER) is
 			-- make a new decimal from integer `value'
 		local
@@ -611,7 +633,11 @@ feature -- Duplication
 
 	copy (other : like Current) is
 		do
-			coefficient := clone (other.coefficient)
+			if coefficient = Void then
+				coefficient := clone (other.coefficient)
+			else
+				coefficient.copy (other.coefficient) -- := clone (other.coefficient)
+			end
 			exponent := other.exponent
 			is_negative := other.is_negative
 			special := other.special
@@ -636,11 +662,11 @@ feature -- Basic operations
 			else
 				--| Addition of non-special values
 				--| instantiate "registers"
-				operand_a := clone (Current); operand_a.set_positive
-				operand_b := clone (other); operand_b.set_positive
-				--| round if necessary
-				operand_a.prepare_operand (ctx)
-				operand_b.prepare_operand (ctx)
+				create operand_a.make (ctx.digits+1); operand_a.copy (Current) --operand_a := clone (Current); operand_a.set_positive
+				create operand_b.make (ctx.digits+1); operand_b.copy (other) -- operand_b := clone (other); operand_b.set_positive
+				----| round if necessary
+				--operand_a.prepare_operand (ctx)
+				--operand_b.prepare_operand (ctx)
 				if is_negative and then other.is_positive then
 					--| -a + b = (b-a)						 
 					operand_b.unsigned_subtract (operand_a, ctx)
@@ -701,10 +727,11 @@ feature -- Basic operations
 		local
 			operand_a, operand_b : like Current
 		do
-			Result := clone(zero)
+--			Result := clone(zero)
 			--|	specials
 			if is_special or else other.is_special then
 				-- sNan
+				create Result.make (ctx.digits)
 				if is_nan or else other.is_nan then
 					if is_signaling_nan or else other.is_signaling_nan then
 						ctx.signal (Signal_invalid_operation ,"sNan in multiply")
@@ -725,6 +752,7 @@ feature -- Basic operations
 				end
 			else
 				if is_zero or else other.is_zero then
+					create Result.make (ctx.digits)
 					Result.set_exponent (Current.exponent + other.exponent)
 					if sign = other.sign then
 						Result.set_positive
@@ -735,8 +763,9 @@ feature -- Basic operations
 					operand_a := clone (Current)
 					operand_b := clone (other)
 					--| round if necessary
-					operand_a.prepare_operand (ctx)
-					operand_b.prepare_operand (ctx)
+					--operand_a.prepare_operand (ctx)
+					--operand_b.prepare_operand (ctx)
+					create Result.make (operand_a.count + operand_b.count + 2)
 					Result.coefficient.integer_multiply (operand_a.coefficient, operand_b.coefficient)
 					Result.set_exponent (operand_a.exponent + operand_b.exponent)
 					if sign = other.sign then
@@ -824,109 +853,216 @@ feature -- Basic operations
 			-- decimal from Current rescaled to `new_exponent'
 		require
 			context_not_void: ctx /= Void
+		local
+			shared_digits, digits_upto_new_exponent, exponent_delta : INTEGER
+			saved_exponent_limit, result_count : INTEGER
 		do
-			Result := clone (Current)
-			if new_exponent <= ctx.exponent_limit and then new_exponent >= ctx.e_tiny then
-				Result.do_rescale (new_exponent, ctx)
-			else
+			--Result := clone (Current)
+			if not (new_exponent <= ctx.exponent_limit and then new_exponent >= ctx.e_tiny) then
 				ctx.signal (Signal_invalid_operation, "new exponent is not within limits [Etiny..Emax]")
+				create Result.make (1)
 				Result.set_quiet_nan			
+			else
+				--Result.do_rescale (new_exponent, ctx)
+				-- rescale to new_exponent
+				if is_special then
+					Result := clone (Current)
+					Result.do_rescale_special (ctx)
+				elseif exponent < new_exponent then
+					-- same as underflowing to e_tiny where e_tiny = new_exponent
+					if not is_zero then
+						shared_digits := adjusted_exponent - new_exponent + 1
+						if shared_digits < 0 then 
+							-- impossible to share any digit with new_exponent 
+							--grow (ctx.digits + count + 1)
+							result_count := ctx.digits+count+1
+						elseif shared_digits = 0 then 
+							-- msd at new_exponent - 1.  See if rounding shall carry some new_exponent digit
+							--local_context := underflowing_context (1, ctx.rounding_mode)
+							--grow (ctx.digits + count)
+							result_count := ctx.digits+count
+						else  -- shared_digits > 0 (and shared_digits <= ctx.digits)
+							--grow (ctx.digits + (count - shared_digits))
+							result_count := ctx.digits+(count-shared_digits)
+						end
+						create Result.make (result_count)
+						Result.copy (Current)
+						Result.coefficient.set_count (result_count)
+						Result.round (ctx)
+						Result.strip_leading_zeroes
+						if Result.is_underflow (ctx) then
+							Result.do_underflow (ctx)
+						end
+						if ctx.is_flagged (Signal_subnormal) and then ctx.is_flagged (Signal_inexact) then
+							ctx.signal (Signal_underflow, "Underflow when rescaling")
+						end
+						if Result.is_overflow (ctx) then
+							Result.do_overflow (ctx)
+						end
+						if exponent > new_exponent then
+							Result.shift_left (exponent - new_exponent)
+						end
+					else
+						Result := clone (Current)
+					end
+					Result.set_exponent (new_exponent)
+				elseif exponent > new_exponent then
+					if not is_zero then
+						digits_upto_new_exponent := adjusted_exponent - new_exponent + 1
+						if digits_upto_new_exponent > ctx.digits then
+							--| there should be an overflow
+							create Result.make (count + 1)
+							Result.copy (Current)
+							Result.shift_left (1)
+							saved_exponent_limit := ctx.exponent_limit
+							--| make sure overflow can be called
+							ctx.set_exponent_limit (count - 1)
+							Result.set_exponent (1) --adjusted_exponent.abs - 1)
+							Result.do_overflow (ctx)
+							if not Result.is_special then
+								Result.set_exponent (new_exponent)
+							end
+							ctx.set_exponent_limit (saved_exponent_limit)
+						else
+							exponent_delta := exponent - new_exponent
+							create Result.make (count + exponent_delta)
+							Result.copy (Current)
+							Result.shift_left (exponent_delta)
+						end
+					else
+						--| is_zero
+						if new_exponent < 0 and then exponent < 0 and then count > 1 then
+							--| "decimal places" have some importance
+							digits_upto_new_exponent := -new_exponent + 1							
+						else
+							digits_upto_new_exponent := 1
+						end
+						if digits_upto_new_exponent > ctx.digits then
+							--| there should be an overflow
+							create Result.make (count+1)
+							Result.copy (Current)
+							Result.shift_left (1)
+							saved_exponent_limit := ctx.exponent_limit
+							ctx.set_exponent_limit (Result.adjusted_exponent-1)
+							Result.do_overflow (ctx)
+							ctx.set_exponent_limit (saved_exponent_limit)
+						else
+							--| no overflow
+							if digits_upto_new_exponent > 1 then
+								--| by definition exponent < 0 and count > 1
+								exponent_delta := exponent - new_exponent
+								create Result.make (count + exponent_delta)
+								Result.copy (Current)
+								Result.shift_left (exponent_delta)
+							else
+								Result := clone (Current)
+							end
+							Result.set_exponent (new_exponent)
+						end
+					end
+					Result.clean_up (ctx)
+				else
+					--| new_exponent = exponent
+					--| still detect conditions
+					Result := clone (Current)
+					Result.clean_up (ctx)
+				end
 			end	
 		end
 		
-	do_rescale (new_exponent : INTEGER; ctx : EDA_MATH_CONTEXT) is
-			-- rescale current to new_exponent
-		require
-			context_not_void: ctx /= Void
-			new_exponent_valid: new_exponent <= ctx.exponent_limit and new_exponent >= ctx.e_tiny
-		local
-			shared_digits, digits_upto_new_exponent, exponent_delta : INTEGER
-			saved_exponent_limit : INTEGER
-		do
-			-- rescale to new_exponent
-			if is_special then
-				do_rescale_special (ctx)
-			elseif exponent < new_exponent then
-				-- same as underflowing to e_tiny where e_tiny = new_exponent
-				if not is_zero then
-					shared_digits := adjusted_exponent - new_exponent + 1
-					if shared_digits < 0 then 
-						-- impossible to share any digit with new_exponent 
-						grow (ctx.digits + count + 1)
-					elseif shared_digits = 0 then 
-						-- msd at new_exponent - 1.  See if rounding shall carry some new_exponent digit
-						--local_context := underflowing_context (1, ctx.rounding_mode)
-						grow (ctx.digits + count)
-					else  -- shared_digits > 0 (and shared_digits <= ctx.digits)
-						grow (ctx.digits + (count - shared_digits))
-					end
-					round (ctx)
-					strip_leading_zeroes
-					if is_underflow (ctx) then
-						do_underflow (ctx)
-					end
-					if ctx.is_flagged (Signal_subnormal) and then ctx.is_flagged (Signal_inexact) then
-						ctx.signal (Signal_underflow, "Underflow when rescaling")
-					end
-					if is_overflow (ctx) then
-						do_overflow (ctx)
-					end
-					if exponent > new_exponent then
-						shift_left (exponent - new_exponent)
-					end
-				end
-				exponent := new_exponent
-			elseif exponent > new_exponent then
-				if not is_zero then
-					digits_upto_new_exponent := adjusted_exponent - new_exponent + 1
-					if digits_upto_new_exponent > ctx.digits then
-						--| there should be an overflow
-						shift_left (1)
-						saved_exponent_limit := ctx.exponent_limit
-						--| make sure overflow can be called
-						ctx.set_exponent_limit (count - 1)
-						exponent := 1 --adjusted_exponent.abs - 1)
-						do_overflow (ctx)
-						if not is_special then
-							exponent := new_exponent
-						end
-						ctx.set_exponent_limit (saved_exponent_limit)
-					else
-						exponent_delta := exponent - new_exponent
-						shift_left (exponent_delta)
-					end
-				else
-					--| is_zero
-					if new_exponent < 0 and then exponent < 0 and then count > 1 then
-						--| "decimal places" have some importance
-						digits_upto_new_exponent := -new_exponent + 1							
-					else
-						digits_upto_new_exponent := 1
-					end
-					if digits_upto_new_exponent > ctx.digits then
-						--| there should be an overflow
-						shift_left (1)
-						saved_exponent_limit := ctx.exponent_limit
-						ctx.set_exponent_limit (adjusted_exponent-1)
-						do_overflow (ctx)
-						ctx.set_exponent_limit (saved_exponent_limit)
-					else
-						--| no overflow
-						if digits_upto_new_exponent > 1 then
-							--| by definition exponent < 0 and count > 1
-							exponent_delta := exponent - new_exponent
-							shift_left (exponent_delta)
-						end
-						exponent := new_exponent
-					end
-				end
-				clean_up (ctx)
-			else
-				--| new_exponent = exponent
-				--| still detect conditions
-				clean_up (ctx)
-			end
-		end
+--	do_rescale (new_exponent : INTEGER; ctx : EDA_MATH_CONTEXT) is
+--			-- rescale current to new_exponent
+--		require
+--			context_not_void: ctx /= Void
+--			new_exponent_valid: new_exponent <= ctx.exponent_limit and new_exponent >= ctx.e_tiny
+--		local
+--			shared_digits, digits_upto_new_exponent, exponent_delta : INTEGER
+--			saved_exponent_limit : INTEGER
+--		do
+--			-- rescale to new_exponent
+--			if is_special then
+--				do_rescale_special (ctx)
+--			elseif exponent < new_exponent then
+--				-- same as underflowing to e_tiny where e_tiny = new_exponent
+--				if not is_zero then
+--					shared_digits := adjusted_exponent - new_exponent + 1
+--					if shared_digits < 0 then 
+--						-- impossible to share any digit with new_exponent 
+--						grow (ctx.digits + count + 1)
+--					elseif shared_digits = 0 then 
+--						-- msd at new_exponent - 1.  See if rounding shall carry some new_exponent digit
+--						--local_context := underflowing_context (1, ctx.rounding_mode)
+--						grow (ctx.digits + count)
+--					else  -- shared_digits > 0 (and shared_digits <= ctx.digits)
+--						grow (ctx.digits + (count - shared_digits))
+--					end
+--					round (ctx)
+--					strip_leading_zeroes
+--					if is_underflow (ctx) then
+--						do_underflow (ctx)
+--					end
+--					if ctx.is_flagged (Signal_subnormal) and then ctx.is_flagged (Signal_inexact) then
+--						ctx.signal (Signal_underflow, "Underflow when rescaling")
+--					end
+--					if is_overflow (ctx) then
+--						do_overflow (ctx)
+--					end
+--					if exponent > new_exponent then
+--						shift_left (exponent - new_exponent)
+--					end
+--				end
+--				exponent := new_exponent
+--			elseif exponent > new_exponent then
+--				if not is_zero then
+--					digits_upto_new_exponent := adjusted_exponent - new_exponent + 1
+--					if digits_upto_new_exponent > ctx.digits then
+--						--| there should be an overflow
+--						shift_left (1)
+--						saved_exponent_limit := ctx.exponent_limit
+--						--| make sure overflow can be called
+--						ctx.set_exponent_limit (count - 1)
+--						exponent := 1 --adjusted_exponent.abs - 1)
+--						do_overflow (ctx)
+--						if not is_special then
+--							exponent := new_exponent
+--						end
+--						ctx.set_exponent_limit (saved_exponent_limit)
+--					else
+--						exponent_delta := exponent - new_exponent
+--						shift_left (exponent_delta)
+--					end
+--				else
+--					--| is_zero
+--					if new_exponent < 0 and then exponent < 0 and then count > 1 then
+--						--| "decimal places" have some importance
+--						digits_upto_new_exponent := -new_exponent + 1							
+--					else
+--						digits_upto_new_exponent := 1
+--					end
+--					if digits_upto_new_exponent > ctx.digits then
+--						--| there should be an overflow
+--						shift_left (1)
+--						saved_exponent_limit := ctx.exponent_limit
+--						ctx.set_exponent_limit (adjusted_exponent-1)
+--						do_overflow (ctx)
+--						ctx.set_exponent_limit (saved_exponent_limit)
+--					else
+--						--| no overflow
+--						if digits_upto_new_exponent > 1 then
+--							--| by definition exponent < 0 and count > 1
+--							exponent_delta := exponent - new_exponent
+--							shift_left (exponent_delta)
+--						end
+--						exponent := new_exponent
+--					end
+--				end
+--				clean_up (ctx)
+--			else
+--				--| new_exponent = exponent
+--				--| still detect conditions
+--				clean_up (ctx)
+--			end
+--		end
 	
 	do_rescale_special (ctx : EDA_MATH_CONTEXT) is
 			-- rescale special numbers
@@ -971,22 +1107,24 @@ feature -- Basic operations
 				!! e_min.make_from_integer (ctx.e_tiny)
 				if new_exponent <= e_max and then new_exponent >= e_min then
 					!! temp_ctx.make_double
-					Result := clone (Current)
+					--Result := clone (Current)
 					if new_exponent.is_integer then
 						new_integer_exponent := new_exponent.to_integer_ctx (temp_ctx)
 						if new_integer_exponent <= ctx.exponent_limit and then new_integer_exponent >= ctx.e_tiny then
-							Result.do_rescale (new_integer_exponent, ctx)
+							Result := rescale (new_integer_exponent, ctx)
 						else
 							ctx.signal (Signal_invalid_operation, "new exponent is not within limits [Etiny..Emax]")
+							create Result.make (1)
 							Result.set_quiet_nan			
 						end	
 					else
 						ctx.signal (Signal_invalid_operation, "new exponent has fractional part in 'rescale_decimal'")
+						create Result.make (1)
 						Result.set_quiet_nan
 					end
 				else
 					ctx.signal (Signal_invalid_operation, "new exponent if not within limits [Etiny..Emax]")
-					Result := clone (zero)
+					create Result.make (1)
 					Result.set_quiet_nan
 				end
 			end
@@ -1771,9 +1909,11 @@ feature {EDA_DECIMAL} -- Implementation
 			positive_precision: ctx.digits >= 1
 		local
 			exponent_increment : INTEGER
+			l_count : INTEGER
 		do
-			coefficient.shift_right (count - ctx.digits)
-			exponent_increment := count - ctx.digits
+			l_count := count - ctx.digits
+			coefficient.shift_right (l_count)
+			exponent_increment := l_count
 			exponent := exponent + exponent_increment
 			coefficient.keep_head (ctx.digits)
 		end
@@ -2309,15 +2449,16 @@ feature {EDA_DECIMAL} -- Implementation
 			dividend := clone (Current)
 			divisor := clone (other)
 			--| round if necessary
-			dividend.prepare_operand (ctx)
-			divisor.prepare_operand (ctx)
+			--dividend.prepare_operand (ctx)
+			--divisor.prepare_operand (ctx)
 			original_divisor_exponent := divisor.exponent
 			original_dividend_exponent := dividend.exponent
 			if dividend.is_zero then
 				dividend_is_zero := True
 			end
 			--| prepare result
-			Result := clone (zero)
+			--Result := clone (zero)
+			create Result.make (ctx.digits + 1)
 			adjust := 0; divisor_adjust := 0; dividend_adjust := 0
 			--| adjust coefficients so that 
 			--| 1. divisor.coefficient <= dividend.coefficient
@@ -2325,7 +2466,6 @@ feature {EDA_DECIMAL} -- Implementation
 			from			
 				--| while coefficient of dividend is less than coefficient of divisor
 				--| multiply coefficient of divident by 10
-				do_nothing
 			until
 				dividend.coefficient >= divisor.coefficient
 			loop

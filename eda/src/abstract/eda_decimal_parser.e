@@ -15,8 +15,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2002/12/18 22:06:14 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/01/22 10:57:52 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 	note: "This is a 'quick-and-dirty' implementation"
@@ -333,7 +333,7 @@ feature {NONE} -- Implementation
 
 invariant
 	exponent_integer: exponent = Void or else exponent.is_integer
-end
+end -- class EDA_DECIMAL_PARSER
 
 --
 -- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>

@@ -1,8 +1,8 @@
 ------------------------------------------------------------------------
 -- add.decTest -- decimal addition                                    --
--- Copyright (c) IBM Corporation, 1981, 2002.  All rights reserved.   --
+-- Copyright (c) IBM Corporation, 1981, 2003.  All rights reserved.   --
 ------------------------------------------------------------------------
--- Please see the document "Standard Decimal Arithmetic Testcases"    --
+-- Please see the document "General Decimal Arithmetic Testcases"     --
 -- at http://www2.hursley.ibm.com/decimal for the description of      --
 -- these testcases.                                                   --
 --                                                                    --
@@ -17,7 +17,7 @@
 --   IBM UK, PO Box 31, Birmingham Road, Warwick CV34 5JL, UK         --
 --   mfc@uk.ibm.com                                                   --
 ------------------------------------------------------------------------
-version: 2.12
+version: 2.15
 
 precision:   9
 rounding:    half_up
@@ -905,17 +905,29 @@ addx939 add -0.0009E-999 0    ->  -0E-1001   Inexact Rounded Subnormal Underflow
 addx940 add -0.0001E-999 0    ->  -0E-1001   Inexact Rounded Subnormal Underflow
 
 -- some non-zero subnormal adds
-addx950 add  1.00E-999   0.1E-999  ->   1.10E-999
-addx951 add  0.1E-999    0.1E-999  ->   2E-1000    Subnormal
-addx952 add  0.10E-999   0.1E-999  ->   2.0E-1000  Subnormal
-addx953 add  0.100E-999  0.1E-999  ->   2.0E-1000  Subnormal Rounded
-addx954 add  0.01E-999   0.1E-999  ->   1.1E-1000  Subnormal
-addx955 add  0.999E-999  0.1E-999  ->   1.10E-999  Inexact Rounded
-addx956 add  0.099E-999  0.1E-999  ->   2.0E-1000  Inexact Rounded Subnormal Underflow
-addx957 add  0.009E-999  0.1E-999  ->   1.1E-1000  Inexact Rounded Subnormal Underflow
-addx958 add  0.001E-999  0.1E-999  ->   1.0E-1000  Inexact Rounded Subnormal Underflow
-addx959 add  0.0009E-999 0.1E-999  ->   1.0E-1000  Inexact Rounded Subnormal Underflow
-addx960 add  0.0001E-999 0.1E-999  ->   1.0E-1000  Inexact Rounded Subnormal Underflow
+addx950 add  1.00E-999    0.1E-999  ->   1.10E-999
+addx951 add  0.1E-999     0.1E-999  ->   2E-1000    Subnormal
+addx952 add  0.10E-999    0.1E-999  ->   2.0E-1000  Subnormal
+addx953 add  0.100E-999   0.1E-999  ->   2.0E-1000  Subnormal Rounded
+addx954 add  0.01E-999    0.1E-999  ->   1.1E-1000  Subnormal
+addx955 add  0.999E-999   0.1E-999  ->   1.10E-999  Inexact Rounded
+addx956 add  0.099E-999   0.1E-999  ->   2.0E-1000  Inexact Rounded Subnormal Underflow
+addx957 add  0.009E-999   0.1E-999  ->   1.1E-1000  Inexact Rounded Subnormal Underflow
+addx958 add  0.001E-999   0.1E-999  ->   1.0E-1000  Inexact Rounded Subnormal Underflow
+addx959 add  0.0009E-999  0.1E-999  ->   1.0E-1000  Inexact Rounded Subnormal Underflow
+addx960 add  0.0001E-999  0.1E-999  ->   1.0E-1000  Inexact Rounded Subnormal Underflow
+-- negatives...
+addx961 add  1.00E-999   -0.1E-999  ->   9.0E-1000  Subnormal
+addx962 add  0.1E-999    -0.1E-999  ->   0E-1000
+addx963 add  0.10E-999   -0.1E-999  ->   0E-1001
+addx964 add  0.100E-999  -0.1E-999  ->   0E-1001
+addx965 add  0.01E-999   -0.1E-999  ->   -9E-1001   Subnormal
+addx966 add  0.999E-999  -0.1E-999  ->   9.0E-1000  Inexact Rounded Subnormal Underflow
+addx967 add  0.099E-999  -0.1E-999  ->   -0E-1001   Inexact Rounded Subnormal Underflow
+addx968 add  0.009E-999  -0.1E-999  ->   -9E-1001   Inexact Rounded Subnormal Underflow
+addx969 add  0.001E-999  -0.1E-999  ->   -1.0E-1000 Inexact Rounded Subnormal Underflow
+addx970 add  0.0009E-999 -0.1E-999  ->   -1.0E-1000 Inexact Rounded Subnormal Underflow
+addx971 add  0.0001E-999 -0.1E-999  ->   -1.0E-1000 Inexact Rounded Subnormal Underflow
 
 -- Null tests
 addx990 add 10  # -> NaN Invalid_operation

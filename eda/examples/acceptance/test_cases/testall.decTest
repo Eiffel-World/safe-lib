@@ -1,8 +1,8 @@
 ------------------------------------------------------------------------
--- testall.decTest -- run all core and simplified decimal testcases   --
+-- testall.decTest -- run all general decimal arithmetic testcases    --
 -- Copyright (c) IBM Corporation, 1981, 2002.  All rights reserved.   --
 ------------------------------------------------------------------------
--- Please see the document "Standard Decimal Arithmetic Testcases"    --
+-- Please see the document "General Decimal Arithmetic Testcases"     --
 -- at http://www2.hursley.ibm.com/decimal for the description of      --
 -- these testcases.                                                   --
 --                                                                    --
@@ -17,7 +17,7 @@
 --   IBM UK, PO Box 31, Birmingham Road, Warwick CV34 5JL, UK         --
 --   mfc@uk.ibm.com                                                   --
 ------------------------------------------------------------------------
-version: 2.12
+version: 2.15
 
 -- core tests (using Extended: 1) --------------------------------------
 dectest: base
@@ -45,7 +45,11 @@ dectest: squareroot
 dectest: subtract
 dectest: trim
 
+-- The next are for the Strawman 4 concrete representations
+dectest: decimal8
+
 -- The next four are for suggested concrete representations
+-- [Strawman 1], which are now obsolete
 dectest: single
 dectest: double
 dectest: randomSingle
@@ -54,36 +58,3 @@ dectest: randomDouble
 -- General 31->33-digit boundary tests
 dectest: randomBound32
 
--- subset arithmetic tests (using Extended: 0) ---------------------
-dectest: base0
-dectest: abs0
-dectest: add0
-dectest: compare0
-dectest: divide0
-dectest: divideint0
-dectest: inexact0
-dectest: integer0
-dectest: max0
-dectest: min0
-dectest: minus0
-dectest: multiply0
-dectest: normalize0
-dectest: plus0
-dectest: power0
-dectest: randoms0
-dectest: remainder0
-dectest: remaindernear0
-dectest: rescale0
-dectest: rounding0
-dectest: squareroot0
-dectest: subtract0
-dectest: trim0
-
--- The next four are for suggested concrete representations
-dectest: single0
-dectest: double0
-dectest: randomSingle0
-dectest: randomDouble0
-
--- General 31->33-digit boundary tests
-dectest: randomBound320

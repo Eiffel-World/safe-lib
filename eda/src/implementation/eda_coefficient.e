@@ -7,8 +7,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2002/12/18 22:06:14 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/01/22 10:57:52 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -20,7 +20,7 @@ inherit
 		undefine
 			is_equal, copy
 		redefine
-			three_way_comparison, infix ">" 
+			infix ">" 
 		end
 		
 feature {NONE} -- Initialization
@@ -48,17 +48,7 @@ feature -- Access
 
 	msd_index : INTEGER is
 			-- index of most significant (non-zero) digit
-		do
-			Result := count
-			from			
-			until
-				Result = 0 or else item (Result - 1) /= 0
-			loop
-				Result := Result - 1
-			end
-			if Result > 0 then
-				Result := Result - 1
-			end
+		deferred
 		ensure
 			result_within_limits : Result < count and Result >= 0
 			index_of_msd_or_zero: Result > 0 implies item (Result) /= 0
@@ -120,44 +110,12 @@ feature -- Status report
 feature {EDA_DECIMAL} -- Status setting
 
 	set_from_string (s : STRING) is
-			-- set from `s'
+			-- set from `s', skip the decimal point if it is present
 		require
 			s_not_void: s /= Void
-		local
-			i, k : INTEGER
-			c : CHARACTER
-		do
---			from
---				i := 1
-----				k := capacity - 1
---			until
---				i > s.count
---			loop
---				c := s.item (i)
---				if c /= '.' then
---					put ((c.code - ('0').code), i - 1)
-----					k := k - 1
---				end
---				i := i + 1
---			end
-----			check
-----				k <= 0
-----			end						
-			from
-				i := s.count
-				k := 0
-			variant
-				i
-			until
-				i = 0
-			loop
-				c := s.item (i)
-				if c /= '.'  then
-					put ((c.code - ('0').code), k)
-					k := k+1
-				end
-				i := i - 1
-			end
+		deferred
+		ensure
+			definition: True -- all digits in s are in Current at the right position
 		end
 		
 feature -- Cursor movement
@@ -174,31 +132,17 @@ feature -- Comparison
 			Result := (three_way_comparison (other) = 1)
 		end
 		
-	three_way_comparison (other: like Current) : INTEGER is
-			-- 
-		local
-			index, count_a, count_b, local_difference : INTEGER
-		do
-			--| skip leading zeroes
-			count_a := msd_index + 1
-			count_b := other.msd_index + 1
-
-			if count_a > count_b then
-				Result := 1
-			elseif count_a < count_b then
-				Result := -1
-			else
-				from
-					index := count_a - 1
-				until
-					index < 0 or else local_difference /= 0
-				loop
-					local_difference := item (index) - other.item (index)
-					index := index - 1
-				end
-				Result := local_difference.sign
-			end
-		end
+--	three_way_comparison (other: like Current) : INTEGER is
+--			-- compare other; Result is [-1,0,+1] if [Current<other, Current = other, Current > other] respectively
+--		require
+--			other_not_void: other /= Void
+--		deferred
+--		ensure
+--			definition: Result >= -1 and Result <= 1
+--			lower: True -- Result = -1 implies Current < other
+--			equal: True -- Result = 0 implies Current.is_equal (other)
+--			greater: True -- Result = -1 implies Current > other
+--		end
 
 feature {EDA_DECIMAL} -- Element change
 
@@ -252,6 +196,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		require
 			a_not_void: a /= Void
 			b_not_void: b /= Void
+			capacity_sufficient: capacity > a.count + b.count
 		deferred
 		ensure
 		end
@@ -348,7 +293,7 @@ feature -- Obsolete
 
 feature -- Inapplicable
 
-feature {NONE} -- Implementation
+feature {EDA_DECIMAL} -- Implementation
 
 	set_count (a_count : INTEGER) is
 			-- set `count' to `a_count'

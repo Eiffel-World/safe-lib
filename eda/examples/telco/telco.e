@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2002/12/18 22:06:11 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/01/22 10:57:52 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -17,6 +17,8 @@ inherit
 	DT_SHARED_SYSTEM_CLOCK
 
 	KL_SHARED_ARGUMENTS
+	
+	EDA_SHARED_MATH_CONTEXT
 	
 creation
 	make
@@ -59,19 +61,17 @@ feature -- Access
 	arguments_ok : BOOLEAN
 
 	tax, calculate : BOOLEAN
-
-	decimal_zero : EDA_DECIMAL is
-			-- 
-		once
-			create Result.make_from_integer (0)
-		end
 		
 feature -- Basic operations
 
 	print_usage is
 			-- print usage message
 		do
-			io.put_string ("Usage : telco [-input <filename>] [-output <filename>] %N")
+			io.put_string ("Usage : telco [-input <filename>] [-output <filename>] [-nocalc] [-notax] %N")
+			io.put_string ( "%T[-input <filename>]    Use <filename> as input,%N%
+					%%T[-output <filename>]   Use <filename> as output,%N%
+					%%T[-nocalc]              Do not calculate; reading/writing only,%N%
+					%%T[-notax]               Do not calculate tax.%N")
 		end
 		
 	do_benchmark is
@@ -122,40 +122,42 @@ feature -- Basic operations
 					if calculate then
 						long_distance := last_nibble \\ 2 = 1
 						--| 1. Price
-						--number.set_shared_decimal_context (price_context)
+						set_shared_decimal_context (default_context)
 						if long_distance then
-							price := number.multiply (distance_rate, default_context)
+							price := number * distance_rate
 							long_distance_count := long_distance_count + 1
 						else
-							price := number.multiply (base_rate, default_context)
+							price := number * base_rate
 						end
 						price := price.rescale (-2, price_context)			
 						if tax then
 							--| 2. Basic tax
-							--number.set_shared_decimal_context (tax_context)
-							base_tax := price.multiply (base_tax_rate, tax_context)
+							set_shared_decimal_context (tax_context)
+							base_tax := price * base_tax_rate
 							base_tax := base_tax.rescale (-2, tax_context)
-							sum_b := sum_b.add (base_tax, tax_context)
-							total_price := price.add (base_tax, tax_context)					
+							sum_b := sum_b + base_tax
+							total_price := price + base_tax					
 							--| 3. Long distance calls
 							if long_distance then
-								distance_tax := price.multiply (distance_tax_rate, tax_context)
+								distance_tax := price * distance_tax_rate
 								distance_tax := distance_tax.rescale (-2, tax_context)
-								sum_d := sum_d.add (distance_tax, tax_context)
-								total_price := total_price.add (distance_tax, tax_context)
+								sum_d := sum_d + distance_tax
 								--| 4. total price
+								total_price := total_price + distance_tax
 							end
 						else
 							total_price := price
 						end
 						--| 5. compute totals
+						sum_t := sum_t.add (total_price, tax_context)
+						output_file.put_string (total_price.to_scientific_string)
+						output_file.put_new_line
 					else
 						total_price := number
+						output_file.put_string ("123456")
+						output_file.put_new_line
 					end
-					sum_t := sum_t.add (total_price, tax_context)
 					--| 6. put string total
-					output_file.put_string (total_price.to_scientific_string)
-					output_file.put_new_line
 					--| read again
 					read_number_from_bcd (input_file)				
 				end			
@@ -173,7 +175,7 @@ feature -- Basic operations
 			end	
 			t_end := system_clock.time_now
 			io.put_integer (number_count) io.put_string (" Numbers processed, with ") io.put_integer (long_distance_count) io.put_string (" long distance calls%N")
-			io.put_string ("%NDuration : ") io.put_string ((t_end - t_start).precise_out) io.put_string ("  - hour:minute:second.millisecond%N")
+			io.put_string ("%NDuration : ") io.put_string ((t_end - t_start).to_canonical.precise_out) io.put_string ("  - hour:minute:second.millisecond%N")
 			io.put_string ("%N%Tsum_t = ") io.put_string (sum_t.to_scientific_string) io.put_new_line
 			io.put_string ("%Tsum_b = ") io.put_string (sum_b.to_scientific_string) io.put_new_line
 			io.put_string ("%Tsum_d = ") io.put_string (sum_d.to_scientific_string) io.put_new_line
@@ -233,6 +235,12 @@ feature -- Basic operations
 				elseif arg.is_equal ("-notax") then
 					tax := False
 					index := index + 1
+				else
+					arguments_ok := False
+					io.put_string ("Unknown argument : '")
+					io.put_string (arg)
+					io.put_string ("'")
+					io.put_new_line
 				end
 			end
 		end

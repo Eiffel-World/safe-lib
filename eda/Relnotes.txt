@@ -1,3 +1,8 @@
+January 2003
+	Jan 22 - Optimizations in implementation of coefficient; 
+	fixes in telco application.
+	Added build.eant files; removed ace files.
+	
 December 2002
 	December 17. Implementation of 'telco' benchmark application.
 	EDA_COEFFICIENT_IMP now uses KL*NATIVE_ARRAY* classes.

@@ -4,16 +4,13 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2002/12/18 22:06:14 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/01/22 10:57:52 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
 	EDA_SHARED_MATH_CONTEXT
-
-inherit
-	EDA_CONSTANTS
-	
+		
 feature -- Access
 
 	shared_decimal_context : EDA_MATH_CONTEXT is
@@ -22,6 +19,18 @@ feature -- Access
 			Result := cell.item
 		ensure
 			Result /= Void
+		end
+
+	decimal_zero : EDA_DECIMAL is
+			-- zero as EDA_DECIMAL
+		once
+			create Result.make_zero
+		end
+		
+	decimal_one : EDA_DECIMAL is
+			-- one as EDA_DECIMAL
+		once
+			create Result.make_from_integer (1)
 		end
 		
 feature -- Element change
