@@ -2,8 +2,8 @@ indexing
 	description: "Objects that implement helper operations for tests."
 	author: "Paul G. Crismer"
 	licencing: "See notice at end of class"
-	date: "$Date: 2002/03/20 15:19:03 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/10/25 20:42:48 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	TEST_HELPER
@@ -62,8 +62,7 @@ feature {NONE} -- Implementation
 		do
 			p.gsave
 			p.rectangle (x-(w/2), y-(w/2), w, w)
-			p.fill
-			p.stroke
+			p.fill_then_stroke
 			p.grestore
 		end
 
