@@ -1,8 +1,8 @@
 indexing
 	description: "Date and time objects - SQL: DATETIME"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/28 08:52:04 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2002/10/03 20:13:33 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -21,7 +21,7 @@ feature
 
 	sql_type_code : INTEGER is
 		once
-			Result := Sql_datetime
+			Result := Sql_type_timestamp
 		end
 		
 end -- class ECLI_DATE_TIME

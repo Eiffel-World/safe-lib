@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIMESTAMP values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/27 14:19:12 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2002/10/03 20:13:33 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -160,8 +160,15 @@ feature -- Status report
 		end
 
 	column_precision: INTEGER is
+		local
+			l_decimal_digits : INTEGER
 		do
-			Result := 20+decimal_digits
+			l_decimal_digits := decimal_digits
+			if l_decimal_digits > 0 then
+				Result := 20 + l_decimal_digits
+			else
+				Result := 19
+			end
 		end
 
 	sql_type_code: INTEGER is
@@ -170,8 +177,19 @@ feature -- Status report
 		end
 	
 	decimal_digits: INTEGER is
+			-- log_10 (nanoseconds)
+		local
+			l_nanoseconds : INTEGER
 		do 
-			Result := 9
+			l_nanoseconds := nanosecond
+			from
+				Result := 0
+			until
+				l_nanoseconds = 0
+			loop
+				Result := Result + 1
+				l_nanoseconds := l_nanoseconds // 10
+			end
 		end
 
 	display_size: INTEGER is
