@@ -54,8 +54,8 @@
 	<p class="title">ECLI Tutorial</p>
 	<p class="author">Paul G. Crismer</p>
 	<p class="email">pgcrism @ users.sourceforge.net</p>
-	<pre>$Date: 2005/01/21 21:52:25 $</pre>
-	<pre>$Revision: 1.20 $</pre>
+	<pre>$Date: 2005/02/09 23:41:21 $</pre>
+	<pre>$Revision: 1.21 $</pre>
 </div>
 <div id="toc">
 <ol>
@@ -475,6 +475,12 @@ session.<b>close</b>
 
 
 </table>
+
+<p>There are two login strategies : ECLI_SIMPLE_LOGIN and ECLI_DRIVER_LOGIN.</p>
+<p>  ECLI_SIMPLE_LOGIN specifies <em>data source name</em>, <em>user name</em>, <em>password</em> login information.</p>
+<p>  ECLI_DRIVER_LOGIN lets you specify a <em>connection string</em>, setting specific connection attributes or even
+  connecting directly through a driver without defining any datasource at the ODBC level.</p>
+<p>NOTE : <em>connection strings</em> are database and/or driver specific.</p>
 
 <h1><a name="Statuscheckinganderror"></a>
    Status checking and error handling</h1>

@@ -11,13 +11,13 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2005/02/09 23:41:24 $"
 
 deferred class
 
 	ECLI_TRACEABLE
 
-feature -- Basic operations
+feature {ECLI_TRACER, ECLI_TRACEABLE} -- Basic operations
 
 	trace (a_tracer : ECLI_TRACER) is
 			-- Trace current object through 'a_tracer'

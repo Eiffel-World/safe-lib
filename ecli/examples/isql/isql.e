@@ -1,8 +1,8 @@
 indexing
 	description: "Command Line Interactive SQL for ODBC datasources";
 	author: "Paul G. Crismer"
-	date: "$Date: 2005/01/07 16:54:53 $"
-	revision: "$Revision: 1.23 $"
+	date: "$Date: 2005/02/09 23:41:24 $"
+	revision: "$Revision: 1.24 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -29,6 +29,8 @@ feature {NONE} -- Initialization
 			simple_login : ECLI_SIMPLE_LOGIN
 			std : KL_STANDARD_FILES
 			sp : ECLI_STORED_PROCEDURE
+			tc : ECLI_TYPE_CATALOG
+			l : DS_LIST[ECLI_SQL_TYPE]
 		do			
 			create_commands
 			create std
@@ -58,6 +60,8 @@ feature {NONE} -- Initialization
 					else
 						print_error (session)
 					end
+					create tc.make(session)
+					l := tc.numeric_types
 				end
 				if session = Void or else session /= Void and then not session.is_connected then
 					current_context.filter.begin_error

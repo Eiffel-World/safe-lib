@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that abstract ISQL commands."
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/12/07 21:29:14 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2005/02/09 23:41:24 $"
+	revision: "$Revision: 1.4 $"
 
 deferred class
 	ISQL_COMMAND
@@ -100,7 +100,7 @@ feature {NONE} -- Implementation
 			if s/= Void then
 				Result := s
 			else
-				Result := "NULL"
+				Result := null_constant
 			end
 		end
 		
@@ -127,5 +127,7 @@ feature {NONE} -- Implementation
 			Result.append_string (";MESSAGE:")
 			Result.append_string (stmt.diagnostic_message)
 		end
+	
+	null_constant : STRING is "NULL"
 	
 end -- class ISQL_COMMAND
