@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<system name="test_eda">
+	<description>
+		system:      "General Decimal Arithmetic acceptance tests"
+
+		author:      "Paul G. Crismer [pgcrism@users.sourceforge.net]"
+		copyright:   "Copyright (c) 2002, Paul G. Crismer and others"
+		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
+		date:        "$Date $"
+		revision:    "$Revision: 1.1.1.1 $"
+	</description>
+
+	<root class="TEST_DECIMAL" creation="make"/>
+	<option unless="${DEBUG}">
+		<option name="assertion" value="none"/>
+		<option name="finalize" value="true"/>
+	</option>
+	<option if="${DEBUG}">
+		<option name="assertion" value="all"/>
+		<option name="finalize" value="false"/>
+	</option>
+	<option name="msil_generation" value="false" unless="${GOBO_DOTNET}"/>
+	
+	<cluster name="root_cluster" location="${EDA}/examples/acceptance" prefix="acceptance_">
+		<cluster name="operations"/>
+	</cluster>
+	
+	<mount location ="${EDA}/library.xace"/>
+	<mount location="${GOBO}/library/kernel/library.xace"/>
+	<mount location="${GOBO}/library/structure/library.xace"/>
+	<mount location="${GOBO}/library/utility/library.xace"/>
+	<mount location="${GOBO}/library/pattern/library.xace"/>
+	<mount location="${GOBO}/library/kernel.xace"/>
+</system>

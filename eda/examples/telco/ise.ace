@@ -1,0 +1,139 @@
+system
+	"telco"
+
+root
+	telco: make
+
+default
+	assertion (no)
+	disabled_debug (yes)
+	debug (no)
+	line_generation (no)
+	profile (no)
+	trace (no)
+	check_vape (yes)
+	console_application (yes)
+	address_expression (no)
+	array_optimization (yes)
+	dead_code_removal (yes)
+	dynamic_runtime (no)
+	exception_trace (no)
+	inlining (yes)
+	inlining_size ("6")
+	multithreaded (no)
+
+
+cluster
+	telcoroot_cluster:		"${EDA}/examples/telco"
+
+
+	eda_src:		"${EDA}/src"
+
+	eda_abstract (eda_src):		"$/abstract"
+
+	eda_implementation (eda_src):		"$/implementation"
+
+	eda_spec (eda_src):		"$/spec"
+
+	eda_ise (eda_spec):		"$/ise"
+
+	kl_kernel:		"${GOBO}/library/kernel"
+
+	kl_basic (kl_kernel):		"$/basic"
+
+	kl_elks (kl_kernel):		"$/elks"
+
+	kl_io (kl_kernel):		"$/io"
+
+	kl_misc (kl_kernel):		"$/misc"
+
+	kl_unicode (kl_kernel):		"$/unicode"
+
+	kl_support (kl_kernel):		"$/support"
+
+	kl_spec (kl_kernel):		"$/spec"
+
+	kl_spec_ise (kl_spec):		"$/ise"
+
+	ds_structure:		"${GOBO}/library/structure"
+
+	ds_container (ds_structure):		"$/container"
+
+	ds_dispenser (ds_structure):		"$/dispenser"
+
+	ds_list (ds_structure):		"$/list"
+
+	ds_set (ds_structure):		"$/set"
+
+	ds_sort (ds_structure):		"$/sort"
+
+	ds_support (ds_structure):		"$/support"
+
+	ds_table (ds_structure):		"$/table"
+
+	ut_utility:		"${GOBO}/library/utility"
+
+	ut_error (ut_utility):		"$/error"
+
+	ut_formatter (ut_utility):		"$/formatter"
+
+	ut_command (ut_utility):		"$/command"
+
+	ut_support (ut_utility):		"$/support"
+
+	dp_pattern:		"${GOBO}/library/pattern"
+
+	dp_command (dp_pattern):		"$/command"
+
+	dp_bridge (dp_pattern):		"$/bridge"
+
+	dt_time:		"${GOBO}/library/time"
+
+	dt_clock (dt_time):		"$/clock"
+
+	dt_date (dt_time):		"$/date"
+
+	dt_time_zone (dt_time):		"$/time_zone"
+
+	ise:		"${ISE_EIFFEL}/library"
+
+	base (ise):		"$/base"
+
+	kernel (base):		"$/kernel"
+
+	kernel_classic (kernel):		"$/classic"
+
+	support (base):		"$/support"
+
+	support_classic (support):		"$/classic"
+
+	structures (base):		"$/structures"
+
+	access (structures):		"$/access"
+
+	cursors (structures):		"$/cursors"
+
+	cursor_tree (structures):		"$/cursor_tree"
+
+	dispenser (structures):		"$/dispenser"
+
+	iteration (structures):		"$/iteration"
+
+	list (structures):		"$/list"
+
+	set (structures):		"$/set"
+
+	strategies (set):		"$/strategies"
+
+	sort (structures):		"$/sort"
+
+	storage (structures):		"$/storage"
+
+	table (structures):		"$/table"
+
+	traversing (structures):		"$/traversing"
+
+	tree (structures):		"$/tree"
+
+
+end

@@ -1,0 +1,7 @@
+December 2002
+	December 17. Implementation of 'telco' benchmark application.
+	EDA_COEFFICIENT_IMP now uses KL*NATIVE_ARRAY* classes.
+	Adaption to GDA Specification version 1.08.
+	
+September 2002
+	First implementation based on GDA Specification, version 1.03
