@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI LONGVARCHAR (n) values"
 	author: ""
-	date: "$Date: 2001/09/15 10:24:10 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/09/22 19:34:34 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	QA_LONGVARCHAR
@@ -12,9 +12,9 @@ class
 inherit
 
 	ECLI_LONGVARCHAR
-
+	
 	QA_VALUE
-
+		
 creation
 	make
 

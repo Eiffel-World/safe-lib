@@ -1,8 +1,8 @@
 indexing
 	description: "CLI C Interface"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/15 20:08:48 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/09/22 19:34:34 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -532,28 +532,6 @@ feature -- C types
 
 
 	 ecli_c_sql_c_type_timestamp  : INTEGER is
-	external "C"
-	end
-
-feature {NONE} -- transaction capabilities
-
-	ecli_c_tc_none: INTEGER is
-	external "C"
-	end
-
-	ecli_c_tc_dml: INTEGER is
-	external "C"
-	end
-
-	ecli_c_tc_ddl_commit: INTEGER is
-	external "C"
-	end
-
-	ecli_c_tc_ddl_ignore : INTEGER is
-	external "C"
-	end
-
-	ecli_c_tc_all : INTEGER is
 	external "C"
 	end
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that iterate over the SQL types supported by a datasource"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/08/22 19:57:58 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/09/22 19:34:34 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_SQL_TYPES_CURSOR
@@ -74,8 +74,7 @@ feature -- Initialization
 		ensure
 			executed: is_ok implies is_executed
 			open: not is_closed
-		end
-		
+		end		
 		
 feature -- Access
 

@@ -4,8 +4,8 @@ indexing
 		"  "
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2001/09/15 10:24:10 $"
-	revision: 	"$Revision: 1.4 $"
+	date: 		"$Date: 2002/09/22 19:34:34 $"
+	revision: 	"$Revision: 1.5 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -15,6 +15,7 @@ inherit
 	ECLI_VALUE
 		undefine
 			out, is_equal, item, set_item,
+			to_character, convertible_to_character,
 			to_double, convertible_to_double,
 			to_integer, convertible_to_integer,
 			to_string, convertible_to_string,

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that describe a SQL column in a table"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/15 20:09:28 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/09/22 19:34:34 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_COLUMN
@@ -57,7 +57,9 @@ feature -- Access
 	table : ECLI_TABLE
 	
 	name : STRING
+
 	type_code : INTEGER
+
 	type_name : STRING
 
 	size : INTEGER
@@ -68,6 +70,7 @@ feature -- Access
 		
 	decimal_digits : INTEGER
 			-- number of decimal digits if numeric type
+
 	precision_radix : INTEGER
 			-- 10 or 2 if numeric type
 		
