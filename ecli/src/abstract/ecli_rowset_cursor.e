@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that define a rowset cursor and allow sweeping through it.  Rows are physically retrieved `row_count' at a time, minimizing network traffic if any."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2003/10/20 19:54:38 $"
+	revision: "$Revision: 1.15 $"
 
 class
 	ECLI_ROWSET_CURSOR
@@ -35,9 +35,9 @@ feature -- Initialization
 			row_count_valid: a_row_capacity >= 1
 		do
 			row_capacity := a_row_capacity
+			make_row_count_capable
 			!!rowset_status.make (row_capacity)
 			row_cursor_make (a_session, a_definition)
-			make_row_count_capable
 		ensure
 			valid: is_valid
 			definition_set: definition = a_definition
@@ -175,7 +175,7 @@ feature {NONE} -- Implementation
 					go_after
 			else
 				if fetch_increment \\ row_capacity = 0 then
-					--| Bind `row_count' a getting the actual number of rows fetched
+					--| Bind `row_count' for getting the actual number of rows fetched
 					set_status (ecli_c_set_pointer_statement_attribute (handle, Sql_attr_rows_fetched_ptr, impl_row_count.handle, 0))			
 					--| Do actual fetch
 					Precursor

@@ -4,8 +4,8 @@ indexing
 		"Objects that trace SQL execution on an output medium"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/19 15:59:09 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/10/20 19:54:38 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 
 class
@@ -108,7 +108,7 @@ feature {ECLI_SESSION} -- Basic operations
 		
 feature {ECLI_VALUE} -- Basic operations
 
-	put_string (a_value : ECLI_LONGVARCHAR) is
+	put_string (a_value : ECLI_GENERIC_VALUE[STRING]) is
 			-- Put 'a_value' as a string constant
 		require
 			a_value /= Void and then not a_value.is_null

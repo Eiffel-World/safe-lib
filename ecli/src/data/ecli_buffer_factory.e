@@ -4,8 +4,8 @@ indexing
 		"Objects that create buffers for DB to application information exchange."
 
 	author: "Paul G. Crismer."
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/10/20 19:54:38 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	ECLI_BUFFER_FACTORY
@@ -126,12 +126,12 @@ feature {NONE} -- Implementation
 				create impl_value_factory.make
 			end
 			Result := impl_value_factory
+		ensure
+			result_exists: Result /= Void
 		end
 	
 	value_anchor : ECLI_VALUE is
-			-- 
 		do
-			
 		end
 		
 	

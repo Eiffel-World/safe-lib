@@ -4,8 +4,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/10/20 19:54:41 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -126,7 +126,7 @@ feature -- Access
 		end
 
 	literal_suffix : STRING is
-			-- Character(s) used to prefix a literal
+			-- Character(s) used to suffix a literal
 		do
 			Result := impl_literal_suffix
 		ensure

@@ -9,8 +9,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/08/20 09:42:54 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2003/10/20 19:54:41 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -115,7 +115,7 @@ feature {NONE} -- Implementation
 			end
 			creating_item := False
 			Cursor_status := cursor_in
-			fetched_columns_count := cursor.count
+			fetched_columns_count := results.count
 		end
 
 	last_key_seq : INTEGER
@@ -136,9 +136,9 @@ feature {NONE} -- Implementation
 		end
 
 	set_buffer_into_cursor is
-			-- set cursor with buffer array
+			-- set results cursor with buffer array
 		do
-			set_cursor (<<
+			set_results (<<
 					buffer_pk_table_cat ,
 					buffer_pk_table_schem  ,
 					buffer_pk_table_name  ,

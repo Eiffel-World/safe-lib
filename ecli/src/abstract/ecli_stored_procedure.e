@@ -1,8 +1,8 @@
 indexing
 	description: "Stored procedures"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/10/20 19:54:38 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_STORED_PROCEDURE
@@ -135,8 +135,6 @@ feature {NONE} -- Implementation
 		
 	bind_one_parameter (i: INTEGER) is
 			-- 
-		local
-			l_parameter : ECLI_VALUE
 		do
 			directed_parameters.item (i).bind (Current, i)	
 		end

@@ -3,8 +3,8 @@ indexing
 	author: "Paul G. Crismer"
 	
 	library: "ECLI"
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/10/20 19:54:41 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_PROCEDURE_COLUMNS_CURSOR
@@ -54,7 +54,7 @@ feature {NONE} -- Implementation
 	
 	set_buffer_values_array is
 		do
-			set_cursor (<<
+			set_results (<<
 				buffer_table_cat,
 				buffer_table_schem,
 				buffer_table_name,

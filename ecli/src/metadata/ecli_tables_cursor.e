@@ -9,8 +9,8 @@ indexing
 	
 	library: "ECLI"
 	
-	date: "$Date: 2003/08/20 09:42:54 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/10/20 19:54:41 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -98,7 +98,7 @@ feature {NONE} -- Implementation
 			create buffer_table_type.make (255)
 			create buffer_description.make (255)
 
-			set_cursor (<<
+			set_results (<<
 					buffer_catalog_name,
 					buffer_schema_name,
 					buffer_table_name,
