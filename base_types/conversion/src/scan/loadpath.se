@@ -1,0 +1,3 @@
+${GOBO}\library\kernel\
+${GOBO}\library\lexical\skeleton\
+${SAFE_EBT}\conversion\src\scan\
