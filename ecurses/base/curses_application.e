@@ -3,8 +3,8 @@ indexing
 	cluster:        "ecurses, base"
     	interface: 	"client, classification"
     	status: 	"See notice at end of class"
-    	date: 		"$Date: 2000/01/07 11:33:16 $"
-    	revision: 	"$Revision: 1.1 $"
+    	date: 		"$Date: 2004/12/21 19:56:00 $"
+    	revision: 	"$Revision: 1.2 $"
     	author: 	"Paul G. Crismer"
 
 
@@ -93,7 +93,9 @@ feature {NONE} -- Initialization
 
     dispose is
 	do
-		handle_curses_call(endwin,"endwin");
+		if standard_window_pointer /= default_pointer then
+			handle_curses_call(endwin,"endwin")
+		end
 	end
 
 feature  -- queries
