@@ -4,8 +4,8 @@ indexing
     cluster: 	"ecurses, spec"
     interface: 	"mixin"
     status: 	"See notice at end of class"
-    date: 	"$Date: 2000/01/07 11:33:20 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2001/09/26 11:02:52 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class CURSES_CHARACTER_CONSTANTS
@@ -191,7 +191,7 @@ feature {NONE}  -- C interface
     c_curses_acs_lantern	:	INTEGER is external "C" end
     c_curses_acs_block		:	INTEGER is external "C" end
 
-end  -- class CURSES__CHARACTER_CONSTANTS
+end  -- class CURSES_CHARACTER_CONSTANTS
 -----------------------------------------------------------
 -- Copyright (C) 1999 Paul G. Crismer, Eric Fafchamps
 -- Licensed under Eiffel Forum Freeware License, version 1
