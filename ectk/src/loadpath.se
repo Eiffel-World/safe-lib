@@ -1,8 +1,0 @@
-${ECURSES}\loadpath.se
-${SAFE_EBT}\loadpath.se
-${SAFE_EMI}\src\loadpath.se
-${SAFE_ECTK}\src\
-${SAFE_ECTK}\src\widgets\
-${SAFE_ECTK}\src\commands\
-${SAFE_ECTK}\src\events\
-${SAFE_ECTK}\src\errors\
