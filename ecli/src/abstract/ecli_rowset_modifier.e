@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that modify the database one rowset at a time."
 	author: ""
-	date: "$Date: 2003/02/28 16:19:52 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/06/12 14:32:02 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	ECLI_ROWSET_MODIFIER
@@ -34,7 +34,7 @@ feature {NONE} -- Initialization
 			sql_exists: a_sql /= Void
 			a_row_capacity_valid: a_row_capacity >= 1
 		do
-			create external_row_count.make (1)
+			make_row_count_capable
 			row_capacity := a_row_capacity
 			!!rowset_status.make (row_capacity)
 			statement_make (a_session)
@@ -146,19 +146,12 @@ feature {NONE} -- Implementation
 			valid_count: a_count <= row_capacity
 			valid_parameters_count: valid_parameters_count (a_count)
 		do
-			set_status (ecli_c_set_pointer_statement_attribute (handle, Sql_attr_params_processed_ptr, external_row_count.handle, 0))
+			set_status (ecli_c_set_pointer_statement_attribute (handle, Sql_attr_params_processed_ptr, impl_row_count.handle, 0))
 			set_status (ecli_c_set_integer_statement_attribute (handle, Sql_attr_paramset_size, a_count))
 			statement_execute
 			fill_status_array
-			row_count := external_row_count.item (1)
 		ensure
 			command: not has_results
-			row_count_updated: row_count = external_row_count.item (1)
 		end
-
-	external_row_count : C_ARRAY_INT32
-
-invariant
-	external_row_count: external_row_count /= Void and then external_row_count.capacity = 1
 	
 end -- class ECLI_ROWSET_MODIFIER

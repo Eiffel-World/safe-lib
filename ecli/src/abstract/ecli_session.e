@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/06/12 10:01:17 $"
-	revision: 	"$Revision: 1.18 $"
+	date: 		"$Date: 2003/06/12 14:32:02 $"
+	revision: 	"$Revision: 1.19 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -148,6 +148,18 @@ feature -- Access
 
 	tracer : ECLI_TRACER
 
+	transaction_isolation : ECLI_TRANSACTION_ISOLATION is
+			-- 
+		local
+			ext_txn_isolation : XS_C_UINT32
+			att : ECLI_CONNECTION_ATTRIBUTE_CONSTANTS
+		do
+			create ext_txn_isolation.make
+			create att
+			set_status (ecli_c_get_integer_connection_attribute (handle, att.Sql_attr_txn_isolation , ext_txn_isolation.handle))
+			create Result.make (ext_txn_isolation.item)
+		end
+		
 feature -- Status report
 
 	is_manual_commit : BOOLEAN is
@@ -324,6 +336,21 @@ feature -- Status setting
 			no_tracer: tracer = Void
 		end
 
+	set_transaction_isolation (an_isolation : ECLI_TRANSACTION_ISOLATION) is
+			-- 
+		require
+			an_isolation_not_void: an_isolation /= Void
+			no_pending_transaction: not has_pending_transaction
+		local
+			att : ECLI_CONNECTION_ATTRIBUTE_CONSTANTS
+		do
+			create att
+			set_status (ecli_c_set_integer_connection_attribute (handle, att.Sql_attr_txn_isolation,  an_isolation.value))
+		ensure
+			done_when_ok: is_ok implies (transaction_isolation.is_equal (an_isolation))
+		end
+		
+	
 feature -- Basic Operations
 
 	begin_transaction is

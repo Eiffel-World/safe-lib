@@ -1,8 +1,8 @@
 indexing
 	description: "CLI C Interface"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:40 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2003/06/12 14:32:02 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 class
@@ -44,13 +44,24 @@ feature {NONE} -- Implementation
 		end
 
 	ecli_c_set_integer_statement_attribute (StatementHandle : POINTER; Attribute : INTEGER; ValuePtr : INTEGER)  : INTEGER is
-			-- free statement handle
 		external "C"
 		end
 
 	
 	ecli_c_set_pointer_statement_attribute (StatementHandle : POINTER; Attribute : INTEGER; ValuePtr : POINTER; StringLength : INTEGER)  : INTEGER is
-			-- free statement handle
+		external "C"
+		end
+
+	ecli_c_set_integer_connection_attribute (ConnectionHandle : POINTER; Attribute : INTEGER; ValuePtr : INTEGER)  : INTEGER is
+		external "C"
+		end
+
+	
+	ecli_c_set_pointer_connection_attribute (ConnectionHandle : POINTER; Attribute : INTEGER; ValuePtr : POINTER; StringLength : INTEGER)  : INTEGER is
+		external "C"
+		end
+
+	ecli_c_get_integer_connection_attribute (ConnectionHandle : POINTER; Attribute : INTEGER; ValuePtr : POINTER)  : INTEGER is
 		external "C"
 		end
 

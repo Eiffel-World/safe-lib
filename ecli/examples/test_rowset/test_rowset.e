@@ -1,8 +1,8 @@
 indexing
 	description: "ECLI test of rowset classes";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/28 16:19:50 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2003/06/12 14:32:01 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET
@@ -153,12 +153,6 @@ feature {NONE} -- Implementation
 			io.put_string (stmt.diagnostic_message)
 			io.put_character ('%N')
 		end
---
---			
---	formatting_buffer : MESSAGE_BUFFER is
---		once
---			!!Result.make (1000)
---		end
 		
 end -- class TEST_ROWSET
 --

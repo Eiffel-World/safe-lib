@@ -4,8 +4,8 @@ indexing
 		"Objects that reflect status of rowset operations. They basically are an array of integer."
 
 	author: "Paul G. Crismer <pgcrism at pi.be>"
-	date: "$Date: 2003/03/01 14:15:56 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/06/12 14:32:02 $"
+	revision: "$Revision: 1.8 $"
 
 class
 	ECLI_ROWSET_STATUS
@@ -43,12 +43,6 @@ feature -- Status report
 		end
 
 feature -- Conversion
-
-	to_external : POINTER is
-			--
-		do
-			Result := handle
-		end
 
 feature {NONE} -- Implementation
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are capable of operating on a rowset."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/05/08 13:59:23 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2003/06/12 14:32:01 $"
+	revision: "$Revision: 1.8 $"
 
 class
 	ECLI_ROWSET_CAPABLE
@@ -50,7 +50,13 @@ feature {NONE} -- implementation
 		end
 		
 	impl_row_count : XS_C_INT32
-	
+
+	make_row_count_capable is
+			-- 
+		do
+			create impl_row_count.make
+		end
+		
 invariant
 	row_capacity_valid: row_capacity >= 1
 	row_count_valid: row_count <= row_capacity

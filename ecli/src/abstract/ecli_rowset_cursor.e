@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that define a rowset cursor and allow sweeping through it.  Rows are physically retrieved `row_count' at a time, minimizing network traffic if any."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/12 10:01:16 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2003/06/12 14:32:01 $"
+	revision: "$Revision: 1.11 $"
 
 class
 	ECLI_ROWSET_CURSOR
@@ -37,7 +37,7 @@ feature -- Initialization
 			row_capacity := a_row_capacity
 			!!rowset_status.make (row_capacity)
 			row_cursor_make (a_session, a_definition)
-			create impl_row_count.make
+			make_row_count_capable
 		ensure
 			valid: is_valid
 			definition_set: definition = a_definition
