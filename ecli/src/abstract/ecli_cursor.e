@@ -1,8 +1,8 @@
 indexing
-	description: "Abstraction of a SQL cursor."
+	description: "Abstraction of a SQL cursor. Starting iteration creates `results' object through `create_buffers'."
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/01/25 20:42:15 $"
-	revision: "$Revision: 1.16 $"
+	date: "$Date: 2004/01/29 20:30:37 $"
+	revision: "$Revision: 1.17 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -17,9 +17,9 @@ feature -- Basic Operations
 			-- Start sweeping through cursor, after execution of `sql'
 		require
 			sql_set: sql /= Void
-			parameters_set: parameters.count = parameters_count and then not array_routines.has (parameters, Void)
+			parameters_set: parameters_count > 0 implies (parameters.count = parameters_count and then not array_routines.has (parameters, Void))
 		do
-			if not bound_parameters then
+			if parameters_count > 0 and then not bound_parameters then
 				bind_parameters
 			end
 			execute

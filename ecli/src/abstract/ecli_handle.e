@@ -9,8 +9,8 @@ indexing
 	   % and should also be redefined by descendant classes."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/01/25 20:42:15 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2004/01/29 20:30:37 $"
+	revision: "$Revision: 1.14 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -81,7 +81,18 @@ feature {NONE} -- Implementation
 		ensure
 			invalid:    not is_valid
 		end
-	
+
+	check_valid is
+			-- check if memory has been allocated; if not, raise an exception
+		local
+			e : EXCEPTIONS
+		do
+			if handle = default_pointer then
+				create e
+				e.raise ("No more memory")
+			end
+		end
+		
 end -- class ECLI_HANDLE
 --
 -- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>

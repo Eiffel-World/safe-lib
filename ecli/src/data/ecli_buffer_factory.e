@@ -4,8 +4,8 @@ indexing
 		"Objects that create buffers for DB to application information exchange."
 
 	author: "Paul G. Crismer."
-	date: "$Date: 2004/01/25 20:42:15 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2004/01/29 20:30:37 $"
+	revision: "$Revision: 1.9 $"
 
 class
 	ECLI_BUFFER_FACTORY
@@ -129,7 +129,7 @@ feature {NONE} -- Implementation
 	create_name_to_index (size : INTEGER) is
 			-- hook: create name to index map
 		do
-			!!last_index_table.make (size)					
+			create last_index_table.make (size)					
 		end
 	
 	precision_limit_impl : INTEGER	

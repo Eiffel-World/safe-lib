@@ -4,8 +4,8 @@ indexing
 		"Objects that reflect status of rowset operations. They basically are an array of integer."
 
 	author: "Paul G. Crismer "
-	date: "$Date: 2003/07/27 12:46:39 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2004/01/29 20:30:37 $"
+	revision: "$Revision: 1.10 $"
 
 class
 	ECLI_ROWSET_STATUS
@@ -27,7 +27,7 @@ creation
 feature -- Status report
 
 	is_ok (index : INTEGER) : BOOLEAN is
-			--
+			-- is `index'-th status ok?
 		require
 			valid_index: index >= 1 and index <= count
 		do
@@ -35,18 +35,11 @@ feature -- Status report
 		end
 
 	is_error (index : INTEGER) : BOOLEAN is
-			--
+			-- is `index'-th status in error ?
 		require
 			valid_index: index >= 1 and index <= count
 		do
 			Result := (item (index) = Sql_row_error)
 		end
-
-feature -- Conversion
-
-feature {NONE} -- Implementation
-
-invariant
-	invariant_clause: True -- Your invariant here
 
 end -- class ECLI_ROWSET_STATUS

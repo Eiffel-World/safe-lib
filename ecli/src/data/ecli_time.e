@@ -4,8 +4,8 @@ indexing
 		"SQL TIME values"
 		
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/11 19:31:07 $"
-	revision: "$Revision: 1.16 $"
+	date: "$Date: 2004/01/29 20:30:37 $"
+	revision: "$Revision: 1.17 $"
 	licensing: "See notice at end of class"
 
 class
@@ -291,6 +291,7 @@ feature -- Obsolete
 		do
 			if buffer = default_pointer then
 				buffer := ecli_c_alloc_value (transfer_octet_length)
+				check_valid
 			end
 		end
 

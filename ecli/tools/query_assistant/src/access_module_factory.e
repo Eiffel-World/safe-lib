@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/12/22 10:44:12 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2004/01/29 20:30:37 $"
+	revision: "$Revision: 1.10 $"
 
 class
 	ACCESS_MODULE_FACTORY
@@ -13,6 +13,7 @@ class
 inherit 
 	ACCESS_MODULE_XML_CONSTANTS
 	ECLI_SQL_PARSER_CALLBACK
+	SHARED_MAXIMUM_LENGTH
 	
 creation
 	make
@@ -300,7 +301,7 @@ feature {NONE} -- Implementation
 				end
 				if l_name /= Void and then l_table /= Void and then l_column /= Void then
 					create l_reference.make (l_table, l_column)
-					create last_parameter.make (l_name, l_reference)
+					create last_parameter.make (l_name, l_reference, maximum_length)
 					if element.has_attribute_by_name (t_sample) then
 						last_parameter.set_sample (element.attribute_by_name (t_sample).value.string)
 					end
@@ -337,7 +338,7 @@ feature {NONE} -- Implementation
 			end
 			if l_name /= Void and then l_table /= Void and then l_column /= Void then
 				create l_reference.make (l_table, l_column)
-				create last_parameter.make (l_name, l_reference)
+				create last_parameter.make (l_name, l_reference, maximum_length)
 				if element.has_attribute_by_name (t_sample) then
 					last_parameter.set_sample (element.attribute_by_name (t_sample).value.string)
 				elseif template.sample /= Void then

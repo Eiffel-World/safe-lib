@@ -1,8 +1,8 @@
 indexing
-	description: "Name routines that follow the Eiffel style"
+	description: "Name routines that help follow the Eiffel style rules"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/01/08 13:02:53 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/01/29 20:30:37 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	EIFFEL_NAME_ROUTINES

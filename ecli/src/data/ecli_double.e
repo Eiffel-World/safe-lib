@@ -4,8 +4,8 @@ indexing
 		"SQL DOUBLE values"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/10/20 19:54:38 $"
-	revision: "$Revision: 1.19 $"
+	date: "$Date: 2004/01/29 20:30:37 $"
+	revision: "$Revision: 1.20 $"
 	licensing: "See notice at end of class"
 
 class
@@ -34,6 +34,7 @@ feature -- Initialization
 	make is
 		do
 			buffer := ecli_c_alloc_value (transfer_octet_length)
+			check_valid
 		end
 		
 feature -- Access
