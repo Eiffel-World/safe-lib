@@ -5,12 +5,10 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2003/11/20 20:33:15 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
-	note: "This is a 'quick-and-dirty' implementation"
-	
 deferred class
 	EDA_DECIMAL_PARSER
 	
