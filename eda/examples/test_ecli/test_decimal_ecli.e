@@ -1,23 +1,23 @@
 indexing
-class
-	TEST_DECIMAL_ECLI
+class TEST_DECIMAL_ECLI
 
 creation
+
 	make
 	
 feature
 	make is 
 		local
 			nm : ECLI_NAMED_METADATA
-			my_decimal, ten : EDA_DECIMAL
-			ctx : EDA_MATH_CONTEXT
+			my_decimal, ten : MA_DECIMAL
+			ctx : MA_DECIMAL_CONTEXT
 			insert : ECLI_STATEMENT
 			table_exists : BOOLEAN
 		do 
 --			create session.make ("Northwind", "","");
 
---			create session.make ("firebird", "","");
-			create session.make ("ecli_db", "","");
+			create session.make ("firebird", "","");
+--			create session.make ("ecli_db", "","");
 			session.connect
 			if session.is_connected then
 				create stmt.make (session)
@@ -39,14 +39,14 @@ feature
 --]")
 
 -- Firebird/Interbase
---				stmt.set_sql ("[
---create table TEST_DECIMAL (d18 DECIMAL(18,0), d182 DECIMAL (18,2), dl83 DECIMAL (5,3), d184 DECIMAL(18,4))
---]")
+				stmt.set_sql ("[
+create table TEST_DECIMAL (d18 DECIMAL(18,0), d182 DECIMAL (18,2), dl83 DECIMAL (5,3), d184 DECIMAL(18,4))
+]")
 
 -- Access
-					stmt.set_sql ("[
-	create table TEST_DECIMAL (d18 CURRENCY, d182 CURRENCY, dl83 CURRENCY, d184 CURRENCY)
-	]")
+--					stmt.set_sql ("[
+--	create table TEST_DECIMAL (d18 CURRENCY, d182 CURRENCY, dl83 CURRENCY, d184 CURRENCY)
+--	]")
 				stmt.execute
 				if stmt.is_ok then
 					-- populate
@@ -62,12 +62,15 @@ feature
 				
 				--| 1 insert
 				create ctx.make (189,0)
-				create my_decimal.make_from_string_ctx ("1234567890123456.78", ctx)
+				create my_decimal.make_from_string_ctx ("12345", ctx)
 				my_decimal.set_shared_decimal_context (ctx)
 				create ten.make_from_integer (10)
 				decimal_18_0.set_from_decimal (my_decimal)
 				my_decimal := my_decimal / ten
+				my_decimal := my_decimal / ten
 				decimal_18_2.set_from_decimal (my_decimal)
+				my_decimal := my_decimal / ten
+				decimal_5_3.set_from_decimal (my_decimal)
 				my_decimal := my_decimal / ten
 				decimal_18_4.set_from_decimal (my_decimal)
 				create insert.make (session)
@@ -76,7 +79,7 @@ feature
 				insert.set_sql ("insert into TEST_DECIMAL (d182) VALUES (?)")
 				test_insert (insert, decimal_18_2)
 				insert.set_sql ("insert into TEST_DECIMAL (dl83) VALUES (?)")
-				test_insert (insert, decimal_18_4)
+				test_insert (insert, decimal_5_3)
 				insert.set_sql ("insert into TEST_DECIMAL (d184) VALUES (?)")
 				test_insert (insert, decimal_18_4)
 				--|

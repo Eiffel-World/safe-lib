@@ -1,21 +1,19 @@
 indexing
 
-	description: "Decimal number parsers for BCD representation."
+	description:
 
-	library: "EDA"
-	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.1 $"
-	licensing: "See notice at end of class"
+		"Decimal number parsers for BCD representation."
 
-	note: "This is a 'quick-and-dirty' implementation"
-	
-class
-	EDA_DECIMAL_BCD_PARSER
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:16 $"
+
+class MA_DECIMAL_BCD_PARSER
 	
 inherit
-	EDA_DECIMAL_PARSER
+
+	MA_DECIMAL_PARSER
 	
 feature -- Access		
 	
@@ -31,7 +29,7 @@ feature -- Basic operations
 		local
 			zero_code : INTEGER
 			index, l_count, hi, lo : INTEGER
-			l_coefficient : EDA_COEFFICIENT
+			l_coefficient : MA_DECIMAL_COEFFICIENT
 			nibble_index, c_code : INTEGER
 			c : CHARACTER
 		do
@@ -80,10 +78,6 @@ feature -- Basic operations
 feature {NONE} -- Implementation
 
 
-end -- class EDA_DECIMAL_BCD_PARSER
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

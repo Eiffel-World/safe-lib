@@ -1,18 +1,17 @@
 indexing
-	description: "Decimal coefficients.  Can be seen as arrays of decimal values.%
+	description:
+
+		"Decimal coefficients.  Can be seen as arrays of decimal values.%
 		% Zero-based index. %
 		% - Index '0' is the least significant digit, %
 		% - index 'count-'1 is the most significant digit."
 
-	library: "EDA"
-	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/11/20 20:37:27 $"
-	revision: "$Revision: 1.6 $"
-	licensing: "See notice at end of class"
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:16 $"
 
-deferred class
-	EDA_COEFFICIENT
+deferred class MA_DECIMAL_COEFFICIENT
 
 inherit
 
@@ -26,7 +25,7 @@ inherit
 feature {NONE} -- Initialization
 
 	make (a_capacity : INTEGER) is
-			-- make with `a_capacity'
+			-- Make with `a_capacity'.
 		require
 			a_capacity_greater_zero: a_capacity > 0
 		deferred
@@ -38,7 +37,7 @@ feature {NONE} -- Initialization
 		end
 
 	make_copy (other : like Current) is
-			-- make a copy of `other'
+			-- Make a copy of `other'.
 		require
 			other_not_void: other /= Void
 		deferred
@@ -50,14 +49,14 @@ feature {NONE} -- Initialization
 feature -- Access
 
 	item (index : INTEGER) : INTEGER is
-			-- item at `index'
+			-- Item at `index'
 		require
 			valid_index: valid_index (index)
 		deferred
 		end
 
 	msd_index : INTEGER is
-			-- index of most significant (non-zero) digit
+			-- Index of most significant (non-zero) digit
 		deferred
 		ensure
 			result_within_limits : Result < count and Result >= 0
@@ -67,26 +66,26 @@ feature -- Access
 feature -- Measurement
 
 	count : INTEGER is
-			-- number of decimal digits
+			-- Number of decimal digits
 		deferred
 		end
 
 	upper : INTEGER is
-			-- upper index
+			-- Upper index
 		deferred
 		ensure
 			definition: Result <= capacity - 1
 		end
 		
 	lower : INTEGER is
-			-- lower index
+			-- Lower index
 		deferred
 		ensure
 			definition: Result = 0
 		end
 
 	capacity : INTEGER is
-			-- current capacity
+			-- Current capacity
 		deferred
 		ensure
 			definition: capacity >= count
@@ -95,7 +94,7 @@ feature -- Measurement
 feature -- Status report
 
 	valid_index (index : INTEGER) : BOOLEAN is
-			-- is `index' valid ?
+			-- Is `index' valid ?
 		do
 			Result := (index >= 0 and then index < count)
 		ensure
@@ -103,7 +102,7 @@ feature -- Status report
 		end
 
 	is_zero : BOOLEAN is
-			-- is this composed of all zeros?
+			-- Is this composed of all zeros?
 		local
 			index : INTEGER
 		do
@@ -117,10 +116,10 @@ feature -- Status report
 			Result := (index = count)
 		end
 		
-feature {EDA_DECIMAL} -- Status setting
+feature {MA_DECIMAL} -- Status setting
 
 	set_from_substring (s : STRING; coefficient_begin, coefficient_end : INTEGER) is
-			-- set from `s', skip the decimal point if it is present
+			-- Set from `s', skip the decimal point if it is present.
 		require
 			s_not_void: s /= Void
 			coefficient_begin: coefficient_begin > 0 and then coefficient_begin <= s.count
@@ -157,10 +156,10 @@ feature -- Comparison
 --			greater: True -- Result = -1 implies Current > other
 --		end
 
-feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Element change
+feature {MA_DECIMAL, MA_DECIMAL_PARSER} -- Element change
 
 	put (v, index : INTEGER) is
-			-- put `v' at `index'-th item
+			-- Put `v' at `index'-th item.
 		require
 			valid_index_for_put: index >= 0 and index < capacity
 			valid_v: v >= 0 and v <= 9
@@ -171,7 +170,7 @@ feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Element change
 		end
 
 	grow (a_capacity : INTEGER) is
-			-- grow coefficient so that it can contain up to `a_capacity' digits
+			-- Grow coefficient so that it can contain up to `a_capacity' digits.
 		require
 			capacity_greater_zero: a_capacity >= count
 		deferred
@@ -191,7 +190,6 @@ feature -- Conversion
 feature -- Duplication
 
 	to_twin : like Current is
-			-- 
 		deferred
 		ensure
 			result_not_current: Result /= Current
@@ -200,10 +198,10 @@ feature -- Duplication
 		
 feature -- Miscellaneous
 
-feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
+feature {MA_DECIMAL, MA_DECIMAL_COEFFICIENT} -- Basic operations
 		
 	integer_add (other : like Current) is
-			-- integer add of `other' to Current
+			-- Integer add of `other' to Current.
 		require
 			other_not_void: other /= Void
 			same_count: count <= other.count
@@ -213,7 +211,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		end
 
 	integer_multiply (a, b : like Current) is
-			-- multiply `a', `b' into Current
+			-- Multiply `a', `b' into Current.
 		require
 			a_not_void: a /= Void
 			b_not_void: b /= Void
@@ -223,8 +221,8 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		end
 		
 	integer_quick_add_msd (other, digits_count : INTEGER) is
-			-- integer add of `other' (between 0 and 9) to Current, 
-			-- restricted to `digits_count' most significant digits
+			-- Integer add of `other' (between 0 and 9) to Current,
+			-- restricted to `digits_count' most significant digits.
 		require
 			other_limits: other >= 0 and other <= 9
 			digits_count: digits_count >= 0 and digits_count <= count
@@ -235,7 +233,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		end
 
 	integer_subtract (other : like Current) is
-			-- integer subtract of `other' to Current, provided that result will not be negative.
+			-- Integer subtract of `other' to Current, provided that result will not be negative.
 		require
 			other_not_void: other /= Void
 			other_smaller: other <= Current
@@ -243,8 +241,8 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		end
 
 	integer_quick_subtract_msd (other, digits_count : INTEGER) is
-			-- integer subtract of `other' (between 0 and 9) to Current
-			-- restricted to `digits_count' most significant digits
+			-- Integer subtract of `other' (between 0 and 9) to Current
+			-- restricted to `digits_count' most significant digits.
 		require
 			other_limits: other >= 0 and other <= 9
 			digits_count: digits_count >= 0 and digits_count <= count
@@ -255,7 +253,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		end
 
 	keep_head (a_count : INTEGER) is
-			-- keep head of 'a_count' digits
+			-- Keep head of 'a_count' digits.
 		require
 			a_count_valid: a_count > 0 and a_count <= count
 		deferred		
@@ -279,7 +277,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 --		end
 
 	strip_leading_zeroes is
-			-- strip leading zeroes
+			-- Strip leading zeroes.
 		local
 			index : INTEGER
 		do
@@ -290,7 +288,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		end
 		
 	shift_left (a_count : INTEGER) is
-			-- shift items left
+			-- Shift items left.
 		require
 			a_count_greater_zero: a_count > 0
 		deferred
@@ -300,7 +298,7 @@ feature {EDA_DECIMAL, EDA_COEFFICIENT} -- Basic operations
 		end
 
 	shift_right (a_count : INTEGER) is
-			-- shift items right
+			-- Shift items right.
 		require
 			a_count_greater_zero: a_count > 0
 			a_count_less_count: a_count <= count
@@ -314,10 +312,10 @@ feature -- Obsolete
 
 feature -- Inapplicable
 
-feature {EDA_DECIMAL} -- Implementation
+feature {MA_DECIMAL} -- Implementation
 
 	set_count (a_count : INTEGER) is
-			-- set `count' to `a_count'
+			-- Set `count' to `a_count'.
 		require
 			a_count_not_greater_capacity: a_count <= capacity
 		deferred
@@ -326,12 +324,9 @@ feature {EDA_DECIMAL} -- Implementation
 		end
 		
 invariant
+
 	count_less_or_equal_capacity: count <= capacity
 
-end -- class EDA_COEFFICIENT
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

@@ -1,35 +1,31 @@
 indexing
-	description: "Tests of DECIMAL.plus operation."
+	description:
 
-	library: "EDA"
-	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.2 $"
-	licensing: "See notice at end of class"
+		"Tests of DECIMAL.plus operation."
 
-class
-	TEST_PLUS
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:15 $"
+
+class TEST_PLUS
 
 inherit
+
 	TEST_DECIMAL_GENERAL
 	
 creation
+
 	make_file, make
 	
 feature -- Basic operations
 
-	execute_operation (a, b : EDA_DECIMAL; a_ctx : EDA_MATH_CONTEXT) is
-			-- 
+	execute_operation (a, b : MA_DECIMAL; a_ctx : MA_DECIMAL_CONTEXT) is
 		do
 			last_result := a.plus (a_ctx)
 			last_string_result := last_result.to_scientific_string
 		end
 
-end -- class TEST_PLUS
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

@@ -1,20 +1,18 @@
 indexing
-	description: "Simple implementation of coefficients using a native array of characters"
+	description:
 
-	library: "EDA"
-	author: "Paul G. Crismer"
+		"Simple implementation of coefficients using a native array of characters"
 
-	date: "$Date: 2003/11/20 20:34:44 $"
-	revision: "$Revision: 1.1 $"
-	licensing: "See notice at end of class"
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:16 $"
 
-
-class
-	EDA_COEFFICIENT_IMP
+class MA_DECIMAL_COEFFICIENT_IMP
 
 inherit
 
-	EDA_COEFFICIENT
+	MA_DECIMAL_COEFFICIENT
 		redefine
 			out, three_way_comparison
 		end
@@ -33,6 +31,7 @@ inherit
 		end
 
 creation
+
 	make, make_copy
 
 feature {NONE} -- Initialization
@@ -45,7 +44,7 @@ feature {NONE} -- Initialization
 		end
 
 	make_copy (other : like Current) is
-			-- make a copy of `other'
+			-- Make a copy of `other'.
 		do
 			make (other.capacity)
 			copy (other)
@@ -199,7 +198,7 @@ feature -- Transformation
 feature -- Conversion
 
 	out : STRING is
-			-- terse printable representation
+			-- Terse printable representation
 		local
 			index : INTEGER
 		do
@@ -217,7 +216,7 @@ feature -- Conversion
 feature -- Duplication
 
 	copy (other : like Current) is
-			-- copy `other' into Current without aliasing
+			-- Copy `other' into Current without aliasing.
 		local
 			index, l_upper : INTEGER
 			l_digits, l_other_digits : like digits
@@ -244,7 +243,6 @@ feature -- Duplication
 		end
 
 	to_twin : like Current is
-			-- 
 		do
 			create Result.make_copy (Current)
 		end
@@ -254,7 +252,7 @@ feature -- Miscellaneous
 feature -- Basic operations
 
 	keep_head (a_count : INTEGER) is
-			-- keep head of 'a_count' digits
+			-- Keep head of 'a_count' digits.
 		local
 			index : INTEGER
 			l_digits : like digits
@@ -353,7 +351,7 @@ feature -- Basic operations
 		end
 
 	integer_add (other : like Current) is
-			-- integer add of `other' to Current
+			-- Integer add of `other' to Current.
 		local
 			carry : INTEGER
 			index : INTEGER
@@ -381,7 +379,7 @@ feature -- Basic operations
 		end
 
 	integer_multiply (a, b : like Current) is
-			-- multiply `a', `b' into Current
+			-- Multiply `a', `b' into Current.
 		local
 			i, j, carry, digit : INTEGER
 			local_a, local_b : like Current
@@ -436,7 +434,7 @@ feature -- Basic operations
 		end
 
 	integer_quick_add_msd (other, digits_count : INTEGER) is
-			-- integer add of `other' (between 0 and 9) to Current,
+			-- Integer add of `other' (between 0 and 9) to Current,.
 			-- restricted to `digits_count' most significant digits
 		local
 			carry : INTEGER
@@ -475,7 +473,7 @@ feature -- Basic operations
 		end
 
 	integer_subtract (other : like Current) is
-			-- integer subtract of `other' to Current, provided that result will not be negative.
+			-- Integer subtract of `other' to Current, provided that result will not be negative.
 		local
 			borrow : INTEGER
 			index : INTEGER
@@ -519,7 +517,7 @@ feature -- Basic operations
 		end
 
 	integer_quick_subtract_msd (other, digits_count : INTEGER) is
-			-- integer subtract of `other' (between 0 and 9) to Current
+			-- Integer subtract of `other' (between 0 and 9) to Current.
 			-- restricted to `digits_count' most significant digits
 		local
 			borrow : INTEGER
@@ -557,7 +555,7 @@ feature -- Obsolete
 
 feature -- Inapplicable
 
-feature {EDA_COEFFICIENT_IMP} -- Implementation
+feature {MA_DECIMAL_COEFFICIENT_IMP} -- Implementation
 
 	digits : like NATIVE_ARRAY_TYPE
 
@@ -569,18 +567,14 @@ feature {EDA_COEFFICIENT_IMP} -- Implementation
 			native_digits_array_routines_not_void: Result /= Void
 		end
 
-feature {EDA_DECIMAL} -- Implementation
+feature {MA_DECIMAL} -- Implementation
 
 	set_count (a_count : INTEGER) is
-			-- set `count' to `a_count'
+			-- Set `count' to `a_count'.
 		do
 			count := a_count
 		end
 
-end -- class EDA_COEFFICIENT_IMP
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

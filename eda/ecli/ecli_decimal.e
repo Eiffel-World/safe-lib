@@ -1,13 +1,17 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2003/12/22 10:53:13 $"
-	revision: "$Revision: 1.3 $"
+	description:
 
-class
-	ECLI_DECIMAL
+		"Objects that ..."
+
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:15 $"
+
+class ECLI_DECIMAL
 
 inherit
+
 	ECLI_GENERIC_VALUE [STRING]
 		redefine
 			item, set_item, out,
@@ -24,9 +28,9 @@ inherit
 		undefine
 			is_equal, copy, out
 		end
-		
-	
+			
 creation
+
 	make
 
 feature {NONE} -- Initialization
@@ -174,7 +178,7 @@ feature -- Status report
 feature -- Element change
 
 	set_item (value : STRING) is
-			-- set item to 'value', truncating if necessary
+			-- Set item to 'value', truncating if necessary.
 		local
 			actual_length, transfer_length : INTEGER
 		do
@@ -191,17 +195,22 @@ feature -- Element change
 			count := value.count
 		end
 
-	set_from_decimal (value : EDA_DECIMAL) is
-			-- 
+	set_from_decimal (value : MA_DECIMAL) is
 		require
 			value_exists: value /= Void
+			value_precision_compatible: value.count <= precision
+			decimal_digits_compatible: value.exponent <= 0 and then -(value.exponent) <= decimal_digits
 		local
-			l : EDA_DECIMAL
+			l : MA_DECIMAL
+			s : STRING
 		do
-			l := value.rescale (-decimal_digits, value.shared_decimal_context)
-			set_item (l.to_scientific_string)
+			l := value  -- .rescale (-decimal_digits, value.shared_decimal_context)
+			s := l.to_scientific_string
+			if s.count <= capacity then
+				set_item (s)
+			end
 		ensure
-			set: as_decimal.is_equal (value.rescale (-decimal_digits, value.shared_decimal_context))
+			set: as_decimal.is_equal (value)-- .rescale (-decimal_digits, value.shared_decimal_context))
 		end
 		
 feature -- Conversion
@@ -213,19 +222,16 @@ feature -- Conversion
 		end
 
 	as_integer : INTEGER is
-			-- 
 		do
 			Result := item.to_integer
 		end
 		
 	as_double : DOUBLE is
-			-- 
 		do
 			Result := item.to_double
 		end
 		
 	as_real : REAL is
-			-- 
 		do 
 			Result := item.to_real
 		end
@@ -240,12 +246,11 @@ feature -- Conversion
 			end
 		end
 
-	as_decimal : EDA_DECIMAL is
-			-- 
+	as_decimal : MA_DECIMAL is
 		require
 			not_null: not is_null
 		local
-			math_context : EDA_MATH_CONTEXT
+			math_context : MA_DECIMAL_CONTEXT
 		do
 			create math_context.make (precision, 0)
 			create Result.make_from_string_ctx (item, math_context)
@@ -285,13 +290,13 @@ feature -- Conversion
 feature -- Basic operations
 
 	trace (a_tracer : ECLI_TRACER) is
-			-- trace content into `a_tracer'
+			-- Trace content into `a_tracer'.
 		do
 			a_tracer.put_string (Current)
 		end
 
 	append_substring_to (i_start, i_end : INTEGER; string : STRING) is
-			-- append substring [i_start..i_end] to string
+			-- Append substring [i_start..i_end] to string.
 		require
 			i_start_ok: i_start > 0 and i_start <= i_end
 			i_end_ok: i_end > 0 and i_end <= count
@@ -306,11 +311,11 @@ feature -- Basic operations
 		end
 
 	bind_as_parameter (stmt : ECLI_STATEMENT; index: INTEGER) is
-			-- bind this value as input parameter 'index' of 'stmt'
+			-- Bind this value as input parameter 'index' of 'stmt'.
 		do
 			stmt.set_status (ecli_c_bind_parameter (stmt.handle,
 				index,
-				direction.Sql_param_input,
+				Parameter_directions.Sql_param_input,
 				c_type_code,
 				sql_type_code,
 				size,
@@ -330,8 +335,4 @@ feature {NONE} -- Implementation
 
 	ext_item : XS_C_STRING
 	
-end -- class ECLI_DECIMAL
---
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
+end

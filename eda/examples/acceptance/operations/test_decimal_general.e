@@ -1,18 +1,18 @@
 indexing
-	description: "General Decimal Arithmetic test cases parsing and execution."
+	description:
 
-	library: "EDA"
-	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.2 $"
-	licensing: "See notice at end of class"
+		"General Decimal Arithmetic test cases parsing and execution."
 
-deferred class
-	TEST_DECIMAL_GENERAL
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:15 $"
+
+deferred class TEST_DECIMAL_GENERAL
 
 inherit
-	EDA_CONSTANTS
+
+	MA_DECIMAL_CONSTANTS
 		export {NONE} all
 		end
 	
@@ -22,7 +22,7 @@ inherit
 feature {NONE} -- Initialization
 
 	make_file (file_name : STRING) is
-			-- make tests for reading `file_name' 
+			-- Make tests for reading `file_name' .
 		do
 			create file.make (file_name)
 			file.open_read
@@ -30,7 +30,7 @@ feature {NONE} -- Initialization
 		end
 
 	make is
-			-- make; test shall be invoked by delegation, no file reading
+			-- Make; test shall be invoked by delegation, no file reading.
 		do
 			!!ctx.make_default
 			!!flags.make (1,Signal_subnormal)
@@ -60,7 +60,7 @@ feature {TEST_DECIMAL_GENERAL} -- Access
 	rounding : STRING
 	max_exponent : INTEGER
 
-	ctx : EDA_MATH_CONTEXT
+	ctx : MA_DECIMAL_CONTEXT
 	
 feature -- Access
 
@@ -72,14 +72,14 @@ feature -- Access
 		
 	last_string_result : STRING
 
-	last_result : EDA_DECIMAL
+	last_result : MA_DECIMAL
 
 feature -- Measurement
 
 feature {TEST_DECIMAL_GENERAL} -- Status report
 
 	is_comment : BOOLEAN is
-			-- is last_line a comment ?
+			-- Is last_line a comment ?
 		local
 			index : INTEGER
 		do
@@ -99,13 +99,13 @@ feature {TEST_DECIMAL_GENERAL} -- Status report
 	is_quoted_b : BOOLEAN
 	
 	is_directive : BOOLEAN is
-			-- is last_line a directive ?
+			-- Is last_line a directive ?
 		do
 			Result := last_line.index_of (':',1) /= 0
 		end
 
 	is_test : BOOLEAN is
-			-- is last_line a test ?
+			-- Is last_line a test ?
 		do
 			Result := not (last_line.count = 0 or else is_comment or else is_directive)
 		end
@@ -113,7 +113,7 @@ feature {TEST_DECIMAL_GENERAL} -- Status report
 	is_ok : BOOLEAN
 	
 	waiting : BOOLEAN is
-			-- is current waiting for a tag ?
+			-- Is current waiting for a tag ?
 		do
 			Result := start_tag /= Void and then not start_tag_met
 		end	
@@ -132,7 +132,7 @@ feature -- Cursor movement
 feature -- Element change
 
 	set_start_tag (a_tag : STRING) is
-			-- wait until `a_tag' is met
+			-- Wait until `a_tag' is met.
 		require
 			a_tag_not_void: a_tag /= Void
 		do
@@ -156,7 +156,7 @@ feature -- Miscellaneous
 feature -- Basic operations
 
 	start is
-			-- try reading the first test case
+			-- Try reading the first test case.
 		do
 			if file = Void or else file.end_of_file then
 				off := True
@@ -167,7 +167,7 @@ feature -- Basic operations
 		
 	
 	forth is
-			-- try reading a next test case
+			-- Try reading a next test case.
 		do
 			read_case
 			if file.end_of_file then
@@ -177,12 +177,12 @@ feature -- Basic operations
 
 feature {TEST_DECIMAL_GENERAL} -- Basic operations
 
-	create_operand (s : STRING; a_ctx : EDA_MATH_CONTEXT) : EDA_DECIMAL is
-			-- create operand from 's'
+	create_operand (s : STRING; a_ctx : MA_DECIMAL_CONTEXT) : MA_DECIMAL is
+			-- Create operand from 's'
 		require
 			s_not_void: s /= Void
 		local
-			conversion_ctx : EDA_MATH_CONTEXT
+			conversion_ctx : MA_DECIMAL_CONTEXT
 		do
 			conversion_ctx := clone (a_ctx)
 			conversion_ctx.set_digits (s.count + 1)
@@ -193,8 +193,8 @@ feature {TEST_DECIMAL_GENERAL} -- Basic operations
 		end
 		
 
-	check_flags (a_ctx : EDA_MATH_CONTEXT) is
-			-- check `a_ctx' flags against `the_flags'
+	check_flags (a_ctx : MA_DECIMAL_CONTEXT) is
+			-- Check `a_ctx' flags against `the_flags'.
 		local
 			local_flags : ARRAY[BOOLEAN]
 			index : INTEGER
@@ -223,10 +223,10 @@ feature {TEST_DECIMAL_GENERAL} -- Basic operations
 			end
 		end
 		
-	do_operation (a_string, b_string : STRING; a_ctx : EDA_MATH_CONTEXT) is
-			-- do operation
+	do_operation (a_string, b_string : STRING; a_ctx : MA_DECIMAL_CONTEXT) is
+			-- Do operation.
 		local
-			a, b : EDA_DECIMAL
+			a, b : MA_DECIMAL
 		do
 			a:= create_operand (a_string, a_ctx)
 			if b_string /= Void then
@@ -240,18 +240,18 @@ feature {TEST_DECIMAL_GENERAL} -- Basic operations
 			execute_operation (a, b, a_ctx)
 		end
 
-	execute_operation (a, b : EDA_DECIMAL; a_ctx : EDA_MATH_CONTEXT) is
+	execute_operation (a, b : MA_DECIMAL; a_ctx : MA_DECIMAL_CONTEXT) is
 			deferred
 			end
 
 feature -- Basic operations
 
 	execute is
-			-- execute current test case
+			-- Execute current test case.
 		require
 			not_off: not off
 		local
-			expected : EDA_DECIMAL
+			expected : MA_DECIMAL
 			result_string : STRING
 		do
 			if waiting then
@@ -286,7 +286,6 @@ feature -- Obsolete
 feature {TEST_DECIMAL_GENERAL} -- Inapplicable
 
 	read_case is
-			-- 
 		do
 			tag := Void
 			--| skip comments and execute directives
@@ -343,7 +342,6 @@ feature {TEST_DECIMAL_GENERAL} -- Inapplicable
 		end
 
 	bare_operand (s : STRING) : STRING is
-			-- 
 		do
 			if (s.item (1) = '%'' and s.item (s.count) = '%'') or else
 				(s.item (1) = '%"' and s.item (s.count) = '%"')					
@@ -415,7 +413,6 @@ feature {TEST_DECIMAL_GENERAL} -- Inapplicable
 --		end
 		
 	execute_directive is
-			-- 
 		do
 			words.start
 			words.item_for_iteration.to_lower
@@ -492,7 +489,7 @@ feature {NONE} -- Implementation
 		end
 
 	after_word (s: STRING; start_index : INTEGER) : INTEGER is
-			-- first index after word
+			-- First index after word
 		require
 			s_not_void: s /= Void
 			valid_start_index: start_index > 0 and then start_index <= s.count
@@ -545,7 +542,6 @@ feature {NONE} -- Implementation
 		end
 		
 	split is
-			-- 
 		local
 			index, begin : INTEGER
 		do
@@ -561,10 +557,6 @@ feature {NONE} -- Implementation
 			end
 		end
 
-end -- class TEST_DECIMAL_GENERAL
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

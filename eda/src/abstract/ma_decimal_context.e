@@ -1,23 +1,23 @@
 indexing
-	description: "User selectable parameters and rules which govern the results of decimal arithmetic operations."
+	description:
 
-	library: "EDA"
-	author: "Paul G. Crismer"
+		"User selectable parameters and rules which govern the results of decimal arithmetic operations."
 
-	date: "$Date: 2003/02/26 18:54:03 $"
-	revision: "$Revision: 1.4 $"
-	licensing: "See notice at end of class"
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:16 $"
 
-class
-	EDA_MATH_CONTEXT
+class MA_DECIMAL_CONTEXT
 
 inherit
+
 	ANY
 		redefine
 			out, copy, is_equal
 		end
 
-	EDA_CONSTANTS
+	MA_DECIMAL_CONSTANTS
 		undefine
 			out, copy, is_equal
 		end
@@ -35,12 +35,13 @@ inherit
 		end
 
 creation
+
 	make_default, make_double, make_extended, make_double_extended, make
 
 feature {NONE} -- Initialization
 
 	make_default is
-			-- default context for general purpose arithmetic (IEEE 854), single precision.
+			-- Default context for general purpose arithmetic (IEEE 854), single precision.
 		local
 			index : INTEGER
 		do
@@ -63,7 +64,7 @@ feature {NONE} -- Initialization
 		end
 
 	make_double is
-			-- make double precision context
+			-- Make double precision context.
 		do
 			make_default
 			digits := 2 * Default_digits + 1
@@ -77,7 +78,7 @@ feature {NONE} -- Initialization
 		end
 
 	make_extended is
-			-- make extended default context (IEEE 854), single precision
+			-- Make extended default context (IEEE 854), single precision.
 		do
 			make (Default_digits, Round_half_even)
 			is_extended := True
@@ -87,7 +88,7 @@ feature {NONE} -- Initialization
 		end
 
 	make_double_extended is
-			-- make extented default context, double precision
+			-- Make extented default context, double precision.
 		do
 			make_extended
 			digits := 2 * Default_digits + 1
@@ -97,7 +98,7 @@ feature {NONE} -- Initialization
 		end
 
 	make (a_digits, a_rounding_mode : INTEGER) is
-			-- creation of a math context
+			-- Creation of a math context.
 		require
 			good_digits : a_digits >= Minimum_digits and a_digits <= Maximum_digits
 			good_rounding_mode: Integer_array_.has (Rounds, a_rounding_mode)
@@ -130,7 +131,7 @@ feature {NONE} -- Initialization
 	   		-- Note that leading zeros (in the integer part of a number) are never significant.
 
 	precision : INTEGER is
-			-- synonym for 'digits'
+			-- Synonym for 'digits'
 		do
 			Result := digits
 		ensure
@@ -148,15 +149,15 @@ feature {NONE} -- Initialization
  			-- exponent limit.  Exponents can range from -exponent_limit through +exponent_limit
 
  	e_tiny : INTEGER is
- 			-- minimum value of the exponent for subnormal numbers
+ 			-- Minimum value of the exponent for subnormal numbers
  		do
  			Result := (-exponent_limit) - (digits - 1)
  		end
 
  feature -- Access
 
- 	default_context : EDA_MATH_CONTEXT is
- 			-- default context for general purpose arithmetic
+ 	default_context : MA_DECIMAL_CONTEXT is
+ 			-- Default context for general purpose arithmetic
  		once
  			!!Result.make_default
  		end
@@ -164,7 +165,7 @@ feature {NONE} -- Initialization
 feature -- Status report
 
 	is_flagged (a_signal : INTEGER) : BOOLEAN is
-			-- is `a_signal' flagged ?
+			-- Is `a_signal' flagged ?
 		require
 			valid_signal: valid_signal (a_signal)
 		do
@@ -172,7 +173,7 @@ feature -- Status report
 		end
 
 	is_trapped (a_signal : INTEGER) : BOOLEAN is
-			-- is `a_signal' trapped ?
+			-- Is `a_signal' trapped ?
 		require
 			valid_signal: valid_signal (a_signal)
 		do
@@ -180,7 +181,7 @@ feature -- Status report
 		end
 
 	valid_signal (a_signal : INTEGER) : BOOLEAN is
-			-- is `a_signal' a valid one ?
+			-- Is `a_signal' a valid one ?
 		do
 			Result := Integer_array_.has (signals, a_signal)
 		end
@@ -192,7 +193,7 @@ feature -- Status report
 feature -- Status setting
 
 	set_digits (some_digits : INTEGER) is
-			-- set `digits' to `some_digits'
+			-- Set `digits' to `some_digits'.
 			-- digits = 0 <=> calculations in plain, unlimited precision (risky!)
 		require
 			some_digits_valid: some_digits >= Minimum_digits and some_digits <= Maximum_digits
@@ -203,7 +204,7 @@ feature -- Status setting
 		end
 
 	set_exponent_limit (a_limit : INTEGER) is
-			-- set `exponent_limit' to `a_limit'
+			-- Set `exponent_limit' to `a_limit'.
 		require
 			limit_positive: a_limit >= 0
 --			IEEE854_3_1_constraint: a_limit >= 10 * digits
@@ -214,29 +215,19 @@ feature -- Status setting
 		end
 
 	enable_exception_on_trap is
-			-- enable exception when trap occurs
+			-- Enable exception when trap occurs.
 		do
 			exception_on_trap := True
 		end
 
 	disable_exception_on_trap is
-			-- disable exception when trap occurs
+			-- Disable exception when trap occurs.
 		do
 			exception_on_trap := False
 		end
 
---	set_format (a_format : INTEGER) is
---			-- set `format' to `a_format'
---		require
---			a_format_valid: a_format = Format_plain or a_format = Format_scientific or a_format = Format_engineering
---		do
---			format := a_format
---		ensure
---			format_set: format = a_format
---		end
-
 	enable_trap (a_signal : INTEGER) is
-			-- enable trapping of `a_signal'
+			-- Enable trapping of `a_signal'.
 		require
 			valid_signal: valid_signal (a_signal)
 		do
@@ -246,7 +237,7 @@ feature -- Status setting
 		end
 
 	disable_trap (a_signal : INTEGER) is
-			-- enable trapping of `a_signal'
+			-- Enable trapping of `a_signal'.
 		require
 			valid_signal: valid_signal (a_signal)
 		do
@@ -256,7 +247,7 @@ feature -- Status setting
 		end
 
 	set_flag (a_signal : INTEGER) is
-			-- flag `a_signal'
+			-- Flag `a_signal'.
 		require
 			valid_signal: valid_signal (a_signal)
 		do
@@ -266,7 +257,7 @@ feature -- Status setting
 		end
 
 	reset_flag (a_signal : INTEGER) is
-			-- reset `a_signal'
+			-- Reset `a_signal'.
 		require
 			valid_signal: valid_signal (a_signal)
 		do
@@ -276,7 +267,7 @@ feature -- Status setting
 		end
 
 	reset_flags is
-			-- reset all signals to zero !
+			-- Reset all signals to zero !.
 		local
 			index : INTEGER
 		do
@@ -287,7 +278,7 @@ feature -- Status setting
 		end
 
 	set_rounding_mode (a_mode : INTEGER) is
-			-- set `rounding_mode' to `a_mode'
+			-- Set `rounding_mode' to `a_mode'.
 		require
 			valid_mode: Integer_array_.has (Rounds, a_mode)
 		do
@@ -306,7 +297,7 @@ feature -- Conversion
 			!!Result.make (30)
 			Result.append ("digits=")
 			Result.append (digits.out)
-			Result.append (" format=")
+--			Result.append (" format=")
 --			Result.append (Form_words.item(Form_words.lower+format))
 			Result.append (" rounding_mode=")
 			Result.append (Round_words.item (Round_words.lower+rounding_mode))
@@ -315,7 +306,7 @@ feature -- Conversion
 feature -- Comparison
 
 	is_equal (other : like Current) : BOOLEAN is
-			-- is `other' equal to Current ?
+			-- Is `other' equal to Current ?
 		do
 			Result := digits = other.digits
 			Result := Result and then exception_on_trap = other.exception_on_trap
@@ -329,7 +320,7 @@ feature -- Comparison
 feature -- Basic operations
 
 	signal (a_signal : INTEGER; a_message : STRING) is
-			-- raise flag `a_signal' for `a_message' reason
+			-- Raise flag `a_signal' for `a_message' reason.
 		require
 			valid_signal: valid_signal (a_signal)
 			a_message_not_void: a_message /= Void
@@ -350,7 +341,7 @@ feature -- Basic operations
 		end
 
 	copy (other : like Current) is
-			-- copy `other'
+			-- Copy `other'.
 		do
 			standard_copy (other)
 			!!flags.make (other.flags.lower, other.flags.upper)
@@ -373,7 +364,7 @@ feature {NONE} -- Implementation
 						Signal_lost_digits, Signal_overflow, Signal_rounded, Signal_underflow, Signal_subnormal>>
 		end
 
-feature {DECIMAL_TESTER, EDA_MATH_CONTEXT}
+feature {DECIMAL_TESTER, MA_DECIMAL_CONTEXT}
 
   	Signal_words : ARRAY[STRING] is
   		once
@@ -386,6 +377,7 @@ feature {DECIMAL_TESTER, EDA_MATH_CONTEXT}
 	traps : ARRAY[BOOLEAN]
 
 invariant
+
 	non_negative_digits: not (digits < 0)
 --	format_valid: format = Format_plain or format = Format_scientific or format = Format_engineering
 	rounding_mode_valid: rounding_mode = Round_ceiling or rounding_mode = Round_down
@@ -393,10 +385,6 @@ invariant
 			or rounding_mode = Round_half_even or rounding_mode = Round_half_up
 			or rounding_mode = Round_unnecessary or Rounding_mode = Round_up
 
-end -- class EDA_MATH_CONTEXT
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

@@ -1,29 +1,30 @@
 indexing
-	description	: "System's root class for running General Decimal Arithmetic Specification test cases"
+	description	: 
+	
+		"System's root class for running General Decimal Arithmetic Specification test cases"
 
-	library: "EDA"
-	author: "Paul G. Crismer"
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:15 $"
 
-	date: "$Date: 2003/11/20 20:37:27 $"
-	revision: "$Revision: 1.4 $"
-	licensing: "See notice at end of class"
-
-class
-	TEST_DECIMAL
+class TEST_DECIMAL
 
 inherit
+
 	KL_SHARED_FILE_SYSTEM
 		export
 			{NONE} all
 		end
 
 creation
+
 	make
 
 feature {NONE} -- Initialization
 
 	make is
-			-- create and run test cases.
+			-- Create and run test cases.
 		do
 			io.put_string ("-- test_eda %N--  General Decimal Arithmetic tests cases%N")
 			io.put_string ("-- for exercising the Eiffel Decimal Arithmetic library (EDA).%N")
@@ -155,13 +156,9 @@ feature {NONE} -- Implementation
  			print (" -> " + test.errors.out + " errors / " + test.count.out + " cases%N")
  		end
 
-	bcd_parser : EDA_DECIMAL_BCD_PARSER
-	ctx : EDA_DECIMAL_MATH
+	bcd_parser : MA_DECIMAL_BCD_PARSER
+	ctx : MA_DECIMAL_MATH
 	
-end -- class TEST_DECIMAL
+end
 
---
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

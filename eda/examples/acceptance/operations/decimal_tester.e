@@ -1,15 +1,14 @@
 indexing
-	description: "Objects that can access the internal structure of EDA_DECIMALs."
+	description:
 
-	library: "EDA"
-	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.2 $"
-	licensing: "See notice at end of class"
+		"Objects that can access the internal structure of MA_DECIMALs."
 
-class
-	DECIMAL_TESTER
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:15 $"
+
+class DECIMAL_TESTER
 
 feature -- Access
 
@@ -44,12 +43,9 @@ feature -- Inapplicable
 feature {NONE} -- Implementation
 
 invariant
+
 	invariant_clause: True -- Your invariant here
 
-end -- class DECIMAL_TESTER
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

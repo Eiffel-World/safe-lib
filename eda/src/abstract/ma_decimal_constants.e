@@ -1,17 +1,17 @@
 indexing
-	description: "Constants for the EDA library"
+	description:
 
-	library: "EDA"
-	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.2 $"
-	licensing: "See notice at end of class"
+		"Constants for the EDA library"
 
-class
-	EDA_CONSTANTS
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:16 $"
+
+class MA_DECIMAL_CONSTANTS
 
 inherit
+
 	KL_SHARED_PLATFORM
 		export
 			{NONE} all
@@ -20,24 +20,24 @@ inherit
 feature -- Constants
 
   	Round_up : INTEGER is 0 
-		-- Rounding mode to round away from zero.
-		-- If any of the discarded digits are non-zero then the result will be rounded up (away from zero).
+		-- Rounding mode to round away from zero
+		-- If any of the discarded digits are non-zero then the result will be rounded up (away from zero)
 
 	Round_down : INTEGER is 1
-		-- Rounding mode to round towards zero.
-		-- If any of the discarded digits are non-zero then the result should be rounded towards the next more negative digit
+		-- Rounding mode to round towards zero
+		-- If any of the discarded digits are non-zero then the result should be rounded towards the next ore negative digit
 	
 	Round_ceiling : INTEGER is 2
 		-- Rounding mode to round to a more positive number
-		-- All discarded digits are ignored (truncated).  The result is neither incremented nor decremented.
+		-- All discarded digits are ignored (truncated).  The result is neither incremented nor decremented
 		
 	Round_floor : INTEGER is 3
-		-- Rounding mode to round to a more negative number.
+		-- Rounding mode to round to a more negative number
 		-- If any of the discarded digits are non-zero then the result should be rounded towards the next more negative digit
  
  	Round_half_up : INTEGER is 4
-  		-- Rounding mode to round to nearest neighbor, where an equidistant value is rounded up.
-		-- If the discarded digits represent greater than or equal to half (0.5 times) the value
+  		-- Rounding mode to round to nearest neighbor, where an equidistant value is rounded up
+  		-- If the discarded digits represent greater than or equal to half (0.5 times) the value
 		-- of a one in the next position then the result should be rounded up (away from zero).
 		-- Otherwise the discarded digits are ignored.
 
@@ -110,22 +110,18 @@ feature -- Constants
 	 Maximum_exponent : INTEGER is 999_999_999
 	 	-- maximum exponent allowed
 	 	
-	 Minimum_integer_as_decimal : EDA_DECIMAL is
+	 Minimum_integer_as_decimal : MA_DECIMAL is
 	 		-- Minimum value convertible to integer
 	 	once
 	 		!!Result.make_from_integer(Platform.Minimum_integer)
 	 	end
 	 	
-	 Maximum_integer_as_decimal : EDA_DECIMAL is
+	 Maximum_integer_as_decimal : MA_DECIMAL is
 	 		-- Maximum value convertible to integer
 	 	once
 	 		!!Result.make_from_integer (Platform.Maximum_integer)
 	 	end
 	 	
-end -- class EDA_CONSTANTS
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

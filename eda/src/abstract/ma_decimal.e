@@ -1,23 +1,23 @@
 indexing
-	description: "DECIMAL numbers.  Following the 'General Decimal Arithmetic Specification'."
+	description:
 
-	library: "EDA"
-	author: "Paul G. Crismer"
+		"DECIMAL numbers.  Following the 'General Decimal Arithmetic Specification'."
 
-	date: "$Date: 2003/11/20 20:28:44 $"
-	revision: "$Revision: 1.8 $"
-	licensing: "See notice at end of class"
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:16 $"
 
-class
-	EDA_DECIMAL
+class MA_DECIMAL
 
 inherit
-	EDA_NUMERIC
+
+	KL_NUMERIC
 		redefine
 			out, is_equal, copy
 		end
 
-	EDA_CONSTANTS
+	MA_DECIMAL_CONSTANTS
 		export
 			{NONE} all;
 			{ANY} Maximum_integer_as_decimal, Minimum_integer_as_decimal
@@ -30,7 +30,7 @@ inherit
 			out, is_equal, copy
 		end
 
-	EDA_SHARED_MATH_CONTEXT
+	MA_SHARED_DECIMAL_CONTEXT
 		export
 			{NONE} all;
 			{ANY} shared_decimal_context, set_shared_decimal_context
@@ -51,6 +51,7 @@ inherit
 		end
 
 creation
+
 	{ANY} make_from_integer,
 	make_from_string,
 	make_from_string_ctx,
@@ -60,16 +61,17 @@ creation
 	make
 	
 creation
-	{EDA_DECIMAL} make_infinity, make_nan, make_snan, make_special
+
+	{MA_DECIMAL} make_infinity, make_nan, make_snan, make_special
 
 feature {NONE} -- Initialization
 
 	make (precision : INTEGER) is
-			-- make using `precision' digits
+			-- Make using `precision' digits.
 		require
 			positive_precision: precision > 0
 		do
-			!EDA_COEFFICIENT_IMP!coefficient.make (precision)
+			!MA_DECIMAL_COEFFICIENT_IMP!coefficient.make (precision)
 			set_positive
 			coefficient.put (0, 0)
 		ensure
@@ -77,7 +79,7 @@ feature {NONE} -- Initialization
 		end
 
 	make_copy (other : like Current) is
-			-- make a copy of `other'
+			-- Make a copy of `other'.
 		require
 			other_exists: other /= Void
 		do
@@ -93,7 +95,7 @@ feature {NONE} -- Initialization
 		end
 		
 	make_zero is
-			-- make zero
+			-- Make zero.
 		do
 			make (1)
 		ensure
@@ -101,7 +103,7 @@ feature {NONE} -- Initialization
 		end
 
 	make_one is
-			-- make one
+			-- Make one.
 		do
 			make (1)
 			coefficient.put (1, 0)
@@ -110,7 +112,7 @@ feature {NONE} -- Initialization
 		end
 		
 	make_from_integer (value : INTEGER) is
-			-- make a new decimal from integer `value'
+			-- Make a new decimal from integer `value'.
 		local
 			temp_value, v, index, ten_exponent : INTEGER
 		do
@@ -135,7 +137,7 @@ feature {NONE} -- Initialization
 				end
 			end
 			-- create coefficient
-			!EDA_COEFFICIENT_IMP!coefficient.make (ten_exponent+1)
+			!MA_DECIMAL_COEFFICIENT_IMP!coefficient.make (ten_exponent+1)
 			-- fill it, from least significant digit (lower index) to most significant (upper index) digit
 			if temp_value = 0 then
 				coefficient.put (0,0)
@@ -157,8 +159,8 @@ feature {NONE} -- Initialization
 			equal_to_value: to_integer = value
 		end
 
-	make_from_string_ctx (value_string : STRING; ctx : EDA_MATH_CONTEXT) is
-			-- make a new decimal from `value_string' relative to `ctx'
+	make_from_string_ctx (value_string : STRING; ctx : MA_DECIMAL_CONTEXT) is
+			-- Make a new decimal from `value_string' relative to `ctx'.
 		require
 			value_string_exists: value_string /= Void --and then value_string.count > 0
 			context_exists: ctx /= Void
@@ -206,7 +208,7 @@ feature {NONE} -- Initialization
 					if l_parser.has_point then
 						exponent := exponent - l_parser.fractional_part_count
 					end
-					create {EDA_COEFFICIENT_IMP}coefficient.make ((ctx.digits+1).max (l_parser.coefficient_count))
+					create {MA_DECIMAL_COEFFICIENT_IMP}coefficient.make ((ctx.digits+1).max (l_parser.coefficient_count))
 					coefficient.set_from_substring (value_string, l_parser.coefficient_begin, l_parser.coefficient_end)
 					clean_up (ctx)
 				end
@@ -214,7 +216,7 @@ feature {NONE} -- Initialization
 		end
 
 	make_from_string (value_string : STRING) is
-			-- make a new decimal from string `value_string' relative to `shared_decimal_context'
+			-- Make a new decimal from string `value_string' relative to `shared_decimal_context'.
 		require
 			value_string_exists: value_string /= Void --and then value_string.count > 0
 		do
@@ -240,7 +242,7 @@ feature -- Access
 
 feature -- Constants
 
-	one: EDA_DECIMAL is
+	one: MA_DECIMAL is
 			-- Neutral element for "*" and "/"
 		once
 			create Result.make_from_integer (1)
@@ -248,7 +250,7 @@ feature -- Constants
 			Result_is_one: Result.to_integer = 1
 		end
 
-	minus_one : EDA_DECIMAL is
+	minus_one : MA_DECIMAL is
 			-- Minus one
 		once
 			create Result.make_copy (one)
@@ -258,7 +260,7 @@ feature -- Constants
 			Result_is_minus_one: Result.to_integer = -1
 		end
 		
-	zero: EDA_DECIMAL is
+	zero: MA_DECIMAL is
 			-- Neutral element for "+" and "-"
 		once
 			create Result.make_from_integer (0)
@@ -266,8 +268,7 @@ feature -- Constants
 			Result_is_zero: Result.is_zero
 		end
 
-	negative_zero : EDA_DECIMAL is
-			-- 
+	negative_zero : MA_DECIMAL is
 		once
 			create Result.make_copy (zero)
 			Result.set_negative
@@ -277,7 +278,7 @@ feature -- Constants
 			Result_negative: Result.is_negative
 		end
 		
-	nan : EDA_DECIMAL is
+	nan : MA_DECIMAL is
 			-- Not a Number
 		once
 			create Result.make_nan
@@ -285,7 +286,7 @@ feature -- Constants
 			is_nan: Result.is_nan
 		end
 
-	snan : EDA_DECIMAL is
+	snan : MA_DECIMAL is
 			-- Signaling Not a Number
 		once
 			create Result.make_snan
@@ -293,7 +294,7 @@ feature -- Constants
 			is_snan: Result.is_signaling_nan
 		end
 		
-	infinity : EDA_DECIMAL is
+	infinity : MA_DECIMAL is
 		once
 			create Result.make_infinity (1)
 		ensure
@@ -301,7 +302,7 @@ feature -- Constants
 			is_positive: Result.is_positive
 		end
 		
-	negative_infinity : EDA_DECIMAL is
+	negative_infinity : MA_DECIMAL is
 		once
 			create Result.make_infinity (-1)
 		ensure
@@ -309,25 +310,25 @@ feature -- Constants
 			is_negative: Result.is_negative
 		end
 
-feature {EDA_DECIMAL} -- Access
+feature {MA_DECIMAL} -- Access
 
 	adjusted_exponent : INTEGER is
-			-- exponent of the most significant digit; see SDAS page 5
+			-- Exponent of the most significant digit; see SDAS page 5
 		do
 			Result := exponent + count - 1
 		ensure
 			definition: Result = (exponent + count - 1)
 		end
 
-feature {EDA_DECIMAL, EDA_DECIMAL_PARSER}
+feature {MA_DECIMAL, MA_DECIMAL_PARSER}
 
-	coefficient : EDA_COEFFICIENT
+	coefficient : MA_DECIMAL_COEFFICIENT
 			-- storage for digits
 
 feature -- Status report
 
 	is_integer : BOOLEAN is
-			-- is this an integer ? i.e. no fractional part other than all zeroes?
+			-- Is this an integer ? i.e no fractional part other than all zeroes?
 		local
 			fractional_count, index : INTEGER
 		do
@@ -353,7 +354,7 @@ feature -- Status report
 		end
 
 	is_double : BOOLEAN is
-			-- is this a double ?
+			-- Is this a double ?
 		local
 			str : STRING
 		do
@@ -379,13 +380,13 @@ feature -- Status report
 			-- is the number negative ?
 
 	is_positive : BOOLEAN is
-			-- is the number positive ?
+			-- Is the number positive ?
 		do
 			Result := not is_negative
 		end
 
 	is_nan : BOOLEAN is
-			-- is this "Not a Number" (NaN) ?
+			-- Is this "Not a Number" (NaN) ?
 		do
 			Result := is_signaling_nan or is_quiet_nan
 		ensure
@@ -393,7 +394,7 @@ feature -- Status report
 		end
 
 	is_special : BOOLEAN is
-			-- is this a special value ?
+			-- Is this a special value ?
 		do
 			Result := (special /= Special_none) --is_nan or else is_infinity
 		ensure
@@ -401,25 +402,25 @@ feature -- Status report
 		end
 
 	is_signaling_nan : BOOLEAN is
-			-- is this a "Signaling NaN" ?
+			-- Is this a "Signaling NaN" ?
 		do
 			Result := (special = Special_signaling_nan)
 		end
 
 	is_quiet_nan : BOOLEAN is
-			-- is this a "Quiet NaN" ?
+			-- Is this a "Quiet NaN" ?
 		do
 			Result := (special = Special_quiet_nan)
 		end
 
 	is_infinity : BOOLEAN is
-			-- is this an Infinity ?
+			-- Is this an Infinity ?
 		do
 			Result := (special = Special_infinity)
 		end
 
 	is_zero : BOOLEAN is
-			-- is this a Zero value ?
+			-- Is this a Zero value ?
 		do
 			if not is_special and then coefficient.is_zero then
 				Result := True
@@ -447,7 +448,7 @@ feature -- Basic operations
 		end
 
 	infix "+" (other: like Current): like Current is
-			-- Sum with `other' (commutative).
+			-- Sum with `other' (commutative)
 		do
 			Result := add (other, shared_decimal_context)
 		ensure then
@@ -494,7 +495,7 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	infix "^" (other: NUMERIC): EDA_DECIMAL is
+	infix "^" (other: NUMERIC): MA_DECIMAL is
 			-- Current decimal to the power `other'
 		do
 			--| TODO
@@ -502,7 +503,7 @@ feature -- Basic operations
 
 	infix "<" (other : like Current) : BOOLEAN is
 		local
-			res : EDA_DECIMAL
+			res : MA_DECIMAL
 		do
 			res := compare (other, shared_decimal_context)
 			if res.is_negative then
@@ -515,7 +516,7 @@ feature -- Basic operations
 feature -- Measurement
 
 	count : INTEGER is
-			-- count of significant digits
+			-- Count of significant digits
 		do
 			if is_special then
 				Result := 0
@@ -566,7 +567,7 @@ feature -- Comparison
 feature -- Conversion
 
 	out : STRING is
-			-- printable representation
+			-- Printable representation
 		do
 			!!Result.make (0)
 			Result.append ("[")
@@ -612,13 +613,13 @@ feature -- Conversion
 			is_integer: is_integer
 			within_limits: Current <= Maximum_integer_as_decimal or else Current >= Minimum_integer_as_decimal
 		local
-			ctx : EDA_MATH_CONTEXT
+			ctx : MA_DECIMAL_CONTEXT
 		do
 			create ctx.make_double
 			Result := to_integer_ctx (ctx)
 		end
 
-	to_integer_ctx (ctx : EDA_MATH_CONTEXT) : INTEGER is
+	to_integer_ctx (ctx : MA_DECIMAL_CONTEXT) : INTEGER is
 			-- Current as an INTEGER wrt `ctx'
 		require
 			is_integer: is_integer
@@ -645,13 +646,13 @@ feature -- Conversion
 		end
 
 	to_engineering_string : STRING is
-			-- Current as a number in engineering notation.
+			-- Current as a number in engineering notation
 		do
 			Result := to_string_general (True)
 		end
 
 	to_scientific_string : STRING is
-			-- Current as a sting expressed in scientific notation.
+			-- Current as a sting expressed in scientific notation
 		do
 			Result := to_string_general (False)
 		end
@@ -676,8 +677,8 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
-	add (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- add `other' with respect to the `ctx' context
+	add (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Add `other' with respect to the `ctx' context
 		require
 			other_not_void : other /= Void
 			ctx_not_void: ctx /= Void
@@ -724,8 +725,8 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	subtract (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- subtract `other' with respect to the `ctx' context
+	subtract (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Subtract `other' with respect to the `ctx' context
 		require
 			other_not_void : other /= Void
 			ctx_not_void: ctx /= Void
@@ -749,8 +750,8 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	multiply (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- multiply `other' whith respect to `ctx'
+	multiply (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Multiply `other' whith respect to `ctx'
 		require
 			other_not_void : other /= Void
 			ctx_not_void: ctx /= Void
@@ -804,8 +805,8 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	divide (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- divide Current by `other' whith respect to `ctx'
+	divide (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Divide Current by `other' whith respect to `ctx'
 		require
 			other_not_void : other /= Void
 			ctx_not_void: ctx /= Void
@@ -817,8 +818,8 @@ feature -- Basic operations
 		end
 
 
-	divide_integer (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- divide integer Current by `other' whith respect to `ctx'
+	divide_integer (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Divide integer Current by `other' whith respect to `ctx'
 		require
 			other_not_void : other /= Void
 			ctx_not_void: ctx /= Void
@@ -828,8 +829,8 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	remainder (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- remainder of integer division of Current by `other' whith respect to `ctx'
+	remainder (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Remainder of integer division of Current by `other' whith respect to `ctx'
 		require
 			other_not_void : other /= Void
 			ctx_not_void: ctx /= Void
@@ -876,8 +877,8 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	rescale (new_exponent : INTEGER; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- decimal from Current rescaled to `new_exponent'
+	rescale (new_exponent : INTEGER; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Decimal from Current rescaled to `new_exponent'
 		require
 			context_not_void: ctx /= Void
 		local
@@ -994,15 +995,15 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	rescale_decimal (new_exponent : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- rescale using decimal `new_exponent'
+	rescale_decimal (new_exponent : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Rescale using decimal `new_exponent'
 		require
 			new_exponent_not_void: new_exponent /= Void
 			ctx_not_void: ctx /= Void
 		local
-			e_max, e_min : EDA_DECIMAL
+			e_max, e_min : MA_DECIMAL
 			new_integer_exponent : INTEGER
-			temp_ctx : EDA_MATH_CONTEXT
+			temp_ctx : MA_DECIMAL_CONTEXT
 		do
 			if new_exponent.is_special or else is_special then
 				if new_exponent.is_signaling_nan or else is_signaling_nan then
@@ -1043,8 +1044,8 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	round_to_integer (ctx : EDA_MATH_CONTEXT) : like Current is
-			-- round to an integer with exponent 0
+	round_to_integer (ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Round to an integer with exponent 0
 		do
 			Result := rescale (0, ctx)
 		ensure
@@ -1052,8 +1053,8 @@ feature -- Basic operations
 			definition: not Result.is_special implies Result.exponent = 0
 		end
 
-	plus (ctx : EDA_MATH_CONTEXT) : like Current is
-			-- prefix `+' with respect to the `ctx' context
+	plus (ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Prefix `+' with respect to the `ctx' context
 		local
 			l_zero : like Current
 		do
@@ -1095,8 +1096,8 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	minus (ctx : EDA_MATH_CONTEXT) : like Current is
-			-- prefix `-' with respect to the `ctx' context
+	minus (ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Prefix `-' with respect to the `ctx' context
 		local
 			l_zero : like Current
 		do
@@ -1108,15 +1109,15 @@ feature -- Basic operations
 		end
 
 	abs : like Current is
-			-- absolute value of Current
+			-- Absolute value of Current
 		do
 			Result := abs_ctx (shared_decimal_context)
 		ensure then
 			Result_exists: Result /= Void
 		end
 
-	abs_ctx (ctx : EDA_MATH_CONTEXT) : like Current is
-			-- absolute value of Current relative to `ctx'
+	abs_ctx (ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Absolute value of Current relative to `ctx'
 		do
 			if is_negative then
 				Result := minus (ctx)
@@ -1128,13 +1129,13 @@ feature -- Basic operations
 			definition: Result.sign >= 0
 		end
 
-	max_ctx (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- max between Current and `other' relative to `ctx'
+	max_ctx (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Max between Current and `other' relative to `ctx'
 		require
 			other_not_void: other /= Void
 			ctx_not_void: ctx /= Void
 		local
-			comparison_result : EDA_DECIMAL
+			comparison_result : MA_DECIMAL
 		do
 			if is_nan or else other.is_nan then
 				if is_signaling_nan or else other.is_signaling_nan then
@@ -1154,13 +1155,13 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	min_ctx (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- min between Current and `other' relative to `ctx'
+	min_ctx (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Min between Current and `other' relative to `ctx'
 		require
 			other_not_void: other /= Void
 			ctx_not_void: ctx /= Void
 		local
-			comparison_result : EDA_DECIMAL
+			comparison_result : MA_DECIMAL
 		do
 			if is_nan or else other.is_nan then
 				if is_signaling_nan or else other.is_signaling_nan then
@@ -1180,8 +1181,8 @@ feature -- Basic operations
 			Result_exists: Result /= Void
 		end
 
-	compare (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- compares value of `Current' and `other'
+	compare (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Compares value of `Current' and `other'
 			-- Result = 0 if Current = other
 			-- Result = -1 if Current < other
 			-- Result = +1 if Current > other
@@ -1190,7 +1191,7 @@ feature -- Basic operations
 			ctx_not_void: ctx /= Void
 		local
 			operand_a, operand_b : like Current
-			temp_ctx : EDA_MATH_CONTEXT
+			temp_ctx : MA_DECIMAL_CONTEXT
 		do
 			if is_special or else other.is_special then
 				if is_nan or else other.is_nan then
@@ -1265,7 +1266,7 @@ feature -- Obsolete
 
 feature -- Inapplicable
 
-feature {EDA_DECIMAL, EDA_DECIMAL_PARSER} -- Element change
+feature {MA_DECIMAL, MA_DECIMAL_PARSER} -- Element change
 
 	set_coefficient (m : like coefficient) is
 		require
@@ -1296,7 +1297,7 @@ feature {NONE} -- Constants
 		Align_hint_current_zero : INTEGER is 4
 		Align_hint_other_zero : INTEGER is 5
 
-feature {EDA_DECIMAL} -- Status setting
+feature {MA_DECIMAL} -- Status setting
 
 	special : INTEGER
 
@@ -1321,10 +1322,10 @@ feature {EDA_DECIMAL} -- Status setting
 			qNaN: is_quiet_nan
 		end
 
-feature {EDA_DECIMAL} -- Basic operations
+feature {MA_DECIMAL} -- Basic operations
 			
-	add_special (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- add special numbers
+	add_special (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Add special numbers
 		require
 			other_not_void: other /= Void
 			special: is_special or else other.is_special
@@ -1366,8 +1367,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
-	subtract_special (other : like Current; ctx : EDA_MATH_CONTEXT) : like Current is
-			-- subtract special numbers
+	subtract_special (other : like Current; ctx : MA_DECIMAL_CONTEXT) : like Current is
+			-- Subtract special numbers
 		require
 			other_not_void: other /= Void
 			special: is_special or else other.is_special
@@ -1411,8 +1412,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
-	unsigned_add (other : like Current; ctx : EDA_MATH_CONTEXT) is
-			-- Subtract other from Current
+	unsigned_add (other : like Current; ctx : MA_DECIMAL_CONTEXT) is
+			-- Subtract other from Current.
 			-- !!! Destructive on other and on Current
 		require
 			other_not_void: other /= Void
@@ -1446,8 +1447,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
-	unsigned_subtract (other : like Current; ctx : EDA_MATH_CONTEXT) is
-			-- subtract other without taken the sign into account
+	unsigned_subtract (other : like Current; ctx : MA_DECIMAL_CONTEXT) is
+			-- Subtract other without taken the sign into account.
 		require
 			other_not_void: other /= Void
 			ctx_not_void: ctx /= Void
@@ -1490,8 +1491,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
-	round (ctx : EDA_MATH_CONTEXT) is
-			-- round Current according to ctx.rounding_mode
+	round (ctx : MA_DECIMAL_CONTEXT) is
+			-- Round Current according to ctx.rounding_mode.
 		require
 			not_special: not is_special
 			roundable: ctx.digits > 0 and then count > ctx.digits
@@ -1523,7 +1524,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 
 	align_and_hint (other : like Current; precision : INTEGER) : INTEGER is
-			-- align Current and other with respect to `precision'
+			-- Align Current and other with respect to `precision'
 			-- and give hint for further operations
 		local
 			new_count, new_exponent : INTEGER
@@ -1613,7 +1614,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 
 	align_overlapped (other : like Current; precision : INTEGER) is
-			-- align overlapping numbers
+			-- Align overlapping numbers.
 		require
 			other_not_void: other /= Void
 			exponent_greater: exponent > other.exponent
@@ -1665,7 +1666,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 
 	shift_left (a_count : INTEGER) is
-			-- shift the coefficient left `a_count' position and adjust exponent
+			-- Shift the coefficient left `a_count' position and adjust exponent.
 			-- value still must be the same as with the original exponent
 		do
 			coefficient.shift_left (a_count)
@@ -1676,7 +1677,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 
 	shift_right (a_count : INTEGER) is
-			-- shift the coefficient right `a_count' position and adjust exponent
+			-- Shift the coefficient right `a_count' position and adjust exponent.
 			-- digits are lost
 		do
 			coefficient.shift_right (a_count)
@@ -1686,7 +1687,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 
 	grow (a_count : INTEGER) is
-			-- grow coefficient so that it can accomodate a_count digits
+			-- Grow coefficient so that it can accomodate a_count digits.
 		require
 			a_count_greater_zero: a_count > 0
 			a_count_less_10_000: a_count < 10_000
@@ -1696,7 +1697,7 @@ feature {EDA_DECIMAL} -- Basic operations
 			count_set: count = a_count
 		end
 
-  	do_round_up (ctx : EDA_MATH_CONTEXT) is
+  	do_round_up (ctx : MA_DECIMAL_CONTEXT) is
 			-- Round away from zero.
 		local
 			old_count, exponent_increment : INTEGER
@@ -1713,7 +1714,7 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
-	do_round_down (ctx : EDA_MATH_CONTEXT) is
+	do_round_down (ctx : MA_DECIMAL_CONTEXT) is
 			-- Round towards zero.
 		require
 			positive_precision: ctx.digits >= 1
@@ -1728,8 +1729,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			coefficient.keep_head (ctx.digits)
 		end
 
-	do_round_ceiling (ctx : EDA_MATH_CONTEXT) is
-			-- Round to a more positive number
+	do_round_ceiling (ctx : MA_DECIMAL_CONTEXT) is
+			-- Round to a more positive number.
 		do
 			if is_negative or else not lost_digits (ctx) then
 				do_round_down (ctx)
@@ -1738,7 +1739,7 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
-	do_round_floor (ctx : EDA_MATH_CONTEXT) is
+	do_round_floor (ctx : MA_DECIMAL_CONTEXT) is
 			-- Round to a more negative number.
  		do
 			if is_positive or else not lost_digits (ctx) then
@@ -1748,7 +1749,7 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
- 	do_round_half_up (ctx : EDA_MATH_CONTEXT) is
+ 	do_round_half_up (ctx : MA_DECIMAL_CONTEXT) is
   			-- Round to nearest neighbor, where an equidistant value is rounded up.
 			-- If the discarded digits represent greater than or equal to half (0.5 times) the value
 			-- of a one in the next position then the result should be rounded up (away from zero).
@@ -1765,7 +1766,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 
 
- 	do_round_half_down (ctx : EDA_MATH_CONTEXT) is
+ 	do_round_half_down (ctx : MA_DECIMAL_CONTEXT) is
 	 		-- Round to nearest neighbor, where an equidistant value is rounded down.
 			-- If the discarded digits represent greater than half (0.5 times)
   			-- the value of a one in the next position then the result should be
@@ -1784,8 +1785,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
- 	three_way_compare_discarded_to_half (ctx : EDA_MATH_CONTEXT) : INTEGER is
- 			-- compare discarded digits greater than 0.5
+ 	three_way_compare_discarded_to_half (ctx : MA_DECIMAL_CONTEXT) : INTEGER is
+ 			-- Compare discarded digits greater than 0.5
 		local
 			digit, index : INTEGER
 		do
@@ -1815,7 +1816,7 @@ feature {EDA_DECIMAL} -- Basic operations
  			definition: Result >= -1 and then Result <= 1
  		end
 
- 	do_round_half_even (ctx : EDA_MATH_CONTEXT) is
+ 	do_round_half_even (ctx : MA_DECIMAL_CONTEXT) is
  			-- Round to nearest neighbor, where an equidistant value is rounded to the nearest even neighbor.
 			-- If the discarded digits represent greater than half (0.5 times) the value of a one in the next position then the result should be
  			-- rounded up (away from zero).
@@ -1840,8 +1841,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
-	lost_digits (ctx : EDA_MATH_CONTEXT) : BOOLEAN is
-			-- are there non-zero digits after ctx.digits digits ?
+	lost_digits (ctx : MA_DECIMAL_CONTEXT) : BOOLEAN is
+			-- Are there non-zero digits after ctxdigits digits ?
 		local
 			index : INTEGER
 		do
@@ -1856,8 +1857,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			Result := index >= 0
 		end
 
-	is_overflow (ctx : EDA_MATH_CONTEXT) : BOOLEAN is
-			-- is there an overflow condition ?
+	is_overflow (ctx : MA_DECIMAL_CONTEXT) : BOOLEAN is
+			-- Is there an overflow condition ?
 		require
 			ctx_not_void: ctx /= Void
 		do
@@ -1866,8 +1867,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			definition:	Result = (adjusted_exponent > ctx.exponent_limit)
 		end
 
-	is_underflow (ctx : EDA_MATH_CONTEXT) : BOOLEAN is
-			-- is there an overflow condition ?
+	is_underflow (ctx : MA_DECIMAL_CONTEXT) : BOOLEAN is
+			-- Is there an overflow condition ?
 		require
 			ctx_not_void: ctx /= Void
 		do
@@ -1876,8 +1877,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			definition:	Result = (adjusted_exponent < - ctx.exponent_limit)
 		end
 
-	clean_up (ctx : EDA_MATH_CONTEXT) is
-			-- clean up result, rounding it if necessary
+	clean_up (ctx : MA_DECIMAL_CONTEXT) is
+			-- Clean up result, rounding it if necessary.
 		local
 			lost_digits_trap, lost_digits_flag : BOOLEAN
 		do
@@ -1918,8 +1919,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			coefficient.strip_leading_zeroes
 		end
 
-	set_largest (ctx : EDA_MATH_CONTEXT) is
-			-- set to largest finite number that can be represented with ctx.precision
+	set_largest (ctx : MA_DECIMAL_CONTEXT) is
+			-- Set to largest finite number that can be represented with ctx.precision.
 		require
 			ctx_not_void: ctx /= Void
 		local
@@ -1958,8 +1959,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			sign: sign = a_sign
 		end
 
-	do_overflow (ctx : EDA_MATH_CONTEXT) is
-			-- do overflow
+	do_overflow (ctx : MA_DECIMAL_CONTEXT) is
+			-- Do overflow.
 		require
 			overflow: is_overflow (ctx)
 		do
@@ -1990,8 +1991,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
-	do_underflow (ctx : EDA_MATH_CONTEXT) is
-			-- do underflow
+	do_underflow (ctx : MA_DECIMAL_CONTEXT) is
+			-- Do underflow.
 		require
 			underflow: is_underflow (ctx)
 		local
@@ -2076,8 +2077,8 @@ feature {EDA_DECIMAL} -- Basic operations
 
 	division_standard, division_integer, division_remainder : INTEGER is unique
 
-	do_divide (other : like Current; ctx : EDA_MATH_CONTEXT; division_type : INTEGER) : like Current is
-			-- do a `division_type' of Current by `other'
+	do_divide (other : like Current; ctx : MA_DECIMAL_CONTEXT; division_type : INTEGER) : like Current is
+			-- Do a `division_type' of Current by `other'
 		require
 			other_not_void : other /= Void
 			ctx_not_void: ctx /= Void
@@ -2149,8 +2150,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
-	internal_divide (other : like Current; ctx : EDA_MATH_CONTEXT; division_type : INTEGER) : like Current is
-			-- divide Current by `other' whith respect to `ctx'
+	internal_divide (other : like Current; ctx : MA_DECIMAL_CONTEXT; division_type : INTEGER) : like Current is
+			-- Divide Current by `other' whith respect to `ctx'
 		require
 			other_not_void : other /= Void
 			ctx_not_void: ctx /= Void
@@ -2324,8 +2325,8 @@ feature {EDA_DECIMAL} -- Basic operations
 			end
 		end
 
-	do_rescale_special (ctx : EDA_MATH_CONTEXT) is
-			-- rescale special numbers
+	do_rescale_special (ctx : MA_DECIMAL_CONTEXT) is
+			-- Rescale special numbers.
 		require
 			is_special: is_special
 			not_constant_infinity: Current /= Infinity
@@ -2346,7 +2347,6 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 
 	to_string_general (is_engineering : BOOLEAN) : STRING is
-			-- 
 		local
 			str_coefficient : STRING
 			str_zero_pad : STRING
@@ -2449,13 +2449,13 @@ feature {EDA_DECIMAL} -- Basic operations
 
 feature {NONE} -- Implementation
 
-	parser : EDA_DECIMAL_TEXT_PARSER is
+	parser : MA_DECIMAL_TEXT_PARSER is
 		once
 			create Result
 		end
 		
 	make_special (code_special : INTEGER) is
-			-- make special from code
+			-- Make special from code.
 		require
 			valid_code_special: code_special = Special_infinity or else code_special = Special_quiet_nan 
 					or else code_special = Special_signaling_nan
@@ -2465,19 +2465,19 @@ feature {NONE} -- Implementation
 		end
 		
 	make_nan is
-			-- make quiet 'Not a Number'
+			-- Make quiet 'Not a Number'.
 		do
 			make_special (Special_quiet_nan)
 		end
 		
 	make_snan is
-			-- make Signaling 'Not a Number'
+			-- Make Signaling 'Not a Number'.
 		do
 			make_special (Special_signaling_nan)
 		end
 
 	make_infinity (the_sign : INTEGER) is
-			-- Make (
+			-- Make (.
 		require
 			the_sign_valid : the_sign = -1 or else the_sign = 1
 		do
@@ -2486,13 +2486,10 @@ feature {NONE} -- Implementation
 		end
 
 invariant
+
 	special_values: special >= Special_none and then special <= Special_quiet_nan
 	coefficient: not is_special implies coefficient /= Void
 	
-end -- class EDA_DECIMAL
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

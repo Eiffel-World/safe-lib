@@ -1,6 +1,8 @@
 indexing
 
-	description: "Decimal number parsers, whose BNF syntax follows :  %N%
+	description:
+
+		"Decimal number parsers, whose BNF syntax follows :  %N%
 		% sign ::= '+' | '-' %N%
 		% digit ::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' %N%
 		% indicator ::= 'e' | 'E' %N%
@@ -13,18 +15,16 @@ indexing
 		% numeric-value ::= decimal-part [exponent-part] | infinity %N%
 		% numeric-string ::= [sign] numeric-value | nan%N"
 	
-	library: "EDA"
-	author: "Paul G. Crismer"
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:16 $"
 
-	date: "$Date: 2003/12/22 10:53:13 $"
-	revision: "$Revision: 1.5 $"
-	licensing: "See notice at end of class"
-
-class
-	EDA_DECIMAL_TEXT_PARSER
+class MA_DECIMAL_TEXT_PARSER
 
 inherit
-	EDA_DECIMAL_PARSER
+
+	MA_DECIMAL_PARSER
 
 	KL_IMPORTED_CHARACTER_ROUTINES
 	KL_IMPORTED_STRING_ROUTINES
@@ -127,7 +127,7 @@ feature -- Status report
 feature -- Basic operations
 
 	parse (s : STRING) is
-			-- parse `s'
+			-- Parse `s'.
 		require else
 			s_not_void: s /= Void
 			s_not_empty: not s.is_empty
@@ -141,7 +141,7 @@ feature -- Basic operations
 		end
 
 	parse_with_decimal_point_comma (s : STRING) is
-			-- parse `s' with comma as decimal point
+			-- Parse `s' with comma as decimal point.
 		require
 			s_not_void: s /= Void
 			s_not_empty: not s.is_empty
@@ -156,10 +156,10 @@ feature -- Basic operations
 			no_mode_change: is_comma_allowed = old is_comma_allowed
 		end
 		
-feature {EDA_DECIMAL} -- Basic operations
+feature {MA_DECIMAL} -- Basic operations
 
 	decimal_parse (s : STRING) is
-			-- effective parse of `s'
+			-- Effective parse of `s'.
 		require
 			s_not_void: s /= Void
 		local
@@ -268,7 +268,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 		
 	handle_i (s : STRING; index : INTEGER) is
-			-- handle the case of 'i' or 'I' recognized in `s' at `index'
+			-- Handle the case of 'i' or 'I' recognized in `s' at `index'.
 		require
 			s_exists: s /= Void
 			index_in_s: index > 0 and then index <= s.count
@@ -311,7 +311,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 		
 	process_integer_part (c : CHARACTER; index : INTEGER) is
-			-- process `c' at `index' when in state_integer_part
+			-- Process `c' at `index' when in state_integer_part.
 		do
 			inspect c
 			when '0'..'9' then
@@ -334,7 +334,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 		
 	process_starting_point(c : CHARACTER; index : INTEGER) is
-			-- process `c' at `index' when at state_starting_point
+			-- Process `c' at `index' when at state_starting_point
 		require
 			state_starting_point: state = state_starting_point
 		do
@@ -350,7 +350,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 		
 	process_point (c : CHARACTER; index : INTEGER) is
-			-- process `c' at `index' when in state_point
+			-- Process `c' at `index' when in state_point.
 		require
 			state_point: state = state_point
 		do  
@@ -464,7 +464,7 @@ feature {EDA_DECIMAL} -- Basic operations
 		end
 	
 	case_insensitive_substring_equal (s : STRING; i_begin, i_end : INTEGER; t : STRING) : BOOLEAN is
-			-- is s[i_begin, i_end] equal to t[1,t.count] - case insensitive ?
+			-- Is s[i_begin, i_end] equal to t[1,tcount] - case insensitive ?
 		require
 			s_not_void: s /= Void
 			t_not_void: t /= Void
@@ -508,12 +508,9 @@ feature {NONE} -- Implementation
 	error_invalid_state : INTEGER is unique
 	
 invariant
+
 	decimal_point_is_comma_implies_has_fractional_part: decimal_point_is_comma implies has_point
 	
-end -- class EDA_DECIMAL_TEXT_PARSER
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

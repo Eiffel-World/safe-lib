@@ -4,23 +4,24 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2004/04/27 19:13:15 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
-class
-	TELCO
+class TELCO
 
 inherit
+
 	KL_SHARED_FILE_SYSTEM
 
 	DT_SHARED_SYSTEM_CLOCK
 
 	KL_SHARED_ARGUMENTS
 	
-	EDA_SHARED_MATH_CONTEXT
+	MA_SHARED_DECIMAL_CONTEXT
 	
 creation
+
 	make
 
 feature -- Initialization
@@ -48,9 +49,9 @@ feature -- Access
 
 	output_file : KL_TEXT_OUTPUT_FILE
 
-	default_context : EDA_MATH_CONTEXT
+	default_context : MA_DECIMAL_CONTEXT
 
-	last_number : EDA_DECIMAL
+	last_number : MA_DECIMAL
 
 	last_nibble : INTEGER
 	
@@ -65,7 +66,7 @@ feature -- Access
 feature -- Basic operations
 
 	print_usage is
-			-- print usage message
+			-- Print usage message.
 		do
 			io.put_string ("Usage : telco [-input <filename>] [-output <filename>] [-nocalc] [-notax] %N")
 			io.put_string ( "%T[-input <filename>]    Use <filename> as input,%N%
@@ -75,13 +76,13 @@ feature -- Basic operations
 		end
 		
 	do_benchmark is
-			-- do actual benchmarks
+			-- Do actual benchmarks.
 		local
-			sum_t, sum_b, sum_d : EDA_DECIMAL
-			number, price, base_tax, distance_tax, total_price : EDA_DECIMAL
-			base_rate, distance_rate : EDA_DECIMAL
-			base_tax_rate, distance_tax_rate : EDA_DECIMAL
-			price_context,  tax_context : EDA_MATH_CONTEXT
+			sum_t, sum_b, sum_d : MA_DECIMAL
+			number, price, base_tax, distance_tax, total_price : MA_DECIMAL
+			base_rate, distance_rate : MA_DECIMAL
+			base_tax_rate, distance_tax_rate : MA_DECIMAL
+			price_context,  tax_context : MA_DECIMAL_CONTEXT
 			long_distance : BOOLEAN
 			t_start, t_end : DT_TIME				
 		do
@@ -183,7 +184,6 @@ feature -- Basic operations
 		end
 
 	process_parameters is
-			-- 
 		local
 			telco_path : KL_PATHNAME
 			eda_path_string, telco_path_string : STRING
@@ -246,7 +246,7 @@ feature -- Basic operations
 		end
 		
 	read_number_from_bcd (a_file : KL_BINARY_INPUT_FILE) is
-			-- read number in `last_number' from packed decimal representation
+			-- Read number in `last_number' from packed decimal representation.
 		local
 			packed_string, number_string : STRING
 			index : INTEGER
@@ -304,17 +304,12 @@ feature -- Basic operations
 			end
 		end
 
-	bcd_parser : EDA_DECIMAL_BCD_PARSER is
-			-- 
+	bcd_parser : MA_DECIMAL_BCD_PARSER is
 		once
 			create Result
 		end
 		
 	
-end -- class TELCO
+end
 
---
--- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+

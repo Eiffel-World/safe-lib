@@ -1,29 +1,30 @@
 indexing
-	description: "Tests for EDA_DECIMAL.* operations."
+	description:
 
-	library: "EDA"
-	author: "Paul G. Crismer"
-	
-	date: "$Date: 2003/02/06 22:42:26 $"
-	revision: "$Revision: 1.2 $"
-	licensing: "See notice at end of class"
+		"Tests for MA_DECIMAL.* operations."
 
-class
-	TEST_MANY
+	library: "GOBO Eiffel Decimal Arithmetic Library"
+	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2004/04/27 19:13:15 $"
+
+class TEST_MANY
 
 inherit
+
 	TEST_DECIMAL_GENERAL
 		redefine
 			make_file, do_operation
 		end
 		
 creation
+
 	make_file
 	
 feature {NONE} -- Initialization
 
 	make_file (file_name : STRING) is
-			-- create test for reading `file_name'
+			-- Create test for reading `file_name'.
 		local
 			test : TEST_DECIMAL_GENERAL
 		do
@@ -48,8 +49,7 @@ feature {NONE} -- Initialization
 		
 feature -- Basic operations
 
-	do_operation (a, b : STRING; a_ctx : EDA_MATH_CONTEXT) is
-			-- 
+	do_operation (a, b : STRING; a_ctx : MA_DECIMAL_CONTEXT) is
 		do
 			operations.search (operation)
 			if operations.found then
@@ -62,7 +62,7 @@ feature -- Basic operations
 			end
 		end
 
-	execute_operation (a: EDA_DECIMAL; b: EDA_DECIMAL; a_ctx: EDA_MATH_CONTEXT) is
+	execute_operation (a: MA_DECIMAL; b: MA_DECIMAL; a_ctx: MA_DECIMAL_CONTEXT) is
 		do
 			
 		end
@@ -72,10 +72,6 @@ feature {NONE} -- Implementation
 
 	operations : DS_HASH_TABLE [TEST_DECIMAL_GENERAL, STRING]
 	
-end -- class TEST_MANY
+end
 
---
--- Copyright: 2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
--- Released under the Eiffel Forum License <www.eiffel-forum.org>
--- See file <forum.txt>
---
+
