@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2004/10/26 12:36:39 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2004/10/26 14:56:50 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	ECLI_ARRAYED_DATE_ROUTINES
@@ -12,7 +12,9 @@ inherit
 		export 
 			{NONE} all
 		end
-		
+	
+	ANY
+	
 feature -- Access
 
 	buffer : POINTER is

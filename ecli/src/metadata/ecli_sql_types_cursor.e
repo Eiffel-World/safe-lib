@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/10/26 12:36:39 $"
+	date: "$Date: 2004/10/26 14:56:50 $"
 
 class ECLI_SQL_TYPES_CURSOR
 
@@ -129,7 +129,7 @@ feature -- Cursor Movement
 			if results  = Void then
 				create_buffers
 			end
-			Precursor
+			statement_start
 			if not off then
 				!!impl_item.make (Current)
 			end

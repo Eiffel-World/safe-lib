@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2004/10/26 14:56:50 $"
 
 class ECLI_STORED_PROCEDURE
 
@@ -19,6 +19,7 @@ inherit
 		redefine
 			create_parameters,
 			put_single_parameter_with_hint,
+			put_parameter_with_hint,
 			bind_one_parameter,
 			put_input_parameter
 		end
@@ -129,6 +130,11 @@ feature {NONE} -- Implementation
 			create directed_parameters.make (1, parameters_count)
 		end
 		
+	put_parameter_with_hint (value : like parameter_anchor; key : STRING; hint : ECLI_STATEMENT_PARAMETER) is
+		do
+			Precursor (value, key, hint)
+		end
+	
 	put_single_parameter_with_hint (value : like parameter_anchor; position : INTEGER; hint : ECLI_STATEMENT_PARAMETER) is
 			-- 
 		do

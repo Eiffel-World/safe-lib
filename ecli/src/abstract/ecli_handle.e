@@ -12,7 +12,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:42 $"
+	date: "$Date: 2004/10/26 14:56:50 $"
 
 deferred class ECLI_HANDLE
 
@@ -30,6 +30,8 @@ inherit
 			{NONE} all
 		end
 
+	ANY
+	
 feature {ECLI_HANDLE} -- Access
 
 	handle : POINTER

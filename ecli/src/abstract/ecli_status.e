@@ -8,7 +8,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2004/10/26 14:56:50 $"
 
 deferred class ECLI_STATUS
 
@@ -29,7 +29,9 @@ inherit
 	KL_IMPORTED_STRING_ROUTINES
 		export {NONE} all
 		end
-		
+
+	ANY
+	
 feature -- Access
 
 	status : INTEGER
