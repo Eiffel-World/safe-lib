@@ -1,8 +1,8 @@
 indexing
 	description: "Description of Parameter data"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/15 20:09:28 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/04/25 20:07:15 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -32,7 +32,7 @@ feature {NONE} -- Initialization
 				ecli_c_describe_parameter (stmt.handle,
 					index,
 					pointer ($sql_type_code),
-					pointer ($column_precision),
+					pointer ($size),
 					pointer ($decimal_digits),
 					pointer ($nullability)))			
 		end
