@@ -1,8 +1,8 @@
 indexing
 	description: "ISQL command contexts."
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/01/25 20:42:14 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/12/07 21:29:14 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ISQL_CONTEXT
@@ -219,7 +219,7 @@ feature -- Element change
 			command_stream_assigned: command_stream = a_command_stream
 		end
 
-	set_output_file (a_file: LIKE OUTPUT_FILE) is
+	set_output_file (a_file: like OUTPUT_FILE) is
 			-- set `output_file' to `a_file'
 		require
 			a_file_not_void: a_file /= Void

@@ -1,14 +1,18 @@
 indexing
 	description: "Objects that abstract ISQL commands."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/06/11 13:10:45 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2004/12/07 21:29:14 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	ISQL_COMMAND
 
 inherit
+	
 	ANY
+		export
+			{ANY} all
+		end
 	
 	ECLI_STRING_ROUTINES
 		export {NONE} all
