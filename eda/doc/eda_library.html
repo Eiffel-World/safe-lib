@@ -329,18 +329,21 @@ Engineering representation : -123e-12
 </dl>
 <ol>
 	<li>Define environment variable 'EDA'.  It must point to the directory where this package
-   has been installed. For example : /usr/local/eda, or c:\user\eiffel\libraries\eda</li>
-	<li>Create an application using XACE project definition, and mount the ${EDA}/src/library.xace</li>
-	<li>Generate the assembly file, compile and go !</li>
+   has been installed. For example : /usr/local/lib/eda, or c:\user\eiffel\libraries\eda</li>
+	<li>Create an application
+  <ul><li> Create a XACE project definition, and mount the ${EDA}/library.xace
+  </li><li>Create a 'build.eant' file.</li></ul></li>
+	<li>Generate the application :  Automate build with geant.</li>
 </ol>
 
 <p>EDA has currently been tested using</p>
 <ul>
-<li>ESI EiffelStudio 5.2 (Win32, Linux, .NET),</li>
+<li>ESI EiffelStudio 5.2, ESI EiffelStudio 5.3beta</li>
 <li>SmartEiffel 1.0 (Win32, Linux),</li>
 <li>Visual Eiffel for Linux v4.1</li>
 </ul>
 <p>.NET acceptance tests have no errors but flags for comparison operations are not set correctly.</p>
+
 <h1><a name="REFERENCES"></a>Reference Documents</h1>
 <dl>
 	<dt>1. GDAS</dt><dd>"General Decimal Arithmetic Specification" version 1.08, Mike Cowlishaw,
