@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI LONGVARCHAR (n) values"
 	author: "Paul-G.Crismer"
-	date: "$Date: 2001/09/15 10:24:10 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -21,7 +21,7 @@ feature {NONE} -- Initialization
 
 	make (n : INTEGER) is
 		require
-			n > 0 and n < max_capacity
+			n > 0 and n <= max_capacity
 		do
 			buffer := ecli_c_alloc_value (n+1)
 		ensure
@@ -78,7 +78,7 @@ feature -- Status report
 			Result := display_size
 		end
 
-	db_type_code: INTEGER is
+	sql_type_code: INTEGER is
 		once
 			Result := sql_longvarchar
 		end

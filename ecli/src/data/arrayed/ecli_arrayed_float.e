@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL FLOAT value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -11,7 +11,7 @@ class
 inherit
 	ECLI_ARRAYED_DOUBLE
 		redefine
-			column_precision, db_type_code, decimal_digits, display_size, transfer_octet_length
+			column_precision, sql_type_code, decimal_digits, display_size, transfer_octet_length
 		end
 
 creation
@@ -37,7 +37,7 @@ feature -- Status setting
 			Result := 15
 		end
 
-	db_type_code: INTEGER is
+	sql_type_code: INTEGER is
 		once
 			Result := sql_float
 		end

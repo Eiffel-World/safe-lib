@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI DATE value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 class
@@ -135,7 +135,7 @@ feature -- Status report
 			Result := 10
 		end
 
-	db_type_code: INTEGER is
+	sql_type_code: INTEGER is
 		once
 			Result := sql_type_date
 		end

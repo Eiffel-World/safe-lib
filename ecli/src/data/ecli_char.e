@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI CHAR (n) values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/15 10:24:10 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -11,7 +11,8 @@ class
 inherit
 	ECLI_VARCHAR
 		redefine
-			make, count, db_type_code, item, truncated
+			make, count, sql_type_code, item, truncated
+		select
 		end
 
 creation
@@ -45,7 +46,7 @@ feature -- Access
 
 feature -- Status report
 
-	db_type_code: INTEGER is
+	sql_type_code: INTEGER is
 		once
 			Result := sql_varchar
 		end

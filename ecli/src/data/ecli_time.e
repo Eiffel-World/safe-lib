@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIME value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -129,7 +129,7 @@ feature -- Status report
 			Result := ecli_c_value_get_length (buffer)
 		end
 
-	db_type_code: INTEGER is
+	sql_type_code: INTEGER is
 		once
 			Result := sql_type_time
 		end

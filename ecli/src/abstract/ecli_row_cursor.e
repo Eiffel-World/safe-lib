@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that define a row cursor and allow sweeping through it."
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/22 22:09:56 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_ROW_CURSOR
@@ -19,10 +19,10 @@ inherit
 				bound_parameters, bind_parameters, parameters
 		end
 	
-	ECLI_BUFFER_FACTORY
-		redefine
-			create_name_to_index, map_name_to_index
-		end
+--	ECLI_BUFFER_FACTORY
+--		redefine
+--			create_name_to_index, map_name_to_index
+--		end
 		
 create
 	make, open
@@ -37,13 +37,14 @@ feature {NONE} -- Initialization
 		do
 			definition := a_sql
 			cursor_make (a_session)
-			set_precision_limit (Default_precision_limit)
+			create_buffer_factory
+			buffer_factory.set_precision_limit (buffer_factory.Default_precision_limit)
 		ensure
 			valid: is_valid
 			definition_set: definition = a_sql
 			ok: is_ok implies is_prepared
 			definition_is_a_query:  has_results or else not is_ok
-			limit_set: precision_limit = Default_precision_limit
+			limit_set: buffer_factory.precision_limit = buffer_factory.Default_precision_limit
 		end
 		
 feature -- Access
@@ -123,6 +124,9 @@ feature -- Cursor movement
 					create_row_buffers
 					statement_start
 				end
+			else
+				print (diagnostic_message)
+				print ("%N")
 			end
 		ensure
 			executed: is_executed
@@ -164,10 +168,26 @@ feature {NONE} -- Implementation
 			!!name_to_index.make (size)					
 		end
 	
+	buffer_factory : ECLI_BUFFER_FACTORY
+	
+	create_buffer_factory is
+		do
+			!!buffer_factory
+		end
+		
 	create_row_buffers is
 			-- 
 		do
-			create_buffers (Current)
+			describe_cursor
+			cursor := Void
+			if not is_ok then
+				print (diagnostic_message)
+				print ("%N")
+			else
+				buffer_factory.create_buffers (cursor_description)
+				set_cursor (buffer_factory.last_buffer)
+				name_to_index := buffer_factory.last_index_table			
+			end
 		end
 		
 invariant

@@ -1,8 +1,8 @@
 indexing
 	description: "Properties of an ECLI data item"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/15 10:24:10 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/04/15 20:09:28 $"
+	revision: "$Revision: 1.1 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -10,7 +10,7 @@ deferred class
 
 feature -- Status report
 
-	db_type_code : INTEGER is
+	sql_type_code : INTEGER is
 			-- (redefine in descendant classes)
 		deferred
 		end

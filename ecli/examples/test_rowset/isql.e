@@ -1,8 +1,8 @@
 indexing
 	description: "Interactive SQL";
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -739,6 +739,68 @@ feature {NONE} -- Implementation
 				loops := loops + 1
 			end
 			rs.close
+		end
+
+
+	test_cursors is
+		do
+				print ("Testing row cursor...%N")
+				test_row_cursor
+				print ("Testing rowset cursor...%N")
+				test_rowset_cursor
+		end
+		
+	test_row_cursor is
+		local
+			row_cursor : ECLI_ROW_CURSOR
+		do
+			!! row_cursor.make (session, "select * from sysobjects")
+			test_cursor (row_cursor)
+			row_cursor.close
+		end
+
+	test_rowset_cursor is
+		local
+			rowset_cursor : ECLI_ROWSET_CURSOR
+		do
+			!! rowset_cursor.make (session, "select * from sysobjects", 100)
+			test_cursor (rowset_cursor)
+			rowset_cursor.close
+		end
+		
+	test_cursor (cursor : ECLI_ROW_CURSOR) is
+			-- 
+		local
+			time_begin, time_end : DT_TIME
+			clock : DT_SYSTEM_CLOCK
+			index : INTEGER
+			count : INTEGER
+		do
+			from
+				index := 1; count := 0
+				!! clock.make
+				time_begin := clock.time_now
+			until
+				index > 400
+			loop
+				from
+					cursor.start
+				until
+					cursor.off
+				loop
+					count := count + 1
+					cursor.forth
+				end
+				index := index + 1
+			end
+			time_end := clock.time_now
+			print ("Begin : ")
+			print (time_begin.out)
+			print ("; End : ")
+			print (time_end.out)
+			print (" Count : ")
+			print (count.out)
+			print ("%N")
 		end
 		
 end -- class ISQL

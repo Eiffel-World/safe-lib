@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIMESTAMP values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -17,7 +17,7 @@ inherit
 			c_type_code,
 			column_precision, 
 			convertible_to_string,
-			db_type_code, 
+			sql_type_code, 
 			decimal_digits, 
 			display_size, 
 			item,  

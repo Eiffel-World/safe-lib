@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI TIMESTAMP values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.8 $"
 	licensing: "See notice at end of class"
 
 class
@@ -17,7 +17,7 @@ inherit
 		redefine
 			make_default, item, set_item, 
 			set_date, octet_size,
-			c_type_code, column_precision, db_type_code, 
+			c_type_code, column_precision, sql_type_code, 
 			decimal_digits, display_size, out, is_equal,
 			to_timestamp, trace, to_string, convertible_to_string
 		select
@@ -164,7 +164,7 @@ feature -- Status report
 			Result := 20+decimal_digits
 		end
 
-	db_type_code: INTEGER is
+	sql_type_code: INTEGER is
 		once
 			Result := sql_type_timestamp
 		end

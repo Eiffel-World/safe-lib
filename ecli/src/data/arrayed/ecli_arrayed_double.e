@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL DOUBLE value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -41,8 +41,6 @@ feature -- Initialization
 feature -- Access
 
 	item : DOUBLE_REF is
-		local
-			tools : ECLI_EXTERNAL_TOOLS
 		do
 			Result := item_at (cursor_index)
 		end

@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL REAL value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/15 10:24:10 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -60,7 +60,7 @@ feature -- Status setting
 			Result := 7
 		end
 
-	db_type_code: INTEGER is
+	sql_type_code: INTEGER is
 		once
 			Result := sql_real
 		end

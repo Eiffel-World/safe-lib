@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI VARCHAR (n) values"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -11,7 +11,7 @@ class
 inherit
 	ECLI_ARRAYED_LONGVARCHAR
 		redefine
-			max_content_capacity, db_type_code
+			max_content_capacity, sql_type_code
 		end
 
 creation
@@ -26,7 +26,7 @@ feature -- Access
 
 feature -- Status report
 
-	db_type_code: INTEGER is
+	sql_type_code: INTEGER is
 		once
 			Result := sql_varchar
 		end

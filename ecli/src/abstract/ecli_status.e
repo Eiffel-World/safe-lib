@@ -5,8 +5,8 @@ indexing
 		% and associated information messages"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2002/03/21 20:34:30 $"
-	revision: 	"$Revision: 1.6 $"
+	date: 		"$Date: 2002/04/15 20:08:48 $"
+	revision: 	"$Revision: 1.7 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -72,6 +72,11 @@ feature -- Status report
 			    	or else status = cli_need_data;
 		end
 
+	is_no_data : BOOLEAN is
+		do
+			Result := status = cli_no_data;
+		end
+		
 	is_error : BOOLEAN is
 			-- Is the last CLI command in error
 		do

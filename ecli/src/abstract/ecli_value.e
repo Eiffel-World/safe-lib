@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2002/03/21 20:34:30 $"
-	revision: 	"$Revision: 1.8 $"
+	date: 		"$Date: 2002/04/15 20:08:48 $"
+	revision: 	"$Revision: 1.9 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -291,7 +291,7 @@ feature {ECLI_STATEMENT} -- Basic operations
 			stmt.set_status (ecli_c_bind_parameter (stmt.handle,
 				index,
 				c_type_code,
-				db_type_code,
+				sql_type_code,
 				column_precision,
 				decimal_digits,
 				to_external,

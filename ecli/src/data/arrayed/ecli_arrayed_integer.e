@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/21 20:34:30 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/04/15 20:08:48 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -52,8 +52,6 @@ feature -- Access
 
 	item_at (index : INTEGER) : like item is
 			-- 
-		local
-			tools : ECLI_EXTERNAL_TOOLS
 		do
 			if is_null_at (index) then
 				Result := Void
