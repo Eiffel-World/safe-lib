@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of an ABSTRACT_SHELL"
-	date: "$Date: 2003/12/13 22:30:48 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2003/12/29 21:26:54 $";
+	revision: "$Revision: 1.3 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -60,6 +60,12 @@ feature -- Basic operations
 			-- FIXME
 		end
 
+	bring_to_top is
+			-- 
+		do
+			--| FIXME
+		end
+		
 feature -- Obsolete
 
 feature -- Inapplicable
