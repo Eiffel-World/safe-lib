@@ -6,44 +6,86 @@ root
 
 cluster
 
-	root_cluster:           	"$SEP_ELIB\base_types\money\test";
+	root_cluster:           	"$SAFE_EBT\money\test";
 
-		-- Eiffel money
-	emo:				"$SEP_ELIB\base_types\money\src";
+	base_types:						"$SAFE_EBT";
+	conversion (base_types):			"$\conversion\src";
+	scan (conversion):					"$\scan";
+	format (conversion):				"$\format";
+	eint (conversion):					"$\international";
+	eint_french (eint):					"$\french";
+	money (base_types):					"$\money\src"		
+	string (base_types):				"$\string\src";
+	string_ise (string):				"$\spec\ise";
+	text (base_types):					"$\text\src";
 
 
-	kernel:		"$EIFFEL4\library/base\kernel";
-	support:		"$EIFFEL4\library\base\support";
-	access:		"$EIFFEL4\library\base\structures\access";
-	cursors:		"$EIFFEL4\library\base\structures\cursors";
-	cursor_tree:	"$EIFFEL4\library\base\structures\cursor_tree";
-	dispenser:		"$EIFFEL4\library\base\structures\dispenser";
-	iteration:		"$EIFFEL4\library\base\structures\iteration";
-	list:			"$EIFFEL4\library\base\structures\list";
-	set:			"$EIFFEL4\library\base\structures\set";
-	sort:			"$EIFFEL4\library\base\structures\sort";
-	storage:		"$EIFFEL4\library\base\structures\storage";
-	table:		"$EIFFEL4\library\base\structures\table";
-	traversing:		"$EIFFEL4\library\base\structures\traversing";
-	tree:			"$EIFFEL4\library\base\structures\tree";
+	kernel:		"$EIFFEL4\library/base\kernel"
 
-		-- Gobo Eiffel Utility Library
-	ut_command:			"$GOBO\library\utility\command";
-	ut_error:			"$GOBO\library\utility\error";
-	ut_formatter:		"$GOBO\library\utility\formatter";
-	ut_support:			"$GOBO\library\utility\support";
+	support:		"$EIFFEL4\library\base\support"
 
-		-- Gobo Eiffel Kernel Library
-	kl_kernel:			"$GOBO\library\kernel";
-	kl_kernel_spec:		"$GOBO\library\kernel\spec\ise";
+	access:		"$EIFFEL4\library\base\structures\access"
 
-		-- Gobo Eiffel Structure Library
-	ds_container:		"$GOBO\library\structure\container";
-	ds_cursor:			"$GOBO\library\structure\cursor";
-	ds_dispenser:		"$GOBO\library\structure\dispenser";
-	ds_list:			"$GOBO\library\structure\list";
-	ds_sort:			"$GOBO\library\structure\sort";
-	ds_support:			"$GOBO\library\structure\support";
-	ds_table:			"$GOBO\library\structure\table";
+	cursors:		"$EIFFEL4\library\base\structures\cursors"
+
+	cursor_tree:		"$EIFFEL4\library\base\structures\cursor_tree"
+
+	dispenser:		"$EIFFEL4\library\base\structures\dispenser"
+
+	iteration:		"$EIFFEL4\library\base\structures\iteration"
+
+	list:		"$EIFFEL4\library\base\structures\list"
+
+	set:		"$EIFFEL4\library\base\structures\set"
+
+	sort:		"$EIFFEL4\library\base\structures\sort"
+
+	storage:		"$EIFFEL4\library\base\structures\storage"
+
+	table:		"$EIFFEL4\library\base\structures\table"
+
+	traversing:		"$EIFFEL4\library\base\structures\traversing"
+
+	tree:		"$EIFFEL4\library\base\structures\tree"
+
+	ut_command:		"$GOBO\library\utility\command"
+
+	ut_error:		"$GOBO\library\utility\error"
+
+	ut_formatter:		"$GOBO\library\utility\formatter"
+
+	ut_support:		"$GOBO\library\utility\support"
+
+	kl_kernel:		"$GOBO\library\kernel"
+
+	kl_kernel_spec:		"$GOBO\library\kernel\spec\ise"
+
+	ds_container:		"$GOBO\library\structure\container"
+
+	ds_dispenser:		"$GOBO\library\structure\dispenser"
+
+	ds_list:		"$GOBO\library\structure\list"
+
+	ds_sort:		"$GOBO\library\structure\sort"
+
+	ds_support:		"$GOBO\library\structure\support"
+
+	ds_table:		"$GOBO\library\structure\table"
+	
+	lx_skeleton:		"$GOBO\library\lexical\skeleton";
+
+
+external
+
+
+	include_path: 	"$(ECURSES)\spec\ise\windows", 
+				"$(GOBO)\library\kernel\include", 
+				"$(GOBO)\library\time\include"
 
 end
+
+--
+-- Copyright: 2001, Eric Fafchamps, <eric.fafchamps@belgacom.net>
+-- Released under the Eiffel Forum License <www.eiffel-forum.org>
+-- See file <forum.txt>
+--

@@ -26,14 +26,14 @@ feature -- Initialization
 
 			!!currency_market.make
 
-			!!currency_bef.make ("BEF", 1.0)
-			!!currency_euro.make ("EURO", 0.01)
+			!!currency_bef.make ("BEF", 1.0, "BEF")
+			!!currency_euro.make ("EURO", 0.01, "BEF")
 			
 			currency_bef.exchange_rates.force (1.0/40.3399, currency_euro)
 			currency_euro.exchange_rates.force (40.3399, currency_bef)
 			
-			currency_market.currencies.force (currency_bef, currency_bef)
-			currency_market.currencies.force (currency_euro, currency_euro)			
+			currency_market.currencies.force (currency_bef, "BEF")
+			currency_market.currencies.force (currency_euro, "EURO")			
 			
 
 			--| Share a currency market
@@ -43,8 +43,8 @@ feature -- Initialization
 
 
 			--| Initialize amounts
-			!!price_1.make (2000, shared_currencies.market.currency ("BEF"))
-			!!price_2.make (50.345, shared_currencies.market.currency ("EURO"))
+			!!price_1.make (2000, shared_currencies.market.currencies.item ("BEF"))
+			!!price_2.make (50.345, shared_currencies.market.currencies.item ("EURO"))
 			
 			io.put_string (price_1.out)
 			io.put_new_line

@@ -1,6 +1,8 @@
 ${ECURSES}\loadpath.se
-${SAFE_ECTK}\character_toolkit\src\
-${SAFE_ECTK}\character_toolkit\src\widgets\
-${SAFE_ECTK}\character_toolkit\src\commands\
-${SAFE_ECTK}\character_toolkit\src\events\
-${SAFE_ECTK}\character_toolkit\src\errors\
+${SAFE_EBT}\loadpath.se
+${SAFE_EMI}\src\loadpath.se
+${SAFE_ECTK}\src\
+${SAFE_ECTK}\src\widgets\
+${SAFE_ECTK}\src\commands\
+${SAFE_ECTK}\src\events\
+${SAFE_ECTK}\src\errors\

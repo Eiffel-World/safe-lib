@@ -1,4 +1,4 @@
-${SAFE_EBT}\conversion\loadpath.se
+${SAFE_EBT}\conversion\src\loadpath.se
 ${SAFE_EBT}\string\src\loadpath.se
 ${SAFE_EBT}\money\src\loadpath.se
 ${SAFE_EBT}\text\src\loadpath.se
