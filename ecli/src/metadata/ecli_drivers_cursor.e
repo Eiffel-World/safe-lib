@@ -2,12 +2,12 @@ indexing
 
 	description:
 	
-			"Objects that iterate over installed drivers."
+			"Objects that iterate over installed ODBC drivers."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/01/07 17:00:48 $"
+	date: "$Date: 2005/01/21 21:42:53 $"
 
 class ECLI_DRIVERS_CURSOR
 
