@@ -4,8 +4,8 @@ indexing
 		"Objects that represent typed values to be exchanged with the database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2003/07/25 18:24:23 $"
-	revision: 	"$Revision: 1.4 $"
+	date: 		"$Date: 2003/08/20 15:39:08 $"
+	revision: 	"$Revision: 1.5 $"
 	licensing: 	"See notice at end of class"
 
 deferred class
@@ -14,7 +14,7 @@ deferred class
 inherit
 	ECLI_VALUE
 		redefine
-			out, is_equal, copy
+			out, copy
 		end
 		
 feature -- Access

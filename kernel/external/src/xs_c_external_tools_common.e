@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that handle communication with external objects"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/19 15:52:28 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/08/20 15:40:45 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	XS_C_EXTERNAL_TOOLS_COMMON
@@ -36,21 +36,4 @@ feature -- Basic operations
 		deferred
 		end
 		
---	protect is
---			-- protect memory against moving GC
---		do
---			was_collecting := collecting
---			collection_off
---			is_protected := True
---		end
-		
---	unprotect is
---			-- unprotect memory
---		do
---			if was_collecting then
---				collection_on
---			end
---			is_protected := False
---		end
-
 end -- class XS_C_EXTERNAL_TOOLS_COMMON

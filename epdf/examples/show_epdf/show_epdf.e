@@ -2,8 +2,8 @@ indexing
 	description: 	"System's root class"
 	author: 	"Paul G. Crismer"
 	licence: 	"Released under the Eiffel Forum licence.  See file 'forum.txt'."
-	date: 		"$Date: 2003/08/19 15:42:45 $"
-	revision: 	"$Revision: 1.3 $"
+	date: 		"$Date: 2003/08/20 15:39:58 $"
+	revision: 	"$Revision: 1.4 $"
 
 class
 	SHOW_EPDF
@@ -91,6 +91,7 @@ feature -- Basic operations
 		local
 			layout : PDF_LAYOUT_CONSTANTS
 			mode : PDF_PAGE_MODE_CONSTANTS
+			date : DT_DATE_TIME
 		do
 			create layout
 			create mode
@@ -101,7 +102,8 @@ feature -- Basic operations
 			document.information.set_author ("Paul G. Crismer")
 			document.information.set_title ("PDF Show")
 			document.information.set_creator ("Eiffel PDF library")
-			document.information.set_creation_date (create {DT_DATE_TIME}.make (2003, 8, 14, 18, 52, 20))
+			create date.make (2003, 8, 14, 18, 52, 20)
+			document.information.set_creation_date (date)
 			document.create_viewer_preferences
 			document.viewer_preferences.fit_window
 			document.viewer_preferences.display_document_title

@@ -7,7 +7,7 @@
 
 			Xace file for SAFE kernel library
 			Variables used: %
-			 * SAFE 		SAFE project path
+			 * SAFE_KERNEL 		SAFE kernel project path
 			 * GOBO_CC		type of C compiler; values (bcc|msc|lcc|gcc)
 			 * GOBO_OS		Operating system; values (windows|linux)
 			 * GOBO_EIFFEL		Eiffel compiler (ise|se|ve)
@@ -18,10 +18,10 @@
 		copyright:   "Copyright (c) 2001-2003, Paul G. Crismer and others"
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
 		date:        "$Date $"
-		revision:    "$Revision: 1.1 $"
+		revision:    "$Revision: 1.2 $"
 	</description>
 
-	<cluster name="kernel" location="${SAFE}/lib/kernel">
+	<cluster name="kernel" location="${SAFE_KERNEL}">
 		<option name="abstract" value="true"/>
 	</cluster>
 	<mount location="${SAFE_KERNEL}/external/library.xace"/>

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are outline nodes"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/19 15:38:06 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/08/20 15:39:58 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	PDF_OUTLINE_NODE
@@ -11,8 +11,6 @@ inherit
 	PDF_OBJECT
 		undefine
 			put_pdf
-		redefine
-			to_pdf
 		end
 		
 feature -- Access

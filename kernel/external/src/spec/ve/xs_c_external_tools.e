@@ -1,8 +1,8 @@
 indexing
 	description: "Tools for Eiffel/External (to C) communication"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/19 15:52:29 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2003/08/20 15:40:45 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -16,7 +16,7 @@ feature -- Basic operations
 	string_to_pointer (s : STRING) : POINTER is
 			-- pointer to "C" version of 's'
 		do
-			Result := s.as_c
+			Result := s.to_c
 		end
 
 	pointer_to_string (p : POINTER) : STRING is
@@ -33,10 +33,10 @@ feature -- Basic operations
 
 feature {NONE} -- Implementation
 
-		pointer (ptr : POINTER) : POINTER is
-			do
-				Result := ptr
-			end
+	pointer (ptr : POINTER) : POINTER is
+		do
+			Result := ptr
+		end
 
 invariant
 	invariant_clause: -- Your invariant here
