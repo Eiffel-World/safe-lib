@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI DATE value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/08/04 09:40:49 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2001/08/09 20:25:35 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -21,7 +21,7 @@ inherit
 
 	DT_GREGORIAN_CALENDAR 
 		export 
-			{NONE} all
+			{NONE} all;
 			{ANY} days_in_month
 		undefine
 			is_equal, out
