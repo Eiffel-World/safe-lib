@@ -1,8 +1,8 @@
 indexing
 	description: "Query assistant"
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/15 10:24:10 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/09/27 14:16:58 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -30,6 +30,9 @@ feature -- Initialization
 					if qacursor.is_executed then
 						generate
 					end
+					qacursor.close
+					session.disconnect
+					session.close
 				end
 			else
 				print_usage
@@ -214,7 +217,7 @@ feature -- Basic operations
 				if qacursor.has_parameters then
 					-- create and set 'parameters' array
 					create parameters.make (1, qacursor.parameter_count)
-					qacursor.set_parameters (parameters)
+					--qacursor.set_parameters (parameters)
 					-- try to describe parameters
 					qacursor.describe_parameters
 					if qacursor.parameters_description = Void then
@@ -522,7 +525,7 @@ invariant
 
 end -- class QUERY_ASSISTANT
 --
--- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --
