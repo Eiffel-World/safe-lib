@@ -6,7 +6,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/04/27 19:13:16 $"
+	date: "$Date: 2004/05/25 08:10:01 $"
 
 class MA_DECIMAL
 
@@ -242,14 +242,14 @@ feature -- Access
 
 feature -- Constants
 
-	one: MA_DECIMAL is
+	one: like Current is
 			-- Neutral element for "*" and "/"
-		once
-			create Result.make_from_integer (1)
+		do
+			Result := once_one
 		ensure then
 			Result_is_one: Result.to_integer = 1
 		end
-
+		
 	minus_one : MA_DECIMAL is
 			-- Minus one
 		once
@@ -260,14 +260,14 @@ feature -- Constants
 			Result_is_minus_one: Result.to_integer = -1
 		end
 		
-	zero: MA_DECIMAL is
+	zero : like Current is
 			-- Neutral element for "+" and "-"
-		once
-			create Result.make_from_integer (0)
+		do
+			Result := once_zero
 		ensure then
 			Result_is_zero: Result.is_zero
 		end
-
+		
 	negative_zero : MA_DECIMAL is
 		once
 			create Result.make_copy (zero)
@@ -483,7 +483,7 @@ feature -- Basic operations
 			-- Remainder of integer division
 		do
 			Result := remainder (other, shared_decimal_context)
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -491,7 +491,7 @@ feature -- Basic operations
 			-- Integer division
 		do
 			Result := divide_integer (other, shared_decimal_context)
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -721,7 +721,7 @@ feature -- Basic operations
 				end
 				Result.clean_up (ctx)
 			end
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -746,7 +746,7 @@ feature -- Basic operations
 				end
 				Result := add (operand_b, ctx)
 			end
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -801,7 +801,7 @@ feature -- Basic operations
 					Result.clean_up (ctx)
 				end
 			end
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -813,7 +813,7 @@ feature -- Basic operations
 		do
 --			a E m / b E n = a/b E m-n
 			Result := do_divide (other, ctx, division_standard)
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -825,7 +825,7 @@ feature -- Basic operations
 			ctx_not_void: ctx /= Void
 		do
 			Result := do_divide (other, ctx, division_integer)
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -873,7 +873,7 @@ feature -- Basic operations
 						Result.clean_up (ctx)
 				end
 			end
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -991,7 +991,7 @@ feature -- Basic operations
 					Result.clean_up (ctx)
 				end
 			end
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -1040,7 +1040,7 @@ feature -- Basic operations
 					Result := nan
 				end
 			end
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -1061,7 +1061,7 @@ feature -- Basic operations
 			create l_zero.make (ctx.digits + 1)
 			l_zero.set_exponent (Current.exponent)
 			Result := l_zero.add (Current, ctx)
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -1092,7 +1092,7 @@ feature -- Basic operations
 			else
 				Result.set_positive
 			end
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -1104,7 +1104,7 @@ feature -- Basic operations
 			create l_zero.make (ctx.digits+1)
 			l_zero.set_exponent (Current.exponent)
 			Result := l_zero.subtract (Current, ctx)
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -1112,7 +1112,7 @@ feature -- Basic operations
 			-- Absolute value of Current
 		do
 			Result := abs_ctx (shared_decimal_context)
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -1151,7 +1151,7 @@ feature -- Basic operations
 				end
 				Result.clean_up (ctx)
 			end
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -1177,7 +1177,7 @@ feature -- Basic operations
 				end
 				Result.clean_up (ctx) 
 			end
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -1258,7 +1258,7 @@ feature -- Basic operations
 					end
 				end
 			end
-		ensure then
+		ensure
 			Result_exists: Result /= Void
 		end
 
@@ -1268,14 +1268,14 @@ feature -- Inapplicable
 
 feature {MA_DECIMAL, MA_DECIMAL_PARSER} -- Element change
 
-	set_coefficient (m : like coefficient) is
-		require
-			m_exists: m /= Void
-		do
-			coefficient := m
-		ensure
-			m_set: coefficient = m
-		end
+--	set_coefficient (m : like coefficient) is
+--		require
+--			m_exists: m /= Void
+--		do
+--			coefficient := m
+--		ensure
+--			m_set: coefficient = m
+--		end
 		
 	set_exponent (e : like exponent) is
 		require
@@ -1308,12 +1308,12 @@ feature {MA_DECIMAL} -- Status setting
 			infinity: is_infinity
 		end
 
-	set_signaling_nan is
-		do
-			special := Special_signaling_nan
-		ensure
-			sNaN: is_signaling_nan
-		end
+--	set_signaling_nan is
+--		do
+--			special := Special_signaling_nan
+--		ensure
+--			sNaN: is_signaling_nan
+--		end
 
 	set_quiet_nan is
 		do
@@ -1678,7 +1678,7 @@ feature {MA_DECIMAL} -- Basic operations
 
 	shift_right (a_count : INTEGER) is
 			-- Shift the coefficient right `a_count' position and adjust exponent.
-			-- digits are lost
+			-- Digits are lost.
 		do
 			coefficient.shift_right (a_count)
 			exponent := exponent + a_count
@@ -1764,7 +1764,6 @@ feature {MA_DECIMAL} -- Basic operations
 				do_round_down (ctx)
 			end
 		end
-
 
  	do_round_half_down (ctx : MA_DECIMAL_CONTEXT) is
 	 		-- Round to nearest neighbor, where an equidistant value is rounded down.
@@ -2485,6 +2484,20 @@ feature {NONE} -- Implementation
 			is_negative := the_sign < 0
 		end
 
+	once_zero : MA_DECIMAL is
+		once
+			create Result.make_from_integer (0)
+		ensure
+			Result_is_zero: Result.is_zero
+		end
+
+	once_one : MA_DECIMAL is
+		once
+			create Result.make_from_integer (1)
+		ensure
+			Result_is_one: Result.to_integer = 1
+		end
+		
 invariant
 
 	special_values: special >= Special_none and then special <= Special_quiet_nan

@@ -41,21 +41,41 @@ By following the GDAS, this Eiffel implementation conforms to the
 requirements of the ANSI/IEEE standard 854-1987, while supporting integer and unrounded floating-point
 arithmetic as a subset (see GDAS page 1).
 </p>
-<p>EDA uses the multi-platform, multi-compiler GOBO 3.1 library (see References, 2).
+<p>EDA has been included in the acclaimed GOBO library since 2004.</p>
+<!-- uses the multi-platform, multi-compiler GOBO 3.1 library (see References, 2).-->
 </p>
+
 
 <h2>Content of the package</h2>
 
 <pre>
-${EDA}
+${GOBO}
    |
-   +- doc                     - Documentation & Specification document
+   + doc
+   |   + math
+   |      + decimal             -- index.html
    |
-   +- examples                - Example applications
-   |   +- acceptance          -   Acceptance/non-regression tests using IBM's test cases
-   |   +- telco               -   Telco benchmark application
-   |
-   +- src                     - Source code
+   + example
+   |   + math
+   |      + decimal
+   |         + telco            -- Telco benchmark application
+
+   ...
+
+   + library
+   |   + math
+   |      + decimal
+   |         + abstract
+   |         + implementation
+   |            + spec
+
+   ...
+
+   + test
+   |   + math
+   |      + decimal
+   |         + acceptance       -- Acceptance/non-regression tests using IBM's test cases
+   ...
 
 </pre>
 
@@ -174,12 +194,12 @@ before any rounding.</dd>
 <h1><a name="CLASSES"></a>Classes</h2>
 <dl>
 	<dt><b>Class</b></dt><dd><b>Description</b></dd>
-	<dt>EDA_DECIMAL</dt><dd>Decimal numbers whoses operations are specified by GDAS.</dd>
-	<dt>EDA_MATH_CONTEXT</dt><dd>Mathematical contexts that hold status flags and various control options like current rounding mode.</dd>
-	<dt>EDA_SHARED_MATH_CONTEXT</dt><dd>Objects that give access to a single, shared, decimal context.  Decimal operations whose signature do not use an explicit context do use this shared context.</dd>
+	<dt>MA_DECIMAL</dt><dd>Decimal numbers whoses operations are specified by GDAS.</dd>
+	<dt>MA_DECIMAL_CONTEXT</dt><dd>Mathematical contexts that hold status flags and various control options like current rounding mode.</dd>
+	<dt>MA_SHARED_DECIMAL_CONTEXT</dt><dd>Objects that give access to a single, shared, decimal context.  Decimal operations whose signature do not use an explicit context do use this shared context.</dd>
 </dl>
 
-<h2>EDA_DECIMAL</h2>
+<h2>MA_DECIMAL</h2>
 <dl>
 <dt>sign</dt><dd>+1 positive, -1 negative.</dd>
 <dt>exponent</dt><dd>Power of ten by which the (invisible) coefficient is multiplied.</dd>
@@ -202,7 +222,7 @@ before any rounding.</dd>
 </dl>
 
 
-<h2>EDA_MATH_CONTEXT</h2>
+<h2>MA_DECIMAL_CONTEXT</h2>
 
 <dl>
 <dt>digits</dt><dd>maximum number of significant digits.</dd>
@@ -219,7 +239,7 @@ before any rounding.</dd>
 <em>exception_on_trap</em> is True.
 </p>
 
-<h2>EDA_SHARED_MATH_CONTEXT</h2>
+<h2>MA_SHARED_DECIMAL_CONTEXT</h2>
 
 <p>Features</p>
 
@@ -238,8 +258,8 @@ is_trapped (Signal_invalid_operation),is_trapped (Signal_overflow), is_trapped (
 
 <h3>Local Definitions for the code</h3>
 <pre>
-	a, b, c, d, r : EDA_DECIMAL
-	ctx, dbl_ctx : EDA_MATH_CONTEXT
+	a, b, c, d, r : MA_DECIMAL
+	ctx, dbl_ctx : MA_DECIMAL_CONTEXT
 </pre>
 
 <h3>Creation</h3>
@@ -328,34 +348,40 @@ Engineering representation : -123e-12
     <dt>COMPILERS</dt><dd>Any GOBO supported Eiffel compiler.</dd>
 </dl>
 <ol>
-	<li>Define environment variable 'EDA'.  It must point to the directory where this package
+<!--	<li>Define environment variable 'EDA'.  It must point to the directory where this package
    has been installed. For example : /usr/local/lib/eda, or c:\user\eiffel\libraries\eda</li>
+-->
 	<li>Create an application
-  <ul><li> Create a XACE project definition, and mount the ${EDA}/library.xace
-  </li><li>Create a 'build.eant' file.</li></ul></li>
+		  <ul>
+<!--		  <li> Create a XACE project definition, and mount the ${EDA}/library.xace</li> -->
+		  <li> Create a XACE project definition, and mount the ${GOBO}/library/math/decimal/library.xace</li>
+		  <li>Create a 'build.eant' file.</li>
+		  </ul>
+  </li>
 	<li>Generate the application :  Automate build with geant.</li>
 </ol>
 
 <p>EDA has currently been tested using</p>
 <ul>
-<li>ESI EiffelStudio 5.2, ESI EiffelStudio 5.3beta</li>
-<li>SmartEiffel 1.0 (Win32, Linux),</li>
-<li>Visual Eiffel for Linux v4.1</li>
+<li>ESI EiffelStudio 5.2, 5.3, 5.4 (Win32, Linux)</li>
+<li>SmartEiffel 1.0, 1.1 (Win32, Linux),</li>
+<li>Visual Eiffel v4.1 (Win32, Linux)</li>
 </ul>
-<p>.NET acceptance tests have no errors but flags for comparison operations are not set correctly.</p>
+<p>.NET acceptance tests have no errors but MA_DECIMAL_CONTEXT flags for comparison operations are not set correctly.</p>
 
 <h1><a name="REFERENCES"></a>Reference Documents</h1>
 <dl>
-	<dt>1. GDAS</dt><dd>"General Decimal Arithmetic Specification" version 1.08, Mike Cowlishaw,
-IBM UK Laboratories, <a href="http://www2.hursley.ibm.com/decimal">http://www2.hursley.ibm.com/decimal</a>.</dd>
-	<dt>2. GOBO 3.1</dt><dd><a href="http://sourceforge.net/projects/gobo-eiffel">http://sourceforge.net/projects/gobo-eiffel</a>; <a href="http://www.gobosoft.com">http://www.gobosoft.com</a>.</dd>
+	<dt>1. GDAS</dt><dd><a href="decarith.html">"General Decimal Arithmetic Specification" version 1.08</a>, Mike Cowlishaw,
+IBM UK Laboratories.</dd></dt>
+	<dt>1b. Decimal Arithmetic</dt><dd>"IBM's site dedicated to Decimal Arithmetic" : <a href="http://www2.hursley.ibm.com/decimal">http://www2.hursley.ibm.com/decimal</a>.</dd>
+	<dt>2. GOBO Library</dt><dd><a href="http://sourceforge.net/projects/gobo-eiffel">http://sourceforge.net/projects/gobo-eiffel</a>; <a href="http://www.gobosoft.com">http://www.gobosoft.com</a>.</dd>
 </dl>
 </div>
 
 <div id="footer">
 <p>
 <a href="http://sourceforge.net"><img SRC="http://sourceforge.net/sflogo.php?group_id=1160&type=1" border="0"></a>
-	<b>Last revision</b>&nbsp;: 06 Feb 2003. <b>&nbsp;&nbsp;&copy; copyright 2002 - 2003</b> Paul G. Crismer and others.
+	<b>Last revision</b>&nbsp;: May 20, 2004. <b>&nbsp;&nbsp;&copy; copyright 2002 - 2004</b> Paul G. Crismer and others.
 </p>
 </div>
 </body>
