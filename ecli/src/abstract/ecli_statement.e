@@ -6,8 +6,8 @@ indexing
 		% Provide CLI/ODBC CORE and some Level 1 functionalities."
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2001/05/16 13:56:51 $"
-	revision: 	"$Revision: 1.5 $"
+	date: 		"$Date: 2001/08/04 09:26:38 $"
+	revision: 	"$Revision: 1.6 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -307,8 +307,8 @@ feature -- Cursor movement
 			fetch_next_row
 		end
 
-	close_cursor is
-			-- close cursor
+	close_cursor, go_after is
+			-- go after the last result row
 		require
 			valid_statement: is_valid
 			valid_state: is_executed and not after
