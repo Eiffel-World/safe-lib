@@ -7,12 +7,11 @@
 		author:      "Paul G. Crismer [pgcrism@users.sourceforge.net]"
 		copyright:   "Copyright (c) 2001, Paul G. Crismer and others"
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
-		date:        "$Date: 2003/02/26 19:33:19 $"
-		revision:    "$Revision: 1.5 $"
+		date:        "$Date: 2003/02/28 08:36:28 $"
+		revision:    "$Revision: 1.6 $"
 	</description>
 
 	<root class="TEST_ROWSET" creation="make"/>
-
 
 	<option unless="${DEBUG}">
 		<option name="assertion" value="none"/>
@@ -22,7 +21,9 @@
 		<option name="assertion" value="all"/>
 		<option name="finalize" value="false"/>
 	</option>
-	<option name="linker" value="microsoft" if="${GOBO_EIFFEL}=ve"/>
+	<option if="${GOBO_OS}=windows">
+		<option name="linker" value="microsoft" if="${GOBO_EIFFEL}=ve"/>
+	</option>
 
 	<cluster name="test_rowset" location="${ECLI}/examples/test_rowset"/>
 

@@ -1,8 +1,8 @@
 indexing
 	description: "Test for objects garbage collection";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:14 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2003/02/28 08:36:28 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 class
 	TEST_GC
@@ -15,8 +15,6 @@ feature -- Initialization
 
 	make is
 			-- test_gc			
-		local
-			ex : expanded EXCEPTIONS
 		do
 			-- session opening
 			if args.argument_count < 3 then
@@ -35,8 +33,6 @@ feature -- Initialization
 				create statement.make (session)
 				test_gc
 			end;
-		rescue
-			print (ex.exception_trace)
 		end
 	
 	test_gc is
