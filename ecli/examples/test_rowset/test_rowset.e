@@ -1,8 +1,8 @@
 indexing
 	description: "ECLI test of rowset classes";
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/05/31 19:19:54 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2002/09/27 14:19:07 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET
@@ -160,7 +160,7 @@ feature {NONE} -- Implementation
 		
 end -- class TEST_ROWSET
 --
--- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

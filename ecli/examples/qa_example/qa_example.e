@@ -1,8 +1,8 @@
 indexing
 	description: "Interactive SQL";
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/15 10:24:10 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2002/09/27 14:19:05 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 class
 	QA_EXAMPLE
@@ -35,6 +35,9 @@ feature -- Initialization
 				-- definition of statement on session
 				create cursor.make (session)
 				do_session
+				cursor.close
+				session.disconnect
+				session.close
 			end;
 		end
 				
@@ -113,12 +116,12 @@ feature -- Basic Operations
 	
 	session : ECLI_SESSION
 	
-	cursor : PARTICIPANT_BY_REMAINING
+	cursor : PARTICIPANT_BY_REMAINING_CURSOR
 
 
 end -- class QA_EXAMPLE
 --
--- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

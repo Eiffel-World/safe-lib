@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that iterate over the SQL types supported by a datasource"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/22 19:34:34 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/09/27 14:19:14 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_SQL_TYPES_CURSOR
@@ -19,8 +19,7 @@ inherit
 
 	ECLI_CURSOR
 		rename
-			statement_start as start,
-			close as cursor_close, statement_close as close
+			statement_start as start
 		export 
 			{ANY} close
 		redefine

@@ -1,8 +1,8 @@
 indexing
 	description: "ISO CLI DATE value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/15 20:08:48 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2002/09/27 14:19:10 $"
+	revision: "$Revision: 1.10 $"
 	licensing: "See notice at end of class"
 
 class
@@ -253,7 +253,7 @@ invariant
 
 end -- class ECLI_DATE
 --
--- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

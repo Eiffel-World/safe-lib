@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that iterate over columns metadata for a table."
 	author: ""
-	date: "$Date: 2002/09/03 20:35:50 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2002/09/27 14:19:14 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ECLI_COLUMNS_CURSOR
@@ -10,8 +10,7 @@ class
 inherit
 	ECLI_CURSOR
 		rename
-			statement_start as start,
-			close as cursor_close, statement_close as close
+			statement_start as start
 		export 
 			{ANY} close
 		redefine

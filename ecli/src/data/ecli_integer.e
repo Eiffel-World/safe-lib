@@ -1,8 +1,8 @@
 indexing
 	description: "CLI SQL INTEGER value"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/04/15 20:08:48 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/09/27 14:19:11 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -142,7 +142,7 @@ invariant
 
 end -- class ECLI_INTEGER
 --
--- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

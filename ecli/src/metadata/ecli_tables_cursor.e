@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2002/08/22 20:09:38 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2002/09/27 14:19:14 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ECLI_TABLES_CURSOR
@@ -11,8 +11,7 @@ inherit
 
 	ECLI_CURSOR
 		rename
-			statement_start as start,
-			close as cursor_close, statement_close as close
+			statement_start as start
 		export 
 			{ANY} close
 		redefine

@@ -1,8 +1,8 @@
 indexing
 	description: "Factory of ECLI_VALUE descendant instances"
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/22 19:31:05 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2002/09/27 14:19:12 $"
+	revision: "$Revision: 1.7 $"
 	licensing: "See notice at end of class"
 
 class
@@ -158,7 +158,7 @@ invariant
 
 end -- class ECLI_VALUE_FACTORY
 --
--- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

@@ -1,8 +1,8 @@
 indexing
 	description: "Abstraction of a cursor.  Used by 'query_assistant'-generated classes."
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/09/03 20:35:50 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2002/09/27 14:19:07 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 deferred class
@@ -11,8 +11,6 @@ deferred class
 inherit
 	ECLI_STATEMENT
 		rename
-			close as statement_close,
-			close_cursor as close, 
 			start as statement_start
 		export
 			{NONE} all
@@ -20,7 +18,7 @@ inherit
 				make, forth, close, 
 				is_closed,is_ok, is_prepared, is_prepared_execution_mode, is_executed, is_valid, 
 				off, before, after, has_information_message, diagnostic_message, sql, cursor,
-				array_routines, has_results, cursor_status, Cursor_after, Cursor_before, Cursor_in
+				go_after, array_routines, has_results, cursor_status, Cursor_after, Cursor_before, Cursor_in
 		redefine
 			make
 		end
@@ -82,7 +80,7 @@ invariant
 
 end -- class ECLI_CURSOR
 --
--- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

@@ -1,8 +1,8 @@
 indexing
 	description: "TEST1 sample application";
 	author: "Paul G. Crismer"
-	date: "$Date: 2001/09/16 12:49:38 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2002/09/27 14:19:06 $"
+	revision: "$Revision: 1.9 $"
 	licensing: "See notice at end of class"
 
 
@@ -450,7 +450,7 @@ feature -- Miscellaneous
 invariant
 end -- class TEST1
 --
--- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

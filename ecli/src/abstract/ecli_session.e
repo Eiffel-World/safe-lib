@@ -4,8 +4,8 @@ indexing
 		"Objects that represent a session to a database"
 
 	author: 	"Paul G. Crismer"
-	date: 		"$Date: 2002/09/22 19:30:14 $"
-	revision: 	"$Revision: 1.9 $"
+	date: 		"$Date: 2002/09/27 14:19:08 $"
+	revision: 	"$Revision: 1.10 $"
 	licensing: 	"See notice at end of class"
 
 class
@@ -450,7 +450,7 @@ invariant
 
 end -- class ECLI_SESSION
 --
--- Copyright: 2000-2001, Paul G. Crismer, <pgcrism@pi.be>
+-- Copyright: 2000-2002, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --
