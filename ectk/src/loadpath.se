@@ -1,0 +1,6 @@
+${ECURSES}\loadpath.se
+${SEP_ELIB}\user_interface\character_toolkit\src\
+${SEP_ELIB}\user_interface\character_toolkit\src\widgets\
+${SEP_ELIB}\user_interface\character_toolkit\src\commands\
+${SEP_ELIB}\user_interface\character_toolkit\src\events\
+${SEP_ELIB}\user_interface\character_toolkit\src\errors\
