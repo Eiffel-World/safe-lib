@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of an ABSTRACT_SHELL"
-	date: "$Date: 2003/12/30 10:59:35 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2003/12/30 12:50:58 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -16,6 +16,11 @@ inherit
 			make as make_decorations
 		redefine
 			get_display
+		end
+	
+	XS_IMPORTED_UINT32_ROUTINES
+		export
+			{NONE} all
 		end
 		
 creation
@@ -101,19 +106,18 @@ feature {NONE} -- Initialization
 		local
 			l_display : DISPLAY
 		do
-			-- FIXME
 			make_decorations
---			if a_display = Void then 
---				l_display := display.get_current
---			end
---			if l_display = Void then
---				l_display := display.get_default
---			end
---			style := checkStyle (a_style);
---			parent := a_parent;
---			display := l_display
---			handle := handle
-			--	createWidget ()
+			if a_display = Void then 
+				l_display := display.get_current
+			end
+			if l_display = Void then
+				l_display := display.get_default
+			end
+			style := check_style (a_style)
+			parent := a_parent
+			display := l_display
+			handle := a_handle
+			create_widget
 		end
 
 feature -- Access
@@ -178,6 +182,29 @@ feature -- Constants
 
 feature {NONE} -- Implementation
 
+	
+ 	check_style (a_style : INTEGER) : INTEGER is
+ 		local
+ 			l_style : INTEGER
+ 			l_mask : INTEGER
+ 			l_bits : INTEGER
+		do
+			l_mask := UINT32_.u_or(UINT32_.u_or (swt.Style_system_modal, swt.Style_application_modal), swt.Style_primary_modal)
+			l_bits := UINT32_.u_and (a_style, UINT32_.u_not (l_mask))
+			if UINT32_.u_and (a_style, swt.Style_system_modal) /= 0 then
+				Result := UINT32_.u_or(l_bits, swt.Style_system_modal)
+			else
+				if UINT32_.u_and (a_style, swt.Style_application_modal) /= 0 then
+					Result := UINT32_.u_or(l_bits, swt.Style_application_modal)
+				else
+					if UINT32_.u_and (a_style, swt.Style_primary_modal) /= 0 then
+						Result := UINT32_.u_or(l_bits, swt.Style_primary_modal)
+					else
+						Result := l_bits
+					end
+				end
+			end
+		end
 
 feature {NONE} -- Attributes
 

@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DEVICE"
-	date: "$Date: 2003/12/29 21:30:27 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2003/12/30 12:50:58 $";
+	revision: "$Revision: 1.7 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -139,6 +139,20 @@ feature {NONE} -- Implementation
 
 	color_ref_count : ARRAY [INTEGER]
 			-- Color reference count.
+
+feature {NONE} -- Onces
+
+	os : OS is
+			-- Windows operating system.
+		once
+			Create Result
+		end
+
+	swt : SWT is
+			-- Common constants and features.
+		once
+			Create Result
+		end
 
 invariant
 	invariant_clause: -- Your invariant here

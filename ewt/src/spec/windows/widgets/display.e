@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DISPLAY"
-	date: "$Date: 2003/12/29 21:26:54 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2003/12/30 12:50:58 $";
+	revision: "$Revision: 1.7 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -42,6 +42,26 @@ feature {NONE} -- Initialization
 		end
 
 feature -- Access
+
+	get_current : DISPLAY is
+			-- Returns the display which the currently running process.
+		do
+			-- FIXME
+--			public static synchronized Display getCurrent () {
+--				return findDisplay (Thread.currentThread ());
+--			}
+		end
+
+	get_default : DISPLAY is
+			-- Returns the default display. 
+			-- One is created if it did not already exist.
+		do
+			-- FIXME
+--			public static synchronized Display getDefault () {
+--				if (Default == null) Default = new Display ();
+--					return Default;
+--				}
+		end
 
 feature {DISPLAY} -- Access
 

@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_CONTROL"
-	date: "$Date: 2003/12/30 10:58:04 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2003/12/30 12:50:58 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -10,6 +10,8 @@ deferred class
 
 inherit	
 	WIDGET
+	
+	DRAWABLE
 	
 	ABSTRACT_CONTROL
 
@@ -31,6 +33,9 @@ feature -- Access
 				Result := parent.get_display
 			end
 		end
+
+	handle : POINTER
+			-- Handle to the OS ressource.
 
 feature -- Measurement
 
@@ -152,6 +157,19 @@ feature -- Inapplicable
 feature -- Constants
 
 feature {NONE} -- Implementation
+
+	create_widget is
+		do
+--	FIXME
+--			foreground = background = -1;
+--			checkOrientation (parent);
+--			createHandle ();
+--			register ();
+--			subclass ();
+--			setDefaultFont ();
+--			checkMirrored ();
+--		}
+		end
 
 feature {NONE} -- Attributes
 

@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implemenation of ABSTRACT_WIDGET"
-	date: "$Date: 2003/12/30 10:58:04 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2003/12/30 12:50:58 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -56,7 +56,12 @@ feature -- Inapplicable
 
 feature -- Constants
 
-feature {NONE} -- Implementation
+feature {NONE} -- Attributes
+
+	style : INTEGER
+			-- Style.
+			
+feature {NONE} -- Once features
 
 	swt : SWT is
 			-- Common constants and features.
@@ -69,6 +74,8 @@ feature {NONE} -- Implementation
 		do
 			swt.error(a_code)
 		end
+
+
 
 invariant
 	invariant_clause: -- Your invariant here

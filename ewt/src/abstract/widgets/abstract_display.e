@@ -20,8 +20,8 @@ indexing
 	Events:
 		Close, Release	
 	]"
-	date: "$Date: 2003/12/29 16:49:47 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2003/12/30 12:50:58 $";
+	revision: "$Revision: 1.6 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -43,6 +43,19 @@ feature {NONE} -- Initialization
 		end
 
 feature -- Access
+
+	get_current : ABSTRACT_DISPLAY is
+			-- Returns the display which the currently running process.
+		deferred
+		end
+
+	get_default : ABSTRACT_DISPLAY is
+			-- Returns the default display. 
+			-- One is created if it did not already exist.
+		deferred
+		ensure
+			result_defined : Result /= Void
+		end
 
 feature -- Measurement
 

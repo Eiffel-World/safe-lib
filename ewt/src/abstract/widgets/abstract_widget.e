@@ -11,14 +11,14 @@ indexing
 	Dispose
 	
 	]"
-	date: "$Date: 2003/12/30 10:58:04 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2003/12/30 12:50:58 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
 deferred class
 	ABSTRACT_WIDGET
-
+	
 feature {NONE} -- Initialization
 
 feature -- Access

@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of ABSTRACT_DECORATIONS"
-	date: "$Date: 2003/12/30 10:58:04 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/30 12:50:58 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -10,7 +10,10 @@ deferred class
 
 inherit
 	CANVAS
-	
+		redefine
+			create_widget
+		end
+		
 	ABSTRACT_DECORATIONS
 	
 feature {NONE} -- Initialization
@@ -57,6 +60,14 @@ feature -- Inapplicable
 feature -- Constants
 
 feature {NONE} -- Implementation
+
+	create_widget is
+		do
+			--	FIXME
+			Precursor
+--			swFlags = OS.IsWinCE ? OS.SW_SHOWMAXIMIZED : OS.SW_SHOWNOACTIVATE;
+--			hAccel = -1;
+		end
 
 invariant
 	invariant_clause: -- Your invariant here

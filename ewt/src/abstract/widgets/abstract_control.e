@@ -13,8 +13,8 @@ indexing
 	MouseExit, MouseHover, MouseUp, MouseMove, Move, Paint, Resize
 	
 	]"
-	date: "$Date: 2003/12/29 21:26:54 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2003/12/30 12:50:58 $";
+	revision: "$Revision: 1.4 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -24,11 +24,16 @@ deferred class
 inherit
 	ABSTRACT_WIDGET
 	
---	DRAWABLE (for implementation only)
+	ABSTRACT_DRAWABLE
 	
 feature {NONE} -- Initialization
 
 feature -- Access
+
+	handle : POINTER is
+			-- Handle to the OS ressource.
+		deferred
+		end
 
 feature -- Measurement
 
