@@ -1,11 +1,11 @@
 indexing
-	description: "Objet qui convertit un nombre dans sa représentation en mots"
+	description: "Objet qui convertit un nombre dans sa représentation en mots pour le Francais Belge"
 	author: "Fafchamps Eric"
-	date: "$Date: 2001/09/16 10:50:12 $"
+	date: "$Date: 2001/09/19 07:29:54 $"
 	revision: "$Revision: 1.1 $"
 
 class
-	FRENCH_NUMBER_TO_WORDS_CONVERTER
+	BELGIAN_FRENCH_NUMBER_TO_WORDS_CONVERTER
 
 inherit
 	EINT_NUMBER_TO_WORDS_CONVERTER
@@ -160,7 +160,7 @@ feature {NONE} -- Implementation
 			Result := << "DIX", "VINGT", "TRENTE", "QUARANTE", "CINQUANTE", "SOIXANTE", "SEPTANTE", "QUATRE-VINGT", "NONANTE" >>
 		end
 
-end -- class FRENCH_NUMBER_TO_WORDS_CONVERTER
+end -- class BELGIAN_FRENCH_NUMBER_TO_WORDS_CONVERTER
 
 --
 -- Copyright: 2001, Eric Fafchamps, <eric.fafchamps@belgacom.net>
