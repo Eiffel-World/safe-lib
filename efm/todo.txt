@@ -1,0 +1,63 @@
+done  - make formatting of INTEGER_REF, DOUBLE_REF, BOOLEAN_REF possible
+done  - rename classes EFMT_..._FORMATTER into FM_...FORMAT
+done  - rename variables containing formatter into format and efmt into fm 
+done - rename make_minimal in make_default
+done - make support for Void representation available (cfr void_string in boolean_format)
+done - drop unused classes/features
+done - don't use last formatted but return format
+- perform code revue  interface
+		1.Structure (feature classification) and indexing clause
+		2.foreign features
+		3.interface spécification (valid names, comments, contracts, invariant, copy/is_equal, value and reference semantics in setters)
+		4.information hiding
+		5.missing features
+		6.implementation (Dependencies?, use of portable features?)
+
+What is done?
+
+FM_SINGLE_LINE_FORMAT : 1,2,3,4,5
+FM_MULTI_LINE_FORMAT: 1,2,3,4,5
+
+FM_NUMERIC_FORMAT [G] : 1,2,3,4,5
+FM_TIME_ROUTINES: 1,2,3,4,5
+
+FM_INTEGER_FORMAT : 1,2,3,4,5
+FM_DOUBLE_FORMAT  : 1,2,3,4,5          (add is_rounded and rounding modes)
+FM_DATE_FORMAT : 1,2,3,4,5
+FM_BOOLEAN_FORMAT : 1,2,3,4,5
+FM_TIME_DURATION_FORMAT :1,2,3,4,5
+FM_DATE_TIME_FORMAT : 1,2,3,4,5
+FM_TIME_FORMAT : 1,2,3,4,5
+FM_STRING_FORMAT : 1,2,3,4,5
+FM_TEXT_FORMAT: 1,2,3,4,5
+
+
+TEXT: 1,2,3,4,5
+TEXT_POSITION: 1,2,3,4,5
+
+- restructure directories : current
+- write test cases + redefine out feautures of FORMATS
+
+
+organisation of test-suite :
+	- one class for each format_class e.g TEST_FM_DATE_FORMAT
+	- one feature for each feature to test in each class
+
+
+- check also used classes/clusters (dependencies), what about ESTRING ?? -> check if each call can be replaced by a elks feature of STRING
+- test platforms/compilers
+
+- architecture documentation : dependencies : which clusters/classes are needed
+- write documentation
+- check files like : licence, readme, etc...
+- deliver
+
+
+
+
+which ESTRING features are used by EFM ? Is there a portable equivalent now?
+
+
+
+
+
