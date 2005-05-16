@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps eric"
 
 class
@@ -94,7 +94,7 @@ feature -- Access
 	shared_default_format: FM_DATE_FORMAT is
 			-- Shared default options for format.
 		once
-			Create Result.make_default
+			create Result.make_default
 		end
 
 feature -- Measurement
@@ -152,11 +152,11 @@ feature -- Status report
 			-- Is the year formatted in 4 digits?
 
 	is_leading_zero_shown: BOOLEAN
-			-- Is the leading zero shown for the day and month part?
+			-- Is the leading zero shown for the day, month and year part?
 			-- e.g: when true : 01/09/00
 
 	is_leading_zero_hidden: BOOLEAN is
-			-- Is the leading zero hidden for the day and month part?
+			-- Is the leading zero hidden for the day, month and year part?
 			-- e.g: when true : 1/9/0
 		do
 			Result := not is_leading_zero_shown
@@ -238,7 +238,7 @@ feature -- Status setting
 		end
 
 	hide_leading_zero is
-			-- Hide leading zero in day and month part.
+			-- Hide leading zero in day, month and year part.
 		do
 			is_leading_zero_shown := False
 		ensure
@@ -274,7 +274,7 @@ feature -- Basic operations
 	formatted (a_date: DT_DATE): STRING is
 			-- Result of formatting `a_date'.
 		do
-			!!last_formatted.make (width)
+			create last_formatted.make (width)
 
 			if a_date /= Void then
 
@@ -353,7 +353,7 @@ feature {NONE} -- Implementation
 		local
 			integer_format: FM_INTEGER_FORMAT
 		do
-			!!integer_format.make (2)
+			create integer_format.make (2)
 			integer_format.no_justify
 			integer_format.hide_positive_sign
 			integer_format.show_zero
@@ -373,7 +373,7 @@ feature {NONE} -- Implementation
 		local
 			integer_format: FM_INTEGER_FORMAT
 		do
-			!!integer_format.make (2)
+			create integer_format.make (2)
 			integer_format.no_justify
 			integer_format.hide_positive_sign
 			integer_format.show_zero
@@ -394,9 +394,9 @@ feature {NONE} -- Implementation
 			integer_format: FM_INTEGER_FORMAT
 		do
 			if is_four_digits_year then
-				!!integer_format.make (4)
+				create integer_format.make (4)
 			else
-				!!integer_format.make (2)
+				create integer_format.make (2)
 			end
 			integer_format.no_justify
 			integer_format.hide_positive_sign

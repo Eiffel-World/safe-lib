@@ -35,8 +35,8 @@ FM_TEXT_FORMAT: 1,2,3,4,5
 TEXT: 1,2,3,4,5
 TEXT_POSITION: 1,2,3,4,5
 
-- restructure directories : current
-- write test cases + redefine out feautures of FORMATS
+done - restructure directories
+- write test cases + redefine out features of FORMATS
 
 
 organisation of test-suite :
@@ -46,18 +46,10 @@ organisation of test-suite :
 
 - check also used classes/clusters (dependencies), what about ESTRING ?? -> check if each call can be replaced by a elks feature of STRING
 - test platforms/compilers
-
 - architecture documentation : dependencies : which clusters/classes are needed
 - write documentation
 - check files like : licence, readme, etc...
 - deliver
 
-
-
-
 which ESTRING features are used by EFM ? Is there a portable equivalent now?
-
-
-
-
 

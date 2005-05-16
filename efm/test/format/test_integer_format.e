@@ -5,9 +5,9 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:35 $";
-	revision: "$Revision: 1.1 $";
-	author: "Fafchamps eric"
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
+	author: "Fafchamps Eric"
 
 deferred class TEST_INTEGER_FORMAT
 
@@ -46,7 +46,79 @@ feature -- Basic operations
 
 	test_formatted is
 			-- Test formatted
+		local
+			l_format: FM_INTEGER_FORMAT
+			l_integer: INTEGER
+			l_integer_ref: INTEGER_REF
 		do
+			l_integer := 123
+			create l_format.make (3)
+			
+			assert_equal ("Check default format for value 123", "123", l_format.formatted (l_integer))
+			assert_equal ("Check default format for Void", "   ", l_format.formatted (Void))
+			
+			create l_format.make (21)
+			assert_equal ("Check default padding character of format for value 123", "                  123", l_format.formatted (l_integer))
+			
+			l_format.set_padding_character ('-')
+			assert_equal ("Check set_padding character of format for value 123", "------------------123", l_format.formatted (l_integer))
+			
+			l_format.set_prefix_string ("prefix")
+			assert_equal ("Check set_prefix_string of format for value 123", "------------prefix123", l_format.formatted (l_integer))
+			
+			l_format.set_suffix_string ("suffix")
+			assert_equal ("Check set_suffix_string of format for value 123", "------prefix123suffix", l_format.formatted (l_integer))
+			
+			l_format.left_justify
+			assert_equal ("Check left_justify of format for value 123", "prefix123suffix------", l_format.formatted (l_integer))
+			
+			l_format.center_justify
+			assert_equal ("Check center_justify of format for value 123", "---prefix123suffix---", l_format.formatted (l_integer))
+			
+			l_format.no_justify
+			assert_equal ("Check no_justify of format for value 123", "prefix123suffix", l_format.formatted (l_integer))
+			
+			l_format.set_void_string ("UNDEFINED")
+			assert_equal ("Check set_void_string of format for Void", "UNDEFINED", l_format.formatted (Void))
+
+			l_format.show_positive_sign
+			assert_equal ("Check show_positive_sign of format for value 123", "prefix+123suffix", l_format.formatted (l_integer))
+
+			l_format.hide_positive_sign
+			assert_equal ("Check hide_positive_sign of format for value 123", "prefix123suffix", l_format.formatted (l_integer))
+
+			create l_format.make (1)			
+			l_format.show_zero
+			assert_equal ("Check show_zero of format for value 0", "0", l_format.formatted (0))
+
+			l_format.hide_zero
+			assert_equal ("Check hide_zero of format for value 0", " ", l_format.formatted (0))
+
+			create l_format.make (21)
+			create l_integer_ref
+			l_integer_ref.set_item (-12345)
+			
+			l_format.enable_zero_prefix
+			assert_equal ("Check enable_zero_prefix of format for value -12345", "-0000000000000012,345", l_format.formatted (l_integer_ref))
+
+			l_format.disable_zero_prefix
+			assert_equal ("Check disable_zero_prefix of format for value -12345", "              -12,345", l_format.formatted (l_integer_ref))
+
+			l_format.hide_negative_sign
+			assert_equal ("Check hide_negative_sign of format for value -12345", "               12,345", l_format.formatted (l_integer_ref))
+
+			l_format.show_negative_sign
+			assert_equal ("Check show_negative_sign of format for value -12345", "              -12,345", l_format.formatted (l_integer_ref))
+
+			l_format.hide_thousand_separator
+			assert_equal ("Check hide_thousand_separator of format for value -12345", "               -12345", l_format.formatted (l_integer_ref))
+
+			l_format.show_thousand_separator
+			assert_equal ("Check show_thousand_separator of format for value -12345", "              -12,345", l_format.formatted (l_integer_ref))
+
+			l_format.set_thousand_separator (' ')
+			assert_equal ("Check set_thousand_separator of format for value -12345", "              -12 345", l_format.formatted (l_integer_ref))
+
 		end
 
 feature -- Obsolete

@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps eric"
 
 class
@@ -84,7 +84,7 @@ feature -- Access
 	shared_default_format: FM_BOOLEAN_FORMAT is
 			-- Shared default options for format.
 		once
-			Create Result.make_default
+			create Result.make_default
 		end
 
 feature -- Measurement
@@ -164,7 +164,7 @@ feature -- Basic operations
 	formatted (a_boolean: BOOLEAN_REF): STRING is
 			-- Result of formatting `a_boolean'.
 		do
-			Create last_formatted.make (width)
+			create last_formatted.make (width)
 			
 			if a_boolean /= Void then
 				if a_boolean = True then

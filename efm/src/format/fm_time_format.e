@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps Eric"
 
 class
@@ -96,7 +96,7 @@ feature -- Access
 	shared_default_format: FM_TIME_FORMAT is
 			-- Shared default options for format.
 		once
-			Create Result.make_default
+			create Result.make_default
 		end
 
 feature -- Measurement
@@ -109,9 +109,6 @@ feature -- Comparison
 		do
 			Result := 
 			precursor {FM_SINGLE_LINE_FORMAT} (other) and
-			equal (decimal_character, other.decimal_character) and
-			equal (decimals, other.decimals) and
-			equal (is_decimal_format, other.is_decimal_format) and
 			equal (is_leading_zero_shown, other.is_leading_zero_shown) and
 			equal (is_milliseconds_part_shown, other.is_milliseconds_part_shown) and			
 			equal (is_seconds_part_shown, other.is_seconds_part_shown) and
@@ -152,7 +149,7 @@ feature -- Basic operations
 	formatted (a_time: DT_TIME): STRING is
 			-- Result of formatting `a_time'.
 		do
-			!!last_formatted.make (width)
+			create last_formatted.make (width)
 
 			if a_time /= Void then
 					last_formatted.append_string (hours_part (a_time.hour))

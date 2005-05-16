@@ -5,9 +5,9 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:35 $";
-	revision: "$Revision: 1.1 $";
-	author: "Fafchamps eric"
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
+	author: "Fafchamps Eric"
 
 deferred class TEST_BOOLEAN_FORMAT
 
@@ -46,7 +46,34 @@ feature -- Basic operations
 
 	test_formatted is
 			-- Test formatted
+		local
+			l_format: FM_BOOLEAN_FORMAT
 		do
+			create l_format.make_default
+			assert_equal ("Check default format for value True", "1", l_format.formatted (True))
+			assert_equal ("Check default format for value False", "0", l_format.formatted (False))
+			assert_equal ("Check default format for Void", " ", l_format.formatted (Void))
+			
+			create l_format.make (21)
+			assert_equal ("Check default padding character of format for value True", "          1          ", l_format.formatted (True))
+			l_format.set_padding_character ('-')
+			assert_equal ("Check other padding character of format for value True", "----------1----------", l_format.formatted (True))
+			l_format.set_prefix_string ("prefix")
+			assert_equal ("Check prefix string of format for value True", "-------prefix1-------", l_format.formatted (True))
+			l_format.set_suffix_string ("suffix")
+			assert_equal ("Check suffix_string of format for value True", "----prefix1suffix----", l_format.formatted (True))
+			l_format.left_justify
+			assert_equal ("Check is_left_justified of format for value True", "prefix1suffix--------", l_format.formatted (True))
+			l_format.right_justify
+			assert_equal ("Check is_right_justified of format for value True", "--------prefix1suffix", l_format.formatted (True))
+			l_format.no_justify
+			assert_equal ("Check is_not_justified of format for value True", "prefix1suffix", l_format.formatted (True))			
+			l_format.set_false_string ("FALSE")
+			assert_equal ("Check false_string of format for value True", "prefixFALSEsuffix", l_format.formatted (False))
+			l_format.set_false_string ("TRUE")
+			assert_equal ("Check false_string of format for value True", "prefixTRUEsuffix", l_format.formatted (False))
+			l_format.set_void_string ("UNDEFINED")
+			assert_equal ("Check void_string of format for Void", "UNDEFINED", l_format.formatted (Void))
 		end
 
 feature -- Obsolete

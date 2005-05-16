@@ -26,7 +26,7 @@ feature {NONE} -- Initialization
 			estring: ESTRING
 			estring_separator: ESTRING
 		do
-			!!estring_separator.make_from_string (a_separator)
+			create estring_separator.make_from_string (a_separator)
 			from
 				make ((a_separator.count + 1) * a_string_linear.count)
 				cursor := a_string_linear.new_cursor
@@ -34,7 +34,7 @@ feature {NONE} -- Initialization
 			until
 				cursor.off
 			loop
-				!!estring.make_from_string (cursor.item)	
+				create estring.make_from_string (cursor.item)	
 				append_string (estring)
 				if not cursor.after then
 					append_string (estring_separator)
@@ -71,7 +71,7 @@ feature -- Access
 			begin_index, end_index, line: INTEGER
 			s: ESTRING
 		do
-			!!Result.make (1, count // a_width)
+			create Result.make (1, count // a_width)
 
 			from
 				begin_index := 1
@@ -186,7 +186,11 @@ feature -- Element change
 			until
 				i < 1
 			loop
-				insert_character (s.item (i), 1)
+				if is_empty then
+					append_character (s.item (i))
+				else
+					insert_character (s.item (i), 1)				
+				end
 				i := i - 1
 			end
 		ensure
@@ -370,7 +374,7 @@ feature -- Conversion
 		local 
 			elks_string_portability: ELKS_STRING_PORTABILITY 
 		do 
-			!!elks_string_portability 
+			create elks_string_portability 
 			Result := elks_string_portability.to_c (string) 
 		end
 

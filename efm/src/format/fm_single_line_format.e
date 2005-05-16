@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2005/02/08 21:40:00 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.4 $";
 	author: "Fafchamps Eric"
 
 deferred class
@@ -254,7 +254,7 @@ feature {NONE} -- Implementation
 		local
 			estring: ESTRING
 		do
-			!!estring.make_from_string (last_formatted)
+			create estring.make_from_string (last_formatted)
 			inspect justification
 			when left_justification then
 				estring.extend_to_count (a_padding_character, width)
@@ -289,8 +289,8 @@ feature {NONE} -- Implementation
 			last_formatted_estring: ESTRING
 		do
 			if prefix_string /= Void then
-				!!prefix_estring.make_from_string (prefix_string)
-				!!last_formatted_estring.make_from_string (last_formatted)
+				create prefix_estring.make_from_string (prefix_string)
+				create last_formatted_estring.make_from_string (last_formatted)
 				last_formatted_estring.prepend_string (prefix_estring)
 			end
 		end
@@ -304,8 +304,8 @@ feature {NONE} -- Implementation
 			last_formatted_estring: ESTRING
 		do
 			if suffix_string /= Void then
-				!!suffix_estring.make_from_string (suffix_string)
-				!!last_formatted_estring.make_from_string (last_formatted)
+				create suffix_estring.make_from_string (suffix_string)
+				create last_formatted_estring.make_from_string (last_formatted)
 				last_formatted_estring.append_string (suffix_estring)
 			end
 		end

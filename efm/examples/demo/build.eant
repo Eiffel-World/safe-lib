@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<project name="demo" default="help">
+
+	<description>
+		system: "Demonstration of Eiffel Format library"
+
+		library: "EFM : Eiffel Format Library. Project SAFE."
+		copyright: "Copyright (c) 2001-2005, Eric Fafchamps and others"
+		license: "Eiffel Forum License v2 (see forum.txt)"
+		date: "$Date: 2005/05/16 18:03:44 $"
+	</description>
+
+	<inherit>
+		<parent location="${GOBO}/misc/eiffel.eant">
+			<redefine target="init_system"/>
+		</parent>
+	</inherit>
+
+
+<!-- Implementation -->
+
+	<target name="init_system">
+		<set name="system" value="demo"/>
+		<set name="system_dir" value="${EFM}/examples/demo"/>
+	</target>
+
+</project>

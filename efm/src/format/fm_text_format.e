@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/19 11:49:51 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.3 $";
 	author: "Fafchamps eric"
 
 class
@@ -77,7 +77,7 @@ feature -- Access
 	shared_default_format: FM_TEXT_FORMAT is
 			-- Shared default options for format.
 		once
-			Create Result.make_default
+			create Result.make_default
 		end
 
 feature -- Measurement
@@ -121,15 +121,15 @@ feature -- Basic operations
 		do
 			if a_text /= Void then
 				paragraphs_cursor := a_text.paragraphs.new_cursor
-				Create last_formatted.make (a_text.count)
+				create last_formatted.make (a_text.count)
 				format_all_paragraphs
 			else
 				if void_text /= Void then
 					paragraphs_cursor := (clone (void_text)).paragraphs.new_cursor
-					Create last_formatted.make (void_text.count)
+					create last_formatted.make (void_text.count)
 					format_all_paragraphs
 				else				
-					Create last_formatted.make (0)
+					create last_formatted.make (0)
 				end
 			end
 			Result := last_formatted
@@ -163,7 +163,7 @@ feature {NONE} -- Implementation
 				if not paragraphs_cursor.item.is_empty then
 					format_current_paragraph
 				else
-					last_formatted.append_paragraph (Create {STRING}.make(0))
+					last_formatted.append_paragraph (create {STRING}.make(0))
 				end
 				paragraphs_cursor.forth			
 			end			
@@ -187,7 +187,7 @@ feature {NONE} -- Implementation
 			until
 				character_position > paragraphs_cursor.item.count
 			loop
-				!!line.make (width)
+				create line.make (width)
 
 				--| Find how many remaining characters could fit in the column
 				remaining := paragraph.count - character_position + 1
@@ -201,7 +201,7 @@ feature {NONE} -- Implementation
 						last_character := paragraph.item (character_position + count - 1)
 						after_character := paragraph.item (character_position + count)
 						if	(last_character.is_alpha or last_character.is_digit) and (after_character.is_alpha or after_character.is_digit) then
-							!!estring.make_from_string (paragraph.substring (character_position, character_position + count - 1))
+							create estring.make_from_string (paragraph.substring (character_position, character_position + count - 1))
 							index_last_space := estring.rightmost_index_of_character (' ')
 							if index_last_space > 0 then
 								count := index_last_space 

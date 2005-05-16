@@ -1,13 +1,13 @@
 indexing
 	description: "Objects that formats INTEGER objects"
-
+	
 	usage: ""
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
-	author: ""
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
+	author: "Fafchamps eric"
 
 class
 	FM_INTEGER_FORMAT
@@ -89,7 +89,7 @@ feature -- Access
 	shared_default_format: FM_INTEGER_FORMAT is
 			-- Shared default options for format.
 		once
-			Create Result.make_default
+			create Result.make_default
 		ensure
 			defined: Result /= Void
 		end
@@ -136,14 +136,14 @@ feature -- Basic operations
 			i,j: INTEGER
 			sign: INTEGER
 		do
-			!!last_formatted.make (width)
-			!!last_formatted_estring.make_from_string (last_formatted)
+			create last_formatted.make (width)
+			create last_formatted_estring.make_from_string (last_formatted)
 
 
 			if an_integer /= Void and then (an_integer.item /= 0 or is_zero_shown) then
 				sign := an_integer.sign
 
-				!!estring.make_from_string (an_integer.abs.out)
+				create estring.make_from_string (an_integer.abs.out)
 				last_formatted_estring.append_string (estring)
 
 				if is_thousand_separator_shown then
@@ -182,10 +182,10 @@ feature -- Basic operations
 			justify (padding_character)
 			Result := last_formatted
 		ensure then
-			thousand_separator: an_integer >= 1000 and is_thousand_separator_shown implies Result.has (thousand_separator)
-			zero_shown: an_integer = 0 and is_zero_shown implies Result.has ('0')
-			positive_sign_shown: an_integer > 0 and is_positive_sign_shown implies Result.has ('+')
-			negative_sign_shown: an_integer < 0 and is_negative_sign_shown implies Result.has ('-')
+			thousand_separator: an_integer /= Void implies (an_integer >= 1000 and is_thousand_separator_shown implies Result.has (thousand_separator))
+			zero_shown: an_integer /= Void implies (an_integer = 0 and is_zero_shown implies Result.has ('0'))
+			positive_sign_shown: an_integer /= Void implies (an_integer > 0 and is_positive_sign_shown implies Result.has ('+'))
+			negative_sign_shown: an_integer /= Void implies (an_integer < 0 and is_negative_sign_shown implies Result.has ('-'))
 		end
 
 feature -- Obsolete

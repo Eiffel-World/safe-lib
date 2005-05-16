@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps Eric"
 
 deferred class
@@ -211,7 +211,7 @@ feature {NONE} -- Implementation
 		local
 			last_formatted_estring: ESTRING
 		do
-			!!last_formatted_estring.make_from_string (last_formatted)
+			create last_formatted_estring.make_from_string (last_formatted)
 			if a_sign = -1 and is_negative_sign_shown then
 				last_formatted_estring.insert_character ('-', 1)
 			else 
@@ -228,7 +228,7 @@ feature {NONE} -- Implementation
 			last_formatted_estring: ESTRING
 		do
 			if is_zero_prefix_enabled then
-				!!last_formatted_estring.make_from_string (last_formatted)
+				create last_formatted_estring.make_from_string (last_formatted)
 				space_left := width - last_formatted_estring.count
 				if a_sign = 1 and is_positive_sign_shown then
 					space_left := space_left - 1

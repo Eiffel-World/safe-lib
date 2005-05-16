@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/19 11:49:51 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.3 $";
 	author: "Fafchamps eric"
 
 class
@@ -78,7 +78,7 @@ feature -- Access
 	shared_default_format: FM_STRING_FORMAT is
 			-- Shared default options for format.
 		once
-			Create Result.make_default
+			create Result.make_default
 		end
 
 	padding_character_for_empty_string: CHARACTER
@@ -157,16 +157,19 @@ feature -- Basic operations
 	formatted (a_string: STRING): STRING is
 			-- Result of formatting `a_string'.
 		do
-			!!last_formatted.make (width)
+			create last_formatted.make (width)
 
 			if a_string /= Void then
 				if a_string.is_empty then
 					if string_for_empty_string /= Void then
 						last_formatted.append_string (string_for_empty_string)
-						justify (padding_character)
-					else
-						justify (padding_character_for_empty_string)
-					end					
+					end
+					format_prefix
+					format_suffix
+					if last_formatted.count > width then
+						handle_insufficient_width (a_string)
+					end
+					justify (padding_character_for_empty_string)
 				else
 					last_formatted.append_string (a_string)
 					format_prefix
@@ -185,7 +188,7 @@ feature -- Basic operations
 			Result := last_formatted
 		ensure then
 			string_for_empty_string: (a_string /= Void and a_string.is_empty and string_for_empty_string /= Void) implies Result.has_substring (string_for_empty_string)
-			padding_character_for_empty_string: (a_string /= Void and a_string.is_empty and string_for_empty_string = Void and is_justified) implies Result.occurrences (padding_character_for_empty_string) = width
+			padding_character_for_empty_string: (a_string /= Void and a_string.is_empty and string_for_empty_string = Void and is_justified and prefix_string = Void and suffix_string = Void) implies Result.occurrences (padding_character_for_empty_string) = width
 		end
 
 feature -- Obsolete

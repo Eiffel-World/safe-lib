@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps eric"
 
 class
@@ -37,7 +37,7 @@ feature {NONE} -- Initialization.
 			set_void_string (shared_default_format.void_string)
 			justification := shared_default_format.justification
 
-			Create date_format.make (a_width)
+			create date_format.make (a_width)
 			date_format.set_prefix_string (Void)
 			date_format.set_suffix_string (Void)
 			date_format.no_justify
@@ -65,7 +65,7 @@ feature {NONE} -- Initialization.
 				hide_date_separator
 			end
 
-			Create time_format.make (a_width)
+			create time_format.make (a_width)
 			time_format.set_prefix_string (Void)
 			time_format.set_suffix_string (Void)
 			time_format.no_justify
@@ -115,8 +115,8 @@ feature {NONE} -- Initialization.
 			-- (used for the initialization of the shared_default_format)
 		do
 			width := 1
-			Create date_format.make_default
-			Create time_format.make_default
+			create date_format.make_default
+			create time_format.make_default
 			set_date_time_separator (" ")
 			set_padding_character (' ')
 			set_prefix_string (Void)
@@ -160,7 +160,7 @@ feature -- Access
 	shared_default_format: FM_DATE_TIME_FORMAT is
 			-- Shared default options for format.
 		once
-			Create Result.make_default
+			create Result.make_default
 		end
 
 	date_time_separator: STRING
@@ -212,7 +212,7 @@ feature -- Status report
 	is_dmy_ordered: BOOLEAN is
 			-- Is the order day,month,year?
 		do
-			Result := date_format.is_mdy_ordered
+			Result := date_format.is_dmy_ordered
 		end
 
 	is_mdy_ordered:BOOLEAN is
@@ -498,7 +498,7 @@ feature -- Basic operations
 	formatted (a_date_time: DT_DATE_TIME): STRING is
 			-- Result of formatting `a_date_time'.
 		do
-			Create last_formatted.make (width)
+			create last_formatted.make (width)
 			if a_date_time /= Void then
 				last_formatted.append_string (date_format.formatted (a_date_time.date))
 				if date_time_separator /= Void then

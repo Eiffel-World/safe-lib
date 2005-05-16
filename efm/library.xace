@@ -1,22 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<library name="library_efm" location="${EFM}">
+<?xml version="1.0"?>
+
+<library name="efm" prefix="efm_">
 
 	<description>
-		description : "Eiffel single and multi-line formats"
+		description: "Xace file for EFM Library"
+		library: "EFM : Eiffel single and multi-line format Library. Project SAFE."
+		copyright: "Copyright (c) 2001-2005, Eric Fafchamps and others"
+		license: "Eiffel Forum License v2 (see forum.txt)"
+		date: "$Date: 2005/05/16 18:03:44 $"		
 	</description>
 	
-	<cluster name="library_efm" location="${EFM}" prefix="efm_">
-		<option name="assertion" value="all" if="${DEBUG}"/>
-		<cluster name="src">
-			<cluster name="format"/>
-			<cluster name="kernel">
-				<cluster name="string">
-					<cluster name="spec">
-						<cluster name="${GOBO_EIFFEL}"/>
-					</cluster>
+	<cluster name="efm" location="${EFM}/src">
+		<cluster name="format"/>
+		<cluster name="kernel">
+			<cluster name="string">
+				<cluster name="spec">
+					<cluster name="${GOBO_EIFFEL}"/>
 				</cluster>
-				<cluster name="text"/>
 			</cluster>
-		</cluster>		
+			<cluster name="text"/>
+		</cluster>
 	</cluster>
+	<mount location="${SAFE_KERNEL}/library.xace"/>
+	<mount location="${GOBO}/library/kernel.xace"/>
+	<mount location="${GOBO}/library/kernel/library.xace"/>
+	<mount location="${GOBO}/library/structure/library.xace"/>
+	<mount location="${GOBO}/library/time/library.xace"/>
+	<mount location="${GOBO}/library/utility/library.xace"/>
 </library>

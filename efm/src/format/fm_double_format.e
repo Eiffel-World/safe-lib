@@ -2,11 +2,13 @@ indexing
 	description: "Objects that formats DOUBLE objects"
 
 	usage: ""
-	refactoring: ""
+	refactoring: "[
+					There is no option to choose another type of rounding when fitting the number of decimals.
+					]"
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps Eric"
 
 class
@@ -111,7 +113,7 @@ feature -- Access
 	shared_default_format: FM_DOUBLE_FORMAT is
 			-- Shared default options for double formats.
 		once
-			Create Result.make_default
+			create Result.make_default
 		end
 
 feature -- Measurement
@@ -212,8 +214,8 @@ feature -- Basic operations
 			sign: INTEGER
 			i,j: INTEGER
 		do
-			!!last_formatted.make (width)
-			!!last_formatted_estring.make_from_string (last_formatted)
+			create last_formatted.make (width)
+			create last_formatted_estring.make_from_string (last_formatted)
 
 
 			if a_double /= Void and then (a_double.item /= 0.0 or is_zero_shown) then
@@ -224,11 +226,9 @@ feature -- Basic operations
 					double_value := double_value + 5 / (10 ^ (decimals +1))
 				end
 
-				--| format with a units part and a fractional part separated with a dot.
-				!!estring.make_from_string (double_value.out)
+				create estring.make_from_string (double_value.out)
 				last_formatted_estring.append_string (estring)
 
-				--| Truncate non significant decimals.
 				if last_formatted_estring.has ('.') then
 					index_of_units := last_formatted_estring.index_of ('.', 1) - 1
 					last_formatted_estring.head (index_of_units + decimals + 1)
@@ -237,22 +237,18 @@ feature -- Basic operations
 				end
 
 				if not is_trailing_zero_shown and last_formatted_estring.has ('.') then
-					--| Prune trailing zeros.
 					last_formatted_estring.prune_all_trailing ('0')
 				end
 
 				if not last_formatted_estring.is_empty and then last_formatted_estring.item (last_formatted_estring.count) = '.' then
-					--| Remove trailing decimal point.
 					last_formatted_estring.remove (last_formatted_estring.count)
 				end
 
 				if last_formatted_estring.has ('.') and decimal_character /= '.' then
-					--| Replace decimal point with decimal_character.
 					last_formatted_estring.put (decimal_character, last_formatted_estring.index_of ('.', 1))
 				end
 
 				if is_thousand_separator_shown then
-					--| Insert thousand separators
 					from
 						i := index_of_units
 						j := 0
@@ -286,11 +282,11 @@ feature -- Basic operations
 			justify (padding_character)
 			Result := last_formatted
 		ensure then
-			thousand_separator: a_double >= 1000.0 and is_thousand_separator_shown implies Result.has (thousand_separator)
-			zero_shown: a_double = 0.0 and is_zero_shown implies Result.has ('0')
-			positive_sign_shown: a_double > 0.0 and is_positive_sign_shown implies Result.has ('+')
-			negative_sign_shown: a_double < 0.0 and is_negative_sign_shown implies Result.has ('-')
-			decimal_character: a_double.abs > 0 and decimals > 0 implies Result.has (decimal_character)
+			thousand_separator: a_double /= Void implies (a_double >= 1000.0 and is_thousand_separator_shown implies Result.has (thousand_separator))
+			zero_shown: a_double /= Void implies (a_double = 0.0 and is_zero_shown implies Result.has ('0'))
+			positive_sign_shown: a_double /= Void implies (a_double > 0.0 and is_positive_sign_shown implies Result.has ('+'))
+			negative_sign_shown: a_double /= Void implies (a_double < 0.0 and is_negative_sign_shown implies Result.has ('-'))
+			decimal_character: a_double /= Void implies (a_double.abs > 0 and decimals > 0 implies Result.has (decimal_character))
 		end
 
 feature -- Obsolete

@@ -27,7 +27,7 @@ feature -- Initialization
 		require
 			non_negative_size: n >= 0
 		do
-			!!string.make (n)
+			create string.make (n)
 		ensure
 			empty_string:  count = 0
 		end
@@ -52,7 +52,7 @@ feature -- Initialization
 		local
 			elks_string_portability: ELKS_STRING_PORTABILITY
 		do
-			!!elks_string_portability
+			create elks_string_portability
 			elks_string_portability.from_c (string, c_string)
 		end
 
@@ -293,7 +293,7 @@ feature -- Element change
 	insert_character (c: CHARACTER; i: INTEGER) is
 			-- Add c to the left of position i.
 		require
-			index_small_enough: i <= count ; 
+			index_small_enough: i <= count
 			index_large_enough: i > 0		 
 		local
 			j : INTEGER
@@ -491,7 +491,7 @@ feature -- Duplication
 			meaningful_interval: n1 <= n2; 
 			meaningful_end: n2 <= count
 		do
-			!!Result.make_from_string (string.substring (n1,n2))
+			create Result.make_from_string (string.substring (n1,n2))
 		ensure
 			new_result_count: Result.count = n2 - n1 + 1
 			-- original_characters: For every i in 1..n2-n1,

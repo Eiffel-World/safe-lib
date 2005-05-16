@@ -5,9 +5,9 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:35 $";
-	revision: "$Revision: 1.1 $";
-	author: "Fafchamps eric"
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
+	author: "Fafchamps Eric"
 
 deferred class TEST_STRING_FORMAT
 
@@ -46,7 +46,49 @@ feature -- Basic operations
 
 	test_formatted is
 			-- Test formatted
+		local
+			l_string: STRING
+			l_format: FM_STRING_FORMAT
 		do
+			create l_string.make_from_string ("test")
+			create l_format.make (25)
+
+			assert_equal ("Check default format for not Void.", "test                     ", l_format.formatted (l_string))
+
+			assert_equal ("Check default format for Void.",     "                         ", l_format.formatted (Void))
+			
+			l_format.set_padding_character ('.')
+			assert_equal ("Check set_padding_character of format.", "test.....................", l_format.formatted (l_string))
+
+			l_format.set_prefix_string ("pre")
+			assert_equal ("Check set_prefix_string of format.", "pretest..................", l_format.formatted (l_string))
+
+			l_format.set_suffix_string ("suf")
+			assert_equal ("Check set_suffix_string of format.", "pretestsuf...............", l_format.formatted (l_string))
+
+			l_format.center_justify
+			assert_equal ("Check center_justify of format.", 	".......pretestsuf........", l_format.formatted (l_string))
+
+			l_format.left_justify
+			assert_equal ("Check left_justify of format.", 		"pretestsuf...............", l_format.formatted (l_string))
+
+			l_format.right_justify
+			assert_equal ("Check right_justify of format.", 	"...............pretestsuf", l_format.formatted (l_string))
+
+			l_format.no_justify
+			assert_equal ("Check no_justify of format.", "pretestsuf", l_format.formatted (l_string))
+
+			l_format.set_void_string ("UNDEFINED")
+			assert_equal ("Check set_void_string of format for Void", "UNDEFINED", l_format.formatted (Void))
+
+			create l_string.make_empty
+			l_format.left_justify
+			l_format.set_padding_character_for_empty_string ('_')
+			assert_equal ("Check set_padding_character_for_empty_string ('_') of format", "presuf___________________", l_format.formatted (l_string))
+
+			l_format.set_string_for_empty_string ("EMPTY")
+			assert_equal ("Check set_string_for_empty_string (%"EMPTY%") of format", "preEMPTYsuf______________", l_format.formatted (l_string))
+
 		end
 
 feature -- Obsolete

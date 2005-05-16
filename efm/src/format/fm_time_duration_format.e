@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2005/02/08 21:40:02 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.3 $";
 	author: "Fafchamps Eric"
 
 class
@@ -45,9 +45,9 @@ feature {NONE} -- Initialization.
 			is_seconds_part_shown := shared_default_format.is_seconds_part_shown
 			is_milliseconds_part_shown := shared_default_format.is_milliseconds_part_shown
 			is_leading_zero_shown := shared_default_format.is_leading_zero_shown
-			is_decimal_format := shared_default_format.is_decimal_format
 			decimals := shared_default_format.decimals
 			decimal_character := shared_default_format.decimal_character
+			is_decimal_format := shared_default_format.is_decimal_format
 		ensure
 			width_copied: width = a_width
 			padding_character_default: padding_character = shared_default_format.padding_character 
@@ -60,9 +60,9 @@ feature {NONE} -- Initialization.
 			seconds_part_visibility: is_seconds_part_shown = shared_default_format.is_seconds_part_shown
 			milliseconds_part_visibility: is_milliseconds_part_shown = shared_default_format.is_milliseconds_part_shown
 			leading_zero_shown_default: is_leading_zero_shown = shared_default_format.is_leading_zero_shown		
-			decimal_format_default : is_decimal_format = shared_default_format.is_decimal_format
 			decimals_default : decimals = shared_default_format.decimals
 			decimal_character_default: decimal_character = shared_default_format.decimal_character
+			is_decimal_format_default: is_decimal_format = shared_default_format.is_decimal_format
 		end
 
 		make_default is
@@ -82,6 +82,7 @@ feature {NONE} -- Initialization.
 				hide_leading_zero		
 				set_decimal_character ('.')
 				set_decimals (1)
+				disable_decimal_format
 			ensure
 				width_is_1 : width = 1
 				padding_character_is_blank : padding_character.is_equal (' ')
@@ -96,6 +97,7 @@ feature {NONE} -- Initialization.
 				is_leading_zero_hidden: is_leading_zero_hidden
 				decimal_character_is_dot: decimal_character.is_equal ('.')
 				decimals_is_1: decimals = 1
+				not_is_decimal_format: not is_decimal_format
 			end
 
 feature -- Access
@@ -103,8 +105,14 @@ feature -- Access
 	shared_default_format: FM_TIME_DURATION_FORMAT is
 			-- Shared default options for format.
 		once
-			Create Result.make_default
+			create Result.make_default
 		end
+
+	decimals: INTEGER
+			-- Number of digits in fractional part.
+
+	decimal_character: CHARACTER
+			-- Character for begin of fractional part in decimal format.
 
 feature -- Measurement
 
@@ -116,7 +124,7 @@ feature -- Comparison
 		do
 			Result := 
 			precursor {FM_SINGLE_LINE_FORMAT} (other) and
-			equal (decimal_character, other.decimal_character) and
+			equal (decimal_character, other.decimal_character) and			
 			equal (decimals, other.decimals) and
 			equal (is_decimal_format, other.is_decimal_format) and
 			equal (is_leading_zero_shown, other.is_leading_zero_shown) and
@@ -136,11 +144,48 @@ feature -- Status report
 			is_true: Result = True
 		end
 
+	is_decimal_format: BOOLEAN
+			-- Is the duration formatted as decimal fractions of an hour?
+
 feature -- Status setting
+
+	enable_decimal_format is
+			-- Enable the decimal format.
+		do
+			is_decimal_format := True
+		ensure
+			is_decimal_format: is_decimal_format
+		end
+		
+	disable_decimal_format is
+			-- Disable the decimal format.
+		do
+			is_decimal_format := False
+		ensure
+			not_is_decimal_format: not is_decimal_format
+		end
 
 feature -- Cursor movement
 
 feature -- Element change
+
+	set_decimals (n_decimals: INTEGER) is
+			-- Set number of digits in fractional part with `n_decimals'.
+		require
+			n_decimals_positive: n_decimals >= 0
+		do
+			decimals := n_decimals
+		ensure
+			decimals_copied: decimals = n_decimals
+		end
+
+	set_decimal_character (a_character: CHARACTER) is
+			-- Set decimal character with `a_character'.
+		do
+			decimal_character := a_character
+		ensure
+			decimal_character_copied: decimal_character = a_character
+		end
 
 feature -- Removal
 
@@ -159,7 +204,7 @@ feature -- Basic operations
 	formatted (a_time_duration: DT_TIME_DURATION): STRING is
 			-- Result of formatting `a_time_duration'.
 		do
-			!!last_formatted.make (width)
+			create last_formatted.make (width)
 
 			if a_time_duration /= Void then
 					if is_decimal_format then
@@ -208,6 +253,26 @@ feature -- Inapplicable
 feature -- Constants
 
 feature {NONE} -- Implementation
+
+
+	decimal_format (a_width, an_hour_part,a_minute_part,a_second_part, a_millisecond_part: INTEGER): STRING is
+			-- Hours Minutes,seconds and milliseconds as a fraction of an hour.
+		local
+			l_double_format : FM_DOUBLE_FORMAT
+			l_double : DOUBLE
+		do
+			create l_double_format.make (a_width, decimals)
+			l_double_format.no_justify
+			l_double_format.hide_positive_sign
+			l_double_format.show_zero
+			l_double_format.set_decimal_character (decimal_character)
+			l_double_format.set_suffix_string (Void)
+			l_double_format.set_prefix_string (Void)
+			l_double_format.hide_thousand_separator
+			l_double_format.disable_zero_prefix
+			l_double := an_hour_part + (a_minute_part / 60) + (a_second_part / 3600) + (a_millisecond_part / 3600000)
+			Result := l_double_format.formatted (l_double)
+		end
 
 invariant
 	

@@ -5,9 +5,9 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:35 $";
-	revision: "$Revision: 1.1 $";
-	author: "Fafchamps eric"
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
+	author: "Fafchamps Eric"
 
 deferred class TEST_TEXT_FORMAT
 
@@ -50,24 +50,24 @@ feature -- Basic operations
 			f: FM_TEXT_FORMAT
 			text: TEXT
 		do
-			!! text.make (1)
-			!!f.make (5)
+			Create  text.make (1)
+			Create f.make (5)
 			assert_equal ("format empty text for a columnwidth of 5", "", f.formatted (text).out)
 
-			!! text.make (1)			
+			Create  text.make (1)			
 			text.append_paragraph ("First paragraph")
-			!!f.make (5)
+			Create f.make (5)
 			assert_equal ("format 'First paragraph' in a columnwidth of 5", "First%N para%Ngraph", f.formatted (text).out)
 
-			!! text.make (2)			
+			Create  text.make (2)			
 			text.append_paragraph ("First")
 			text.append_paragraph ("Second")
-			!!f.make (3)
+			Create f.make (3)
 			assert_equal ("format 'First' and 'Second' in a column width of 3", "Fir%Nst%NSec%Nond", f.formatted (text).out)
 
-			!! text.make (1)			
+			Create  text.make (1)			
 			text.append_paragraph ("aa bb cccc")
-			!!f.make (8)
+			Create f.make (8)
 			f.enable_word_wrapping
 			assert_equal ("format 'aa bb cccc' in a columnwidth of 8 with word wrapping", "aa bb %Ncccc", f.formatted (text).out)			
 		end

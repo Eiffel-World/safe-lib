@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2005/05/16 18:03:44 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps Eric"
 
 class
@@ -31,7 +31,7 @@ feature {NONE} -- Initialization
 		require
 			positive_n: n >= 0
 		do
-			!!paragraphs_i.make (n)
+			create paragraphs_i.make (n)
 		ensure
 			is_empty: is_empty
 		end	
@@ -73,7 +73,7 @@ feature -- Access
 		require
 			not_is_empty: not is_empty
 		do
-			!!Result.make (paragraphs_i.count, paragraphs_i.item (paragraphs_i.count).count)
+			create Result.make (paragraphs_i.count, paragraphs_i.item (paragraphs_i.count).count)
 		ensure
 			defined: Result /= Void
 		end
@@ -95,7 +95,7 @@ feature -- Access
 			loop
 				substring_index := paragraphs_cursor.item.substring_index (a_string, 1)
 				if  substring_index > 0 then
-					!!Result.make (paragraphs_cursor.index, substring_index)
+					create Result.make (paragraphs_cursor.index, substring_index)
 				end
 				paragraphs_cursor.forth
 			end
@@ -273,7 +273,7 @@ feature -- Element change
 		local
 			elks_string: ELKS_STRING
 		do
-			!!elks_string.make_from_string (paragraphs_i.item (a_text_position.paragraph_position))
+			create elks_string.make_from_string (paragraphs_i.item (a_text_position.paragraph_position))
 			elks_string.insert_character (a_character, a_text_position.character_position)	
 		ensure
 			on_character_more: paragraphs_i.item (a_text_position.paragraph_position).count = old (paragraphs_i.item (a_text_position.paragraph_position).count) + 1	
@@ -295,9 +295,9 @@ feature -- Element change
 				paragraphs_cursor.start
 				target_index := a_text_position.paragraph_position
 				
-				!!estring.make_from_string (paragraphs_i.item (target_index))
+				create estring.make_from_string (paragraphs_i.item (target_index))
 				if estring.is_empty then
-					!!right.make (1)
+					create right.make (1)
 				else
 					--| save right substring
 					right := estring.substring (a_text_position.character_position, estring.count)
@@ -337,7 +337,7 @@ feature -- Element change
 				paragraphs_cursor.start
 				target_index := a_paragraph_index
 				
-				!!estring.make_from_string (paragraphs_i.item (target_index))
+				create estring.make_from_string (paragraphs_i.item (target_index))
 				estring.string.append_string (paragraphs_cursor.item)
 				paragraphs_cursor.forth
 			until
@@ -391,7 +391,7 @@ feature -- Element change
 			loop
 				string_position := first_position_of_string (a_string)
 				--| remove a_string from Current
-				!!estring.make_from_string (paragraphs_i.item (string_position.paragraph_position))
+				create estring.make_from_string (paragraphs_i.item (string_position.paragraph_position))
 				estring.remove_substring (string_position.character_position, string_position.character_position + a_string.count - 1)
 				if not a_text.is_empty then
 					--| insert or append a_text
@@ -428,7 +428,7 @@ feature -- Element change
 			first: ESTRING
 			second: ESTRING	
 		do
-			!!first.make_from_string (paragraphs_i.item (a_text_position.paragraph_position))
+			create first.make_from_string (paragraphs_i.item (a_text_position.paragraph_position))
 			second := first.substring (a_text_position.character_position, first.count)
 			first.head (a_text_position.character_position - 1)
 			if a_text_position.paragraph_position < count then
@@ -484,7 +484,7 @@ feature -- Duplication
 			-- (This is also used by `clone'.)
 		do
 			if other /= Current then
-				!!paragraphs_i.make (other.count)
+				create paragraphs_i.make (other.count)
 				from
 					other.paragraphs.start
 				until
@@ -508,7 +508,7 @@ feature -- Output
 			paragraphs_cursor: DS_BILINEAR_CURSOR [STRING]
 		do
 			from
-				!!Result.make (paragraphs.count * 40)
+				create Result.make (paragraphs.count * 40)
 				paragraphs_cursor := paragraphs.new_cursor
 				paragraphs_cursor.start
 			until
