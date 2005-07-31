@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2005/05/16 18:03:44 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2005/07/31 18:22:28 $";
+	revision: "$Revision: 1.3 $";
 	author: "Fafchamps Eric"
 
 deferred class TEST_TEXT_FORMAT
@@ -47,29 +47,42 @@ feature -- Basic operations
 	test_text_format is
 			-- Test feature `format'.
 		local
-			f: FM_TEXT_FORMAT
-			text: TEXT
+			l_text_format: FM_TEXT_FORMAT
+			l_text: TEXT
 		do
-			Create  text.make (1)
-			Create f.make (5)
-			assert_equal ("format empty text for a columnwidth of 5", "", f.formatted (text).out)
+			create  l_text.make (1)
 
-			Create  text.make (1)			
-			text.append_paragraph ("First paragraph")
-			Create f.make (5)
-			assert_equal ("format 'First paragraph' in a columnwidth of 5", "First%N para%Ngraph", f.formatted (text).out)
+			create l_text_format.make (5)
+			assert_equal ("Check default format for empty text", "", l_text_format.formatted (l_text).out)
 
-			Create  text.make (2)			
-			text.append_paragraph ("First")
-			text.append_paragraph ("Second")
-			Create f.make (3)
-			assert_equal ("format 'First' and 'Second' in a column width of 3", "Fir%Nst%NSec%Nond", f.formatted (text).out)
+			l_text.wipe_out
+			l_text.append_paragraph ("First paragraph")
+			assert_equal ("Check default format for a text that exceeds the columnwidth", "First%N para%Ngraph", l_text_format.formatted (l_text).out)
 
-			Create  text.make (1)			
-			text.append_paragraph ("aa bb cccc")
-			Create f.make (8)
-			f.enable_word_wrapping
-			assert_equal ("format 'aa bb cccc' in a columnwidth of 8 with word wrapping", "aa bb %Ncccc", f.formatted (text).out)			
+			l_text.wipe_out
+			l_text.append_paragraph ("First")
+			l_text.append_paragraph ("Second")
+			assert_equal ("Check default format for a text with multiple paragraphs", "First%NSecon%Nd", l_text_format.formatted (l_text).out)
+
+			l_text.wipe_out
+			l_text.append_paragraph ("aaa bb cccc")
+			l_text_format.enable_word_wrapping
+			assert_equal ("Check enable_word_wrapping", "aaa %Nbb %Ncccc", l_text_format.formatted (l_text).out)
+			
+			l_text_format.disable_word_wrapping
+			assert_equal ("Check disable_word_wrapping", "aaa b%Nb ccc%Nc", l_text_format.formatted (l_text).out)
+
+			l_text_format.set_left_margin_width (1)
+			assert_equal ("Check set_left_margin_width (1)", " aaa %N bb c%N ccc", l_text_format.formatted (l_text).out)
+
+			l_text_format.set_right_margin_width (2)
+			assert_equal ("Check set_right_margin_width (2)", " aa%N a %N bb%N  c%N cc%N c", l_text_format.formatted (l_text).out)
+
+			l_text.wipe_out
+			l_text.append_paragraph ("UNDEFINED")
+			l_text_format.set_void_text (l_text)
+			assert_equal ("Check set_void_text ", " UN%N DE%N FI%N NE%N D", l_text_format.formatted (Void).out)
+			
 		end
 
 feature -- Obsolete

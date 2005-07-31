@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2005/05/16 18:03:44 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2005/07/31 18:22:28 $";
+	revision: "$Revision: 1.3 $";
 	author: "Fafchamps Eric"
 
 class
@@ -45,6 +45,7 @@ feature {NONE} -- Initialization.
 			is_seconds_part_shown := shared_default_format.is_seconds_part_shown
 			is_milliseconds_part_shown := shared_default_format.is_milliseconds_part_shown
 			is_leading_zero_shown := shared_default_format.is_leading_zero_shown
+			insufficient_width_handler := shared_default_format.insufficient_width_handler
 		ensure
 			width_copied: width = a_width
 			padding_character_default: padding_character = shared_default_format.padding_character 
@@ -57,6 +58,7 @@ feature {NONE} -- Initialization.
 			seconds_part_visibility: is_seconds_part_shown = shared_default_format.is_seconds_part_shown
 			milliseconds_part_visibility: is_milliseconds_part_shown = shared_default_format.is_milliseconds_part_shown
 			leading_zero_shown_default: is_leading_zero_shown = shared_default_format.is_leading_zero_shown		
+			insufficient_width_handler_default: insufficient_width_handler = shared_default_format.insufficient_width_handler
 		end
 
 	make_default is
@@ -73,7 +75,8 @@ feature {NONE} -- Initialization.
 			show_time_separator
 			hide_seconds_part
 			hide_milliseconds_part
-			show_leading_zero		
+			show_leading_zero
+			create insufficient_width_handler
 		ensure
 			width_is_1 : width = 1
 			padding_character_is_blank : padding_character.is_equal (' ')
@@ -174,7 +177,7 @@ feature -- Basic operations
 				format_suffix
 
 				if last_formatted.count > width then
-					handle_insufficient_width (a_time)
+					last_formatted := insufficient_width_handler.string_with_valid_width (a_time, Current)
 				end
 			else
 				if void_string /= Void then

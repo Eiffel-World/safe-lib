@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2005/05/16 18:03:44 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2005/07/31 18:22:28 $";
+	revision: "$Revision: 1.3 $";
 	author: "Fafchamps eric"
 
 class
@@ -39,6 +39,7 @@ feature {NONE} -- Initialization.
 			is_four_digits_year := shared_default_format.is_four_digits_year
 			is_leading_zero_shown := shared_default_format.is_leading_zero_shown
 			is_date_separator_shown := shared_default_format.is_date_separator_shown
+			insufficient_width_handler := shared_default_format.insufficient_width_handler			
 		ensure
 			width_copied: width = a_width
 			void_string_default: equal (void_string, shared_default_format.void_string)
@@ -51,6 +52,7 @@ feature {NONE} -- Initialization.
 			order_default: order = shared_default_format.order
 			four_digits_year_default: is_four_digits_year = shared_default_format.is_four_digits_year
 			leading_zero_shown_default: is_leading_zero_shown = shared_default_format.is_leading_zero_shown		
+			insufficient_width_handler_default: insufficient_width_handler = shared_default_format.insufficient_width_handler			
 		end
 
 
@@ -69,6 +71,7 @@ feature {NONE} -- Initialization.
 				select_ymd_order
 				enable_four_digits_year
 				show_leading_zero	
+				create insufficient_width_handler
 			ensure
 				width_is_1 : width = 1
 				void_string_is_void : void_string = Void				
@@ -316,7 +319,7 @@ feature -- Basic operations
 				format_suffix
 
 				if last_formatted.count > width then
-					handle_insufficient_width (a_date)
+					last_formatted := insufficient_width_handler.string_with_valid_width (a_date, Current)
 				end
 			else
 				if void_string /= Void then

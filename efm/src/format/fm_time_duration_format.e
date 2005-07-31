@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2005/05/16 18:03:44 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2005/07/31 18:22:28 $";
+	revision: "$Revision: 1.4 $";
 	author: "Fafchamps Eric"
 
 class
@@ -48,6 +48,7 @@ feature {NONE} -- Initialization.
 			decimals := shared_default_format.decimals
 			decimal_character := shared_default_format.decimal_character
 			is_decimal_format := shared_default_format.is_decimal_format
+			insufficient_width_handler := shared_default_format.insufficient_width_handler			
 		ensure
 			width_copied: width = a_width
 			padding_character_default: padding_character = shared_default_format.padding_character 
@@ -63,6 +64,7 @@ feature {NONE} -- Initialization.
 			decimals_default : decimals = shared_default_format.decimals
 			decimal_character_default: decimal_character = shared_default_format.decimal_character
 			is_decimal_format_default: is_decimal_format = shared_default_format.is_decimal_format
+			insufficient_width_handler_default: insufficient_width_handler = shared_default_format.insufficient_width_handler
 		end
 
 		make_default is
@@ -83,6 +85,7 @@ feature {NONE} -- Initialization.
 				set_decimal_character ('.')
 				set_decimals (1)
 				disable_decimal_format
+				create insufficient_width_handler
 			ensure
 				width_is_1 : width = 1
 				padding_character_is_blank : padding_character.is_equal (' ')
@@ -203,28 +206,31 @@ feature -- Basic operations
 
 	formatted (a_time_duration: DT_TIME_DURATION): STRING is
 			-- Result of formatting `a_time_duration'.
+		local
+			l_time_duration: DT_TIME_DURATION
 		do
 			create last_formatted.make (width)
 
 			if a_time_duration /= Void then
+					l_time_duration := a_time_duration.to_canonical
 					if is_decimal_format then
-						last_formatted.append_string (decimal_format (width, a_time_duration.hour,a_time_duration.minute,a_time_duration.second, a_time_duration.millisecond))
+						last_formatted.append_string (decimal_format (width, l_time_duration.hour,l_time_duration.minute,l_time_duration.second, l_time_duration.millisecond))
 					else						
-						last_formatted.append_string (hours_part (a_time_duration.hour))
+						last_formatted.append_string (l_time_duration.hour.out)
 						if is_time_separator_shown then 
 							last_formatted.append_character (time_separator)
 						end
-						last_formatted.append_string (minutes_part (a_time_duration.minute))
+						last_formatted.append_string (minutes_part (l_time_duration.minute))
 						if is_seconds_part_shown then
 							if is_time_separator_shown then 
 								last_formatted.append_character (time_separator)
 							end
-							last_formatted.append_string (seconds_part (a_time_duration.second))
+							last_formatted.append_string (seconds_part (l_time_duration.second))
 							if is_milliseconds_part_shown then
 								if is_time_separator_shown then 
 									last_formatted.append_character (time_separator)
 								end
-								last_formatted.append_string (milliseconds_part (a_time_duration.millisecond))
+								last_formatted.append_string (milliseconds_part (l_time_duration.millisecond))
 							end
 						end
 					end					
@@ -232,7 +238,7 @@ feature -- Basic operations
 				format_suffix
 
 				if last_formatted.count > width then
-					handle_insufficient_width (a_time_duration)
+					last_formatted := insufficient_width_handler.string_with_valid_width (l_time_duration, Current)
 				end
 			else
 				if void_string /= Void then
@@ -254,7 +260,6 @@ feature -- Constants
 
 feature {NONE} -- Implementation
 
-
 	decimal_format (a_width, an_hour_part,a_minute_part,a_second_part, a_millisecond_part: INTEGER): STRING is
 			-- Hours Minutes,seconds and milliseconds as a fraction of an hour.
 		local
@@ -273,8 +278,6 @@ feature {NONE} -- Implementation
 			l_double := an_hour_part + (a_minute_part / 60) + (a_second_part / 3600) + (a_millisecond_part / 3600000)
 			Result := l_double_format.formatted (l_double)
 		end
-
-invariant
 	
 end -- class FM_TIME_DURATION_FORMAT
 

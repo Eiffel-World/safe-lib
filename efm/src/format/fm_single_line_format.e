@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2005/05/16 18:03:44 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2005/07/31 18:22:28 $";
+	revision: "$Revision: 1.5 $";
 	author: "Fafchamps Eric"
 
 deferred class
@@ -181,6 +181,16 @@ feature -- Element change
 			padding_character_copied: padding_character = a_character
 		end
 
+	set_insufficient_width_handler (an_insufficient_width_handler: FM_INSUFFICIENT_WIDTH_HANDLER [G]) is
+			-- Set insufficient with handler with `an_insufficient_width_handler'.
+		require
+			an_insufficient_width_handler_not_void: an_insufficient_width_handler /= Void
+		do
+			insufficient_width_handler := an_insufficient_width_handler
+		ensure
+			insufficient_width_handler_shared: insufficient_width_handler = an_insufficient_width_handler
+		end
+
 feature -- Removal
 
 feature -- Resizing
@@ -233,7 +243,12 @@ feature {FM_SINGLE_LINE_FORMAT} -- Implementation
 
 	justification: INTEGER
 			-- Justification.
-			
+
+	insufficient_width_handler: FM_INSUFFICIENT_WIDTH_HANDLER [G]
+			-- Insufficient with handler.
+
+feature {FM_SINGLE_LINE_FORMAT, FM_INSUFFICIENT_WIDTH_HANDLER}
+
 	last_formatted: STRING
 			-- Last formatted object.
 
@@ -265,19 +280,6 @@ feature {NONE} -- Implementation
 			when no_justification then
 				--| nothing to do	
 			end
-		end
-
-	handle_insufficient_width (an_object: G) is
-			-- Handle the case of having insufficient width to format `an_object'.
-		require
-			last_formatted /= Void
-		local 
-			estring: ESTRING
-		do
-			create estring.make_from_string (last_formatted)
-			estring.head (width)
-		ensure
-			sufficient_width: last_formatted.count <= width
 		end
 
 	format_prefix is
@@ -316,6 +318,7 @@ invariant
 	prefix_string_width: prefix_string /= Void implies prefix_string.count <= width
 	suffix_width: suffix_string /= Void implies suffix_string.count <= width
 	prefix_suffix_width: (prefix_string /= void and suffix_string /= Void) implies prefix_string.count + suffix_string.count <= width
+	insufficient_width_handler_not_void: insufficient_width_handler /= Void
 	
 end -- class FM_SINGLE_LINE_FORMAT
 

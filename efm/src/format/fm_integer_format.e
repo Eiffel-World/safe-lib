@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2005/05/16 18:03:44 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2005/07/31 18:22:28 $";
+	revision: "$Revision: 1.3 $";
 	author: "Fafchamps eric"
 
 class
@@ -38,6 +38,7 @@ feature {NONE} -- Initialization.
 			is_zero_shown := shared_default_format.is_zero_shown
 			is_thousand_separator_shown := shared_default_format.is_thousand_separator_shown
 			is_zero_prefix_enabled := shared_default_format.is_zero_prefix_enabled
+			insufficient_width_handler := shared_default_format.insufficient_width_handler
 		ensure
 			width_copied: width = a_width
 			padding_character_default: padding_character = shared_default_format.padding_character 
@@ -51,6 +52,7 @@ feature {NONE} -- Initialization.
 			is_zero_shown_default: is_zero_shown = shared_default_format.is_zero_shown
 			is_thousand_separator_shown_default: is_thousand_separator_shown = shared_default_format.is_thousand_separator_shown
 			is_zero_prefix_enabled_default: is_zero_prefix_enabled = shared_default_format.is_zero_prefix_enabled
+			insufficient_width_handler_default: insufficient_width_handler = shared_default_format.insufficient_width_handler
 		end
 
 		make_default is
@@ -69,6 +71,7 @@ feature {NONE} -- Initialization.
 				show_zero
 				disable_zero_prefix
 				show_thousand_separator
+				create insufficient_width_handler
 			ensure
 				width_is_1 : width = 1
 				padding_character_is_blank : padding_character.is_equal (' ')
@@ -172,7 +175,7 @@ feature -- Basic operations
 				format_suffix
 
 				if last_formatted_estring.count > width then
-					handle_insufficient_width (an_integer)
+					last_formatted := insufficient_width_handler.string_with_valid_width (an_integer, Current)
 				end				
 			else
 				if void_string /= Void then
