@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2005/11/29 10:24:47 $"
 
 class ECLI_STORED_PROCEDURE
 
@@ -150,7 +150,4 @@ feature {NONE} -- Implementation
 			directed_parameters.item (i).bind (Current, i)	
 		end
 		
-invariant
-	invariant_clause: True -- Your invariant here
-
 end
