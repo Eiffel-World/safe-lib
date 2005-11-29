@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are images coming from a PNG file"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/10 20:21:15 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2005/11/29 10:31:41 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	PDF_PNG_IMAGE
@@ -84,9 +84,9 @@ feature -- Status report
 	is_valid : BOOLEAN is
 			-- is this a valid image ?
 		do 
-			Result := (image /= Void)
+			Result := (image /= default_pointer)
 		ensure
-			definition: Result = (image /= Void)
+			definition: Result = (image /= default_pointer)
 		end
 		
 feature {NONE} -- Access
