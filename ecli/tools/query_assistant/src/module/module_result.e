@@ -1,11 +1,11 @@
 indexing
-	description: "Module result metadata"
+	description: "Module result metadata."
 
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/12/07 21:13:05 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2005/11/29 09:46:30 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	MODULE_RESULT
@@ -79,7 +79,7 @@ feature {NONE} -- implementation
 
 end -- class MODULE_RESULT
 --
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2005, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

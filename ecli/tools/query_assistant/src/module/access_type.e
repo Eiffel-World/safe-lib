@@ -1,8 +1,8 @@
 indexing
-	description: "Access type enumeration"
+	description: "Access type enumeration."
 	author: "Paul G. Crismer & others."
-	date: "$Date: 2004/12/07 21:13:05 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2005/11/29 09:46:30 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ACCESS_TYPE

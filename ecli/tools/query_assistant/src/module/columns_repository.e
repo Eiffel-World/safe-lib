@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that handle cached accesses to database repository"
+	description: "Objects that handle cached accesses to database repository."
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/12/07 21:13:05 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2005/11/29 09:46:30 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	COLUMNS_REPOSITORY

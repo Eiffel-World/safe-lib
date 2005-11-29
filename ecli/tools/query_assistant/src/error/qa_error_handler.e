@@ -5,9 +5,9 @@ indexing
 		"Error handlers."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/25 13:35:23 $"
+	date: "$Date: 2005/11/29 09:46:30 $"
 
 class QA_ERROR_HANDLER
 

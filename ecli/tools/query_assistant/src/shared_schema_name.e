@@ -1,11 +1,11 @@
 indexing
-	description: "Objects that share a same schema name"
+	description: "Objects that share a same schema name."
 
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:24 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2005/11/29 09:46:30 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	SHARED_SCHEMA_NAME
@@ -32,7 +32,7 @@ feature -- Element change
 
 end -- class SHARED_SCHEMA_NAME
 --
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2005, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

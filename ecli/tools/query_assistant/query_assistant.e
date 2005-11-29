@@ -1,8 +1,8 @@
 indexing
-	description: "Query assistant"
+	description: "Query assistant."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:26 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2005/11/29 09:46:30 $"
+	revision: "$Revision: 1.15 $"
 	licensing: "See notice at end of class"
 
 class
@@ -526,7 +526,7 @@ feature {NONE} -- Implementation
 		
 end -- class QUERY_ASSISTANT
 --
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2005, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

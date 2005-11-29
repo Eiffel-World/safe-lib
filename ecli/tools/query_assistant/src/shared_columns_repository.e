@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that give access to a shared columns repository object"
+	description: "Objects that give access to a shared columns repository object."
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/06/24 19:40:44 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2005/11/29 09:46:30 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	SHARED_COLUMNS_REPOSITORY

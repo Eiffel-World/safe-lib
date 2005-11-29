@@ -2,12 +2,12 @@ indexing
 
 	description:
 	
-			"Database Errors"
+			"Database Errors."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 21:13:05 $"
+	date: "$Date: 2005/11/29 09:46:30 $"
 
 class
 	QA_DATABASE_ERROR

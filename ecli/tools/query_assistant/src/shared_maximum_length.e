@@ -1,8 +1,8 @@
 indexing
-	description: "Accesses to shared maximum length"
+	description: "Accesses to shared maximum length."
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/04/13 10:05:06 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2005/11/29 09:46:30 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	SHARED_MAXIMUM_LENGTH
