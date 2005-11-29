@@ -2,12 +2,12 @@ indexing
 
 	description: 
 	
-		"Objects that trace SQL execution on an output medium"
+		"Objects that trace SQL execution on an output medium."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/09 23:41:24 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
 
 class ECLI_TRACER
 

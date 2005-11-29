@@ -2,12 +2,12 @@ indexing
 
 	description:
 	
-			"Objects that know the iso TIMESTAMP format and are able to convert from/to it"
+			"Objects that know the iso TIMESTAMP format and are able to convert from/to it."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:44 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
 
 class ECLI_TIMESTAMP_FORMAT
 

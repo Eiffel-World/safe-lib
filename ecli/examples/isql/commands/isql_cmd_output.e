@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that direct further output to a specific file"
+	description: "Objects that direct further output to a specific file."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/26 19:33:05 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ISQL_CMD_OUTPUT

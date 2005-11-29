@@ -5,9 +5,9 @@ indexing
 			"Cursors over the SQL types supported by the datasource related to a session."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/10/26 14:56:50 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
 
 class ECLI_SQL_TYPES_CURSOR
 
@@ -62,7 +62,7 @@ feature -- Initialization
 
 	make_by_type, open_by_type (a_session : ECLI_SESSION; a_type : INTEGER) is
 		obsolete
-			" Use `make' "
+			" Use `make' ."
 		require
 			session_opened: a_session /= Void and then a_session.is_connected
 			valid_type: Integer_array_.has (supported_types, a_type)

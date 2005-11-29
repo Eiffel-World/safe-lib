@@ -2,12 +2,12 @@ indexing
 
 	description: 
 
-		"Objects that represent typed values to be exchanged with the database"
+		"Objects that represent typed values to be exchanged with the database."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 21:25:19 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
 
 deferred class ECLI_GENERIC_VALUE [G]
 

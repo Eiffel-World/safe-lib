@@ -5,9 +5,9 @@ indexing
 			"Connection attribute constants : keys and values."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/24 19:40:43 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
 
 class ECLI_CONNECTION_ATTRIBUTE_CONSTANTS
 

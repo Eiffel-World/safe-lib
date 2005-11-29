@@ -5,9 +5,9 @@ indexing
 			"ISO Date formats and conversion facilities."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/11/16 20:55:40 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
 
 class ECLI_DATE_FORMAT
 

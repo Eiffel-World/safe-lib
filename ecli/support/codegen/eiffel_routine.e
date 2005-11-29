@@ -1,9 +1,9 @@
 indexing
-	description: "Objects that can represent either Eiffel functions or procedures"
+	description: "Objects that can represent either Eiffel functions or procedures."
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "Eiffel Code Generator"
-	date: "$Date: 2004/06/24 19:40:44 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
+	revision: "$Revision: 1.5 $"
 	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
 	copyright: "Copyright (c) 2001 Glenn Maughan and others"
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."

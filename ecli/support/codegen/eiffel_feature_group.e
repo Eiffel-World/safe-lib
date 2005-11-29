@@ -1,9 +1,9 @@
 indexing
-	description: "Objects that represent a group of Eiffel feature with common export status"
+	description: "Objects that represent a group of Eiffel feature with common export status."
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "Eiffel Code Generator"
-	date: "$Date: 2004/06/24 19:40:44 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
+	revision: "$Revision: 1.3 $"
 	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
 	copyright: "Copyright (c) 2001 Glenn Maughan and others"
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."

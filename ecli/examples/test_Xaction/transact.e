@@ -1,8 +1,8 @@
 indexing
-	description: "Transaction test appliation";
+	description: "Transaction test appliation."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 class
 	TRANSACT
@@ -216,7 +216,7 @@ feature -- Initialization
 
 end -- class TRANSACT
 --
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2005, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

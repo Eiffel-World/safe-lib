@@ -1,8 +1,8 @@
 indexing
-	description: "Sample Application that use query assistant generated routines";
+	description: "Sample Application that use query assistant generated routines.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/07/25 18:24:23 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 class
 	QA_EXAMPLE
@@ -130,7 +130,7 @@ feature -- Basic Operations
 
 end -- class QA_EXAMPLE
 --
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright: 2000-2005, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

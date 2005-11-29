@@ -9,9 +9,9 @@ indexing
 			%Individual column items can be accessed by name or by index."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/01/09 20:43:36 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
 
 class ECLI_ROW_CURSOR
 

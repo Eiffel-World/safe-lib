@@ -2,12 +2,12 @@ indexing
 
 	description:
 	
-			"VARBINARY large data"
+			"SQL VARBINARY large data transferred from/into a file."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/09/01 19:49:41 $"
+	date: "$Date: 2005/11/29 09:47:38 $"
 
 class ECLI_FILE_VARBINARY
 
