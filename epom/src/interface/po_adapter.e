@@ -28,8 +28,8 @@ indexing
 	
 
 	Usage: "Inherit.  Define all deferred features."
-	date: "$Date: 2005/03/08 20:17:40 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2005/11/29 10:14:26 $"
+	revision: "$Revision: 1.10 $"
 
 deferred class PO_ADAPTER [G -> PO_PERSISTENT]
 
@@ -333,8 +333,10 @@ feature -- Contract support
 	is_cached (object : like object_anchor) : BOOLEAN is
 			-- Is `object' in cache ?
 		require
-			persistent_object: object /= Void and then object.is_persistent
+			persistent_object: object /= Void
 		deferred
+		ensure
+			is_cached_implies_is_persistent: Result implies object.is_persistent
 		end
 	
 	as_adapter_persistent : PO_ADAPTER[PO_PERSISTENT] is

@@ -20,8 +20,8 @@
 	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
 	%	exact-match or multiple-match queries, respectively."
 		
-	date: "$Date: 2005/03/08 20:17:39 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2005/11/29 10:14:26 $"
+	revision: "$Revision: 1.8 $"
 
 deferred class ECLI_SIMPLE_ADAPTER[G->PO_PERSISTENT]
 
@@ -53,7 +53,7 @@ feature {NONE} -- Initialization
 			a_datastore_not_void: a_datastore /= Void
 		do
 			datastore := a_datastore
-			datastore.register_adapter (Current)
+			datastore.register_adapter (as_adapter_persistent)
 			create {PO_HASHED_CACHE[G]}cache.make (10)
 			create last_cursor.make
 		ensure

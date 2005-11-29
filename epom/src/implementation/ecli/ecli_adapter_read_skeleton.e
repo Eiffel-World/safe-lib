@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/03/08 20:17:39 $"
+	date: "$Date: 2005/11/29 10:14:26 $"
 
 deferred class ECLI_ADAPTER_READ_SKELETON[G->PO_PERSISTENT]
 
@@ -103,12 +103,16 @@ feature {NONE} -- Implementation
 					create_object_from_read_cursor (a_cursor, a_pid)
 					if last_object /= Void then
 						fill_object_from_read_cursor (a_cursor, last_object)				
-						last_object.set_pid (a_pid)
-						if is_enabled_cache_on_read then
-							cache.put (last_object)
+						if status.is_ok then
+							last_object.set_pid (a_pid)
+							if is_enabled_cache_on_read then
+								cache.put (last_object)
+							end
+							last_cursor.add_object (last_object)
+							a_cursor.go_after
+						else
+							last_cursor.wipe_out
 						end
-						last_cursor.add_object (last_object)
-						a_cursor.go_after
 					else
 						status.set_framework_error (status.error_could_not_create_object)
 					end

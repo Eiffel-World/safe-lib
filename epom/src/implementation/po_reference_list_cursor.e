@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/08 10:43:56 $"
+	date: "$Date: 2005/11/29 10:14:26 $"
 
 class PO_REFERENCE_LIST_CURSOR[G->PO_PERSISTENT]
 
@@ -85,6 +85,14 @@ feature {PO_ADAPTER} -- Element change
 		do
 			create a_reference.set_pid_from_adapter (adapter)
 			add_reference (a_reference)
+		end
+
+	wipe_out is
+			-- Wipe out elements.
+		do
+			list.wipe_out
+		ensure
+			empty: is_empty
 		end
 		
 feature {NONE} -- Implementation
