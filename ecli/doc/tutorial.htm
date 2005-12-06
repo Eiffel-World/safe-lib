@@ -54,8 +54,8 @@
 	<p class="title">ECLI Tutorial</p>
 	<p class="author">Paul G. Crismer</p>
 	<p class="email">pgcrism @ users.sourceforge.net</p>
-	<pre>$Date: 2005/11/29 09:47:38 $</pre>
-	<pre>$Revision: 1.22 $</pre>
+	<pre>$Date: 2005/12/06 19:40:39 $</pre>
+	<pre>$Revision: 1.23 $</pre>
 </div>
 <div id="toc">
 <ol>
@@ -109,9 +109,9 @@ available  on various platforms : Windows, Unix, Linux</DD>
 	<DT><b>Multicompiler</b></DT><DD>it uses as portable Eiffel   as
 possible, and has already been tested using
 		<UL>
-			<LI>ISE Eiffel 5.3 and</LI>
-			<LI>SmartEiffel, </LI>
-			<LI>Visual Eiffel 4.1.</LI>
+			<LI>ISE Eiffel 5.5, 5.6 and</LI>
+			<LI>GOBO-supported SmartEiffel, </LI>
+			<LI>Visual Eiffel 5.0.</LI>
 
 		</DD>
 </DL>
@@ -545,13 +545,13 @@ driver.</dd>
 
       </table>
 
-      <p>A basic error handling routine would look like this
+      <p>A basic status hanling routine would look like this
  : </p>
 
  <div id="code">
  <pre>
 
- handle_error (status : ECLI_STATUS) is
+ handle_status (status : ECLI_STATUS) is
  	do
  		if status.<b>has_information_message</b> or status.<b>is_error</b> then
  			print (status.<b>cli_state</b>)
