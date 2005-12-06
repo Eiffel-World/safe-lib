@@ -44,11 +44,11 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2005/12/06 19:38:59 $"
 
 class ECLI_TYPE_CONSTANTS
 
-feature {NONE} -- SQL data type indicators
+feature {ANY} -- SQL data type indicators
 
 	Sql_all_types	:	INTEGER is	0
 		--  GetTypeInfo() request for all data types 

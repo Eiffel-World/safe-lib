@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2005/12/06 19:38:59 $"
 
 class
 	ECLI_TYPE_CATALOG
@@ -16,9 +16,9 @@ inherit
 	ANY
 	
 	ECLI_TYPE_CONSTANTS
-		export 
-			{NONE} all
-		end
+--		export 
+--			{NONE} all
+--		end
 		
 creation
 	

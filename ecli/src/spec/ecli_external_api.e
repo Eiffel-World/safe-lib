@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2005/12/06 19:38:59 $"
 
 class ECLI_EXTERNAL_API
 
@@ -60,6 +60,10 @@ feature {NONE} -- Implementation
 		end
 
 	ecli_c_set_pointer_connection_attribute (ConnectionHandle : POINTER; Attribute : INTEGER; ValuePtr : POINTER; StringLength : INTEGER)  : INTEGER is
+		external "C"
+		end
+
+	ecli_c_get_pointer_connection_attribute (ConnectionHandle : POINTER; Attribute : INTEGER; ValuePtr : POINTER; BufferLength : INTEGER; StringLengthPtr : POINTER)  : INTEGER is
 		external "C"
 		end
 
