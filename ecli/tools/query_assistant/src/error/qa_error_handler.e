@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:46:30 $"
+	date: "$Date: 2005/12/21 16:17:00 $"
 
 class QA_ERROR_HANDLER
 
@@ -66,9 +66,20 @@ feature -- File
 		require
 			file_name_not_void: file_name /= Void
 		local
-			error : UT_CANNOT_READ_FILE_ERROR
+			error : QA_FILE_ERROR
 		do
-			create error.make (file_name)
+			create error.make_cannot_read (file_name)
+			report_error (error)
+		end
+
+	report_cannot_write_file (file_name : STRING) is		
+			-- Report file `file_name' cannot' be written.
+		require
+			file_name_not_void: file_name /= Void
+		local
+			error : QA_FILE_ERROR
+		do
+			create error.make_cannot_write (file_name)
 			report_error (error)
 		end
 		
