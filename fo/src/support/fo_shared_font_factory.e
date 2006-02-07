@@ -1,8 +1,13 @@
 indexing
-	description: "Objects that share a single font factory object."
-	author: "Paul G. Crismer"
-	date: "$Date: 2006/01/26 18:27:04 $"
-	revision: "$Revision: 1.1 $"
+
+	description: 
+	
+		"Objects that share a single font factory object."
+
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2006/02/07 15:52:45 $"
 
 class
 	FO_SHARED_FONT_FACTORY
@@ -11,37 +16,4 @@ feature -- Access
 
 	font_factory : FO_FONT_FACTORY is once create Result.make end
 
-feature -- Measurement
-
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
-
-feature {NONE} -- Implementation
-
-invariant
-	invariant_clause: True -- Your invariant here
-
-end -- class FO_SHARED_FONT_FACTORY
+end

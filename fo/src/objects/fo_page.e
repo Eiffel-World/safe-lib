@@ -1,14 +1,13 @@
 indexing
-	description: "Objects that..."
 
-	usage: ""
-	quality: ""
-	refactoring: ""
+	description: 
+		
+		"Pages in a document."
 
-	status: "see notice at end of class";
-	date: "$Date: 2006/01/26 18:27:03 $";
-	revision: "$Revision: 1.1 $";
-	author: ""
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2006/02/07 15:52:45 $"
 
 class FO_PAGE
 
@@ -41,16 +40,6 @@ feature -- Access
 	section : FO_SECTION
 			-- Related section
 			
-feature -- Measurement
-
-feature -- Comparison
-
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
 feature -- Element change
 
 	set_rendered_region (a_region : FO_RECTANGLE) is
@@ -62,32 +51,6 @@ feature -- Element change
 			rendered_region_set: rendered_region = a_region
 		end
 		
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
-
-feature -- Constants
-
-feature {NONE} -- Implementation
-
-invariant
-
-	
-
 end
 
 

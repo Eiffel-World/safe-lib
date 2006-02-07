@@ -1,14 +1,13 @@
 indexing
-	description: "Objects that..."
 
-	usage: ""
-	quality: ""
-	refactoring: ""
+	description: 
+	
+		"Encoding conversion routines."
 
-	status: "see notice at end of class";
-	date: "$Date: 2006/01/26 18:27:04 $";
-	revision: "$Revision: 1.1 $";
-	author: ""
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2006/02/07 15:52:45 $"
 
 class FO_ENCODING_CONVERSION_ROUTINES
 

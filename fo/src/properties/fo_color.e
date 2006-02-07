@@ -1,8 +1,13 @@
 indexing
-	description: "Objects that are 24 bit RGB colors"
-	author: ""
-	date: "$Date: 2006/01/26 18:27:04 $"
-	revision: "$Revision: 1.1 $"
+
+	description: 
+		
+		"Objects that are 24 bit RGB colors"
+
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2006/02/07 15:52:45 $"
 
 class
 	FO_COLOR
@@ -95,4 +100,4 @@ invariant
 	green_within_bounds: green >= 0 and green <= 255
 	blue_within_bounds: blue >= 0 and blue <= 255
 
-end -- class FO_COLOR
+end

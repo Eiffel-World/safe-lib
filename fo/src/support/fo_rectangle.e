@@ -1,8 +1,13 @@
 indexing
-	description: "Measurement rectangles"
-	author: "Paul G. Crismer"
-	date: "$Date: 2006/01/26 18:27:04 $"
-	revision: "$Revision: 1.1 $"
+
+	description: 
+	
+		"Measurement rectangles"
+
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2006/02/07 15:52:45 $"
 
 class
 	FO_RECTANGLE
@@ -13,8 +18,7 @@ inherit
 			valid_bottom,
 			valid_left,
 			valid_right,
-			valid_top--,
---			valid_rectangle
+			valid_top
 		end
 		
 creation
@@ -106,6 +110,8 @@ feature -- Transformation
 feature -- Conversion
 
 	as_pdf : PDF_RECTANGLE is
+		local
+		
 		do
 			create Result.set(left.as_points, 
 							bottom.as_points, 
@@ -164,4 +170,4 @@ invariant
 	not_negative_width: width /= Void and width.sign >= 0
 	not_negative_height: height /= Void and height.sign >= 0
 	
-end -- class FO_RECTANGLE
+end

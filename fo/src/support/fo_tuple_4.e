@@ -1,8 +1,13 @@
 indexing
-	description: "4-uples"
-	author: "Paul G. Crismer"
-	date: "$Date: 2006/01/26 18:27:04 $"
-	revision: "$Revision: 1.1 $"
+
+	description: 
+	
+		"4-uples"
+
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2006/02/07 15:52:45 $"
 
 class
 	FO_TUPLE_4
@@ -153,4 +158,4 @@ invariant
 	left_not_void: left /= Void
 	right_not_void: right /= Void
 	
-end -- class FO_TUPLE_4
+end

@@ -1,8 +1,13 @@
 indexing
-	description: "Objects that can be colored"
-	author: "Paul G. Crismer"
-	date: "$Date: 2006/01/26 18:27:04 $"
-	revision: "$Revision: 1.1 $"
+
+	description: 
+	
+		"Objects that can be colored"
+
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2006/02/07 15:52:45 $"
 
 class
 	FO_COLOR_ABLE
@@ -60,4 +65,4 @@ invariant
 	background_color_not_void: background_color /= Void
 	foreground_color_not_void: foreground_color /= Void
 
-end -- class FO_COLOR_ABLE
+end

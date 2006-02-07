@@ -1,8 +1,13 @@
 indexing
-	description: "Factories of fonts"
-	author: "Paul G. Crismer"
-	date: "$Date: 2006/01/26 18:27:04 $"
-	revision: "$Revision: 1.1 $"
+
+	description: 
+
+		"Factories of fonts"
+
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2006/02/07 15:52:45 $"
 
 class
 	FO_FONT_FACTORY
@@ -175,4 +180,4 @@ feature {NONE} -- Implementation
 
 	dummy_document : PDF_DOCUMENT
 
-end -- class FO_FONT_FACTORY
+end
