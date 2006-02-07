@@ -1,42 +1,20 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2003/08/19 15:38:06 $"
-	revision: "$Revision: 1.1 $"
+	description: "ZLIB format."
+	author: "Paul G. Crismer"
+	date: "$Date: 2006/02/07 17:43:53 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ZLIB_FORMAT
-
-feature -- Access
 
 feature -- Measurement
 
 	last_encoded_count : INTEGER
 	
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
 feature -- Basic operations
 
 	encode (s : STRING) : STRING is
-			-- 
+			-- ZLIB encoded version of `s'.
 		local
 			input, output : XS_C_STRING
 			encoded_length : XS_C_INT32
@@ -51,17 +29,10 @@ feature -- Basic operations
 			Result := output.substring (1, last_encoded_count)
 		end
 		
-feature -- Obsolete
-
-feature -- Inapplicable
-
 feature {NONE} -- Implementation
 
 	zlib_compress (dest, dest_len, src : POINTER; src_len : INTEGER) : INTEGER is
 		external "C"
 		end
 		
-invariant
-	invariant_clause: True -- Your invariant here
-
 end -- class ZLIB_FORMAT

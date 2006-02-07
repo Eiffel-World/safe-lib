@@ -1,27 +1,18 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2002/03/20 15:19:06 $"
-	revision: "$Revision: 1.1 $"
+	description: "Page dictionary"
+	author: "Paul G. Crismer"
+	date: "$Date: 2006/02/07 17:43:53 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	PDF_PAGE_DICTIONARY
 
-	-- Replace ANY below by the name of parent class if any (adding more parents
-	-- if necessary); otherwise you can remove inheritance clause altogether.
 inherit
 	PDF_DICTIONARY
-
--- The following Creation_clause can be removed if you need no other
--- procedure than `default_create':
-
-creation
-	default_create
 
 feature -- Initialization
 
 feature -- Access
-
 
 feature -- Measurement
 

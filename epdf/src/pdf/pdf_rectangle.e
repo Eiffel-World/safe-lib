@@ -1,8 +1,8 @@
 indexing
 	description: "PDF Rectangle"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/10/04 20:19:44 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2006/02/07 17:43:53 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	PDF_RECTANGLE
@@ -15,6 +15,8 @@ inherit
 		export 
 			{NONE} all;
 			{ANY} to_pdf
+		redefine
+			to_pdf_item
 		end
 		
 creation
@@ -130,6 +132,7 @@ feature -- Element change
 			lower_x_smaller_upper_x: a_llx < a_urx
 			lower_y_smaller_upper_y: a_lly < a_ury
 		do
+			make_pdf_array (1, 4)
 			put (a_llx, 1)
 			put (a_lly, 2)
 			put (a_urx, 3)
@@ -141,6 +144,21 @@ feature -- Element change
 			ury_set: ury = a_ury
 		end
 
+feature -- Conversion
+
+	to_pdf_item (n: INTEGER) : STRING is
+		do
+			Result := number_routines.formatted (item (n))
+		end
+
+feature -- Implementation
+		
+	number_routines : PDF_NUMBER_OPERATORS is
+		once
+			create Result
+		end
+		
+	
 invariant
 	
 	x_constraint: llx < urx
