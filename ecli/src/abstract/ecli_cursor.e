@@ -7,13 +7,24 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2006/02/16 15:41:59 $"
 
 deferred class ECLI_CURSOR
 
 inherit
 
 	ECLI_QUERY
+		redefine
+			real_execution
+		end
+		
+feature -- Status report
+
+	real_execution : BOOLEAN is
+		do
+			Result := True
+		end
+		
 			
 feature -- Cursor movement
 

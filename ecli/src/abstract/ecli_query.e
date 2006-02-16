@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2006/02/16 15:41:59 $"
 
 deferred class ECLI_QUERY
 
@@ -26,7 +26,7 @@ inherit
 				has_parameters,execute, bind_parameters, put_parameter, prepare, parameters_count, bound_parameters,
 				is_parsed, parameters, has_parameter, native_code, raise_exception_on_error, exception_on_error
 		redefine
-			make
+			make, execute
 		end
 
 	ANY
@@ -61,7 +61,34 @@ feature -- Access
 			-- Cursor definition (i.e. SQL text); remains constant.
 		deferred
 		end
-			
+
+feature -- Status report
+
+	real_execution : BOOLEAN is			
+			-- Is this statement really executed?
+		do
+			Result := True
+			debug ("ecli_fake_execution")
+				Result := False
+			end
+		end
+		
+
+feature -- Basic operations
+
+	execute is
+		do
+			if real_execution then
+				Precursor
+			else
+				reset_status
+				is_executed := True
+				if session.is_tracing then
+					trace (session.tracer)
+				end
+			end
+		end
+		
 invariant
 	definition_not_void: definition /= Void
 	sql_is_definition: sql /= Void and then sql.is_equal (definition)

@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/12/06 19:38:59 $"
+	date: "$Date: 2006/02/16 15:41:59 $"
 
 class ECLI_EXTERNAL_API
 
@@ -235,6 +235,10 @@ feature {NONE} -- Implementation
 		external "C"
 		end
 
+	ecli_c_sql_get_info (handle : POINTER; info_type: INTEGER; info_value_ptr: POINTER; buffer_length : INTEGER; string_length_ptr: POINTER) : INTEGER is
+		external "C" 
+		end
+		
 	ecli_c_sql_drivers (handle : POINTER;
 			Direction : INTEGER;
 			DriverDescription : POINTER;

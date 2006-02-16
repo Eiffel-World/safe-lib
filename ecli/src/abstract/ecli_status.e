@@ -8,7 +8,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2006/02/16 15:41:59 $"
 
 deferred class ECLI_STATUS
 
@@ -216,6 +216,7 @@ feature {NONE} -- Implementation
 	impl_buffer_length_indicator : XS_C_INT32
 	
 invariant
+
 	valid_status: valid_status (status)
 
 end

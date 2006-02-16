@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2006/02/16 15:41:59 $"
 
 class ECLI_STATEMENT
 
@@ -129,6 +129,14 @@ feature {ECLI_SESSION} -- Basic Operations
 		
 feature -- Access
 
+	info : ECLI_DBMS_INFORMATION is
+			-- DBMS information
+		do
+			Result := session.info
+		ensure
+			info_not_void: Result /= Void
+		end
+		
 	sql : STRING
 			-- Sql statement to be executed
 

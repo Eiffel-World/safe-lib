@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that ..."
+	description: "NUMBER/DECIMAL values."
 	author: ""
-	date: "$Date: 2005/03/08 20:14:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2006/02/16 15:41:59 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	QA_DECIMAL

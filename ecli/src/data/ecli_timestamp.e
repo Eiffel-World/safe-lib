@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2006/02/16 15:41:59 $"
 
 class ECLI_TIMESTAMP
 
@@ -65,7 +65,7 @@ feature {NONE} -- Initialization
 
 	make_first is
 			-- make first day of Christian era
-		obsolete "Use `make_first' instead"
+		obsolete "Use `make_default' instead"
 		do
 			make_default
 		ensure
