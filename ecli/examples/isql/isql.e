@@ -1,8 +1,8 @@
 indexing
 	description: "Command Line Interactive SQL for ODBC datasources.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2005/11/29 09:47:38 $"
-	revision: "$Revision: 1.25 $"
+	date: "$Date: 2006/02/16 15:36:04 $"
+	revision: "$Revision: 1.26 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -62,6 +62,7 @@ feature {NONE} -- Initialization
 					end
 					create tc.make(session)
 					l := tc.numeric_types
+					print (tc.types_for_id (tc.sql_decimal).first)
 				end
 				if session = Void or else session /= Void and then not session.is_connected then
 					current_context.filter.begin_error
