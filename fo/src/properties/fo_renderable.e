@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2006/02/16 17:29:22 $"
 
 deferred class
 	FO_RENDERABLE
@@ -36,7 +36,7 @@ feature -- Status report
 	is_render_inside : BOOLEAN
 		
 	is_renderable (region : FO_RECTANGLE) : BOOLEAN is	
-			-- Can Current be rendered totally in `region'?
+			-- Can Current be rendered in `region'?
 		do
 			Result := True
 		end

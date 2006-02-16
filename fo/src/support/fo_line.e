@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2006/02/16 17:29:22 $"
 
 class
 	FO_LINE
@@ -236,6 +236,14 @@ feature -- Element change
 			heigh_adapted: height.is_equal ((old height).max (inline.height))
 		end
 
+	append_character (a_character : CHARACTER) is
+		require
+			already_some_text: text.count >= 1
+		do
+			inlines.last.append_character (a_character)
+			width := width + inlines.last.character_width (a_character)
+		end
+		
 	merge_last (list : DS_LIST[FO_INLINE]) is		
 		require
 			list_not_void: list /= Void

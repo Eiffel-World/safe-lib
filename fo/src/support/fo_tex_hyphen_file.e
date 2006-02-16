@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2006/02/16 17:29:22 $"
 
 class FO_TEX_HYPHEN_FILE
 
@@ -98,26 +98,26 @@ feature {NONE} -- Implementation
 	hyphenation_regex : RX_PCRE_REGULAR_EXPRESSION is
 		once
 			create Result.make
-			Result.compile ("\hyphenation{")
+			Result.compile ("\\hyphenation\{")
 		end
 		
 	patterns_regex: RX_PCRE_REGULAR_EXPRESSION is
 		once
 			create Result.make
-			Result.compile ("\patterns{")
+			Result.compile ("\\patterns\{")
 		end
 		
 	search_for_hyphenation is
 		do
 			from
-				
+				do_nothing
 			until
-				end_of_input or else hyphenation_regex.matches (last_string)
+				end_of_file or else hyphenation_regex.matches (last_string)
 			loop
-				read_word				
+				hyphenation_regex.wipe_out
+				read_tex_word				
 			end
-			if end_of_input then
-				end_of_file := True
+			if end_of_file then
 				end_of_hyphenation := True
 			end
 		end
