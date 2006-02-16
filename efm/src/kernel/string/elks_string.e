@@ -48,7 +48,7 @@ feature -- Initialization
 			-- Reset contents of string from contents of c_string, 
 			-- a string created by some external C function.
 		require
-			C_string_exists: c_string /= Void
+			C_string_exists: c_string /= default_pointer
 		local
 			elks_string_portability: ELKS_STRING_PORTABILITY
 		do

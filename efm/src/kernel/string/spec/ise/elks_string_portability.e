@@ -14,7 +14,7 @@ feature -- Initialization
 			-- a string created by some external C function. 
 		require 
 			string_exists: string /= Void
-			c_string_exists: c_string /= Void 
+			c_string_exists: c_string /= default_pointer 
 		do 
 			string.from_c (c_string)
 		end 
