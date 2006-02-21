@@ -6,13 +6,15 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2006/02/21 20:13:40 $"
 
 
 class FO_IMAGE
 
 inherit
 	FO_RENDERABLE
+		undefine
+			post_render
 		redefine
 			pre_render, is_equal, render_forth
 		end
@@ -177,7 +179,7 @@ feature {FO_DOCUMENT, FO_RENDERABLE} -- Basic operations
 			last_region := region
 			is_prerendered := True
 		end
-		
+
 feature -- Obsolete
 
 feature -- Comparison

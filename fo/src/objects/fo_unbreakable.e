@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2006/02/21 20:13:40 $"
 
 class FO_UNBREAKABLE
 
@@ -78,6 +78,7 @@ feature {FO_DOCUMENT, FO_RENDERABLE} -- Basic operations
 					last_rendered_region := last_rendered_region.merged (c.item.last_rendered_region)
 				end
 				height := height + c.item.height
+				c.item.post_render (document, c.item.last_rendered_region)
 				is_render_off := is_render_off and c.item.is_render_off
 				c.forth
 			end

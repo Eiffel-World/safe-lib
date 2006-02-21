@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/16 17:29:22 $"
+	date: "$Date: 2006/02/21 20:13:40 $"
 
 class
 	FO_BLOCK
@@ -21,6 +21,8 @@ inherit
 		end
 
 	FO_RENDERABLE
+		undefine
+			post_render
 		redefine
 			pre_render, is_equal, out,
 			render_forth, is_renderable

@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/16 17:29:22 $"
+	date: "$Date: 2006/02/21 20:13:40 $"
 
 deferred class
 	FO_RENDERABLE
@@ -77,8 +77,7 @@ feature -- Basic operations
 			document_not_void: document /= Void
 			document_is_open: document.is_open
 			region_not_void: region /= Void
-			region_width_positive: region.width.sign = 1
-						
+			region_width_positive: region.width.sign = 1						
 		do	
 		ensure
 			last_region_set: last_region = region
@@ -88,6 +87,7 @@ feature -- Basic operations
 		end
 
 	pre_render (region : FO_RECTANGLE) is				
+			-- Execute any action needed before rendering on `region'.
 		require
 			region_not_void: region /= Void
 			region_width_positive: region.width.sign = 1
@@ -100,6 +100,16 @@ feature -- Basic operations
 			is_prerendered: is_prerendered
 		end
 
+	post_render (document : FO_DOCUMENT; region : FO_RECTANGLE) is
+			-- Execute any action needed after a `render_start' or a `render_forth'.
+		require
+			document_not_void: document /= Void
+			document_is_open: document.is_open
+			region_not_void: region /= Void
+			region_width_positive: region.width.sign = 1						
+		do		
+		end
+	
 feature {NONE} -- Implementation
 
 end
