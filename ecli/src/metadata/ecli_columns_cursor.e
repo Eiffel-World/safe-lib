@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2006/02/25 16:43:09 $"
 
 class ECLI_COLUMNS_CURSOR
 
@@ -48,7 +48,9 @@ feature {NONE} -- Initialization
 			-- search for column whose name matches `a_search_criteria' and `a_column_name'
 			-- Void values are wildcards
 		do
-			create queried_column_impl.make_from_string (a_column_name)
+			if a_column_name /= Void then 
+				create queried_column_impl.make_from_string (a_column_name)
+			end
 			make (a_search_criteria, a_session)
 		end
 

@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2005/12/21 16:17:00 $"
-	revision: "$Revision: 1.19 $"
+	date: "$Date: 2006/02/25 16:43:09 $"
+	revision: "$Revision: 1.20 $"
 
 
 class
@@ -161,7 +161,7 @@ feature -- Basic operations
 	print_prologue is
 			-- print application prologue
 		do
-			error_handler.report_banner ("v1.0rc6")
+			error_handler.report_banner ("v1.0rc7")
 			error_handler.report_copyright ("Paul G. Crismer and others", "2001-2005")
 			error_handler.report_license ("Eiffel Forum", "2.0")
 		end

@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/16 15:41:59 $"
+	date: "$Date: 2006/02/25 16:43:07 $"
 
 class ECLI_STATEMENT
 
@@ -576,7 +576,7 @@ feature -- Element change
 			row_not_void: row /= Void
 			row_lower: row.lower = 1
 			row_count: row.count > 0
-			is_executed: is_executed
+--			is_executed: is_executed
 		do
 			results := row
 		ensure
