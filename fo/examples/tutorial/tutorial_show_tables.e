@@ -6,8 +6,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/02/21 20:13:40 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2006/02/25 17:12:21 $";
+	revision: "$Revision: 1.3 $";
 	author: ""
 
 class TUTORIAL_SHOW_TABLES
@@ -103,12 +103,12 @@ feature {NONE} -- Implementation
 			a_table.last_row.put (a_block, 1)
 			
 			create a_block.make_default
-			a_block.append_string ("Phone "+i.out)
+			a_block.append_string (i.out+"-23456")
 			
 			a_table.last_row.put (a_block, 2)
 			
 			create a_block.make_default
-			a_block.append_string ("e-mail "+i.out)
+			a_block.append_string ("e"+i.out+"@mail.com")
 			
 			table.last_row.put (a_block, 3)
 		end

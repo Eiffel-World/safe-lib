@@ -1,17 +1,11 @@
 indexing
 	description: "Objects that have borders."
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/02/21 20:13:40 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2006/02/25 17:12:21 $"
+	revision: "$Revision: 1.4 $"
 
 deferred class
 	FO_BORDER_ABLE
-
-inherit
-	FO_RENDERABLE
-		undefine
-			is_renderable, render_forth, pre_render, post_render
-		end
 		
 feature -- Initialization
 
