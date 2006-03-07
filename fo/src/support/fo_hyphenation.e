@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/25 17:12:21 $"
+	date: "$Date: 2006/03/07 17:08:48 $"
 
 class FO_HYPHENATION
 
@@ -102,7 +102,7 @@ feature -- Basic operations
 						done_substring or else substring_end > hword.count
 					loop
 						dictionary.search_key (hword.substring (substring_begin, substring_end))
-						if dictionary.found then
+						if dictionary.found_key then
 							if dictionary.found_item /= Void then
 								handle_vector (dictionary.found_item, substring_begin, substring_end)
 							end

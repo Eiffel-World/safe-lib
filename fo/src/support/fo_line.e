@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/25 17:12:21 $"
+	date: "$Date: 2006/03/07 17:08:48 $"
 
 class
 	FO_LINE
@@ -234,9 +234,7 @@ feature -- Element change
 					inlines.put_last (inline)
 			end
 			width := width + inline.width
-			if height = Void or else height < inline.height then
-				height := inline.height
-			end
+			height := height.max (inline.height)
 		ensure
 			width_adapted: width.is_equal ((old width) + inline.width)
 			heigh_adapted: height.is_equal ((old height).max (inline.height))
@@ -338,7 +336,7 @@ feature {FO_DOCUMENT, FO_RENDERABLE} -- Basic operations
 			end
 			create last_rendered_region.set (
 					region.left,
-					region.top - bounding_box.height,
+					region.top - height, --bounding_box.height,
 					region.right,
 					region.top)
 			--| establish postcondition
