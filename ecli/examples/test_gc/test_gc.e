@@ -1,8 +1,8 @@
 indexing
 	description: "Test for objects garbage collection.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2005/11/29 09:47:38 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2006/03/07 17:10:08 $"
+	revision: "$Revision: 1.11 $"
 	licensing: "See notice at end of class"
 class
 	TEST_GC
@@ -135,7 +135,7 @@ feature -- Initialization
 	
 end -- class TEST_GC
 --
--- Copyright: 2000-2005, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright (c) 2000-2006, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

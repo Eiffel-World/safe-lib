@@ -1,8 +1,8 @@
 indexing
 	description: "Tools for Eiffel/External (to C) communication"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/19 15:52:28 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2006/03/07 17:10:11 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -44,7 +44,7 @@ invariant
 
 end -- class XS_C_EXTERNAL_TOOLS
 --
--- Copyright: 2000-2003, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright (c) 2000-2006, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

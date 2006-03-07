@@ -1,8 +1,8 @@
 indexing
 	description: "Command Line Interactive SQL for ODBC datasources.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/02/16 15:36:04 $"
-	revision: "$Revision: 1.26 $"
+	date: "$Date: 2006/03/07 17:10:08 $"
+	revision: "$Revision: 1.27 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -191,7 +191,7 @@ feature {NONE} -- Implementation
 			current_context.output_file.put_string (
 				"CLISQL - Command Line Interactive SQL for ODBC datasources.%N%N%
 				%This application has been developed using the Eiffel language.%N%
-				%Copyright (C) Paul G. Crismer 2000-2005. %N%
+				%Copyright (C) Paul G. Crismer 2000-2006. %N%
 				%SAFE project (http://safe.sourceforge.net).%N%
 				%Released under the Eiffel Forum License version 1.%N%N%
 				%Type%N%
@@ -303,7 +303,7 @@ feature {NONE} -- Implementation
 	
 end -- class ISQL
 --
--- Copyright: 2000-2005, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright (c) 2000-2006, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

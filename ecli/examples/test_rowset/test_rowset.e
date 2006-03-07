@@ -1,8 +1,8 @@
 indexing
 	description: "ECLI test of rowset classes.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2005/11/29 09:47:38 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2006/03/07 17:10:08 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET
@@ -125,11 +125,11 @@ feature {NONE} -- Implementation
 	
 	set_error (message, value : STRING) is
 		do
-						!!error_message.make (0)
-						error_message.append_string (message)
-						error_message.append_string (" '")
-						error_message.append_string (value)
-						error_message.append_string ("'")		
+			!!error_message.make (0)
+			error_message.append_string (message)
+			error_message.append_string (" '")
+			error_message.append_string (value)
+			error_message.append_string ("'")		
 		ensure
 			error_message /= Void
 		end
@@ -156,7 +156,7 @@ feature {NONE} -- Implementation
 		
 end -- class TEST_ROWSET
 --
--- Copyright: 2000-2005, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright (c) 2000-2006, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

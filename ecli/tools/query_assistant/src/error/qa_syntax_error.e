@@ -5,9 +5,9 @@ indexing
 			"Syntax Errors."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:46:30 $"
+	date: "$Date: 2006/03/07 17:10:10 $"
 
 class QA_SYNTAX_ERROR
 

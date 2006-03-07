@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/02/25 16:43:09 $"
-	revision: "$Revision: 1.20 $"
+	date: "$Date: 2006/03/07 17:10:10 $"
+	revision: "$Revision: 1.21 $"
 
 
 class
@@ -33,6 +33,8 @@ feature {NONE} -- Initialization
 
 	make is
 			-- generate access modules
+		local
+			t : ECLI_TYPE_CATALOG
 		do
 			Arguments.set_program_name ("query_assistant")
 			create error_handler.make_standard
@@ -162,7 +164,7 @@ feature -- Basic operations
 			-- print application prologue
 		do
 			error_handler.report_banner ("v1.0rc7")
-			error_handler.report_copyright ("Paul G. Crismer and others", "2001-2005")
+			error_handler.report_copyright ("Paul G. Crismer and others", "2001-2006")
 			error_handler.report_license ("Eiffel Forum", "2.0")
 		end
 
@@ -626,7 +628,7 @@ invariant
 
 end -- class ACCESS_GEN
 --
--- Copyright: 2000-2005, Paul G. Crismer, <pgcrism@users.sourceforge.net>
+-- Copyright (c) 2000-2006, Paul G. Crismer, <pgcrism@users.sourceforge.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

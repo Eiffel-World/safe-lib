@@ -6,8 +6,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2004/12/12 20:21:34 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2006/03/07 17:10:10 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps Eric"
 
 class
@@ -57,7 +57,7 @@ invariant
 end -- class FM_FORMAT
 
 --
--- Copyright: 2000-2004, Eric Fafchamps <eric.fafchamps@belgacom.net>
+-- Copyright (c) 2000-2006, Eric Fafchamps <eric.fafchamps@belgacom.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

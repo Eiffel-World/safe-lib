@@ -5,9 +5,9 @@ indexing
 			"SQL VARBINARY large data transferred from/into a file."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/16 15:41:59 $"
+	date: "$Date: 2006/03/07 17:10:08 $"
 
 class ECLI_FILE_VARBINARY
 
@@ -24,12 +24,6 @@ feature -- Access
 	sql_type_code : INTEGER is
 		do
 			Result := Sql_varbinary
-		end
-
-	c_type_code : INTEGER is
-		do
-			Result := sql_c_binary
-		end
 		end
 		
 end

@@ -1,4 +1,5 @@
 indexing
+
 	description:
 
 		"Objects that ..."
@@ -6,7 +7,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/04/27 19:13:15 $"
+	date: "$Date: 2006/03/07 17:10:10 $"
 
 class ECLI_DECIMAL
 

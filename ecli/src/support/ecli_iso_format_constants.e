@@ -5,9 +5,9 @@ indexing
 			"Date and Time ISO formats and corresponding helper functions."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
-	copyright: "Copyright (c) 2001-2005, Paul G. Crismer and others"
+	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2006/03/07 17:10:09 $"
 
 class ECLI_ISO_FORMAT_CONSTANTS
 
@@ -69,37 +69,4 @@ feature -- Access
 			Result.append_string (time_to_string (timestamp.time))
 		end
 		
-feature -- Measurement
-
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
-
-feature {NONE} -- Implementation
-
-invariant
-	invariant_clause: True -- Your invariant here
-
 end

@@ -1,8 +1,8 @@
 indexing
 	description: "Root class for Eiffel Format Demonstration";
 	author: "Eric Fafchamps"
-	date: "$Date: 2005/05/16 18:03:44 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2006/03/07 17:10:10 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 class
 	DEMONSTRATION_ROOT
@@ -42,7 +42,7 @@ feature {NONE} -- Implementation
 end -- class TRANSACT
 
 --
--- Copyright: 2001-2005, Eric Fafchamps <eric.fafchamps@belgacom.net>
+-- Copyright (c) 2001-2006, Eric Fafchamps <eric.fafchamps@belgacom.net>
 -- Released under the Eiffel Forum License <www.eiffel-forum.org>
 -- See file <forum.txt>
 --

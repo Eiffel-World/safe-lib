@@ -28,8 +28,8 @@ indexing
 	]"
 		
 	author: ""
-	date: "$Date: 2004/07/06 20:15:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2006/03/07 17:10:11 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	RECTANGLE
@@ -108,17 +108,17 @@ feature -- Access
 				if lhs < rhs then bottom := lhs else bottom := rhs end
 				if right < left then 
 					a_x := 0
-					width := 0
+					a_width := 0
 				else 
 					a_x := left
-					width := right - left
+					a_width := right - left
 				end
 				if bottom < top then 
 					a_y := 0 
-					height := 0
+					a_height := 0
 				else 
 					a_y := top 
-					height := bottom - top
+					a_height := bottom - top
 				end
 				create Result.make (a_x, a_y, a_width, a_height)
 			end
