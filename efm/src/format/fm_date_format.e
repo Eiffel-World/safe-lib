@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/07 17:10:10 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2006/03/08 19:24:18 $";
+	revision: "$Revision: 1.5 $";
 	author: "Fafchamps eric"
 
 class
@@ -29,7 +29,6 @@ feature {NONE} -- Initialization.
 			a_width_strictly_positive: a_width > 0
 		do
 			width := a_width
-			set_void_string (shared_default_format.void_string)
 			set_padding_character (shared_default_format.padding_character)
 			set_prefix_string (shared_default_format.prefix_string)
 			set_suffix_string (shared_default_format.suffix_string)
@@ -42,7 +41,6 @@ feature {NONE} -- Initialization.
 			insufficient_width_handler := shared_default_format.insufficient_width_handler			
 		ensure
 			width_copied: width = a_width
-			void_string_default: equal (void_string, shared_default_format.void_string)
 			padding_character_default: padding_character = shared_default_format.padding_character 
 			prefix_string_default: equal (prefix_string, shared_default_format.prefix_string)
 			suffix_string_default: equal (suffix_string, shared_default_format.suffix_string)
@@ -55,13 +53,11 @@ feature {NONE} -- Initialization.
 			insufficient_width_handler_default: insufficient_width_handler = shared_default_format.insufficient_width_handler			
 		end
 
-
 		make_default is
 				-- Make with default values.
 				-- (used for the initialization of the shared_default_format)
 			do
 				width := 1
-				set_void_string (Void)				
 				set_padding_character (' ')
 				set_prefix_string (Void)
 				set_suffix_string (Void)
@@ -74,7 +70,6 @@ feature {NONE} -- Initialization.
 				create insufficient_width_handler
 			ensure
 				width_is_1 : width = 1
-				void_string_is_void : void_string = Void				
 				padding_character_is_blank : padding_character.is_equal (' ')
 				prefix_string_is_void : prefix_string = Void
 				suffix_string_is_void : suffix_string = Void
@@ -109,12 +104,19 @@ feature -- Comparison
 			-- equal to current object?
 		do
 			Result := 
-			precursor (other) and
-			equal (date_separator, other.date_separator) and
-			equal (is_date_separator_shown, other.is_date_separator_shown) and
-			equal (is_four_digits_year, other.is_four_digits_year) and
-			equal (is_leading_zero_shown, other.is_leading_zero_shown) and
-			equal (order, other.order)			
+				precursor (other) and
+				equal (date_separator, other.date_separator) and
+				equal (is_date_separator_shown, other.is_date_separator_shown) and
+				equal (is_four_digits_year, other.is_four_digits_year) and
+				equal (is_leading_zero_shown, other.is_leading_zero_shown) and
+				equal (order, other.order)			
+		ensure then
+			definition: Result implies 
+							equal (date_separator, other.date_separator) and
+							equal (is_date_separator_shown, other.is_date_separator_shown) and
+							equal (is_four_digits_year, other.is_four_digits_year) and
+							equal (is_leading_zero_shown, other.is_leading_zero_shown) and
+							equal (order, other.order)			
 		end
 
 feature -- Status report
@@ -122,9 +124,9 @@ feature -- Status report
 	can_format (a_date: DT_DATE) : BOOLEAN is
 			-- Can `a_date' be formatted by `Current'?
 		do
-			Result := True
+			Result := a_date /= Void
 		ensure then
-			is_true: Result = True
+			true_if_not_void: Result = (a_date /= Void)
 		end
 
 	is_ymd_ordered: BOOLEAN is
@@ -279,10 +281,19 @@ feature -- Basic operations
 		do
 			create last_formatted.make (width)
 
-			if a_date /= Void then
-
-				if is_ymd_ordered then
-					append_year (a_date)
+			if is_ymd_ordered then
+				append_year (a_date)
+				if is_date_separator_shown then
+					append_separator
+				end
+				append_month (a_date)
+				if is_date_separator_shown then
+					append_separator
+				end
+				append_day (a_date)	
+			else
+				if is_dmy_ordered then 
+					append_day (a_date)
 					if is_date_separator_shown then
 						append_separator
 					end
@@ -290,46 +301,30 @@ feature -- Basic operations
 					if is_date_separator_shown then
 						append_separator
 					end
-					append_day (a_date)	
+					append_year (a_date)
 				else
-					if is_dmy_ordered then 
-						append_day (a_date)
-						if is_date_separator_shown then
-							append_separator
-						end
-						append_month (a_date)
-						if is_date_separator_shown then
-							append_separator
-						end
-						append_year (a_date)
-					else
-						append_month (a_date)
-						if is_date_separator_shown then
-							append_separator
-						end
-						append_day (a_date)
-						if is_date_separator_shown then
-							append_separator
-						end
-						append_year (a_date)
+					append_month (a_date)
+					if is_date_separator_shown then
+						append_separator
 					end
+					append_day (a_date)
+					if is_date_separator_shown then
+						append_separator
+					end
+					append_year (a_date)
 				end
+			end
 
-				format_prefix 
-				format_suffix
+			format_prefix 
+			format_suffix
 
-				if last_formatted.count > width then
-					last_formatted := insufficient_width_handler.string_with_valid_width (a_date, Current)
-				end
-			else
-				if void_string /= Void then
-					last_formatted.copy (void_string)
-				end
+			if last_formatted.count > width then
+				last_formatted := insufficient_width_handler.string_with_valid_width (a_date, Current)
 			end
 			justify (padding_character)
 			Result := last_formatted
 		ensure then
-			date_separator: a_date /= Void and is_date_separator_shown implies Result.has (date_separator)
+			date_separator: is_date_separator_shown implies Result.has (date_separator)
 		end
 
 feature -- Obsolete

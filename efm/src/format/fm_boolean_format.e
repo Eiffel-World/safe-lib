@@ -5,15 +5,15 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/07 17:10:10 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2006/03/08 19:24:18 $";
+	revision: "$Revision: 1.5 $";
 	author: "Fafchamps eric"
 
 class
 	FM_BOOLEAN_FORMAT
 
 inherit
-	FM_SINGLE_LINE_FORMAT [BOOLEAN_REF]
+	FM_SINGLE_LINE_FORMAT [BOOLEAN]
 		redefine
 			is_equal,
 			copy
@@ -33,7 +33,6 @@ feature {NONE} -- Initialization.
 			set_padding_character (shared_default_format.padding_character)
 			set_prefix_string (shared_default_format.prefix_string)
 			set_suffix_string (shared_default_format.suffix_string)
-			set_void_string (shared_default_format.void_string)
 			justification := shared_default_format.justification
 			set_true_string (shared_default_format.true_string)
 			set_false_string (shared_default_format.false_string)
@@ -43,7 +42,6 @@ feature {NONE} -- Initialization.
 			padding_character_default: padding_character = shared_default_format.padding_character 
 			prefix_string_default: equal (prefix_string, shared_default_format.prefix_string)
 			suffix_string_default: equal (suffix_string, shared_default_format.suffix_string)
-			void_string_default: equal (void_string, shared_default_format.void_string)
 			justification_default: justification = shared_default_format.justification
 			true_string_default: equal (true_string, shared_default_format.true_string)
 			false_string_default: equal (false_string, shared_default_format.false_string)
@@ -60,7 +58,6 @@ feature {NONE} -- Initialization.
 				set_suffix_string (Void)
 				set_true_string ("1")
 				set_false_string ("0")
-				set_void_string (Void)
 				center_justify
 				create insufficient_width_handler
 			ensure
@@ -70,7 +67,6 @@ feature {NONE} -- Initialization.
 				suffix_string_is_void: suffix_string = Void
 				true_string_is_1: true_string.is_equal ("1")
 				false_string_is_0: false_string.is_equal ("0")
-				void_string_is_void: void_string = Void
 				is_center_justified: is_center_justified
 			end
 
@@ -99,14 +95,18 @@ feature -- Comparison
 			-- equal to current object?
 		do
 			Result := 
-			precursor (other) and
-			equal (true_string, other.true_string) and
-			equal (false_string, other.false_string)
+				precursor (other) and
+				equal (true_string, other.true_string) and
+				equal (false_string, other.false_string)
+		ensure then
+			definition: Result implies 
+						equal (true_string, other.true_string) and
+						equal (false_string, other.false_string)
 		end
 
 feature -- Status report
 
-	can_format (a_boolean: BOOLEAN_REF): BOOLEAN is
+	can_format (a_boolean: BOOLEAN): BOOLEAN is
 			-- Can `a_boolean' be formatted by `Current'?
 		do
 			Result := True
@@ -164,33 +164,26 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
-	formatted (a_boolean: BOOLEAN_REF): STRING is
+	formatted (a_boolean: BOOLEAN): STRING is
 			-- Result of formatting `a_boolean'.
 		do
-			create last_formatted.make (width)
-			
-			if a_boolean /= Void then
-				if a_boolean = True then
-					last_formatted.append_string (true_string)
-				else
-					last_formatted.append_string (false_string)
-				end	
-				format_prefix 
-				format_suffix
-		
-				if last_formatted.count > width then
-					last_formatted := insufficient_width_handler.string_with_valid_width (a_boolean, Current)
-				end
+			create last_formatted.make (width)			
+			if a_boolean.item = True then
+				last_formatted.append_string (true_string)
 			else
-				if void_string /= Void then
-					last_formatted.copy (void_string)
-				end
+				last_formatted.append_string (false_string)
+			end	
+			format_prefix 
+			format_suffix
+	
+			if last_formatted.count > width then
+				last_formatted := insufficient_width_handler.string_with_valid_width (a_boolean, Current)
 			end
 			justify (padding_character)
 			Result := last_formatted
 		ensure then
-			true_string: (a_boolean /= Void and a_boolean.item = True) implies Result.has_substring (true_string)
-			false_string: (a_boolean /= Void and a_boolean.item = False) implies Result.has_substring (false_string)
+			true_string: (a_boolean.item = True) implies Result.has_substring (true_string)
+			false_string: (a_boolean.item = False) implies Result.has_substring (false_string)
 		end
 
 feature -- Obsolete

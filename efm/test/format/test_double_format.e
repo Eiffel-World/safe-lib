@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/07 17:10:10 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2006/03/08 19:24:19 $";
+	revision: "$Revision: 1.4 $";
 	author: "Fafchamps Eric"
 
 deferred class TEST_DOUBLE_FORMAT
@@ -55,7 +55,6 @@ feature -- Basic operations
 			create l_format.make (3, 0)
 			
 			assert_equal ("Check default format for value 123", "123", l_format.formatted (l_double))
-			assert_equal ("Check default format for Void", "   ", l_format.formatted (Void))
 			
 			create l_format.make (21, 0)
 			assert_equal ("Check default padding character of format for value 123", "                  123", l_format.formatted (l_double))
@@ -78,9 +77,6 @@ feature -- Basic operations
 			l_format.no_justify
 			assert_equal ("Check no_justify of format for value 123", "prefix123suffix", l_format.formatted (l_double))
 			
-			l_format.set_void_string ("UNDEFINED")
-			assert_equal ("Check set_void_string of format for Void", "UNDEFINED", l_format.formatted (Void))
-
 			l_format.show_positive_sign
 			assert_equal ("Check show_positive_sign of format for value 123", "prefix+123suffix", l_format.formatted (l_double))
 

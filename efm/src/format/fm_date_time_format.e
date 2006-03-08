@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/07 17:10:10 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2006/03/08 19:24:18 $";
+	revision: "$Revision: 1.5 $";
 	author: "Fafchamps eric"
 
 class
@@ -34,7 +34,6 @@ feature {NONE} -- Initialization.
 			set_padding_character (shared_default_format.padding_character)
 			set_prefix_string (shared_default_format.prefix_string)
 			set_suffix_string (shared_default_format.suffix_string)
-			set_void_string (shared_default_format.void_string)
 			justification := shared_default_format.justification
 
 			create date_format.make (a_width)
@@ -96,7 +95,6 @@ feature {NONE} -- Initialization.
 			padding_character_default: padding_character = shared_default_format.padding_character 
 			prefix_string_default: equal (prefix_string, shared_default_format.prefix_string)
 			suffix_string_default: equal (suffix_string, shared_default_format.suffix_string)
-			void_string_default: equal (void_string, shared_default_format.void_string)
 			justification_default: justification = shared_default_format.justification
 			date_separator_default: date_separator = shared_default_format.date_separator
 			date_separator_visibility: is_date_separator_shown = shared_default_format.is_date_separator_shown
@@ -123,7 +121,6 @@ feature {NONE} -- Initialization.
 			set_padding_character (' ')
 			set_prefix_string (Void)
 			set_suffix_string (Void)
-			set_void_string (Void)
 			center_justify
 			set_date_separator ('-')
 			show_date_separator
@@ -142,7 +139,6 @@ feature {NONE} -- Initialization.
 			padding_character_is_blank: padding_character.is_equal (' ')
 			prefix_string_is_void: prefix_string = Void
 			suffix_string_is_void: suffix_string = Void
-			void_string_is_void: void_string = Void
 			is_center_justified: is_center_justified
 			date_separator_is_minus: date_separator.is_equal ('-')
 			is_date_separator_shown: is_date_separator_shown
@@ -190,10 +186,15 @@ feature -- Comparison
 			-- equal to current object?
 		do
 			Result := 
-			precursor (other) and
-			equal (date_format, other.date_format) and
-			equal (time_format, other.time_format) and
-			equal (date_time_separator, other.date_time_separator)
+				precursor (other) and
+				equal (date_format, other.date_format) and
+				equal (time_format, other.time_format) and
+				equal (date_time_separator, other.date_time_separator)
+		ensure then 
+			definition: Result implies 
+				equal (date_format, other.date_format) and
+				equal (time_format, other.time_format) and
+				equal (date_time_separator, other.date_time_separator)
 		end
 
 feature -- Status report
@@ -201,9 +202,9 @@ feature -- Status report
 	can_format (a_date_time: DT_DATE_TIME): BOOLEAN is
 			-- Can `a_date_time' be formatted by `Current'?
 		do
-			Result := True
+			Result := a_date_time /= Void
 		ensure then
-			is_true: Result = True
+			true_if_not_void: Result = (a_date_time /= Void)
 		end
 
 	is_ymd_ordered: BOOLEAN is
@@ -502,28 +503,22 @@ feature -- Basic operations
 			-- Result of formatting `a_date_time'.
 		do
 			create last_formatted.make (width)
-			if a_date_time /= Void then
-				last_formatted.append_string (date_format.formatted (a_date_time.date))
-				if date_time_separator /= Void then
-					last_formatted.append_string (date_time_separator)
-				end
-				last_formatted.append_string (time_format.formatted (a_date_time.time))
-				format_prefix 
-				format_suffix
-				if last_formatted.count > width then
-					last_formatted := insufficient_width_handler.string_with_valid_width (a_date_time, Current)
-				end
-			else
-				if void_string /= Void then
-					last_formatted.copy (void_string)
-				end			
+			last_formatted.append_string (date_format.formatted (a_date_time.date))
+			if date_time_separator /= Void then
+				last_formatted.append_string (date_time_separator)
+			end
+			last_formatted.append_string (time_format.formatted (a_date_time.time))
+			format_prefix 
+			format_suffix
+			if last_formatted.count > width then
+				last_formatted := insufficient_width_handler.string_with_valid_width (a_date_time, Current)
 			end
 			justify (padding_character)
 			Result := last_formatted
 		ensure then
-			date_separator: a_date_time /= Void and is_date_separator_shown implies Result.has (date_separator)			
-			time_separator: a_date_time /= Void and is_time_separator_shown implies Result.has (time_separator)
-			date_time_separator: a_date_time /= Void and date_time_separator /= Void implies Result.has_substring (date_time_separator)
+			date_separator: is_date_separator_shown implies Result.has (date_separator)			
+			time_separator: is_time_separator_shown implies Result.has (time_separator)
+			date_time_separator: date_time_separator /= Void implies Result.has_substring (date_time_separator)
 		end
 
 feature -- Obsolete
@@ -541,8 +536,8 @@ feature {FM_DATE_TIME_FORMAT} -- Implementation
 			-- Time format.
 
 invariant
-	date_format_defined : date_format /= Void
-	time_format_defined : time_format /= Void
+	date_format_defined: date_format /= Void
+	time_format_defined: time_format /= Void
 
 end -- class FM_DATE_FORMAT
 

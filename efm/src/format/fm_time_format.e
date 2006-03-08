@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/07 17:10:10 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2006/03/08 19:24:18 $";
+	revision: "$Revision: 1.5 $";
 	author: "Fafchamps Eric"
 
 class
@@ -38,7 +38,6 @@ feature {NONE} -- Initialization.
 			set_padding_character (shared_default_format.padding_character)
 			set_prefix_string (shared_default_format.prefix_string)
 			set_suffix_string (shared_default_format.suffix_string)
-			set_void_string (shared_default_format.void_string)			
 			justification := shared_default_format.justification
 			set_time_separator (shared_default_format.time_separator)
 			is_time_separator_shown := shared_default_format.is_time_separator_shown
@@ -51,7 +50,6 @@ feature {NONE} -- Initialization.
 			padding_character_default: padding_character = shared_default_format.padding_character 
 			prefix_string_default: equal (prefix_string, shared_default_format.prefix_string)
 			suffix_string_default: equal (suffix_string, shared_default_format.suffix_string)
-			void_string_default: equal (void_string, shared_default_format.void_string)
 			justification_default: justification = shared_default_format.justification
 			time_separator_default: time_separator = shared_default_format.time_separator
 			time_separator_visibility: is_time_separator_shown = shared_default_format.is_time_separator_shown
@@ -69,7 +67,6 @@ feature {NONE} -- Initialization.
 			set_padding_character (' ')
 			set_prefix_string (Void)
 			set_suffix_string (Void)
-			set_void_string (Void)			
 			center_justify
 			set_time_separator (':')
 			show_time_separator
@@ -82,7 +79,6 @@ feature {NONE} -- Initialization.
 			padding_character_is_blank : padding_character.is_equal (' ')
 			prefix_string_is_void : prefix_string = Void
 			suffix_string_is_void : suffix_string = Void
-			void_string_is_void : void_string = Void			
 			is_center_justified : is_center_justified
 			time_separator_is_colon : time_separator.is_equal (':')
 			is_time_separator_shown : is_time_separator_shown
@@ -110,13 +106,19 @@ feature -- Comparison
 			-- Is `other' attached to an object considered
 			-- equal to current object?
 		do
-			Result := 
-			precursor {FM_SINGLE_LINE_FORMAT} (other) and
-			equal (is_leading_zero_shown, other.is_leading_zero_shown) and
-			equal (is_milliseconds_part_shown, other.is_milliseconds_part_shown) and			
-			equal (is_seconds_part_shown, other.is_seconds_part_shown) and
-			equal (is_time_separator_shown, other.is_time_separator_shown) and
-			equal (time_separator, other.time_separator)
+			Result := 	precursor {FM_SINGLE_LINE_FORMAT} (other) and
+						equal (is_leading_zero_shown, other.is_leading_zero_shown) and
+						equal (is_milliseconds_part_shown, other.is_milliseconds_part_shown) and			
+						equal (is_seconds_part_shown, other.is_seconds_part_shown) and
+						equal (is_time_separator_shown, other.is_time_separator_shown) and
+						equal (time_separator, other.time_separator)
+		ensure then
+			definition: Result implies 	
+							equal (is_leading_zero_shown, other.is_leading_zero_shown) and
+							equal (is_milliseconds_part_shown, other.is_milliseconds_part_shown) and			
+							equal (is_seconds_part_shown, other.is_seconds_part_shown) and
+							equal (is_time_separator_shown, other.is_time_separator_shown) and
+							equal (time_separator, other.time_separator)
 		end
 
 feature -- Status report
@@ -124,9 +126,9 @@ feature -- Status report
 	can_format (a_time: DT_TIME) : BOOLEAN is
 			-- Can `a_time' be formatted by `Current'?
 		do
-			Result := True
+			Result := a_time /= Void
 		ensure then
-			is_true: Result = True
+			true_if_not_void: Result = (a_time /= Void)
 		end
 
 feature -- Status setting
@@ -154,40 +156,34 @@ feature -- Basic operations
 		do
 			create last_formatted.make (width)
 
-			if a_time /= Void then
-					last_formatted.append_string (hours_part (a_time.hour))
+			last_formatted.append_string (hours_part (a_time.hour))
+			if is_time_separator_shown then 
+				last_formatted.append_character (time_separator)
+			end
+			last_formatted.append_string (minutes_part (a_time.minute))
+			if is_seconds_part_shown then
+				if is_time_separator_shown then 
+					last_formatted.append_character (time_separator)
+				end
+				last_formatted.append_string (seconds_part (a_time.second))
+				if is_milliseconds_part_shown then
 					if is_time_separator_shown then 
 						last_formatted.append_character (time_separator)
 					end
-					last_formatted.append_string (minutes_part (a_time.minute))
-					if is_seconds_part_shown then
-						if is_time_separator_shown then 
-							last_formatted.append_character (time_separator)
-						end
-						last_formatted.append_string (seconds_part (a_time.second))
-						if is_milliseconds_part_shown then
-							if is_time_separator_shown then 
-								last_formatted.append_character (time_separator)
-							end
-							last_formatted.append_string (milliseconds_part (a_time.millisecond))
-						end
-					end
-					
-				format_prefix 
-				format_suffix
-
-				if last_formatted.count > width then
-					last_formatted := insufficient_width_handler.string_with_valid_width (a_time, Current)
+					last_formatted.append_string (milliseconds_part (a_time.millisecond))
 				end
-			else
-				if void_string /= Void then
-					last_formatted.copy (void_string)
-				end				
+			end
+			
+			format_prefix 
+			format_suffix
+
+			if last_formatted.count > width then
+				last_formatted := insufficient_width_handler.string_with_valid_width (a_time, Current)
 			end
 			justify (padding_character)
 			Result := last_formatted
 		ensure then
-			time_separator: a_time /= Void and is_time_separator_shown implies Result.has (time_separator)			
+			time_separator: is_time_separator_shown implies Result.has (time_separator)			
 		end
 
 feature -- Obsolete

@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/07 17:10:10 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2006/03/08 19:24:18 $";
+	revision: "$Revision: 1.7 $";
 	author: "Fafchamps Eric"
 
 deferred class
@@ -26,9 +26,6 @@ feature -- Access
 	width: INTEGER
 			-- Maximum allowed width.
 
-	void_string: STRING
-			-- String representation for Void.
-
 	prefix_string: STRING
 			-- String prepended to the Result of formatted.
 	
@@ -46,11 +43,14 @@ feature -- Comparison
 			-- Is `other' attached to an object considered
 			-- equal to current object?
 		do
-			Result :=
-			equal (last_formatted, other.last_formatted) and
-			equal (prefix_string, other.prefix_string) and
-			equal (suffix_string, other.suffix_string) and
-			equal (void_string, other.void_string)
+			Result := 	equal (last_formatted, other.last_formatted) and
+						equal (prefix_string, other.prefix_string) and
+						equal (suffix_string, other.suffix_string)
+		ensure then
+			definition: Result implies
+						 	equal (last_formatted, other.last_formatted) and
+						  	equal (prefix_string, other.prefix_string) and
+						  	equal (suffix_string, other.suffix_string)
 		end
 
 feature -- Status report
@@ -141,16 +141,6 @@ feature -- Cursor movement
 
 feature -- Element change
 
-	set_void_string (a_string: STRING) is
-			-- Set string representation for Void with `a_string'.
-		require
-			a_string_width: a_string /= Void implies a_string.count <= width
-		do
-			void_string := clone (a_string)
-		ensure
-			void_string_copied: equal (void_string, a_string) and (a_string /= Void implies void_string /= a_string)
-		end
-
 	set_prefix_string (a_prefix: STRING) is
 			-- Set prefix with `a_prefix'.
 		require
@@ -209,7 +199,6 @@ feature -- Duplication
 			last_formatted := clone (other.last_formatted)
 			set_prefix_string (other.prefix_string)
 			set_suffix_string (other.suffix_string)
-			set_void_string (other.void_string)
 		end
 
 feature -- Miscellaneous
@@ -222,11 +211,10 @@ feature -- Basic operations
 			can_format: can_format (an_object)
 		deferred		
 		ensure then
-			result_defined: Result /= Void
+			result_not_void: Result /= Void
 			no_new_line: not Result.has ('%N')
 			within_width: Result.count <= width
 			justified_implies_width: is_justified implies Result.count = width
-			void_string: (an_object = Void and void_string /= Void) implies (Result.has_substring (void_string))
 			has_prefix_string: (not is_insufficient_width_error and an_object /= Void and prefix_string /= Void) implies Result.has_substring (prefix_string)
 			left_justified_prefix_string: (not is_insufficient_width_error and an_object /= Void and is_left_justified and prefix_string /= Void) implies (equal (Result.substring (1, prefix_string.count), prefix_string))
 			has_suffix_string: (not is_insufficient_width_error and is_right_justified and suffix_string /= Void) implies Result.has_substring (suffix_string)
@@ -278,7 +266,7 @@ feature {NONE} -- Implementation
 			when right_justification then
 				estring.prepend_to_count (a_padding_character, width)
 			when no_justification then
-				--| nothing to do	
+				do_nothing
 			end
 		end
 

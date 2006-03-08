@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/07 17:10:10 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2006/03/08 19:24:18 $";
+	revision: "$Revision: 1.6 $";
 	author: "Fafchamps eric"
 
 class
@@ -35,7 +35,6 @@ feature {NONE} -- Initialization.
 			set_string_for_empty_string (shared_default_format.string_for_empty_string)
 			set_prefix_string (shared_default_format.prefix_string)
 			set_suffix_string (shared_default_format.suffix_string)
-			set_void_string (shared_default_format.void_string)			
 			justification := shared_default_format.justification
 			insufficient_width_handler := shared_default_format.insufficient_width_handler
 		ensure
@@ -45,7 +44,6 @@ feature {NONE} -- Initialization.
 			string_for_empty_string: equal (string_for_empty_string, shared_default_format.string_for_empty_string)
 			prefix_string_default: equal (prefix_string, shared_default_format.prefix_string)
 			suffix_string_default: equal (suffix_string, shared_default_format.suffix_string)
-			void_string_default: equal (void_string, shared_default_format.void_string)
 			justification_default: justification = shared_default_format.justification
 			insufficient_width_handler_default: insufficient_width_handler = shared_default_format.insufficient_width_handler
 		end
@@ -61,7 +59,6 @@ feature {NONE} -- Initialization.
 				set_string_for_empty_string (Void)
 				set_prefix_string (Void)
 				set_suffix_string (Void)
-				set_void_string (Void)				
 				left_justify
 				create insufficient_width_handler
 			ensure
@@ -70,7 +67,6 @@ feature {NONE} -- Initialization.
 				string_for_empty_string_is_void: string_for_empty_string = Void
 				prefix_string_is_void : prefix_string = Void
 				suffix_string_is_void : suffix_string = Void
-				void_string_is_void : void_string = Void
 				is_left_justified : is_left_justified
 			end
 
@@ -98,9 +94,9 @@ feature -- Comparison
 			-- Is `other' attached to an object considered
 			-- equal to current object?
 		do
-			Result := 
-			precursor (other) and
-			equal (string_for_empty_string, other.string_for_empty_string)
+			Result := precursor (other) and equal (string_for_empty_string, other.string_for_empty_string)
+		ensure then
+			definition: Result implies equal (string_for_empty_string, other.string_for_empty_string)
 		end
 
 feature -- Status report
@@ -108,9 +104,9 @@ feature -- Status report
 	can_format (a_string: STRING) : BOOLEAN is
 			-- Can `a_string be' formatted by `Current'?
 		do
-			Result := a_string = Void or else not a_string.has('%N')
+			Result := a_string /= Void and then not a_string.has('%N')
 		ensure then
-			has_not_new_lines: Result = (a_string = Void or else not a_string.has('%N'))
+			has_not_new_lines: Result = (a_string /= Void and then not a_string.has('%N'))
 		end
 
 feature -- Status setting
@@ -149,7 +145,7 @@ feature -- Duplication
 			-- Update current object using fields of object attached
 			-- to `other', so as to yield equal objects.
 		do
-			Precursor (other)
+			precursor (other)
 			set_string_for_empty_string (other.string_for_empty_string)
 		end
 
@@ -162,36 +158,29 @@ feature -- Basic operations
 		do
 			create last_formatted.make (width)
 
-			if a_string /= Void then
-				if a_string.is_empty then
-					if string_for_empty_string /= Void then
-						last_formatted.append_string (string_for_empty_string)
-					end
-					format_prefix
-					format_suffix
-					if last_formatted.count > width then
-						last_formatted := insufficient_width_handler.string_with_valid_width (a_string, Current)
-					end
-					justify (padding_character_for_empty_string)
-				else
-					last_formatted.append_string (a_string)
-					format_prefix
-					format_suffix
-					if last_formatted.count > width then
-						last_formatted := insufficient_width_handler.string_with_valid_width (a_string, Current)
-					end
-					justify (padding_character)
+			if a_string.is_empty then
+				if string_for_empty_string /= Void then
+					last_formatted.append_string (string_for_empty_string)
 				end
+				format_prefix
+				format_suffix
+				if last_formatted.count > width then
+					last_formatted := insufficient_width_handler.string_with_valid_width (a_string, Current)
+				end
+				justify (padding_character_for_empty_string)
 			else
-				if void_string /= Void then
-					last_formatted.copy (void_string)
+				last_formatted.append_string (a_string)
+				format_prefix
+				format_suffix
+				if last_formatted.count > width then
+					last_formatted := insufficient_width_handler.string_with_valid_width (a_string, Current)
 				end
 				justify (padding_character)
 			end
 			Result := last_formatted
 		ensure then
-			string_for_empty_string: (a_string /= Void and a_string.is_empty and string_for_empty_string /= Void) implies Result.has_substring (string_for_empty_string)
-			padding_character_for_empty_string: (a_string /= Void and a_string.is_empty and string_for_empty_string = Void and is_justified and prefix_string = Void and suffix_string = Void) implies Result.occurrences (padding_character_for_empty_string) = width
+			string_for_empty_string: (a_string.is_empty and string_for_empty_string /= Void) implies Result.has_substring (string_for_empty_string)
+			padding_character_for_empty_string: (a_string.is_empty and string_for_empty_string = Void and is_justified and prefix_string = Void and suffix_string = Void) implies Result.occurrences (padding_character_for_empty_string) = width
 		end
 
 feature -- Obsolete

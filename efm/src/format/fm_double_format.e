@@ -7,15 +7,15 @@ indexing
 					]"
 
 	status: "see notice at end of class";
-	date: "$Date: 2005/07/31 18:22:28 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2006/03/08 19:24:18 $";
+	revision: "$Revision: 1.4 $";
 	author: "Fafchamps Eric"
 
 class
 	FM_DOUBLE_FORMAT
 
 inherit
-	FM_NUMERIC_FORMAT [DOUBLE_REF]
+	FM_NUMERIC_FORMAT [DOUBLE]
 		redefine
 			formatted,
 			is_equal
@@ -37,7 +37,6 @@ feature {NONE} -- Initialization.
 			set_padding_character (shared_default_format.padding_character)
 			set_prefix_string (shared_default_format.prefix_string)
 			set_suffix_string (shared_default_format.suffix_string)
-			set_void_string (shared_default_format.void_string)			
 			justification := shared_default_format.justification
 			is_positive_sign_shown := shared_default_format.is_positive_sign_shown
 			is_negative_sign_shown := shared_default_format.is_negative_sign_shown
@@ -54,7 +53,6 @@ feature {NONE} -- Initialization.
 			padding_character_default: padding_character = shared_default_format.padding_character 
 			prefix_string_default: equal (prefix_string, shared_default_format.prefix_string)
 			suffix_string_default: equal (suffix_string, shared_default_format.suffix_string)
-			void_string_default: equal (void_string, shared_default_format.void_string)
 			justification_default: justification = shared_default_format.justification
 			thousand_separator_default: thousand_separator = shared_default_format.thousand_separator
 			is_positive_sign_shown_default: is_positive_sign_shown = shared_default_format.is_positive_sign_shown
@@ -76,7 +74,6 @@ feature {NONE} -- Initialization.
 			set_padding_character (' ')
 			set_prefix_string (Void)
 			set_suffix_string (Void)
-			set_void_string (Void)			
 			right_justify
 			set_thousand_separator (',')
 			hide_positive_sign
@@ -93,7 +90,6 @@ feature {NONE} -- Initialization.
 			padding_character_is_blank : padding_character.is_equal (' ')
 			prefix_string_is_void : prefix_string = Void
 			suffix_string_is_void : suffix_string = Void
-			void_string_is_void : void_string = Void			
 			is_right_justified : is_right_justified
 			thousand_separator_is_comma : thousand_separator.is_equal (',')				
 			is_positive_sign_hidden: is_positive_sign_hidden
@@ -128,15 +124,20 @@ feature -- Comparison
 			-- equal to current object?
 		do
 			Result := 
-			precursor (other) and
-			equal (decimal_character, other.decimal_character) and
-			equal (decimals, other.decimals) and
-			equal (is_trailing_zero_shown, other.is_trailing_zero_shown)
+				precursor (other) and
+				equal (decimal_character, other.decimal_character) and
+				equal (decimals, other.decimals) and
+				equal (is_trailing_zero_shown, other.is_trailing_zero_shown)
+		ensure then
+			definition: Result implies 
+							equal (decimal_character, other.decimal_character) and
+							equal (decimals, other.decimals) and
+							equal (is_trailing_zero_shown, other.is_trailing_zero_shown)
 		end
 
 feature -- Status report
 
-	can_format (a_double: DOUBLE_REF) : BOOLEAN is
+	can_format (a_double: DOUBLE) : BOOLEAN is
 			-- Can `a_double' be formatted by `Current'?
 		do
 			Result := True
@@ -207,7 +208,7 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
-	formatted (a_double: DOUBLE_REF): STRING is
+	formatted (a_double: DOUBLE): STRING is
 			-- Result of formatting `a_double'.
 		local
 			last_formatted_estring: ESTRING
@@ -221,7 +222,7 @@ feature -- Basic operations
 			create last_formatted_estring.make_from_string (last_formatted)
 
 
-			if a_double /= Void and then (a_double.item /= 0.0 or is_zero_shown) then
+			if a_double /= 0.0 or is_zero_shown then
 				sign := a_double.sign
 
 				double_value := a_double.abs
@@ -277,19 +278,15 @@ feature -- Basic operations
 				if last_formatted_estring.count > width then
 					last_formatted := insufficient_width_handler.string_with_valid_width (a_double, Current)
 				end
-			else
-				if void_string /= Void then
-					last_formatted.copy (void_string)
-				end				
 			end
 			justify (padding_character)
 			Result := last_formatted
 		ensure then
-			thousand_separator: a_double /= Void implies (a_double >= 1000.0 and is_thousand_separator_shown implies Result.has (thousand_separator))
-			zero_shown: a_double /= Void implies (a_double = 0.0 and is_zero_shown implies Result.has ('0'))
-			positive_sign_shown: a_double /= Void implies (a_double > 0.0 and is_positive_sign_shown implies Result.has ('+'))
-			negative_sign_shown: a_double /= Void implies (a_double < 0.0 and is_negative_sign_shown implies Result.has ('-'))
-			decimal_character: a_double /= Void implies (a_double.abs > 0 and decimals > 0 implies Result.has (decimal_character))
+			thousand_separator: a_double >= 1000.0 and is_thousand_separator_shown implies Result.has (thousand_separator)
+			zero_shown: a_double = 0.0 and is_zero_shown implies Result.has ('0')
+			positive_sign_shown: a_double > 0.0 and is_positive_sign_shown implies Result.has ('+')
+			negative_sign_shown: a_double < 0.0 and is_negative_sign_shown implies Result.has ('-')
+			decimal_character: a_double.abs > 0 and decimals > 0 implies Result.has (decimal_character)
 		end
 
 feature -- Obsolete

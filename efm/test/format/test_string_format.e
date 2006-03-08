@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/07 17:10:10 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2006/03/08 19:24:19 $";
+	revision: "$Revision: 1.4 $";
 	author: "Fafchamps Eric"
 
 deferred class TEST_STRING_FORMAT
@@ -77,9 +77,6 @@ feature -- Basic operations
 
 			l_format.no_justify
 			assert_equal ("Check no_justify of format.", "pretestsuf", l_format.formatted (l_string))
-
-			l_format.set_void_string ("UNDEFINED")
-			assert_equal ("Check set_void_string of format for Void", "UNDEFINED", l_format.formatted (Void))
 
 			create l_string.make_empty
 			l_format.left_justify
