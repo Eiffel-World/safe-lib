@@ -9,13 +9,14 @@
 		library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 		copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 		license: "Eiffel Forum License v2 (see forum.txt)"
-		date: "$Date: 2006/03/07 17:10:08 $"
+		date: "$Date: 2006/04/11 14:38:37 $"
 
 	</description>
 
 	<target name="help">
 		<echo message="usage:"/>
 		<echo message="   geant install"/>
+		<echo message="   geant compile"/>
 		<echo message="   geant clean"/>
 		<echo message="   geant clobber"/>
 	</target>
@@ -26,6 +27,15 @@
 		</description>
 
 		<set name="target" value="install"/>
+		<geant target="do_all"/>
+	</target>
+
+	<target name="compile" depend="init">
+		<description>
+			Compile the ECLI examples.
+		</description>
+
+		<set name="target" value="compile"/>
 		<geant target="do_all"/>
 	</target>
 
@@ -60,15 +70,15 @@
 			in all subdirectories.
 		</description>
 
-		<geant file="build.eant" target="${target}" dir="control"/>
+<!--		<geant file="build.eant" target="${target}" dir="control"/>
 		<geant file="build.eant" target="${target}" dir="isql"/>
-		<geant file="build.eant" target="${target}" dir="qa_example"/>
+-->		<geant file="build.eant" target="${target}" dir="test_Xaction"/>
+<!--		<geant file="build.eant" target="${target}" dir="qa_example"/>
 		<geant file="build.eant" target="${target}" dir="test_decimal"/>
 		<geant file="build.eant" target="${target}" dir="test_procedures"/>
 		<geant file="build.eant" target="${target}" dir="test_rowset"/>
 		<geant file="build.eant" target="${target}" dir="test_values"/>
-		<geant file="build.eant" target="${target}" dir="test_Xaction"/>
 		<geant file="build.eant" target="${target}" dir="test1"/>
-	</target>
+-->	</target>
 
 </project>
