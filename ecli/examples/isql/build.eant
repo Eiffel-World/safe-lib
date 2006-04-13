@@ -8,13 +8,14 @@
 		library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 		copyright: "Copyright (c) 2001-2004, Paul G. Crismer and others"
 		license: "Eiffel Forum License v2 (see forum.txt)"
-		date: "$Date: 2004/09/01 19:46:20 $"
+		date: "$Date: 2006/04/13 09:33:07 $"
 
 	</description>
 
 	<inherit>
-		<parent location="${ECLI}/ecli.eant">
+		<parent location="${ECLI}/build.eant">
 			<redefine target="init_system"/>
+			<redefine target="help"/>
 		</parent>
 	</inherit>
 
@@ -26,4 +27,7 @@
 		<set name="system_dir" value="${ECLI}/examples/isql"/>
 	</target>
 
+	<target name="help">
+		<geant target="help2"/>
+	</target>
 </project>
