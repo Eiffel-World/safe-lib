@@ -12,7 +12,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 09:47:38 $"
+	date: "$Date: 2006/04/13 13:23:43 $"
 
 class ECLI_DECIMAL
 
@@ -20,7 +20,7 @@ inherit
 
 	ECLI_GENERIC_VALUE [MA_DECIMAL]
 		redefine
-			item, set_item, out,
+			item, out,
 			impl_item,
 			bind_as_parameter,
 			formatted,

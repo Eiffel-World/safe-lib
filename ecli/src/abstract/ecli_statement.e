@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:08 $"
+	date: "$Date: 2006/04/13 13:23:43 $"
 
 class ECLI_STATEMENT
 
@@ -722,7 +722,7 @@ feature -- Basic operations
 				results_description := Void
 			end
 		ensure
-			description: is_ok implies
+			results_described: is_ok implies
 				(results_description /= Void and then results_description.lower = 1 and then results_description.count = result_columns_count)
 		end
 

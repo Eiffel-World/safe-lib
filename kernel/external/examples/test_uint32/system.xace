@@ -5,10 +5,10 @@
 		system:      "XS_C test application for UINT32"
 
 		author:      "Paul G. Crismer [pgcrism@users.sourceforge.net]"
-		copyright:   "Copyright (c) 2002-2003, Paul G. Crismer and others"
+		copyright:   "Copyright (c) 2002-2006, Paul G. Crismer and others"
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
 		date:        "$Date $"
-		revision:    "$Revision: 1.1 $"
+		revision:    "$Revision: 1.2 $"
 	</description>
 
 	<root class="TEST_UINT32" creation="make"/>

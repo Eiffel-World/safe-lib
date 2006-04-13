@@ -4,10 +4,10 @@
 
 	<description>
 		system: "Test1 test application."
-		copyright: "Copyright (c) 2002-2003, Paul G. Crismer"
+		copyright: "Copyright (c) 2002-2006, Paul G. Crismer"
 		license: "Eiffel Forum Freeware License v1 (see forum.txt)"
-		date: "$Date: 2006/04/11 15:47:39 $"
-		revision: "$Revision: 1.1 $"
+		date: "$Date: 2006/04/13 13:23:43 $"
+		revision: "$Revision: 1.2 $"
 	</description>
 
 	<inherit>
