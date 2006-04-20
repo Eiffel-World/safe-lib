@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:09 $"
+	date: "$Date: 2006/04/20 09:45:53 $"
 
 deferred class ECLI_SQL_PARSER_CALLBACK
 
@@ -23,6 +23,8 @@ feature -- Basic operations
 	add_new_parameter (a_parameter_name : STRING; a_position : INTEGER) is
 		require
 			valid_callback : is_valid
+			a_parameter_name_not_void: a_parameter_name /= Void
+			a_position_stricly_positive: a_position > 0
 		deferred
 		end
 

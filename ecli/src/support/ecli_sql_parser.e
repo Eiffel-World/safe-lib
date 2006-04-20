@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:09 $"
+	date: "$Date: 2006/04/20 09:45:52 $"
 
 class ECLI_SQL_PARSER
 
@@ -20,7 +20,7 @@ feature {NONE} -- Initialization
 	make is
 			-- initialize
 		do
-			parameter_marker := '?'
+			parameter_marker := cli_marker
 		ensure
 			parameter_marker_set: parameter_marker = '?'
 		end
@@ -28,14 +28,14 @@ feature {NONE} -- Initialization
 feature -- Access
 
 	original_sql : STRING
+			-- Original SQL.
 	
 	parsed_sql : STRING
+			-- Parsed SQL.
+			-- Same as original SQL, but with parameter names stripped and parameter_marker replaced by cli_marker.
 	
 	parameter_marker : CHARACTER
-		-- parameter marker in input sql
-
---	name_to_position : DS_HASH_TABLE [DS_LIST[INTEGER], STRING]
---		-- map between parameter names and their position(s) in the sql query
+		-- parameter marker in input sql.
 	
 feature -- Measurement
 
@@ -59,6 +59,9 @@ feature -- Basic operations
 
 	parse (sql : STRING; callback : ECLI_SQL_PARSER_CALLBACK) is
 			-- parse s, replacing every parameter by the ODBC/CLI marker '?'
+		require
+			sql_not_void: sql /= Void
+			callback_not_void: callback /= Void
 		local
 			index, sql_count : INTEGER
 			c, previous_c : CHARACTER
@@ -76,7 +79,7 @@ feature -- Basic operations
 				index > sql_count
 			loop
 				c := original_sql.item (index)
-				if c= '?' then
+				if c= parameter_marker then
 					do_nothing
 				end
 				inspect state
