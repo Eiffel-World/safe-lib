@@ -1,8 +1,8 @@
 indexing
 	description: "Name routines that help follow the Eiffel style rules."
 	author: "Paul G. Crismer"
-	date: "$Date: 2005/11/29 09:47:38 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2006/09/26 11:45:52 $"
+	revision: "$Revision: 1.8 $"
 
 class
 	EIFFEL_NAME_ROUTINES
@@ -161,9 +161,6 @@ feature {NONE} -- Implementation
 			index : INTEGER
 			c, u : CHARACTER
 		do
-			if string.is_equal ("LastSituationWR") then
-				do_nothing
-			end
 			create Result.make (string.count + 10)
 			from
 				index := 1
