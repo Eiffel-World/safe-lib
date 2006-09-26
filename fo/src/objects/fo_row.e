@@ -6,7 +6,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:08:48 $"
+	date: "$Date: 2006/09/26 11:53:01 $"
 
 class FO_ROW
 
@@ -155,7 +155,7 @@ feature -- Duplication
 
 feature -- Miscellaneous
 
-feature {FO_DOCUMENT, FO_BORDER_ABLE, FO_TABLE} -- Basic operations
+feature {FO_DOCUMENT, FO_BORDERABLE, FO_TABLE} -- Basic operations
 
 	pre_render (region: FO_RECTANGLE) is
 		local

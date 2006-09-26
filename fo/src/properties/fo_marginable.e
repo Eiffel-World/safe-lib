@@ -1,28 +1,28 @@
 indexing
 
-	description: 
-	
+	description:
+
 		"Objects that have margins"
 
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2006/09/26 11:53:11 $"
 
 class
-	FO_MARGIN_ABLE
+	FO_MARGINABLE
 
 inherit
-	
+
 	ANY
 		redefine
 			is_equal
 		end
-		
+
 feature -- Access
 
-	margins : FO_MARGINS
-	
+	margins : FO_MARGINS assign set_margins
+
 feature -- Element change
 
 	set_margins (new_margins: FO_MARGINS) is
@@ -34,7 +34,7 @@ feature -- Element change
 		ensure
 			margins_assigned: margins = new_margins
 		end
-		
+
 feature -- Comparison
 
 	is_equal (other : like Current) : BOOLEAN is
@@ -42,12 +42,12 @@ feature -- Comparison
 			Result := same_marginable (other)
 		end
 
-	same_marginable (other: like Current) : BOOLEAN is		
+	same_marginable (other: like Current) : BOOLEAN is
 		do
 			Result := margins.is_equal (other.margins)
 		end
-		
+
 invariant
 	margins_exist: margins /= Void
-	
+
 end

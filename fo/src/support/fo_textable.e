@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2006/09/26 11:53:11 $"
 
 deferred class FO_TEXTABLE
 
@@ -18,12 +18,12 @@ inherit
 			is_equal
 		end
 
-	FO_FONT_ABLE
+	FO_FONTABLE
 		undefine
 			out, is_equal
 		end
 		
-	FO_COLOR_ABLE
+	FO_COLORABLE
 		undefine
 			out
 		redefine

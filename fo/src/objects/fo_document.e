@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:08:48 $"
+	date: "$Date: 2006/09/26 11:53:01 $"
 
 class
 	FO_DOCUMENT
@@ -19,7 +19,7 @@ inherit
 			is_equal, out
 		end
 
-	FO_COLOR_ABLE
+	FO_COLORABLE
 
 create
 	make, make_rectangle
@@ -421,7 +421,7 @@ feature -- Obsolete
 
 feature -- Inapplicable
 
-feature {FO_RENDERABLE, FO_BORDER_ABLE} -- Access
+feature {FO_RENDERABLE, FO_BORDERABLE} -- Access
 
 	pdf_document : PDF_DOCUMENT is do Result := writer.document end
 

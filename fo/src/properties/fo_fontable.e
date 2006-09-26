@@ -7,10 +7,10 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2006/09/26 11:53:07 $"
 
 class
-	FO_FONT_ABLE
+	FO_FONTABLE
 	
 inherit
 	ANY
