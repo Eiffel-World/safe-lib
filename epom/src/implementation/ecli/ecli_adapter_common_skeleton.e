@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/03/08 20:17:39 $"
+	date: "$Date: 2006/11/14 14:21:27 $"
 
 deferred class ECLI_ADAPTER_COMMON_SKELETON[G->PO_PERSISTENT]
 
@@ -99,7 +99,7 @@ feature {PO_LAUNCHER} -- Element change
 		
 feature -- Basic operations
 
-	exists (a_pid: like last_pid): BOOLEAN is
+	exists (a_pid: PO_PID): BOOLEAN is
 			-- Does an object identified by `a_pid' exist? Uses `Sql_exists'.
 		do
 			create last_cursor.make
