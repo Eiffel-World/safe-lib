@@ -6,7 +6,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/09/26 11:53:01 $"
+	date: "$Date: 2006/11/14 15:50:52 $"
 
 
 class FO_CONFIGURABLE_FACTORY
@@ -41,6 +41,7 @@ feature {NONE} -- Initialization
 			create input.make (file_name)
 			input.open_read
 			parser.parse_from_stream (input)
+			
 			create factory.make
 			if not tree_pipe.error.has_error then
 				xml_document := factory.new_document (tree_pipe.document.root_element)

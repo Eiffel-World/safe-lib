@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/09/26 11:53:01 $"
+	date: "$Date: 2006/11/14 15:50:53 $"
 
 class FO_TABLE
 
@@ -50,6 +50,7 @@ feature -- Access
 	header_row : FO_ROW
 
 	last_row : FO_ROW
+			-- Last row created by factory commands `create_header_row' and `append_new_row'.
 
 	widths : ARRAY[FO_MEASUREMENT]
 
@@ -65,6 +66,7 @@ feature -- Measurement
 		end
 
 	height : FO_MEASUREMENT
+		-- require: is_prerendered.
 
 	width : FO_MEASUREMENT is
 		local
@@ -113,8 +115,11 @@ feature -- Status report
 feature -- Status setting
 
 	enable_header_row_on_new_page is
+			-- Repeat the header row on each page.
 		do
 			is_repeat_header_on_new_page := True
+		ensure
+			definition: is_repeat_header_on_new_page
 		end
 
 feature -- Element change
