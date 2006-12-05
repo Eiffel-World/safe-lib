@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/08 10:43:56 $"
+	date: "$Date: 2006/12/05 20:48:42 $"
 
 deferred class ECLI_ADAPTER_WRITE_SKELETON[G->PO_PERSISTENT]
 
@@ -16,9 +16,9 @@ inherit
 
 feature -- Status report
 
-	can_write : BOOLEAN is 
-		do 
-			Result := True 
+	can_write : BOOLEAN is
+		do
+			Result := True
 		end
 
 feature -- Basic operations
@@ -43,13 +43,16 @@ feature -- Basic operations
 				end
 			else
 				status.set_framework_error (status.Error_non_conformant_pid)
-			end		
+			end
 		end
-	
+
 feature {PO_ADAPTER} -- Basic operations
 
 	init_parameters_for_write (object : like last_object; a_pid : like last_pid) is
 			-- Initialize parameters of `write_query' with information from `object' and `a_pid'.
+		require
+			object_not_void: object /= Void
+			a_pid_not_void: a_pid /= Void
 		deferred
 		ensure
 			bound_parameters: write_query.bound_parameters

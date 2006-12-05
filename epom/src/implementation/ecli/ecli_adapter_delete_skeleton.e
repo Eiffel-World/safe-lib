@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/08 10:43:56 $"
+	date: "$Date: 2006/12/05 20:48:41 $"
 
 deferred class ECLI_ADAPTER_DELETE_SKELETON[G->PO_PERSISTENT]
 
@@ -16,8 +16,8 @@ inherit
 
 feature -- Status report
 
-	can_delete : BOOLEAN is 
-		do 
+	can_delete : BOOLEAN is
+		do
 			Result := True
 		ensure then
 			can_delete: Result
@@ -27,10 +27,10 @@ feature -- Basic operations
 
 	delete (object: like object_anchor) is
 			-- Delete `object' from datastore using `delete_query'.
-		do  
+		do
 			status.reset
 			last_pid ?= object.pid
-			
+
 			last_object := Void
 			if last_pid /= Void then
 				init_parameters_for_delete (last_pid)
@@ -49,11 +49,13 @@ feature -- Basic operations
 				status.set_framework_error (status.error_non_conformant_pid)
 			end
 		end
-	
+
 feature {PO_ADAPTER} -- Basic operations
 
 	init_parameters_for_delete (a_pid : like last_pid) is
 			-- Initialize parameters of `delete_query' with information from `a_pid'.
+		require
+			a_pid_not_void: a_pid /= Void
 		deferred
 		ensure
 			bound_parameters: delete_query.bound_parameters
