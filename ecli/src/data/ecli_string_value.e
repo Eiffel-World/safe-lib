@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/12/12 10:32:09 $"
+	date: "$Date: 2007/03/27 19:53:16 $"
 
 deferred class ECLI_STRING_VALUE
 
@@ -196,7 +196,7 @@ feature -- Element change
 				actual_length := value.count + 1
 				transfer_length := actual_length - 1
 			end
-			ext_item.from_string (value)
+			ext_item.from_substring (value, 1 , transfer_length)
 			ecli_c_value_set_length_indicator (buffer, transfer_length)
 		end
 
