@@ -28,8 +28,8 @@ indexing
 
 
 	Usage: "Inherit.  Define all deferred features."
-	date: "$Date: 2006/11/14 14:21:28 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2007/03/27 19:28:09 $"
+	revision: "$Revision: 1.12 $"
 
 deferred class PO_ADAPTER [G -> PO_PERSISTENT]
 
@@ -79,6 +79,8 @@ feature -- Access
 			pid_of_persistent: object.is_persistent implies Result = object.pid
 			created_for_volatile: object.is_volatile implies Result = last_pid
 		end
+
+	error_handler : PO_ERROR_HANDLER
 
 feature {PO_ADAPTER, PO_CURSOR, PO_REFERENCE, PO_PERSISTENT, PO_REFERENCE_ACCESS} -- Access
 
@@ -367,5 +369,6 @@ invariant
 	registered_to_datastore: datastore.adapters.has (Current.as_adapter_persistent)
 	valid_last_pid: last_pid /= Void implies is_pid_valid (last_pid)
 	last_cursor_not_void: last_cursor /= Void
-
+	error_handler_not_void: error_handler /= Void
+	
 end

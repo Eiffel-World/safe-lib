@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/12/05 20:48:41 $"
+	date: "$Date: 2007/03/27 19:28:09 $"
 
 deferred class ECLI_ADAPTER_UPDATE_SKELETON[G->PO_PERSISTENT]
 
@@ -44,11 +44,13 @@ feature -- Basic operations
 					object.disable_modified
 				else
 					--| query failed
-					status.set_datastore_error (update_query.native_code, update_query.diagnostic_message					)
+					status.set_datastore_error (update_query.native_code, update_query.diagnostic_message)
+					error_handler.report_datastore_error (generator, "update", update_query.native_code, update_query.diagnostic_message)
 				end
 			else
 				--| non_conformant_pid
 				status.set_framework_error (status.error_non_conformant_pid)
+				error_handler.report_non_conformant_pid (generator, "update", persistent_class_name, object.persistent_class_name)
 			end
 		end
 

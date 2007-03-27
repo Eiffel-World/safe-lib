@@ -6,8 +6,8 @@
 		system: "books test application."
 		copyright: "Copyright (c) 2002-2003, Paul G. Crismer"
 		license: "Eiffel Forum Freeware License v1 (see forum.txt)"
-		date: "$Date: 2004/06/06 12:52:52 $"
-		revision: "$Revision: 1.1 $"
+		date: "$Date: 2007/03/27 19:28:05 $"
+		revision: "$Revision: 1.2 $"
 	</description>
 
 	<inherit>
@@ -26,6 +26,8 @@
 	</target>
 
 	<target name="xace" depend="init">
+		<argument name="a_compiler"/>
+		<argument name="a_output"/>
 		<description>
 			Build Ace file or ESD file for Eiffel compiler ${eiffel}.
 			Generate file in ${gexace_output} if specified.

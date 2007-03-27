@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/12/05 20:48:42 $"
+	date: "$Date: 2007/03/27 19:28:09 $"
 
 deferred class ECLI_ADAPTER_WRITE_SKELETON[G->PO_PERSISTENT]
 
@@ -40,9 +40,11 @@ feature -- Basic operations
 					end
 				else
 					status.set_datastore_error (write_query.native_code, write_query.diagnostic_message)
+					error_handler.report_datastore_error (generator, "write", write_query.native_code, write_query.diagnostic_message)
 				end
 			else
 				status.set_framework_error (status.Error_non_conformant_pid)
+				error_handler.report_non_conformant_pid (generator, "write", persistent_class_name, object.persistent_class_name)
 			end
 		end
 

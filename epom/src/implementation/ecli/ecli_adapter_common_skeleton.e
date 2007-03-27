@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/12/05 20:48:41 $"
+	date: "$Date: 2007/03/27 19:28:06 $"
 
 deferred class ECLI_ADAPTER_COMMON_SKELETON[G->PO_PERSISTENT]
 
@@ -117,6 +117,7 @@ feature -- Basic operations
 			end
 			if not exists_cursor.is_ok then
 				status.set_datastore_error (exists_cursor.native_code, exists_cursor.diagnostic_message)
+				error_handler.report_datastore_error (generator, "exists", exists_cursor.native_code, exists_cursor.diagnostic_message)
 			end
 		end
 

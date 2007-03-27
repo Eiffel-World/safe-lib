@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/03 22:07:46 $"
+	date: "$Date: 2007/03/27 19:28:09 $"
 
 deferred class PO_MANAGER
 
@@ -24,16 +24,18 @@ feature -- Access
 			-- Known adapters.
 		deferred
 		end
-		
+
+	error_handler : PO_ERROR_HANDLER
+
 feature -- Measurement
 
 	count : INTEGER is
 			-- Number of known adapters.
 		deferred
 		end
-		
+
 feature -- Status report
-	
+
 	found : BOOLEAN is
 			-- Has the last search_adapter operation succeeded ?
 		deferred
@@ -49,7 +51,7 @@ feature -- Status report
 		ensure
 			side_effect: Result implies (last_adapter /= Void and then last_adapter.persistent_class_name.is_equal (persistent_class_name))
 		end
-		
+
 feature {PO_LAUNCHER} -- Status setting
 
 	add_adapter (an_adapter : PO_ADAPTER[PO_PERSISTENT]) is
@@ -62,7 +64,7 @@ feature {PO_LAUNCHER} -- Status setting
 			registered: has_adapter (an_adapter.persistent_class_name)
 			inserted: adapters.has (an_adapter) and then count = old count + 1
 		end
-		
+
 feature -- Basic operations
 
 	search_adapter (persistent_class_name : STRING) is
@@ -77,5 +79,5 @@ feature -- Basic operations
 invariant
 
 	adapters_collection_not_void: adapters /= Void
-	
+	error_handler_not_void: error_handler /= Void
 end
