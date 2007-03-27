@@ -1,16 +1,14 @@
 indexing
 	description: "FO Test for 'hello world'."
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/11/14 15:50:51 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/03/27 15:24:27 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	TUTORIAL_HELLO_WORLD
 
 inherit
-
-	FO_SHARED_FONT_FACTORY
-	FO_MEASUREMENT_ROUTINES
+	TUTORIAL_TEST
 
 create
 	execute
@@ -19,6 +17,8 @@ feature {NONE} -- Initialization
 
 	execute is
 			-- Initialize `Current'.
+		local
+			block : FO_BLOCK
 		do
 			--| 1
 			create writer.make ("hello_world.pdf")
@@ -39,13 +39,5 @@ feature {NONE} -- Initialization
 			--| 6
 			document.close
 		end
-
-feature -- Access
-
-	document : FO_DOCUMENT
-
-	writer : FO_DOCUMENT_WRITER
-
-	block : FO_BLOCK
 
 end

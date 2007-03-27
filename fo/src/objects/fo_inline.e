@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:08:48 $"
+	date: "$Date: 2007/03/27 15:24:30 $"
 
 class
 	FO_INLINE
@@ -251,8 +251,7 @@ feature {FO_DOCUMENT, FO_RENDERABLE} -- Basic operations
 			page.set_word_spacing (word_spacing.as_points)
 
 			page.put_string (text)
-			is_render_off := True
-			is_render_inside := False
+			set_render_after
 		end
 
 invariant

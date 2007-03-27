@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/09/26 11:53:11 $"
+	date: "$Date: 2007/03/27 15:24:40 $"
 
 class FO_INLINES_WORD_CURSOR
 
@@ -154,7 +154,7 @@ feature -- Basic operations
 			wtext : STRING
 			c : CHARACTER
 		do
-			--| find longest prefix
+			--| find longest prefix whose length <= width
 			from
 				create wwidth.points (0)
 				wcount := 1

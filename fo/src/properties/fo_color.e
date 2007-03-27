@@ -1,24 +1,24 @@
 indexing
 
-	description: 
-		
+	description:
+
 		"Objects that are 24 bit RGB colors"
 
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2007/03/27 15:24:35 $"
 
 class
 	FO_COLOR
 
 inherit
-	
+
 	ANY
 		redefine
 			is_equal
 		end
-		
+
 create
 	make_rgb
 
@@ -29,7 +29,7 @@ feature {NONE} -- Initialization
 		require
 			new_red_valid: red >= 0 and red <= 255
 			new_green_valid: green >= 0 and green <= 255
-			new_blue_valid: blue >= 0 and blue <= 255 
+			new_blue_valid: blue >= 0 and blue <= 255
 		do
 			red := new_red
 			green := new_green
@@ -38,23 +38,19 @@ feature {NONE} -- Initialization
 			red_set: red = new_red
 			green_set: green = new_green
 			blue_set: blue = new_blue
-			not_none: not is_none
 		end
 
 feature -- Access
 
 	blue: INTEGER
+		-- Blue level.
 
 	green: INTEGER
+		-- Green level.
 
 	red: INTEGER
+		-- Red level.
 
-feature -- Measurement
-
-feature -- Status report
-
-	is_none : BOOLEAN
-	
 feature -- Element change
 
 	set_blue (a_blue: INTEGER) is
@@ -92,8 +88,10 @@ feature -- Comparison
 	is_equal (other : like Current) : BOOLEAN is
 		do
 			Result := blue = other.blue and red = other.red and green = other.green
+		ensure then
+			definition: Result = (blue = other.blue and red = other.red and green = other.green)
 		end
-		
+
 invariant
 	invariant_clause: True -- Your invariant here
 	red_within_bounds: red >= 0 and red <= 255

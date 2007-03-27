@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/09/26 11:53:11 $"
+	date: "$Date: 2007/03/27 15:24:43 $"
 
 class
 	FO_LINE
@@ -29,7 +29,7 @@ inherit
 		undefine
 			out, is_equal
 		end
-		
+
 create {FO_BLOCK}
 	make, make_justified
 
@@ -340,8 +340,7 @@ feature {FO_DOCUMENT, FO_RENDERABLE} -- Basic operations
 					region.right,
 					region.top)
 			--| establish postcondition
-			is_render_off := True
-			is_render_inside := False
+			set_render_after
 		end
 
 feature {FO_LINE, FO_DOCUMENT} -- Access
