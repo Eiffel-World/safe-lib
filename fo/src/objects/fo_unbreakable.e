@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:32 $"
+	date: "$Date: 2007/04/16 12:24:33 $"
 
 class FO_UNBREAKABLE
 
@@ -17,7 +17,7 @@ inherit
 			pre_render
 		end
 
-create
+create {FO_DOCUMENT}
 	make
 
 feature {NONE} -- Initialization
@@ -90,7 +90,7 @@ feature {FO_DOCUMENT, FO_RENDERABLE} -- Basic operations
 				set_render_after
 			end
 		end
-	
+
 	pre_render (region: FO_RECTANGLE) is
 		local
 			c : DS_LIST_CURSOR[FO_RENDERABLE]

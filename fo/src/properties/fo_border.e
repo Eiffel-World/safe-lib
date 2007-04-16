@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:34 $"
+	date: "$Date: 2007/04/16 12:24:35 $"
 
 class
 	FO_BORDER
@@ -111,18 +111,6 @@ feature -- Comparison
 				Result := Result and (width.is_equal (other.width))
 			end
 		end
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
-feature -- Inapplicable
-
-feature {NONE} -- Implementation
 
 invariant
 

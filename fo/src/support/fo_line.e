@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:43 $"
+	date: "$Date: 2007/04/16 12:24:58 $"
 
 class
 	FO_LINE
@@ -332,6 +332,7 @@ feature {FO_DOCUMENT, FO_RENDERABLE} -- Basic operations
 				cursor.off
 			loop
 				cursor.item.render_start (document, last_region)
+				cursor.item.post_render (document, cursor.item.last_rendered_region)
 				cursor.forth
 			end
 			create last_rendered_region.set (

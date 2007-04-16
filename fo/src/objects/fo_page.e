@@ -1,20 +1,19 @@
 indexing
 
-	description: 
-		
+	description:
+
 		"Pages in a document."
 
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2007/04/16 12:24:30 $"
 
 class FO_PAGE
 
 create
+	{FO_DOCUMENT} make
 
-	make
-		
 feature {NONE} -- Initialization
 
 	make (a_page : PDF_PAGE; a_section : FO_SECTION) is
@@ -28,18 +27,18 @@ feature {NONE} -- Initialization
 			page_set: page = a_page
 			section_set: section = a_section
 		end
-		
+
 feature -- Access
 
 	page : PDF_PAGE
 			-- Page.
-			
+
 	rendered_region : FO_RECTANGLE
 			-- Rendered region in page.
-		
+
 	section : FO_SECTION
 			-- Related section
-			
+
 feature -- Element change
 
 	set_rendered_region (a_region : FO_RECTANGLE) is
@@ -50,7 +49,7 @@ feature -- Element change
 		ensure
 			rendered_region_set: rendered_region = a_region
 		end
-		
+
 end
 
 
