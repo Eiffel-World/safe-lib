@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2007/04/13 09:32:04 $"
-	revision: "$Revision: 1.1 $"
+	description: "PDF Number."
+	author: "Paul G. Crismer"
+	date: "$Date: 2007/04/16 12:28:48 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	PDF_NUMBER
@@ -40,12 +40,9 @@ feature -- Access
 feature -- Conversion
 
 	to_pdf : STRING is
-		local
-			a_value : DOUBLE
 		do
 			create Result.make (10)
-
-			Result.append_string (formatted (a_value))
+			Result.append_string (formatted (value))
 		end
 
 end

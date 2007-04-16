@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2007/04/13 09:32:04 $"
-	revision: "$Revision: 1.1 $"
+	description: "PDF String."
+	author: "Paul G. Crismer"
+	date: "$Date: 2007/04/16 12:28:48 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	PDF_STRING
@@ -28,32 +28,6 @@ feature -- Access
 
 	number : INTEGER is do  end
 
-feature -- Measurement
-
-feature -- Status report
-
-feature -- Status setting
-
-feature -- Cursor movement
-
-feature -- Element change
-
-feature -- Removal
-
-feature -- Resizing
-
-feature -- Transformation
-
-feature -- Conversion
-
-feature -- Duplication
-
-feature -- Miscellaneous
-
-feature -- Basic operations
-
-feature -- Obsolete
-
 feature -- Conversion
 
 	to_pdf : STRING is
@@ -63,9 +37,6 @@ feature -- Conversion
 			Result.append_string (value)
 			Result.append_character (')')
 		end
-
-
-feature {NONE} -- Implementation
 
 invariant
 	value_not_void: value /= Void

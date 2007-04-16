@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2007/04/13 09:32:03 $"
-	revision: "$Revision: 1.1 $"
+	description: "PDF name tree leafs."
+	author: "Paul G. Crismer"
+	date: "$Date: 2007/04/16 12:28:47 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	PDF_NAME_TREE_LEAF
