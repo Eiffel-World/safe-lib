@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/04/16 12:24:26 $"
+	date: "$Date: 2007/04/16 16:50:35 $"
 
 class
 	FO_BLOCK
@@ -471,12 +471,12 @@ feature {FO_DOCUMENT, FO_RENDERABLE} -- Basic operations
 			else
 				set_render_inside
 			end
-			if is_render_inside then
+--			if is_render_inside then
 				if last_descender /= Void then
 					available_region := available_region.shrinked_top (- last_descender)
 					last_rendered_region := last_rendered_region.shrinked_bottom (- last_descender)
 				end
-			end
+--			end
 			debug ("fo_show_block_margins")
 				show_margins (document, use_top_margins, use_bottom_margins)
 			end

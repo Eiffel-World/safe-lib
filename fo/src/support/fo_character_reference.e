@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2007/04/16 12:24:50 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/04/16 16:50:40 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	FO_CHARACTER_REFERENCE
@@ -27,12 +27,20 @@ feature -- Access
 
 	position : INTEGER
 
+feature -- Status report
+
+	off : BOOLEAN is do Result := before or after end
+
+	before : BOOLEAN is do Result := position = 0 end
+
+	after : BOOLEAN is do Result := position > inline.text.count end
+
 feature -- Basic operations
 
 	back is
 			-- back one character if possible
 		require
-			back_possible: position > 1
+			back_possible: position >= 1
 		do
 			position := position - 1
 		ensure
@@ -42,7 +50,7 @@ feature -- Basic operations
 	forth is
 			-- forth one character
 		require
-			forth_possible: position < inline.text.count
+			forth_possible: position <= inline.text.count
 		do
 			position := position + 1
 		ensure
@@ -52,6 +60,6 @@ feature -- Basic operations
 invariant
 
 	inline_not_void: inline /= Void
-	position_within_inline: position >= 1 and position <= inline.text.count
+	position_within_inline: not off implies (position >= 1 and position <= inline.text.count)
 
 end

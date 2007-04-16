@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/04/16 12:24:58 $"
+	date: "$Date: 2007/04/16 16:50:44 $"
 
 class
 	FO_LINE
@@ -53,7 +53,6 @@ feature {NONE} -- Initialization
 		end
 
 	make_justified (new_maximum_width : FO_MEASUREMENT;
-				--	renderable : FO_RENDERABLE;
 					new_text_leading : FO_MEASUREMENT;
 					marginable : FO_MARGINABLE; a_justification : INTEGER) is
 		require

@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:38 $"
+	date: "$Date: 2007/04/16 16:50:40 $"
 
 deferred class
 	FO_RENDERABLE
@@ -103,7 +103,7 @@ feature -- Basic operations
 			document_not_void: document /= Void
 			document_is_open: document.is_open
 			region_not_void: region /= Void
-			region_width_positive: region.width.sign = 1
+			region_width_positive: region.width.sign >= 0
 		do
 		end
 

@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/04/16 12:24:52 $"
+	date: "$Date: 2007/04/16 16:50:42 $"
 
 class FO_INLINES_WORD_CURSOR
 
@@ -455,7 +455,7 @@ feature {NONE} -- Implementation
 			word_text.append_character (last_char)
 			must_consume_last_char := False
 			word_width := word_width + word_end.inline.character_width (last_char)
-			word_height := word_height.max (word_end.inline.height)
+			word_height := word_height.max (word_end.inline.font.bounding_box.height)
 			if word_end.position > 1 then
 				create next_word_begin.make (word_end.inline, word_end.position)
 				word_end.back
@@ -471,7 +471,7 @@ feature {NONE} -- Implementation
 			word_text.append_character (last_char)
 			must_consume_last_char := False
 			word_width := word_width + last_char_inline.character_width (last_char)
-			word_height := word_height.max (last_char_inline.height)
+			word_height := word_height.max (last_char_inline.font.bounding_box.height)
 			forth_word_end
 		end
 

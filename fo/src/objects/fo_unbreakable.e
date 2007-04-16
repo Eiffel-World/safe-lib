@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/04/16 12:24:33 $"
+	date: "$Date: 2007/04/16 16:50:38 $"
 
 class FO_UNBREAKABLE
 
@@ -109,6 +109,7 @@ feature {FO_DOCUMENT, FO_RENDERABLE} -- Basic operations
 				end
 				c.forth
 			end
+			precursor(region)
 		end
 
 end

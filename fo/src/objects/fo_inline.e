@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/04/16 12:24:30 $"
+	date: "$Date: 2007/04/16 16:50:37 $"
 
 class
 	FO_INLINE
@@ -109,8 +109,12 @@ feature -- Access
 			i_end_not_greater_text_count: i_end <= text.count
 		do
 			create Result.make_inherit (text.substring (i_begin, i_end), Current)
-			Result.set_destination (destination)
-			Result.set_target (target)
+			if destination /= Void then
+				Result.set_destination (destination)
+			end
+			if target /= Void then
+				Result.set_target (target)
+			end
 		ensure
 			substring_not_void: Result /= Void
 			same_rendering: True

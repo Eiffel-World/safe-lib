@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:31 $"
+	date: "$Date: 2007/04/16 16:50:38 $"
 
 class FO_TABLE
 
@@ -242,6 +242,7 @@ feature -- Basic operations
 					set_render_after
 				end
 			end
+			last_region := region
 		end
 
 	render_forth (document: FO_DOCUMENT; region: FO_RECTANGLE) is
