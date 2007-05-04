@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 19:28:09 $"
+	date: "$Date: 2007/05/04 12:40:39 $"
 
 deferred class ECLI_ADAPTER_UPDATE_SKELETON[G->PO_PERSISTENT]
 
@@ -54,19 +54,19 @@ feature -- Basic operations
 			end
 		end
 
-feature {PO_ADAPTER} -- Basic operations
+feature {NONE} -- Framework - Access
+
+	update_query : ECLI_QUERY is
+		deferred
+		end
+
+feature {NONE} -- Framework - Basic operations
 
 	init_parameters_for_update (object : like last_object; a_pid : like last_pid) is
 			-- Initialize parameters of `update_query' with information from `object' and `a_pid'.
 		require
 			object_not_void: object /= Void
 			a_pid_not_void: a_pid /= Void
-		deferred
-		end
-
-feature {PO_ADAPTER} -- Implementation
-
-	update_query : ECLI_QUERY is
 		deferred
 		end
 

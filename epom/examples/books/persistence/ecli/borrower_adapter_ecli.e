@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/08 10:43:56 $"
+	date: "$Date: 2007/05/04 12:40:39 $"
 
 class BORROWER_ADAPTER_ECLI
 
@@ -96,7 +96,7 @@ feature -- Basic operations
 			cursor.close
 		end
 
-feature {PO_ADAPTER} -- Factory
+feature {NONE} -- Framework - Factory
 
 	create_pid_from_id (id : INTEGER) is
 		do
@@ -108,7 +108,7 @@ feature {PO_ADAPTER} -- Factory
 			create last_pid.make (object.id)
 		end
 
-feature {NONE} -- Implementation
+feature {NONE} -- Framework - Basic operations
 
 	init_parameters_for_read (a_pid : like last_pid) is
 		do
@@ -130,7 +130,7 @@ feature {NONE} -- Implementation
 			update_query.set_parameters_object (modify_parameters (object, a_pid))
 		end
 
-feature {NONE} -- Implementation --factories
+feature {NONE} -- Framework - Factory
 
 	create_object_from_read_cursor (a_cursor : like read_cursor; a_pid : like last_pid) is
 		do
@@ -165,7 +165,7 @@ feature {NONE} -- Implementation --factories
 			Result.name.set_item (object.name)
 		end
 
-feature {NONE} -- Implementation -- datastore access
+feature {NONE} -- Framework - Implementation
 
 	read_cursor : BORROWER_READ
 
