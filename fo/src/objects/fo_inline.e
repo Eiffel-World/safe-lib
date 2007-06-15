@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/04/16 16:50:37 $"
+	date: "$Date: 2007/06/15 08:40:29 $"
 
 class
 	FO_INLINE
@@ -291,7 +291,9 @@ feature {FO_DOCUMENT, FO_RENDERABLE} -- Basic operations
 				else
 					create pdf_annotation.make_uri (document.pdf_document, rect, uri)
 				end
-				pdf_annotation.set_border_dashed (<<2,4>>)
+				if destination.style /= destination.style_none then
+					pdf_annotation.set_border_dashed (destination.style_rule.first)
+				end
 				document.current_page.put_annotation (pdf_annotation)
 			end
 		end

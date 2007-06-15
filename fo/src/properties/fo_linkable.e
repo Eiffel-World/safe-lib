@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that can be link target or origin"
+	description: "Objects that can link to some target destination."
 	author: ""
-	date: "$Date: 2007/04/16 12:24:40 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/06/15 08:40:29 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	FO_LINKABLE

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2007/04/16 12:24:23 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/06/15 08:40:29 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	TUTORIAL_TEST
@@ -16,6 +16,8 @@ feature -- Access
 
 	document : FO_DOCUMENT
 	writer : FO_DOCUMENT_WRITER
+
+	section_title, section_text : FO_BLOCK
 
 feature -- Constants
 
@@ -43,7 +45,6 @@ feature {NONE} -- Implementation
 	append_section (title, text : STRING) is
 			-- Append section with `title' and `text'.
 		local
-			section_title, section_text : FO_BLOCK
 			title_font, text_font : FO_FONT
 			inline : FO_INLINE
 		do

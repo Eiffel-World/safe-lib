@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2007/04/16 12:24:31 $"
-	revision: "$Revision: 1.1 $"
+	description: "Targets that may be hyperlinked."
+	author: "Paul G. Crismer"
+	date: "$Date: 2007/06/15 08:40:29 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	FO_TARGET
