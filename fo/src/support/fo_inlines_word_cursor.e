@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/06/15 08:40:29 $"
+	date: "$Date: 2007/11/13 13:20:53 $"
 
 class FO_INLINES_WORD_CURSOR
 
@@ -528,7 +528,9 @@ feature {NONE} -- Implementation
 				--| Advance to next inline
 				internal_cursor.forth
 				if not internal_cursor.off then
-					create last_word_end.make (word_end.inline, word_end.position - 1)
+					if word_end.position - 1 > 0 then
+						create last_word_end.make (word_end.inline, word_end.position - 1)
+					end
 					word_end.make (internal_cursor.item, 1)
 				else
 					--| adjust end

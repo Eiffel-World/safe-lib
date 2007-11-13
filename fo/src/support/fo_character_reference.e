@@ -1,8 +1,12 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2007/04/16 16:50:40 $"
-	revision: "$Revision: 1.2 $"
+	description: 
+		
+		"References to a character in an inline."
+
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2007/11/13 13:20:53 $"
 
 class
 	FO_CHARACTER_REFERENCE
@@ -15,7 +19,7 @@ feature -- Initialization
 	make (an_inline : FO_INLINE; a_position : INTEGER) is
 		require
 			an_inline_not_void: an_inline /= Void
-			a_position_within_inline: a_position >= 1 and a_position <= an_inline.text.count
+			a_position_within_inline: a_position >= 1 -- and a_position <= an_inline.text.count
 		do
 			inline := an_inline
 			position := a_position

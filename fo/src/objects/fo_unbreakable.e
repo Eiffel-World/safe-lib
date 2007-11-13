@@ -1,8 +1,12 @@
 indexing
-	description: "Objects that should be rendered on a single page"
-	author: "Paul G. Crismer"
-	date: "$Date: 2007/06/15 08:40:29 $"
-	revision: "$Revision: 1.8 $"
+	description:
+
+		"Objects that should be rendered on a single page"
+
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2007/11/13 13:20:53 $"
 
 class
 	FO_UNBREAKABLE
@@ -14,7 +18,8 @@ inherit
 			render_forth
 		end
 
-create
+create {FO_DOCUMENT}
+
 	make
 
 feature {NONE} -- Initialization
@@ -86,6 +91,7 @@ feature -- Basic operations
 			set_render_before
 			render_cursor := unbreakables.new_cursor
 			render_cursor.start
+			set_render_inside
 			render_forth (document, region)
 		end
 
@@ -93,6 +99,7 @@ feature -- Basic operations
 		local
 			renderable : FO_RENDERABLE
 		do
+			last_region := region
 			if not render_cursor.off then
 				from
 					available_region := region.twin

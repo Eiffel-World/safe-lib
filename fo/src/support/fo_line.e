@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/04/16 16:50:44 $"
+	date: "$Date: 2007/11/13 13:20:53 $"
 
 class
 	FO_LINE
@@ -115,6 +115,56 @@ feature -- Measurement
 			else
 				create zero.points (0)
 				create Result.set (zero, zero, zero, text_leading)
+			end
+		end
+
+	ascender : FO_MEASUREMENT is
+			-- Smallest box enclosing the whole line.
+		local
+			c : DS_LIST_CURSOR[FO_INLINE]
+		do
+			if inlines.count > 0 then
+				--| find the greatest bounding box of all fonts.
+				from
+					c := inlines.new_cursor
+					c.start
+				until
+					c.off
+				loop
+					if Result = Void then
+						Result := c.item.font.ascender
+					else
+						Result := Result.max (c.item.font.ascender)
+					end
+					c.forth
+				end
+			else
+				create Result.points (0)
+			end
+		end
+
+	descender : FO_MEASUREMENT is
+			-- Smallest box enclosing the whole line.
+		local
+			c : DS_LIST_CURSOR[FO_INLINE]
+		do
+			if inlines.count > 0 then
+				--| find the greatest bounding box of all fonts.
+				from
+					c := inlines.new_cursor
+					c.start
+				until
+					c.off
+				loop
+					if Result = Void then
+						Result := c.item.font.descender
+					else
+						Result := Result.min (c.item.font.descender)
+					end
+					c.forth
+				end
+			else
+				create Result.points (0)
 			end
 		end
 
@@ -350,8 +400,13 @@ feature {FO_LINE, FO_DOCUMENT} -- Access
 	set_text_origin_justified (page : PDF_PAGE; region : FO_RECTANGLE) is
 		local
 			x, y : FO_MEASUREMENT
+			asc, bh, adh, diff : FO_MEASUREMENT
 		do
-			y := region.top - bounding_box.top
+			bh := bounding_box.height
+			asc := ascender
+			adh := asc-descender
+			diff := bh - adh
+			y := region.top - asc - (diff / points (4))
 
 			inspect justification
 			when Justify_right then

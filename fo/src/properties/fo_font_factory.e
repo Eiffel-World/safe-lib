@@ -2,12 +2,12 @@ indexing
 
 	description:
 
-		"Factories of fonts"
+		"Factories of fonts."
 
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:37 $"
+	date: "$Date: 2007/11/13 13:20:53 $"
 
 class
 	FO_FONT_FACTORY

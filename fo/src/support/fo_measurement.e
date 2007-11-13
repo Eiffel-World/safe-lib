@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/25 17:12:21 $"
+	date: "$Date: 2007/11/13 13:20:54 $"
 
 class
 	FO_MEASUREMENT
@@ -180,6 +180,15 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
+	abs : like Current is
+		do
+			if sign < 0 then
+				Result := -Current
+			else
+				Result := Current
+			end
+		end
+
 	prefix "-" : like Current is
 			-- Current negated.
 		do
@@ -197,7 +206,7 @@ feature -- Basic operations
 		do
 			Create Result.points (as_points / other.as_points)
 		end
-		
+
 	infix "*" (other : like Current) : like Current is
 			-- Current multiplied by `other'.
 		do

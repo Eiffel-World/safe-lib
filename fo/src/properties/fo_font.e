@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:36 $"
+	date: "$Date: 2007/11/13 13:20:53 $"
 
 class
 	FO_FONT
@@ -129,14 +129,14 @@ feature -- Access
 			Result := internal_font.x_height
 		end
 
-	ascender : INTEGER is
+	ascender : FO_MEASUREMENT is
 		do
-			Result := internal_font.ascender
+			create Result.points (internal_font.ascender / em_size * size.as_points)
 		end
 
-	descender : INTEGER is
+	descender : FO_MEASUREMENT is
 		do
-			Result := internal_font.descender
+			create Result.points (internal_font.descender / em_size * size.as_points)
 		end
 
 	std_hw : INTEGER is

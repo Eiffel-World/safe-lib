@@ -1,8 +1,12 @@
 indexing
-	description: "Objects that have access to internal properties of FO_OBJECTS"
-	author: "Paul G. Crismer"
-	date: "$Date: 2007/04/16 12:24:52 $"
-	revision: "$Revision: 1.1 $"
+	description:
+
+		"Objects that have access to internal properties of FO_OBJECTS"
+
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2007/11/13 13:20:53 $"
 
 deferred class
 	FO_INTERNAL

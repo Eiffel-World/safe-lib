@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/04/16 16:50:38 $"
+	date: "$Date: 2007/11/13 13:20:53 $"
 
 class FO_TABLE
 
@@ -217,6 +217,7 @@ feature -- Basic operations
 			if must_render_rows then
 				--| render rows until one of them cannot be rendered.
 				from
+					set_render_inside
 					set_rendering_rows
 					render_cursor := rows.new_cursor
 					render_cursor.start

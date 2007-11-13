@@ -1,8 +1,12 @@
 indexing
-	description: "Objects that ..."
-	author: ""
-	date: "$Date: 2007/06/15 08:40:29 $"
-	revision: "$Revision: 1.1 $"
+	description:
+
+		"Border styles."
+
+	library: "FO - Formatting Objects in Eiffel. Project SAFE."
+	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2007/11/13 13:20:53 $"
 
 class
 	FO_BORDER_STYLE
@@ -11,6 +15,38 @@ feature -- Access
 
 	style : INTEGER
 		-- Style.
+
+feature -- Element change
+
+	set_style_none is
+		do
+			style := style_none
+		end
+
+	set_style_dashed is
+		do
+			style := style_dashed
+		end
+
+	set_style_dot_dashed is
+		do
+			style := style_dot_dash
+		end
+
+	set_style_dotted is
+		do
+			style := style_dotted
+		end
+
+	set_style_solid is
+		do
+			style := style_solid
+		end
+
+	set_style_double is
+		do
+			style := style_double
+		end
 
 feature {FO_BORDER_STYLE, FO_BORDERABLE, FO_INLINE} -- Access
 
@@ -32,6 +68,14 @@ feature {FO_BORDER_STYLE, FO_BORDERABLE, FO_INLINE} -- Access
 			dash_array_not_void: Result.first /= Void
 		end
 
+feature -- Status report is
+
+	valid_style (a_style : INTEGER) : BOOLEAN is
+			-- Is `a_style' valid?
+		do
+			Result := (a_style >= style_none and a_style <= style_double)
+		end
+
 feature -- Constants
 
 	style_none : INTEGER is 0
@@ -44,6 +88,6 @@ feature -- Constants
 feature {NONE} -- Implementation
 
 invariant
-	invariant_clause: True -- Your invariant here
+
 
 end
