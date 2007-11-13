@@ -6,17 +6,13 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/05/04 12:40:40 $"
+	date: "$Date: 2007/11/13 11:31:13 $"
 
 class
 	PO_ERROR_HANDLER
 
 inherit
 	UT_ERROR_HANDLER
-		export
-			{NONE} all;
-			{ANY} is_equal, copy
-		end
 
 create
 	make_standard, make_null

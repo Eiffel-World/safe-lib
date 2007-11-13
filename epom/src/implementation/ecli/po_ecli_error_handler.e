@@ -1,8 +1,8 @@
 indexing
-	description: "Objects that ..."
+	description: "Error handlers for ECLI queries/cursors."
 	author: ""
-	date: "$Date: 2007/05/04 12:40:40 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/13 11:31:13 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	PO_ECLI_ERROR_HANDLER
@@ -12,7 +12,20 @@ inherit
 
 create
 	make_standard,
-	make_null
+	make_null,
+	make_tee
+
+feature {NONE} -- Initialization
+
+	make_tee (an_error_handler : UT_ERROR_HANDLER) is
+			-- make a T with `an_error_handler'.
+		require
+			an_error_handler_not_void: an_error_handler /= Void
+		do
+			set_info_file (an_error_handler.info_file)
+			set_error_file (an_error_handler.error_file)
+			set_warning_file (an_error_handler.warning_file)
+		end
 
 feature -- Basic operations
 
