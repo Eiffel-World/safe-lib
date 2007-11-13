@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:26 $"
+	date: "$Date: 2007/11/13 13:17:43 $"
 
 class
 	EFOTUTORIAL
@@ -25,23 +25,16 @@ feature -- Initialization
 	make is
 			-- Creation procedure.
 		do
-			test_hyphen
+--			test_hyphen
 			test_chapter_1
 			test_tables
 			test_show_section
-			test_labels
-		end
-
-	test_labels is
-		local
-			test : TUTORIAL_TEST_LABELS
-		do
-			create test.execute
+--			test_labels
 		end
 
 	test_chapter_1 is
 		do
-			test_hello_world
+--			test_hello_world
 			test_block
 		end
 
