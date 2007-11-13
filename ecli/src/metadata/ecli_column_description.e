@@ -1,13 +1,13 @@
 indexing
 
 	description:
-	
+
 			"Description of result-set column."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:09 $"
+	date: "$Date: 2007/11/13 08:58:44 $"
 
 class ECLI_COLUMN_DESCRIPTION
 
@@ -81,21 +81,16 @@ feature -- Measurement
 feature -- Comparison
 
 	is_equal (other : like Current) : BOOLEAN is
-			-- 
+			--
 		do
 			Result := same_description (other) and then name.is_equal (other.name)
 		end
-		
+
 feature {NONE} -- Implementation
 
 	ext_actual_name_length : XS_C_INT32 is once create Result.make end
 
---	temporary_name : STRING is
---			-- 
---		once !!Result.make (100)
---		end
-
 invariant
 	name_not_void: name /= Void
-	
+
 end
