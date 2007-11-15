@@ -4,11 +4,11 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:53 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2007/11/15 10:21:47 $"
+	revision: "$Revision: 1.5 $"
 
 class
-	PARENT_COLUMN_SET [G->ACCESS_MODULE_METADATA]
+	PARENT_COLUMN_SET [G->RDBMS_ACCESS_METADATA]
 
 inherit
 	COLUMN_SET[G]

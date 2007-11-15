@@ -4,14 +4,14 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:52 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2007/11/15 10:21:47 $"
+	revision: "$Revision: 1.1 $"
 
 class
-	MODULE_PARAMETER
+	RDBMS_ACCESS_PARAMETER
 
 inherit
-	ACCESS_MODULE_METADATA
+	RDBMS_ACCESS_METADATA
 		redefine
 			copy, is_equal
 		end
@@ -196,7 +196,7 @@ feature -- Comparison
 			if ANY_.same_types (Current, other) then
 				Result := name.is_equal (other.name) and then reference_column.is_equal (other.reference_column)
 			else
-				Result := Precursor {ACCESS_MODULE_METADATA} (other)
+				Result := Precursor {RDBMS_ACCESS_METADATA} (other)
 			end
 		end
 

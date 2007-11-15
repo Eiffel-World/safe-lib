@@ -4,14 +4,14 @@ indexing
 	
 	application: "Query Assistant"
 	library: "ECLI"
-	date: "$Date: 2007/11/15 10:01:52 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:21:47 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PARAMETER_MAP
 
 inherit
-	DS_HASH_TABLE [MODULE_PARAMETER, STRING]
+	DS_HASH_TABLE [RDBMS_ACCESS_PARAMETER, STRING]
 	
 create
 	make 

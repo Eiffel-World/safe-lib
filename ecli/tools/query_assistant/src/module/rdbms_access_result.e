@@ -4,14 +4,14 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:52 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2007/11/15 10:21:47 $"
+	revision: "$Revision: 1.1 $"
 
 class
-	MODULE_RESULT
+	RDBMS_ACCESS_RESULT
 
 inherit
-	ACCESS_MODULE_METADATA
+	RDBMS_ACCESS_METADATA
 
 	HASHABLE
 		undefine

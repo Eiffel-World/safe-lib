@@ -4,14 +4,14 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:53 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2007/11/15 10:21:47 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	PARAMETER_SET
 
 inherit
-	COLUMN_SET[MODULE_PARAMETER]
+	COLUMN_SET[RDBMS_ACCESS_PARAMETER]
 		redefine
 			make
 		end
@@ -32,7 +32,7 @@ feature -- Status report
 	has_samples : BOOLEAN is
 			-- has this parameter set samples for all the parameters ?
 		local
-			sc : DS_SET_CURSOR[MODULE_PARAMETER]
+			sc : DS_SET_CURSOR[RDBMS_ACCESS_PARAMETER]
 		do
 			if count > 0 then
 				from

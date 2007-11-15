@@ -4,14 +4,14 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:53 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2007/11/15 10:21:47 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	RESULT_SET
 
 inherit
-	COLUMN_SET[MODULE_RESULT]
+	COLUMN_SET[RDBMS_ACCESS_RESULT]
 		rename
 			put as put_set, force as force_set
 		redefine

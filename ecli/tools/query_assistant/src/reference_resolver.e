@@ -4,11 +4,11 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:10 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2007/11/15 10:21:47 $"
+	revision: "$Revision: 1.7 $"
 
 class
-	REFERENCE_RESOLVER [G -> ACCESS_MODULE_METADATA]
+	REFERENCE_RESOLVER [G -> RDBMS_ACCESS_METADATA]
 
 feature -- Basic operations
 
