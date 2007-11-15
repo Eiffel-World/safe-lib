@@ -1,13 +1,13 @@
 indexing
 	description: "Test for objects garbage collection.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:08 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2007/11/15 10:01:39 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 class
 	TEST_GC
 
-creation
+create
 
 	make
 

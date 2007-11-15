@@ -6,7 +6,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/04/27 19:13:15 $"
+	date: "$Date: 2007/11/15 10:01:57 $"
 
 class TEST_TO_ENG
 
@@ -17,7 +17,7 @@ inherit
 			create_operand, do_operation
 		end
 		
-creation
+create
 
 	make
 	

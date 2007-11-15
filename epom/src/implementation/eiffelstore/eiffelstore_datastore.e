@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/06/06 20:26:28 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
 
 class EIFFELSTORE_DATASTORE
 
@@ -19,7 +19,7 @@ inherit
 			{NONE} all 
 		end
 		
-creation
+create
 
 	make
 	

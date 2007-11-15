@@ -2,14 +2,14 @@ indexing
 	description: "Objects that sends messages to an rcurses server using a socket implementation"
     cluster: 	"ecurses, spec, remote_access"
     status: 	"See notice at end of class"
-    date: 	"$Date: 2002/06/05 09:45:52 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2007/11/15 10:01:55 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
 	RCURSES_CLIENT
 	
-creation
+create
 	make
 	
 feature {NONE} -- Initialize

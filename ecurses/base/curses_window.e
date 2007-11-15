@@ -3,8 +3,8 @@ indexing
 	cluster: 	"ecurses, base"
     	interface: 	"client, classification"
     	status: 	"See notice at end of class"
-    	date: 		"$Date: 2004/11/16 20:41:16 $"
-    	revision: 	"$Revision: 1.5 $"
+    	date: 		"$Date: 2007/11/15 10:01:54 $"
+    	revision: 	"$Revision: 1.6 $"
     	author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class 
@@ -46,7 +46,7 @@ inherit
 		export {NONE} all
 		end
 
-creation
+create
 	make , make_from_pointer, make_subwindow_absolute, make_subwindow_relative
 
 feature {NONE} -- construction

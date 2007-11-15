@@ -1,13 +1,13 @@
 indexing
 	description: "Transaction test appliation."
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:08 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2007/11/15 10:01:39 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 class
 	TRANSACT
 
-creation
+create
 
 	make
 

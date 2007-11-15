@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are outline items"
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/04/13 09:32:04 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2007/11/15 10:02:00 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	PDF_OUTLINE_ITEM
@@ -21,7 +21,7 @@ inherit
 			make as make_node
 		end
 
-creation
+create
 	{PDF_DOCUMENT} make, make_with_destination
 
 feature {NONE} -- Initialization

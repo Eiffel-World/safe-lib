@@ -4,8 +4,8 @@ indexing
 		"Objects that compare DS_PAIRs whose first element is a SRT_TUPLE"
 		
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/11/08 18:52:49 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:10 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	KL_PAIR_FIRST_TUPLE_COMPARATOR [G]
@@ -17,7 +17,7 @@ inherit
 			less_than, first_comparator
 		end
 
-creation
+create
 	
 	make
 

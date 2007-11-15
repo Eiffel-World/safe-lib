@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2004/08/30 19:41:21 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	TEXTMETRIC
@@ -10,7 +10,7 @@ class
 inherit
 	TAG_TEXTMETRICA_STRUCT
 	
-creation
+create
 	make_new_unshared, make_shared
 	
 feature -- Access

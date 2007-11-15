@@ -1,7 +1,7 @@
 indexing
 	description: "Color test pattern";
-	date: "$Date: 2000/01/07 11:33:32 $";
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:01:55 $";
+	revision: "$Revision: 1.2 $"
 
 class 
 	COLOR_TEST
@@ -13,7 +13,7 @@ inherit
 			{NONE} all
 		end
 
-creation
+create
 	make_from_window
 
 feature -- Commands

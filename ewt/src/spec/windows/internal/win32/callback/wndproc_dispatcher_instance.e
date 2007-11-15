@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that dispatch WNDPROC callbacks."
 	author: ""
-	date: "$Date: 2004/06/29 16:47:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	WNDPROC_DISPATCHER_INSTANCE
@@ -21,7 +21,7 @@ inherit
 			{NONE} all
 		end
 		
-creation
+create
 
 	make
 

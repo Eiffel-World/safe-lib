@@ -7,8 +7,8 @@ indexing
  
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2003/11/10 20:21:14 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:00 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	PDF_DESTINATION_FIT_HORIZONTAL
@@ -21,7 +21,7 @@ inherit
 			type
 		end
 		
-creation 
+create 
 	make
 	
 feature -- Access

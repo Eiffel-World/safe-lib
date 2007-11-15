@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/05/04 12:40:39 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
 
 class COPY_ADAPTER_ECLI
 
@@ -56,7 +56,7 @@ inherit
 			copy_borrowed as read_borrowed
 		end
 
-creation
+create
 
 	make
 

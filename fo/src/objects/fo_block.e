@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 13:20:53 $"
+	date: "$Date: 2007/11/15 10:02:09 $"
 
 class
 	FO_BLOCK
@@ -61,7 +61,7 @@ inherit
 			is_equal, out
 		end
 
-creation
+create
 	make, make_right, make_center, make_default
 
 feature {NONE} -- Initialization

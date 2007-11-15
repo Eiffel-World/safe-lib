@@ -1,8 +1,8 @@
 indexing
 	description: "Persitent identifiers for COPY objects"
 	author: "Paul G. Crismer"
-	date: "$Date: 2005/02/08 10:43:55 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	COPY_PID
@@ -15,7 +15,7 @@ inherit
 			is_equal
 		end
 
-creation
+create
 
 	make
 	

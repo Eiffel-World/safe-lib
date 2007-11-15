@@ -1,13 +1,13 @@
 indexing
 	description: "Objects that handle cached accesses to database repository."
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/02/25 16:43:09 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2007/11/15 10:01:52 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	COLUMNS_REPOSITORY
 
-creation
+create
 	make
 	
 feature {NONE} -- Initialization

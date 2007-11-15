@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2004/06/29 16:47:12 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	NONCLIENTMETRICS
@@ -15,7 +15,7 @@ inherit
 
 	WIN32_STRUCT_COMPLEMENT_FUNCTIONS
 	
-creation
+create
 	make_new_unshared,
 	make_new_shared,
 	make_unshared,

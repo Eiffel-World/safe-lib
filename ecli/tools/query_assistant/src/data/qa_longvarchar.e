@@ -1,8 +1,8 @@
 indexing
 	description: "SQL LONGVARCHAR (n) values."
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:10 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2007/11/15 10:01:51 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	QA_LONGVARCHAR
@@ -15,7 +15,7 @@ inherit
 	
 	QA_VALUE
 		
-creation
+create
 	make
 
 feature

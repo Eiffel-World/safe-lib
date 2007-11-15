@@ -6,7 +6,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/04/27 19:13:15 $"
+	date: "$Date: 2007/11/15 10:01:56 $"
 
 class TEST_DIVIDE_INTEGER
 
@@ -14,7 +14,7 @@ inherit
 
 	TEST_DECIMAL_GENERAL
 	
-creation
+create
 
 	make_file, make
 	

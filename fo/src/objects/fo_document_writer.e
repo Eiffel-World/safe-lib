@@ -6,12 +6,12 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 13:20:53 $"
+	date: "$Date: 2007/11/15 10:02:09 $"
 
 class
 	FO_DOCUMENT_WRITER
 
-creation
+create
 	make
 
 feature {NONE} -- Initialization

@@ -4,8 +4,8 @@ indexing
 		"Objects that iterate over DS_LINEAR[DS_PAIR[SRT_TUPLE, G]] collections; if the collection is sorted, break hierarchy can be checked."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/11/08 18:52:49 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:10 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	DS_HIERARCHICAL_CURSOR [G]
@@ -29,7 +29,7 @@ inherit
 			go_after
 		end
 	
-creation
+create
 
 	make
 	

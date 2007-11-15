@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2004/07/06 20:15:18 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PAINTSTRUCT
@@ -15,7 +15,7 @@ inherit
 			{NONE} all
 		end
 		
-creation
+create
 	make_new_unshared,
 	make_new_shared,
 	make_unshared,

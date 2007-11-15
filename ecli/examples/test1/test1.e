@@ -1,8 +1,8 @@
 indexing
 	description: "TEST1 sample application.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/09/26 19:11:43 $"
-	revision: "$Revision: 1.25 $"
+	date: "$Date: 2007/11/15 10:01:39 $"
+	revision: "$Revision: 1.26 $"
 	licensing: "See notice at end of class"
 
 
@@ -20,7 +20,7 @@ inherit
 
 	KL_IMPORTED_ARRAY_ROUTINES
 
-creation
+create
 
 	make
 

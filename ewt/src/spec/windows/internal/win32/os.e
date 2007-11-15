@@ -1,7 +1,7 @@
 indexing
 	description: "Windows Operating System specific constants and functions"
-	date: "$Date: 2004/07/06 20:15:18 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2007/11/15 10:02:08 $";
+	revision: "$Revision: 1.5 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -40,7 +40,7 @@ inherit
 			{NONE} all
 		end
 	
-creation
+create
 	make
 	
 feature {SHARED_OS} -- Initialization

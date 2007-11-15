@@ -6,7 +6,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/03 22:02:11 $"
+	date: "$Date: 2007/11/15 10:01:56 $"
 
 class TEST_DECIMAL
 
@@ -19,7 +19,7 @@ inherit
 
 	KL_STANDARD_FILES
 	
-creation
+create
 
 	make
 

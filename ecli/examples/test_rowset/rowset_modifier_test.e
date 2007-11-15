@@ -1,13 +1,13 @@
 indexing
 	description: "Objects that test bulk operations."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/09/16 18:52:25 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2007/11/15 10:01:39 $"
+	revision: "$Revision: 1.11 $"
 
 class
 	ROWSET_MODIFIER_TEST
 
-creation
+create
 	make
 	
 feature {NONE} -- Initialization

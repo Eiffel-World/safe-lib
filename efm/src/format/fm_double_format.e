@@ -7,8 +7,8 @@ indexing
 					]"
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/08 19:24:18 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2007/11/15 10:01:57 $";
+	revision: "$Revision: 1.5 $";
 	author: "Fafchamps Eric"
 
 class
@@ -21,7 +21,7 @@ inherit
 			is_equal
 		end
 
-creation
+create
 	make, make_default
 
 feature {NONE} -- Initialization.

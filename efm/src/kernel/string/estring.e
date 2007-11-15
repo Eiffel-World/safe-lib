@@ -10,7 +10,7 @@ class ESTRING
 inherit
 	ELKS_STRING
 
-creation
+create
 	make, make_from_string, make_from_string_linear	
 
 

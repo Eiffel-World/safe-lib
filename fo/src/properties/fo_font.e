@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 13:20:53 $"
+	date: "$Date: 2007/11/15 10:02:09 $"
 
 class
 	FO_FONT
@@ -16,7 +16,7 @@ inherit
 	FO_SHARED_FONT_FACTORY
 	FO_MEASUREMENT_ROUTINES
 
-creation
+create
 	{FO_FONT_FACTORY} make
 
 feature {NONE} -- Initialization

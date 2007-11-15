@@ -2,8 +2,8 @@ indexing
 	description: 	"System's root class"
 	author: 	"Paul G. Crismer"
 	licence: 	"Released under the Eiffel Forum licence.  See file 'forum.txt'."
-	date: 		"$Date: 2007/04/13 09:32:03 $"
-	revision: 	"$Revision: 1.9 $"
+	date: 		"$Date: 2007/11/15 10:01:58 $"
+	revision: 	"$Revision: 1.10 $"
 
 class
 	SHOW_EPDF
@@ -12,7 +12,7 @@ inherit
 	KL_SHARED_FILE_SYSTEM
 	DT_SHARED_SYSTEM_CLOCK
 
-creation
+create
 	make
 
 feature -- Initialization

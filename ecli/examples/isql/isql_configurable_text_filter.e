@@ -1,8 +1,8 @@
 indexing
 	description: "Text filters that take configuration parameters from context variables."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 09:23:03 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:01:36 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CONFIGURABLE_TEXT_FILTER
@@ -21,7 +21,7 @@ inherit
 			error_end
 		end
 	
-creation
+create
 	make
 	
 feature -- Access

@@ -17,7 +17,7 @@ inherit
 			copy, is_equal, out
 		end;
 
-creation 
+create 
 	make, make_from_string
 
 feature -- Initialization

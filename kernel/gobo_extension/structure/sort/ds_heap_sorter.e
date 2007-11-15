@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Structure Library"
 	copyright: "Copyright (c) 2000, Eric Bezault and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/11/08 18:52:48 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:10 $"
+	revision: "$Revision: 1.2 $"
 
 class DS_HEAP_SORTER [G]
 
@@ -16,7 +16,7 @@ inherit
 
 	DS_INDEXABLE_SORTER [G]
 
-creation
+create
 
 	make
 

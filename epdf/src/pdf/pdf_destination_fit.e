@@ -7,8 +7,8 @@ indexing
  % the smaller of the two, centering the page within the window in the other dimension."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/04/13 09:32:03 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:02:00 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PDF_DESTINATION_FIT
@@ -16,7 +16,7 @@ class
 inherit
 	PDF_EXPLICIT_DESTINATION
 
-creation
+create
 	make
 
 feature {NONE} -- Initialization

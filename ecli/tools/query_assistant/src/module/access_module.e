@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/01/30 14:18:02 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2007/11/15 10:01:52 $"
+	revision: "$Revision: 1.8 $"
 
 class
 	ACCESS_MODULE
@@ -14,6 +14,8 @@ inherit
 	SHARED_SCHEMA_NAME
 	SHARED_CATALOG_NAME
 	SHARED_MAXIMUM_LENGTH
+
+	PO_PERSISTENT
 
 create
 	make
@@ -35,6 +37,8 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
+	persistent_class_name : STRING is do Result := generator end
+	
 	description: STRING
 			-- description of current module. Useful for documenting purposes
 

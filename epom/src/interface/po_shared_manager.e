@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/08 10:43:56 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
 
 class PO_SHARED_MANAGER
 
@@ -19,7 +19,7 @@ feature -- Access
 		ensure
 			Result /= Void
 		end
-		
+
 feature {PO_LAUNCHER} -- Status setting
 
 	set_manager (manager : PO_MANAGER) is
@@ -31,17 +31,17 @@ feature {PO_LAUNCHER} -- Status setting
 		ensure
 			persistence_manager_set: persistence_manager = manager
 		end
-		
+
 feature {NONE} -- Implementation
 
 	cell : DS_CELL[PO_MANAGER] is
 			-- The singleton.
 		once
-			!! Result.make (Void)
+			create Result.make (Void)
 		end
 
 invariant
 
 	cell_not_void: cell /= Void
-	
+
 end

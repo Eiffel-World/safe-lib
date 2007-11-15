@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that behave like a text printer"
 	author: ""
-	date: "$Date: 2003/02/27 15:07:20 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:01:59 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PDF_TEXT_WRITER
@@ -21,7 +21,7 @@ inherit
 -- The following Creation_clause can be removed if you need no other
 -- procedure than `default_create':
 
-creation
+create
 	make
 
 feature -- Initialization

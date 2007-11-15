@@ -6,7 +6,7 @@ inherit
 
 	MA_DECIMAL_CONSTANTS
 
-creation
+create
 
 	make
 	

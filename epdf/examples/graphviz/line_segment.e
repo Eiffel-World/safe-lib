@@ -1,8 +1,8 @@
 indexing
 	description: "Line segment"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/10 20:21:13 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2007/11/15 10:01:58 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -17,7 +17,7 @@ inherit
 		select
 		end
 
-creation
+create
 	make_2_points, make_polar
 
 feature -- Initialization

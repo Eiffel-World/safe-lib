@@ -27,8 +27,8 @@ indexing
 		]"
 		
 	author: ""
-	date: "$Date: 2004/07/06 20:15:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	POINT
@@ -46,7 +46,7 @@ inherit
 			out, is_equal
 		end
 		
-creation
+create
 	make
 	
 feature -- Initialization

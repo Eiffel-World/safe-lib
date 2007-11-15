@@ -1,15 +1,15 @@
 indexing
 	description: "TEST1 sample application.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:09 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2007/11/15 10:01:50 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 
 class
 	TEST_PROCEDURES
 	
-creation
+create
 
 	make
 

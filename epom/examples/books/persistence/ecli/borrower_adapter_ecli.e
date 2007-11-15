@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/05/04 12:40:39 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
 
 class BORROWER_ADAPTER_ECLI
 
@@ -51,7 +51,7 @@ inherit
 			borrower_read_like as read_by_name_pattern
 		end
 
-creation
+create
 
 	make
 

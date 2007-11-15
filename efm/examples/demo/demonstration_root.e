@@ -1,13 +1,13 @@
 indexing
 	description: "Root class for Eiffel Format Demonstration";
 	author: "Eric Fafchamps"
-	date: "$Date: 2006/03/07 17:10:10 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:01:57 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 class
 	DEMONSTRATION_ROOT
 
-creation
+create
 
 	make
 

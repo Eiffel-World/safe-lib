@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/02/07 15:52:45 $"
+	date: "$Date: 2007/11/15 10:02:09 $"
 
 class
 	FO_MARGINS
@@ -15,7 +15,7 @@ class
 inherit
 	FO_TUPLE_4
 	
-creation
+create
 	make, set
 
 feature -- Measurement

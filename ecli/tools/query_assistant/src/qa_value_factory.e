@@ -2,10 +2,10 @@ indexing
 	description: "Factories of ECLI_VALUEs that offer introspection/generation facilities."
 
 	library: "Access_gen : Access Modules Generators utilities"
-	
+
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:10 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2007/11/15 10:01:50 $"
+	revision: "$Revision: 1.12 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,11 +14,8 @@ class
 inherit
 
 	SHARED_USE_DECIMAL
-	
+
 	ECLI_VALUE_FACTORY
-		rename
-		export
-		undefine
 		redefine
 			create_double_value,
 			create_decimal_value,
@@ -30,10 +27,9 @@ inherit
 			create_timestamp_value,
 			create_time_value,
 			last_result
-		select
 		end
 
-creation
+create
 	make
 
 feature -- Initialization
@@ -43,7 +39,7 @@ feature -- Access
 	last_result : QA_VALUE
 
 	last_error : STRING
-	
+
 feature -- Measurement
 
 feature -- Status report
@@ -121,7 +117,7 @@ feature -- Element change
 				end
 			end
 		end
-		
+
 feature -- Removal
 
 feature -- Resizing
@@ -174,7 +170,7 @@ feature -- Miscellaneous
 				end
 			end
 		end
-		
+
 	create_varchar_value (column_precision : INTEGER) is
 		do
 			if column_precision > 254 then
@@ -204,7 +200,7 @@ feature {NONE} -- Implementation
 	fmt_date : ECLI_DATE_FORMAT is once create Result end
 	fmt_time : ECLI_TIME_FORMAT is once create Result end
 	fmt_timestamp : ECLI_TIMESTAMP_FORMAT is once create Result end
-	
+
 end -- class QA_VALUE_FACTORY
 --
 -- Copyright (c) 2000-2006, Paul G. Crismer, <pgcrism@users.sourceforge.net>

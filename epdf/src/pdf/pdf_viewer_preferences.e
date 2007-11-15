@@ -1,8 +1,8 @@
 indexing
 	description: "PDF Viewer preferences."
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/02/07 17:43:53 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2007/11/15 10:02:00 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	PDF_VIEWER_PREFERENCES
@@ -13,7 +13,7 @@ inherit
 			put_pdf
 		end
 
-creation
+create
 	make
 	
 feature -- Access

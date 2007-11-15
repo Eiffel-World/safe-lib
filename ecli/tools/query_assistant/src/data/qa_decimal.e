@@ -1,8 +1,8 @@
 indexing
 	description: "NUMBER/DECIMAL values."
 	author: ""
-	date: "$Date: 2006/02/16 15:41:59 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:01:50 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	QA_DECIMAL
@@ -15,7 +15,7 @@ inherit
 			bind_as_parameter
 		end
 
-creation
+create
 	make
 	
 feature

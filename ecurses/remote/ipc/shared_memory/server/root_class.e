@@ -3,8 +3,8 @@ indexing
     cluster: 	"ecurses, spec, remote_access, server"
     status: 	"See notice at do end of class"
     refactor:   "common features with socket implementation should be factored out"
-    date: 	"$Date: 2002/08/17 21:57:38 $"
-    revision: 	"$Revision: 1.2 $"
+    date: 	"$Date: 2007/11/15 10:01:55 $"
+    revision: 	"$Revision: 1.3 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -50,7 +50,7 @@ inherit
 			default_rescue
 		end
 		   
-creation
+create
    make
 
 feature {ANY} 

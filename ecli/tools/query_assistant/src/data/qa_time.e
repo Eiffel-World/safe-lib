@@ -1,8 +1,8 @@
 indexing
 	description: "SQL TIME value."
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:10 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2007/11/15 10:01:52 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -13,7 +13,7 @@ inherit
 	
 	QA_VALUE
 
-creation
+create
 	make_default
 	
 feature

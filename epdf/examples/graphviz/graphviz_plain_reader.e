@@ -1,13 +1,13 @@
 indexing
 	description: "Objects that read Graphviz-generated plain format."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/10 20:21:13 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2007/11/15 10:01:58 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	GRAPHVIZ_PLAIN_READER
 
-creation
+create
 	make
 
 feature -- Initialization

@@ -1,8 +1,8 @@
 indexing
 	description: "Abstraction of a composite key, viewed as a tuple of comparable"
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/12/08 13:50:40 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:10 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	SRT_TUPLE
@@ -19,7 +19,7 @@ inherit
 		select
 		end
 
-creation
+create
 	make, make_from_array
 	
 feature -- Status report

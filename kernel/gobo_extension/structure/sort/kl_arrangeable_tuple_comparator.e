@@ -4,8 +4,8 @@ indexing
 		"Objects that can compare an arrangement of SRT_TUPLE components"
 
 	author: "PGC"
-	date: "$Date: 2004/11/08 18:52:49 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:10 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	KL_ARRANGEABLE_TUPLE_COMPARATOR
@@ -16,7 +16,7 @@ inherit
 			index, index_count
 		end
 
-creation
+create
 
 	make 
 		

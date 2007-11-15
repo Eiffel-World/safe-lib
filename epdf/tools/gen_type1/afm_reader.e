@@ -1,13 +1,13 @@
 indexing
 	description: "Objects that read Adobe Font Metrics (AFM) files"
 	author: ""
-	date: "$Date: 2006/02/07 17:43:53 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2007/11/15 10:02:04 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	AFM_READER
 
-creation
+create
 	make
 	
 feature -- Initialization

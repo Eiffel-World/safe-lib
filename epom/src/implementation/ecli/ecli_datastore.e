@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 11:31:11 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
 
 class ECLI_DATASTORE
 
@@ -14,7 +14,7 @@ inherit
 
 	PO_DATASTORE
 
-creation
+create
 
 	make
 

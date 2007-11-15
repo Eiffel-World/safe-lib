@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/04/16 16:50:44 $"
+	date: "$Date: 2007/11/15 10:02:09 $"
 
 class
 	FO_RECTANGLE
@@ -21,7 +21,7 @@ inherit
 			valid_top
 		end
 
-creation
+create
 	make, set, copy
 
 feature -- Measurement

@@ -3,8 +3,8 @@ indexing
 		% Substrings enclosed by double quotes are considered as words. %
 		% Double quotes enclosing a word are suppressed."
 	author: "Paul G. Crismer"
-	date: "$Date: 2002/03/20 15:19:02 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:01:58 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -17,7 +17,7 @@ inherit
 		end
 
 
-creation
+create
 	make
 
 feature -- Status report

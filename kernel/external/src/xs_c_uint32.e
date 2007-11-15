@@ -4,8 +4,8 @@ indexing
 	
 	library: "XS_C : eXternal Support C"
 	
-	date: "$Date: 2006/02/21 10:34:57 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2007/11/15 10:02:10 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -44,7 +44,7 @@ inherit
 			is_equal
 		end
 	
-creation
+create
 	make, make_from_integer, make_from_hexadecimal_string, make_from_binary_string
 					
 feature -- Access

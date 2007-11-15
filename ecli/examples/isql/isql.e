@@ -1,8 +1,8 @@
 indexing
 	description: "Command Line Interactive SQL for ODBC datasources.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/13 08:59:25 $"
-	revision: "$Revision: 1.29 $"
+	date: "$Date: 2007/11/15 10:01:36 $"
+	revision: "$Revision: 1.30 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -19,7 +19,7 @@ inherit
 
 	KL_SHARED_FILE_SYSTEM
 
-creation
+create
 
 	make
 

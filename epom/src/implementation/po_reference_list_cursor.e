@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/11/29 10:14:26 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
 
 class PO_REFERENCE_LIST_CURSOR[G->PO_PERSISTENT]
 
@@ -14,7 +14,7 @@ inherit
 
 	PO_CURSOR [G]
 	
-creation
+create
 
 	make
 	

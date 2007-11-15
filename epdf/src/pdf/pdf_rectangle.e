@@ -1,8 +1,8 @@
 indexing
 	description: "PDF Rectangle"
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/02/07 17:43:53 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2007/11/15 10:02:00 $"
+	revision: "$Revision: 1.8 $"
 
 class
 	PDF_RECTANGLE
@@ -19,7 +19,7 @@ inherit
 			to_pdf_item
 		end
 		
-creation
+create
 		make, make_a4, make_letter, set
 
 feature -- Initialization

@@ -1,13 +1,13 @@
 indexing
 	description: "Key Table abstraction"
 	author: ""
-	date: "$Date: 2003/12/29 16:49:48 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	KEY_TABLE
 
-creation
+create
 	make
 	
 feature {NONE} -- Initialization

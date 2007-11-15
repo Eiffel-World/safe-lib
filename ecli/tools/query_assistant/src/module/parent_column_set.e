@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:10 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2007/11/15 10:01:53 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	PARENT_COLUMN_SET [G->ACCESS_MODULE_METADATA]
@@ -16,7 +16,7 @@ inherit
 			copy, make, flatten
 		end
 
-creation
+create
 	make
 	
 feature {NONE} -- Initialization

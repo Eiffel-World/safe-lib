@@ -1,8 +1,8 @@
 indexing
 	description: "Simple text filters."
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/13 08:59:25 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:01:37 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ISQL_TEXT_FILTER
@@ -16,7 +16,7 @@ inherit
 			end_message
 		end
 
-creation
+create
 	make
 
 feature {NONE} -- Initialization

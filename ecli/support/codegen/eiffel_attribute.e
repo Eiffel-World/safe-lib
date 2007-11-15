@@ -2,8 +2,8 @@ indexing
 	description: "Objects that represent Eiffel attributes."
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "Eiffel Code Generator"
-	date: "$Date: 2005/11/29 09:47:38 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2007/11/15 10:01:49 $"
+	revision: "$Revision: 1.4 $"
 	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
 	copyright: "Copyright (c) 2001 Glenn Maughan and others"
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
@@ -17,7 +17,7 @@ inherit
 			make as feature_make
 		end
 
-creation
+create
 
 	make
 

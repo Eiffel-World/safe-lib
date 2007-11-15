@@ -4,8 +4,8 @@ indexing
 	library: "EDA"
 	author: "Paul G. Crismer"
 	
-	date: "$Date: 2005/02/03 22:02:12 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2007/11/15 10:01:57 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class TELCO
@@ -22,7 +22,7 @@ inherit
 
 	MA_DECIMAL_MATH
 	
-creation
+create
 
 	make
 

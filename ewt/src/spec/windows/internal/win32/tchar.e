@@ -1,8 +1,8 @@
 indexing
 	description: "Conversions between STRING and the platform supported representation for characters"
 	author: ""
-	date: "$Date: 2004/06/20 09:16:50 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	TCHAR
@@ -10,7 +10,7 @@ class
 inherit
 	XS_C_STRING
 	
-creation
+create
 	make,  make_from_string
 	
 feature -- Access

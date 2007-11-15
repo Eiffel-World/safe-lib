@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/08 19:24:18 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2007/11/15 10:01:58 $";
+	revision: "$Revision: 1.6 $";
 	author: "Fafchamps Eric"
 
 class
@@ -24,7 +24,7 @@ inherit
 			is_equal
 		end	
 	
-creation
+create
 	make, make_default
 
 feature {NONE} -- Initialization.

@@ -5,8 +5,8 @@ indexing
 		"Objects that compare the first element of DS_PAIRs"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2004/11/08 18:52:49 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:10 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	KL_PAIR_FIRST_COMPARATOR [G,K]
@@ -14,7 +14,7 @@ class
 inherit
 	KL_COMPARATOR [DS_PAIR[G,K]]
 	
-creation
+create
 	make
 	
 feature {NONE} -- Initialization

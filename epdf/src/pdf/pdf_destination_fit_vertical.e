@@ -6,8 +6,8 @@ indexing
  % just enough to fit the entire width of the page within the window."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/04/13 09:32:03 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:02:00 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PDF_DESTINATION_FIT_VERTICAL
@@ -15,7 +15,7 @@ class
 inherit
 	PDF_EXPLICIT_DESTINATION
 
-creation
+create
 	make
 
 feature {NONE} -- Initialization

@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:24 $"
+	date: "$Date: 2007/11/15 10:02:05 $"
 
 class COPY
 
@@ -16,11 +16,11 @@ inherit
 	
 	COPY_PERSISTENT_CLASS_NAME
 
-creation
+create
 
 	make
 
-creation
+create
 
 	{COPY_ADAPTER} make_lazy
 	

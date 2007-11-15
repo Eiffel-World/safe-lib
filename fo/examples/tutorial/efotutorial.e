@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 13:17:43 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
 
 class
 	EFOTUTORIAL
@@ -17,7 +17,7 @@ inherit
 	KL_SHARED_EXECUTION_ENVIRONMENT
 	KL_SHARED_FILE_SYSTEM
 
-creation
+create
 	make
 
 feature -- Initialization

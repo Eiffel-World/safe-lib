@@ -2,8 +2,8 @@ indexing
 	description: "Objects that adapts ecurses client messages to the natif CURSES API"
     cluster: 	"ecurses, spec, remote_access, server"
     status: 	"See notice at do end of class"
-    date: 	"$Date: 2002/08/17 21:57:38 $"
-    revision: 	"$Revision: 1.2 $"
+    date: 	"$Date: 2007/11/15 10:01:54 $"
+    revision: 	"$Revision: 1.3 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -162,7 +162,7 @@ inherit
 		end
 
 	
-creation
+create
 	make
 	
 feature {NONE} -- Initialization

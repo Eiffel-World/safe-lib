@@ -5,13 +5,13 @@ indexing
 
 	author: 	"Paul G. Crismer"
 	licencing: 	"See notice at end of class"
-	date: 		"$Date: 2003/11/10 20:21:15 $"
-	revision: 	"$Revision: 1.2 $"
+	date: 		"$Date: 2007/11/15 10:02:00 $"
+	revision: 	"$Revision: 1.3 $"
 
 class
 	OCTAL_FORMAT
 	
-creation
+create
 	make
 
 feature -- Initialization

@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:09 $"
+	date: "$Date: 2007/11/15 10:01:48 $"
 
 	class ECLI_PARAMETER_DESCRIPTION
 
@@ -27,7 +27,7 @@ inherit
 		end
 	-- end mix-in
 	
-creation
+create
 
 	make
 

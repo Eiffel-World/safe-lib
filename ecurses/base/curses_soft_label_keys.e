@@ -3,8 +3,8 @@ indexing
 	cluster:        "ecurses, base"
     	interface: 	"client, shared"
     	status: 	"See notice at end of class"
-    	date: 		"$Date: 2000/10/01 19:16:53 $"
-    	revision: 	"$Revision: 1.2 $"
+    	date: 		"$Date: 2007/11/15 10:01:54 $"
+    	revision: 	"$Revision: 1.3 $"
     	author: 	"Paul G. Crismer, Eric Fafchamps"
 class 
 	CURSES_SOFT_LABEL_KEYS
@@ -21,7 +21,7 @@ inherit
 
 	CURSES_ERROR_HANDLING
 
-creation
+create
 
 	make_323, make_44, make_444, make_444i, make_55
 

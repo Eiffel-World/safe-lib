@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/07 17:10:10 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2007/11/15 10:01:58 $";
+	revision: "$Revision: 1.5 $";
 	author: "Fafchamps eric"
 
 class
@@ -17,7 +17,7 @@ inherit
 		redefine
 			copy
 		end
-creation
+create
 	make, make_word_wrapped, make_default
 
 feature {NONE} -- Initialization

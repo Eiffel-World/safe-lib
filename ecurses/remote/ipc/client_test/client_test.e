@@ -2,15 +2,15 @@ indexing
 	description	: "System's root class"
     cluster: 	"ecurses, spec, remote_access, server"
     status: 	"See notice at do end of class"
-    date: 	"$Date: 2002/06/05 09:45:52 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2007/11/15 10:01:54 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
 	CLIENT_TEST
 
    
-creation {ANY} 
+create {ANY} 
    make
 
 feature {ANY} 

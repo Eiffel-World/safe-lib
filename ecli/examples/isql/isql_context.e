@@ -1,8 +1,8 @@
 indexing
 	description: "ISQL command contexts."
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/13 08:59:25 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2007/11/15 10:01:36 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ISQL_CONTEXT
@@ -10,7 +10,7 @@ class
 inherit
 	KL_STANDARD_FILES
 
-creation
+create
 	make, make_by_parent
 
 feature {NONE} -- Initialization

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are images coming from a PNG file"
 	author: "Paul G. Crismer"
-	date: "$Date: 2005/11/29 10:31:41 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2007/11/15 10:02:00 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	PDF_PNG_IMAGE
@@ -15,7 +15,7 @@ inherit
 		
 	KL_SHARED_FILE_SYSTEM
 	
-creation
+create
 	{PDF_DOCUMENT} make
 	
 feature {NONE} -- Initialization

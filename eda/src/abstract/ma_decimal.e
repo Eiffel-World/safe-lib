@@ -6,7 +6,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/05/25 08:10:01 $"
+	date: "$Date: 2007/11/15 10:01:57 $"
 
 class MA_DECIMAL
 
@@ -50,7 +50,7 @@ inherit
 			out, is_equal, copy
 		end
 
-creation
+create
 
 	{ANY} make_from_integer,
 	make_from_string,
@@ -60,7 +60,7 @@ creation
 	make_one,
 	make
 	
-creation
+create
 
 	{MA_DECIMAL} make_infinity, make_nan, make_snan, make_special
 

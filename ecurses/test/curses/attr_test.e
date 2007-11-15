@@ -1,7 +1,7 @@
 indexing
 	description: "Character attribute test";
-	date: "$Date: 2000/10/01 19:16:54 $";
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:01:55 $";
+	revision: "$Revision: 1.3 $"
 
 class 
 	ATTR_TEST
@@ -26,7 +26,7 @@ inherit
 				all
 		end
 	
-creation
+create
 	make_from_window
 
 feature -- Commands

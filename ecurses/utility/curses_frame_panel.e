@@ -2,8 +2,8 @@ indexing
 	description: "Panel with a border, a header and a footer. %
 		    % A client subwindow is available %
 		    % It does not overlap neither the border nor the header or the footer";
-	date: "$Date: 2000/01/07 11:33:35 $";
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:01:55 $";
+	revision: "$Revision: 1.2 $"
 
 class 
 	CURSES_FRAME_PANEL
@@ -13,7 +13,7 @@ inherit
 		redefine post_creation_command
 		end
 
-creation
+create
 	make, make_standard_panel
 
 feature

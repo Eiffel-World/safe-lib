@@ -4,8 +4,8 @@ indexing
 
 	library: "XS_C : eXternal Support C"
 
-	date: "$Date: 2005/02/03 22:05:52 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:02:09 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 class
 	TEST_UINT32
@@ -13,7 +13,7 @@ class
 inherit
 	KL_SHARED_STANDARD_FILES
 
-creation
+create
 	make
 
 feature

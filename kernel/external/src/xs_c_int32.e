@@ -4,8 +4,8 @@ indexing
 	
 	library: "XS_C : eXternal Support C"
 	
-	date: "$Date: 2003/12/29 19:20:33 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:02:10 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -14,7 +14,7 @@ class
 inherit
 	XS_C_ITEM[INTEGER]
 	
-creation
+create
 	make
 					
 feature -- Access

@@ -1,13 +1,13 @@
 indexing
 	description: "Access type enumeration."
 	author: "Paul G. Crismer & others."
-	date: "$Date: 2005/11/29 09:46:30 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:01:52 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ACCESS_TYPE
 
-creation
+create
 	make_from_string 
 
 feature -- Initialization

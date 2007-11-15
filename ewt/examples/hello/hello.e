@@ -1,14 +1,14 @@
 indexing
 	description	: "System's root class"
-	date: "$Date: 2004/06/29 16:49:46 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2007/11/15 10:02:08 $";
+	revision: "$Revision: 1.7 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
 class
 	HELLO
 
-creation
+create
 	make
 
 feature -- Initialization

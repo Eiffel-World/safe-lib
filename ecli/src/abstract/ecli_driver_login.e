@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/12/12 10:31:04 $"
+	date: "$Date: 2007/11/15 10:01:39 $"
 
 class
 	ECLI_DRIVER_LOGIN
@@ -18,7 +18,7 @@ inherit
 			{ANY} Sql_driver_noprompt, Sql_driver_complete, Sql_driver_complete_required, Sql_driver_prompt
 		end
 
-creation
+create
 	make, make_interactive, make_complete_strict, make_complete_lazy
 
 feature {NONE} -- Initialization

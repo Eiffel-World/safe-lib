@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2004/07/06 20:15:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	LOGBRUSH
@@ -13,7 +13,7 @@ inherit
 			{ANY} sizeof
 		end
 	
-creation
+create
 	make_new_unshared, make_shared, make_unshared, make_new_shared
 	
 feature -- Access

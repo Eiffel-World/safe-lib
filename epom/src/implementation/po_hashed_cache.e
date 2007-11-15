@@ -1,8 +1,8 @@
 indexing
 	description: "Caches of Persistent objects, implemented with a hash table"
 	author: "Paul G. Crismer"
-	date: "$Date: 2005/11/29 10:14:26 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PO_HASHED_CACHE [G -> PO_PERSISTENT]
@@ -10,7 +10,7 @@ class
 inherit
 	PO_CACHE [G]
 		
-creation
+create
 	make
 	
 feature -- Initialization

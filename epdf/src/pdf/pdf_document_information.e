@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are document information.  See PDF Reference 9.2.1."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/10 20:21:15 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2007/11/15 10:02:00 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	PDF_DOCUMENT_INFORMATION
@@ -13,7 +13,7 @@ inherit
 			put_pdf
 		end
 
-creation
+create
 	make
 	
 feature -- Access

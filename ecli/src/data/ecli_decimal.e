@@ -12,7 +12,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/12/12 10:32:09 $"
+	date: "$Date: 2007/11/15 10:01:44 $"
 
 class ECLI_DECIMAL
 
@@ -32,7 +32,7 @@ inherit
 			is_equal, copy, out
 		end
 
-creation
+create
 
 	make
 

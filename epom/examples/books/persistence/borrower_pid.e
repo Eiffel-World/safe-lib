@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2005/02/08 10:43:55 $"
+	date: "$Date: 2007/11/15 10:02:05 $"
 
 class BORROWER_PID
 	
@@ -19,7 +19,7 @@ inherit
 			is_equal
 		end
 		
-creation
+create
 
 	{BORROWER_ADAPTER} make
 	

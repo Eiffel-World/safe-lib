@@ -1,8 +1,8 @@
 indexing
 	description: "Query assistant."
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:09 $"
-	revision: "$Revision: 1.16 $"
+	date: "$Date: 2007/11/15 10:01:50 $"
+	revision: "$Revision: 1.17 $"
 	licensing: "See notice at end of class"
 
 class
@@ -13,7 +13,7 @@ inherit
 
 	ECLI_TYPE_CONSTANTS
 
-creation
+create
 	make
 
 feature -- Initialization

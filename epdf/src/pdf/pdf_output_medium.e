@@ -5,13 +5,13 @@ indexing
 
 	author: 	"Paul G. Crismer"
 	licencing: 	"See notice at end of class"
-	date: 		"$Date: 2004/01/20 21:06:58 $"
-	revision: 	"$Revision: 1.5 $"
+	date: 		"$Date: 2007/11/15 10:02:00 $"
+	revision: 	"$Revision: 1.6 $"
 
 class
 	PDF_OUTPUT_MEDIUM
 
-creation
+create
 	make, make_string
 	
 feature {NONE} -- Initialization

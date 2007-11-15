@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2004/12/07 20:58:23 $"
+	date: "$Date: 2007/11/15 10:02:05 $"
 
 class BOOK
 
@@ -16,7 +16,7 @@ inherit
 	
 	BOOK_PERSISTENT_CLASS_NAME
 	
-creation
+create
 
 	make
 	

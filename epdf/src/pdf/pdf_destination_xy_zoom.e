@@ -8,8 +8,8 @@ indexing
 % A zoom value of 0 has the same meaning as a null value."
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/04/13 09:32:03 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:02:00 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	PDF_DESTINATION_XY_ZOOM
@@ -17,7 +17,7 @@ class
 inherit
 	PDF_EXPLICIT_DESTINATION
 
-creation
+create
 	make
 
 feature {NONE} -- Initialization

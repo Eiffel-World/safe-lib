@@ -1,8 +1,8 @@
 indexing
 	description: "Graphviz node."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/11/10 20:21:13 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:01:58 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -11,7 +11,7 @@ class
 inherit
 	GRAPHVIZ_FIGURE
 	
-creation
+create
 	make
 
 feature -- Initialization

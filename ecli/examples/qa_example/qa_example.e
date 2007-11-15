@@ -1,8 +1,8 @@
 indexing
 	description: "Sample Application that use query assistant generated routines.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/04/11 14:38:37 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2007/11/15 10:01:39 $"
+	revision: "$Revision: 1.14 $"
 	licensing: "See notice at end of class"
 class
 	QA_EXAMPLE
@@ -10,7 +10,7 @@ class
 inherit
 	KL_IMPORTED_STRING_ROUTINES
 	
-creation
+create
 
 	make
 

@@ -1,7 +1,7 @@
 indexing
 	description: "Windows implementation of an ABSTRACT_SHELL"
-	date: "$Date: 2004/08/30 19:41:21 $";
-	revision: "$Revision: 1.12 $";
+	date: "$Date: 2007/11/15 10:02:08 $";
+	revision: "$Revision: 1.13 $";
 	author: "Paul G. Crismer & Eric Fafchamps"
 	licensing: "See notice at end of class"
 
@@ -36,7 +36,7 @@ inherit
 			release_widget
 		end
 		
-creation
+create
 	make, make_by_style, make_by_display, make_by_display_style, make_by_parent, make_by_parent_style
 	
 feature {NONE} -- Initialization

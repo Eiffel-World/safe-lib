@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 08:58:44 $"
+	date: "$Date: 2007/11/15 10:01:40 $"
 
 class ECLI_STATEMENT
 
@@ -44,7 +44,7 @@ inherit
 
 	ECLI_SQL_PARSER_CALLBACK
 
-creation
+create
 
 	make
 

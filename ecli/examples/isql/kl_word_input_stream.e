@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that read word streams."
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/02/25 14:29:31 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:01:37 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	KL_WORD_INPUT_STREAM
@@ -14,7 +14,7 @@ inherit
 		end
 
 
-creation
+create
 	make
 
 feature {NONE} -- Initialization

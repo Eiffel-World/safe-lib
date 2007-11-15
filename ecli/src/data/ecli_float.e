@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:08 $"
+	date: "$Date: 2007/11/15 10:01:44 $"
 
 class ECLI_FLOAT
 
@@ -18,7 +18,7 @@ inherit
 			column_precision, sql_type_code, decimal_digits, display_size
 		end
 
-creation
+create
 
 	make
 

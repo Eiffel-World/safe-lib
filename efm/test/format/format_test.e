@@ -5,7 +5,7 @@ indexing
 class
 	FORMAT_TEST
 
-creation
+create
 
 	make
 

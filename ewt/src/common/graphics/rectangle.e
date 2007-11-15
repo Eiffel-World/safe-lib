@@ -28,8 +28,8 @@ indexing
 	]"
 		
 	author: ""
-	date: "$Date: 2006/03/07 17:10:11 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2007/11/15 10:02:08 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	RECTANGLE
@@ -47,7 +47,7 @@ inherit
 			is_equal, out
 		end
 		
-creation
+create
 	make
 	
 feature -- Initialization
