@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:44 $"
+	date: "$Date: 2007/11/27 10:56:34 $"
 
 class ECLI_DATE_TIME
 
@@ -18,7 +18,7 @@ inherit
 			sql_type_code
 		end
 		
-create
+creation
 
 	make, make_first, make_default
 

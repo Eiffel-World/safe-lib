@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:09 $"
+	date: "$Date: 2007/11/27 10:56:35 $"
 
 class PAT_PUBLISHER [G -> PAT_SUBSCRIBER]
 
@@ -59,7 +59,7 @@ feature {NONE} -- Implementation
 	subscribers : DS_LIST[G] is
 		do
 			if impl_subscribers = Void then
-				!DS_LINKED_LIST[G]! impl_subscribers.make
+				create {DS_LINKED_LIST[G]} impl_subscribers.make
 			end
 			Result := impl_subscribers
 		ensure

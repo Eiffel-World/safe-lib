@@ -1,23 +1,23 @@
 indexing
 
 	description:
-	
+
 			"Objects that are called back by an ECLI_SQL_PARSER."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:16:39 $"
+	date: "$Date: 2007/11/27 10:56:35 $"
 
 deferred class ECLI_SQL_PARSER_CALLBACK
 
 feature -- Status report
 
 	is_valid : BOOLEAN is
-			-- 
+			--
 		deferred
 		end
-		
+
 feature -- Basic operations
 
 	add_new_parameter (a_parameter_name : STRING; a_position : INTEGER) is

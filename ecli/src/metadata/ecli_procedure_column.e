@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:48 $"
+	date: "$Date: 2007/11/27 10:56:35 $"
 
 class ECLI_PROCEDURE_COLUMN
 
@@ -25,7 +25,7 @@ inherit
 			out
 		end
 		
-create
+creation
 
 	make
 	

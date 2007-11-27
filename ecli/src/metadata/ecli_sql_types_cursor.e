@@ -1,13 +1,13 @@
 indexing
 
 	description:
-	
+
 			"Cursors over the SQL types supported by the datasource related to a session."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:49 $"
+	date: "$Date: 2007/11/27 10:56:35 $"
 
 class ECLI_SQL_TYPES_CURSOR
 
@@ -41,7 +41,7 @@ inherit
 		end
 
 	KL_IMPORTED_ARRAY_ROUTINES
-	
+
 create
 
 	make_all_types, make_by_type
@@ -131,7 +131,7 @@ feature -- Cursor Movement
 			end
 			statement_start
 			if not off then
-				!!impl_item.make (Current)
+				create impl_item.make (Current)
 			end
 		end
 
@@ -140,7 +140,7 @@ feature -- Cursor Movement
 		do
 			Precursor
 			if not off then
-				!!impl_item.make (Current)
+				create impl_item.make (Current)
 			else
 				impl_item := Void
 			end
