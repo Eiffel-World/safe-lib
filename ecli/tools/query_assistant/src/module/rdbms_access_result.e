@@ -1,11 +1,11 @@
 indexing
-	description: "Module result metadata."
+	description: "RDBMS result metadata."
 
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:21:47 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/27 10:55:42 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	RDBMS_ACCESS_RESULT

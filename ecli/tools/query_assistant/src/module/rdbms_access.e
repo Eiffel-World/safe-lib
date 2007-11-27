@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:21:47 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2007/11/27 10:55:42 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	RDBMS_ACCESS
@@ -34,8 +34,6 @@ feature {NONE} -- Initialization
 		end
 
 feature -- Access
-
-	persistent_class_name : STRING is do Result := generator end
 
 	description: STRING
 			-- description of current module. Useful for documenting purposes
