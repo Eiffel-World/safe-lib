@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 09:53:42 $"
+	date: "$Date: 2008/02/14 14:11:59 $"
 
 class ECLI_SQL_PARSER
 
@@ -184,8 +184,11 @@ feature -- Basic operations
 					parameter_end := 0
 				end
 			end
+			if escape and then state = state_string_literal or else state = state_table_literal then
+				state := state_sql
+			end
 			check
-				state=state_sql or else state=state_parameter
+				valid_final_state: state=state_sql or else state=state_parameter
 			end
 		ensure
 			original_sql_set: original_sql = sql
