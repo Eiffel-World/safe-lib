@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/02/14 14:11:59 $"
+	date: "$Date: 2008/02/15 09:39:04 $"
 
 class ECLI_SQL_PARSER
 
@@ -46,13 +46,17 @@ feature -- Status setting
 	set_parameter_marker (marker : CHARACTER) is
 			-- set `parameter_marker'
 		require
-			good_marker: (":?~°@§").has (marker)
+			good_marker: allowed_parameter_markers.has (marker)
 		do
 			parameter_marker := marker
 		ensure
 			parameter_marker_set:	parameter_marker = marker
 		end
 
+feature -- Constants
+
+	allowed_parameter_markers : STRING is ":?~°@§"
+	
 feature -- Basic operations
 
 			escape : BOOLEAN
@@ -186,6 +190,7 @@ feature -- Basic operations
 			end
 			if escape and then state = state_string_literal or else state = state_table_literal then
 				state := state_sql
+				escape := False
 			end
 			check
 				valid_final_state: state=state_sql or else state=state_parameter
@@ -208,7 +213,7 @@ feature {NONE} -- Implementation
 	cli_marker : CHARACTER is '?'
 
 invariant
-	good_parameter_marker: (":?~°@§").has (parameter_marker)
+	good_parameter_marker: allowed_parameter_markers.has (parameter_marker)
 	good_state: state = State_sql implies not escape
 
 end
