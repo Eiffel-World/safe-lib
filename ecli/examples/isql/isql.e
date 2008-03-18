@@ -1,8 +1,8 @@
 indexing
 	description: "Command Line Interactive SQL for ODBC datasources.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:36 $"
-	revision: "$Revision: 1.30 $"
+	date: "$Date: 2008/03/18 09:29:58 $"
+	revision: "$Revision: 1.31 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -197,8 +197,6 @@ feature {NONE} -- Implementation
 
 	create_commands is
 			-- create command_stream set
-		local
-			l_command : ISQL_COMMAND
 		do
 			create commands.make
 		end

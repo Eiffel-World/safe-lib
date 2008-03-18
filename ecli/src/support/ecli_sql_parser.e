@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/03/18 09:22:00 $"
+	date: "$Date: 2008/03/18 09:29:58 $"
 
 class ECLI_SQL_PARSER
 
@@ -72,7 +72,6 @@ feature -- Constants
 	allowed_parameter_markers : STRING is ":?~°@§"
 
 feature -- Basic operations
-
 
 	parse (sql : STRING; callback : ECLI_SQL_PARSER_CALLBACK) is
 			-- parse s, replacing every parameter by the ODBC/CLI marker '?'

@@ -2,8 +2,8 @@ indexing
 	description: "Objects that represent an Eiffel code class."
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "Eiffel Code Generator"
-	date: "$Date: 2007/11/15 10:01:49 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2008/03/18 09:29:58 $"
+	revision: "$Revision: 1.7 $"
 	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
 	copyright: "Copyright (c) 2001 Glenn Maughan and others"
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
@@ -190,7 +190,7 @@ feature {NONE} -- Implementation
 
 	write_creation_names (output: KI_TEXT_OUTPUT_STREAM) is
 		do
-			output.put_string ("creation")
+			output.put_string ("create")
 			output.put_new_line
 			output.put_new_line
 			from
@@ -243,7 +243,7 @@ feature {NONE} -- Implementation
 
 	write_end (output: KI_TEXT_OUTPUT_STREAM) is
 		do
-			output.put_string ("end -- class " + name)
+			output.put_string ("end")
 			output.put_new_line
 		end
 

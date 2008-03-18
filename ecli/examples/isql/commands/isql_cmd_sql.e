@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that execute SQL statements."
 	author: "Paul G. Crismer."
-	date: "$Date: 2007/11/13 08:59:26 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2008/03/18 09:29:58 $"
+	revision: "$Revision: 1.10 $"
 
 class
 	ISQL_CMD_SQL
@@ -38,7 +38,6 @@ feature -- Basic operations
 		local
 			cursor : ECLI_ROW_CURSOR
 			after_first : BOOLEAN
-			a_statement : ECLI_STATEMENT
 		do
 --			if context.session.is_bind_arrayed_results_capable then
 --				create {ECLI_ROWSET_CURSOR}cursor.make_prepared (context.session, text , 20)	
