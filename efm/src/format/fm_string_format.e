@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2007/11/15 10:01:58 $";
-	revision: "$Revision: 1.7 $";
+	date: "$Date: 2008/03/18 09:18:43 $";
+	revision: "$Revision: 1.8 $";
 	author: "Fafchamps eric"
 
 class
@@ -18,7 +18,7 @@ inherit
 			is_equal,
 			copy
 		end
-		
+
 create
 	make, make_default
 
@@ -39,7 +39,7 @@ feature {NONE} -- Initialization.
 			insufficient_width_handler := shared_default_format.insufficient_width_handler
 		ensure
 			width_copied: width = a_width
-			padding_character_default: padding_character = shared_default_format.padding_character 
+			padding_character_default: padding_character = shared_default_format.padding_character
 			padding_character_for_empty_string_default: padding_character_for_empty_string = shared_default_format.padding_character_for_empty_string
 			string_for_empty_string: equal (string_for_empty_string, shared_default_format.string_for_empty_string)
 			prefix_string_default: equal (prefix_string, shared_default_format.prefix_string)
@@ -126,7 +126,11 @@ feature -- Element change
 	set_string_for_empty_string (a_string : STRING) is
 			-- Set format string for empty string with `a_string'.
 		do
-			string_for_empty_string := clone (a_string)
+			if a_string /= Void then
+				string_for_empty_string := a_string.twin
+			else
+				string_for_empty_string := Void
+			end
 		ensure
 			string_copied: equal (string_for_empty_string, a_string) and (a_string /= Void implies string_for_empty_string /= a_string)
 		end

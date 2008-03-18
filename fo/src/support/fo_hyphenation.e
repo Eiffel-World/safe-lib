@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:40 $"
+	date: "$Date: 2008/03/18 09:20:40 $"
 
 class FO_HYPHENATION
 
@@ -36,7 +36,7 @@ feature {NONE} -- Initialization
 			loop
 				tex_hyphen_file.read_pattern
 				if not tex_hyphen_file.end_of_input then
-					dictionary.put (clone (tex_hyphen_file.last_hyph), clone (tex_hyphen_file.last_pattern))
+					dictionary.put (tex_hyphen_file.last_hyph.twin, tex_hyphen_file.last_pattern.twin)
 				end
 			end
 			from
@@ -46,7 +46,7 @@ feature {NONE} -- Initialization
 			until
 				tex_hyphen_file.end_of_hyphenation
 			loop
-				add_hyphenation (clone (tex_hyphen_file.last_string))
+				add_hyphenation (tex_hyphen_file.last_string.twin)
 				tex_hyphen_file.read_hyphenation
 			end
 		ensure

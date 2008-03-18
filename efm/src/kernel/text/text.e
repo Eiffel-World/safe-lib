@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2007/11/15 10:01:58 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2008/03/18 09:18:43 $";
+	revision: "$Revision: 1.5 $";
 	author: "Fafchamps Eric"
 
 class
@@ -34,7 +34,7 @@ feature {NONE} -- Initialization
 			create paragraphs_i.make (n)
 		ensure
 			is_empty: is_empty
-		end	
+		end
 
 feature {NONE} -- Initialization
 
@@ -47,7 +47,7 @@ feature -- Access
 		ensure
 			defined: Result /= Void
 		end
-	
+
 	paragraph (i: INTEGER): STRING is
 			-- Paragraph at `i'-th position
 		require
@@ -57,7 +57,7 @@ feature -- Access
 		ensure
 			defined: Result /= Void
 		end
-		
+
 	last_paragraph: STRING is
 			-- Last paragraph.
 		require
@@ -112,7 +112,7 @@ feature -- Measurement
 		ensure
 			valid_count: Result >= 0
 		end
-		
+
 	average_paragraph_size: INTEGER is
 			-- 	Average number of characters in the paragraphes of `Current'.
 		local
@@ -151,7 +151,7 @@ feature -- Measurement
 			end
 		ensure
 			valid_size: Result >= 0
-		end		
+		end
 
 feature -- Comparison
 
@@ -173,7 +173,7 @@ feature -- Comparison
 					end
 					other.paragraphs.forth
 					paragraphs_i.forth
-				end					
+				end
 			end
 		end
 
@@ -184,7 +184,7 @@ feature -- Status report
 		require
 			a_text_position_defined: a_text_position /= Void
 		do
-			if a_text_position.paragraph_position <= count 
+			if a_text_position.paragraph_position <= count
 					and then a_text_position.character_position <= paragraphs_i.item (a_text_position.paragraph_position).count
 					and then (a_text_position.character_position /= 0) or (paragraphs_i.item (a_text_position.paragraph_position).count = 0) then
 				Result := True
@@ -261,7 +261,7 @@ feature -- Element change
 		require
 			not_void: a_paragraph /= Void
 		do
-			paragraphs_i.force_last (clone(a_paragraph))
+			paragraphs_i.force_last (a_paragraph.twin)
 		ensure
 			one_more: count = old count +1
 		end
@@ -274,9 +274,9 @@ feature -- Element change
 			elks_string: ELKS_STRING
 		do
 			create elks_string.make_from_string (paragraphs_i.item (a_text_position.paragraph_position))
-			elks_string.insert_character (a_character, a_text_position.character_position)	
+			elks_string.insert_character (a_character, a_text_position.character_position)
 		ensure
-			on_character_more: paragraphs_i.item (a_text_position.paragraph_position).count = old (paragraphs_i.item (a_text_position.paragraph_position).count) + 1	
+			on_character_more: paragraphs_i.item (a_text_position.paragraph_position).count = old (paragraphs_i.item (a_text_position.paragraph_position).count) + 1
 		end
 
 	insert_text (a_text: TEXT; a_text_position: TEXT_POSITION) is
@@ -294,7 +294,7 @@ feature -- Element change
 				paragraphs_cursor := a_text.paragraphs.new_cursor
 				paragraphs_cursor.start
 				target_index := a_text_position.paragraph_position
-				
+
 				create estring.make_from_string (paragraphs_i.item (target_index))
 				if estring.is_empty then
 					create right.make (1)
@@ -317,7 +317,7 @@ feature -- Element change
 				target_index := target_index + 1
 				paragraphs_cursor.forth
 			end
-			paragraphs_i.item (target_index).append_string (right.string)					
+			paragraphs_i.item (target_index).append_string (right.string)
 		ensure
 			new_count: count = old count + a_text.count - 1
 		end
@@ -336,7 +336,7 @@ feature -- Element change
 				paragraphs_cursor := a_text.paragraphs.new_cursor
 				paragraphs_cursor.start
 				target_index := a_paragraph_index
-				
+
 				create estring.make_from_string (paragraphs_i.item (target_index))
 				estring.string.append_string (paragraphs_cursor.item)
 				paragraphs_cursor.forth
@@ -360,7 +360,7 @@ feature -- Element change
 		require
 			valid_text_position: a_text_position /= Void and then valid_position (a_text_position)
 		do
-			paragraphs_i.item (a_text_position.paragraph_position).put (a_character, a_text_position.character_position)	
+			paragraphs_i.item (a_text_position.paragraph_position).put (a_character, a_text_position.character_position)
 		ensure
 			character_is_put: paragraphs_i.item (a_text_position.paragraph_position).item (a_text_position.character_position) = a_character
 			same_count: paragraphs_i.item (a_text_position.paragraph_position).count = old (paragraphs_i.item (a_text_position.paragraph_position).count)
@@ -371,9 +371,9 @@ feature -- Element change
 		require
 			valid_paragraph_index: a_paragraph_index > 0 and a_paragraph_index <= count
 		do
-			paragraphs_i.item (a_paragraph_index).append_character (a_character)	
+			paragraphs_i.item (a_paragraph_index).append_character (a_character)
 		ensure
-			on_character_more: paragraphs_i.item (a_paragraph_index).count = old (paragraphs_i.item (a_paragraph_index).count) + 1	
+			on_character_more: paragraphs_i.item (a_paragraph_index).count = old (paragraphs_i.item (a_paragraph_index).count) + 1
 		end
 
 	replace_all_string_with_text (a_string: STRING; a_text: TEXT) is
@@ -385,7 +385,7 @@ feature -- Element change
 			string_position: TEXT_POSITION
 			estring: ESTRING
 		do
-			from		
+			from
 			until
 				not has_string (a_string)
 			loop
@@ -412,7 +412,7 @@ feature -- Element change
 		do
 			paragraphs_i.item (a_paragraph_index).append_string (paragraphs_i.item (a_paragraph_index + 1))
 				--| Replace with Void to allow carbage collection otherwise joined paragraph remains attached due to ARRAYED implementation of list.
-			paragraphs_i.replace (Void, a_paragraph_index + 1) 
+			paragraphs_i.replace (Void, a_paragraph_index + 1)
 			paragraphs_i.remove (a_paragraph_index + 1)
 		ensure
 			one_paragraph_less: count = (old count - 1)
@@ -426,7 +426,7 @@ feature -- Element change
 			valid_character_position: a_text_position.character_position /= 0
 		local
 			first: ESTRING
-			second: ESTRING	
+			second: ESTRING
 		do
 			create first.make_from_string (paragraphs_i.item (a_text_position.paragraph_position))
 			second := first.substring (a_text_position.character_position, first.count)
@@ -460,7 +460,7 @@ feature -- Removal
 		do
 			paragraphs_i.item (a_text_position.paragraph_position).remove (a_text_position.character_position)
 		ensure
-			one_character_less: paragraphs_i.item (a_text_position.paragraph_position).count = old (paragraphs_i.item (a_text_position.paragraph_position).count) - 1	
+			one_character_less: paragraphs_i.item (a_text_position.paragraph_position).count = old (paragraphs_i.item (a_text_position.paragraph_position).count) - 1
 		end
 
 	wipe_out is
@@ -490,9 +490,9 @@ feature -- Duplication
 				until
 					other.paragraphs.off
 				loop
-					paragraphs_i.force_last (clone(other.paragraphs.item_for_iteration))
+					paragraphs_i.force_last (other.paragraphs.item_for_iteration.twin)
 					other.paragraphs.forth
-				end	
+				end
 			end
 		ensure then
 			new_result_count: count = other.count;
@@ -518,7 +518,7 @@ feature -- Output
 				paragraphs_cursor.forth
 				if not paragraphs_cursor.off then
 					Result.append_string ("%N")
-				end				
+				end
 			end
 		ensure then
 			-- Paragraphs strings are concatenated, %N is used as separator between each paragraph

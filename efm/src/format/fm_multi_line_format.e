@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/07 17:10:10 $";
-	revision: "$Revision: 1.3 $";
+	date: "$Date: 2008/03/18 09:18:43 $";
+	revision: "$Revision: 1.4 $";
 	author: "Fafchamps Eric"
 
 deferred class
@@ -81,7 +81,11 @@ feature -- Element change
 	set_void_text (a_text : TEXT) is
 			-- Set text representation for Void with `a_text'.
 		do
-			void_text := clone (a_text)
+			if a_text /= Void then
+				void_text := a_text.twin
+			else
+				void_text := Void
+			end
 		ensure
 			void_text_copied : equal (void_text, a_text) and (a_text /= Void implies void_text /= a_text)
 		end
@@ -133,7 +137,7 @@ feature -- Basic operations
 		deferred
 		ensure
 			result_defined: Result /= Void
-			width: Result.maximum_paragraph_size <= width			
+			width: Result.maximum_paragraph_size <= width
 		end
 
 feature -- Obsolete

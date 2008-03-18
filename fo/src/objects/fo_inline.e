@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 13:20:53 $"
+	date: "$Date: 2008/03/18 09:20:40 $"
 
 class
 	FO_INLINE
@@ -182,7 +182,7 @@ feature -- Element change
 		require
 			new_text_exists: new_text /= Void
 		do
-			text := clone (new_text)
+			text := new_text.twin
 		ensure
 			text_assigned: text.is_equal (new_text)
 		end

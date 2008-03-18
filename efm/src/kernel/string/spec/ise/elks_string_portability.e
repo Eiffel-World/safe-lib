@@ -9,15 +9,15 @@ class ELKS_STRING_PORTABILITY
 
 feature -- Initialization
 
-	from_c (string: STRING; c_string: POINTER) is		
-			-- Reset contents of string from contents of c_string,  
-			-- a string created by some external C function. 
-		require 
+	from_c (string: STRING; c_string: POINTER) is
+			-- Reset contents of string from contents of c_string,
+			-- a string created by some external C function.
+		require
 			string_exists: string /= Void
-			c_string_exists: c_string /= default_pointer 
-		do 
+			c_string_exists: c_string /= default_pointer
+		do
 			string.from_c (c_string)
-		end 
+		end
 
 	insert (string: STRING; s:STRING; i:INTEGER) is
 			-- Add s to the left of position i in string.
@@ -26,7 +26,7 @@ feature -- Initialization
 			index_small_enough: i <= string.count
 			index_large_enough: i > 0
 		do
-			string.insert(s , i )
+			string.insert_string (s , i )
 		ensure
 			new_count: string.count = old string.count + s.count
 		end

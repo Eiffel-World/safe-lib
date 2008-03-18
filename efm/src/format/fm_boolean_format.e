@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2007/11/15 10:01:57 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2008/03/18 09:18:42 $";
+	revision: "$Revision: 1.7 $";
 	author: "Fafchamps eric"
 
 class
@@ -39,7 +39,7 @@ feature {NONE} -- Initialization.
 			insufficient_width_handler := shared_default_format.insufficient_width_handler
 		ensure
 			width_copied: width = a_width
-			padding_character_default: padding_character = shared_default_format.padding_character 
+			padding_character_default: padding_character = shared_default_format.padding_character
 			prefix_string_default: equal (prefix_string, shared_default_format.prefix_string)
 			suffix_string_default: equal (suffix_string, shared_default_format.suffix_string)
 			justification_default: justification = shared_default_format.justification
@@ -76,7 +76,7 @@ feature -- Access
 
 	true_string: STRING
 			-- String representation for True value.
-			
+
 	false_string: STRING
 			-- String representation for False value.
 
@@ -94,12 +94,12 @@ feature -- Comparison
 			-- Is `other' attached to an object considered
 			-- equal to current object?
 		do
-			Result := 
+			Result :=
 				precursor (other) and
 				equal (true_string, other.true_string) and
 				equal (false_string, other.false_string)
 		ensure then
-			definition: Result implies 
+			definition: Result implies
 						equal (true_string, other.true_string) and
 						equal (false_string, other.false_string)
 		end
@@ -125,7 +125,7 @@ feature -- Element change
 		require
 			a_string_defined: a_string /= Void
 		do
-			true_string := clone (a_string)
+			true_string := a_string.twin
 		ensure
 			true_string_copied: equal (true_string, a_string) and true_string /= a_string
 		end
@@ -135,7 +135,7 @@ feature -- Element change
 		require
 			a_string_defined: a_string /= Void
 		do
-			false_string := clone (a_string)
+			false_string := a_string.twin
 		ensure
 			false_string_shared: equal (false_string, a_string) and false_string /= a_string
 		end
@@ -155,7 +155,11 @@ feature -- Duplication
 			-- to `other', so as to yield equal objects.
 		do
 			precursor (other)
-			last_formatted := clone (other.last_formatted)
+			if other.last_formatted /= Void then
+				last_formatted := other.last_formatted.twin
+			else
+				last_formatted := Void
+			end
 			set_false_string (other.false_string)
 			set_true_string (other.true_string)
 		end
@@ -167,15 +171,15 @@ feature -- Basic operations
 	formatted (a_boolean: BOOLEAN): STRING is
 			-- Result of formatting `a_boolean'.
 		do
-			create last_formatted.make (width)			
+			create last_formatted.make (width)
 			if a_boolean.item = True then
 				last_formatted.append_string (true_string)
 			else
 				last_formatted.append_string (false_string)
-			end	
-			format_prefix 
+			end
+			format_prefix
 			format_suffix
-	
+
 			if last_formatted.count > width then
 				last_formatted := insufficient_width_handler.string_with_valid_width (a_boolean, Current)
 			end

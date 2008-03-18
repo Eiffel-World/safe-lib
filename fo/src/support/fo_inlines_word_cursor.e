@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 13:20:53 $"
+	date: "$Date: 2008/03/18 09:20:40 $"
 
 class FO_INLINES_WORD_CURSOR
 
@@ -353,7 +353,7 @@ feature {NONE} -- Implementation
 			not word_off
 		do
 			if next_word_begin /= Void then
-				word_begin := clone (next_word_begin)
+				word_begin := next_word_begin.twin
 			else
 				--| FIXME
 			end

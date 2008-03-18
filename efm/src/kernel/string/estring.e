@@ -11,7 +11,7 @@ inherit
 	ELKS_STRING
 
 create
-	make, make_from_string, make_from_string_linear	
+	make, make_from_string, make_from_string_linear
 
 
 feature {NONE} -- Initialization
@@ -20,7 +20,7 @@ feature {NONE} -- Initialization
 			-- Make a string where each string of `a_string_linear will be separated with `a_separator string.
 		require
 			linear_defined: a_string_linear /= Void
-			separator_not_empty: not a_separator.empty
+			separator_not_empty: not a_separator.is_empty
 		local
 			cursor: DS_LINEAR_CURSOR [STRING]
 			estring: ESTRING
@@ -30,11 +30,11 @@ feature {NONE} -- Initialization
 			from
 				make ((a_separator.count + 1) * a_string_linear.count)
 				cursor := a_string_linear.new_cursor
-				cursor.start				
+				cursor.start
 			until
 				cursor.off
 			loop
-				create estring.make_from_string (cursor.item)	
+				create estring.make_from_string (cursor.item)
 				append_string (estring)
 				if not cursor.after then
 					append_string (estring_separator)
@@ -42,7 +42,7 @@ feature {NONE} -- Initialization
 				cursor.forth
 			end
 		ensure
-			-- Result.is_equal (firstitem<separator>seconditem<separator> ... lastitem)) 
+			-- Result.is_equal (firstitem<separator>seconditem<separator> ... lastitem))
 		end
 
 feature -- Access
@@ -52,7 +52,7 @@ feature -- Access
 		local
 			i: INTEGER
 		do
-			from	
+			from
 				i := count
 			until
 				i = 0 or else (item (i) = a_character)
@@ -60,9 +60,9 @@ feature -- Access
 				i := i - 1
 			end
 			Result := i
-		ensure 
+		ensure
 			Result > 0 implies (item(Result) = a_character) and (Result = count or else (index_of (a_character, Result + 1) = 0) )
-			Result = 0 implies not has (a_character)	
+			Result = 0 implies not has (a_character)
 		end
 
 	word_wrapped (a_width: INTEGER): ARRAY [ESTRING] is
@@ -87,14 +87,14 @@ feature -- Access
 					if s.has (' ') then
 						end_index := begin_index + s.rightmost_index_of_character (' ') - 1
 					else
-						end_index := begin_index + a_width - 1						
+						end_index := begin_index + a_width - 1
 					end
 				end
 
 				Result.force (substring (begin_index, end_index), line)
 				Result.item (line).extend_to_count (' ', a_width)
-				begin_index := end_index + 1																		
-				line := line + 1						
+				begin_index := end_index + 1
+				line := line + 1
 			end
 		end
 
@@ -114,7 +114,7 @@ feature -- Element change
 				if item (i) = c then
 					remove (i)
 				else
-					i := i + 1	 
+					i := i + 1
 				end
 			end
 		end
@@ -145,8 +145,8 @@ feature -- Element change
 	prune_all_trailing_after_index (c: CHARACTER; i: INTEGER) is
 			-- Remove all trailing occurrences of `c' after `i' (excluding item (i)).
 		require
-			index_small_enough: i <= count ; 
-			index_large_enough: i > 0			
+			index_small_enough: i <= count ;
+			index_large_enough: i > 0
 		do
 			from
 			until
@@ -159,7 +159,7 @@ feature -- Element change
 
 	extend_to_count(c: CHARACTER; needed_count: INTEGER) is
 			-- Extend Current with `c' until `needed_count' is reached.
-			-- Do nothing if `count' is already greater or equal 
+			-- Do nothing if `count' is already greater or equal
 			-- to `needed_count'.
 	      require
 			needed_count >= 0
@@ -168,7 +168,7 @@ feature -- Element change
 			until
 				count >= needed_count
 			loop
-				append_character (c)	
+				append_character (c)
 			end
 		ensure
          		count >= needed_count
@@ -189,17 +189,17 @@ feature -- Element change
 				if is_empty then
 					append_character (s.item (i))
 				else
-					insert_character (s.item (i), 1)				
+					insert_character (s.item (i), 1)
 				end
 				i := i - 1
 			end
 		ensure
 			new_count: count = s.count + old count
-		end  
+		end
 
 	prepend_to_count(c: CHARACTER; needed_count: INTEGER) is
 			-- Prepend Current with `c' until `needed_count' is reached.
-			-- Do nothing if `count' is already greater or equal 
+			-- Do nothing if `count' is already greater or equal
 			-- to `needed_count'.
 	      require
 			needed_count >= 0
@@ -211,7 +211,7 @@ feature -- Element change
 			until
 				count >= needed_count
 			loop
-				insert_character (c, 1)	
+				insert_character (c, 1)
 			end
 		ensure
          		count >= needed_count
@@ -219,7 +219,7 @@ feature -- Element change
 
 	center_to_count(c: CHARACTER; needed_count: INTEGER) is
 			-- Center Current with `c' until `needed_count' is reached.
-			-- Do nothing if `count' is already greater or equal 
+			-- Do nothing if `count' is already greater or equal
 			-- to `needed_count'.
 	      require
 			needed_count >= 0
@@ -229,7 +229,7 @@ feature -- Element change
 			end
 			if count < needed_count then
 				extend_to_count (c, needed_count)
-			end	
+			end
 		ensure
          		count >= needed_count
 	      end
@@ -245,7 +245,7 @@ feature -- Element change
 			i : INTEGER
 		do
 			from
-				start := substring_index (a_string, 1)			
+				start := substring_index (a_string, 1)
 			until
 				start = 0
 			loop
@@ -261,8 +261,8 @@ feature -- Element change
 				--| add a_replacement_string
 				insert (a_replacement_string, start)
 				start := start + a_replacement_string.count
-				start := substring_index (a_string, start)					
-			end		
+				start := substring_index (a_string, start)
+			end
 		end
 
 
@@ -302,7 +302,7 @@ feature -- Element change
 		local
 			i: INTEGER
 		do
-			from 
+			from
 				i := 1
 			until
 				i > count
@@ -310,7 +310,7 @@ feature -- Element change
 				put (c, i)
 				i := i + 1
 			end
-			from	
+			from
 			until
 				i > capacity
 			loop
@@ -366,16 +366,16 @@ feature -- Status report
 			Result := string.is_double
 		end;
 
-feature -- Conversion 
- 
+feature -- Conversion
+
 	to_c: ANY is
-			-- A reference to a C representation of a STRING. 
-			-- Used only to pass a eiffel string to an external routine. 
-		local 
-			elks_string_portability: ELKS_STRING_PORTABILITY 
-		do 
-			create elks_string_portability 
-			Result := elks_string_portability.to_c (string) 
+			-- A reference to a C representation of a STRING.
+			-- Used only to pass a eiffel string to an external routine.
+		local
+			elks_string_portability: ELKS_STRING_PORTABILITY
+		do
+			create elks_string_portability
+			Result := elks_string_portability.to_c (string)
 		end
 
 
@@ -398,7 +398,7 @@ feature -- Measurement
 		do
 			from
 				n := 0
-				index := substring_index (a_substring, 1)			
+				index := substring_index (a_substring, 1)
 			until
 				index = 0
 			loop
@@ -409,12 +409,12 @@ feature -- Measurement
 					index := substring_index (a_substring, index + a_substring.count)
 				end
 			end
-			Result := n		
+			Result := n
 		ensure
 			non_negative_occurrences: Result >= 0
 		end
-		
-feature -- Status report 
+
+feature -- Status report
 
 	full: BOOLEAN is
 			-- Is structure full?

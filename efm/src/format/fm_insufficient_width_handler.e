@@ -6,8 +6,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2005/07/31 18:22:28 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2008/03/18 09:18:43 $";
+	revision: "$Revision: 1.2 $";
 	author: "Fafchamps Eric"
 
 class
@@ -47,11 +47,9 @@ feature {FM_SINGLE_LINE_FORMAT} -- Basic operations
 			-- String with valid width width.
 		require
 			last_formatted_not_void: a_format.last_formatted /= Void
-		local 
-			estring: ESTRING
 		do
-			Result := clone (a_format.last_formatted)
-			Result.head (a_format.width)
+			Result := a_format.last_formatted.twin
+			Result.keep_head (a_format.width)
 		ensure
 			valid_width: Result.count <= a_format.width
 		end

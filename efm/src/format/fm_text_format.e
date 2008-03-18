@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2007/11/15 10:01:58 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2008/03/18 09:18:43 $";
+	revision: "$Revision: 1.6 $";
 	author: "Fafchamps eric"
 
 class
@@ -30,7 +30,7 @@ feature {NONE} -- Initialization
 			width := a_width
 			set_left_margin_width (shared_default_format.left_margin_width)
 			set_right_margin_width (shared_default_format.right_margin_width)
-			set_void_text (shared_default_format.void_text)			
+			set_void_text (shared_default_format.void_text)
 			is_word_wrapped := shared_default_format.is_word_wrapped
 		ensure
 			width_set: width = a_width
@@ -39,7 +39,7 @@ feature {NONE} -- Initialization
 			void_text_default: equal (void_text, shared_default_format.void_text)
 			default_is_word_wrapped: is_word_wrapped.is_equal (shared_default_format.is_word_wrapped)
 		end
-	
+
 	make_word_wrapped (a_width: INTEGER) is
 			-- Initialize with `a_width' and word wrap enabled.
 		require
@@ -68,7 +68,7 @@ feature {NONE} -- Initialization
 			width_is_1: width = 1
 			left_margin_width_is_0: left_margin_width = 0
 			right_margin_width_is_0: right_margin_width = 0
-			void_text_is_void : void_text = Void			
+			void_text_is_void : void_text = Void
 			not_is_word_wrapped: not is_word_wrapped
 		end
 
@@ -116,8 +116,6 @@ feature -- Basic operations
 
 	formatted (a_text: TEXT): TEXT is
 			-- Result of formatting `a_text'.
-		local
-			l_text : TEXT
 		do
 			if a_text /= Void then
 				paragraphs_cursor := a_text.paragraphs.new_cursor
@@ -125,10 +123,10 @@ feature -- Basic operations
 				format_all_paragraphs
 			else
 				if void_text /= Void then
-					paragraphs_cursor := (clone (void_text)).paragraphs.new_cursor
+					paragraphs_cursor := (void_text.twin).paragraphs.new_cursor
 					create last_formatted.make (void_text.count)
 					format_all_paragraphs
-				else				
+				else
 					create last_formatted.make (0)
 				end
 			end
@@ -156,7 +154,7 @@ feature {NONE} -- Implementation
 		do
 			from
 				paragraphs_cursor.start
-				character_position := 1		
+				character_position := 1
 			until
 				paragraphs_cursor.off
 			loop
@@ -165,8 +163,8 @@ feature {NONE} -- Implementation
 				else
 					last_formatted.append_paragraph (create {STRING}.make(0))
 				end
-				paragraphs_cursor.forth			
-			end			
+				paragraphs_cursor.forth
+			end
 		end
 
 	format_current_paragraph  is
@@ -179,11 +177,11 @@ feature {NONE} -- Implementation
 			last_character: CHARACTER
 			after_character: CHARACTER
 			index_last_space: INTEGER
-			estring: ESTRING			
+			estring: ESTRING
 		do
 			from
-				paragraph := paragraphs_cursor.item			
-				character_position := 1					
+				paragraph := paragraphs_cursor.item
+				character_position := 1
 			until
 				character_position > paragraphs_cursor.item.count
 			loop
@@ -191,7 +189,7 @@ feature {NONE} -- Implementation
 
 				--| Find how many remaining characters could fit in the column
 				remaining := paragraph.count - character_position + 1
-				
+
 				if remaining <= available_width then
 					count := remaining
 				else
@@ -204,19 +202,19 @@ feature {NONE} -- Implementation
 							create estring.make_from_string (paragraph.substring (character_position, character_position + count - 1))
 							index_last_space := estring.rightmost_index_of_character (' ')
 							if index_last_space > 0 then
-								count := index_last_space 
+								count := index_last_space
 							end
 						end
-					end					
+					end
 				end
 
 				--| Skip left margin
 				line.extend_to_count (' ', left_margin_width)
-				
+
 				--| Append paragraph part
 				line.string.append_string (paragraph.substring (character_position, character_position + count - 1))
 				last_formatted.append_paragraph (line.string)
-				
+
 				character_position := character_position + count
 			end
 		end

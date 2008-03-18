@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/08 19:24:18 $";
-	revision: "$Revision: 1.5 $";
+	date: "$Date: 2008/03/18 09:18:43 $";
+	revision: "$Revision: 1.6 $";
 	author: "Fafchamps eric"
 
 class
@@ -21,7 +21,7 @@ inherit
 
 create
 	make, make_default
-	
+
 feature {NONE} -- Initialization.
 
 	make (a_width: INTEGER) is
@@ -89,10 +89,10 @@ feature {NONE} -- Initialization.
 			else
 				hide_leading_zero_in_time
 			end
-			insufficient_width_handler := shared_default_format.insufficient_width_handler			
+			insufficient_width_handler := shared_default_format.insufficient_width_handler
 		ensure
 			width_copied: width = a_width
-			padding_character_default: padding_character = shared_default_format.padding_character 
+			padding_character_default: padding_character = shared_default_format.padding_character
 			prefix_string_default: equal (prefix_string, shared_default_format.prefix_string)
 			suffix_string_default: equal (suffix_string, shared_default_format.suffix_string)
 			justification_default: justification = shared_default_format.justification
@@ -100,12 +100,12 @@ feature {NONE} -- Initialization.
 			date_separator_visibility: is_date_separator_shown = shared_default_format.is_date_separator_shown
 			order_default: shared_default_format.is_ymd_ordered = is_ymd_ordered and shared_default_format.is_dmy_ordered = is_dmy_ordered and shared_default_format.is_mdy_ordered = is_mdy_ordered
 			four_digits_year_default: is_four_digits_year = shared_default_format.is_four_digits_year
-			leading_zero_shown_in_date_default: is_leading_zero_shown_in_date = shared_default_format.is_leading_zero_shown_in_date		
+			leading_zero_shown_in_date_default: is_leading_zero_shown_in_date = shared_default_format.is_leading_zero_shown_in_date
 			time_separator_default: time_separator = shared_default_format.time_separator
 			time_separator_visibility: is_time_separator_shown = shared_default_format.is_time_separator_shown
 			seconds_part_visibility: is_seconds_part_shown = shared_default_format.is_seconds_part_shown
 			milliseconds_part_visibility: is_milliseconds_part_shown = shared_default_format.is_milliseconds_part_shown
-			leading_zero_shown__in_time_default: is_leading_zero_shown_in_time = shared_default_format.is_leading_zero_shown_in_time		
+			leading_zero_shown__in_time_default: is_leading_zero_shown_in_time = shared_default_format.is_leading_zero_shown_in_time
 			insufficient_width_handler_default: insufficient_width_handler = shared_default_format.insufficient_width_handler
 		end
 
@@ -185,13 +185,13 @@ feature -- Comparison
 			-- Is `other' attached to an object considered
 			-- equal to current object?
 		do
-			Result := 
+			Result :=
 				precursor (other) and
 				equal (date_format, other.date_format) and
 				equal (time_format, other.time_format) and
 				equal (date_time_separator, other.date_time_separator)
-		ensure then 
-			definition: Result implies 
+		ensure then
+			definition: Result implies
 				equal (date_format, other.date_format) and
 				equal (time_format, other.time_format) and
 				equal (date_time_separator, other.date_time_separator)
@@ -224,7 +224,7 @@ feature -- Status report
 		do
 			Result := date_format.is_mdy_ordered
 		end
-	
+
 	is_four_digits_year: BOOLEAN is
 			-- Is the year formatted in 4 digits?
 		do
@@ -296,13 +296,13 @@ feature -- Status report
 		end
 
 	is_time_separator_shown: BOOLEAN is
-			-- Is the time separator shown? 
+			-- Is the time separator shown?
 		do
 			Result := time_format.is_time_separator_shown
 		end
 
 	is_time_separator_hidden: BOOLEAN is
-			-- Is the time separator hidden? 
+			-- Is the time separator hidden?
 		do
 			Result := time_format.is_time_separator_hidden
 		end
@@ -322,7 +322,7 @@ feature -- Status setting
 		do
 			date_format.select_dmy_order
 		ensure
-			is_dmy_ordered: is_dmy_ordered	
+			is_dmy_ordered: is_dmy_ordered
 		end
 
 	select_mdy_order is
@@ -348,7 +348,7 @@ feature -- Status setting
 		ensure
 			not_is_four_digits_year: not is_four_digits_year
 		end
-	
+
 	show_leading_zero_in_date is
 			-- Show leading zero in day and month part.
 		do
@@ -357,7 +357,7 @@ feature -- Status setting
 			is_leading_zero_shown_in_date: is_leading_zero_shown_in_date
 		end
 
-	show_date_separator is	
+	show_date_separator is
 			-- Show the date separator.
 		do
 			date_format.show_date_separator
@@ -403,7 +403,7 @@ feature -- Status setting
 			time_format.show_milliseconds_part
 		ensure
 			is_milliseconds_part_shown: is_milliseconds_part_shown
-			is_seconds_part_shown: is_seconds_part_shown			
+			is_seconds_part_shown: is_seconds_part_shown
 		end
 
 	hide_time_separator is
@@ -421,7 +421,7 @@ feature -- Status setting
 		ensure
 			is_seconds_part_hidden: is_seconds_part_hidden
 			is_milliseconds_part_hidden: is_milliseconds_part_hidden
-		end	
+		end
 
 	hide_milliseconds_part is
 			-- Hide milliseconds part.
@@ -470,7 +470,11 @@ feature -- Element change
 	set_date_time_separator (a_separator : STRING) is
 			-- Set separator between date and time with `a_separator'.
 		do
-			date_time_separator := clone (a_separator)
+			if a_separator /= Void then
+				date_time_separator := a_separator.twin
+			else
+				date_time_separator := Void
+			end
 		ensure
 			date_time_separator_copied : equal (date_time_separator, a_separator)
 		end
@@ -490,8 +494,16 @@ feature -- Duplication
 			-- to `other', so as to yield equal objects.
 		do
 			precursor (other)
-			date_format := clone (other.date_format)
-			time_format := clone (other.time_format)
+			if other.date_format /= Void then
+				date_format := other.date_format.twin
+			else
+				date_format := Void
+			end
+			if other.time_format /= Void then
+				time_format := other.time_format.twin
+			else
+				time_format := Void
+			end
 			set_date_time_separator (other.date_time_separator)
 		end
 
@@ -508,7 +520,7 @@ feature -- Basic operations
 				last_formatted.append_string (date_time_separator)
 			end
 			last_formatted.append_string (time_format.formatted (a_date_time.time))
-			format_prefix 
+			format_prefix
 			format_suffix
 			if last_formatted.count > width then
 				last_formatted := insufficient_width_handler.string_with_valid_width (a_date_time, Current)
@@ -516,7 +528,7 @@ feature -- Basic operations
 			justify (padding_character)
 			Result := last_formatted
 		ensure then
-			date_separator: is_date_separator_shown implies Result.has (date_separator)			
+			date_separator: is_date_separator_shown implies Result.has (date_separator)
 			time_separator: is_time_separator_shown implies Result.has (time_separator)
 			date_time_separator: date_time_separator /= Void implies Result.has_substring (date_time_separator)
 		end

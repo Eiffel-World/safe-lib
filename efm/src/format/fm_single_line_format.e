@@ -5,8 +5,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2006/03/08 19:24:18 $";
-	revision: "$Revision: 1.7 $";
+	date: "$Date: 2008/03/18 09:18:43 $";
+	revision: "$Revision: 1.8 $";
 	author: "Fafchamps Eric"
 
 deferred class
@@ -18,7 +18,7 @@ inherit
 			copy,
 			is_equal
 		end
-		
+
 feature {NONE} -- Initialization
 
 feature -- Access
@@ -28,7 +28,7 @@ feature -- Access
 
 	prefix_string: STRING
 			-- String prepended to the Result of formatted.
-	
+
 	suffix_string: STRING
 			-- String appended to the Result of formatted.
 
@@ -147,7 +147,11 @@ feature -- Element change
 			a_prefix_width: a_prefix /= Void implies a_prefix.count <= width
 			a_prefix_suffix_width: (a_prefix /= void and suffix_string /= Void) implies a_prefix.count + suffix_string.count <= width
 		do
-			prefix_string := clone (a_prefix)
+			if a_prefix /= Void then
+				prefix_string :=a_prefix.twin
+			else
+				prefix_string := Void
+			end
 		ensure
 			prefix_string_copied: equal (prefix_string, a_prefix) and (a_prefix /= Void implies prefix_string /= a_prefix)
 		end
@@ -158,7 +162,11 @@ feature -- Element change
 			a_suffix_width: a_suffix /= Void implies a_suffix.count <= width
 			a_suffix_prefix_width: (a_suffix /= void and prefix_string /= Void) implies a_suffix.count + prefix_string.count <= width
 		do
-			suffix_string := clone (a_suffix)
+			if a_suffix /= Void then
+				suffix_string := a_suffix.twin
+			else
+				suffix_string := Void
+			end
 		ensure
 			suffix_string_copied: equal (suffix_string, a_suffix) and (a_suffix /= Void implies suffix_string /= a_suffix)
 		end
@@ -196,7 +204,11 @@ feature -- Duplication
 			-- to `other', so as to yield equal objects.
 		do
 			standard_copy (other)
-			last_formatted := clone (other.last_formatted)
+			if other.last_formatted /= Void then
+				last_formatted := other.last_formatted.twin
+			else
+				last_formatted := Void
+			end
 			set_prefix_string (other.prefix_string)
 			set_suffix_string (other.suffix_string)
 		end
@@ -209,7 +221,7 @@ feature -- Basic operations
 			-- Result of formatting `an_object'.
 		require
 			can_format: can_format (an_object)
-		deferred		
+		deferred
 		ensure then
 			result_not_void: Result /= Void
 			no_new_line: not Result.has ('%N')
@@ -307,7 +319,7 @@ invariant
 	suffix_width: suffix_string /= Void implies suffix_string.count <= width
 	prefix_suffix_width: (prefix_string /= void and suffix_string /= Void) implies prefix_string.count + suffix_string.count <= width
 	insufficient_width_handler_not_void: insufficient_width_handler /= Void
-	
+
 end -- class FM_SINGLE_LINE_FORMAT
 
 --

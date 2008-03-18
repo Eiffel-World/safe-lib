@@ -17,7 +17,7 @@ inherit
 			copy, is_equal, out
 		end;
 
-create 
+create
 	make, make_from_string
 
 feature -- Initialization
@@ -31,7 +31,7 @@ feature -- Initialization
 		ensure
 			empty_string:  count = 0
 		end
-	
+
 	make_from_string (s: STRING ) is
 			-- Initialize from the characters of s.
 			-- (Useful in proper descendants of class ,
@@ -45,7 +45,7 @@ feature -- Initialization
 		end
 
 	from_c (c_string: POINTER ) is
-			-- Reset contents of string from contents of c_string, 
+			-- Reset contents of string from contents of c_string,
 			-- a string created by some external C function.
 		require
 			C_string_exists: c_string /= default_pointer
@@ -61,8 +61,7 @@ feature -- Initialization
 		require
 			non_negative_size: n >= 0
 		do
-			string.remake (n)
-		
+			string.make (n)
 		ensure
 			empty_string:  count = 0
 		end
@@ -77,15 +76,15 @@ feature -- Access
 		do
 			Result := string.hash_code
 		end
-	
+
 	has (c: CHARACTER): BOOLEAN is
 			-- Does the string contain character `c?
 		do
-			Result := string.has (c)			
+			Result := string.has (c)
 		end
 
 	index_of (c: CHARACTER ; start: INTEGER ): INTEGER is
-			-- Position of first occurrence of c at or after start; 
+			-- Position of first occurrence of c at or after start;
 			-- 0 if none.
 		require
 			start_large_enough: start >= 1;
@@ -119,7 +118,7 @@ feature -- Access
 			at_this_position: Result > 0 implies item (Result) = c;
 			at_or_after_start: Result > 0 implies Result >= start
 			none_before: Result > 0 implies start = 1 or else not substring (1,start - 1).has (c)
-			zero_iff_absent: Result = 0 implies not substring (start, count).has (c) 
+			zero_iff_absent: Result = 0 implies not substring (start, count).has (c)
 		end
 
 	item (i: INTEGER ): CHARACTER is
@@ -131,11 +130,11 @@ feature -- Access
 		end
 
 	substring_index (other: ELKS_STRING; start: INTEGER) : INTEGER is
-			-- Position of first occurrence of other at or after start; 
+			-- Position of first occurrence of other at or after start;
 			-- 0 if none.
 		do
 			Result := string.substring_index (other.string, start)
-		end 
+		end
 
 	infix "@" (i: INTEGER): CHARACTER is
 			-- Character at position i
@@ -150,7 +149,7 @@ feature -- Measurement
 	count: INTEGER is
 			-- Actual number of characters making up the string
 		do
-			Result := string.count			
+			Result := string.count
 		end
 
 	occurrences (c: CHARACTER): INTEGER is
@@ -197,7 +196,7 @@ feature -- Element change
 		do
 			string.append_boolean (b)
 		end
-		
+
 	append_character (c: CHARACTER) is
 			-- Append c at end.
 		do
@@ -244,7 +243,7 @@ feature -- Element change
 			--| Implementation issues:
 			--| ISE 4.5 has another signature for string.fill(CONTAINER[CHARACTER]) so the native implementation can't be used
 			from
-				i := 1	
+				i := 1
 			until
 				i > count
 			loop
@@ -256,12 +255,12 @@ feature -- Element change
 		end
 
 	head (n: INTEGER) is
-			-- Remove all characters except for the first n; 
+			-- Remove all characters except for the first n;
 			-- do nothing if n >= count
 		require
 			non_negative_argument: n >= 0
 		do
-			string.head (n)
+			string.keep_head (n)
 		ensure
 			new_count: count = n.min (old count)
 			-- first_kept: For every i in 1..n,  item(i) = old  item(i)
@@ -270,8 +269,8 @@ feature -- Element change
 	insert (s: like Current; i: INTEGER) is
 			-- Add s to the left of position i.
 		require
-			string_exists: s /= Void; 
-			index_small_enough: i <= count ; 
+			string_exists: s /= Void;
+			index_small_enough: i <= count ;
 			index_large_enough: i > 0
 		local
 			j	 : INTEGER
@@ -285,7 +284,7 @@ feature -- Element change
 			loop
 				insert_character (s @ j, i + j - 1)
 				j := J + 1
-			end	
+			end
 		ensure
 			new_count: count = old count + s.count
 		end
@@ -294,7 +293,7 @@ feature -- Element change
 			-- Add c to the left of position i.
 		require
 			index_small_enough: i <= count
-			index_large_enough: i > 0		 
+			index_large_enough: i > 0
 		local
 			j : INTEGER
 		do
@@ -303,13 +302,13 @@ feature -- Element change
 			--| ISE 4.5 does not have this feature name so the native implementation can't be used
 			from
 				string.append_character ('#') --| accomodate for one more character
-				j := string.count				
+				j := string.count
 			until
-				j = i 
+				j = i
 			loop
 				string.put (string @ (j - 1), j) --| shift to right
 				j := j - 1
-			end											
+			end
 			string.put (c, i)
 		ensure
 			new_count: count = old count + 1
@@ -318,7 +317,7 @@ feature -- Element change
 	left_adjust is
 			-- Remove leading white space.
 		do
-			string.left_adjust	
+			string.left_adjust
 		ensure
 			new_count: (count /= 0) implies (item (1) /= ' ')
 		end
@@ -337,9 +336,9 @@ feature -- Element change
 			-- Copy the characters of s to positions
 			-- start_pos .. end_pos.
 		require
-			string_exists: s /= Void; 
-			index_small_enough: end_pos <= count; 
-			order_respected: start_pos <= end_pos; 
+			string_exists: s /= Void;
+			index_small_enough: end_pos <= count;
+			order_respected: start_pos <= end_pos;
 			index_large_enough: start_pos > 0
 		local
 			i: INTEGER
@@ -347,11 +346,11 @@ feature -- Element change
 		do
 			--| Implementation issues:
 			--| The elks contract is ambiguous: why must we give an end_pos when the ensure clause says that count >= old count?
-			--| The specification is interpreted as follows : start replacing all characters from s from start_pos, extend the 
+			--| The specification is interpreted as follows : start replacing all characters from s from start_pos, extend the
 			--| string if needed.
 			--| ISE 4.5 does not have this feature name so the native implementation can't be used
 			from
-				i := 1 
+				i := 1
                 j := start_pos
 			until
 				i > s.count
@@ -359,11 +358,11 @@ feature -- Element change
 				if j > string.count then
 					string.append_character (s @ i)
 				else
-					string.put (s @ i, j) 
+					string.put (s @ i, j)
 				end
 				i := i + 1
 				j := j + 1
-			end			
+			end
 		ensure
 			new_count: count = old count + s.count - end_pos + start_pos - 1
 		end
@@ -377,12 +376,12 @@ feature -- Element change
 		end
 
 	tail (n: INTEGER) is
-			-- Remove all characters except for the last n; 
+			-- Remove all characters except for the last n;
 			-- do nothing if n >= .
 		require
 			non_negative_argument: n >= 0
 		do
-			string.tail (n)
+			string.keep_tail (n)
 		ensure
 			new_count:  count = n.min (old count)
 		end
@@ -392,7 +391,7 @@ feature -- Removal
 	remove (i: INTEGER) is
 			-- Remove i-th character.
 		require
-			index_small_enough: i <= count; 
+			index_small_enough: i <= count;
 			index_large_enough: i > 0
 		do
 			string.remove (i)
@@ -422,8 +421,8 @@ feature -- Resizing
 
 feature -- Conversion
 
-	to_boolean: BOOLEAN is 
-			-- Boolean value; 
+	to_boolean: BOOLEAN is
+			-- Boolean value;
 			-- "true" yields true, "false" yields false
 			-- (case-insensitive)
 		do
@@ -438,7 +437,7 @@ feature -- Conversion
 		end
 
 	to_integer: INTEGER is
-			-- Integer value; 
+			-- Integer value;
 			-- for example, when applied to "123", will yield 123
 		do
 			Result := string.to_integer
@@ -451,7 +450,7 @@ feature -- Conversion
 		end
 
 	to_real: REAL is
-			-- Real value; 
+			-- Real value;
 			-- for example, when applied to "123.0", will yield 123.0
 		do
 			Result := string.to_real
@@ -461,7 +460,7 @@ feature -- Conversion
 	to_upper is
 			-- Convert to upper case.
 		do
-			string.to_upper	
+			string.to_upper
 		end
 
 feature -- Duplication
@@ -472,8 +471,8 @@ feature -- Duplication
 		do
 			if other /= Current then
 				if string = Void or else string.count < other.count then
-					string := clone (other.string)
-				else	
+					string := other.string.twin
+				else
 					string.copy (other.string)
 				end
 			end
@@ -487,8 +486,8 @@ feature -- Duplication
 			-- Copy of substring containing all characters at indices
 			-- between n1 and n2
 		require
-			meaningful_origin: 1 <= n1; 
-			meaningful_interval: n1 <= n2; 
+			meaningful_origin: 1 <= n1;
+			meaningful_interval: n1 <= n2;
 			meaningful_end: n2 <= count
 		do
 			create Result.make_from_string (string.substring (n1,n2))
@@ -510,7 +509,7 @@ feature -- Output
 invariant
 
 	irreflexive_comparison: not (Current < Current);
-	empty_definition: is_empty = (count = 0); 
+	empty_definition: is_empty = (count = 0);
 	non_negative_count: count >= 0
 	string_not_void: string /= Void
 
