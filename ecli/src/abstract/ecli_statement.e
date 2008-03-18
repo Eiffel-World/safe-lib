@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:34 $"
+	date: "$Date: 2008/03/18 09:22:00 $"
 
 class ECLI_STATEMENT
 
@@ -820,6 +820,10 @@ feature {ECLI_SQL_PARSER} -- Callback
 		end
 
 	on_string_literal (a_sql: STRING; i_begin, i_end: INTEGER) is
+		do
+		end
+
+	on_word (a_sql: STRING; i_begin, i_end: INTEGER) is
 		do
 		end
 

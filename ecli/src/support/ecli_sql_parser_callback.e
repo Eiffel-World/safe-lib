@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2008/03/18 09:22:00 $"
 
 deferred class ECLI_SQL_PARSER_CALLBACK
 
@@ -37,6 +37,16 @@ feature -- Basic operations
 		end
 
 	on_string_literal (a_sql : STRING; i_begin, i_end : INTEGER) is
+		require
+			a_sql_not_void: a_sql /= Void
+			i_begin_positive: i_begin > 0
+			i_end_positive: i_end > 0
+			i_begin_le_end: i_begin <= i_end
+			valid_indexes: i_begin >= 1 and i_end <= a_sql.count
+		deferred
+		end
+
+	on_word (a_sql : STRING; i_begin, i_end : INTEGER) is
 		require
 			a_sql_not_void: a_sql /= Void
 			i_begin_positive: i_begin > 0

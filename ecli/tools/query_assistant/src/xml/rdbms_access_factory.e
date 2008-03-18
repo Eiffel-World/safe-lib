@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/27 10:55:42 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2008/03/18 09:22:00 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	RDBMS_ACCESS_FACTORY
@@ -371,10 +371,14 @@ feature {NONE} -- Implementation
 		do
 		end
 
+	on_word (sql: STRING; i_begin, i_end: INTEGER) is
+		do
+		end
+
 	on_parameter_marker (sql: STRING; index: INTEGER) is
 		do
 		end
-	
+
 	parameter_names	: DS_HASH_SET[STRING]
 
 	is_valid : BOOLEAN is do Result := True end

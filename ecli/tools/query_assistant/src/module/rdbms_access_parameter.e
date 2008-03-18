@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:21:47 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2008/03/18 09:22:00 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	RDBMS_ACCESS_PARAMETER
@@ -167,7 +167,7 @@ feature -- Element change
 			sample_set: sample = s
 		end
 
-feature {NONE} -- Element change
+feature {EVTK_EDITOR} -- Element change
 
 	set_reference_column (a_reference_column: REFERENCE_COLUMN) is
 			-- Set `reference_column' to `a_reference_column'.

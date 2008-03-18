@@ -2,10 +2,10 @@ indexing
 	description: "Reference columns for parameters."
 
 	library: "Access_gen : Access Modules Generators utilities"
-	
+
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:10 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2008/03/18 09:22:00 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	REFERENCE_COLUMN
@@ -15,7 +15,7 @@ inherit
 		redefine
 			is_equal
 		end
-		
+
 create
 	make
 
@@ -47,7 +47,7 @@ feature -- Status setting
 
 feature -- Cursor movement
 
-feature {NONE} -- Element change
+feature {EVTK_EDITOR} -- Element change
 
 	set_column (a_column: STRING) is
 			-- Set `column' to `a_column'.
@@ -86,11 +86,11 @@ feature -- Basic operations
 feature -- Comparison
 
 	is_equal (other : like Current) : BOOLEAN is
-			-- 
+			--
 		do
 			Result := column.is_equal (other.column) and then table.is_equal (other.table)
 		end
-		
+
 
 feature -- Inapplicable
 
