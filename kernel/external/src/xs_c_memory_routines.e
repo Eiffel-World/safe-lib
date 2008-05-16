@@ -4,8 +4,8 @@ indexing
 
 	library: "XS_C : eXternal Support C"
 
-	date: "$Date: 2006/09/26 12:01:15 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2008/05/16 07:41:00 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -69,6 +69,15 @@ feature {NONE} -- Implementation
 		alias "c_memory_put_int32"
 		ensure
 			int32_set: c_memory_get_int32 (pointer) = v
+		end
+
+	c_memory_put_int64 (pointer : POINTER; v : INTEGER_64) is
+		require
+			valid_pointer: pointer /= default_pointer
+		external "C"
+		alias "c_memory_put_int64"
+		ensure
+			int64_set: c_memory_get_int64 (pointer) = v
 		end
 
 	c_memory_put_real (pointer : POINTER; v : REAL)  is
@@ -146,6 +155,13 @@ feature {NONE} -- Implementation
 			valid_pointer: pointer /= default_pointer
 		external "C"
 		alias "c_memory_get_int32"
+		end
+
+	c_memory_get_int64 (pointer : POINTER) : INTEGER_64 is
+		require
+			valid_pointer: pointer /= default_pointer
+		external "C"
+		alias "c_memory_get_int64"
 		end
 
 	c_memory_get_real (pointer : POINTER) : REAL is
