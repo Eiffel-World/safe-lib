@@ -1,8 +1,8 @@
 indexing
 	description: "Adapters for Access modules."
-	author: ""
-	date: "$Date: 2007/11/27 10:55:42 $"
-	revision: "$Revision: 1.1 $"
+	author: "Paul G. Crismer"
+	date: "$Date: 2008/05/16 07:39:37 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ACCESS_MODULE_PERSISTENCE_ADAPTER
@@ -82,13 +82,17 @@ feature -- Basic operations
 			has_error := False
 			create file.make (a_file_name)
 			file.open_write
-			create filter.make_null
-			filter.set_output_stream (file)
-			filter.set_indent (filter.default_indent)
-			put_document (module)
-			create processor.make (filter)
-			last_document.process (processor)
-			file.close
+			if file.is_open_write then
+				create filter.make_null
+				filter.set_output_stream (file)
+				filter.set_indent (filter.default_indent)
+				put_document (module)
+				create processor.make (filter)
+				last_document.process (processor)
+				file.close
+			else
+				error_handler.report_cannot_write_file (a_file_name)
+			end
 		end
 
 feature {NONE} -- Implementation

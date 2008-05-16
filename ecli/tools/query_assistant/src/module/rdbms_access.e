@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/03/18 09:22:00 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2008/05/16 07:39:37 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	RDBMS_ACCESS
@@ -185,8 +185,8 @@ feature -- Element change
 feature -- Constants
 
 	default_name_prefix : STRING is "_RESULTS"
-	
-feature {EVTK_EDITOR} -- Element change
+
+feature {EVTK_EDITOR, ACCESS_MODULE} -- Element change
 
 	set_query (a_query: STRING) is
 			-- Set `query' to `a_query'.

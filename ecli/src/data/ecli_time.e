@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:34 $"
+	date: "$Date: 2008/05/16 07:39:37 $"
 
 class ECLI_TIME
 
@@ -125,6 +125,12 @@ feature -- Status report
 
 	convertible_as_integer : BOOLEAN is
 			-- Is this value convertible to an integer ?
+		do
+			Result := False
+		end
+
+	convertible_as_integer_64 : BOOLEAN is
+			-- Is this value convertible to an integer_64 ?
 		do
 			Result := False
 		end
@@ -262,6 +268,11 @@ feature -- Conversion
 
 	as_integer : INTEGER is
 			-- Current converted to INTEGER
+		do
+		end
+
+	as_integer_64 : INTEGER_64 is
+			-- Current converted to INTEGER_64
 		do
 		end
 

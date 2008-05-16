@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:08 $"
+	date: "$Date: 2008/05/16 07:39:37 $"
 
 deferred class ECLI_VALUE
 
@@ -81,6 +81,11 @@ feature -- Status report
 
 	convertible_as_integer : BOOLEAN is
 			-- Is this value convertible to an integer ?
+		deferred
+		end
+
+	convertible_as_integer_64 : BOOLEAN is
+			-- Is this value convertible to an integer_64 ?
 		deferred
 		end
 
@@ -245,6 +250,14 @@ feature -- Conversion
 		deferred
 		end
 
+	as_integer_64 : INTEGER_64 is
+			-- Current converted to INTEGER_64
+		require
+			convertible: convertible_as_integer_64
+			not_null: not is_null
+		deferred
+		end
+		
 	as_real : REAL is
 			-- Current converted to REAL.
 		require

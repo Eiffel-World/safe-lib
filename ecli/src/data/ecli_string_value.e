@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:34 $"
+	date: "$Date: 2008/05/16 07:39:37 $"
 
 deferred class ECLI_STRING_VALUE
 
@@ -132,6 +132,11 @@ feature -- Status report
 			Result := not is_null and then item.is_integer
 		end
 
+	convertible_as_integer_64 : BOOLEAN is
+		do
+			Result := not is_null and then item.is_integer_64
+		end
+
 	convertible_as_double : BOOLEAN is
 		do
 			Result := not is_null and then item.is_double
@@ -230,7 +235,13 @@ feature -- Conversion
 		end
 
 	as_integer : INTEGER is
-			--
+			-- Conversion to INTEGER value
+		do
+			Result := item.to_integer
+		end
+
+	as_integer_64 : INTEGER_64 is
+			-- Conversion to INTEGER_64 value
 		do
 			Result := item.to_integer
 		end

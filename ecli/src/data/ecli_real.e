@@ -1,13 +1,13 @@
 indexing
 
-	description: 
-	
+	description:
+
 		"SQL REAL values."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:45 $"
+	date: "$Date: 2008/05/16 07:39:37 $"
 
 class ECLI_REAL
 
@@ -94,6 +94,11 @@ feature -- Status report
 			Result := True
 		end
 
+	convertible_as_integer_64 : BOOLEAN is
+		do
+			Result := True
+		end
+
 	convertible_as_string : BOOLEAN is
 			-- Is this value convertible to a string ?
 		do
@@ -117,7 +122,7 @@ feature -- Status report
 		do
 			Result := True
 		end
-		
+
 	convertible_as_date : BOOLEAN is
 			-- Is this value convertible to a date ?
 		do
@@ -181,6 +186,11 @@ feature -- Conversion
 			Result := item.truncated_to_integer
 		end
 
+	as_integer_64 : INTEGER_64 is
+		do
+			Result := item.truncated_to_integer_64
+		end
+
 	as_string : STRING is
 			-- Current converted to STRING
 		do
@@ -188,7 +198,7 @@ feature -- Conversion
 		end
 
 	as_character : CHARACTER is
-			-- Current converted to CHARACTER 
+			-- Current converted to CHARACTER
 		do
 		end
 
@@ -238,11 +248,11 @@ feature -- Basic operations
 
 feature {NONE} -- Implementation
 
-	octet_size : INTEGER is 
-		do 
-			Result := 4 
-		ensure 
-			result_is_4: Result = 4 
+	octet_size : INTEGER is
+		do
+			Result := 4
+		ensure
+			result_is_4: Result = 4
 		end
 
 	sprintf_real (s : POINTER; r : REAL) is

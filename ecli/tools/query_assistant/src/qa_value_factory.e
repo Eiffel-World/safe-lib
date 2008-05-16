@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:50 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2008/05/16 07:39:37 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 
 class
@@ -21,6 +21,7 @@ inherit
 			create_decimal_value,
 			create_real_value,
 			create_integer_value,
+			create_integer_64_value,
 			create_char_value,
 			create_varchar_value,
 			create_date_value,
@@ -145,6 +146,11 @@ feature -- Miscellaneous
 			create {QA_INTEGER}last_result.make
 		end
 
+	create_integer_64_value is
+		do
+			create {QA_INTEGER_64}last_result.make
+		end
+
 	create_char_value (column_precision : INTEGER) is
 		do
 			create {QA_CHAR}last_result.make (column_precision)
@@ -158,8 +164,10 @@ feature -- Miscellaneous
 				if decimal_digits = 0 then
 					if precision < 10 then
 							create_integer_value
+					elseif precision < 20 then
+							create_integer_64_value
 					else
-							create_double_value
+						create {QA_DECIMAL}last_result.make (precision, decimal_digits)
 					end
 				else
 					if precision <= 7 and decimal_digits <= 7 then

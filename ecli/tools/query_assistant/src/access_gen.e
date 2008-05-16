@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/27 10:55:42 $"
-	revision: "$Revision: 1.26 $"
+	date: "$Date: 2008/05/16 07:39:37 $"
+	revision: "$Revision: 1.27 $"
 
 
 class
@@ -147,8 +147,8 @@ feature -- Basic operations
 	print_prologue is
 			-- print application prologue
 		do
-			error_handler.report_banner ("v1.1")
-			error_handler.report_copyright ("Paul G. Crismer and others", "2001-2006")
+			error_handler.report_banner ("v1.2")
+			error_handler.report_copyright ("Paul G. Crismer and others", "2001-2008")
 			error_handler.report_license ("Eiffel Forum", "2.0")
 		end
 
@@ -177,7 +177,7 @@ feature -- Basic operations
 			loop
 				key := Arguments.argument (arg_index)
 				if arg_index + 1 <= Arguments.argument_count then
-					value := clone (Arguments.argument (arg_index + 1))
+					value := Arguments.argument (arg_index + 1).twin
 				else
 					value := Void
 				end

@@ -1,7 +1,7 @@
 indexing
 
 	description:
-	
+
 			"Factory of ECLI_ARRAYED_VALUE descendant instances."
 
 	note: "Supported SQL data types currently are : sql_char, sql_decimal, sql_double, sql_float, sql_integer, sql_longvarchar, sql_numeric, sql_real, sql_smallint, sql_type_date, sql_type_time, sql_type_timestamp,	sql_varchar"
@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2008/05/16 07:39:37 $"
 
 class ECLI_ARRAYED_VALUE_FACTORY
 
@@ -22,16 +22,17 @@ inherit
 			make_value
 		redefine
 			last_result,
-			create_double_value, 
-			create_real_value, 
-			create_integer_value, 
-			create_time_value, 
+			create_double_value,
+			create_real_value,
+			create_integer_value,
+			create_integer_64_value,
+			create_time_value,
 			create_timestamp_value,
 			create_date_value,
 			create_char_value,
 			create_varchar_value
 		end
-			
+
 creation
 
 	make
@@ -54,7 +55,7 @@ feature -- Measurement
 
 	row_count : INTEGER
 			-- default capacity of arrayed values
-	
+
 feature {NONE} -- Implementation
 
 	create_double_value is
@@ -70,6 +71,11 @@ feature {NONE} -- Implementation
 	create_integer_value is
 		do
 			create {ECLI_ARRAYED_INTEGER}last_result.make (row_count)
+		end
+
+	create_integer_64_value is
+		do
+			create {ECLI_ARRAYED_INTEGER_64}last_result.make (row_count)
 		end
 
 	create_char_value (column_precision : INTEGER) is
@@ -95,7 +101,7 @@ feature {NONE} -- Implementation
 		do
 			create {ECLI_ARRAYED_TIMESTAMP}last_result.make (row_count)
 		end
-		
+
 	create_time_value is
 		do
 			create {ECLI_ARRAYED_TIME}last_result.make (row_count)
