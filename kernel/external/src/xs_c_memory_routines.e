@@ -4,8 +4,8 @@ indexing
 
 	library: "XS_C : eXternal Support C"
 
-	date: "$Date: 2008/05/16 07:41:00 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2008/05/19 13:55:36 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -60,6 +60,16 @@ feature {NONE} -- Implementation
 		alias "c_memory_put_uint16"
 		ensure
 			uint16_set: c_memory_get_uint16 (pointer) = v
+		end
+
+	c_memory_put_uint32 (pointer : POINTER; v : NATURAL_32) is
+		require
+			valid_pointer: pointer /= default_pointer
+			uint32_limits: v >= {NATURAL_32}.min_value and v <= {NATURAL_32}.max_value
+		external "C"
+		alias "c_memory_put_uint32"
+		ensure
+			uint32_set: c_memory_get_uint32 (pointer) = v
 		end
 
 	c_memory_put_int32 (pointer : POINTER; v : INTEGER) is
@@ -148,6 +158,15 @@ feature {NONE} -- Implementation
 		alias "c_memory_get_uint16"
 		ensure
 			uint16: Result >= 0 and Result < 32768
+		end
+
+	c_memory_get_uint32 (pointer : POINTER) : NATURAL_32 is
+		require
+			valid_pointer: pointer /= default_pointer
+		external "C"
+		alias "c_memory_get_uint32"
+		ensure
+			uint32: Result >= {NATURAL_32}.min_value and Result < {NATURAL_32}.max_value
 		end
 
 	c_memory_get_int32 (pointer : POINTER) : INTEGER is

@@ -1,8 +1,8 @@
 indexing
 	description: "Command Line Interactive SQL for ODBC datasources.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/03/18 09:29:58 $"
-	revision: "$Revision: 1.31 $"
+	date: "$Date: 2008/05/19 13:55:36 $"
+	revision: "$Revision: 1.32 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -29,7 +29,11 @@ feature {NONE} -- Initialization
 			-- isql
 		local
 			simple_login : ECLI_SIMPLE_LOGIN
+			v : ECLI_INTEGER_64
 		do
+			create v.make
+			v.set_item ({INTEGER_64}.max_value)
+			v.set_item ({INTEGER_64}.min_value)
 			create_commands
 			create_initial_context
 			create_default_system_variables (current_context)

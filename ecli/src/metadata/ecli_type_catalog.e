@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/16 07:39:37 $"
+	date: "$Date: 2008/05/19 13:55:36 $"
 
 class
 	ECLI_TYPE_CATALOG
@@ -184,7 +184,12 @@ feature -- Status report
 		do
 			Result := has_type_id (Sql_decimal)
 		end
-		
+
+	has_big_integer : BOOLEAN is
+		do
+			Result := has_type_id (sql_bigint)
+		end
+
 feature {NONE} -- Implementation
 
 	types : DS_HASH_TABLE[DS_LIST[ECLI_SQL_TYPE],INTEGER]
