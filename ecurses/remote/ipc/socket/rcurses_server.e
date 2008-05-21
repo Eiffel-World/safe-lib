@@ -2,8 +2,8 @@ indexing
 	description	: "System's root class"
     cluster: 	"ecurses, spec, remote_access, server"
     status: 	"See notice at do end of class"
-    date: 	"$Date: 2007/11/15 10:01:55 $"
-    revision: 	"$Revision: 1.3 $"
+    date: 	"$Date: 2008/05/21 12:38:56 $"
+    revision: 	"$Revision: 1.4 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -20,14 +20,14 @@ feature {ANY}
    make is 
    			-- Initialize
       do      	
-      		!!curses_adapter.make   		
-            !!server_socket.make(port, 1);
+      	    create curses_adapter.make   		
+            create server_socket.make(port, 1);
             io.put_string("waiting...%N");
             client_socket := server_socket.wait_for_new_connection;
             io.put_string("got client...%N");
             
             from
-            	!!input_buffer.make (4000)
+            	create input_buffer.make (4000)
 		        input_buffer.fill_blank 	
             until
             	false
@@ -46,7 +46,7 @@ feature {ANY}
 			server_message: RCURSES_SERVER_MESSAGE
 		do
 			client_socket.receive_string (input_buffer)
-			!!client_message.make_from_string (input_buffer.substring(1,client_socket.bytes_received))
+			create client_message.make_from_string (input_buffer.substring(1,client_socket.bytes_received))
 			
             		curses_adapter.call_feature (client_message)
 		

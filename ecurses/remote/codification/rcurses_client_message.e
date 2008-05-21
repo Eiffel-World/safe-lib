@@ -2,8 +2,8 @@ indexing
 	description: "Objects that encode/decode a curses remote feature call"
     cluster: 	"ecurses, spec, remote_access"
     status: 	"See notice at do end of class"
-    date: 		"$Date: 2007/11/15 10:01:54 $"
-    revision: 	"$Revision: 1.3 $"
+    date: 		"$Date: 2008/05/21 12:38:56 $"
+    revision: 	"$Revision: 1.4 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -28,7 +28,7 @@ feature {NONE} -- Initialization
 			
 			from
 				i := arguments_array.lower
-				!!arguments.make (arguments_array.lower, arguments_array.upper)
+				create arguments.make (arguments_array.lower, arguments_array.upper)
 			until
 				i > arguments_array.upper
 			loop
@@ -67,7 +67,7 @@ feature {NONE} -- Initialization
 			arguments_count := token.to_integer
 			
 			from
-				!!arguments.make (1, arguments_count)
+				create arguments.make (1, arguments_count)
 				i := 1
 			until
 				i > arguments_count
@@ -107,7 +107,7 @@ feature -- Conversion
 			s: STRING
 		do
 			from
-				!!Result.make (70)
+				create Result.make (70)
 				Result.append_string (feature_identifier.out)
 				result.append_character (separator)
 				result.append_string (arguments.count.out)
@@ -134,8 +134,8 @@ feature -- Conversion
 			dictionnary: RCURSES_DICTIONNARY
 		do
 			from
-				!!dictionnary
-				!!Result.make (70)
+				create dictionnary
+				create Result.make (70)
 				dictionnary.search (feature_identifier)
 				if dictionnary.found then
 					Result.append_string (dictionnary.found_item)

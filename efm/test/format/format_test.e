@@ -21,14 +21,14 @@ feature -- Initialization
 		do
 			initialize
 			from
-				!!fm_integer_format.make (10)
+				create fm_integer_format.make (10)
 				fm_integer_format.show_positive_sign
 				i := integer_samples.lower
 			until
 				i > integer_samples.upper
 			loop	
 				fm_integer_format.format (integer_samples.item (i))
-				!!estring.make_from_string (integer_samples.item (i).out)
+				create estring.make_from_string (integer_samples.item (i).out)
 				estring.extend_to_count (' ', 20)
 				io.put_string (estring.string)
 				io.put_string (" ==> ")
@@ -39,14 +39,14 @@ feature -- Initialization
 
 
 			from
-				!!fm_double_format.make (20, 0)
+				create fm_double_format.make (20, 0)
 				fm_double_format.show_positive_sign
 				i := double_samples.lower
 			until
 				i > double_samples.upper
 			loop	
 				fm_double_format.format (double_samples.item (i))
-				!!estring.make_from_string (double_samples.item (i).out)
+				create estring.make_from_string (double_samples.item (i).out)
 				estring.extend_to_count (' ', 20)
 				io.put_string (estring.string)
 				io.put_string (" ==> ")
@@ -56,14 +56,14 @@ feature -- Initialization
 			end
 
 			from
-				!!fm_money_format.make (9)
+				create fm_money_format.make (9)
 				fm_money_format.show_positive_sign
 				i := money_samples.lower
 			until
 				i > money_samples.upper
 			loop	
 				fm_money_format.format (money_samples.item (i))
-				!!estring.make_from_string (money_samples.item (i).out)
+				create estring.make_from_string (money_samples.item (i).out)
 				estring.extend_to_count (' ', 20)
 				io.put_string (estring.string)
 				io.put_string (" ==> ")
@@ -95,13 +95,13 @@ feature -- Initialization
 			a_money: EMO_MONEY
 			shared_currencies: EMO_SHARED_CURRENCIES
 		once			
-			!! shared_currencies
-			!!Result.make (1,2)
+			create  shared_currencies
+			create Result.make (1,2)
 
-			!!a_money.make (12.34, shared_currencies.market.currencies.item ("EURO")) 
+			create a_money.make (12.34, shared_currencies.market.currencies.item ("EURO")) 
 			Result.force (a_money, 1)
 
-			!!a_money.make (1, shared_currencies.market.currencies.item ("BEF")) 
+			create a_money.make (1, shared_currencies.market.currencies.item ("BEF")) 
 			Result.force (a_money, 2)
 		end
 
@@ -116,10 +116,10 @@ feature {NONE} -- Implementation
 			currency_bef: EMO_CURRENCY
 			currency_euro: EMO_CURRENCY
 		do
-			!!currency_market.make
+			create currency_market.make
 
-			!!currency_bef.make ("BEF", 1.0, "FR")
-			!!currency_euro.make ("EURO", 0.01, "EURO")
+			create currency_bef.make ("BEF", 1.0, "FR")
+			create currency_euro.make ("EURO", 0.01, "EURO")
 			
 			currency_bef.exchange_rates.force (1.0/40.3399, currency_euro)
 			currency_euro.exchange_rates.force (40.3399, currency_bef)
@@ -129,7 +129,7 @@ feature {NONE} -- Implementation
 			
 			--| Share the currency market
 
-			!! shared_currencies
+			create  shared_currencies
 			shared_currencies.set_market (currency_market)
 		end
 

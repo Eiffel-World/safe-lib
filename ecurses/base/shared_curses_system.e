@@ -3,8 +3,8 @@ indexing
 	cluster:        "ecurses, base"
     	interface: 	"classification"
     	status: 	"See notice at end of class"
-    	date: 		"$Date: 2000/01/07 11:33:20 $"
-    	revision: 	"$Revision: 1.1 $"
+    	date: 		"$Date: 2008/05/21 12:38:56 $"
+    	revision: 	"$Revision: 1.2 $"
     	author: 	"Paul G. Crismer, Eric Fafchamps"
 class 
 	SHARED_CURSES_SYSTEM
@@ -13,7 +13,7 @@ feature -- shared item
 
 	curses : CURSES_SYSTEM is
 		once
-			!!Result
+			create Result
 		end
 			
 end -- class SHARED_CURSES_SYSTEM

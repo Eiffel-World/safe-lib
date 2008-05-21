@@ -1,7 +1,7 @@
 indexing
 	description: "ACS and scroll test";
-	date: "$Date: 2007/11/15 10:01:55 $";
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2008/05/21 12:38:56 $";
+	revision: "$Revision: 1.4 $"
 	
 class 
 	ACS_AND_SCROLL_TEST
@@ -32,7 +32,7 @@ feature -- Commandes
 		local
 			c: INTEGER
 		do
-			!!windows.make
+			create windows.make
 
 			stdwin.clear
 			show_help
@@ -130,7 +130,7 @@ feature -- Commandes
 			lr_x := last_x
 			-- 
 			if lr_y > ul_y and ul_x < lr_x then
-				!!p.make (lr_y - ul_y +1 , lr_x - ul_x +1 , ul_y, ul_x)
+				create p.make (lr_y - ul_y +1 , lr_x - ul_x +1 , ul_y, ul_x)
 				windows.force_last (p)
 				current_window_index := windows.count
 				p.set_standard_border

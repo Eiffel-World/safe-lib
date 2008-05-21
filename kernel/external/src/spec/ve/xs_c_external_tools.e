@@ -1,8 +1,8 @@
 indexing
 	description: "Tools for Eiffel/External (to C) communication"
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:11 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2008/05/21 12:38:57 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -21,7 +21,7 @@ feature -- Basic operations
 
 	pointer_to_string (p : POINTER) : STRING is
 		do
-			!! Result.make (0)
+			create Result.make (0)
 			Result.from_c (p)
 		end
 

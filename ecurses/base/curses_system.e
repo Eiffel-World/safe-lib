@@ -3,8 +3,8 @@ indexing
 	cluster:        "ecurses, base"
     	interface: 	"client, shared"
     	status: 	"See notice at end of class"
-    	date: 		"$Date: 2000/10/01 19:16:53 $"
-    	revision: 	"$Revision: 1.2 $"
+    	date: 		"$Date: 2008/05/21 12:38:56 $"
+    	revision: 	"$Revision: 1.3 $"
     	author: 	"Paul G. Crismer, Eric Fafchamps"
 class 
 	CURSES_SYSTEM
@@ -263,7 +263,7 @@ feature -- Status setting
 		ptr : POINTER
 		tools: CURSES_EXTERNAL_TOOLS
 	    do
-		!!Result.make (2)
+		create Result.make (2)
 		ptr := unctrl (c)
 		if ptr /= default_pointer then
 			Result := tools.pointer_to_string (ptr)
@@ -278,7 +278,7 @@ feature -- Status setting
 		ptr : POINTER
 		tools: CURSES_EXTERNAL_TOOLS
 	    do
-		!!Result.make (5)
+		create Result.make (5)
 		ptr := keyname (key_code)
 		if ptr /= default_pointer then
 			Result := tools.pointer_to_string (ptr)

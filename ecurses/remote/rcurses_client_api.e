@@ -3,8 +3,8 @@ indexing
     cluster: 	"ecurses, spec"
     interface: 	"mixin"
     status: 	"See notice at end of class"
-    date: 	"$Date: 2002/08/17 21:57:38 $"
-    revision: 	"$Revision: 1.2 $"
+    date: 	"$Date: 2008/05/21 12:38:56 $"
+    revision: 	"$Revision: 1.3 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -14,7 +14,7 @@ feature -- Access
 
 	remote_curses: RCURSES_CLIENT is
 		once
-			!!Result.make
+			create Result.make
 		end
 
 feature -- Conversion
@@ -63,13 +63,13 @@ feature {NONE} -- Implementation
 			-- Table of indentifiers indexed by integers
 			-- Used to hold (avoid garbage collection) pointer identifiers
 		once
-			!!Result.make (1000)
+			create Result.make (1000)
 		end
 
 	pointers: DS_HASH_TABLE [INTEGER, STRING] is
 			-- Table of integer (pointers) indexed by string identifiers
 		once
-			!!Result.make (1000)
+			create Result.make (1000)
 		end
 
 	next_index: INTEGER

@@ -5,8 +5,8 @@ indexing
 	cluster: 	"ecurses, base"
     	interface: 	"client, classification"
     	status: 	"See notice at end of class"
-    	date: 		"$Date: 2007/11/15 10:01:54 $"
-    	revision: 	"$Revision: 1.3 $"
+    	date: 		"$Date: 2008/05/21 12:38:56 $"
+    	revision: 	"$Revision: 1.4 $"
     	author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class 
@@ -33,7 +33,7 @@ feature
 		wptr := newpad (p_height, p_width)
 		height := p_height
 		width := p_width
-		!!subwindows.make
+		create subwindows.make
 		post_creation_command		
 	    ensure
 		height = p_height
@@ -50,7 +50,7 @@ feature
 		wptr := subpad (p_parent.wptr, p_height, p_width, begin_y, begin_x)
 		height := p_height
 		width := p_width
-		!!subwindows.make
+		create subwindows.make
 		parent_window := p_parent;
 		parent_window.attach_subwindow (Current)
 		parent_window.touch (begin_y, p_height)

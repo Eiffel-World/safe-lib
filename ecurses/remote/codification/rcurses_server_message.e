@@ -2,8 +2,8 @@ indexing
 	description: "Objects that encode/decode a curses server message"
     cluster: 	"ecurses, spec, remote_access"
     status: 	"See notice at do end of class"
-    date: 	"$Date: 2007/11/15 10:01:54 $"
-    revision: 	"$Revision: 1.3 $"
+    date: 	"$Date: 2008/05/21 12:38:56 $"
+    revision: 	"$Revision: 1.4 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -26,7 +26,7 @@ feature  -- Initialization
 		do
 			from
 				result_list.start
-				!!results.make (1, result_list.count)
+				create results.make (1, result_list.count)
 				i := results.lower
 			until
 				result_list.off
@@ -58,7 +58,7 @@ feature  -- Initialization
 			results_count := token.to_integer
 			
 			from
-				!!results.make (1, results_count)
+				create results.make (1, results_count)
 				i := 1
 			until
 				i > results_count
@@ -95,7 +95,7 @@ feature -- Conversion
 			s: STRING
 		do
 			from
-				!!Result.make (70)
+				create Result.make (70)
 				result.append_string (results.count.out)
 				i := results.lower		
 			until
@@ -119,7 +119,7 @@ feature -- Conversion
 			s: STRING
 		do
 			from
-				!!Result.make (70)
+				create Result.make (70)
 				result.append_string ("(")
 				i := results.lower		
 			until

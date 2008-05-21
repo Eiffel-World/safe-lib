@@ -4,8 +4,8 @@ indexing
 			and provide access to them by the integer code
 			]"
     status: 	"See notice at do end of class"
-    date: 	"$Date: 2002/08/17 21:57:38 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2008/05/21 12:38:56 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -97,7 +97,7 @@ feature {NONE} -- Implementation
 	table: DS_HASH_TABLE [STRING,INTEGER] is
 			-- Table of names indexed by feature identifiers.
 		once
-			!!Result.make (300)
+			create Result.make (300)
 			Result.force ("endwin", Id_endwin)
 
 			Result.force ("initscr", Id_initscr)

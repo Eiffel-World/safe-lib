@@ -2,8 +2,8 @@ indexing
 	description: "Panel with a border, a header and a footer. %
 		    % A client subwindow is available %
 		    % It does not overlap neither the border nor the header or the footer";
-	date: "$Date: 2007/11/15 10:01:55 $";
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2008/05/21 12:38:57 $";
+	revision: "$Revision: 1.3 $"
 
 class 
 	CURSES_FRAME_PANEL
@@ -46,7 +46,7 @@ feature {NONE} -- implementation
 		else
 		    foot_h := footer_height
 		end
-		!!client.make_subwindow_relative(
+		create client.make_subwindow_relative(
 			Current, height - head_h - foot_h,width - 2,
 			head_h, 1)
 	    end

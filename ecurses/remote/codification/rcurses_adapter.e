@@ -2,8 +2,8 @@ indexing
 	description: "Objects that adapts ecurses client messages to the natif CURSES API"
     cluster: 	"ecurses, spec, remote_access, server"
     status: 	"See notice at do end of class"
-    date: 	"$Date: 2007/11/15 10:01:54 $"
-    revision: 	"$Revision: 1.3 $"
+    date: 	"$Date: 2008/05/21 12:38:56 $"
+    revision: 	"$Revision: 1.4 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -170,9 +170,9 @@ feature {NONE} -- Initialization
 	make is
 			-- Initialize adapter
 		do
-			!!pointers_table.make (1000)
-			!!last_results.make
-			!!dictionnary
+			create pointers_table.make (1000)
+			create last_results.make
+			create dictionnary
 		end
 
 
@@ -182,13 +182,13 @@ feature -- Access
 	last_server_message: RCURSES_SERVER_MESSAGE is
 			-- Last message of server results.
 		do
-			!!Result.make (last_results)
+			create Result.make (last_results)
 		end
 
 	pointers_table_dump: STRING is
 			-- Dump of pointers_table.
 		do
-			!!Result.make (200)
+			create Result.make (200)
 			Result.append_string ("(Key, Item) = ")
 			from
 				pointers_table.start

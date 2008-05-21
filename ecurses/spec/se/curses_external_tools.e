@@ -1,8 +1,8 @@
 indexing
 	description: "Tools for Eiffel/External (to C) communication"
 	author: "Paul G. Crismer, Eric Fafchamps"
-	date: "$Date: 2000/10/01 19:16:54 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2008/05/21 12:38:56 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 expanded class
@@ -48,7 +48,7 @@ feature -- Basic operations
 		require
 			good_pointer: p /= default_pointer
 		do
-			!!Result.from_external_copy (p)
+			create Result.from_external_copy (p)
 		end
 
 	pointer (ptr : POINTER) : POINTER is

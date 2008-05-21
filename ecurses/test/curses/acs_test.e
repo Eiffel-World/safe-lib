@@ -1,7 +1,7 @@
 indexing
 	description: "ACS test";
-	date: "$Date: 2007/11/15 10:01:55 $";
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2008/05/21 12:38:57 $";
+	revision: "$Revision: 1.4 $"
 
 class 
 	ACS_TEST
@@ -123,7 +123,7 @@ feature -- {NONE}
 			temp_string: STRING
 			ut_integer_formatter: UT_INTEGER_FORMATTER
 		do
-			!!ut_integer_formatter
+			create ut_integer_formatter
 			last := first + 31
 			window.clear
 			window.enable_attribute (Attribute_bold)
