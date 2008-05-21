@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 class ECLI_ARRAYED_DATE
 
@@ -69,7 +69,6 @@ feature -- Access
 		
 	item : DT_DATE is
 		do
-			--!!Result.make (year, month, day)
 			impl_item.set_year_month_day (year, month, day)
 			Result := impl_item
 		end

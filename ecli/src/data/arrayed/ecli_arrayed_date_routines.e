@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:09 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 deferred class ECLI_ARRAYED_DATE_ROUTINES
 
@@ -176,7 +176,7 @@ feature -- Conversion
 		local
 			save_index : INTEGER
 		do
-			!!Result.make (10)
+			create Result.make (10)
 			if is_null_at (index) then
 				Result.append_string ("NULL")
 			else

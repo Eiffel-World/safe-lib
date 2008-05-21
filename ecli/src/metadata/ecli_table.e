@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 class ECLI_TABLE
 
@@ -57,7 +57,7 @@ feature -- Conversion
 	out : STRING is
 			-- terse visual representation
 		do
-			!!Result.make (128)
+			create Result.make (128)
 			Result.append_string (Precursor)
 			Result.append_string ("%T")
 			append_to_string (Result, type) Result.append_string ("%T")

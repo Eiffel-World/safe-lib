@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:09 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 deferred class ECLI_ARRAYED_STRING_VALUE
 
@@ -174,7 +174,7 @@ feature {NONE} -- Implementation
 
 	out_item_at (index : INTEGER) : STRING is
 		do
-			!!Result.make (10)
+			create Result.make (10)
 			Result.append_string ("'")
 			Result.append_string (item_at (index).out)
 			Result.append_string ("'")

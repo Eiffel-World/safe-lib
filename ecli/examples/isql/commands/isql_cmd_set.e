@@ -1,8 +1,8 @@
 indexing
 	description: "Commands that set a value to a variable name."
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/13 08:59:26 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ISQL_CMD_SET
@@ -49,7 +49,7 @@ feature {ISQL} -- Inapplicable
 			string_routines : ECLI_STRING_ROUTINES
 			msg : STRING
 		do
-			!!string_routines
+			create string_routines
 			setting := s
 			assign_index := setting.index_of ('=',1)
 			if assign_index > 1 then

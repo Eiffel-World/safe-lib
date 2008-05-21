@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:39 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 class ECLI_ROWSET_MODIFIER
 
@@ -43,7 +43,7 @@ feature {NONE} -- Initialization
 		do
 			make_row_count_capable
 			row_capacity := a_row_capacity
-			!!rowset_status.make (row_capacity)
+			create rowset_status.make (row_capacity)
 			statement_make (a_session)
 			set_sql (a_sql)
 		ensure

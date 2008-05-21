@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/16 07:39:37 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 class ECLI_ARRAYED_INTEGER_64
 
@@ -112,7 +112,7 @@ feature -- Basic operations
 			i : INTEGER
 		do
 			from i := 1
-				!!Result.make (10)
+				create Result.make (10)
 				Result.append_string ("<<")
 			until i > count
 			loop

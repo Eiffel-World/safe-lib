@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 class ECLI_PROCEDURES_CURSOR
 
@@ -35,7 +35,7 @@ feature {NONE} -- Initialization
 		local
 			search_criteria : ECLI_NAMED_METADATA
 		do
-			!!search_criteria.make (Void, Void, Void)
+			create search_criteria.make (Void, Void, Void)
 			make (search_criteria, a_session)
 		ensure
 			executed: is_ok implies is_executed
@@ -93,7 +93,7 @@ feature {NONE} -- Implementation
 			-- create item at curren cursor position
 		do
 			if not off then
-				!!impl_item.make (Current)
+				create impl_item.make (Current)
 			else
 				impl_item := Void
 			end

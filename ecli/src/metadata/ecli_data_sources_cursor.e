@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 class ECLI_DATA_SOURCES_CURSOR
 
@@ -175,7 +175,7 @@ feature {NONE} -- Implementation
 			if is_ok and then not is_no_data then
 				name := c_name.as_string
 				description := c_description.as_string
-				!!item_.make (Current)
+				create item_.make (Current)
 			else
 				item_ := Void
 				after := True

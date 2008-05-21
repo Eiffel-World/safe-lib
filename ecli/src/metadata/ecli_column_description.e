@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 class ECLI_COLUMN_DESCRIPTION
 
@@ -89,11 +89,6 @@ feature -- Comparison
 feature {NONE} -- Implementation
 
 	ext_actual_name_length : XS_C_INT32 is once create Result.make end
-
---	temporary_name : STRING is
---			--
---		once !!Result.make (100)
---		end
 
 invariant
 	name_not_void: name /= Void

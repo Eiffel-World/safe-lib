@@ -10,7 +10,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:08 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 deferred class ECLI_ROWSET_CAPABLE
 
@@ -48,7 +48,7 @@ feature {NONE} -- Implementation
 			index: INTEGER
 		do
 			from index := 1
-				!!status_array.make (1, row_capacity)
+				create status_array.make (1, row_capacity)
 			until 
 				index > row_capacity
 			loop

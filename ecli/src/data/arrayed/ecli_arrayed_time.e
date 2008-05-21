@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 class ECLI_ARRAYED_TIME
 
@@ -56,12 +56,12 @@ feature -- Access
 
 	item : DT_TIME is
 		do
-			!!Result.make_precise (hour, minute, second,0)
+			create Result.make_precise (hour, minute, second,0)
 		end
 
 	item_at (index : INTEGER) : like item is
 		do
-			!! Result.make (hour_at (index), minute_at (index), second_at (index))
+			create  Result.make (hour_at (index), minute_at (index), second_at (index))
 		end
 
 	hour : INTEGER is
@@ -201,7 +201,7 @@ feature {NONE} -- Implementation
 		do
 			save_index := cursor_index
 			cursor_index := index
-			!!Result.make (0)
+			create Result.make (10)
 			if not is_null then
 				Result.append_character (' ')
 				Result.append_string (Integer_format.pad_integer_2 (hour_at (index)))

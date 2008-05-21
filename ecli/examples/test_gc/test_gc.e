@@ -1,8 +1,8 @@
 indexing
 	description: "Test for objects garbage collection.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:39 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 class
 	TEST_GC
@@ -96,9 +96,9 @@ feature -- Initialization
 		do
 			if not a_tried then
 				a_tried := True
-				!!session.make("ecli_db", "u", "p")
+				create session.make("ecli_db", "u", "p")
 				session.connect
-				!!statement.make (session)
+				create statement.make (session)
 				-- loose references
 				session := Void
 				statement := Void

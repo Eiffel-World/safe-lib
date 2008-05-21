@@ -1,8 +1,8 @@
 indexing
 	description: "Command Line Interactive SQL for ODBC datasources.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/05/19 13:55:36 $"
-	revision: "$Revision: 1.32 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
+	revision: "$Revision: 1.33 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -154,7 +154,7 @@ feature {NONE} -- Implementation
 	set_error (message, value : STRING) is
 			-- set error_message to "<message> '<value>' "
 		do
-			!!error_message.make (0)
+			create error_message.make (0)
 			error_message.append_string (message)
 			error_message.append_string (" '")
 			error_message.append_string (value)

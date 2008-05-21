@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/05/16 07:39:37 $"
-	revision: "$Revision: 1.13 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
+	revision: "$Revision: 1.14 $"
 	licensing: "See notice at end of class"
 
 class
@@ -13,7 +13,7 @@ class
 
 inherit
 
-	SHARED_USE_DECIMAL
+	SHARED_TYPE_USAGE
 
 	ECLI_VALUE_FACTORY
 		redefine
@@ -158,13 +158,13 @@ feature -- Miscellaneous
 
 	create_decimal_value (precision: INTEGER; decimal_digits: INTEGER) is
 		do
-			if use_decimal then
+			if force_decimal then
 				create {QA_DECIMAL}last_result.make (precision, decimal_digits)
 			else
 				if decimal_digits = 0 then
 					if precision < 10 then
 							create_integer_value
-					elseif precision < 20 then
+					elseif use_integer_64 and then precision < 20 then
 							create_integer_64_value
 					else
 						create {QA_DECIMAL}last_result.make (precision, decimal_digits)
@@ -173,7 +173,15 @@ feature -- Miscellaneous
 					if precision <= 7 and decimal_digits <= 7 then
 						create_real_value
 					else
-						create_double_value
+						if not use_decimal then
+							create_double_value
+						else
+							if precision <= 15 and decimal_digits <= 15 then
+								create_double_value
+							else
+								create {QA_DECIMAL}last_result.make (precision, decimal_digits)
+							end
+						end
 					end
 				end
 			end

@@ -11,7 +11,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:09 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 	usage: "Used in row-set operations : column-wise binding for result-sets, %
 		% or column-wise binding of parameters for modifications.%
@@ -127,7 +127,7 @@ feature -- Conversion
 			i : INTEGER
 		do
 			from i := 1
-				!!Result.make (10)
+				create Result.make (10)
 				Result.append_string ("<<")
 			until i > count
 			loop

@@ -1,8 +1,8 @@
 indexing
 	description: "ECLI test of rowset classes.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:39 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
+	revision: "$Revision: 1.15 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET
@@ -39,7 +39,7 @@ feature -- Initialization
 					set_error ("Missign data source name. Specify parameter", "-dsn")
 					print_usage
 				else
-					!! session.make (dsn, user, password)
+					create  session.make (dsn, user, password)
 					session.connect
 					if session.is_connected then
 						io.put_string ("+ Connected %N")
@@ -84,7 +84,7 @@ feature -- Basic Operations
 			test : ROWSET_MODIFIER_TEST
 		do
 				if session.is_bind_arrayed_parameters_capable then
-					!!test.make (session)
+					create test.make (session)
 				else
 					io.put_string ("The current datasource does not support operations with arrayed parameters%N")
 				end
@@ -125,7 +125,7 @@ feature {NONE} -- Implementation
 	
 	set_error (message, value : STRING) is
 		do
-			!!error_message.make (0)
+			create error_message.make (0)
 			error_message.append_string (message)
 			error_message.append_string (" '")
 			error_message.append_string (value)

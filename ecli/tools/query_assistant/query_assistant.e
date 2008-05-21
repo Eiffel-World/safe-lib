@@ -1,8 +1,8 @@
 indexing
 	description: "Query assistant."
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:50 $"
-	revision: "$Revision: 1.17 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
+	revision: "$Revision: 1.18 $"
 	licensing: "See notice at end of class"
 
 class
@@ -511,7 +511,7 @@ feature -- Basic operations
 			hh := s.substring (12,13).as_integer
 			mm := s.substring (15,16).as_integer
 			ss := s.substring (18,19).as_integer
-			!! Result.make(date.year, date.month, date.day, hh, mm, ss)
+			create  Result.make(date.year, date.month, date.day, hh, mm, ss)
 		end
 						
 feature -- Obsolete

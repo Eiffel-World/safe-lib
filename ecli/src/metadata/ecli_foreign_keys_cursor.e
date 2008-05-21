@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2008/05/21 12:35:19 $"
 
 class ECLI_FOREIGN_KEYS_CURSOR
 
@@ -69,7 +69,7 @@ feature -- Cursor Movement
 				next_item := Void
 				fill_item
 			elseif impl_item = Void then
-				!!impl_item.make (Current)
+				create impl_item.make (Current)
 				fill_item
 			else
 				impl_item := Void
@@ -110,7 +110,7 @@ feature {NONE} -- Implementation
 			end
 			if not off then
 				-- prepare next key
-				!!next_item.make (Current)
+				create next_item.make (Current)
 			end
 			creating_item := False
 			Cursor_status := cursor_in
