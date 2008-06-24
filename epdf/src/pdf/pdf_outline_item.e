@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are outline items"
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:02:00 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2008/06/24 19:29:00 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	PDF_OUTLINE_ITEM
@@ -79,6 +79,14 @@ feature -- Access
 
 feature -- Measurement
 
+	open_count : INTEGER is
+		do
+			Result := children_open_count
+			if not is_open then
+				Result := -Result
+			end
+		end
+
 feature -- Status report
 
 feature -- Status setting
@@ -137,7 +145,7 @@ feature -- Conversion
 				medium.put_string ("/Last ")
 				medium.put_string (list.last.indirect_reference)
 				medium.put_string (" /Count ")
-				medium.put_string (recursive_open_count.out)
+				medium.put_string (open_count.out)
 			end
 			-- dest
 			medium.put_string (" /Dest ")
