@@ -1,14 +1,11 @@
 indexing
 	description: "FO Test for 'hello world'."
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/03/27 15:24:27 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2008/06/24 19:29:25 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	TUTORIAL_HELLO_WORLD
-
-inherit
-	TUTORIAL_TEST
 
 create
 	execute
@@ -40,4 +37,9 @@ feature {NONE} -- Initialization
 			document.close
 		end
 
+feature -- Access
+
+	document : FO_DOCUMENT
+	writer : FO_DOCUMENT_WRITER
+	
 end

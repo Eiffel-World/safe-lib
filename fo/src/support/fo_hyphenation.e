@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/03/18 09:20:40 $"
+	date: "$Date: 2008/06/24 19:29:25 $"
 
 class FO_HYPHENATION
 
@@ -62,7 +62,7 @@ feature -- Access
 
 	hyphenated_word : STRING
 
-	hyphenation_points : DS_LIST[INTEGER]
+	hyphenation_points : DS_BILINKED_LIST[INTEGER]
 			-- List of substring ends for hyphenation.
 
 	hyphen : CHARACTER
@@ -188,7 +188,7 @@ feature {NONE} -- Implementation
 				hyphen_index := word_index + 1
 				end_index := hword.count - minimum_end + 1
 			until
-				hyphen_index = end_index -- hword.count
+				hyphen_index >= end_index -- hword.count
 			loop
 				if (hyphenation_position_vector.item (hyphen_index).code - ('0').code) \\ 2 > 0 then
 					hyphenated_word.append_character (hyphen)
@@ -209,7 +209,7 @@ feature {NONE} -- Implementation
 		local
 			point, i : INTEGER
 		do
-			create {DS_LINKED_LIST[INTEGER]}hyphenation_points.make
+			create {DS_BILINKED_LIST[INTEGER]}hyphenation_points.make
 			from
 				i := 1
 				point := 1

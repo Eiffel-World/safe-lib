@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/03/18 09:20:40 $"
+	date: "$Date: 2008/06/24 19:29:25 $"
 
 class FO_INLINES_WORD_CURSOR
 
@@ -156,25 +156,29 @@ feature -- Basic operations
 			h.hyphenate (item_text)
 			from
 				points_cursor := h.hyphenation_points.new_cursor
-				points_cursor.start
+				points_cursor.finish
+				if points_cursor.after then
+					points_cursor.back
+				end
 				last_end := 0
 				create last_width.make_zero
 			until
-				points_cursor.off or else done
+				points_cursor.before or else done
 			loop
 				hy_width := prefix_width_hyphenated (points_cursor.item, h.hyphen)
 				if hy_width < width then
 					last_end := points_cursor.item
 					done := True
 				end
+				points_cursor.back
 			end
 			if not done then
 				keep_head_not_greater (width)
+				last_hyphen := '%U'
 			else
 				last_hyphen := h.hyphen
 				keep_head (last_end)
-				word_inlines.last.append_character (h.hyphen)
-				word_width := word_width + word_inlines.last.character_width (h.hyphen)
+--				word_width := word_width + word_inlines.last.character_width (h.hyphen)
 			end
 		end
 
@@ -463,8 +467,9 @@ feature {NONE} -- Implementation
 				word_finish
 				word_state := state_start
 			elseif is_break_character (c) then
-				word_append_last_char
-				word_state := state_word_blank
+				word_finish
+--				word_append_last_char
+				word_state := state_start -- state_word_blank
 			else
 				word_append_last_char
 				word_state := state_word_letter
@@ -478,8 +483,9 @@ feature {NONE} -- Implementation
 				word_finish
 				word_state := state_start
 			elseif is_break_character (c) then
-				word_append_last_char
-				word_state := state_word_blank
+				word_finish
+--				word_append_last_char
+				word_state := state_start -- state_word_blank
 			else
 				word_finish
 				word_state := state_start
