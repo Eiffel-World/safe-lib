@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/05/16 07:39:37 $"
-	revision: "$Revision: 1.8 $"
+	date: "$Date: 2008/07/11 14:37:11 $"
+	revision: "$Revision: 1.9 $"
 
 deferred class
 	COLUMN_SET[G->RDBMS_ACCESS_METADATA]
@@ -95,6 +95,27 @@ feature -- Access
 				if not cursor.off then
 					Result.append_string (";")
 				end
+			end
+		end
+
+	item_for_name (a_name : STRING) : G  is
+			-- item whose name is `a_name'
+		require
+			a_name_not_void: a_name /= Void
+		local
+			c : like new_cursor
+		do
+			from
+				c := new_cursor
+				c.start
+			until
+				c.off or else c.item.name.is_equal (a_name)
+			loop
+				c.forth
+			end
+			if not c.off then
+				Result := c.item
+				c.finish
 			end
 		end
 
