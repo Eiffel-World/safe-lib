@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that ..."
 	author: ""
-	date: "$Date: 2007/11/13 09:41:19 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2008/07/11 14:35:44 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	GUI_QUERY_ASSISTANT
@@ -143,16 +143,6 @@ feature -- Basic operations
 --				-input
 					in_filename := window.input_file_name.text
 --				-expat|-eiffel
-				if window.is_use_expat.is_selected then
-					if fact.is_expat_parser_available then
-						event_parser := fact.new_expat_parser
-					else
-						error_handler.report_xml_parser_unavailable ("EXPAT")
-						has_error := True
-					end
-				else
-					create {XM_EIFFEL_PARSER} event_parser.make
-				end
 --				"-dsn"
 					dsn := window.data_source_name.text
 --				"-user"
