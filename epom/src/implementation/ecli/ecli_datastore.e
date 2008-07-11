@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:02:08 $"
+	date: "$Date: 2008/07/11 14:41:16 $"
 
 class ECLI_DATASTORE
 
@@ -45,6 +45,18 @@ feature -- Access
 			--
 		do
 			Result := adapters_impl
+		end
+
+feature -- Element change
+
+	set_simple_login_strategy (login : ECLI_SIMPLE_LOGIN) is
+			-- Safe setting of login strategy
+		require
+			login_not_void: login /= Void
+		do
+			session.set_login_strategy (login)
+		ensure
+			login_strategy_set: session.login_strategy = login
 		end
 
 feature -- Status report
