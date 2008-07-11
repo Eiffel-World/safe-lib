@@ -1,20 +1,18 @@
 indexing
 	description: "Objects that hold shared information about ECLI_DECIMAL usage."
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/06/11 08:47:35 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2008/07/11 14:38:12 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	SHARED_TYPE_USAGE
 
 feature -- Access
 
-
 	use_integer_64 : BOOLEAN is
 		do
 			Result := use_integer_64_cell.item
 		end
-
 
 	use_decimal : BOOLEAN is
 		do
