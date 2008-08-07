@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/16 07:39:37 $"
+	date: "$Date: 2008/08/07 14:38:37 $"
 
 deferred class ECLI_STRING_VALUE
 
@@ -56,11 +56,18 @@ feature {NONE} -- Initialization
 feature -- Access
 
 	item : STRING is
+		local
+			l_count : INTEGER
 		do
 			if is_null then
 				Result := Void
 			else
-				ext_item.copy_to (impl_item)
+				l_count := count
+				if l_count > 0 then
+					ext_item.copy_substring_to (1, l_count, impl_item)
+				else
+					impl_item.keep_head (0)
+				end
 				Result := impl_item
 			end
 		end
