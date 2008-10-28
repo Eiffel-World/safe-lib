@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:52 $"
+	date: "$Date: 2008/10/28 17:44:29 $"
 
 class QA_ERROR_HANDLER
 
@@ -23,6 +23,8 @@ create
 	make_standard, make_null
 
 feature -- Status report
+
+	has_missing_argument : BOOLEAN
 
 feature -- Status setting
 
@@ -45,6 +47,9 @@ feature -- Arguments
 		do
 			create error.make_missing (argument_name, explanation)
 			report_error (error)
+			has_missing_argument := True
+		ensure
+			has_missing_argument: has_missing_argument
 		end
 
 	report_invalid_argument (argument_name, explanation: STRING) is
