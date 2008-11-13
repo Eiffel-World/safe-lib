@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:02:08 $"
+	date: "$Date: 2008/11/13 16:42:38 $"
 
 class PO_MANAGER_IMPL
 
@@ -97,6 +97,7 @@ feature -- Basic operations
 			else
 				last_adapter := Void
 				status.set_framework_error (status.Error_could_not_find_adapter)
+				error_handler.report_could_not_find_adapter (class_name, generator, "search_adapter")
 			end
 		end
 
