@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/05/21 12:35:19 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2008/11/17 13:06:50 $"
+	revision: "$Revision: 1.15 $"
 	licensing: "See notice at end of class"
 
 class
@@ -163,9 +163,11 @@ feature -- Miscellaneous
 			else
 				if decimal_digits = 0 then
 					if precision < 10 then
-							create_integer_value
+						create_integer_value
 					elseif use_integer_64 and then precision < 20 then
-							create_integer_64_value
+						create_integer_64_value
+					elseif not use_decimal then
+						create_double_value
 					else
 						create {QA_DECIMAL}last_result.make (precision, decimal_digits)
 					end
