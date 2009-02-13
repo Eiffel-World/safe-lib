@@ -6,7 +6,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 13:20:53 $"
+	date: "$Date: 2009/02/13 15:51:42 $"
 
 class DS_TRIE_CELL [G]
 
@@ -47,6 +47,9 @@ feature -- Access
 
 	found_item : like Current
 			-- Item found after last search or search_key operation.
+
+	no_item : G is do  end
+
 feature -- Status report
 
 	found : BOOLEAN
@@ -72,10 +75,10 @@ feature -- Element change
 	clear is
 			-- Clear `item'.
 		do
-			item := Void
+			item := no_item
 			is_set := False
 		ensure
-			item_void: item = Void
+			item_void: item = no_item
 			not_is_set: not is_set
 		end
 
