@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2009/02/17 10:22:09 $"
 
 class
 	ECLI_TYPE_CATALOG
@@ -16,9 +16,6 @@ inherit
 	ANY
 
 	ECLI_TYPE_CONSTANTS
---		export
---			{NONE} all
---		end
 
 create
 
@@ -45,6 +42,7 @@ feature {NONE} -- Initialization
 				add_type (cursor.item)
 				cursor.forth
 			end
+			cursor.close
 		end
 
 feature -- Access
@@ -106,6 +104,7 @@ feature -- Status report
 
 	can_bind (a_value : ECLI_VALUE) : BOOLEAN
 			-- Is `a_value' bindable ?
+			-- WARNING: not trustable with some drivers (like Oracle 10g)
 		require
 			a_value_not_void: a_value /= Void
 			session_connected: session.is_connected
