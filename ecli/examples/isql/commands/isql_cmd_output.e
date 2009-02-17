@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that direct further output to a specific file."
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/13 08:59:26 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2009/02/17 10:03:41 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ISQL_CMD_OUTPUT
@@ -49,12 +49,12 @@ feature -- Basic operations
 			if not worder.end_of_input then
 				worder.read_quoted_word
 				if not worder.end_of_input then
-					name := clone (worder.last_string)
+					name := worder.last_string.twin
 					if worder.is_last_string_quoted then
 						name := name.substring (2, name.count-1)
 					end
 					create string_routines
-					if string_routines.as_lower (name).is_equal ("stdout") then
+					if name.as_lower.is_equal ("stdout") then
 						context.set_output_file (Output)
 					else
 						create file.make (name)
