@@ -14,7 +14,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2009/02/17 10:07:34 $"
 
 class ECLI_DECIMAL
 
@@ -285,13 +285,13 @@ feature -- Conversion
 			from
 				index := temp.count - 1
 				Result := 0
-			variant
-				index + 1
 			until
 				index < 0
 			loop
 				Result := Result * 10 + temp.coefficient.item (index)
 				index := index - 1
+			variant
+				index + 1
 			end
 			if temp.is_negative then
 				Result := -Result
