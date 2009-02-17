@@ -1,13 +1,13 @@
 indexing
 
 	description:
-	
+
 			"Procedure columns metadata : parameters, result, result_set."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2009/02/17 10:24:13 $"
 
 class ECLI_PROCEDURE_COLUMN
 
@@ -17,27 +17,27 @@ inherit
 		redefine
 			make
 		end
-	
+
 	ECLI_PROCEDURE_TYPE_METADATA
 		export
 			{ANY} column_type
 		undefine
 			out
 		end
-		
-creation
+
+create
 
 	make
-	
+
 feature -- Initialization
 
 	make (cursor : ECLI_PROCEDURE_COLUMNS_CURSOR) is
 			-- create from `cursor' current position
 		do
 			Precursor (cursor)
-			column_type := cursor.buffer_column_type.item	
+			column_type := cursor.buffer_column_type.item
 		end
-	
+
 feature -- Status setting
 
 feature -- Cursor movement

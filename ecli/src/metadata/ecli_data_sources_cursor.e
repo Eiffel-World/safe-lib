@@ -1,13 +1,13 @@
 indexing
 
 	description:
-	
+
 			"Objects that iterate over installed data sources."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2009/02/17 10:25:52 $"
 
 class ECLI_DATA_SOURCES_CURSOR
 
@@ -23,8 +23,8 @@ inherit
 		end
 
 	KL_IMPORTED_STRING_ROUTINES
-	
-creation
+
+create
 
 	make_all, make_user, make_system
 
@@ -147,7 +147,7 @@ feature {ECLI_DATA_SOURCE} -- Implementation
 
 	name : STRING
 	description : STRING
-	
+
 	c_name : XS_C_STRING
 	c_description : XS_C_STRING
 

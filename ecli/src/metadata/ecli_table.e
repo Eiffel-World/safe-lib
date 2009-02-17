@@ -1,13 +1,13 @@
 indexing
 
 	description:
-	
+
 			"Objects that describe an SQL Table."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2009/02/17 10:24:13 $"
 
 class ECLI_TABLE
 
@@ -21,7 +21,7 @@ inherit
 			out
 		end
 
-creation
+create
 
 	make
 

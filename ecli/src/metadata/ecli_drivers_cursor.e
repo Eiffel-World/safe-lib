@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2009/02/17 10:24:13 $"
 
 class ECLI_DRIVERS_CURSOR
 
@@ -24,7 +24,7 @@ inherit
 
 	KL_IMPORTED_STRING_ROUTINES
 
-creation
+create
 
 	make
 
