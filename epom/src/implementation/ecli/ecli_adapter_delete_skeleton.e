@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/05/04 12:40:39 $"
+	date: "$Date: 2009/02/17 09:41:03 $"
 
 deferred class ECLI_ADAPTER_DELETE_SKELETON[G->PO_PERSISTENT]
 
@@ -31,7 +31,7 @@ feature -- Basic operations
 			status.reset
 			last_pid ?= pid_for_object (object)
 
-			last_object := Void
+			last_object := default_value
 			if last_pid /= Void then
 				init_parameters_for_delete (last_pid)
 				delete_query.execute

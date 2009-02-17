@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/05/04 12:40:39 $"
+	date: "$Date: 2009/02/17 09:41:03 $"
 
 deferred class ECLI_ADAPTER_COMMON_SKELETON[G->PO_PERSISTENT]
 
@@ -113,7 +113,7 @@ feature -- Basic operations
 			-- Does an object identified by `a_pid' exist? Uses `Sql_exists'.
 		do
 			create last_cursor.make
-			last_object := Void
+			last_object := default_value
 
 			check
 				exists_cursor_not_void: exists_cursor /= Void
@@ -203,5 +203,7 @@ feature {NONE} -- Framework - Status report
 		ensure
 			a_cursor_after: a_cursor.after
 		end
+
+	default_value : G is do  end
 
 end

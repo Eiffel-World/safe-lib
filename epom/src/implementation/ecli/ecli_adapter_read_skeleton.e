@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/05/04 12:40:39 $"
+	date: "$Date: 2009/02/17 09:41:03 $"
 
 deferred class ECLI_ADAPTER_READ_SKELETON[G->PO_PERSISTENT]
 
@@ -28,7 +28,7 @@ feature -- Basic operations
 	read (a_pid: like last_pid) is
 			-- Read an object identified by `a_pid' using `read_cursor'.
 		do
-			last_object := Void
+			last_object := default_value
 			create last_cursor.make
 			status.reset
 			if is_enabled_cache_on_read then
