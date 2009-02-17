@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2009/02/17 10:08:02 $"
 
 class ECLI_VALUE_FACTORY
 
@@ -60,17 +60,7 @@ feature {NONE} -- Miscellaneous
 
 	create_decimal_value (precision, decimal_digits : INTEGER) is
 		do
-			if decimal_digits = 0 then
-				if precision < 10 then
-					create_integer_value
-				elseif precision < 20 then
-					create_integer_64_value
-				else
-					create {ECLI_DECIMAL}last_result.make (precision, decimal_digits)
-				end
-			else
-				create {ECLI_DECIMAL}last_result.make (precision, decimal_digits)
-			end
+			create {ECLI_DECIMAL}last_result.make (precision, decimal_digits)
 		end
 
 	create_real_value is
