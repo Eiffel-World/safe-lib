@@ -4,8 +4,8 @@ indexing
 
 	library: "XS_C : eXternal Support C"
 
-	date: "$Date: 2008/05/16 07:41:00 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2009/03/05 09:03:19 $"
+	revision: "$Revision: 1.13 $"
 	licensing: "See notice at end of class"
 
 class
@@ -263,8 +263,8 @@ feature -- Conversion
 			l_count := count
 			if l_count >= 0 then
 				if l_count > 0 then
-				Result := substring (1, count)
-			else
+					Result := substring (1, count)
+				else
 					create Result.make_empty
 				end
 			else
