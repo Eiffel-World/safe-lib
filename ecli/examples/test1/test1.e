@@ -1,8 +1,17 @@
 indexing
-	description: "TEST1 sample application.";
+	description: "[
+			TEST1 sample application.
+			
+			Shows various topics : 
+			* create and drop tables (DDL)
+			* table insertion (basic, parameterized)
+			* selection
+			* putting and getting long data (photos in this case).
+	]";
+	
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:39 $"
-	revision: "$Revision: 1.26 $"
+	date: "$Date: 2009/03/05 08:44:44 $"
+	revision: "$Revision: 1.27 $"
 	licensing: "See notice at end of class"
 
 

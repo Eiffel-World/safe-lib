@@ -1,8 +1,8 @@
 indexing
-	description: "ECLI test of rowset classes.";
+	description: "ECLI test of arrayed value classes. It allows bulk insert/retrieve in a single query execution.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/05/21 12:35:19 $"
-	revision: "$Revision: 1.15 $"
+	date: "$Date: 2009/03/05 08:44:44 $"
+	revision: "$Revision: 1.16 $"
 	licensing: "See notice at end of class"
 class
 	TEST_ROWSET
