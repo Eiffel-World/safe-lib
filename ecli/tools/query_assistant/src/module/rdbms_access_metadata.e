@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 	
 	author: "Paul G. Crismer"	
-	date: "$Date: 2007/11/15 10:21:47 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2009/03/05 08:57:06 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	RDBMS_ACCESS_METADATA
@@ -17,6 +17,12 @@ inherit
 		end
 		
 feature -- Access
+
+	hash_code : INTEGER is
+			-- 
+		do
+			Result := name.hash_code
+		end
 
 	name : STRING is
 			-- name of metadata
@@ -129,13 +135,7 @@ feature {NONE} -- Implementation
 			end
 			Result := impl_value
 		end
-	
-	hash_code : INTEGER is
-			-- 
-		do
-			Result := name.hash_code
-		end
-		
+			
 invariant
 	name_not_void: name /= Void
 

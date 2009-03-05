@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/07/11 14:37:11 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2009/03/05 08:57:06 $"
+	revision: "$Revision: 1.10 $"
 
 deferred class
 	COLUMN_SET[G->RDBMS_ACCESS_METADATA]
@@ -66,13 +66,13 @@ feature -- Access
 	local_items : DS_HASH_SET [G]
 		-- local items : difference between Current and parent
 
-	final_set : like Current is
+	final_set_name : STRING is
 			--
 		do
 			if parent /= Void and then local_items /= Void and then local_items.count = 0 then
-				Result := parent
+				Result := parent.name
 			else
-				Result := Current
+				Result := name
 			end
 		end
 
