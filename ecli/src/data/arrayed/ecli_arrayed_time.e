@@ -1,13 +1,13 @@
 indexing
 
 	description:
-	
+
 			"SQL TIME arrayed value."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2009/03/05 08:55:51 $"
 
 class ECLI_ARRAYED_TIME
 
@@ -15,8 +15,8 @@ inherit
 
 	ECLI_GENERIC_ARRAYED_VALUE [DT_TIME]
 		redefine
-			--is_equal, 
-			out_item_at --to_time, 
+			--is_equal,
+			out_item_at --to_time,
 		select
 			is_equal, copy
 		end
@@ -28,16 +28,16 @@ inherit
 		export
 			{NONE} make_single, set_single, make_default_single
 		undefine
-			release_handle, length_indicator_pointer, to_external, 
-			is_null, set_null, 
-			-- is_equal, 
+			release_handle, length_indicator_pointer, to_external,
+			is_null, set_null,
+			-- is_equal,
 			out, set_item
 		redefine
 			item, trace, allocate_buffer, hour, minute, second, as_string
 			--out, , nanosecond --transfer_octet_length,
 		end
 
-creation
+create
 
 	make
 
@@ -157,13 +157,13 @@ feature -- Resizing
 feature -- Transformation
 
 feature -- Conversion
-		
+
 		as_string : STRING is
-				-- 
+				--
 			do
 				Result := out_item_at (cursor_index)
 			end
-			
+
 feature -- Duplication
 
 feature -- Miscellaneous

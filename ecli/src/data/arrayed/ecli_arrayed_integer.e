@@ -1,13 +1,13 @@
 indexing
 
 	description:
-	
+
 			"CLI SQL INTEGER arrayed value."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2009/03/05 08:55:51 $"
 
 class ECLI_ARRAYED_INTEGER
 
@@ -26,14 +26,14 @@ inherit
 		export
 			{NONE} make_single
 		undefine
-			release_handle, length_indicator_pointer, 
+			release_handle, length_indicator_pointer,
 			to_external, is_null, set_null, set_item
 --			, as_string
 		redefine
 			item, transfer_octet_length, out, trace
 		end
 
-creation
+create
 
 	make
 

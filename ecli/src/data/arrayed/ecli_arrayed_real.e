@@ -1,13 +1,13 @@
 indexing
 
 	description:
-	
+
 			"CLI SQL REAL arrayed value."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2009/03/05 08:55:51 $"
 
 class ECLI_ARRAYED_REAL
 
@@ -35,7 +35,7 @@ inherit
 			out, is_equal, copy
 		end
 
-creation
+create
 
 	make
 
@@ -96,11 +96,11 @@ feature -- Transformation
 feature -- Conversion
 
 	as_string : STRING is
-			-- 
+			--
 		do
 			Result := out_item_at (cursor_index)
 		end
-		
+
 feature -- Duplication
 
 feature -- Miscellaneous
@@ -112,7 +112,7 @@ feature -- Basic operations
 		local
 			message_buffer : XS_C_STRING
 		do
-			create message_buffer.make (50) 
+			create message_buffer.make (50)
 			sprintf_real (message_buffer.handle, item_at (index).item)
 			Result := message_buffer.as_string -- ext.pointer_to_string(message_buffer.handle)
 		end
