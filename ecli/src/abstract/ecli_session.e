@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:34 $"
+	date: "$Date: 2009/03/09 14:26:08 $"
 
 class ECLI_SESSION
 
@@ -119,6 +119,7 @@ feature -- Access
 		end
 
 	info : ECLI_DBMS_INFORMATION
+			-- Various informations about underlying DBMS.
 
 	transaction_capability : INTEGER is
 			-- Transaction capability of established session

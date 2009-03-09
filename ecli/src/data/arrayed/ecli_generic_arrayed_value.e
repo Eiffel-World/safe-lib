@@ -1,7 +1,7 @@
 indexing
 
 	description:
-	
+
 		"Objects that represent ARRAYs of typed values to be exchanged with the database.%
 		% These mainly are exchange buffers.  The capacity is set at creation and cannot be changed.%
 		% The actual number of elements to take into account is set using set_count.%
@@ -11,7 +11,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2009/03/09 14:26:08 $"
 
 	usage: "Used in row-set operations : column-wise binding for result-sets, %
 		% or column-wise binding of parameters for modifications.%
@@ -23,8 +23,7 @@ inherit
 
 	ECLI_ARRAYED_VALUE
 		redefine
-			out, 
---			is_equal, 
+			out,
 			copy
 		end
 
@@ -45,7 +44,7 @@ feature -- Measurement
 		do
 			Result := ecli_c_array_value_get_length (buffer)
 		end
-		
+
 feature -- Element change
 
 	set_item_at (value : G; index : INTEGER) is
@@ -96,7 +95,7 @@ feature -- Duplication
 				index := index + 1
 			end
 		end
-		
+
 feature -- Comparison
 
 	is_equal (other : like Current) : BOOLEAN is
@@ -119,7 +118,7 @@ feature -- Comparison
 				end
 			end
 		end
-		
+
 feature -- Conversion
 
 	out : STRING is
