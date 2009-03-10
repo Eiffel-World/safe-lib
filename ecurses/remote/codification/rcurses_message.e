@@ -2,8 +2,8 @@ indexing
 	description: "Message that can be encoded/decoded"
     cluster: 	"ecurses, spec, remote_access"
     status: 	"See notice at do end of class"
-    date: 		"$Date: 2002/06/05 09:45:52 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 		"$Date: 2009/03/10 09:01:18 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 deferred class
@@ -31,7 +31,7 @@ feature {NONE} -- Implementation
 end -- class RCURSES_MESSAGE
 
 -----------------------------------------------------------
--- Copyright (C) 2001 Paul G. Crismer, Eric Fafchamps
--- Licensed under Eiffel Forum Freeware License, version 1
+-- Copyright (C) 1999-2009 Paul G. Crismer, Eric Fafchamps
+-- Licensed under Eiffel Forum Freeware License, version 2
 -- (see forum.txt)
 -----------------------------------------------------------

@@ -2,8 +2,8 @@ indexing
 	description: "Panel with a border, a header and a footer. %
 		    % A client subwindow is available %
 		    % It does not overlap neither the border nor the header or the footer";
-	date: "$Date: 2008/05/21 12:38:57 $";
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2009/03/10 09:01:18 $";
+	revision: "$Revision: 1.4 $"
 
 class 
 	CURSES_FRAME_PANEL
@@ -64,8 +64,8 @@ feature {NONE} -- implementation
 	
 end -- class CURSES_FRAME_PANEL
 -----------------------------------------------------------
--- Copyright (C) 1999 Paul G. Crismer, Eric Fafchamps
--- Licensed under Eiffel Forum Freeware License, version 1
+-- Copyright (C) 1999-2009 Paul G. Crismer, Eric Fafchamps
+-- Licensed under Eiffel Forum Freeware License, version 2
 -- (see forum.txt)
 -----------------------------------------------------------
 

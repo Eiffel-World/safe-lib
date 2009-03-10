@@ -3,8 +3,8 @@ indexing
 	cluster:        "ecurses, base"
     	interface: 	"client, shared"
     	status: 	"See notice at end of class"
-    	date: 		"$Date: 2007/11/15 10:01:54 $"
-    	revision: 	"$Revision: 1.3 $"
+    	date: 		"$Date: 2009/03/10 09:01:18 $"
+    	revision: 	"$Revision: 1.4 $"
     	author: 	"Paul G. Crismer, Eric Fafchamps"
 class 
 	CURSES_SOFT_LABEL_KEYS
@@ -176,8 +176,8 @@ feature -- Status setting
 
 end -- class CURSES_SOFT_LABEL_KEYS
 -----------------------------------------------------------
--- Copyright (C) 1999 Paul G. Crismer, Eric Fafchamps
--- Licensed under Eiffel Forum Freeware License, version 1
+-- Copyright (C) 1999-2009 Paul G. Crismer, Eric Fafchamps
+-- Licensed under Eiffel Forum Freeware License, version 2
 -- (see forum.txt)
 -----------------------------------------------------------
 

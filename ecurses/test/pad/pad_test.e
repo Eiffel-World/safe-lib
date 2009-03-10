@@ -1,7 +1,7 @@
 indexing
-	description: "eCurses Hello World'"
-	version: "$Revision: 1.2 $"
-	date:	"$Date: 2007/11/15 10:01:55 $"
+	description: "eCurses Pad test. Opens a pad and allows to move through this window using the arrow keys.  Pressing the q key leaves the application.'"
+	version: "$Revision: 1.3 $"
+	date:	"$Date: 2009/03/10 09:01:18 $"
 	Author: "Paul G. Crismer"
 class
 	PAD_TEST	
@@ -19,7 +19,7 @@ feature
 			k : expanded CURSES_KEY_CONSTANTS
 		do
 			initialize
-			!!p.make_pad (200,200)
+			create p.make_pad (200,200)
 			p.enable_metacharacters
 			p.enable_keypad
 			curses.disable_echo
@@ -100,6 +100,9 @@ end -- class PAD_TEST
 -- Released under the Eiffel Forum free license
 -------------------------------------------------------
 -- $Log: pad_test.e,v $
+-- Revision 1.3  2009/03/10 09:01:18  pgcrism
+-- Adapted copyright notice.
+--
 -- Revision 1.2  2007/11/15 10:01:55  pgcrism
 -- ECMA 367 - create instead of creation
 -- renamed entities whith reserved name (attribute, note)

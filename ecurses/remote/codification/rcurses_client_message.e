@@ -2,8 +2,8 @@ indexing
 	description: "Objects that encode/decode a curses remote feature call"
     cluster: 	"ecurses, spec, remote_access"
     status: 	"See notice at do end of class"
-    date: 		"$Date: 2008/05/21 12:38:56 $"
-    revision: 	"$Revision: 1.4 $"
+    date: 		"$Date: 2009/03/10 09:01:18 $"
+    revision: 	"$Revision: 1.5 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -166,7 +166,7 @@ invariant
 end -- class RCURSES_CLIENT_MESSAGE
 
 -----------------------------------------------------------
--- Copyright (C) 2001 Paul G. Crismer, Eric Fafchamps
--- Licensed under Eiffel Forum Freeware License, version 1
+-- Copyright (C) 1999-2009 Paul G. Crismer, Eric Fafchamps
+-- Licensed under Eiffel Forum Freeware License, version 2
 -- (see forum.txt)
 -----------------------------------------------------------

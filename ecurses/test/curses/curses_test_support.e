@@ -1,7 +1,7 @@
 indexing
 	description: "Support routines for tests";
-	date: "$Date: 2000/10/01 19:16:54 $";
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2009/03/10 09:01:18 $";
+	revision: "$Revision: 1.3 $"
 
 class 
 	CURSES_TEST_SUPPORT
@@ -84,7 +84,7 @@ feature -- Support routines
 			end
 			window.curses.save_terminal_state
 			window.curses.escape_to_shell
-			!!shell_tool
+			create shell_tool
 			shell_tool.system_request ("sh")
 			window.curses.resume_from_shell
 			window.curses.restore_terminal_state
@@ -97,8 +97,8 @@ feature -- Support routines
 
 end -- class CURSES_TEST_SUPPORT
 -----------------------------------------------------------
--- Copyright (C) 1999 Paul G. Crismer, Eric Fafchamps
--- Licensed under Eiffel Forum Freeware License, version 1
+-- Copyright (C) 1999-2009 Paul G. Crismer, Eric Fafchamps
+-- Licensed under Eiffel Forum Freeware License, version 2
 -- (see forum.txt)
 -----------------------------------------------------------
 

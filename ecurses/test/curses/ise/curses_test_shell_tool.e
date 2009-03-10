@@ -1,8 +1,8 @@
 indexing
 	description: "Tool to invoke the operating system SHELL in ISE Eiffel"
 	author: "Fafchamps Eric"
-	date: "$Date: 2000/10/01 19:16:54 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2009/03/10 09:01:18 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	CURSES_TEST_SHELL_TOOL
@@ -17,7 +17,7 @@ feature -- Basic routines
 		local
 			execution_environment: EXECUTION_ENVIRONMENT
 		do
-			!!execution_environment
+			create execution_environment
 			execution_environment.system (s)
 		end
 

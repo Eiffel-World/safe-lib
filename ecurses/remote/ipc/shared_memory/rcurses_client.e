@@ -2,8 +2,8 @@ indexing
 	description: "Objects that sends messages to an rcurses server using a shared memory implementation"
     cluster: 	"ecurses, spec, remote_access"
     status: 	"See notice at end of class"
-    date: 	"$Date: 2008/05/21 12:38:56 $"
-    revision: 	"$Revision: 1.4 $"
+    date: 	"$Date: 2009/03/10 09:01:18 $"
+    revision: 	"$Revision: 1.5 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -72,7 +72,7 @@ feature {NONE} --Implementation
 end -- class RCURSES_CLIENT
 
 -----------------------------------------------------------
--- Copyright (C) 2001 Paul G. Crismer, Eric Fafchamps
--- Licensed under Eiffel Forum Freeware License, version 1
+-- Copyright (C) 1999-2009 Paul G. Crismer, Eric Fafchamps
+-- Licensed under Eiffel Forum Freeware License, version 2
 -- (see forum.txt)
 -----------------------------------------------------------

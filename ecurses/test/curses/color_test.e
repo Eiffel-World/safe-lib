@@ -1,7 +1,7 @@
 indexing
 	description: "Color test pattern";
-	date: "$Date: 2007/11/15 10:01:55 $";
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2009/03/10 09:01:18 $";
+	revision: "$Revision: 1.3 $"
 
 class 
 	COLOR_TEST
@@ -27,7 +27,7 @@ feature -- Commands
 			top : INTEGER
 			width : INTEGER
 		do
-			!!hello.make(5)
+			create hello.make(5)
 
 			window.refresh
 			window.put_string ("There are ")
@@ -120,7 +120,7 @@ feature {NONE} -- Implementation
 
 end -- class COLOR_TEST
 -----------------------------------------------------------
--- Copyright (C) 1999 Paul G. Crismer, Eric Fafchamps
--- Licensed under Eiffel Forum Freeware License, version 1
+-- Copyright (C) 1999-2009 Paul G. Crismer, Eric Fafchamps
+-- Licensed under Eiffel Forum Freeware License, version 2
 -- (see forum.txt)
 -----------------------------------------------------------

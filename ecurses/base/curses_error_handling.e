@@ -3,8 +3,8 @@ indexing
 	cluster: 	"ecurses, base";
 	interface: 	"mixin"
 	status: 	"See notice at end of class";
-	date: 		"$Date: 2001/10/20 13:52:18 $";
-	revision: 	"$Revision: 1.3 $";
+	date: 		"$Date: 2009/03/10 09:01:18 $";
+	revision: 	"$Revision: 1.4 $";
 	author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class 
@@ -55,6 +55,7 @@ feature
 	    end
 
 feature {NONE} -- helper procedure
+
 	handle_curses_call ( code : INTEGER; message : STRING) is
 	    do
 		last_error := code
@@ -65,8 +66,8 @@ feature {NONE} -- helper procedure
 
 end -- class CURSES_ERROR_HANDLING
 -----------------------------------------------------------
--- Copyright (C) 1999 Paul G. Crismer, Eric Fafchamps
--- Licensed under Eiffel Forum Freeware License, version 1
+-- Copyright (C) 1999-2009 Paul G. Crismer, Eric Fafchamps
+-- Licensed under Eiffel Forum Freeware License, version 2
 -- (see forum.txt)
 -----------------------------------------------------------
 

@@ -3,10 +3,10 @@
  *
  * Released under the Eiffel Forum Licence, or the LGPL
  *
- * Author : Paul G. Crismer (pgcrism@ibm.net)
+ * Author : Paul G. Crismer (pgcrism @ users . sourceforge . net)
  *
  * $Version: $
- * $Date: 2009/03/06 12:34:54 $
+ * $Date: 2009/03/10 09:01:18 $
  *
 */
 #include <curses.h>

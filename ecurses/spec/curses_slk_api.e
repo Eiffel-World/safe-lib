@@ -3,8 +3,8 @@ indexing
     cluster: 	"ecurses, spec"
     interface: 	"mixin"
     status: 	"See notice at end of class"
-    date: 	"$Date: 2000/01/07 11:33:20 $"
-    revision: 	"$Revision: 1.1 $"
+    date: 	"$Date: 2009/03/10 09:01:18 $"
+    revision: 	"$Revision: 1.2 $"
     author: 	"Paul G. Crismer, Eric Fafchamps"
 
 class
@@ -74,8 +74,8 @@ feature
 
 end -- class CURSES_SLK_API
 -----------------------------------------------------------
--- Copyright (C) 1999 Paul G. Crismer, Eric Fafchamps
--- Licensed under Eiffel Forum Freeware License, version 1
+-- Copyright (C) 1999-2009 Paul G. Crismer, Eric Fafchamps
+-- Licensed under Eiffel Forum Freeware License, version 2
 -- (see forum.txt)
 -----------------------------------------------------------
 
