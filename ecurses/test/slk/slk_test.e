@@ -1,7 +1,7 @@
 indexing
-	description: "eCurses Hello World'"
-	version: "$Revision: 1.4 $"
-	date:	"$Date: 2007/11/15 10:01:55 $"
+	description: "eCurses Soft Label Keys test application."
+	version: "$Revision: 1.5 $"
+	date:	"$Date: 2009/03/10 10:24:26 $"
 	Author: "Paul G. Crismer"
 class
 	SLK_TEST	
@@ -299,6 +299,10 @@ end -- class BASIC_TEST
 -- Released under the Eiffel Forum free license
 -------------------------------------------------------
 -- $Log: slk_test.e,v $
+-- Revision 1.5  2009/03/10 10:24:26  pgcrism
+-- Revisited documentation.
+-- Build automation.
+--
 -- Revision 1.4  2007/11/15 10:01:55  pgcrism
 -- ECMA 367 - create instead of creation
 -- renamed entities whith reserved name (attribute, note)
