@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 11:31:13 $"
+	date: "$Date: 2009/07/28 12:33:17 $"
 
 class
 	PO_ERROR_HANDLER
@@ -82,6 +82,18 @@ feature -- Basic operations
 			error : PO_ERROR
 		do
 			create error.make_could_not_refresh_object (an_adapter, object)
+		end
+
+	report_connection_error (datastore_name  : STRING; a_code : INTEGER; a_message : STRING) is
+			-- Datastore connection error to `datastore_name' : error `a_code' with `a_message'.
+		require
+			datastore_name_not_void: datastore_name /= Void
+			a_message_not_void: a_message /= Void
+		local
+			error : PO_ERROR
+		do
+			create error.make_connection_error (datastore_name, a_code, a_message)
+			report_error (error)
 		end
 
 end
