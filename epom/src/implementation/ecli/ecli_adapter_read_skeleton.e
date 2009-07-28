@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/02/17 09:41:03 $"
+	date: "$Date: 2009/07/28 12:30:57 $"
 
 deferred class ECLI_ADAPTER_READ_SKELETON[G->PO_PERSISTENT]
 
@@ -65,7 +65,7 @@ feature {NONE} -- Framework - Basic operations
 			a_pid_not_void: a_pid /= Void
 		deferred
 		ensure
-			bound_parameters: read_cursor.bound_parameters
+			bound_parameters: read_cursor.has_parameters implies read_cursor.bound_parameters
 		end
 
 feature {NONE} -- Framework - Factory
