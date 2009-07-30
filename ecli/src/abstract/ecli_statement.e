@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/03/18 09:22:00 $"
+	date: "$Date: 2009/07/30 14:34:38 $"
 
 class ECLI_STATEMENT
 
@@ -572,7 +572,6 @@ feature -- Element change
 			row_not_void: row /= Void
 			row_lower: row.lower = 1
 			row_count: row.count > 0
---			is_executed: is_executed
 		do
 			results := row
 		ensure
@@ -650,10 +649,11 @@ feature -- Basic operations
 				end
 			else
 				impl_result_columns_count.put (0)
+				is_executed := False
 			end
 		ensure
-			executed: is_executed implies is_ok
-			cursor_state: is_executed implies
+			is_executed_implies_is_ok: is_executed implies is_ok
+			consistent_cursor_state: is_executed implies
 						((has_result_set implies before) or
 						(not has_result_set implies after))
 		end
