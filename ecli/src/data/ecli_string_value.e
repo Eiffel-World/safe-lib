@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/08/08 13:34:43 $"
+	date: "$Date: 2009/09/07 12:20:00 $"
 
 deferred class ECLI_STRING_VALUE
 
@@ -223,8 +223,11 @@ feature -- Conversion
 
 	as_string : STRING is
 			-- Conversion to STRING value
+		local
+			l_item : like item
 		do
-			Result := item.twin
+			l_item := item
+			Result := l_item.substring (1, l_item.count)
 		end
 
 	as_character : CHARACTER is
@@ -244,7 +247,7 @@ feature -- Conversion
 	as_integer_64 : INTEGER_64 is
 			-- Conversion to INTEGER_64 value
 		do
-			Result := item.to_integer
+			Result := item.to_integer_64
 		end
 
 	as_double : DOUBLE is
