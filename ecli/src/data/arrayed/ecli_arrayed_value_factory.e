@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/03/05 08:55:51 $"
+	date: "$Date: 2009/10/19 10:14:12 $"
 
 class ECLI_ARRAYED_VALUE_FACTORY
 
@@ -30,7 +30,8 @@ inherit
 			create_timestamp_value,
 			create_date_value,
 			create_char_value,
-			create_varchar_value
+			create_varchar_value,
+			create_decimal_value
 		end
 
 create
@@ -105,6 +106,11 @@ feature {NONE} -- Implementation
 	create_time_value is
 		do
 			create {ECLI_ARRAYED_TIME}last_result.make (row_count)
+		end
+
+	create_decimal_value (precision, decimal_digits: INTEGER_32) is
+		do
+			create {ECLI_ARRAYED_DECIMAL} last_result.make (row_count, precision, decimal_digits)
 		end
 
 end

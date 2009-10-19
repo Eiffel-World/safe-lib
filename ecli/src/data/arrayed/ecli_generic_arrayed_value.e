@@ -11,7 +11,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/03/09 14:26:08 $"
+	date: "$Date: 2009/10/19 10:14:12 $"
 
 	usage: "Used in row-set operations : column-wise binding for result-sets, %
 		% or column-wise binding of parameters for modifications.%
@@ -71,7 +71,12 @@ feature -- Transformation
 
 feature -- Duplication
 
-	copy (other : like Current) is
+	copy (other : like Current)
+		do
+			copy_arrayed_items (other)
+		end
+
+	copy_arrayed_items (other : like Current) is
 			-- copy 'other' to Current
 		local
 			index : INTEGER
