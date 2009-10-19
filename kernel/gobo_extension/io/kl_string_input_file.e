@@ -8,15 +8,15 @@ indexing
 
 	library: "SAFE Kernel/Gobo extensions"
 
-	date: "$Date: 2009/10/19 10:01:53 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2009/10/19 13:03:56 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
 	KL_STRING_INPUT_FILE
 
 inherit
-	KI_TEXT_INPUT_FILE
+	KI_BINARY_INPUT_FILE
 		rename
 			make as make_file
 		redefine
@@ -28,7 +28,7 @@ inherit
 create
 
 	make
-	
+
 feature {NONE} -- Initialization
 
 	make (a_string : STRING)
@@ -228,7 +228,7 @@ invariant
 	stream_attached: stream /= Void
 	target_string_attached: target_string /= Void
 
-end 
+end
 
 --
 -- Copyright: 2009, Paul G. Crismer, <pgcrism@users.sourceforge.net>
