@@ -1,8 +1,8 @@
 indexing
 	description: "ISQL command contexts."
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:43:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2009/10/29 14:53:22 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CONTEXT
@@ -299,7 +299,7 @@ feature -- Basic operations
 				if history.count > 20 then
 					history.remove_first
 				end
-				history.put_last (clone (command_stream.text))
+				history.put_last (command_stream.text.twin)
 			end
 		end
 

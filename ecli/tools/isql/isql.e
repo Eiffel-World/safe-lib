@@ -1,8 +1,8 @@
 indexing
 	description: "Command Line Interactive SQL for ODBC datasources.";
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:43:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2009/10/29 14:53:22 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 class
 	ISQL
@@ -28,7 +28,6 @@ feature {NONE} -- Initialization
 	make is
 			-- isql
 		local
-			simple_login : ECLI_SIMPLE_LOGIN
 			v : ECLI_INTEGER_64
 		do
 			create v.make

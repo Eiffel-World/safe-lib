@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that read word streams."
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:43:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2009/10/29 14:53:22 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	KL_WORD_INPUT_STREAM
@@ -134,7 +134,7 @@ feature {NONE} -- Implementation
 		do
 			is_last_string_quoted := False
 			if last_string = Void then
-				last_string := STRING_.make (256)
+				create last_string.make (256)
 			else
 				STRING_.wipe_out (last_string)
 			end

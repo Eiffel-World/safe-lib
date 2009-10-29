@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that are streams of ISQL commands."
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:43:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2009/10/29 14:53:22 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_COMMAND_STREAM
@@ -36,7 +36,7 @@ feature {NONE} -- Initialization
 	make_interactive is
 			-- make interactive
 		do
-			text := STRING_.make (1000)
+			create text.make (1000)
 		ensure
 			interactive: is_interactive
 		end
