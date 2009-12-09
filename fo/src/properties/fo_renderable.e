@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/04/16 16:50:40 $"
+	date: "$Date: 2009/12/09 11:27:11 $"
 
 deferred class
 	FO_RENDERABLE
@@ -88,7 +88,7 @@ feature -- Basic operations
 		require
 			region_not_void: region /= Void
 			region_width_positive: region.width.sign = 1
-			is_renderable: is_renderable (region)
+--			is_renderable: is_renderable (region)
 		do
 			last_region := region
 			is_prerendered := True
