@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:35 $"
+	date: "$Date: 2009/12/09 11:27:27 $"
 
 class
 	FO_COLOR
@@ -93,7 +93,6 @@ feature -- Comparison
 		end
 
 invariant
-	invariant_clause: True -- Your invariant here
 	red_within_bounds: red >= 0 and red <= 255
 	green_within_bounds: green >= 0 and green <= 255
 	blue_within_bounds: blue >= 0 and blue <= 255
