@@ -6,7 +6,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:31 $"
+	date: "$Date: 2009/12/09 11:30:16 $"
 
 class FO_ROW
 
@@ -255,6 +255,7 @@ feature {FO_DOCUMENT, FO_BORDERABLE, FO_TABLE} -- Basic operations
 		local
 			i : INTEGER
 			one_inside, all_after : BOOLEAN
+			current_item : FO_RENDERABLE
 		do
 			compute_regions (region)
 			from
@@ -265,7 +266,12 @@ feature {FO_DOCUMENT, FO_BORDERABLE, FO_TABLE} -- Basic operations
 			until i > items.upper
 			loop
 				if not items.item (i).is_render_after then
-					items.item (i).render_forth (document, render_regions.item (i))
+					current_item := items.item (i)
+					if current_item.is_render_before then
+						current_item.render_start (document, render_regions.item (i))
+					elseif current_item.is_render_inside then
+						current_item.render_forth (document, render_regions.item (i))
+					end
 					all_after := all_after and items.item (i).is_render_after
 					one_inside := one_inside or items.item (i).is_render_inside
 					if last_rendered_region = Void then
