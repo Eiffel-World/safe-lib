@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/13 13:20:54 $"
+	date: "$Date: 2009/12/09 11:25:38 $"
 
 class
 	FO_MEASUREMENT
@@ -86,7 +86,7 @@ feature -- Access
 		ensure
 			one_strictly_positive: as_points > 0 implies Result = 1
 			zero_is_zero: as_points = 0 implies Result = 0
-			minus_one_negative: as_points < 0 implies Result = 1
+			minus_one_negative: as_points < 0 implies Result = -1
 		end
 
 feature -- Measurement
