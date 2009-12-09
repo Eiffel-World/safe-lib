@@ -6,7 +6,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/03/27 15:24:30 $"
+	date: "$Date: 2009/12/09 11:31:02 $"
 
 
 class FO_IMAGE
@@ -64,8 +64,12 @@ feature {NONE} -- Initialization
 			document.writer.document.create_png_image (file_name)
 			pdf_image := document.writer.document.last_image
 			create align.make_left
+			create height.points (1)
+			create width.points (1)
 		ensure
 			file_name_set: file_name = image_name
+			unit_height: height.as_points = 1
+			unit_width: width.as_points = 1
 		end
 
 feature -- Access
