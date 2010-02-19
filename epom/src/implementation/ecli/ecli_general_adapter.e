@@ -19,8 +19,8 @@ indexing
 	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
 	%	exact-match or multiple-match queries, respectively."
 
-	date: "$Date: 2007/11/13 11:31:13 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2010/02/19 16:08:38 $"
+	revision: "$Revision: 1.7 $"
 
 deferred class ECLI_GENERAL_ADAPTER[G->PO_PERSISTENT]
 
@@ -84,7 +84,7 @@ feature {PO_ADAPTER} -- Basic operations
 			--|TODO redefine in descendant classes
 		end
 
-feature {NONE} -- Implementation
+feature {PO_ADAPTER} -- Implementation
 
 	write_query : ECLI_QUERY
 
