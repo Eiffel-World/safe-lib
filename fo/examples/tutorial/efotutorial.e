@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/06/24 19:29:25 $"
+	date: "$Date: 2010/02/19 16:11:51 $"
 
 class
 	EFOTUTORIAL
@@ -25,7 +25,7 @@ feature -- Initialization
 	make is
 			-- Creation procedure.
 		do
---			test_hyphen$
+			test_hyphen
 			create test
 			test.create_document ("FO_Tutorial.pdf")
 			test_chapter_1
@@ -72,7 +72,7 @@ feature -- Basic operations
 		local
 			chapter : TUTORIAL_SHOW_SECTION
 		do
-			create chapter.execute 
+			create chapter.execute
 		end
 
 	factory : FO_CONFIGURABLE_FACTORY
@@ -84,6 +84,8 @@ feature -- Basic operations
 			env : KL_EXECUTION_ENVIRONMENT
 		do
 			create env
+			create file.make (env.interpreted_string ("$SAFE/lib/fo/src/support/hyphen/hyph-de-1996.tex"))
+			create h.make ('-', 2, 2, file)
 			create file.make (env.interpreted_string ("$SAFE/lib/fo/src/support/hyphen/frhyph.tex"))
 			create h.make ('-', 2, 2, file)
 			h.hyphenate ("Cyrille")

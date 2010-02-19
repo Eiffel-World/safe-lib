@@ -6,8 +6,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2008/06/24 19:29:25 $";
-	revision: "$Revision: 1.6 $";
+	date: "$Date: 2010/02/19 16:11:51 $";
+	revision: "$Revision: 1.7 $";
 	author: ""
 
 class TUTORIAL_SHOW_TABLES
@@ -25,7 +25,6 @@ feature {NONE} -- Initialization
 			-- Initialize `Current'.
 		local
 			a_table : FO_TABLE
-			title : FO_BLOCK
 			back_link : FO_BLOCK
 			current_outline : FO_OUTLINE_NODE
 		do

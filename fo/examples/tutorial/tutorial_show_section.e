@@ -6,8 +6,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2008/06/24 19:29:25 $";
-	revision: "$Revision: 1.4 $";
+	date: "$Date: 2010/02/19 16:11:51 $";
+	revision: "$Revision: 1.5 $";
 	author: ""
 
 class TUTORIAL_SHOW_SECTION
@@ -24,7 +24,6 @@ feature {NONE} -- Initialization
 	execute is
 			-- Initialize `Current'.
 		local
-			a_writer : FO_DOCUMENT_WRITER
 			margins : FO_MARGINS
 			block : FO_BLOCK
 			i : INTEGER
