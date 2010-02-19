@@ -8,7 +8,7 @@
 		copyright:   "Copyright (c) 2001, Paul G. Crismer and others"
 		license:     "Eiffel Forum Freeware License v1 (see forum.txt)"
 		date:        "$Date $"
-		revision:    "$Revision: 1.1 $"
+		revision:    "$Revision: 1.2 $"
 	</description>
 
 	<root class="BOOKS_APPLICATION" creation="make"/>
@@ -28,8 +28,8 @@
 		<cluster name="business"/>
 		<cluster name="persistence" prefix="books_">
 			<!-- <option name="abstract" value="true"/> -->
-			<cluster name="ecli" unless="${EIFFELSTORE}"/>
-			<cluster name="eiffelstore" if="${EIFFELSTORE}"/>
+			<cluster name="ecli"/>
+			<!-- <cluster name="eiffelstore" if="${EIFFELSTORE}"/> -->
 		</cluster>
 	</cluster>
 
