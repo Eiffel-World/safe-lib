@@ -2,8 +2,8 @@ indexing
 	description: 	"System's root class"
 	author: 	"Paul G. Crismer"
 	licence: 	"Released under the Eiffel Forum licence.  See file 'forum.txt'."
-	date: 		"$Date: 2007/11/15 10:01:58 $"
-	revision: 	"$Revision: 1.10 $"
+	date: 		"$Date: 2010/02/19 16:06:21 $"
+	revision: 	"$Revision: 1.11 $"
 
 class
 	SHOW_EPDF
@@ -22,8 +22,10 @@ feature -- Initialization
 		local
 			medium : PDF_OUTPUT_MEDIUM
 			file : KI_BINARY_OUTPUT_FILE
+			otf: OPEN_TYPE_FONT_FILE
 		do
 			print ("show_epdf application%N")
+			test_open_type
 			create document.make
 			top := document.default_mediabox.ury
 			setup_document
@@ -48,6 +50,15 @@ feature -- Initialization
 		end
 
 feature -- Basic operations
+
+	otff : OPEN_TYPE_FONT_FILE
+
+	test_open_type
+		do
+			create otff.make ("c:\windows\fonts\arialbi.ttf")
+			otff.open_read
+		end
+
 
 	test_graphics is
 			--
