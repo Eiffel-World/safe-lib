@@ -1,8 +1,8 @@
 indexing
 	description: "Adapters for Access modules."
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/05/16 07:39:37 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2010/03/09 22:43:17 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	ACCESS_MODULE_PERSISTENCE_ADAPTER
@@ -234,6 +234,11 @@ feature {NONE} -- Implementation
 			element.add_attribute (t_column, ns_empty, parameter.reference_column.column)
 			if parameter.sample /= Void then
 				element.add_attribute (t_sample, ns_empty, parameter.sample)
+			end
+			if parameter.is_output then
+				element.add_attribute (t_direction, ns_empty, v_output)
+			elseif parameter.is_input_output then
+				element.add_attribute (t_direction, ns_empty, v_input_output)
 			end
 		end
 

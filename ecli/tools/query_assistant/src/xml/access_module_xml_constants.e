@@ -1,8 +1,8 @@
 indexing
 	description: "Access module generator XML constants."
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/27 10:55:42 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2010/03/09 22:43:17 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	ACCESS_MODULE_XML_CONSTANTS
@@ -33,9 +33,15 @@ feature -- Access
 
 	t_parameter : STRING is "parameter"
 
+	t_direction : STRING is "direction"
+
 	t_sample : STRING is "sample"
 
 	t_modules : STRING is "modules"
+
+	v_input : STRING is "input"
+	v_output: STRING is "output"
+	v_input_output: STRING is "input-output"
 
 feature -- Measurement
 
