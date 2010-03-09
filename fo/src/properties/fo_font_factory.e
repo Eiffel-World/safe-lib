@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:02:09 $"
+	date: "$Date: 2010/03/09 22:42:39 $"
 
 class
 	FO_FONT_FACTORY
@@ -51,6 +51,12 @@ feature {NONE} -- Initialization
 			add_font ("Courier-Bold", "Courier", "bold", "")
 			add_font ("Courier-Oblique", "Courier", "", "italic")
 			add_font ("Courier-BoldOblique", "Courier", "bold", "italic")
+			
+			add_font ("Symbol", "Symbol", "","")
+			add_font ("Symbol-Bold", "Symbol", "bold", "")
+			add_font ("Symbol-Oblique", "Symbol", "", "italic")
+			add_font ("Symbol-BoldOblique", "Symbol", "bold", "italic")
+
 		end
 
 feature -- Access
