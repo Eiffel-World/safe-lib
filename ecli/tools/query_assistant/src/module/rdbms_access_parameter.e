@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/03/09 22:43:17 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2010/06/03 15:00:07 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	RDBMS_ACCESS_PARAMETER
@@ -104,7 +104,13 @@ feature -- Status report
 	is_input : BOOLEAN is
 			-- Is this an input parameter?
 		do
-			Result:= direction = c_input
+			Result:= direction = c_input_explicit or else direction = c_input_implicit
+		end
+
+	is_input_explicit : BOOLEAN
+			-- Is this an explicit input parameter?
+		do
+			Result := direction = c_input_explicit
 		end
 
 	is_output : BOOLEAN is
@@ -175,9 +181,10 @@ feature -- Status setting
 
 	enable_input is
 		do
-			direction := c_input
+			direction := c_input_explicit
 		ensure
 			is_input: is_input
+			is_input_explicit: is_input_explicit
 		end
 
 	enable_output is
@@ -261,7 +268,8 @@ feature {NONE} -- Implementation
 
 	direction : INTEGER
 
-	c_input : INTEGER is 0
+	c_input_implicit : INTEGER is 0
+	c_input_explicit : INTEGER is 4
 	c_output : INTEGER is 1
 	c_input_output : INTEGER is 3
 

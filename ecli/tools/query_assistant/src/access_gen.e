@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:57:06 $"
-	revision: "$Revision: 1.31 $"
+	date: "$Date: 2010/06/03 15:00:07 $"
+	revision: "$Revision: 1.32 $"
 
 
 class
@@ -61,7 +61,7 @@ feature -- Access
 	access_routines_prefix: STRING
 			-- prefix for naming the access_routines class
 
-	version : STRING is "v1.3b"
+	version : STRING is "v1.4a"
 
 feature -- Element change
 
