@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/02/19 16:08:38 $"
+	date: "$Date: 2010/08/31 21:50:45 $"
 
 deferred class ECLI_ADAPTER_COMMON_SKELETON[G->PO_PERSISTENT]
 
@@ -101,7 +101,7 @@ feature {PO_LAUNCHER} -- Element change
 	set_datastore (a_datastore: ECLI_DATASTORE) is
 		do
 			datastore := a_datastore
-			datastore.register_adapter (as_adapter_persistent)
+			datastore.register_adapter (Current)
 			if datastore.is_connected then
 				on_adapter_connected
 			end
