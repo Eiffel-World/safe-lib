@@ -1,8 +1,8 @@
 indexing
 	description: "Name routines that help follow the Eiffel style rules."
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/01/30 14:18:02 $"
-	revision: "$Revision: 1.9 $"
+	date: "$Date: 2010/08/31 21:52:25 $"
+	revision: "$Revision: 1.10 $"
 
 class
 	EIFFEL_NAME_ROUTINES
@@ -16,16 +16,18 @@ feature -- Access
 	reserved_words : ARRAY[STRING] is
 		once
 			Result := <<
-				"agent","alias","all","and","as","assign","attribute",
+				"agent","alias","all","and","as","assign", "attached", "attribute",
 				"check","class","convert","create","Current",
-				"debug","deferred","do",
+				"debug","deferred","detachable","do",
 				"else","elseif","end","ensure","expanded","export","external",
 				"False","feature","from","frozen",
 				"if","implies","inherit","indexing","inspect","invariant",
 				"like","local","loop",
-				"not","note","obsolete","old","once","only","or",
+				"not","note",
+				"obsolete","old","once","only","or",
 				"Precursor","redefine","reference","rename","require","rescue","Result","retry",
-				"select","separate","then","True","TUPLE",
+				"select","separate",
+				"then","True","TUPLE",
 				"undefine","until",
 				"variant","Void",
 				"when",
