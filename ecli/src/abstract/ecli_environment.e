@@ -10,7 +10,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/08/31 09:16:37 $"
+	date: "$Date: 2010/08/31 21:42:02 $"
 
 class ECLI_ENVIRONMENT
 
@@ -48,11 +48,10 @@ feature {NONE} -- Initialization
 		local
 			ext_handle : XS_C_POINTER
 		do
---			create information_actions
---			create error_actions
+			create error_handler.make_null
 			-- | Actual allocation of CLI handle
 			create ext_handle.make
-			set_status (ecli_c_allocate_environment (ext_handle.handle))
+			set_status ("ecli_c_allocate_environment", ecli_c_allocate_environment (ext_handle.handle))
 			handle := ext_handle.item
 		end
 
@@ -72,7 +71,7 @@ feature {NONE} -- Implementation
 			-- Release environment handle
 		do
 			-- | actual release of the handle.
-			set_status (ecli_c_free_environment (handle))
+			set_status ("ecli_c_free_environment", ecli_c_free_environment (handle))
 			set_handle (default_pointer)
 		end
 

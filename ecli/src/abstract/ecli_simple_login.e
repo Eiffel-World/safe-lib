@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:40 $"
+	date: "$Date: 2010/08/31 21:42:02 $"
 
 class
 	ECLI_SIMPLE_LOGIN
@@ -104,7 +104,7 @@ feature {ECLI_SESSION} -- Basic operations
 	Connect (the_session : ECLI_SESSION) is
 			-- do login `the_session'
 		do
-			the_session.set_status (ecli_c_connect (the_session.handle,
+			the_session.set_status ("ecli_c_connect", ecli_c_connect (the_session.handle,
 					impl_datasource_name.handle,
 					impl_user_name.handle,
 					impl_password.handle))

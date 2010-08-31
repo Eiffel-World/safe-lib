@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/02/17 10:24:13 $"
+	date: "$Date: 2010/08/31 21:42:02 $"
 
 class ECLI_DRIVERS_CURSOR
 
@@ -143,7 +143,7 @@ feature {NONE} -- Implementation
 	do_fetch (direction: INTEGER) is
 			-- actual external query
 		do
-			set_status (ecli_c_sql_drivers (Shared_environment.handle, direction, c_name.handle,
+			set_status ("ecli_c_sql_drivers", ecli_c_sql_drivers (Shared_environment.handle, direction, c_name.handle,
 				max_source_name_length, actual_name_length.handle, c_attributes.handle,
 				max_attributes_length, actual_attributes_length.handle))
 			if is_ok and then not is_no_data then

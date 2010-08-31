@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2010/08/31 21:42:02 $"
 
 class ECLI_SQL_TYPES_CURSOR
 
@@ -233,7 +233,7 @@ feature {NONE} -- Implementation
 	get_type_info (type : INTEGER) is
 			-- get information on `type'
 		do
-			set_status (ecli_c_get_type_info (handle, type))
+			set_status ("ecli_c_get_type_info", ecli_c_get_type_info (handle, type))
 			if is_ok then
 				get_result_columns_count
 				is_executed := True

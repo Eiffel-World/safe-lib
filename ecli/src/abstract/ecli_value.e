@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/08/31 09:28:45 $"
+	date: "$Date: 2010/08/31 21:42:02 $"
 
 deferred class ECLI_VALUE
 
@@ -297,7 +297,7 @@ feature {ECLI_STATEMENT, ECLI_STATEMENT_PARAMETER} -- Basic operations
 			stmt: stmt /= Void and then (stmt.is_executed and not stmt.off)
 			positive_index: index > 0
 		do
-			stmt.set_status (ecli_c_get_data (
+			stmt.set_status ("ecli_c_get_data", ecli_c_get_data (
 					stmt.handle,
 					index,
 					c_type_code,
@@ -313,7 +313,7 @@ feature {ECLI_STATEMENT, ECLI_STATEMENT_PARAMETER} -- Basic operations
 			stmt: stmt /= Void
 			positive_index: index > 0
 		do
-			stmt.set_status (ecli_c_bind_result (
+			stmt.set_status ("ecli_c_bind_result", ecli_c_bind_result (
 					stmt.handle,
 					index,
 					c_type_code,
@@ -387,7 +387,7 @@ feature {NONE} -- Implementation
 			valid_index: index >= 1 and index <= stmt.parameters_count
 			valid_direction: valid_directions.has (direction)
 		do
-			stmt.set_status (ecli_c_bind_parameter (stmt.handle,
+			stmt.set_status ("ecli_c_bind_parameter", ecli_c_bind_parameter (stmt.handle,
 				index,
 				direction,
 				c_type_code,

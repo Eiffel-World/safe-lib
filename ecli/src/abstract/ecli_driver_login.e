@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:39 $"
+	date: "$Date: 2010/08/31 21:42:02 $"
 
 class
 	ECLI_DRIVER_LOGIN
@@ -102,7 +102,7 @@ feature -- Basic operations
 			create actual_length.make
 			create impl_connection_string.make_from_string (connection_string)
 			create impl_completed_connection_string.make (completed_connection_string_default_length)
-			the_session.set_status (ecli_c_driver_connect (
+			the_session.set_status ("ecli_c_driver_connect", ecli_c_driver_connect (
 				the_session.handle,
 				parent_window_handle,
 				impl_connection_string.handle,

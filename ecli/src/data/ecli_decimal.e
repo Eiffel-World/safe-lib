@@ -14,7 +14,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/10/19 10:08:24 $"
+	date: "$Date: 2010/08/31 21:42:02 $"
 
 class ECLI_DECIMAL
 
@@ -290,8 +290,8 @@ feature -- Conversion
 			loop
 				Result := Result * 10 + temp.coefficient.item (index)
 				index := index - 1
-			variant
-				index + 1
+--			variant
+--				index + 1
 			end
 			if temp.is_negative then
 				Result := -Result
@@ -372,7 +372,7 @@ feature {ECLI_STATEMENT, ECLI_STATEMENT_PARAMETER} -- Basic operations
 	bind_as_parameter (stmt : ECLI_STATEMENT; index: INTEGER) is
 			-- Bind this value as input parameter 'index' of 'stmt'.
 		do
-			stmt.set_status (ecli_c_bind_parameter (stmt.handle,
+			stmt.set_status ("ecli_c_bind_parameter", ecli_c_bind_parameter (stmt.handle,
 				index,
 				Parameter_directions.Sql_param_input,
 				c_type_code,

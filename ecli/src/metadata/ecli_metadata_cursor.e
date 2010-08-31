@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2010/08/31 21:42:02 $"
 
 deferred class ECLI_METADATA_CURSOR
 
@@ -194,7 +194,7 @@ feature {NONE} -- Implementation
 			else
 				v := sql_false
 			end
-			set_status (ecli_c_set_integer_statement_attribute (handle, sql_attr_metadata_id, v))
+			set_status ("ecli_c_set_integer_statement_attribute", ecli_c_set_integer_statement_attribute (handle, sql_attr_metadata_id, v))
 		end
 
 end

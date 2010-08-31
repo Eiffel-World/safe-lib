@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2010/08/31 21:42:02 $"
 
 class ECLI_COLUMN_DESCRIPTION
 
@@ -57,7 +57,7 @@ feature {NONE} -- Initialization
 				ext_size.handle,
 				ext_decimal_digits.handle,
 				ext_nullability.handle)
-			stmt.set_status (stat)
+			stmt.set_status ("stat", stat)
 			name := c_name.as_string
 			--actual_name_length := ext_actual_name_length.item
 			sql_type_code := ext_sql_type_code.item
