@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/07/30 14:34:38 $"
+	date: "$Date: 2010/08/31 09:16:37 $"
 
 class ECLI_STATEMENT
 
@@ -60,6 +60,9 @@ feature -- Initialization
 			eq : KL_EQUALITY_TESTER[DS_LIST[INTEGER]]
 			ext_handle : XS_C_POINTER
 		do
+--			create information_actions
+--			create error_actions
+
 			create ext_handle.make
 			create impl_result_columns_count.make
 			session := a_session

@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/03/09 14:26:08 $"
+	date: "$Date: 2010/08/31 09:16:37 $"
 
 class ECLI_SESSION
 
@@ -84,6 +84,8 @@ feature -- Initialization
 		require
 			is_closed: is_closed
 		do
+--			create information_actions
+--			create error_actions
 			allocate
 			reset_implementation
 			create info.make (Current)
@@ -378,6 +380,8 @@ feature -- Status setting
 
 	enable_api_tracing is
 			-- Enable ODBC API tracing into `api_trace_filename'.
+--		require
+--			-- FIXME: api_trace_filename set.
 		do
 			set_status (ecli_c_set_integer_connection_attribute (handle, att.sql_attr_trace , att.sql_opt_trace_on))
 		end
