@@ -1,8 +1,8 @@
 indexing
 	description: "Name routines that help follow the Eiffel style rules."
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/08/31 21:52:25 $"
-	revision: "$Revision: 1.10 $"
+	date: "$Date: 2010/10/18 15:11:07 $"
+	revision: "$Revision: 1.11 $"
 
 class
 	EIFFEL_NAME_ROUTINES
@@ -56,6 +56,15 @@ feature -- Status report
 		end
 
 feature -- Conversion
+
+	canonical_class_name (string : STRING) : STRING is
+			-- convert `string' to an eiffel canonical class name
+		require
+			string_not_void: string /= Void
+		do
+			create Result.make_from_string (string)
+			Result.replace_substring_all (".", "_")
+		end
 
 	camel_to_class_name (string : STRING) : STRING is
 			-- convert `string' from camel case to an eiffel class name
