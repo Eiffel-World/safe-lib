@@ -1,8 +1,12 @@
 indexing
-	description: "Summary description for {ECLI_STRING}."
-	author: ""
-	date: "$Date: 2010/08/31 21:42:52 $"
-	revision: "$Revision: 1.1 $"
+	description: 
+	
+		"Objects that map database character data to Eiffel STRING instances."
+
+	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
+	copyright: "Copyright (c) 2001-2010, Paul G. Crismer and others"
+	license: "Eiffel Forum License v2 (see forum.txt)"
+	date: "$Date: 2010/10/18 15:15:20 $"
 
 class
 	ECLI_STRING
