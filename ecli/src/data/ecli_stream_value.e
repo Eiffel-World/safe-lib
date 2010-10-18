@@ -1,8 +1,8 @@
 indexing
 	description: "Values whose length is known at run-time.."
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/08/31 21:42:52 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2010/10/18 15:14:54 $"
+	revision: "$Revision: 1.2 $"
 
 deferred class
 	ECLI_STREAM_VALUE
@@ -83,10 +83,10 @@ feature {ECLI_STATEMENT} -- Basic operations
 					Parameter_directions.Sql_param_input,
 					c_type_code,
 					sql_type_code,
-					size,
-					decimal_digits,
+					input_count,
+					0,
 					parameter_rank.as_pointer,
-					transfer_octet_length,
+					capacity,
 					length_at_execution.handle))
 			end
 		end
@@ -98,14 +98,16 @@ feature {ECLI_STATEMENT} -- Basic operations
 				from
 					put_parameter_start
 				until
-					put_parameter_off
+					put_parameter_off or else stmt.is_error
 				loop
 					copy_item_chunck_to_buffer (parameter_count_to_transfer)
 					-- Actual transfer
 					stmt.set_status ("ecli_c_put_data", ecli_c_put_data (stmt.handle, to_external, parameter_count_to_transfer))
 					put_parameter_forth
 				end
-				put_parameter_finish
+				if not stmt.is_error then
+					put_parameter_finish
+				end
 			else
 				stmt.set_status ("ecli_c_put_data", ecli_c_put_data (stmt.handle, to_external, ecli_c_value_get_length_indicator (buffer)))
 			end
