@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/06/03 15:00:07 $"
-	revision: "$Revision: 1.32 $"
+	date: "$Date: 2010/10/26 09:04:10 $"
+	revision: "$Revision: 1.33 $"
 
 
 class
@@ -33,6 +33,7 @@ feature {NONE} -- Initialization
 			-- generate access modules
 		local
 			adapter : ACCESS_MODULE_PERSISTENCE_ADAPTER
+			sp : ECLI_STORED_PROCEDURE
 		do
 			Arguments.set_program_name ("query_assistant")
 			create_error_handler
@@ -108,6 +109,9 @@ feature -- Access (Command line arguments)
 	default_parent_modify : STRING
 			-- default parent class name for modifiers.
 
+	straigth_option : BOOLEAN
+			-- straigth factory option (i.e. no intelligence in type resolution).
+			
 feature -- Status report
 
 	is_verbose : BOOLEAN
@@ -239,6 +243,9 @@ feature -- Basic operations
 				elseif key.is_equal ("-allow_decimal") then
 					allow_decimal := True
 					arg_index := arg_index + 1
+				elseif key.is_equal ("-straigth") then
+					straigth_option := True
+					arg_index := arg_index + 1
 				elseif key.is_equal ("-no_prototypes") or else key.is_equal ("-no_prototype") then
 					no_prototypes := True
 					arg_index := arg_index + 1
@@ -318,6 +325,9 @@ feature -- Basic operations
 						set_maximum_length (maximum_length_string.to_integer)
 					end
 				end
+			end
+			if straigth_option then
+				set_is_straigth_factory (straigth_option)
 			end
 			if has_error and error_handler.has_missing_argument then
 				error_handler.report_usage (False)
