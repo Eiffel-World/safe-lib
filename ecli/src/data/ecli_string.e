@@ -6,7 +6,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2010, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/10/18 15:15:20 $"
+	date: "$Date: 2010/10/26 09:08:09 $"
 
 class
 	ECLI_STRING
@@ -29,23 +29,15 @@ inherit
 		end
 
 create
-	make_char,
-	make_varchar,
-	make_longvarchar
+	make_longvarchar,
+	make_longvarbinary
 
 feature {NONE} -- Implementation
 
-	make_char (n : INTEGER)
-			-- Make as `CHAR' data, reserving a `n' bytes buffer.
+	make_longvarbinary (n : INTEGER)
+			-- Make as `LONGVARBINARY' data, reserving a `n' bytes buffer.
 		do
-			sql_type_code_impl := sql_char
-			make (n)
-		end
-
-	make_varchar (n : INTEGER)
-			-- Make as `VARCHAR' data, reserving a `n' bytes buffer.
-		do
-			sql_type_code_impl := sql_varchar
+			sql_type_code_impl := sql_longvarbinary
 			make (n)
 		end
 
