@@ -1,23 +1,23 @@
 indexing
 
 	description:
-	
+
 			"SQL VARCHAR (n) values."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:46 $"
+	date: "$Date: 2010/10/26 09:07:42 $"
 
 class ECLI_VARCHAR
 
 inherit
 
 	ECLI_STRING_VALUE
-		
+
 create
 
-	make
+	make, make_force_maximum_capacity
 
 feature -- Constants
 

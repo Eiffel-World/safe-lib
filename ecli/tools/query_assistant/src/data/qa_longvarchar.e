@@ -1,29 +1,27 @@
 indexing
 	description: "SQL LONGVARCHAR (n) values."
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/15 10:01:51 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2010/10/26 09:04:49 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	QA_LONGVARCHAR
 
-	-- Replace ANY below by the name of parent class if any (adding more parents
-	-- if necessary); otherwise you can remove inheritance clause altogether.
 inherit
 
 	ECLI_LONGVARCHAR
-	
+
 	QA_VALUE
-		
+
 create
-	make
+	make, make_force_maximum_capacity
 
 feature
 
 	ecli_type : STRING is "ECLI_LONGVARCHAR"
-		
+
 	value_type : STRING is "STRING"
-		
+
 	creation_call : STRING is
 		do
 			Result := make_call_with_precision
