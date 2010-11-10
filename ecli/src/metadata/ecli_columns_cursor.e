@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/27 10:56:35 $"
+	date: "$Date: 2010/11/10 15:52:38 $"
 
 class ECLI_COLUMNS_CURSOR
 
@@ -189,4 +189,6 @@ feature {NONE} -- Implementation
 
 	queried_column_impl : XS_C_STRING
 
+	query_metadata_feature_name : STRING is do Result := "ecli_c_get_columns" end
+	
 end

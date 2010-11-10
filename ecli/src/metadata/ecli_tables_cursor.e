@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/02/17 10:24:13 $"
+	date: "$Date: 2010/11/10 15:52:38 $"
 
 class ECLI_TABLES_CURSOR
 
@@ -112,5 +112,7 @@ feature {NONE} -- Implementation
 		do
 			Result := ecli_c_get_tables (handle, a_catalog, a_catalog_length, a_schema, a_schema_length, a_name, a_name_length, default_pointer, 0)
 		end
+
+	query_metadata_feature_name : STRING is do Result := "ecli_c_get_tables" end
 
 end

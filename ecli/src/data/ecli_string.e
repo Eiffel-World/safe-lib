@@ -1,12 +1,12 @@
 indexing
-	description: 
-	
+	description:
+
 		"Objects that map database character data to Eiffel STRING instances."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2010, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/10/26 09:08:09 $"
+	date: "$Date: 2010/11/10 15:52:38 $"
 
 class
 	ECLI_STRING
@@ -112,7 +112,6 @@ feature -- Duplication
 feature -- Miscellaneous
 
 feature -- Basic operations
-
 
 feature -- Obsolete
 

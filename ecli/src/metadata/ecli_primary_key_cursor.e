@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/02/17 10:24:13 $"
+	date: "$Date: 2010/11/10 15:52:38 $"
 
 class ECLI_PRIMARY_KEY_CURSOR
 
@@ -131,5 +131,7 @@ feature {NONE} -- Implementation
 		end
 
 	creating_item : BOOLEAN
+
+	query_metadata_feature_name : STRING is do Result := "ecli_c_get_primary_keys" end
 
 end

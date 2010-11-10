@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/02/17 10:24:13 $"
+	date: "$Date: 2010/11/10 15:52:38 $"
 
 class ECLI_PROCEDURE_COLUMNS_CURSOR
 
@@ -101,6 +101,8 @@ feature {NONE} -- Implementation
 				a_name, a_name_length,
 				a_column, a_column_length)
 		end
+
+	query_metadata_feature_name : STRING is do Result := "ecli_c_get_procedure_columns" end
 
 invariant
 	invariant_clause: True -- Your invariant here
