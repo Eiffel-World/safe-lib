@@ -1,8 +1,8 @@
 indexing
 	description: "Values whose length is known at run-time.."
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/10/18 15:14:54 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2010/11/26 16:14:24 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	ECLI_STREAM_VALUE
@@ -143,7 +143,7 @@ feature {ECLI_STATEMENT} -- Basic operations
 					Transfer_octet_length,
 					ecli_c_value_get_length_indicator_pointer (buffer)))
 			end
-			if stmt.status = {ECLI_STATUS_CONSTANTS}.sql_success then
+			if stmt.status = {ECLI_STATUS_CONSTANTS}.sql_success and then not is_null then
 				-- copy_buffer_to_item (actual_transfer_length)
 				copy_buffer_to_item (actual_transfer_length)
 			end
