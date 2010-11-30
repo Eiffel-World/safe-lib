@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that hold shared information about ECLI_DECIMAL usage."
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/10/26 09:04:10 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2010/11/30 15:46:19 $"
+	revision: "$Revision: 1.4 $"
 
 class
 	SHARED_TYPE_USAGE
@@ -39,6 +39,12 @@ feature -- Access
 			Result := is_straigth_factory_cell.item
 		end
 
+	is_string_forced : BOOLEAN
+			-- Is factory building instances of STRING_LONGVARCHAR for every CHAR,VARCHAR,LONGVARCHAR ?
+		do
+			Result := is_string_forced_cell.item
+		end
+
 feature {ACCESS_GEN} -- Element change
 
 	set_use_decimal (value : BOOLEAN) is
@@ -71,6 +77,12 @@ feature {ACCESS_GEN} -- Element change
 			is_straigth_factory_cell.put (value)
 		end
 
+	set_is_string_forced (value: BOOLEAN) is
+			-- set `is_string_forced'
+		do
+			is_string_forced_cell.put (value)
+		end
+
 feature {NONE} -- Implementation
 
 	use_decimal_cell : DS_CELL [BOOLEAN] is
@@ -94,6 +106,11 @@ feature {NONE} -- Implementation
 		end
 
 	is_straigth_factory_cell : DS_CELL[BOOLEAN] is
+		once
+			create Result.make (False)
+		end
+
+	is_string_forced_cell : DS_CELL[BOOLEAN] is
 		once
 			create Result.make (False)
 		end
