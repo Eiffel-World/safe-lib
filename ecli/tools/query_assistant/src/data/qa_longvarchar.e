@@ -1,8 +1,8 @@
 indexing
 	description: "SQL LONGVARCHAR (n) values."
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/10/26 09:04:49 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2010/11/30 15:47:28 $"
+	revision: "$Revision: 1.6 $"
 
 class
 	QA_LONGVARCHAR
@@ -11,14 +11,14 @@ inherit
 
 	ECLI_LONGVARCHAR
 
-	QA_VALUE
+	QA_CHAR_VALUE
 
 create
 	make, make_force_maximum_capacity
 
 feature
 
-	ecli_type : STRING is "ECLI_LONGVARCHAR"
+	ecli_type : STRING is do Result := "ECLI_LONGVARCHAR" end
 
 	value_type : STRING is "STRING"
 

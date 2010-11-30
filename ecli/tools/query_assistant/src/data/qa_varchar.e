@@ -1,8 +1,8 @@
 indexing
 	description: "SQL VARCHAR (n) values."
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/10/26 09:04:49 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2010/11/30 15:47:28 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -12,7 +12,7 @@ inherit
 
 	ECLI_VARCHAR
 
-	QA_VALUE
+	QA_CHAR_VALUE
 
 create
 	make, make_force_maximum_capacity
