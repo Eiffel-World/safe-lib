@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/09/07 12:20:00 $"
+	date: "$Date: 2010/11/30 15:43:22 $"
 
 deferred class ECLI_STRING_VALUE
 
@@ -38,7 +38,7 @@ feature {NONE} -- Initialization
 		ensure
 			is_null: is_null
 			capacity: capacity = n
-			maximum_capacity: maximum_capacity = default_maximum_capacity
+--			maximum_capacity: maximum_capacity = default_maximum_capacity
 		end
 
 	make_force_maximum_capacity (n : INTEGER) is
@@ -95,8 +95,8 @@ feature -- Access
 		end
 
 	c_type_code: INTEGER is
-		once
-			Result := sql_c_char
+		do
+			Result := sql_c_default
 		end
 
 feature -- Measurement
