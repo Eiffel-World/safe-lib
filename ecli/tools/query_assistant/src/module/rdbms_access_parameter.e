@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/06/03 15:00:07 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2010/12/03 15:49:04 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	RDBMS_ACCESS_PARAMETER
@@ -169,8 +169,10 @@ feature -- Status setting
 							name,
 							size,
 							True)
+						is_valid := False
+					else
+						is_valid := True
 					end
-					is_valid := True
 				else
 					metadata := Void
 					is_valid := False
