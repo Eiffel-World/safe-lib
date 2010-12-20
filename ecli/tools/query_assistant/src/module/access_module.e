@@ -1,8 +1,8 @@
 indexing
 	description: "Classes that group persistency accesses for a single class/concept."
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/05/16 07:39:37 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2010/12/20 09:25:26 $"
+	revision: "$Revision: 1.12 $"
 
 class
 	ACCESS_MODULE
@@ -95,6 +95,7 @@ feature -- Element change
 		ensure
 			has_access_access: has_access (access)
 			has_access_name: has (access.name)
+			inserted: accesses.item (access.name) = access
 		end
 
 invariant
