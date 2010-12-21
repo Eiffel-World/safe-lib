@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/12/16 10:15:49 $"
+	date: "$Date: 2010/12/21 11:07:35 $"
 
 class ECLI_STATEMENT
 
@@ -742,7 +742,6 @@ feature -- Basic operations
 			parameters_exist: parameters /= Void and then parameters.count >= parameters_count
 		local
 			parameter_index : INTEGER
-			l_parameter : like parameter_anchor
 		do
 			from
 				parameter_index := 1
