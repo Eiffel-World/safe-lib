@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/12/03 15:49:54 $"
-	revision: "$Revision: 1.34 $"
+	date: "$Date: 2010/12/21 13:42:13 $"
+	revision: "$Revision: 1.35 $"
 
 
 class
@@ -33,7 +33,6 @@ feature {NONE} -- Initialization
 			-- generate access modules
 		local
 			adapter : ACCESS_MODULE_PERSISTENCE_ADAPTER
-			sp : ECLI_STORED_PROCEDURE
 		do
 			Arguments.set_program_name ("query_assistant")
 			create_error_handler
