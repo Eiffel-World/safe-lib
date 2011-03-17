@@ -1,8 +1,8 @@
 indexing
 	description: "Adapters for Access modules."
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/06/03 15:00:07 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2011/03/17 15:03:09 $"
+	revision: "$Revision: 1.5 $"
 
 class
 	ACCESS_MODULE_PERSISTENCE_ADAPTER
@@ -91,6 +91,7 @@ feature -- Basic operations
 				create filter.make_null
 				filter.set_output_stream (file)
 				filter.set_indent (filter.default_indent)
+				filter.enable_empty_element_tags
 				put_document (module)
 				create processor.make (filter)
 				last_document.process (processor)
