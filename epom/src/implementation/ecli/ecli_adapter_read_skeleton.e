@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/07/28 12:30:57 $"
+	date: "$Date: 2011/05/02 12:25:53 $"
 
 deferred class ECLI_ADAPTER_READ_SKELETON[G->PO_PERSISTENT]
 
@@ -27,6 +27,8 @@ feature -- Basic operations
 
 	read (a_pid: like last_pid) is
 			-- Read an object identified by `a_pid' using `read_cursor'.
+		local
+			l_pid : like last_pid
 		do
 			last_object := default_value
 			create last_cursor.make
@@ -40,13 +42,19 @@ feature -- Basic operations
 				end
 			end
 			if not is_enabled_cache_on_read or else not cache.found then
-				init_parameters_for_read (a_pid)
-				read_cursor.execute
-				if read_cursor.is_ok then
-					load_results (read_cursor, a_pid)
+				l_pid ?= a_pid
+				if l_pid /= Void then
+					init_parameters_for_read (a_pid)
+					read_cursor.execute
+					if read_cursor.is_ok then
+						load_results (read_cursor, a_pid)
+					else
+						status.set_datastore_error (read_cursor.native_code, read_cursor.diagnostic_message)
+						error_handler.report_datastore_error (generator, "read", read_cursor.native_code, read_cursor.diagnostic_message)
+					end
 				else
-					status.set_datastore_error (read_cursor.native_code, read_cursor.diagnostic_message)
-					error_handler.report_datastore_error (generator, "read", read_cursor.native_code, read_cursor.diagnostic_message)
+					status.set_framework_error (status.error_non_conformant_pid)
+					error_handler.report_non_conformant_pid (generator, "read", "[like last_pid]", a_pid.generator)
 				end
 			end
 		end
