@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/06/03 15:00:07 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2011/05/02 13:29:57 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -26,22 +26,28 @@ create
 
 feature {NONE} -- Initialization
 
-	make (an_error_handler : QA_ERROR_HANDLER; a_version : STRING) is
+	make (an_error_handler : QA_ERROR_HANDLER; a_version : STRING; a_source_filename : STRING) is
 		require
 			an_error_handler_not_void: an_error_handler /= Void
 			a_version_attached: a_version /= Void
+			a_source_filename_attached: a_source_filename /= Void
 		do
 			error_handler := an_error_handler
 			version := a_version
+			source_filename := a_source_filename
 		ensure
 			error_handler_set: error_handler = an_error_handler
 			version_set: version = a_version
+			source_filename_set: source_filename = a_source_filename
 		end
 
 feature -- Access
 
 	version : STRING
 		-- Generator Version
+
+	source_filename : STRING
+		-- Filename with the source text of a module
 
 	error_handler : QA_ERROR_HANDLER
 
@@ -352,6 +358,7 @@ feature {NONE} -- Basic operations
 			eiffel_class.add_indexing_clause ("status: %""+status_message+"%"")
 			eiffel_class.add_indexing_clause ("generated: %""+ system_clock.date_time_now.out +"%"")
 			eiffel_class.add_indexing_clause ("generator_version: %""+version+"%"")
+			eiffel_class.add_indexing_clause ("source_filename: %""+source_filename+"%"")
 		end
 
 	put_element_change (module : RDBMS_ACCESS) is
