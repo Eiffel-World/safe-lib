@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/10/28 17:44:29 $"
+	date: "$Date: 2011/05/02 13:29:02 $"
 
 class QA_ERROR_HANDLER
 
@@ -151,6 +151,18 @@ feature -- Database
 		end
 
 feature -- Information
+
+	report_processing_file (in_filename : STRING) is
+			-- Report that `in_filename' is being processed
+		require
+			in_filename_not_void: in_filename /= Void
+		local
+			error: QA_INFORMATION
+		do
+			create error.make_processing_file (in_filename)
+			report_error (error)
+		end
+
 
 	report_copyright (author, period: STRING) is
 			-- Report  copyright message with `author' for `period'.
