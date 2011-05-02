@@ -2,15 +2,15 @@ indexing
 
 	description:
 
-	    "Objects that..."
+	    "Buffers of type CHAR(n)."
 
 	usage: ""
 	quality: ""
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2010/11/30 15:47:28 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2011/05/02 13:33:01 $";
+	revision: "$Revision: 1.2 $";
 	author: ""
 
 deferred class
@@ -79,9 +79,3 @@ invariant
 	invariant_clause: -- Your invariant here
 
 end
-
---
---    copyright: "Groupe S (c)"
---    licence: "All rights reserved. Duplication and distribution prohibited."
---
---    source: "$Source: F:/CVSRoot/doc/Se2000/Projet/Standards/full.e.tpl,v ";

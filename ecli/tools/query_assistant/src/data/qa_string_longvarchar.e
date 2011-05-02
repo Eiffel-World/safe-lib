@@ -2,15 +2,15 @@ indexing
 
 	description:
 
-	    "Objects that..."
+	    "Buffers for LONGVARCHAR(n) data accessed through STRING objects."
 
 	usage: ""
 	quality: ""
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2010/11/30 15:47:28 $";
-	revision: "$Revision: 1.1 $";
+	date: "$Date: 2011/05/02 13:32:53 $";
+	revision: "$Revision: 1.2 $";
 	author: ""
 
 class
@@ -42,9 +42,3 @@ feature
 		end
 
 end
-
---
---    copyright: "Groupe S (c)"
---    licence: "All rights reserved. Duplication and distribution prohibited."
---
---    source: "$Source: F:/CVSRoot/doc/Se2000/Projet/Standards/full.e.tpl,v ";
