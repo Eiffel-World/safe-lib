@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/10/19 09:52:33 $"
+	date: "$Date: 2011/05/02 13:35:02 $"
 
 class BOOKS_DATASTORE_ACCESS
 
@@ -51,7 +51,7 @@ feature -- Basic operations
 					create {BOOK_ADAPTER_ECLI}book_adapter.make (store)
 					book_adapter.enable_cache_on_write
 					book_adapter.enable_cache_on_read
---					pom.add_adapter (book_adapter)
+					pom.add_adapter (book_adapter)
 					create {BORROWER_ADAPTER_ECLI}borrower_adapter.make (store)
 					pom.add_adapter (borrower_adapter)
 					create {COPY_ADAPTER_ECLI}copy_adapter.make (store)
