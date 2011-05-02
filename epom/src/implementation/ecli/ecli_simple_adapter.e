@@ -20,8 +20,8 @@
 	%	Features `read_one' and `read_object_collection' can be used as facility routines for%N%
 	%	exact-match or multiple-match queries, respectively."
 
-	date: "$Date: 2009/02/17 09:41:03 $"
-	revision: "$Revision: 1.11 $"
+	date: "$Date: 2011/05/02 12:26:34 $"
+	revision: "$Revision: 1.12 $"
 
 deferred class ECLI_SIMPLE_ADAPTER[G->PO_PERSISTENT]
 
@@ -161,7 +161,7 @@ feature -- Basic operations
 			row_cursor.start
 			if row_cursor.is_ok then
 				if not row_cursor.off then
-					if row_cursor.item ("EXISTS_COUNT").to_integer > 0 then
+					if row_cursor.item ("EXISTS_COUNT").as_integer > 0 then
 						Result := True
 					end
 				end
