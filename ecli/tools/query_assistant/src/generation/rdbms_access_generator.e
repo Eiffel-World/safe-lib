@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2011/05/02 13:29:57 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2011/06/15 09:18:31 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -645,7 +645,7 @@ feature {NONE} -- Implementation
 				eiffel_routine.add_body_line ("cursor.set_parameters_object (parameters)")
 			end
 			check
-				results_in_sets: all_sets.has_item (module.results)
+--				results_in_sets: all_sets.has_item (module.results)
 				results_flattened: module.results.is_flattened
 			end
 			eiffel_routine.add_body_line ("from")
