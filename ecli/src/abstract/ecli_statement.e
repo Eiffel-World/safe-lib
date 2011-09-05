@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/12/21 11:07:35 $"
+	date: "$Date: 2011/09/05 14:33:25 $"
 
 class ECLI_STATEMENT
 
@@ -615,7 +615,9 @@ feature -- Basic operations
 				if has_result_set and then not after then
 					finish
 				end
-				bind_parameters
+				if parameters_count > 0 then
+					bind_parameters
+				end
 			end
 			if session.is_tracing then
 				if session.tracer.is_tracing_time then
@@ -739,7 +741,8 @@ feature -- Basic operations
 			-- Bind parameters
 		require
 			valid_statement: is_valid
-			parameters_exist: parameters /= Void and then parameters.count >= parameters_count
+			parameters_exist: parameters_count > 0
+			parameters_are_set: parameters /= Void and then parameters.count >= parameters_count
 		local
 			parameter_index : INTEGER
 		do
