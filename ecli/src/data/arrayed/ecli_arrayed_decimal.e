@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/10/19 10:14:12 $"
+	date: "$Date: 2011/12/06 10:05:38 $"
 
 class
 	ECLI_ARRAYED_DECIMAL
@@ -204,9 +204,3 @@ invariant
 	invariant_clause: -- Your invariant here
 
 end -- class ECLI_ARRAYED_DECIMAL
-
---
---    copyright: "Groupe S (c)"
---    licence: "All rights reserved. Duplication and distribution prohibited."
---
---    source: "$Source: F:/CVSRoot/doc/Se2000/Projet/Standards/full.e.tpl,v ";

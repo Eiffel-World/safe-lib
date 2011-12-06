@@ -1,24 +1,24 @@
 indexing
 
-	description: 
-	
+	description:
+
 		"SQL LONGVARCHAR (n) values."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:45 $"
+	date: "$Date: 2011/12/06 10:05:38 $"
 
 class ECLI_LONGVARCHAR
 
 inherit
 
 	ECLI_STRING_VALUE
-	
+
 create
 
 	make, make_force_maximum_capacity
-	
+
 feature -- Access
 
 	default_maximum_capacity : INTEGER is
@@ -30,5 +30,5 @@ feature -- Access
 		once
 			Result := sql_longvarchar
 		end
-	
+
 end

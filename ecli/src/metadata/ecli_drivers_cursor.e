@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/08/31 21:42:02 $"
+	date: "$Date: 2011/12/06 10:05:38 $"
 
 class ECLI_DRIVERS_CURSOR
 
@@ -33,6 +33,7 @@ feature {NONE} -- Initialization
 	make is
 			-- Make cursor on drivers.
 		do
+			create error_handler.make_null
 			before := True
 		ensure
 			before: before

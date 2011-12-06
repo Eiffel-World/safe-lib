@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/11/10 15:52:38 $"
+	date: "$Date: 2011/12/06 10:05:38 $"
 
 class ECLI_PROCEDURE_COLUMNS_CURSOR
 
@@ -18,8 +18,9 @@ inherit
 	ECLI_COLUMNS_CURSOR
 		redefine
 			set_buffer_values_array, create_buffer_values,
-		    item, create_item, do_query_metadata, definition
-		end
+		    item, create_item, definition,
+ 			do_query_metadata, query_metadata_feature_name
+ 		end
 
 create
 

@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/11/30 15:43:22 $"
+	date: "$Date: 2011/12/06 10:05:38 $"
 
 deferred class ECLI_STRING_VALUE
 
@@ -96,7 +96,7 @@ feature -- Access
 
 	c_type_code: INTEGER is
 		do
-			Result := sql_c_default
+			Result := sql_c_char
 		end
 
 feature -- Measurement
