@@ -28,8 +28,8 @@ indexing
 
 
 	Usage: "Inherit.  Define all deferred features."
-	date: "$Date: 2010/08/31 21:50:45 $"
-	revision: "$Revision: 1.14 $"
+	date: "$Date: 2011/12/06 10:09:51 $"
+	revision: "$Revision: 1.15 $"
 
 deferred class PO_ADAPTER [G -> PO_PERSISTENT]
 
@@ -342,15 +342,6 @@ feature -- Contract support
 		ensure
 			is_cached_implies_is_persistent: Result implies object.is_persistent
 		end
-
---	as_adapter_persistent : PO_ADAPTER[PO_PERSISTENT] is
---			-- Contract support for ISE 5.5.
---			-- Should disappear when 'reference' keyword usage is dropped.
---		do
---			Result ?= Current
---		ensure
---			result_not_void: Result /= Void
---		end
 
 feature {PO_REFERENCE} -- Framework - Factory
 

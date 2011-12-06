@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/06/03 15:00:57 $"
+	date: "$Date: 2011/12/06 10:09:51 $"
 
 class PO_SHARED_MANAGER
 
@@ -36,7 +36,7 @@ feature {NONE} -- Implementation
 
 	shared_po_manager_cell : DS_CELL[PO_MANAGER] is
 			-- The singleton.
-		once
+		once ("PROCESS")
 			create Result.make (Void)
 		end
 
