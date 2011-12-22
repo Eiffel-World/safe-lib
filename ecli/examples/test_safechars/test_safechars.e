@@ -20,7 +20,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2010, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/12/21 11:03:56 $"
+	date: "$Date: 2011/12/22 10:59:24 $"
 
 
 class
@@ -113,10 +113,15 @@ feature -- Measurement
 feature -- Basic operations
 
 	do_connect is
+		local
+			tracefile: KL_TEXT_OUTPUT_FILE
 		do
 			create session.make_default
 			session.set_login_strategy (ecli_login)
 			session.connect
+			create tracefile.make ("sql_trace.log")
+			tracefile.open_write
+			session.set_tracer (create {ECLI_TRACER}.make(tracefile))
 		end
 
 	create_buffers
