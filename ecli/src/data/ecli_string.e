@@ -6,17 +6,19 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2010, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/11/10 15:52:38 $"
+	date: "$Date: 2011/12/22 10:58:24 $"
 
 class
 	ECLI_STRING
 
 inherit
 	ECLI_STREAM_VALUE
+		undefine
+			out
+		end
 
 	ECLI_STRING_VALUE
 		undefine
-			out,
 			count,
 			set_item,
 			copy,

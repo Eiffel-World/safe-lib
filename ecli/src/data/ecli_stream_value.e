@@ -1,8 +1,8 @@
 indexing
 	description: "Values whose length is known at run-time.."
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/11/26 16:14:24 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2011/12/22 10:58:24 $"
+	revision: "$Revision: 1.4 $"
 
 deferred class
 	ECLI_STREAM_VALUE
@@ -66,7 +66,9 @@ feature {ECLI_STATEMENT} -- Basic operations
 		do
 			-- If buffer is large enough, transfer in one piece
 			if not is_buffer_too_small then
-				ecli_c_value_set_length_indicator (buffer, input_count)
+				if not is_null then
+					ecli_c_value_set_length_indicator (buffer, input_count)
+				end
 				Precursor (stmt, index)
 			else
 				-- Transfer in multiple pieces with parameters at execution.
