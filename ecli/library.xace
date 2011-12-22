@@ -19,7 +19,7 @@
 		library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 		copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 		license: "Eiffel Forum License v2 (see forum.txt)"
-		date: "$Date: 2006/04/13 13:23:43 $"
+		date: "$Date: 2011/12/22 10:57:13 $"
 
 	</description>
 
@@ -44,12 +44,11 @@
 		</option>
 		<option if="${GOBO_OS}=windows">
 			<option name="link" value="${ECLI}\src\spec\${GOBO_EIFFEL}\${GOBO_OS}\ecli_${GOBO_CC}.lib"/>
-			<option name="link" value="ODBC32.lib" unless="${GOBO_CC}=bcc"/>
-			<option name="link" value="ODBCCP32.lib" unless="${GOBO_CC}=bcc"/>
+			<option name="link" value="${ODBC32LIBPATH}ODBC32.lib" unless="${GOBO_CC}=bcc"/>
+			<option name="link" value="${ODBCCP32LIBPATH}ODBCCP32.lib" unless="${GOBO_CC}=bcc"/>
 			<option name="link" value="${ECLI_C_BCCDIR}\lib\PSDK\ODBC32.lib" if="${GOBO_CC}=bcc"/>
 			<option name="link" value="${ECLI_C_BCCDIR}\lib\PSDK\ODBCCP32.lib" if="${GOBO_CC}=bcc"/>
 			<option name="link" value="-lodbc32" if="${GOBO_CC}=gcc"/>
-			<option name="linker" value="microsoft" if="${GOBO_EIFFEL}=ve"/>
 		</option>
 	</cluster>
 
