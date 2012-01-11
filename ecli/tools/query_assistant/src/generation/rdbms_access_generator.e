@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2011/06/15 09:18:31 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2012/01/11 09:09:02 $"
+	revision: "$Revision: 1.6 $"
 	licensing: "See notice at end of class"
 
 class
@@ -105,6 +105,7 @@ feature -- Basic operations
 			-- create class from `parameter_set' and write it into `directory_name'
 		require
 			parameter_set_not_void: parameter_set /= Void
+			parameter_set_generatable: parameter_set.is_generatable
 		do
 			parameters_class := virtual_row_class (parameter_set)
 		ensure
@@ -116,6 +117,7 @@ feature -- Basic operations
 			-- create class from `result_set' and write it into `directory_name'
 		require
 			result_set_not_void: result_set /= Void
+			result_set_generatable: result_set.is_generatable
 		do
 			results_class := virtual_row_class (result_set)
 		ensure

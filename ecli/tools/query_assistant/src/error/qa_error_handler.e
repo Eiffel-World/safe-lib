@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2011/05/02 13:29:02 $"
+	date: "$Date: 2012/01/11 09:09:02 $"
 
 class QA_ERROR_HANDLER
 
@@ -416,6 +416,19 @@ feature -- Validity
 			error : QA_VALIDITY_ERROR
 		do
 			create error.make_parameter_already_defined (module, name, attribute_name)
+			report_error (error)
+		end
+
+	report_same_parameter_set_parent_name  (module, name, parent_name : STRING) is
+			-- Report same parameter-set parent name `parent_name' as the parameter-set name `name' in `module'.
+		require
+			module_not_void: module /= void
+			name_not_void: name /= Void
+			parent_name_not_void: name /= void
+		local
+			error : QA_VALIDITY_ERROR
+		do
+			create error.make_parameter_set_parent_same_name (module, name, parent_name)
 			report_error (error)
 		end
 
