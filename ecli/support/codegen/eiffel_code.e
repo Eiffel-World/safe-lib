@@ -2,14 +2,28 @@ indexing
 	description: "Objects that represent Eiffel code fragments."
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "Eiffel Code Generator"
-	date: "$Date: 2005/11/29 09:47:38 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2012/01/13 16:18:07 $"
+	revision: "$Revision: 1.4 $"
 	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
 	copyright: "Copyright (c) 2001 Glenn Maughan and others"
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
 
 deferred class
 	EIFFEL_CODE
+
+feature -- Status Report
+
+	is_ecma367v2 : BOOLEAN
+
+feature -- Element change
+
+	enable_ecma367v2
+			-- Enable ECMA367v2 syntax
+		do
+			is_ecma367v2 := True
+		ensure
+			is_ecma367v2: is_ecma367v2
+		end
 
 feature -- Basic operations
 

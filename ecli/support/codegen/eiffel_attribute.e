@@ -2,8 +2,8 @@ indexing
 	description: "Objects that represent Eiffel attributes."
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "Eiffel Code Generator"
-	date: "$Date: 2007/11/15 10:01:49 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2012/01/13 16:18:07 $"
+	revision: "$Revision: 1.5 $"
 	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
 	copyright: "Copyright (c) 2001 Glenn Maughan and others"
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
@@ -64,7 +64,11 @@ feature -- Basic operations
 		do
 			output.put_string ("%T" + name + ": " + type)
 			if value /= Void then
-				output.put_string (" is " + value)
+				if is_ecma367v2 then
+					output.put_string (" = " + value)
+				else
+					output.put_string (" is " + value)
+				end
 			end
 			if comment /= Void then
 				output.put_new_line
