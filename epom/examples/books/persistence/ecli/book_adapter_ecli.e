@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:02:08 $"
+	date: "$Date: 2012/01/13 22:03:21 $"
 
 class BOOK_ADAPTER_ECLI
 
@@ -89,13 +89,17 @@ feature -- Basic operations
 			title_not_void:  title /= Void
 		local
 			cursor : BOOK_READ_BY_TITLE
+--			desc : ECLI_DATASET_DESCRIPTION
 		do
 			create cursor.make (session)
 			create last_cursor.make
+--			cursor.prepare
+--			create desc.make_for_results (cursor)
+--			create desc.make_for_parameters (cursor)
 			do_book_read_by_title (cursor, title)
 			cursor.close
 			last_object := Void -- ensure invariant
-
+--			cursor.close
 		end
 
 	read_by_author (author_name : STRING) is
