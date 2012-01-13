@@ -20,7 +20,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2010, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2011/12/22 10:59:24 $"
+	date: "$Date: 2012/01/13 16:15:31 $"
 
 
 class
@@ -51,13 +51,15 @@ feature -- Initialization
 			create error_handler.make_standard
 			if arguments_ok then
 				do_connect
-				create_table
-				create_buffers
-				test_insert
-				test_select
---				test_select_p
-				print_diagnostics
-				session.disconnect
+				if session.is_connected then
+					create_table
+					create_buffers
+					test_insert
+					test_select
+--					test_select_p
+					print_diagnostics
+					session.disconnect
+				end
 			end
 		end
 

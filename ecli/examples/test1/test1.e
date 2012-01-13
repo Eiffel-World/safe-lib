@@ -8,10 +8,10 @@ indexing
 			* selection
 			* putting and getting long data (photos in this case).
 	]";
-	
+
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:44:44 $"
-	revision: "$Revision: 1.27 $"
+	date: "$Date: 2012/01/13 16:15:31 $"
+	revision: "$Revision: 1.28 $"
 	licensing: "See notice at end of class"
 
 
@@ -65,8 +65,8 @@ feature -- Initialization
 							if is_longvarbinary_supported then
 								put_photo ("1892005034", photo_filename ("nvc.jpg"))
 								put_photo ("0136291554", photo_filename ("oosc2.jpg"))
-								get_photo ("0136291554", "photo_oosc2.jpg")
-								get_photo ("1892005034", "photo_nvc.jpg")
+								get_photo ("0136291554", ".\photo_oosc2.jpg")
+								get_photo ("1892005034", ".\photo_nvc.jpg")
 							end
 						end
 						drop_tables
@@ -850,7 +850,7 @@ feature {NONE} -- Implementation
 			create Result.make (10)
 			Result.put (True, "Firebird 1.5")
 			Result.put (True, "Microsoft SQL Server")
---			Result.put (False, "ACCESS")
+			Result.put (True, "ACCESS")
 		end
 
 end -- class TEST1
