@@ -7,7 +7,7 @@ indexing
 	library: "FO - Formatting Objects in Eiffel. Project SAFE."
 	copyright: "Copyright (c) 2006 - , Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/02/19 16:11:51 $"
+	date: "$Date: 2012/01/13 22:11:41 $"
 
 class
 	EFOTUTORIAL
@@ -26,6 +26,7 @@ feature -- Initialization
 			-- Creation procedure.
 		do
 			test_hyphen
+			test_open_type_font
 			create test
 			test.create_document ("FO_Tutorial.pdf")
 			test_chapter_1
@@ -84,11 +85,18 @@ feature -- Basic operations
 			env : KL_EXECUTION_ENVIRONMENT
 		do
 			create env
-			create file.make (env.interpreted_string ("$SAFE/lib/fo/src/support/hyphen/hyph-de-1996.tex"))
-			create h.make ('-', 2, 2, file)
+--			create file.make (env.interpreted_string ("$SAFE/lib/fo/src/support/hyphen/hyph-de-1996.tex"))
+--			create h.make ('-', 2, 2, file)
 			create file.make (env.interpreted_string ("$SAFE/lib/fo/src/support/hyphen/frhyph.tex"))
 			create h.make ('-', 2, 2, file)
 			h.hyphenate ("Cyrille")
 		end
 
+	test_open_type_font
+		local
+			arial : OPEN_TYPE_FONT_FILE
+		do
+			create arial.make ("c:\windows\fonts\arial.ttf")
+			arial.open_read
+		end
 end -- class EFOTUTORIAL
