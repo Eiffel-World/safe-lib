@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/16 07:39:37 $"
+	date: "$Date: 2012/01/13 16:16:21 $"
 
 class ECLI_TRACER
 
@@ -233,6 +233,14 @@ feature {ECLI_VALUE} -- Basic operations
 			a_float /= Void and then not a_float.is_null
 		do
 			medium.put_string (a_float.out)
+		end
+
+	put_integer_16 (a_integer : ECLI_INTEGER_16) is
+			-- Put 'a_integer' as an integer constant
+		require
+			a_integer /= Void and then not a_integer.is_null
+		do
+			medium.put_string (a_integer.out)
 		end
 
 	put_integer (a_integer : ECLI_INTEGER) is
