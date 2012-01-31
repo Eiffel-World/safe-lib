@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2012/01/31 14:38:51 $"
-	revision: "$Revision: 1.6 $"
+	date: "$Date: 2012/01/31 14:45:05 $"
+	revision: "$Revision: 1.7 $"
 
 class
 	RDBMS_ACCESS
@@ -393,7 +393,7 @@ feature {NONE} -- Implementation
 			parameters_put : INTEGER
 			tracer : ECLI_TRACER
 			sample_value : QA_VALUE
-			paramet_metadata : RDBMS_ACCESS_PARAMETER
+			parameter_metadata : RDBMS_ACCESS_PARAMETER
 		do
 			create tracer.make (a_error_handler.warning_file)
 			create factory.make
