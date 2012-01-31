@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2012/01/13 19:57:15 $"
-	revision: "$Revision: 1.39 $"
+	date: "$Date: 2012/01/31 14:39:04 $"
+	revision: "$Revision: 1.40 $"
 
 	todo: "[
 		* fully implement get_options
@@ -67,7 +67,7 @@ feature -- Access
 	access_routines_prefix: STRING
 			-- prefix for naming the access_routines class
 
-	version : STRING is "v1.5e"
+	version : STRING is "v1.5f"
 
 feature -- Element change
 
