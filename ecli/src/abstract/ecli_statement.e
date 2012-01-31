@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2011/12/06 10:05:38 $"
+	date: "$Date: 2012/01/31 14:38:02 $"
 
 class ECLI_STATEMENT
 
@@ -100,7 +100,7 @@ feature {NONE} -- Initialization
 		ensure
 			error_handler_created: error_handler /= Void
 		end
-		
+
 feature -- Basic operations
 
 	close is
@@ -634,6 +634,9 @@ feature -- Basic operations
 				set_status ("ecli_c_execute", ecli_c_execute (handle) )
 			else
 				set_status ("ecli_c_execute_direct", ecli_c_execute_direct (handle, impl_sql.handle))
+			end
+			if is_ok then
+				get_result_columns_count
 			end
 			if session.is_tracing then
 				trace (session.tracer)
