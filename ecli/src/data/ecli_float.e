@@ -1,13 +1,13 @@
 indexing
 
-	description: 
-		
+	description:
+
 		"SQL FLOAT values."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2007/11/15 10:01:44 $"
+	date: "$Date: 2012/02/06 22:01:59 $"
 
 class ECLI_FLOAT
 
@@ -32,7 +32,7 @@ feature -- Status report
 
 feature -- Status setting
 
-	column_precision: INTEGER is
+	column_precision: INTEGER_64 is
 		do
 			Result := 15
 		end
@@ -41,9 +41,9 @@ feature -- Status setting
 		once
 			Result := sql_float
 		end
-	
+
 	decimal_digits: INTEGER is
-		do 
+		do
 			Result := 0
 		end
 
@@ -63,7 +63,7 @@ feature -- Resizing
 feature -- Transformation
 
 feature -- Conversion
-		
+
 feature -- Duplication
 
 feature -- Miscellaneous

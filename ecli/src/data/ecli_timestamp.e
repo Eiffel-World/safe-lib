@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/16 07:39:37 $"
+	date: "$Date: 2012/02/06 22:01:59 $"
 
 class ECLI_TIMESTAMP
 
@@ -165,7 +165,7 @@ feature -- Measurement
 			days_in_month_not_more_31: Result <= 31
 		end
 
-	size : INTEGER is
+	size : INTEGER_64 is
 		local
 			l_decimal_digits : INTEGER
 		do
@@ -182,7 +182,7 @@ feature -- Measurement
 
 	display_size: INTEGER is
 		do
-			Result := size
+			Result := size.as_integer_32
 		end
 
 feature -- Status report

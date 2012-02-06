@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/08/31 21:42:02 $"
+	date: "$Date: 2012/02/06 22:01:59 $"
 
 deferred class ECLI_FILE_VALUE
 
@@ -77,11 +77,11 @@ feature -- Measurement
 	decimal_digits: INTEGER
 			-- number of decimal digits
 
-	size: INTEGER
+	size: INTEGER_64
 
 	display_size: INTEGER is
 		do
-			Result := size
+			Result := size.as_integer_32
 		end
 
 	transfer_octet_length: INTEGER = 4096

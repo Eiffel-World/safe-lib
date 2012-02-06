@@ -14,7 +14,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/08/31 21:42:02 $"
+	date: "$Date: 2012/02/06 22:01:59 $"
 
 class ECLI_DECIMAL
 
@@ -110,7 +110,7 @@ feature -- Measurement
 			Result := precision + 2
 		end
 
-	size: INTEGER is
+	size: INTEGER_64 is
 			-- Size as synonym of precision.
 		do
 			Result := precision

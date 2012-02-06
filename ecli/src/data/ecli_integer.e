@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/16 07:39:37 $"
+	date: "$Date: 2012/02/06 22:01:59 $"
 
 class ECLI_INTEGER
 
@@ -58,7 +58,7 @@ feature -- Access
 
 feature -- Measurement
 
-	size : INTEGER is
+	size : INTEGER_64 is
 		do
 			Result := 10
 		end
