@@ -1,11 +1,11 @@
-indexing
+note
 	description: "C allocated arrays of 32 bits integers."
 	author: "Paul G. Crismer"
 
 	library: "XS_C : eXternal Support C"
 
-	date: "$Date: 2007/11/15 10:02:09 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2012/03/29 19:43:37 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -19,7 +19,7 @@ create
 
 feature -- Access
 
-	item (index : INTEGER) : INTEGER is
+	item (index : INTEGER) : INTEGER
 			-- item at `index'
 		local
 			item_ptr : POINTER
@@ -30,11 +30,11 @@ feature -- Access
 
 feature -- Measurement
 
-	item_size : INTEGER is do Result := 4 end
+	item_size : INTEGER do Result := 4 end
 
 feature -- Element change
 
-	put (value : INTEGER; index : INTEGER) is
+	put (value : INTEGER; index : INTEGER)
 			-- put `value' at `index'
 		local
 			item_ptr : POINTER

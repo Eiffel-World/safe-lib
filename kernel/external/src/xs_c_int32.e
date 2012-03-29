@@ -1,11 +1,11 @@
-indexing
+note
 	description: "C allocated 32 bits integer (int)."
 	author: "Paul G. Crismer"
 
 	library: "XS_C : eXternal Support C"
 
-	date: "$Date: 2008/05/19 13:55:36 $"
-	revision: "$Revision: 1.4 $"
+	date: "$Date: 2012/03/29 19:43:37 $"
+	revision: "$Revision: 1.5 $"
 	licensing: "See notice at end of class"
 
 class
@@ -19,27 +19,27 @@ create
 
 feature -- Access
 
-	item : INTEGER is
+	item : INTEGER
 			-- item
 		do
 			Result := c_memory_get_int32 (handle)
 		end
 
-	as_pointer : POINTER is
+	as_pointer : POINTER
 		do
 			Result := c_memory_get_pointer (handle)
 		end
 
 feature -- Measurement
 
-	item_size : INTEGER is do Result := 4 end
+	item_size : INTEGER do Result := 4 end
 
-	minimum_value : INTEGER is -2147483648
-	maximum_value : INTEGER is 2147483647
+	minimum_value : INTEGER = -2147483648
+	maximum_value : INTEGER = 2147483647
 
 feature -- Element change
 
-	put (value : INTEGER) is
+	put (value : INTEGER)
 			-- put `value'
 		do
 			c_memory_put_int32 (handle, value)

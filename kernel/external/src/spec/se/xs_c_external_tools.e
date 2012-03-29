@@ -1,8 +1,8 @@
-indexing
+note
 	description: "Tools for Eiffel/External (to C) communication"
 	author: "Paul G. Crismer"
-	date: "$Date: 2006/03/07 17:10:11 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2012/03/29 19:43:38 $"
+	revision: "$Revision: 1.3 $"
 	licensing: "See notice at end of class"
 
 class
@@ -13,18 +13,18 @@ inherit
 
 feature -- Basic operations
 
-	string_to_pointer (s : STRING) : POINTER is
+	string_to_pointer (s : STRING) : POINTER
 			-- pointer to "C" version of 's'
 		do
 			Result := s.to_external
 		end
 
-	pointer_to_string (p : POINTER) : STRING is
+	pointer_to_string (p : POINTER) : STRING
 		do
 			create Result.from_external_copy (p)
 		end
 
-	string_copy_from_pointer (s : STRING; p : POINTER) is
+	string_copy_from_pointer (s : STRING; p : POINTER)
 			-- copy 'C' string at `p' into `s'
 		do
 			s.from_external_copy (p)
@@ -34,7 +34,7 @@ feature -- Inapplicable
 
 feature {NONE} -- Implementation
 
-		pointer (ptr : POINTER) : POINTER is
+		pointer (ptr : POINTER) : POINTER
 			do
 				Result := ptr
 			end

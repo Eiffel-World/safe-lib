@@ -1,11 +1,11 @@
-indexing
+note
 	description: "Access to UINT32 routines"
 	author: "Paul G. Crismer"
 	
 	library: "XS_C : eXternal Support C"
 	
-	date: "$Date: 2003/08/19 15:52:28 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2012/03/29 19:43:37 $"
+	revision: "$Revision: 1.2 $"
 	licensing: "See notice at end of class"
 
 class
@@ -13,7 +13,7 @@ class
 	
 feature -- Basic operations
 
-	UINT32_ : XS_UINT32_ROUTINES is
+	UINT32_ : XS_UINT32_ROUTINES
 		once
 			create Result
 		end

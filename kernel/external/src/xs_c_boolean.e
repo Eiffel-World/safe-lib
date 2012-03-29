@@ -1,11 +1,11 @@
-indexing
+note
 	description: "C allocated 8 bit boolean : False = 0; True /= False."
 	author: "Paul G. Crismer"
 
 	library: "XS_C : eXternal Support C"
 
-	date: "$Date: 2007/11/15 10:02:10 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2012/03/29 19:43:37 $"
+	revision: "$Revision: 1.4 $"
 	licensing: "See notice at end of class"
 
 class
@@ -19,14 +19,14 @@ create
 
 feature -- Initialization
 
-	make is
+	make
 		do
 			handle := c_memory_allocate (item_size)
 		end
 
 feature -- Access
 
-	item : BOOLEAN is
+	item : BOOLEAN
 			-- item
 		do
 			Result := (c_memory_get_int8 (handle) /= ext_false)
@@ -34,11 +34,11 @@ feature -- Access
 
 feature -- Measurement
 
-	item_size : INTEGER is do Result := 1 end
+	item_size : INTEGER do Result := 1 end
 
 feature -- Element change
 
-	put (value : BOOLEAN) is
+	put (value : BOOLEAN)
 			-- put `value'
 		local
 			l_int : INTEGER
@@ -51,8 +51,8 @@ feature -- Element change
 			c_memory_put_int8 (handle, l_int)
 		end
 
-	ext_true : INTEGER is 1
-	ext_false : INTEGER is 0
+	ext_true : INTEGER = 1
+	ext_false : INTEGER = 0
 
 invariant
 	handle_not_default_pointer: handle /= default_pointer

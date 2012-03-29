@@ -1,8 +1,8 @@
-indexing
+note
 	description: "Objects that handle communication with external objects"
 	author: "Paul G. Crismer"
-	date: "$Date: 2003/08/20 15:40:45 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2012/03/29 19:43:37 $"
+	revision: "$Revision: 1.3 $"
 
 deferred class
 	XS_C_EXTERNAL_TOOLS_COMMON
@@ -15,20 +15,20 @@ feature -- Status report
 
 feature -- Basic operations
 
-	string_to_pointer (s : STRING) : POINTER is
+	string_to_pointer (s : STRING) : POINTER
 			-- pointer to "C" version of 's'
 		require
 			good_string: s /= Void
 		deferred
 		end
 
-	pointer_to_string (p : POINTER) : STRING is
+	pointer_to_string (p : POINTER) : STRING
 		require
 			good_pointer: p /= default_pointer
 		deferred
 		end
 
-	string_copy_from_pointer (s : STRING; p : POINTER) is
+	string_copy_from_pointer (s : STRING; p : POINTER)
 			-- copy 'C' string at `p' into `s'
 		require
 			s_not_void: s /= Void
