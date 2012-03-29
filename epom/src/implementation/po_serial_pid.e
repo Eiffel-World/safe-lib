@@ -1,10 +1,11 @@
 note
 	description: "[
-		Typed Persistent Identifiers implemented using serial numbers."
+		Typed Persistent Identifiers implemented using serial numbers.
+		]"
 
 	copyright: "Copyright (c) 2012, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/02/17 15:33:14 $"
+	date: "$Date: 2012/03/29 12:36:52 $"
 
 class
 	PO_SERIAL_PID [G -> PO_PERSISTENT]
