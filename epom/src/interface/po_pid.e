@@ -15,7 +15,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/02/17 15:31:58 $"
+	date: "$Date: 2012/04/18 15:04:17 $"
 
 deferred class PO_PID
 
@@ -28,7 +28,7 @@ inherit
 
 feature -- Access			
 
-	persistent_class_name: READABLE_STRING_8 is
+	persistent_class_name: STRING is
 			-- Name of class for persistence that this PID identifies.
 			-- Used by PO_REFERENCE to obtain an adapter
 		deferred
