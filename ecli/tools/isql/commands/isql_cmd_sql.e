@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that execute SQL statements."
 	author: "Paul G. Crismer."
-	date: "$Date: 2009/03/05 08:43:19 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2012/05/29 21:22:04 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_SQL
@@ -142,7 +142,7 @@ feature {NONE} -- Implementation
 			l_statement : ECLI_STATEMENT
 		do
 			l_statement ?= cursor
-			l_capacity := l_statement.results_description.item (i).size.min (50)
+			l_capacity := l_statement.results_description.item (i).size.min (50).as_integer_32
 			create Result.make (l_capacity)
 			Result.append_string (cursor.column_name (i))
 		end

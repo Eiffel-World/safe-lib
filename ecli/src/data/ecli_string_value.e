@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2011/12/06 10:05:38 $"
+	date: "$Date: 2012/05/29 21:22:04 $"
 
 deferred class ECLI_STRING_VALUE
 
@@ -101,7 +101,7 @@ feature -- Access
 
 feature -- Measurement
 
-	size: INTEGER is
+	size: INTEGER_64 is
 		do
 			Result := display_size
 		end

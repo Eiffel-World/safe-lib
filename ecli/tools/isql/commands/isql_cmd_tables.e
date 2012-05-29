@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that list tables on current session."
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:43:19 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2012/05/29 21:22:04 $"
+	revision: "$Revision: 1.2 $"
 
 class
 	ISQL_CMD_TABLES
@@ -74,15 +74,15 @@ feature -- Basic operations
 			l_description : STRING
 		do
 			cursor.describe_results
-			create l_catalog.make (cursor.results_description.item(1).size.min(c_maximum_initial_column_capacity))
+			create l_catalog.make (cursor.results_description.item(1).size.min(c_maximum_initial_column_capacity).as_integer_32)
 			l_catalog.append_string ("CATALOG")
-			create l_schema.make (cursor.results_description.item(2).size.min(c_maximum_initial_column_capacity))
+			create l_schema.make (cursor.results_description.item(2).size.min(c_maximum_initial_column_capacity).as_integer_32)
 			l_schema.append_string ("SCHEMA")
-			create l_name.make (cursor.results_description.item(3).size.min(c_maximum_initial_column_capacity))
+			create l_name.make (cursor.results_description.item(3).size.min(c_maximum_initial_column_capacity).as_integer_32)
 			l_name.append_string ("TABLE_NAME" )
-			create l_type.make (cursor.results_description.item(4).size.min(c_maximum_initial_column_capacity))
+			create l_type.make (cursor.results_description.item(4).size.min(c_maximum_initial_column_capacity).as_integer_32)
 			l_type.append_string ("TYPE")
-			create l_description.make (cursor.results_description.item(5).size.min(c_maximum_initial_column_capacity))
+			create l_description.make (cursor.results_description.item(5).size.min(c_maximum_initial_column_capacity).as_integer_32)
 			l_description.append_string ("DESCRIPTION" )
 			context.filter.begin_heading
 			context.filter.put_heading (l_catalog)

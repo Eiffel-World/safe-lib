@@ -1,16 +1,16 @@
 indexing
 
 	description:
-	
+
 			"Objects that describe SQL properties of data items; Usually got from catalog queries."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:09 $"
+	date: "$Date: 2012/05/29 21:22:04 $"
 
 deferred class ECLI_DATA_DESCRIPTION
-	
+
 inherit
 
 	ANY
@@ -25,13 +25,13 @@ feature -- Status report
 		deferred
 		end
 
-	column_precision : INTEGER is
+	column_precision : INTEGER_64 is
 		obsolete "Use 'size' instead"
 		do
 			Result := size
 		end
-	
-	size : INTEGER is
+
+	size : INTEGER_64 is
 			-- maximum number of 'digits' used by the data type
 			-- for character and binary data : number of bytes or characters
 			-- for numeric data : number of sigificant digits
@@ -44,7 +44,7 @@ feature -- Status report
 			-- (redefine in descendant classes)
 		deferred
 		end
-		
+
 feature -- Comparison
 
 	is_equal (other : like Current) : BOOLEAN is
@@ -61,11 +61,11 @@ feature -- Comparison
 		require
 			other_not_void: other /= Void
 		do
-			Result := (sql_type_code = other.sql_type_code 
-								and then size = other.size 
-								and then decimal_digits = other.decimal_digits)			
+			Result := (sql_type_code = other.sql_type_code
+								and then size = other.size
+								and then decimal_digits = other.decimal_digits)
 		ensure
 			symmetry: Result implies other.same_description (Current)
 		end
-		
+
 end
