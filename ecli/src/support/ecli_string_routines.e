@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/02/17 10:28:59 $"
+	date: "$Date: 2012/06/08 19:32:52 $"
 
 	usage: "mix-in, module-object"
 
@@ -18,7 +18,8 @@ feature
 	trimmed (s : STRING) : STRING is
 			-- string made of 's' trimmed with beginning and trailing blanks
 		require
-			s /= Void and then not s.is_empty
+			attached_s: s /= Void --FIXME: VS-DEL
+			not_s_empty: not s.is_empty
 		local
 			begin_index, end_index : INTEGER
 		do
@@ -56,7 +57,7 @@ feature
 	pad (s : STRING; a_capacity : INTEGER) is
 			-- pad 's' with blanks, until s.count = a_capacity
 		require
-			s_not_void: s /= Void
+			s_not_void: s /= Void --FIXME: VS-DEL
 			count_not_capacity: s.count <= a_capacity
 		do
 			from
@@ -72,7 +73,7 @@ feature
 	padded (s : STRING; a_capacity : INTEGER) : STRING is
 			-- copy of `s' padded with blanks
 		require
-			s_not_void: s /= Void
+			s_not_void: s /= Void --FIXME: VS-DEL
 			a_capacity_greater_s_count: a_capacity >= s.count
 		do
 			Result := s.twin

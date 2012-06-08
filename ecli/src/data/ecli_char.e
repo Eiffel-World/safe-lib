@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/08/08 13:34:42 $"
+	date: "$Date: 2012/06/08 19:32:39 $"
 
 class ECLI_CHAR
 
@@ -49,6 +49,8 @@ feature -- Access
 			if not is_null then
 				Result := Precursor
 				format (Result)
+			else
+				Result := ""
 			end
 		ensure then
 			Result.count = count
@@ -87,7 +89,7 @@ feature {NONE} -- Implementation
 	format (s : STRING) is
 			-- format 's' according to 'capacity'
 		require
-			s_not_void: s /= Void
+			s_not_void: s /= Void --FIXME: VS-DEL
 		do
 			if s.count > count then
 				s.keep_head (capacity)

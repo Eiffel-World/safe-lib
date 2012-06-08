@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/03/05 08:55:51 $"
+	date: "$Date: 2012/06/08 19:32:45 $"
 
 class ECLI_ARRAYED_FLOAT
 
@@ -32,7 +32,7 @@ feature -- Status report
 
 feature -- Status setting
 
-	column_precision: INTEGER is
+	column_precision: INTEGER_64 is
 		do
 			Result := 15
 		end

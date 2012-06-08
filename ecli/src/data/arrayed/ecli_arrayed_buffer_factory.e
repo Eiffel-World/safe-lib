@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/03/05 08:55:51 $"
+	date: "$Date: 2012/06/08 19:32:44 $"
 
 class ECLI_ARRAYED_BUFFER_FACTORY
 
@@ -15,7 +15,7 @@ inherit
 
 	ECLI_BUFFER_FACTORY
 		redefine
-			value_factory, value_anchor
+			value_factory, value_anchor, default_buffer_value
 		end
 
 create
@@ -28,6 +28,7 @@ feature {NONE} -- Initialization
 			-- make buffer for 'a_row_count'
 		do
 			row_count := a_row_count
+			default_create
 		ensure
 			row_count_set: row_count = a_row_count
 		end
@@ -68,15 +69,22 @@ feature {NONE} -- Implementation
 
 	value_factory : ECLI_ARRAYED_VALUE_FACTORY is
 		do
-			if impl_value_factory = Void then
-				create impl_value_factory.make (row_count)
+			if attached impl_value_factory as l_factory then
+				Result := l_factory
+			else
+				create Result.make (row_count)
+				impl_value_factory := Result
 			end
-			Result := impl_value_factory
 		end
 
-	value_anchor : ECLI_ARRAYED_VALUE is
+	value_anchor : detachable ECLI_ARRAYED_VALUE is
 			--
 		do
+		end
+
+	default_buffer_value : ECLI_ARRAYED_VALUE
+		do
+			create {ECLI_ARRAYED_CHAR}Result.make (1, row_count)
 		end
 
 invariant

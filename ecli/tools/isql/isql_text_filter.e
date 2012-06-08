@@ -1,8 +1,8 @@
 indexing
 	description: "Simple text filters."
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:43:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2012/06/08 19:32:53 $"
+	revision: "$Revision: 1.1.1.1.4.1 $"
 
 class
 	ISQL_TEXT_FILTER
@@ -25,9 +25,23 @@ feature {NONE} -- Initialization
 		require
 			a_context_not_void: a_context /= Void
 		do
+			default_create
 			context := a_context
 		ensure
 			context_set: context = a_context
+		end
+
+	make_null
+		do
+			default_create
+
+		end
+
+feature -- Trick
+
+	set_context (a_context: like context)
+		do
+
 		end
 
 feature -- Access

@@ -11,13 +11,13 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/10/19 10:14:12 $"
+	date: "$Date: 2012/06/08 19:32:47 $"
 
 	usage: "Used in row-set operations : column-wise binding for result-sets, %
 		% or column-wise binding of parameters for modifications.%
 		% Access modes: direct ('item_at'), linear ('start', 'forth', 'item')."
 
-deferred class ECLI_GENERIC_ARRAYED_VALUE [G]
+deferred class ECLI_GENERIC_ARRAYED_VALUE [G -> attached ANY]
 
 inherit
 

@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/02/17 10:27:25 $"
+	date: "$Date: 2012/06/08 19:32:48 $"
 
 class ECLI_DATA_SOURCE
 
@@ -20,9 +20,10 @@ feature {NONE} -- Initialization
 	make (cursor : ECLI_DATA_SOURCES_CURSOR) is
 			-- create from current item in cursor
 		require
-			cursor_valid: cursor /= Void and then not cursor.off
-			cursor_name_not_void: cursor.name /= Void
-			cursor_description_not_void: cursor.description /= Void
+			cursor_not_void: cursor /= Void  --FIXME: VS-DEL
+			cursor_not_off: not cursor.off
+			cursor_name_not_void: cursor.name /= Void  --FIXME: VS-DEL
+			cursor_description_not_void: cursor.description /= Void --FIXME: VS-DEL
 		do
 			name := cursor.name.twin
 			description := cursor.description.twin
@@ -37,7 +38,7 @@ feature -- Access
 			-- description
 
 invariant
-	name_not_void: name /= Void
-	description_not_void: description /= Void
+	name_not_void: name /= Void -- FIXME: VS-DEL
+	description_not_void: description /= Void -- FIXME: VS-DEL
 
 end

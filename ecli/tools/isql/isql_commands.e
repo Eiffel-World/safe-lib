@@ -1,8 +1,8 @@
 indexing
 	description: "ISQL Command catalog."
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:43:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2012/06/08 19:32:52 $"
+	revision: "$Revision: 1.1.1.1.4.1 $"
 
 class
 	ISQL_COMMANDS
@@ -82,7 +82,9 @@ feature -- Access
 
 	new_cursor : DS_LIST_CURSOR [ISQL_COMMAND] is
 		do
-			Result := commands.new_cursor
+			check attached commands.new_cursor as c then
+				Result := c
+			end
 		end
 
 feature -- Measurement
@@ -115,7 +117,7 @@ feature -- Basic operations
 		do
 			create l_command_text.make (40)
 			l_command_text.append_string ("execute")
-			if file_name /= Void then
+			if not file_name.is_empty then
 				l_command_text.append_character (' ')
 				l_command_text.append_string (file_name)
 			end

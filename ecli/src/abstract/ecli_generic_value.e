@@ -1,15 +1,15 @@
 indexing
 
-	description: 
+	description:
 
 		"Objects that represent typed values to be exchanged with the database."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:08 $"
+	date: "$Date: 2012/06/08 19:32:34 $"
 
-deferred class ECLI_GENERIC_VALUE [G]
+deferred class ECLI_GENERIC_VALUE [G -> attached ANY]
 
 inherit
 
@@ -17,7 +17,7 @@ inherit
 		redefine
 			out, copy
 		end
-		
+
 feature -- Access
 
 	item : G is
@@ -25,9 +25,11 @@ feature -- Access
 		require
 			not_null: not is_null
 		do
-			Result := impl_item
+			check attached impl_item as i then
+				Result := i
+			end
 		ensure
-			not_void: Result /= Void
+			not_void: Result /= Void --FIXME: VS-DEL
 		end
 
 feature -- Element change
@@ -60,7 +62,7 @@ feature -- Conversion
 				Result := item.out
 			end
 		end
-		
+
 feature -- Duplication
 
 	copy (other : like Current) is
@@ -71,7 +73,7 @@ feature -- Duplication
 				set_item (other.item)
 			end
 		end
-		
+
 feature -- Comparison
 
 	is_equal (other : like Current) : BOOLEAN is
@@ -88,23 +90,23 @@ feature -- Contract support
 		ensure
 			definition: Result implies value /= Void
 		end
-		
+
 feature {NONE} -- Implementation
 
-	impl_item : G is
+	impl_item : detachable G is
 			-- Reference to actual item this is always the same item !
 		do
 		end
-		
+
 	create_impl_item is
 			-- Create impl_item
 		do
 		end
-	
-	out_null : STRING is 
+
+	out_null : STRING is
 			-- Default `out' when value `is_null'
-		once 
+		once
 			Result := "<NULL>"
 		end
-	
+
 end

@@ -1,11 +1,24 @@
 indexing
 	description: "Objects that filter output."
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:43:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2012/06/08 19:32:53 $"
+	revision: "$Revision: 1.1.1.1.4.1 $"
 
 deferred class
 	ISQL_FILTER
+
+inherit
+	ANY
+		redefine
+			default_create
+		end
+
+feature {} -- Initialization
+
+	default_create
+		do
+			create {KL_NULL_TEXT_OUTPUT_STREAM}output_file.make ("/dev/null")
+		end
 
 feature -- Access
 

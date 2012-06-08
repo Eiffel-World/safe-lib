@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/05/29 21:22:04 $"
+	date: "$Date: 2012/06/08 19:32:48 $"
 
 deferred class ECLI_DATA_DESCRIPTION
 
@@ -59,7 +59,7 @@ feature -- Comparison
 
 	same_description (other : like Current) : BOOLEAN is
 		require
-			other_not_void: other /= Void
+			other_not_void: other /= Void -- FIXME: VS-DEL
 		do
 			Result := (sql_type_code = other.sql_type_code
 								and then size = other.size

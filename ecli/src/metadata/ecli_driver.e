@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/02/17 10:27:25 $"
+	date: "$Date: 2012/06/08 19:32:49 $"
 
 class
 	ECLI_DRIVER
@@ -21,8 +21,9 @@ feature {NONE} -- Initialization
 	make (cursor : ECLI_DRIVERS_CURSOR) is
 			-- create from current item in cursor
 		require
-			cursor_valid: cursor /= Void and then not cursor.off
-			cursor_name_not_void: cursor.name /= Void
+			cursor_not_void: cursor /= Void  --FIXME: VS-DEL
+			cursor_not_off: not cursor.off
+			cursor_name_not_void: cursor.name /= Void  --FIXME: VS-DEL
 		local
 			index, sep : INTEGER
 			start : INTEGER
@@ -58,7 +59,7 @@ feature -- Access
 			-- Driver attribute values.
 
 invariant
-	name_not_void: name /= Void
-	attributes_not_void: attributes /= Void
+	name_not_void: name /= Void --FIXME: VS-DEL
+	attributes_not_void: attributes /= Void --FIXME: VS-DEL
 
 end -- class ECLI_DRIVER

@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/11/10 15:52:38 $"
+	date: "$Date: 2012/06/08 19:32:50 $"
 
 class ECLI_PRIMARY_KEY_CURSOR
 
@@ -19,7 +19,7 @@ inherit
 		rename
 			queried_name as queried_table
 		redefine
-			item, make, forth
+			item, make, forth, default_create
 		end
 
 create
@@ -27,6 +27,12 @@ create
 	make
 
 feature {NONE} -- Initialization
+
+	default_create
+		do
+			Precursor
+			create_buffer_objects
+		end
 
 	make (a_name: ECLI_NAMED_METADATA; a_session: ECLI_SESSION) is
 			-- create cursor for primary keys on `a_name' (catalog, schema, table)
@@ -39,7 +45,9 @@ feature -- Access
 	item : ECLI_PRIMARY_KEY is
 			-- item at current cursor position
 		do
-			Result := impl_item
+			check attached impl_item as i then
+				Result := i
+			end
 		end
 
 feature -- Cursor Movement
@@ -95,13 +103,17 @@ feature {NONE} -- Implementation
 	create_buffers is
 			-- create buffers for cursor
 		do
+			set_buffer_into_cursor
+		end
+
+	create_buffer_objects
+		do
 			create buffer_table_cat.make (255)
 			create buffer_table_schem.make (255)
 			create buffer_table_name.make (255)
 			create buffer_column_name.make (255)
 			create buffer_key_seq.make
 			create buffer_pk_name.make (255)
-			set_buffer_into_cursor
 		end
 
 	set_buffer_into_cursor is
@@ -116,7 +128,8 @@ feature {NONE} -- Implementation
 				buffer_pk_name
 				>>)
 		ensure
-			results_not_void: results /= Void
+			results_not_void: results /= Void --FIXME: VS-DEL
+			results_count_gt_0: results.count = 6
 		end
 
 	definition : STRING is once Result := "SQLPrimaryKeys" end

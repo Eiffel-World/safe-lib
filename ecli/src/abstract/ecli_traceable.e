@@ -11,7 +11,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:08 $"
+	date: "$Date: 2012/06/08 19:32:37 $"
 
 deferred class
 
@@ -23,7 +23,7 @@ feature {ECLI_TRACER, ECLI_TRACEABLE} -- Basic operations
 			-- Trace current object through 'a_tracer'
 		require
 			trace_possible: can_trace
-			tracer_writable: a_tracer /= Void
+			tracer_writable: a_tracer /= Void --FIXME: VS-DEL
 		deferred
 		end
 

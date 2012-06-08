@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:08 $"
+	date: "$Date: 2012/06/08 19:32:36 $"
 
 deferred class ECLI_STATEMENT_PARAMETER
 
@@ -40,13 +40,13 @@ feature {ECLI_STATEMENT} -- Basic operations
 	bind (statement : ECLI_STATEMENT; position : INTEGER) is
 			-- Bind Current as `position'-th parameter in `statement'
 		require
-			statement_not_void: statement /= Void
+			statement_not_void: statement /= Void --FIXME: VS-DEL
 			positive_position: position > 0
 		deferred
 		end
 		
 invariant
 	exclusive_direction: is_input xor is_output xor is_input_output
-	item_set: item /= Void
+	item_set: item /= Void --FIXME: VS-DEL
 	
 end

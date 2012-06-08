@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/05/29 21:22:04 $"
+	date: "$Date: 2012/06/08 19:32:42 $"
 
 deferred class ECLI_STRING_VALUE
 
@@ -59,7 +59,7 @@ feature -- Access
 	item : STRING is
 		do
 			if is_null then
-				Result := Void
+				create Result.make_empty
 			else
 				ext_item.copy_to (impl_item)
 				Result := impl_item
@@ -283,16 +283,25 @@ feature -- Conversion
 	as_date : DT_DATE is
 			-- Current converted to DATE
 		do
+			check False then
+				create Result.make_from_day_count (0)
+			end
 		end
 
 	as_time : DT_TIME is
 			-- Current converted to DT_TIME
 		do
+			check False then
+				create Result.make_from_second_count (0)
+			end
 		end
 
 	as_timestamp : DT_DATE_TIME is
 			-- Current converted to DT_DATE_TIME
 		do
+			check False then
+				create Result.make_from_epoch (0)
+			end
 		end
 
 feature -- Basic operations
@@ -308,7 +317,7 @@ feature -- Basic operations
 		require
 			i_start_ok: i_start > 0 and i_start <= i_end
 			i_end_ok: i_end > 0 and i_end <= count
-			string_not_void: string /= Void
+			string_not_void: string /= Void --FIXME: VS-DEL
 			not_null: not is_null
 		do
 			ext_item.append_substring_to (i_start, i_end, string)
@@ -339,7 +348,7 @@ feature {NONE} -- Implementation
 
 invariant
 
-	ext_item_not_void: ext_item /= Void
-	impl_item_not_void: impl_item /= Void
+	ext_item_not_void: ext_item /= Void --FIXME: VS-DEL
+	impl_item_not_void: impl_item /= Void --FIXME: VS-DEL
 
 end

@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2011/12/06 10:05:38 $"
+	date: "$Date: 2012/06/08 19:32:50 $"
 
 class ECLI_PROCEDURE_COLUMNS_CURSOR
 
@@ -31,7 +31,9 @@ feature -- Access
 	item : ECLI_PROCEDURE_COLUMN is
 			--
 		do
-			Result := impl_item
+			check attached impl_item as i then
+				Result := i
+			end
 		end
 
 feature -- Element change

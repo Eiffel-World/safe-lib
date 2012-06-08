@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/10/29 14:54:01 $"
+	date: "$Date: 2012/06/08 19:32:38 $"
 
 deferred class ECLI_BINARY_VALUE
 
@@ -24,7 +24,7 @@ feature -- Access
 	item : STRING is
 		do
 			if is_null then
-				Result := Void
+				create Result.make_empty
 			else
 				ext_item.copy_substring_to (1, count, impl_item)
 				Result := impl_item

@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that list the command history."
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:43:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2012/06/08 19:32:54 $"
+	revision: "$Revision: 1.1.1.1.4.1 $"
 
 class
 	ISQL_CMD_HISTORY
@@ -34,28 +34,28 @@ feature -- Basic operations
 	execute (text : STRING; context : ISQL_CONTEXT) is
 			-- show history
 		local
-			cursor : DS_LINKED_LIST_CURSOR[STRING]
 			count : INTEGER
 			l_message : STRING
 		do
 			--| print heading message
 			--| list commands
-			from
-				cursor := context.history.new_cursor
-				cursor.start
-				count := 1
-			until
-				cursor.off
-			loop
-				create l_message.make (30)
-				l_message.append_integer (count)
-				l_message.append_character (':')
-				l_message.append_string (cursor.item)
-				context.filter.begin_message
-				context.filter.put_message (l_message)
-				context.filter.end_message
-				cursor.forth
-				count := count + 1
+			if attached context.history.new_cursor as cursor then
+				from
+					cursor.start
+					count := 1
+				until
+					cursor.off
+				loop
+					create l_message.make (30)
+					l_message.append_integer (count)
+					l_message.append_character (':')
+					l_message.append_string (cursor.item)
+					context.filter.begin_message
+					context.filter.put_message (l_message)
+					context.filter.end_message
+					cursor.forth
+					count := count + 1
+				end
 			end
 		end
 

@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/03/05 08:55:51 $"
+	date: "$Date: 2012/06/08 19:32:44 $"
 
 class ECLI_ARRAYED_CHAR
 
@@ -50,6 +50,8 @@ feature -- Access
 			if not is_null_at (index) then
 				Result := Precursor (index)
 				format (Result)
+			else
+				Result := ""
 			end
 		ensure then
 			Result.count = content_count
@@ -82,7 +84,7 @@ feature {NONE} -- Implementation
 	format (s : STRING) is
 			-- format 's' according to 'capacity'
 		require
-			s_not_void: s /= Void
+			s_not_void: s /= Void --FIXME: VS-DEL
 		do
 			if s.count > content_count then
 				s.keep_head (content_capacity)

@@ -1,23 +1,21 @@
 indexing
 
 	description:
-	
+
 			"Subscriber part of the publisher/subscriber pattern."
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:09 $"
+	date: "$Date: 2012/06/08 19:32:51 $"
 
-deferred class PAT_SUBSCRIBER
+deferred class PAT_SUBSCRIBER [G -> PAT_PUBLISHER [PAT_SUBSCRIBER[G]]]
 
 feature -- Initialization
 
 feature -- Access
 
-	publisher : PAT_PUBLISHER [PAT_SUBSCRIBER] is
-		deferred
-		end
+	publisher : detachable PAT_PUBLISHER [PAT_SUBSCRIBER[G]]
 
 feature -- Status report
 

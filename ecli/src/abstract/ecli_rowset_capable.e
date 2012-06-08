@@ -10,7 +10,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2008/05/21 12:35:19 $"
+	date: "$Date: 2012/06/08 19:32:35 $"
 
 deferred class ECLI_ROWSET_CAPABLE
 
@@ -67,7 +67,8 @@ feature {NONE} -- Implementation
 invariant
 	row_capacity_valid: row_capacity >= 1
 	row_count_valid: row_count <= row_capacity
-	impl_row_count_not_void: impl_row_count /= Void
-	rowset_status_capacity: rowset_status /= Void and then rowset_status.count = row_capacity
+	impl_row_count_not_void: impl_row_count /= Void --FIXME: VS-DEL
+	rowset_status_not_void:rowset_status /= Void 
+	rowset_capacity: rowset_status.count = row_capacity
 	
 end

@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2006/03/07 17:10:08 $"
+	date: "$Date: 2012/06/08 19:32:34 $"
 
 deferred class ECLI_LOGIN_STRATEGY
 
@@ -25,7 +25,7 @@ feature {ECLI_SESSION} -- Basic operations
 	connect (session : ECLI_SESSION) is
 			-- Connect `session' using current strategy.
 		require
-			session_not_void: session /= Void
+			session_not_void: session /= Void --FIXME: VS-DEL
 		deferred
 		end
 

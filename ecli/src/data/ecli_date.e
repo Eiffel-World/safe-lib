@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/05/29 21:22:04 $"
+	date: "$Date: 2012/06/08 19:32:40 $"
 
 class ECLI_DATE
 
@@ -294,11 +294,13 @@ feature -- Conversion
 	as_decimal : MA_DECIMAL is
 			-- Current converted to MA_DECIMAL.
 		do
+			create Result.make_zero
 		end
 
 	as_time : DT_TIME is
 			-- Current converted to DT_TIME
 		do
+			create Result.make_from_second_count (0)
 		end
 
 feature -- Basic operations

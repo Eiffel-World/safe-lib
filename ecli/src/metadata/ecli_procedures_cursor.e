@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/11/10 15:52:38 $"
+	date: "$Date: 2012/06/08 19:32:50 $"
 
 class ECLI_PROCEDURES_CURSOR
 
@@ -19,7 +19,7 @@ inherit
 		rename
 			queried_name as queried_procedure
 		redefine
-			item, impl_item
+			item, impl_item, default_create
 		end
 
 create
@@ -28,12 +28,20 @@ create
 
 feature {NONE} -- Initialization
 
+	default_create
+		do
+			Precursor
+
+			create_buffer_objects
+		end
+
 	make_all_procedures (a_session : ECLI_SESSION) is
 			-- make cursor for all types of session
 		require
-			session_opened: a_session /= Void and then a_session.is_connected
+			a_session_not_void: a_session /= Void --FIXME: VS-DEL
+			a_session_connected: a_session.is_connected
 		local
-			search_criteria : ECLI_NAMED_METADATA
+			search_criteria : ECLI_NAMED_METADATA_PATTERN
 		do
 			create search_criteria.make (Void, Void, Void)
 			make (search_criteria, a_session)
@@ -46,7 +54,9 @@ feature -- Access
 	item : ECLI_PROCEDURE_METADATA is
 			-- item at current cursor position
 		do
-			Result := impl_item
+			check attached impl_item as i then
+				Result := i
+			end
 		end
 
 feature -- Cursor Movement
@@ -68,15 +78,6 @@ feature {NONE} -- Implementation
 	create_buffers is
 			-- create buffers for cursor
 		do
-			create buffer_catalog_name.make (255)
-			create buffer_schema_name.make (255)
-			create buffer_procedure_name.make (255)
-			create buffer_description.make (255)
-			create buffer_na1.make (10)
-			create buffer_na2.make (10)
-			create buffer_na3.make (10)
-			create buffer_procedure_type.make
-
 			set_results (<<
 					buffer_catalog_name,
 					buffer_schema_name,
@@ -89,6 +90,18 @@ feature {NONE} -- Implementation
 				>>)
 		end
 
+	create_buffer_objects
+		do
+			create buffer_catalog_name.make (255)
+			create buffer_schema_name.make (255)
+			create buffer_procedure_name.make (255)
+			create buffer_description.make (255)
+			create buffer_na1.make (10)
+			create buffer_na2.make (10)
+			create buffer_na3.make (10)
+			create buffer_procedure_type.make
+		end
+
 	create_item is
 			-- create item at curren cursor position
 		do
@@ -99,7 +112,7 @@ feature {NONE} -- Implementation
 			end
 		end
 
-	impl_item : like item
+	impl_item : detachable like item
 
 	definition : STRING is once Result := "SQLProcedures" end
 

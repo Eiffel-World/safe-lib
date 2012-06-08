@@ -7,16 +7,13 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/03/05 08:52:33 $"
+	date: "$Date: 2012/06/08 19:32:41 $"
 
 class ECLI_FILE_LONGVARCHAR
 
 inherit
 
 	ECLI_FILE_VALUE
-		redefine
-			get_transfer_length
-		end
 
 create
 
@@ -33,7 +30,7 @@ feature {NONE} -- Implementation
 
 	get_transfer_length : INTEGER is
 		do
-			Result := Precursor
+--			Result := Precursor
 			if ext_item.item (Result) = '%U' then
 				Result := Result - 1
 			end
