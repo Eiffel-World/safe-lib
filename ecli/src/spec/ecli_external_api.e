@@ -14,7 +14,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/05/29 21:22:04 $"
+	date: "$Date: 2012/06/28 06:52:06 $"
 
 class ECLI_EXTERNAL_API
 
@@ -454,7 +454,9 @@ feature {NONE} -- Value handling functions
 
 feature {NONE} -- Value handling functions for ARRAYED values
 
-	ecli_c_alloc_array_value (c_buffer_length : INTEGER; a_count : INTEGER)  : POINTER is
+	ecli_c_alloc_array_value (c_buffer_length : INTEGER_64; a_count : INTEGER)  : POINTER is
+		require
+			platform_compatible_length (c_buffer_length)
 		external "C"
 		end
 
