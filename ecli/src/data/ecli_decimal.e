@@ -14,7 +14,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/02/06 22:01:59 $"
+	date: "$Date: 2012/06/29 06:14:05 $"
 
 class ECLI_DECIMAL
 
@@ -216,7 +216,7 @@ feature {ECLI_VALUE, ECLI_STATEMENT} -- Status report
 
 	transfer_octet_length: INTEGER is
 		do
-			Result := ecli_c_value_get_length (buffer)
+			Result := ecli_c_value_get_length (buffer).as_integer_32 -- FIXME 64/32 bits
 		end
 
 feature -- Element change

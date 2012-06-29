@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2010/08/31 21:42:02 $"
+	date: "$Date: 2012/06/29 06:14:05 $"
 
 deferred class ECLI_VALUE
 
@@ -147,7 +147,7 @@ feature {ECLI_VALUE, ECLI_STATEMENT} -- Status Report
 		deferred
 		end
 
-	length_indicator : INTEGER is
+	length_indicator : INTEGER_64 is
 			-- Length indicator for database Xfer.
 		do
 			if is_null then
