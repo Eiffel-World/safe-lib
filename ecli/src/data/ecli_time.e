@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/02/06 22:01:59 $"
+	date: "$Date: 2012/07/04 18:33:00 $"
 
 class ECLI_TIME
 
@@ -178,7 +178,7 @@ feature -- Measurement
 			Result := 8
 		end
 
-	transfer_octet_length: INTEGER is
+	transfer_octet_length: INTEGER_64 is
 		do
 			Result := ecli_c_sizeof_time_struct
 		end

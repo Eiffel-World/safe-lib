@@ -14,7 +14,7 @@ indexing
 	library: "GOBO Eiffel Decimal Arithmetic Library"
 	copyright: "Copyright (c) 2005, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/06/29 06:14:05 $"
+	date: "$Date: 2012/07/04 18:33:00 $"
 
 class ECLI_DECIMAL
 
@@ -72,7 +72,7 @@ feature {NONE} -- Initialization
 			create rounding_context.make (precision, new_rounding_mode)
 			buffer := ecli_c_alloc_value (new_precision + 3)
 			set_null
-			create ext_item.make_shared_from_pointer (ecli_c_value_get_value (buffer), transfer_octet_length)
+			create ext_item.make_shared_from_pointer (ecli_c_value_get_value (buffer), transfer_octet_length.as_integer_32)
 		ensure
 			is_null: is_null
 			precision_set: precision = new_precision
@@ -214,7 +214,7 @@ feature {ECLI_VALUE, ECLI_STATEMENT} -- Status report
 			Result := Sql_decimal
 		end
 
-	transfer_octet_length: INTEGER is
+	transfer_octet_length: INTEGER_64 is
 		do
 			Result := ecli_c_value_get_length (buffer).as_integer_32 -- FIXME 64/32 bits
 		end

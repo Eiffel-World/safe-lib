@@ -11,7 +11,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/10/19 10:14:12 $"
+	date: "$Date: 2012/07/04 18:33:00 $"
 
 	usage: "Used in row-set operations : column-wise binding for result-sets, %
 		% or column-wise binding of parameters for modifications.%
@@ -39,7 +39,7 @@ feature -- Access
 
 feature -- Measurement
 
-	item_size : INTEGER is
+	item_size : INTEGER_64 is
 			-- maximum size of one item
 		do
 			Result := ecli_c_array_value_get_length (buffer)

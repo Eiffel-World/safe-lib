@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/06/29 06:14:05 $"
+	date: "$Date: 2012/07/04 18:33:00 $"
 
 deferred class ECLI_VALUE
 
@@ -135,7 +135,7 @@ feature {ECLI_VALUE, ECLI_STATEMENT} -- Status Report
 		deferred
 		end
 
-	transfer_octet_length : INTEGER is
+	transfer_octet_length : INTEGER_64 is
 			-- Actual buffer capacity for underlying data transfer.
 			-- (redefine in descendant classes)
 		deferred

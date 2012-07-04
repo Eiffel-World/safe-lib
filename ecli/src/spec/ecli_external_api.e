@@ -14,7 +14,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/07/04 13:05:29 $"
+	date: "$Date: 2012/07/04 18:33:00 $"
 
 class ECLI_EXTERNAL_API
 
@@ -318,7 +318,9 @@ feature {NONE} -- Implementation
 		external "C"
 		end
 
-	ecli_c_get_data (stmt : POINTER; column_number, c_type : INTEGER; target_pointer : POINTER; buffer_length : INTEGER; len_indicator_pointer : POINTER) : INTEGER is
+	ecli_c_get_data (stmt : POINTER; column_number, c_type : INTEGER; target_pointer : POINTER; buffer_length : INTEGER_64; len_indicator_pointer : POINTER) : INTEGER is
+		require
+			platform_compatible_buffer_length: platform_compatible_length (buffer_length)
 		external "C"
 --SQLGetData (SQLHSTMT StatementHandle, SQLUSMALLINT ColumnNumber,
 --   SQLSMALLINT TargetType, SQLPOINTER TargetValue, SQLLEN BufferLength,

@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/03/05 08:55:51 $"
+	date: "$Date: 2012/07/04 18:33:00 $"
 
 class ECLI_ARRAYED_DOUBLE
 
@@ -63,7 +63,7 @@ feature -- Status report
 
 feature -- Status setting
 
-	transfer_octet_length: INTEGER is
+	transfer_octet_length: INTEGER_64 is
 		do
 			Result := ecli_c_array_value_get_length (buffer)
 		end

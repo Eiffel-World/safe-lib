@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/06/29 06:14:05 $"
+	date: "$Date: 2012/07/04 18:33:00 $"
 
 deferred class ECLI_STRING_VALUE
 
@@ -113,10 +113,10 @@ feature -- Measurement
 
 	display_size: INTEGER is
 		do
-			Result := transfer_octet_length - 1
+			Result := transfer_octet_length.as_integer_32 - 1
 		end
 
-	transfer_octet_length: INTEGER is
+	transfer_octet_length: INTEGER_64 is
 		do
 			Result := ecli_c_value_get_length (buffer).as_integer_32 -- FIXME 64/32 bits
 		end
@@ -329,7 +329,11 @@ feature -- Inapplicable
 
 feature {NONE} -- Implementation
 
-	octet_size : INTEGER is do Result := transfer_octet_length end
+	octet_size : INTEGER is
+			-- FIXME: 64 bits
+		do
+			Result := transfer_octet_length.as_integer_32
+		end
 
 	impl_item : STRING
 
