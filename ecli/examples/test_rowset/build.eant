@@ -8,12 +8,12 @@
 		library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 		copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 		license: "Eiffel Forum License v2 (see forum.txt)"
-		date: "$Date: 2006/04/13 13:23:43 $"
+		date: "$Date: 2012/07/04 18:54:47 $"
 
 	</description>
 
 	<inherit>
-		<parent location="${GOBO}/misc/eiffel.eant">
+		<parent location="${ECLI}/misc/build.eant">
 			<redefine target="init_system"/>
 		</parent>
 	</inherit>

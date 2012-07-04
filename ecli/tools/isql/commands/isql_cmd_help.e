@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that show HELP about CLISQL commands."
 	author: "Paul G. Crismer"
-	date: "$Date: 2009/03/05 08:43:18 $"
-	revision: "$Revision: 1.1 $"
+	date: "$Date: 2012/07/04 18:54:48 $"
+	revision: "$Revision: 1.1.1.1.4.1 $"
 
 class
 	ISQL_CMD_HELP
@@ -33,8 +33,6 @@ feature -- Basic operations
 
 	execute (text : STRING; context : ISQL_CONTEXT) is
 			-- show help
-		local
-			cursor : DS_LIST_CURSOR[ISQL_COMMAND]
 		do
 			--| print heading message
 			context.filter.begin_message
@@ -43,20 +41,22 @@ feature -- Basic operations
 				%Command names can be abbreviated; characters between [ ] can be avoided.%N%NAvailable commands ('*' = needs a connected session) :%N")
 
 			--| list commands
-			from
-				cursor := context.commands.new_cursor
-				cursor.start
-			until
-				cursor.off
-			loop
-				if cursor.item.needs_session then
-					context.filter.put_message ("* ")
-				else
-					context.filter.put_message ("  ")
+			if attached context.commands.new_cursor as cursor then
+				from
+					cursor := context.commands.new_cursor
+					cursor.start
+				until
+					cursor.off
+				loop
+					if cursor.item.needs_session then
+						context.filter.put_message ("* ")
+					else
+						context.filter.put_message ("  ")
+					end
+					context.filter.put_message (cursor.item.help_message)
+					context.filter.put_message ("%N")
+					cursor.forth
 				end
-				context.filter.put_message (cursor.item.help_message)
-				context.filter.put_message ("%N")
-				cursor.forth
 			end
 --			context.filter.put_message ("* ")
 --			context.filter.put_message (context.sql_command.help_message)

@@ -2,8 +2,8 @@ indexing
 	description: "Objects that represent an Eiffel feature, either an attribute, function or procedure."
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "Eiffel Code Generator"
-	date: "$Date: 2005/11/29 09:47:38 $"
-	revision: "$Revision: 1.3 $"
+	date: "$Date: 2012/07/04 18:54:48 $"
+	revision: "$Revision: 1.3.4.1 $"
 	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
 	copyright: "Copyright (c) 2001 Glenn Maughan and others"
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
@@ -23,6 +23,7 @@ feature -- Initialization
 			name_not_void: new_name /= Void
 		do
 			set_name (new_name)
+			create comment.make_empty
 		end
 
 feature -- Access
@@ -32,7 +33,7 @@ feature -- Access
 
 	comment : STRING
 			-- Comment of feature
-			
+
 feature -- Status setting
 
 	set_name (new_name: STRING) is

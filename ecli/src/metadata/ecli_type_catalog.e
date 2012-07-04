@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/06/08 19:32:51 $"
+	date: "$Date: 2012/07/04 18:54:48 $"
 
 class
 	ECLI_TYPE_CATALOG
@@ -80,7 +80,7 @@ feature -- Access
 				Result := n
 			else
 				create {DS_LINKED_LIST[ECLI_SQL_TYPE]}Result.make
-				if attached types.new_cursor as ht_cursor then
+					if attached types.new_cursor as ht_cursor then
 					from
 						ht_cursor.start
 					until

@@ -2,8 +2,8 @@ indexing
 	description: "Objects that can represent either Eiffel functions or procedures."
 	project: "Project Goanna <http://sourceforge.net/projects/goanna>"
 	library: "Eiffel Code Generator"
-	date: "$Date: 2012/01/13 16:18:07 $"
-	revision: "$Revision: 1.7 $"
+	date: "$Date: 2012/07/04 18:54:48 $"
+	revision: "$Revision: 1.7.4.1 $"
 	author: "Glenn Maughan <glennmaughan@optushome.com.au>"
 	copyright: "Copyright (c) 2001 Glenn Maughan and others"
 	license: "Eiffel Forum Freeware License v1 (see forum.txt)."
@@ -30,6 +30,11 @@ feature -- Initialisation
 		do
 			feature_make (new_name)
 			create params.make
+			create body.make
+			create locals.make
+			create preconditions.make
+			create postconditions.make
+			create type.make_empty
 		end
 
 feature -- Access
@@ -55,7 +60,8 @@ feature -- Access
 	is_function: BOOLEAN is
 			-- Is this routine a function?
 		do
-			Result := type /= Void
+--			Result := type /= Void
+			Result := type.is_empty
 		end
 
 	is_deferred: BOOLEAN is
@@ -104,10 +110,10 @@ feature -- Status setting
 			local_name_not_void: new_local.first /= Void
 			local_type_not_void: new_local.second /= Void
 		do
-			if locals = Void then
-				create body.make
-				create locals.make
-			end
+--			if locals = Void then
+--				create body.make
+--				create locals.make
+--			end
 			locals.force_last (new_local)
 		end
 
@@ -116,10 +122,10 @@ feature -- Status setting
 		require
 			line_not_void: line /= Void
 		do
-			if body = Void then
-				create body.make
-				create locals.make
-			end
+--			if body = Void then
+--				create body.make
+--				create locals.make
+--			end
 			body.force_last (line)
 		end
 
@@ -141,9 +147,9 @@ feature -- Status setting
 		require
 			precondition_not_void: precondition /= Void
 		do
-			if preconditions = Void then
-				create preconditions.make
-			end
+--			if preconditions = Void then
+--				create preconditions.make
+--			end
 			preconditions.force_last (precondition)
 		end
 
@@ -165,9 +171,9 @@ feature -- Status setting
 		require
 			postcondition_not_void: postcondition /= Void
 		do
-			if postconditions = Void then
-				create postconditions.make
-			end
+--			if postconditions = Void then
+--				create postconditions.make
+--			end
 			postconditions.force_last (postcondition)
 		end
 
@@ -188,12 +194,12 @@ feature -- Basic operations
 			else
 				output.put_string (" is")
 			end
-			if comment /= Void then
+			if not comment.is_empty then
 				output.put_new_line
 				output.put_string ("%T%T%T-- "+comment)
 			end
 			output.put_new_line
-			if preconditions /= Void then
+			if not preconditions.is_empty then
 				write_preconditions (output)
 			end
 			if is_deferred then
@@ -205,7 +211,7 @@ feature -- Basic operations
 				end
 				write_body (output)
 			end
-			if postconditions /= Void then
+			if not postconditions.is_empty then
 				write_postconditions (output)
 			end
 			output.put_string ("%T%Tend")
@@ -308,9 +314,9 @@ feature {NONE} -- Implementation
 
 invariant
 
-	function_definition: is_function implies type /= Void
-	deferred_definition: is_deferred implies (body = Void and locals = Void)
-	no_body_or_locals: body = Void implies locals = Void
+	function_definition: is_function implies not type.is_empty
+	deferred_definition: is_deferred implies not body.is_empty
+	no_body_or_locals: body.is_empty implies locals.is_empty
 	params_not_void: params /= Void
 
 end -- class EIFFEL_ROUTINE

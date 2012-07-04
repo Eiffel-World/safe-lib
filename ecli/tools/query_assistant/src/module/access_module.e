@@ -1,8 +1,8 @@
 indexing
 	description: "Classes that group persistency accesses for a single class/concept."
 	author: "Paul G. Crismer"
-	date: "$Date: 2010/12/20 09:25:26 $"
-	revision: "$Revision: 1.12 $"
+	date: "$Date: 2012/07/04 18:54:48 $"
+	revision: "$Revision: 1.12.4.1 $"
 
 class
 	ACCESS_MODULE
@@ -17,6 +17,7 @@ feature {} -- Initialization
 			create accesses.make (10)
 			create parameter_sets.make (10)
 			create result_sets.make (10)
+			create parameter_map.make (10)
 		end
 
 	make_from_tables (the_accesses : DS_HASH_TABLE [RDBMS_ACCESS, STRING]; the_parameter_sets : DS_HASH_TABLE[PARAMETER_SET, STRING]; the_result_sets : DS_HASH_TABLE[RESULT_SET, STRING]; the_parameter_map : PARAMETER_MAP) is

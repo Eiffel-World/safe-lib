@@ -1,8 +1,8 @@
 indexing
 	description: "Objects that handle cached accesses to database repository."
 	author: "Paul G. Crismer"
-	date: "$Date: 2008/05/16 07:39:37 $"
-	revision: "$Revision: 1.5 $"
+	date: "$Date: 2012/07/04 18:54:48 $"
+	revision: "$Revision: 1.5.4.1 $"
 
 class
 	COLUMNS_REPOSITORY
@@ -26,7 +26,7 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	last_column : ECLI_COLUMN
+	last_column : detachable ECLI_COLUMN
 			-- Last column found in the repository
 
 	session : ECLI_SESSION
@@ -111,6 +111,6 @@ feature {NONE} -- Implementation
 
 	hash_delimiter : CHARACTER is '|'
 
-	columns : DS_HASH_TABLE[ECLI_COLUMN, STRING]
+	columns : DS_HASH_TABLE[detachable ECLI_COLUMN, STRING]
 
 end -- class COLUMNS_REPOSITORY

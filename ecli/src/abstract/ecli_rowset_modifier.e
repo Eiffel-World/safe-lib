@@ -7,7 +7,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/06/08 19:32:35 $"
+	date: "$Date: 2012/07/04 18:54:48 $"
 
 class ECLI_ROWSET_MODIFIER
 
@@ -153,7 +153,7 @@ feature {NONE} -- Implementation
 
 	default_parameter : attached like parameter_anchor
 		do
-			create {ECLI_ARRAYED_VARCHAR}Result.make (1, row_count)
+			create {ECLI_ARRAYED_VARCHAR}Result.make (1, row_capacity)
 		end
 
 end
