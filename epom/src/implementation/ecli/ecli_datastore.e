@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/07/28 12:33:28 $"
+	date: "$Date: 2012/07/04 18:56:41 $"
 
 class ECLI_DATASTORE
 
@@ -56,6 +56,7 @@ feature -- Element change
 			-- Safe setting of login strategy
 		require
 			login_not_void: login /= Void
+			not_connected: not is_connected
 		do
 			session.set_login_strategy (login)
 		ensure
