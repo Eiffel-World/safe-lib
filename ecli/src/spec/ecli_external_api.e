@@ -7,14 +7,14 @@ indexing
 	implementation_note: "[
 			64 bit:
 			
-			All sizes/length are 64 bit; is current platform is 32 bit, a precondition tests the value.
+			All sizes/length are 64 bit; if current platform is 32 bit, a precondition tests the value.
 
 			]"
 
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/06/29 06:14:05 $"
+	date: "$Date: 2012/07/04 13:05:29 $"
 
 class ECLI_EXTERNAL_API
 

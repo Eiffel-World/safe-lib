@@ -9,7 +9,7 @@ indexing
 	library: "ECLI : Eiffel Call Level Interface (ODBC) Library. Project SAFE."
 	copyright: "Copyright (c) 2001-2006, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/06/29 06:14:05 $"
+	date: "$Date: 2012/07/04 13:05:28 $"
 
 class ECLI_STATEMENT
 
@@ -941,7 +941,7 @@ feature {NONE} -- Implementation
 			Result := ecli_c_statement_error (handle, record_index, state, native_error, message, buffer_length, length_indicator)
 		end
 
-	impl_row_count : XS_C_INT64
+	impl_row_count : ECLI_API_SQLLEN
 		-- Buffer for storing number of rows affected
 
 	impl_result_columns_count : XS_C_INT32
