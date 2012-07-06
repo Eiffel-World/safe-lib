@@ -1,8 +1,8 @@
 note
 	description: "Summary description for {XS_C_INT64}."
 	author: ""
-	date: "$Date: 2012/03/29 19:43:37 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2012/07/06 13:03:25 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	XS_C_INT64
@@ -30,8 +30,8 @@ feature -- Measurement
 
 	item_size : INTEGER do Result := 8 end
 
-	minimum_value : INTEGER_64 -- is -2147483648
-	maximum_value : INTEGER_64 -- is 2147483647
+	minimum_value : INTEGER_64 do Result := {INTEGER_64}.min_value end-- is -2147483648
+	maximum_value : INTEGER_64 do Result := {INTEGER_64}.max_value end-- is 2147483647
 
 feature -- Element change
 
