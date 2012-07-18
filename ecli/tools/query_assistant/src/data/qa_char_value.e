@@ -9,8 +9,8 @@ indexing
 	refactoring: ""
 
 	status: "see notice at end of class";
-	date: "$Date: 2011/05/02 13:33:01 $";
-	revision: "$Revision: 1.2 $";
+	date: "$Date: 2012/07/18 14:44:41 $";
+	revision: "$Revision: 1.3 $";
 	author: ""
 
 deferred class
@@ -55,7 +55,7 @@ feature -- Conversion
 			if size > default_maximum_capacity then
 				create Result.make (10)
 				Result.append_string ("make_force_maximum_capacity (")
-				Result.append_integer (size)
+				Result.append_integer (size.as_integer_32)
 				Result.append_string (")")
 			else
 				Result := Precursor

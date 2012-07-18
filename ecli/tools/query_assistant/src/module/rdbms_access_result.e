@@ -4,8 +4,8 @@ indexing
 	library: "Access_gen : Access Modules Generators utilities"
 
 	author: "Paul G. Crismer"
-	date: "$Date: 2007/11/27 10:55:42 $"
-	revision: "$Revision: 1.2 $"
+	date: "$Date: 2012/07/18 14:45:26 $"
+	revision: "$Revision: 1.3 $"
 
 class
 	RDBMS_ACCESS_RESULT
@@ -30,9 +30,9 @@ feature {NONE} -- Initialization
 		do
 			metadata := the_metadata
 			if maximum_length > 0 then
-				size_impl := maximum_length.min (metadata.size)
+				size_impl := maximum_length.min (metadata.size.as_integer_32)
 			else
-				size_impl := metadata.size
+				size_impl := metadata.size.as_integer_32
 			end
 		ensure
 			metadata_assigned: metadata = the_metadata
