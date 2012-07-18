@@ -6,7 +6,7 @@ indexing
 
 	copyright: "Copyright (c) 2004, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2009/07/28 12:33:28 $"
+	date: "$Date: 2012/07/18 14:42:26 $"
 
 class ECLI_DATASTORE
 
@@ -153,6 +153,7 @@ feature {NONE} -- Implementation
 	adapters_impl : DS_LINKED_LIST[PO_ADAPTER[PO_PERSISTENT]]
 
 	on_connected is
+			-- <Precursor>
 		local
 			adapters_cursor : DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
 		do
@@ -170,10 +171,11 @@ feature {NONE} -- Implementation
 		end
 
 	on_disconnect is
+			-- <Precursor>
 		local
 			adapters_cursor : DS_LIST_CURSOR [PO_ADAPTER[PO_PERSISTENT]]
 		do
-			if not is_connected then
+			if is_connected then
 				adapters_cursor := adapters.new_cursor
 				from
 					adapters_cursor.start
