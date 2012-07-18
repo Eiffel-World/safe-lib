@@ -5,7 +5,7 @@ note
 
 	copyright: "Copyright (c) 2012, Paul G. Crismer and others"
 	license: "Eiffel Forum License v2 (see forum.txt)"
-	date: "$Date: 2012/03/29 12:36:52 $"
+	date: "$Date: 2012/07/18 15:04:15 $"
 
 class
 	PO_SERIAL_PID [G -> PO_PERSISTENT]
@@ -29,20 +29,20 @@ feature {NONE} -- Initialization
 			persistent_class_name_set: persistent_class_name = an_adapter.persistent_class_name
 		end
 
-	make_serial_unsafe (a_serial : NATURAL_64; a_persistent_class_name : READABLE_STRING_8)
-			-- Make using `a_serial', for `a_persistent_class_name' 
+	make_serial_unsafe (a_serial : NATURAL_64; a_persistent_class_name : STRING)
+			-- Make using `a_serial', for `a_persistent_class_name'
 			-- There is no guarantee that `a_persistent_class_name' is related to an adapter in the system.
 		do
 			serial := a_serial
 			persistent_class_name := a_persistent_class_name.twin
 		ensure
 			serial_set: serial = a_serial
-			persistent_class_name_set: persistent_class_name ~ a_persistence_class_name
+			persistent_class_name_set: persistent_class_name ~ a_persistent_class_name
 		end
 		
 feature -- Access
 
-	persistent_class_name : READABLE_STRING_8
+	persistent_class_name : STRING
 
 	serial : NATURAL_64
 
